@@ -1,0 +1,198 @@
+@use 'sass:map';
+
+.testimonials { max-width: 70ch; margin: $section-gap-mobile auto 0; display: grid; gap: 1.5em; }
+.testimonials-full { display: grid; gap: 1.25em; }
+.testimonials-grid-compact {
+  display: grid;
+  gap: 1.25em;
+  grid-template-columns: 1fr;
+  @media (width >= $breakpoint) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.testimonials,
+.testimonials-slider-cards {
+  @media (width >= $breakpoint) {
+    margin-top: $section-gap-desktop;
+  }
+}
+
+.testimonials-slider-cards {
+  position: relative;
+  max-width: min(1280px, 96dvw);
+  margin: $section-gap-mobile auto 0;
+  display: grid;
+  align-items: center;
+  padding-inline: 1dvw; /* tiny side breathing room on very wide screens */
+
+  .cards {
+    display: flex;
+    gap: 1em;
+    column-gap: 1em;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0;
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .cards::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+  .card { scroll-snap-align: start; }
+  
+  .testimonials-controls {
+    margin-top: 0.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85em;
+  }
+  .nav.small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid map.get($light-colors, danger); /* light mode CTA accent (pink) */
+    background: map.get($light-colors, danger); /* filled in light mode */
+    color: $dark-text; /* readable glyph on pink */
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1em;
+    transition: background-color 120ms ease, color 120ms ease, transform 120ms ease;
+    line-height: 1;
+    &:hover { filter: brightness(1.05); transform: translateY(-1px); } /* subtle lift on hover */
+  }
+  .dot-nav { display: flex; gap: 0.5em; align-items: center; }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid map.get($dark-colors, secondary); /* inactive: secondary */
+    opacity: 0.55;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 0;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+    transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease, transform 120ms ease;
+    &:hover { transform: scale(1.05); opacity: 0.7; }
+  }
+  .dot.active { background: map.get($light-colors, danger); border-color: map.get($light-colors, danger); opacity: 1; } /* active: CTA pink in light */
+}
+
+.testimonial-card {
+  position: relative;
+  margin: 0; /* remove default blockquote margins that create extra spacing */
+  padding: 1.25em 1.75em;
+  display: grid;
+  grid-template-rows: 28px 1fr auto; /* even tighter icon row so text sits just under it */
+  gap: 0.15em;
+  height: auto; /* let content define height; container will equalize via stretch */
+  min-height: 320px; /* taller on mobile without affecting width */
+  background: #fff;
+  color: $dark-text;
+  border: 1px solid rgb(0 0 0 / 6%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px -16px rgb(0 0 0 / 18%);
+  /* remove min-height so cards hug content; tallest card sets row height via flex stretch */
+
+  &.card {
+    /* Mobile: single card per view */
+    flex: 0 0 96%;
+    @media (width >= $breakpoint) {
+      /* Desktop: ~2.5 cards visible */
+      flex: 0 0 40%;
+    }
+  }
+
+  &::before {
+    content: '“';
+    position: absolute;
+    top: 0; /* place icon at the very top for minimal spacing */
+    left: 14px;
+    font-size: 56px; /* fixed size so all cards match */
+    line-height: 1;
+    opacity: 0.18; /* stronger for readability */
+    color: $primary; /* use stronger accent in light mode */
+    pointer-events: none;
+  }
+
+  .quote {
+    line-height: 1.75;
+    font-size: 1.2rem; /* ~19.2px */
+    grid-row: 2; /* ensure the quote sits in the middle track */
+    align-self: start; /* start near the top of the content area */
+    margin: 0;
+  }
+
+  /* removed debug index badge */
+
+  &.featured { /* no visual size changes for featured cards */ }
+
+  .attribution {
+    display: flex;
+    gap: 0.75em;
+    align-items: center;
+    color: map.get($dark-colors, secondary);
+    justify-content: flex-start;
+    align-self: end; /* pin to bottom row */
+    grid-row: 3;
+    margin-top: 1.25em; /* increased breathing room from the quote text */
+    padding: 0.25em 0; /* subtle padding within the author row */
+
+    .person { display: flex; align-items: center; gap: 0.6em; }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgb(255 255 255 / 12%);
+      border: 1px solid rgb(255 255 255 / 18%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75em;
+      font-weight: 600;
+    }
+    .name-title { display: flex; flex-direction: column; line-height: 1.1; }
+    .name { font-weight: 600; font-size: 1.12em; }
+
+    .title { opacity: 0.9; font-size: 1.06em; }
+  }
+}
+
+.testimonials,
+.testimonials-slider-cards {
+  @media (width >= $breakpoint) {
+    .testimonial-card { min-height: 420px; } /* taller on desktop, width unchanged */
+  }
+}
+
+.testimonial-card.featured .avatar { width: 32px; height: 32px; font-size: 0.75em; }
+
+/* Dark mode adjustments */
+.dark .testimonial-card {
+  background: #0f1111;
+  color: $light-text;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+}
+/* Accent the quote icon in dark mode */
+.dark .testimonial-card::before {
+  color: $primary;
+  opacity: 0.22; /* increase contrast on dark */
+}
+
+/* Improve dot contrast in dark mode */
+.dark .nav.small {
+  border-color: $primary;
+  background: $primary; /* filled in dark mode */
+  color: #0f1111;
+  &:hover { filter: brightness(1.05); }
+}
+.dark .dot { border-color: rgb(245 245 245 / 55%); opacity: 0.7; }
+.dark .dot.active { background: $primary; border-color: $primary; opacity: 1; }
+

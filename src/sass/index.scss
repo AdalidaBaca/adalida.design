@@ -12,6 +12,7 @@
 @import './header';
 @import './portfolio_page';
 @import './scroll_animated_text';
+@import './tools_carousel';
 
 .brand-icon {
   @include glass;
@@ -27,7 +28,11 @@
   flex-direction: column;
   width: $page-width;
   margin: auto;
-  padding-top: 1.5em;
+  padding-top: 0.5em;
+}
+
+@media (width >= $breakpoint) {
+  .page { padding-top: 1em; }
 }
 
 .arrow {

@@ -1,0 +1,34 @@
+@use 'sass:map';
+
+.how-i-think {
+  display: grid;
+  gap: 1.1em;
+  width: 100%;       /* fill the section width like Resources text */
+  margin: 0;         /* no extra indentation */
+  /* Removed decorative container styling per feedback */
+
+  p {
+    font-size: 1.2em;   /* bump up again on mobile */
+    line-height: 1.78;
+  }
+
+  @media (width >= $breakpoint) {
+    p {
+      font-size: 1.28em; /* bump up again on desktop */
+      line-height: 1.82;
+    }
+  }
+
+  .how-i-think-cta {
+    display: flex;
+    gap: 0.75em;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.25em;
+
+    .animated-link {
+      text-transform: none;
+    }
+  }
+}
+

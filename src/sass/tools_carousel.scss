@@ -1,0 +1,155 @@
+@use 'sass:map';
+
+.tools-carousel {
+  /* full bleed */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: $section-gap-mobile;
+  margin-bottom: $section-gap-mobile;
+  padding: 1em 0; /* add more breathing room inside the section */
+  min-height: 110px; /* ensure visible area even if logos are small or missing */
+  overflow: hidden;
+  /* Light mode background */
+  background: linear-gradient(
+    160deg,
+    rgba($primary, 0.10),
+    rgba($primary, 0.04)
+  );
+  border: 0;
+  position: relative;
+  contain: paint;
+
+  /* edge fade to blend with page */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10vw;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+
+  @media (width >= $breakpoint) {
+    margin-top: $section-gap-desktop;
+    margin-bottom: $section-gap-desktop;
+    padding: 1.5em 0; /* more space on desktop as well */
+  }
+  .inner {
+    width: min(1100px, 90vw);
+    margin: 0 auto;
+  }
+  /* no wrapper needed for bleed */
+
+  .tools-ship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.35em 0.65em;
+    border: 1px solid rgba(map.get($dark-colors, secondary), 0.35);
+    border-radius: 999px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    background: none;
+    margin-bottom: 0.9em; /* add a bit more breathing room above icons */
+  }
+
+  .marquee {
+    display: inline-flex;
+    gap: 2.25em;
+    align-items: center;
+    animation: marquee linear infinite;
+    animation-duration: var(--marquee-duration, 92s);
+    animation-play-state: var(--marquee-play, running);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    width: max-content;
+  }
+  .lane-1 { animation-duration: 92s; }
+  .lane-2 { animation-direction: reverse; animation-duration: 112s; opacity: 0.9; }
+
+  /* removed CTA */
+
+  .tool-logo {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    opacity: 0.85;
+    transition: opacity 120ms ease, filter 120ms ease, transform 120ms ease;
+
+    &:hover { opacity: 1; transform: translateY(-2px); }
+
+    img {
+      height: 52px;
+      filter: none; /* show original logo colors */
+      border-radius: 12px; /* match header control rounding */
+    }
+    .tool-fallback {
+      width: 96px;
+      height: 96px;
+      border: 1px solid rgba(0, 0, 0, 0.22);
+      border-radius: 12px; /* match header control rounding */
+      font-size: 0.85em;
+      opacity: 0.9;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.55);
+    }
+  }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (width >= $breakpoint) {
+  .tools-carousel .tool-logo {
+    width: 104px;
+    height: 104px;
+  }
+  .tools-carousel .tool-logo img {
+    height: 56px;
+  }
+  .tools-carousel .tool-logo .tool-fallback {
+    width: 104px;
+    height: 104px;
+  }
+}
+}
+
+.dark .tools-carousel {
+  background: linear-gradient(
+    160deg,
+    rgba($primary, 0.18),
+    rgba($primary, 0.06)
+  );
+
+  .tool-logo img { filter: none; } /* show original logo colors */
+  .tool-logo .tool-fallback {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: $light-text;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .tools-ship-badge { border-color: rgba(255, 255, 255, 0.4); background: none; color: $light-text; }
+
+  /* dark mode edge fade */
+  &::before {
+    background: linear-gradient(90deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+  }
+  &::after {
+    background: linear-gradient(270deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+  }
+}
+

@@ -16,6 +16,7 @@ const Footer = (): JSX.Element => (
           <a href='https://www.linkedin.com/in/adalidabaca/'>LinkedIn</a>
           <a href='https://dribbble.com/adalida-baca'>Dribbble</a>
           <a href='https://adalida.notion.site/A-Heavenly-Read-dfe9351a7e204898a1451de826b3e812'>Blog</a>
+          <a href='/experiments'>Experiments</a>
         </div>
       </div>
       <div className='footer-column'>
@@ -29,8 +30,8 @@ const Footer = (): JSX.Element => (
       <hr />
     </div>
     <div className='footer-row subtitle-2'>
-      <div className='footer-column'>© 2025</div>
-      <div className='footer-column'>Made with lots of coffee and green chile!</div>
+      <div className='footer-column'>© 2026</div>
+      <div className='footer-column'>Built with Green Chile and Cursor</div>
     </div>
   </div>
 )

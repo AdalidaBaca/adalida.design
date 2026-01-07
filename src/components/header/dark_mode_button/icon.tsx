@@ -52,7 +52,7 @@ const Icon = ({ darkMode }: { darkMode: boolean }): JSX.Element => {
       width='1.57em'
       height='1.57em'
       viewBox='0 0 24 24'
-      strokeWidth='2'
+      strokeWidth='1.5'
       stroke='currentColor'
       fill='none'
       strokeLinecap='round'

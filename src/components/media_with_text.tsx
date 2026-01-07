@@ -2,9 +2,29 @@ import React, { type CSSProperties } from 'react'
 
 import Image from 'components/image'
 
-export const makeMediaTag = ({ media, style = {} }: { media: string, style?: CSSProperties }): JSX.Element => {
+export const makeMediaTag = ({
+  media,
+  style = {},
+  imgObjectFit,
+  imgObjectPosition,
+}: {
+  media: string
+  style?: CSSProperties
+  imgObjectFit?: CSSProperties['objectFit']
+  imgObjectPosition?: CSSProperties['objectPosition']
+}): JSX.Element => {
   if (media.endsWith('.png') || media.endsWith('.jpg') || media.endsWith('.webp')) {
-    return <Image path={media} style={style} alt={media} objectFit='contain' />
+    return (
+      <Image
+        path={media}
+        style={{ width: '100%', height: 'auto', ...style }}
+        imgStyle={{ objectFit: imgObjectFit ?? 'contain', objectPosition: imgObjectPosition }}
+        alt={media}
+        objectFit={(imgObjectFit ?? 'contain') as any}
+        // @ts-expect-error Prop passthrough for object position on our Image wrapper
+        objectPosition={imgObjectPosition as any}
+      />
+    )
   }
   if (media.endsWith('.mp4')) {
     return <video src={media} autoPlay loop muted playsInline width='100%' style={style} />

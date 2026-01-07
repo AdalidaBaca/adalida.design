@@ -2,3 +2,7 @@ $breakpoint: 768px;
 $max-width: 950px;
 $page-padding: 10dvw;
 $page-width: min($max-width, calc(100dvw - (2 * $page-padding)));
+
+/* Consistent vertical spacing between major sections */
+$section-gap-mobile: 1.25em;
+$section-gap-desktop: 2em;

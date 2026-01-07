@@ -9,16 +9,18 @@ import BackButton from './back_button'
 const Header = (): JSX.Element => {
   const { darkMode } = useContext(DarkModeContext)
   return (
-    <div className={`navbar${darkMode ? ' dark' : ''}`}>
-      <div className='relative flex-center'>
+    <header className={`navbar${darkMode ? ' dark' : ''}`} role='banner' aria-label='Site header'>
+      <div className='left flex-center' aria-label='Home and back'>
         <HomeLink />
         <BackButton />
       </div>
-      <div className='flex-center'>
+      <nav className='primary-nav' aria-label='Primary'>
         <PortfolioPageSwitch />
+      </nav>
+      <div className='right flex-center' aria-label='Theme'>
         <DarkModeButton />
       </div>
-    </div>
+    </header>
   )
 }
 

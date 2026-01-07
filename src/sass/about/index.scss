@@ -1,7 +1,10 @@
 @use 'sass:math';
 @import './intro';
+@import './testimonials';
+@import './how_i_think';
 @import './writing';
 @import './hackathons';
+@import './github_calendar';
 
 .about-page {
   display: flex;

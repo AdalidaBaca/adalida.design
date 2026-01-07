@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 .hackathons {
   display: grid;
   grid-template-columns: 1fr;
@@ -39,4 +41,133 @@
       opacity: 0.75;
     }
   }
+}
+
+/* Intro paragraph above resource cards */
+.resource-intro {
+  font-size: 1.12em;    /* enlarge intro copy */
+  line-height: 1.7;
+  max-width: 70ch;      /* keep readable line length */
+  margin: 0 0 0.75em 0; /* slight spacing from cards */
+}
+
+/* Resource cards (reuse hackathon card structure, tuned for conversion) */
+.resource-card {
+  /* Match testimonial card look */
+  padding: 1.25em 1.75em;
+  gap: 1em;
+  background: #fff;
+  color: $dark-text;
+  border: 1px solid rgb(0 0 0 / 6%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px -16px rgb(0 0 0 / 18%);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -16px rgb(0 0 0 / 24%);
+  }
+  &:focus-visible {
+    outline: 2px solid map.get($dark-colors, secondary);
+    outline-offset: 3px;
+  }
+
+  .inside {
+    gap: 0.9em;
+    max-width: 62ch;
+
+    .resource-header {
+      display: flex;
+      flex-direction: column; /* stack badge above title for cleaner scan */
+      align-items: flex-start;
+      gap: 0.35em;
+      margin-bottom: 0.25em;
+    }
+
+    .title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15em;
+
+      > .subtitle-1 {
+        font-size: 1.2em;     /* slightly larger section titles */
+        line-height: 1.35;
+        margin: 0;
+      }
+      > .secondary-subtitle {
+        opacity: 0.9;
+        font-size: 0.95em;    /* make subtitle more readable */
+      }
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      width: fit-content;          /* hug content width */
+      white-space: nowrap;         /* prevent wrapping inside the badge */
+      align-self: flex-start;      /* avoid stretching in flex contexts */
+      align-items: center;
+      gap: 0.35em;
+      padding: 0.25em 0.5em;
+      border: 1px solid rgb(0 0 0 / 10%);
+      border-radius: 999px;
+      font-size: 0.75em;
+      opacity: 0.75;
+      margin: 0.1em 0 0.35em 0; /* sit between title and paragraph */
+    }
+
+    /* Main description copy */
+    > .caption-1 {
+      font-size: 1.06em;       /* +6% body size */
+      line-height: 1.7;        /* comfortable reading */
+      opacity: 1;
+    }
+
+    .resource-bullets {
+      margin: 0;
+      padding: 0 0 0 1em;
+      display: grid;
+      gap: 0.25em;
+    }
+  }
+
+  .resource-cta {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.75em;
+    align-items: center;
+
+    .secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      opacity: 0.85;
+    }
+  }
+
+  /* Make the CTA prominent and consistent with site badges */
+  .btn.badge.big-badge {
+    box-shadow: 0 6px 18px -4px rgb(0 0 0 / 25%);
+    transition: transform 120ms ease, filter 120ms ease;
+  }
+  .btn.badge.big-badge:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+  }
+}
+
+/* Dark mode match */
+.dark .resource-card {
+  background: #0f1111;
+  color: $light-text;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+}
+
+/* (Reverted) keep platform badge consistent between themes */
+.dark .resource-card .platform-badge {
+  border-color: rgb(255 255 255 / 45%); /* stronger outline for dark mode */
+  color: $light-text;
+  background: rgba(255 255 255 / 6%);
 }

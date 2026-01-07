@@ -1,19 +1,248 @@
+@use 'sass:map';
+
 .about-intro {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1em;
-  margin-top: 1em;
+  gap: 0.75em;
+  margin-top: 0.25em;
+  margin-bottom: $section-gap-mobile;
   place-items: center;
+
+  .splash-image {
+    position: relative;
+    width: min(156px, 52vw); /* +~12% */
+    /* allow the image + audio embed to define height */
+    max-height: none;
+    isolation: isolate;
+    display: flex;            /* center image frame within column */
+    align-items: center;
+
+    .splash-frame {
+      position: relative;
+      padding: 0; /* remove inner gutter so image fully covers */
+      border-radius: 18px;
+      background: none; /* prevent container background showing at edges */
+      overflow: hidden; /* clip image to rounded frame */
+      box-shadow:
+        0 12px 36px -12px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+      margin: 0 auto;         /* horizontally center the frame */
+      width: 100%;
+      /* slightly taller for more vertical presence */
+      aspect-ratio: 4 / 5;
+      min-height: clamp(140px, 20vw, 220px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* Gatsby image wrapper */
+      :where(img, .gatsby-image-wrapper) {
+        border-radius: 0; /* image should flush to frame edges */
+        overflow: hidden;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      /* Native img path for this avatar */
+      .splash-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .gatsby-image-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative !important;
+        /* Remove intrinsic padding so the image can fill the frame height */
+        padding-bottom: 0 !important;
+      }
+      .gatsby-image-wrapper img {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        display: block !important;
+      }
+      /* CSS background fallback to guarantee full cover */
+      .splash-cover {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+      }
+      /* Ensure the <picture> wrapper also fills the frame, not just the img */
+      .gatsby-image-wrapper picture {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+      }
+      .gatsby-image-wrapper picture img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        display: block !important;
+      }
+      /* Ensure any internal sizer elements don't impose padding-based aspect ratios */
+      .gatsby-image-wrapper > div,
+      .gatsby-image-wrapper > span,
+      .gatsby-image-wrapper [style*='padding-bottom'] {
+        height: 100% !important;
+        padding-bottom: 0 !important;
+        max-height: 100% !important;
+      }
+    }
+
+    .audio-control {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px; /* tiny gap between icon and text */
+
+      .audio-icon-button {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid rgba(0,0,0,0.25);
+        background: rgba(0,0,0,0.6);
+        color: $light-text;
+        cursor: pointer;
+        transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
+        &:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        &:focus-visible { outline: 2px solid $light-text; outline-offset: 2px; }
+      }
+      .audio-state {
+        margin-left: 2px; /* micro nudge */
+        font-size: 0.95em;
+        line-height: 1;
+        color: $light-text;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+      }
+    }
+
+    /* Soft gradient glow behind the frame */
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4%;
+      border-radius: 32px;
+      background:
+        radial-gradient(40% 35% at 25% 20%, rgba($primary, 0.25), transparent 60%),
+        radial-gradient(45% 40% at 80% 70%, rgba(210, 105, 180, 0.20), transparent 60%);
+      filter: blur(24px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Keep perfectly centered; disable float animation to avoid visual offset */
+    animation: none;
+  }
+
+  @keyframes float-splash {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
 
   &-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1em;
+    gap: 0.9em;
+    max-width: 56ch;
+    padding-block: 6px; /* visually balance with splash frame padding */
+
+    /* Heading */
+    h6 {
+      font-size: 1.1em; /* stable sizing (avoid vw-based jumps on scroll) */
+      line-height: 1.25;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .intro-lead {
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.35;
+      font-size: 1.22em; /* stable sizing (avoid vw-based jumps on scroll) */
+    }
+    .intro-support {
+      opacity: 0.9;
+      font-size: 1.02em; /* nudge up slightly */
+    }
+    .sound-link {
+      display: inline-flex;
+      align-items: center;
+      opacity: 0.8;
+      transition: transform 120ms ease, opacity 120ms ease;
+      color: inherit;
+      text-decoration: none;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      &:hover { opacity: 1; transform: translateY(-1px); }
+      svg { display: block; }
+    }
   }
 
   @media (width >= $breakpoint) {
-    gap: 6em;
-    grid-template-columns: 1fr 1fr;
+    gap: 4em;
+    display: flex;              /* center WITH each other, not the grid */
+    flex-direction: row;
+    justify-content: center;    /* center horizontally as a pair */
+    align-items: center;        /* vertically center relative to each other */
+    margin-bottom: $section-gap-desktop;
+    .splash-image {
+      /* make image column visually larger than text column */
+      flex: 0.95 1 0;
+      width: auto;
+      /* allow content height (image + audio) */
+      max-height: none;
+      /* ensure reasonable min/max width for various screens */
+      min-width: 176px;
+      width: clamp(176px, 15.5vw, 224px); /* +~10–12% */
+    }
+    .splash-frame {
+      aspect-ratio: 4 / 5;
+      min-height: clamp(168px, 18vw, 260px);
+    }
+    .audio-control { left: 12px; bottom: 12px; }
+    .about-intro-text {
+      flex: 1 1 0;
+      max-width: 52ch;
+    }
+    /* bump type slightly on desktop without vw units */
+    .about-intro-text h6 { font-size: 1.15em; }
+    .about-intro-text .intro-lead { font-size: 1.3em; }
+    .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
   }
+}
+
+/* Ensure both items center vertically in their grid cells */
+.about-intro .splash-image,
+.about-intro .about-intro-text {
+  align-self: center;
+}
+
+/* underlines for highlighted phrases */
+.fancy-underline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-color: map.get($light-colors, danger);
+}
+.dark .fancy-underline {
+  text-decoration-color: map.get($dark-colors, danger);
 }
