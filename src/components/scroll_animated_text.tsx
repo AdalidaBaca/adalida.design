@@ -33,15 +33,20 @@ const ScrollAnimatedText = ({ text, targetRef, startIndex = 0, totalLetters }: P
         const globalIndex = startIndex + index
         if (globalIndex / denominator < scrolled) {
           letter.style.setProperty('opacity', '1')
+          letter.classList.add('filled')
         } else if (letter.style.opacity !== '1') {
           // Don't "rewind" letters once revealed
           letter.style.setProperty('opacity', '0.4')
+          letter.classList.remove('filled')
         }
       })
 
       if (scrolled >= fullyVisibleThreshold) {
         completed = true
-        letters.forEach((letter) => { letter.style.setProperty('opacity', '1') })
+        letters.forEach((letter) => {
+          letter.style.setProperty('opacity', '1')
+          letter.classList.add('filled')
+        })
         document.removeEventListener('scroll', eventListener, opts)
       }
     }

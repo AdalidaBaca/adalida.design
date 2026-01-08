@@ -1,6 +1,32 @@
 @import './intro';
 @import './badges';
 
+.featured-projects-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $dark-text;
+  margin-bottom: 2em;
+  margin-top: 0.5em;
+
+  .curved-arrow {
+    color: $dark-text;
+    flex-shrink: 0;
+  }
+}
+
+.dark .featured-projects-heading {
+  color: $light-text;
+  
+  svg {
+    color: $light-text;
+  }
+}
+
 .portfolio-container-for-hero-image {
   width: 100%;
   position: relative;
@@ -19,6 +45,70 @@
   flex-direction: column;
   gap: 9.375em;
   height: min-content;
+  margin-top: -1em; /* Allow first card to peek ~3% from bottom */
+  
+  @media (width >= $breakpoint) {
+    margin-top: -1.5em;
+  }
+}
+
+.portfolio-testimonial {
+  margin: 4em auto 0;
+  padding: 2em;
+  background: rgba($dark-text, 0.03);
+  border-left: 3px solid map.get($light-colors, danger);
+  border-radius: 8px;
+  position: relative;
+  max-width: 65ch;
+  width: 100%;
+
+  .quote-icon {
+    position: absolute;
+    top: 0.5em;
+    left: 1em;
+    font-size: 3em;
+    line-height: 1;
+    color: map.get($light-colors, danger);
+    opacity: 0.25;
+    font-family: Georgia, serif;
+  }
+
+  .testimonial-quote {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    color: $dark-text;
+    margin: 0;
+    margin-left: 2.5em;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .testimonial-author {
+    display: block;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba($dark-text, 0.6);
+    margin-top: 1em;
+    margin-left: 2.5em;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+.dark .portfolio-testimonial {
+  background: rgba($light-text, 0.05);
+  border-left-color: map.get($dark-colors, danger);
+
+  .quote-icon {
+    color: map.get($dark-colors, danger);
+  }
+
+  .testimonial-quote {
+    color: $light-text;
+  }
+
+  .testimonial-author {
+    color: rgba($light-text, 0.6);
+  }
 }
 
 .portfolio-card {

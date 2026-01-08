@@ -1,4 +1,21 @@
+@use 'sass:map';
+@import './colors';
+
 .animated-letter {
   opacity: 0.4;
   will-change: opacity;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Accent color fill animation for portfolio intro role */
+.portfolio-intro .intro-role .animated-letter {
+  color: inherit;
+}
+
+.portfolio-intro .intro-role .animated-letter.filled {
+  color: map.get($light-colors, danger);
+}
+
+.dark .portfolio-intro .intro-role .animated-letter.filled {
+  color: map.get($dark-colors, danger);
 }

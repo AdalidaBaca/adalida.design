@@ -1,31 +1,270 @@
 @use 'sass:map';
 
+@keyframes revealText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .portfolio-intro {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
-  min-height: calc(100svh - $header-height - 6em);
+  min-height: calc(100svh - $header-height - 8em);
+  align-items: flex-start;
   justify-content: center;
+  padding: 2em 0;
+  padding-bottom: 0;
 
-  .fancy-underline {
-    text-decoration-color: map.get($light-colors, danger);
+  .portfolio-intro-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+    max-width: 100%;
 
-    &.dark {
-      text-decoration-color: map.get($dark-colors, danger);
+    .intro-name-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3em;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: revealText 0.8s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+    }
+
+    .intro-name-line {
+      font-size: clamp(2.5rem, 10vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap;
+
+      @media (max-width: 480px) {
+        font-size: clamp(2.3rem, 10.5vw, 3.2rem);
+        letter-spacing: 0.015em;
+      }
+
+      .intro-name {
+        color: $dark-text;
+        font-weight: 500;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    .intro-role-line {
+      font-size: clamp(2.5rem, 10vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap;
+
+      @media (max-width: 480px) {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+        letter-spacing: 0.05em;
+        display: block;
+        white-space: normal;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .intro-role {
+        color: $dark-text; /* Base color, will be filled with accent via scroll animation */
+        font-weight: 500;
+        font-style: normal;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        display: inline-block;
+        white-space: nowrap;
+
+        @media (max-width: 480px) {
+          font-size: 1.1em;
+          letter-spacing: 0.04em;
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          white-space: normal;
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+      }
+    }
+
+    .intro-location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.5em 1em;
+      border: 1.5px solid rgba($dark-text, 0.35);
+      border-radius: 999px;
+      background: rgba($dark-text, 0.05);
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      font-weight: 500;
+      color: rgba($dark-text, 0.85);
+      margin: 0;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: revealText 0.7s cubic-bezier(0.2, 0.9, 0.2, 1) 0.3s forwards;
+      width: fit-content;
+
+      svg {
+        color: rgba($dark-text, 0.85);
+        flex-shrink: 0;
+      }
+    }
+
+
+    .intro-description {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      line-height: 1.6;
+      color: $dark-text;
+      margin: 0;
+      margin-top: 1em;
+      max-width: 65ch; /* Increased to fill more space */
+      width: 100%;
+    }
+  }
+
+  .portfolio-intro-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: flex-start;
+
+    .intro-social-buttons {
+      display: flex;
+      gap: 0.75em;
+      flex-wrap: wrap;
+    }
+
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5em 1.25em;
+      border: 1.5px solid $dark-text;
+      border-radius: 999px;
+      background: transparent;
+      color: $dark-text;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 150ms ease;
+      cursor: pointer;
+
+      &:hover {
+        background: $dark-text;
+        color: $light-text;
+      }
+    }
+
+    .pill-button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 999px;
+      background: $dark-text;
+      color: $light-text;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 150ms ease;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+
+      svg {
+        transition: transform 150ms ease;
+      }
+
+      &:hover svg {
+        transform: translateX(2px);
+      }
     }
   }
 }
 
-.based-in-san-francisco {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+.dark .portfolio-intro {
+  .portfolio-intro-left {
+    .intro-name-line {
+      .intro-name {
+        color: $light-text;
+        font-weight: 500;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        letter-spacing: 0.03em;
+      }
+    }
 
-  .green-dot {
-    width: 0.5em;
-    height: 0.5em;
-    background-color: #25EA60;
-    border-radius: 50%;
-    border: 1px solid #CCC;
+    .intro-role-line {
+      @media (max-width: 480px) {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+      }
+
+      .intro-role {
+        color: $light-text; /* Base color, will be filled with accent via scroll animation */
+        font-weight: 500;
+        font-style: normal;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.9em;
+
+        @media (max-width: 480px) {
+          font-size: 1.1em;
+          letter-spacing: 0.04em;
+        }
+      }
+    }
+
+    .intro-location-badge {
+      border-color: rgba($light-text, 0.35);
+      background: rgba($light-text, 0.08);
+      color: rgba($light-text, 0.9);
+
+      svg {
+        color: rgba($light-text, 0.9);
+      }
+    }
+
+    .intro-description {
+      color: $light-text;
+    }
+  }
+
+  .portfolio-intro-right {
+    .pill-button {
+      border-color: $light-text;
+      color: $light-text;
+
+      &:hover {
+        background: $light-text;
+        color: $dark-text;
+      }
+    }
+
+    .pill-button-primary {
+      background: $light-text;
+      color: $dark-text;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
   }
 }

@@ -90,7 +90,7 @@ const ToolsCarousel = (): JSX.Element => {
   return (
     <section className='tools-carousel full-bleed' ref={containerRef} aria-label='Tools I use'>
       <div className='inner'>
-        <div className='tools-ship-badge subtitle-2'>Ships with</div>
+        <div className='tools-ship-badge subtitle-2'>Toolkit</div>
       </div>
       <div className='marquee lane-1'>
         {marqueeTools.map((t, i) => (<ToolLogo key={`lane1-${t.label}-${i}`} {...t} />))}

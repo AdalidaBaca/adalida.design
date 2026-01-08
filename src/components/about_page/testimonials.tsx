@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
   },
   {
     name: 'Kevin Irwin',
-    title: 'IT Director, Menaul School',
+    title: 'IT Director, Menaul',
     quote: 'Adalida proved to be a valuable asset to our team, and her contributions greatly enhanced our department\'s productivity and effectiveness.'
   }
 ]

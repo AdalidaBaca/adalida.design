@@ -1,34 +1,47 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 
-import DarkModeContext from 'dark_mode_context'
-import BadgeButton from 'components/badge_button'
-import TypewriterText from 'components/typewriter_text'
+import { IconMapPin } from '@tabler/icons-react'
 import useIsMobile from 'hooks/use_is_mobile'
+import LoadAnimatedText from 'components/load_animated_text'
+import Confetti from 'components/confetti'
 
 const Intro = (): React.ReactElement | null => {
-  const { darkMode } = useContext(DarkModeContext)
   const isMobile = useIsMobile()
+  const [showConfetti, setShowConfetti] = useState(false)
   if (isMobile === null) return null
-  const underlineClassName = darkMode ? 'fancy-underline dark' : 'fancy-underline'
+
+  const roleText = isMobile ? 'Product\nBuilder' : 'Product Builder'
+
+  const handleAnimationComplete = (): void => {
+    console.log('Animation complete, triggering confetti')
+    setShowConfetti(true)
+  }
 
   return (
-    <div className='portfolio-intro' data-aos='fade-up'>
-      <h3><em><TypewriterText text="Hello, I&apos;m Adalida&mdash;" /></em></h3>
-      <h5>
-        A driven product designer who brings a <u className={underlineClassName}>philosopher&apos;s reasoning</u>,
-        a <u className={underlineClassName}>writer&apos;s clarity</u>, and a{' '}
-        <u className={underlineClassName}>designer&apos;s eye</u> for detail.
-      </h5>
-      <h5>
-        I collaborate with engineers to build thoughtful, user-centered products that transform complex challenges into clear,
-        actionable solutions&mdash;with a dash of rubber duck debugging for good measure.
-      </h5>
-      <div className='based-in-san-francisco subtitle-1'>
-        <div className='green-dot'></div>
-        <em>Based in San Francisco, California and open to work.</em>
+    <>
+      <Confetti trigger={showConfetti} onComplete={() => { setShowConfetti(false) }} />
+      <div className='portfolio-intro' data-aos='fade-up'>
+        <div className='portfolio-intro-left'>
+          <div className='intro-name-section'>
+            <h1 className='intro-name-line'>
+              <span className='intro-name'>Adalida B.</span>
+            </h1>
+            <h1 className='intro-role-line'>
+              <span className='intro-role'>
+                <LoadAnimatedText text={roleText} delay={300} letterDelay={80} onComplete={handleAnimationComplete} />
+              </span>
+            </h1>
+          </div>
+          <div className='intro-location-badge'>
+            <IconMapPin size={16} />
+            <span>SF, CA</span>
+          </div>
+          <p className='intro-description'>
+            I specialize in early-stage product strategy and turning messy ideas into systems teams can actually build, using data and real workflows as inputs.
+          </p>
+        </div>
       </div>
-      <BadgeButton to='https://www.linkedin.com/in/adalidabaca/'>VIEW LINKEDIN</BadgeButton>
-    </div>
+    </>
   )
 }
 
