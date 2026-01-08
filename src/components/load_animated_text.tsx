@@ -9,7 +9,13 @@ interface Props {
 
 const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Props): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [lettersRevealed, setLettersRevealed] = useState(0)
+  const onCompleteRef = useRef(onComplete)
+  const hasCompletedRef = useRef(false)
+
+  // Update ref when onComplete changes, but don't trigger re-run
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  }, [onComplete])
 
   useEffect(() => {
     const container = containerRef.current
@@ -17,6 +23,9 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Pr
 
     const letters = container.querySelectorAll<HTMLSpanElement>('.animated-letter')
     const totalLetters = letters.length
+
+    // Reset completion flag when text changes
+    hasCompletedRef.current = false
 
     const startAnimation = (): void => {
       let currentIndex = 0
@@ -32,8 +41,11 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Pr
           if (currentIndex < totalLetters) {
             setTimeout(animateNext, letterDelay)
           } else {
-            // Animation complete
-            onComplete?.()
+            // Animation complete - only call once
+            if (!hasCompletedRef.current) {
+              hasCompletedRef.current = true
+              onCompleteRef.current?.()
+            }
           }
         }
       }
@@ -45,8 +57,12 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Pr
 
     // Start animation after a short delay to ensure DOM is ready
     const timeout = setTimeout(startAnimation, 100)
-    return () => { clearTimeout(timeout) }
-  }, [delay, letterDelay, onComplete])
+    return () => { 
+      clearTimeout(timeout)
+      // Reset completion flag on cleanup
+      hasCompletedRef.current = false
+    }
+  }, [delay, letterDelay, text])
 
   return (
     <div ref={containerRef}>

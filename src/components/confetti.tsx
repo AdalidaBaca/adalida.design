@@ -1,73 +1,135 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Particles from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
-import { loadEmittersPlugin } from '@tsparticles/plugin-emitters'
+import { loadConfettiPreset } from '@tsparticles/preset-confetti'
 import type { Container, Engine } from '@tsparticles/engine'
 
 interface Props {
   trigger: boolean
+  sourceElement?: HTMLElement | null
   onComplete?: () => void
 }
 
-const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
+// Initialize engine globally once
+let engineInitialized = false
+const initEngine = async (): Promise<void> => {
+  if (!engineInitialized && typeof window !== 'undefined') {
+    const { tsParticles } = await import('@tsparticles/engine')
+    await loadSlim(tsParticles)
+    await loadConfettiPreset(tsParticles)
+    engineInitialized = true
+  }
+}
+
+// Initialize on module load
+if (typeof window !== 'undefined') {
+  initEngine().catch(console.error)
+}
+
+const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element => {
   const [key, setKey] = useState(0)
+  const [shouldRender, setShouldRender] = useState(false)
+  const [emitterPosition, setEmitterPosition] = useState({ x: 50, y: 50 })
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const accentColorRef = useRef<string>('#FCD8FF')
   const hasTriggeredRef = useRef(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const engineRef = useRef<Engine | null>(null)
+  const containerRef = useRef<Container | null>(null)
 
-  // Initialize engine once
-  useEffect(() => {
-    const initEngine = async (): Promise<void> => {
-      if (!engineRef.current) {
-        const { tsParticles } = await import('@tsparticles/engine')
-        await loadSlim(tsParticles)
-        await loadEmittersPlugin(tsParticles)
-        engineRef.current = tsParticles
-      }
+  // Accent colors matching the "Product Builder" text
+  const getAccentColor = (): string => {
+    if (typeof document !== 'undefined') {
+      // Check body element for dark class (as set by useDarkMode hook)
+      const darkMode = document.body?.classList.contains('dark') || 
+                       document.documentElement.classList.contains('dark') ||
+                       document.querySelector('.dark') !== null
+      return darkMode ? '#B21661' : '#FCD8FF'
     }
-    initEngine().catch(console.error)
-  }, [])
+    return '#FCD8FF'
+  }
+  const accentColor = getAccentColor()
 
   const particlesLoaded = useCallback(async (container?: Container): Promise<void> => {
-    // Container is loaded, no additional action needed
+    // Store container reference for cleanup
     if (container) {
+      containerRef.current = container
       console.log('Particles container loaded')
     }
   }, [])
 
+  // Check for dark mode
   useEffect(() => {
-    // Only trigger once when trigger becomes true
+    const checkDarkMode = (): void => {
+      if (typeof document !== 'undefined') {
+        const darkMode = document.body?.classList.contains('dark') || 
+                         document.documentElement.classList.contains('dark') ||
+                         document.querySelector('.dark') !== null
+        setIsDarkMode(darkMode)
+        accentColorRef.current = darkMode ? '#B21661' : '#FCD8FF'
+      }
+    }
+    
+    checkDarkMode()
+    
+    // Watch for dark mode changes on body element
+    const observer = new MutationObserver(checkDarkMode)
+    if (typeof document !== 'undefined' && document.body) {
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+      })
+      // Also observe documentElement in case it changes
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      })
+    }
+    
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  // Set emitter position to center of viewport when triggered
+  useEffect(() => {
+    if (trigger) {
+      // Center of viewport
+      setEmitterPosition({ x: 50, y: 50 })
+    }
+  }, [trigger])
+
+  useEffect(() => {
+    // Only trigger once - never toggle off
     if (trigger && !hasTriggeredRef.current) {
-      console.log('Confetti triggered')
+      // Check dark mode directly right before triggering to ensure correct color
+      // Check body element first (as set by useDarkMode hook), then fallback to documentElement
+      const darkMode = typeof document !== 'undefined' 
+        ? (document.body?.classList.contains('dark') || 
+           document.documentElement.classList.contains('dark') ||
+           document.querySelector('.dark') !== null)
+        : false
+      setIsDarkMode(darkMode)
+      accentColorRef.current = darkMode ? '#B21661' : '#FCD8FF'
+      
+      console.log('Confetti triggered', { 
+        darkMode, 
+        accentColor: accentColorRef.current,
+        bodyHasDark: document.body?.classList.contains('dark'),
+        htmlHasDark: document.documentElement.classList.contains('dark')
+      })
       hasTriggeredRef.current = true
+      setShouldRender(true)
       setKey(prev => prev + 1) // Force re-render with new key
       
-      // Call onComplete after animation duration
+      // Call onComplete after a short delay to signal animation started
+      // But don't destroy particles - let them stay
       timeoutRef.current = setTimeout(() => {
-        console.log('Confetti complete')
-        hasTriggeredRef.current = false
         onComplete?.()
-      }, 3000) // Confetti animation duration
-    }
-
-    // Reset when trigger becomes false
-    if (!trigger && hasTriggeredRef.current) {
-      hasTriggeredRef.current = false
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-        timeoutRef.current = null
-      }
-    }
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-        timeoutRef.current = null
-      }
+      }, 100)
     }
   }, [trigger, onComplete])
 
-  if (!trigger) return <></>
+  if (!shouldRender) return <></>
 
   return (
     <div
@@ -78,66 +140,60 @@ const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
         width: '100%',
         height: '100%',
         pointerEvents: 'none',
-        zIndex: 9999
+        zIndex: 9999,
+        willChange: 'transform',
+        transform: 'translateZ(0)'
       }}
     >
       <Particles
-        key={key}
+        key={`${key}-${accentColorRef.current}`}
         id={`confetti-particles-${key}`}
         particlesLoaded={particlesLoaded}
         options={{
+          preset: 'confetti',
           particles: {
-            number: {
-              value: 0
-            },
             color: {
-              value: ['#FF6B9D', '#C44569', '#FFA07A', '#FFD700', '#FF69B4', '#FF1493', '#FFB6C1', '#FF1493']
-            },
-            shape: {
-              type: 'circle'
+              value: accentColorRef.current
             },
             opacity: {
-              value: { min: 0.6, max: 1 }
-            },
-            size: {
-              value: { min: 5, max: 10 }
-            },
-            move: {
-              enable: true,
-              speed: { min: 3, max: 6 },
-              direction: 'bottom',
-              straight: false,
-              outModes: {
-                default: 'out'
-              },
-              gravity: {
+              value: { min: 0.8, max: 1 },
+              animation: {
                 enable: true,
-                acceleration: 0.8
+                speed: 0.3,
+                sync: false,
+                destroy: 'none',
+                startValue: 'max'
+              }
+            },
+            life: {
+              duration: {
+                sync: false,
+                value: { min: 3, max: 5 }
               }
             }
           },
           emitters: [
             {
               position: {
-                x: 50,
-                y: 0
+                x: emitterPosition.x,
+                y: emitterPosition.y
               },
               rate: {
-                quantity: 20,
-                delay: 0.1
+                quantity: 0
               },
               life: {
                 duration: {
                   sync: true,
-                  value: 3
+                  value: 0
                 },
                 count: 1
+              },
+              startCount: 120,
+              spawnColor: {
+                value: accentColorRef.current
               }
             }
-          ],
-          background: {
-            color: 'transparent'
-          }
+          ]
         }}
       />
     </div>
