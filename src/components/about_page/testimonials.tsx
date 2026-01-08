@@ -21,14 +21,14 @@ const testimonials: Testimonial[] = [
     quote: 'Adalida is decisive, practical, and focused on progress.'
   },
   {
-    name: 'Jeanette Acosta Fresquez',
-    title: 'Manager, Project ECHO',
-    quote: 'I’ve never seen anyone so excited to get work before. Adalida is a great utility player.'
-  },
-  {
     name: 'Armando Diaz',
     title: 'Owner, Airbrush Art',
     quote: 'Adalida was heaven sent. Once I had a real website, clients trusted my business more and I was able to close bigger deals.'
+  },
+  {
+    name: 'Jeanette Acosta Fresquez',
+    title: 'Manager, Project ECHO',
+    quote: 'I\'ve never seen anyone so excited to get work before. Adalida is a great utility player.'
   },
   {
     name: 'Kevin Irwin',
@@ -53,14 +53,15 @@ const Testimonials = (): JSX.Element => {
   const items = testimonials
   const REPEAT = 200
   const extended = useMemo(() => Array.from({ length: REPEAT }, () => items).flat(), [items])
+  // Start in the middle copy at the first testimonial (Ricardo) for infinite scroll in both directions
   const baseOffset = items.length * Math.floor(REPEAT / 2)
-  const [index, setIndex] = useState(baseOffset) // start in the middle copy
+  const [index, setIndex] = useState(baseOffset) // start at first testimonial (Ricardo) in middle copy
   const trackRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [paused, setPaused] = useState(false)
 
   useEffect(() => {
-    // On mount, snap to initial index without animation
+    // On mount, snap to initial index (first testimonial) without animation
     const track = trackRef.current
     if (track === null) return
     const child = track.children[baseOffset] as HTMLElement | undefined
