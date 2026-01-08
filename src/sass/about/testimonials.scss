@@ -24,12 +24,13 @@
   margin: $section-gap-mobile auto 0;
   display: grid;
   align-items: center;
+  row-gap: 1.1em; /* more breathing room between cards and controls */
   padding-inline: 1dvw; /* tiny side breathing room on very wide screens */
 
   .cards {
     display: flex;
-    gap: 1em;
-    column-gap: 1em;
+    gap: 0.85em;
+    column-gap: 0.85em;
     align-items: stretch;
     overflow-x: auto;
     overflow-y: hidden;
@@ -38,12 +39,17 @@
     padding: 0;
     -ms-overflow-style: none; /* IE/Edge */
     scrollbar-width: none; /* Firefox */
+    /* Lock height from measured tallest card so all cards match */
+    height: var(--testimonial-card-height, 320px);
   }
   .cards::-webkit-scrollbar { display: none; } /* Chrome/Safari */
   .card { scroll-snap-align: start; }
+
+  /* Ensure each card fills the fixed-height track on mobile */
+  .cards .testimonial-card { height: 100%; }
   
   .testimonials-controls {
-    margin-top: 0.75em;
+    margin-top: 0; /* row-gap handles spacing */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,10 +94,11 @@
   margin: 0; /* remove default blockquote margins that create extra spacing */
   padding: 1.25em 1.75em;
   display: grid;
-  grid-template-rows: 28px 1fr auto; /* even tighter icon row so text sits just under it */
-  gap: 0.15em;
-  height: auto; /* let content define height; container will equalize via stretch */
-  min-height: 320px; /* taller on mobile without affecting width */
+  /* Pin author to the bottom consistently across equal-height cards */
+  grid-template-rows: 28px 1fr auto;
+  gap: 0.25em;
+  height: 100%;
+  min-height: 0;
   background: #fff;
   color: $dark-text;
   border: 1px solid rgb(0 0 0 / 6%);
@@ -103,8 +110,8 @@
     /* Mobile: single card per view */
     flex: 0 0 96%;
     @media (width >= $breakpoint) {
-      /* Desktop: ~2.5 cards visible */
-      flex: 0 0 40%;
+      /* Desktop: 2 cards + a small peek of the 3rd */
+      flex: 0 0 46%;
     }
   }
 
@@ -121,16 +128,16 @@
   }
 
   .quote {
-    line-height: 1.75;
-    font-size: 1.2rem; /* ~19.2px */
-    grid-row: 2; /* ensure the quote sits in the middle track */
-    align-self: start; /* start near the top of the content area */
+    line-height: 1.6;
+    font-size: 1.06rem; /* slightly smaller on mobile so long quotes fit */
+    grid-row: 2;
+    align-self: start;
     margin: 0;
   }
 
   /* removed debug index badge */
 
-  &.featured { /* no visual size changes for featured cards */ }
+  /* featured variant removed */
 
   .attribution {
     display: flex;
@@ -138,10 +145,10 @@
     align-items: center;
     color: map.get($dark-colors, secondary);
     justify-content: flex-start;
-    align-self: end; /* pin to bottom row */
+    align-self: end; /* keep author locked to bottom row */
     grid-row: 3;
-    margin-top: 1.25em; /* increased breathing room from the quote text */
-    padding: 0.25em 0; /* subtle padding within the author row */
+    margin-top: 0.2em;  /* small consistent separation */
+    padding: 0;
 
     .person { display: flex; align-items: center; gap: 0.6em; }
     .avatar {
@@ -167,7 +174,10 @@
 .testimonials,
 .testimonials-slider-cards {
   @media (width >= $breakpoint) {
-    .testimonial-card { min-height: 420px; } /* taller on desktop, width unchanged */
+    row-gap: 1.25em; /* a bit more space on desktop */
+    .cards { height: var(--testimonial-card-height, 360px); }
+    .testimonial-card { min-height: 320px; height: auto; } /* desktop uses natural height */
+    .testimonial-card .quote { font-size: 1.2rem; line-height: 1.75; } /* restore desktop size */
   }
 }
 

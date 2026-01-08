@@ -49,9 +49,9 @@
   width: 100%;
 
   > hr {
-    min-width: 100dvw;
+    /* avoid 100dvw overflow on mobile; extend to container instead */
+    width: 100%;
     border-top-width: 1px;
-    margin-left: -6.25dvw;
     border-top-color: map.get($dark-colors, secondary);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 import BadgeButton from 'components/badge_button'
 import useIsMobile from 'hooks/use_is_mobile'
@@ -6,8 +6,19 @@ import { makeMediaTag } from 'components/media_with_text'
 import FileQuery from 'queries/file'
 import DarkModeContext from 'dark_mode_context'
 import { IconPlayerPlayFilled, IconPlayerPauseFilled } from '@tabler/icons-react'
+import AnimatedImageOutline from 'components/animated_image_outline'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
+const YT_VIDEO_ID = 'I-NqIiF6DgI'
+
+declare global {
+  interface Window {
+    YT?: any
+    onYouTubeIframeAPIReady?: () => void
+    __ytApiReadyPromise?: Promise<void>
+    __ytApiResolve?: () => void
+  }
+}
 
 const Intro = (): JSX.Element | null => {
   const isMobile = useIsMobile()
@@ -27,57 +38,130 @@ const Intro = (): JSX.Element | null => {
   if (isMobile === null) return null
   const underlineClassName = darkMode ? 'fancy-underline dark' : 'fancy-underline'
   const [isPlaying, setIsPlaying] = useState(false)
-  const ytRef = useRef<HTMLIFrameElement>(null)
-  const ytSrc = useMemo(() => {
-    const base = 'https://www.youtube.com/embed/I-NqIiF6DgI'
-    const params = new URLSearchParams({
-      enablejsapi: '1',
-      controls: '0',
-      modestbranding: '1',
-      rel: '0',
-      playsinline: '1',
-      loop: '1',
-      // For single-video loop to work, 'playlist' must equal the same video id
-      playlist: 'I-NqIiF6DgI'
-    })
-    return `${base}?${params.toString()}`
-  }, [])
-  const sendYTCommand = (func: 'playVideo' | 'pauseVideo'): void => {
-    const win = ytRef.current?.contentWindow
-    if (win !== undefined && win !== null) {
-      win.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*')
+  const [playerReady, setPlayerReady] = useState(false)
+  const playerRef = useRef<any>(null)
+  const playerIdRef = useRef(`yt-audio-${Math.random().toString(36).slice(2)}`)
+
+  const ensureYTApi = useMemo(() => {
+    return async (): Promise<void> => {
+      if (typeof window === 'undefined') return
+      if (window.YT?.Player !== undefined) return
+
+      if (window.__ytApiReadyPromise === undefined) {
+        window.__ytApiReadyPromise = new Promise<void>((resolve) => {
+          window.__ytApiResolve = resolve
+        })
+        window.onYouTubeIframeAPIReady = () => { window.__ytApiResolve?.() }
+
+        const existing = document.querySelector<HTMLScriptElement>('script[src="https://www.youtube.com/iframe_api"]')
+        if (existing === null) {
+          const script = document.createElement('script')
+          script.src = 'https://www.youtube.com/iframe_api'
+          script.async = true
+          document.head.appendChild(script)
+        }
+      }
+
+      await window.__ytApiReadyPromise
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    let alive = true
+    const init = async (): Promise<void> => {
+      await ensureYTApi()
+      if (!alive) return
+      if (playerRef.current !== null) return
+      if (window.YT?.Player === undefined) return
+
+      const origin = typeof window !== 'undefined' ? window.location.origin : undefined
+
+      playerRef.current = new window.YT.Player(playerIdRef.current, {
+        width: '1',
+        height: '1',
+        videoId: YT_VIDEO_ID,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          playsinline: 1,
+          rel: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: YT_VIDEO_ID,
+          origin
+        },
+        events: {
+          onReady: () => {
+            if (!alive) return
+            setPlayerReady(true)
+          },
+          onStateChange: (e: any) => {
+            if (!alive) return
+            // 1 = playing, 2 = paused, 0 = ended
+            if (e?.data === 1) setIsPlaying(true)
+            if (e?.data === 2) setIsPlaying(false)
+            if (e?.data === 0) {
+              // Safety: ensure it loops if the player doesn't
+              try { playerRef.current?.playVideo?.() } catch { /* noop */ }
+            }
+          }
+        }
+      })
+    }
+    void init()
+    return () => { alive = false }
+  }, [ensureYTApi])
+
   const onTogglePlay = (): void => {
-    if (isPlaying) {
-      sendYTCommand('pauseVideo')
-      setIsPlaying(false)
-    } else {
-      sendYTCommand('playVideo')
-      setIsPlaying(true)
+    // iOS requires play() be called from a user gesture, and the player must be ready.
+    if (!playerReady) return
+    try {
+      if (isPlaying) {
+        playerRef.current?.pauseVideo?.()
+      } else {
+        playerRef.current?.playVideo?.()
+      }
+    } catch {
+      // no-op
     }
   }
 
   return (
     <div className='about-intro' data-aos='fade-up'>
       <div className='splash-image'>
-        <div className='splash-frame'>
+        <AnimatedImageOutline
+          className='splash-outline'
+          speed={2.2}
+          strokeWidth={4}
+          radius={18}
+          start='top-left'
+          mode='draw'
+          sequential
+          gradient={{
+            from: 'var(--outline-accent-a)',
+            via: 'var(--outline-accent-b)',
+            to: 'var(--outline-accent-a)',
+            angleDeg: 135
+          }}
+        >
           {faceUrl !== undefined ? (
             <div
-              className='splash-cover'
+              className='splash-frame has-bg'
               style={{ backgroundImage: `url(${faceUrl})` }}
               role='img'
               aria-label='Adalida Baca portrait'
             />
           ) : (
-            makeMediaTag({
-              media: AdalidaFace,
-              imgObjectFit: 'cover',
-              imgObjectPosition: 'center top',
-              style: { width: '100%', height: '100%' }
-            })
+            <div className='splash-frame'>
+              {makeMediaTag({
+                media: AdalidaFace,
+                imgObjectFit: 'cover',
+                imgObjectPosition: 'center top',
+                style: { width: '100%', height: '100%' }
+              })}
+            </div>
           )}
-        </div>
+        </AnimatedImageOutline>
         <div className='audio-control'>
           <button
             className='audio-icon-button'
@@ -85,18 +169,13 @@ const Intro = (): JSX.Element | null => {
             aria-label={isPlaying ? 'Pause “Adalida”' : 'Play “Adalida”'}
             aria-pressed={isPlaying}
             title={isPlaying ? 'Pause “Adalida”' : 'Play “Adalida”'}
+            disabled={!playerReady}
           >
             {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
           </button>
-          <iframe
-            ref={ytRef}
-            src={ytSrc}
-            title='Adalida — George Strait'
-            allow='autoplay; encrypted-media'
-            tabIndex={-1}
-            aria-hidden='true'
-            style={{ position: 'absolute', width: 0, height: 0, opacity: 0, pointerEvents: 'none', border: 0 }}
-          />
+          <div className='yt-audio-player' aria-hidden='true'>
+            <div id={playerIdRef.current} />
+          </div>
           <span className='audio-state' aria-live='polite' aria-atomic='true'>
             {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
           </span>
@@ -105,7 +184,7 @@ const Intro = (): JSX.Element | null => {
       <div className='about-intro-text'>
         <h6>Hi, I&apos;m Adalida (A-duh-lye-duh)</h6>
         <h5 className='intro-lead'>
-          I design <u className={underlineClassName}>usable systems</u> from real‑world constraints.
+          I design <u className={`${underlineClassName} underline-draw`}>usable systems</u> from real‑world constraints.
         </h5>
         <div>
           I work on products where constraints, tradeoffs, and incomplete information are part of the job.

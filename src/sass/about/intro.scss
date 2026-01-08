@@ -1,31 +1,70 @@
 @use 'sass:map';
 
+@keyframes about-avatar-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92) rotate(-1.2deg);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05) rotate(0.8deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: none;
+  }
+}
+
 .about-intro {
+  /* Theme-aware accent colors for the animated outline */
+  /* Light mode accent should match the site's light-mode "danger" (CTA) pink */
+  --outline-accent-a: #{map.get($light-colors, danger)};
+  /* Slightly deeper stop so the gradient still reads as an accent stroke */
+  --outline-accent-b: #{mix(map.get($light-colors, danger), $primary, 60%)};
+
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75em;
+  gap: 1.25em; /* more breathing room between photo and text on mobile */
   margin-top: 0.25em;
   margin-bottom: $section-gap-mobile;
-  place-items: center;
+  justify-items: center; /* avoid stretched text on mobile */
 
   .splash-image {
     position: relative;
-    width: min(156px, 52vw); /* +~12% */
+    /* Never exceed the page container on mobile */
+    width: 100%;
+    max-width: 320px;
     /* allow the image + audio embed to define height */
     max-height: none;
     isolation: isolate;
     display: flex;            /* center image frame within column */
     align-items: center;
 
+    /* The animated outline wrapper should behave like the original container */
+    .splash-outline {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
     .splash-frame {
       position: relative;
+      z-index: 1; /* image below outline+controls */
       padding: 0; /* remove inner gutter so image fully covers */
       border-radius: 18px;
-      background: none; /* prevent container background showing at edges */
+      background: transparent; /* prevent container background showing at edges */
       overflow: hidden; /* clip image to rounded frame */
+      transform-origin: 50% 50%;
+      will-change: transform, opacity, filter;
+      outline: 2px solid transparent;
+      outline-offset: 0;
       box-shadow:
         0 12px 36px -12px rgba(0, 0, 0, 0.35),
         0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+      animation: about-avatar-pop 640ms cubic-bezier(0.2, 0.9, 0.2, 1) both 140ms;
       margin: 0 auto;         /* horizontally center the frame */
       width: 100%;
       /* slightly taller for more vertical presence */
@@ -75,6 +114,12 @@
         background-size: cover;
         background-position: center top;
       }
+
+      &.has-bg {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+      }
       /* Ensure the <picture> wrapper also fills the frame, not just the img */
       .gatsby-image-wrapper picture {
         width: 100% !important;
@@ -97,13 +142,14 @@
         padding-bottom: 0 !important;
         max-height: 100% !important;
       }
+
     }
 
     .audio-control {
       position: absolute;
       left: 10px;
       bottom: 10px;
-      z-index: 3;
+      z-index: 5; /* always above the animated outline */
       display: inline-flex;
       align-items: center;
       gap: 6px; /* tiny gap between icon and text */
@@ -129,6 +175,17 @@
         color: $light-text;
         text-shadow: 0 1px 1px rgba(0,0,0,0.4);
       }
+
+      /* Hidden YouTube player host (kept in DOM for mobile Safari reliability) */
+      .yt-audio-player {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
     }
 
     /* Soft gradient glow behind the frame */
@@ -160,6 +217,7 @@
     justify-content: center;
     gap: 0.9em;
     max-width: 56ch;
+    width: 100%;
     padding-block: 6px; /* visually balance with splash frame padding */
 
     /* Heading */
@@ -228,6 +286,28 @@
     .about-intro-text .intro-lead { font-size: 1.3em; }
     .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
   }
+
+  /* Tablet / iPad range: the image felt too narrow vs. text, so widen it slightly here */
+  @media (width >= $breakpoint) and (width < 1100px) {
+    .splash-image {
+      min-width: 240px;
+      width: clamp(240px, 30vw, 320px);
+    }
+    .about-intro-text {
+      max-width: 48ch;
+    }
+  }
+}
+
+.dark .about-intro {
+  --outline-accent-a: #{$primary};
+  --outline-accent-b: #{mix($primary, $light-text, 25%)};
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-intro .splash-image .splash-frame {
+    animation: none;
+  }
 }
 
 /* Ensure both items center vertically in their grid cells */
@@ -245,4 +325,47 @@
 }
 .dark .fancy-underline {
   text-decoration-color: map.get($dark-colors, danger);
+}
+
+@keyframes underline-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Offset/draw-on underline (used for "usable systems") */
+.fancy-underline.underline-draw {
+  text-decoration: none; /* replace text-decoration underline with animated stroke */
+  position: relative;
+  display: inline-block;
+  --underline-color: #{map.get($light-colors, danger)};
+}
+.dark .fancy-underline.underline-draw {
+  --underline-color: #{map.get($dark-colors, danger)};
+}
+.fancy-underline.underline-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--underline-color);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+  /* AOS hides the intro on mount; we start the animation once AOS reveals it */
+  animation: none;
+}
+
+/* When the About intro finishes its AOS reveal, draw the underline */
+.about-intro.aos-animate .fancy-underline.underline-draw::after {
+  animation: underline-draw 900ms cubic-bezier(0.2, 0.9, 0.2, 1) 1 forwards;
+  animation-delay: 120ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fancy-underline.underline-draw::after {
+    animation: none;
+    transform: scaleX(1);
+  }
 }

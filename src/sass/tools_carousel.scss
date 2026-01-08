@@ -1,10 +1,11 @@
 @use 'sass:map';
 
 .tools-carousel {
-  /* full bleed */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  /* True full-bleed to the viewport edges */
+  width: 100dvw;
+  max-width: 100dvw;
+  margin-left: calc(50% - 50dvw);
+  margin-right: calc(50% - 50dvw);
   margin-top: $section-gap-mobile;
   margin-bottom: $section-gap-mobile;
   padding: 1em 0; /* add more breathing room inside the section */
@@ -46,7 +47,8 @@
     padding: 1.5em 0; /* more space on desktop as well */
   }
   .inner {
-    width: min(1100px, 90vw);
+    /* Align badge with page content while section is full-bleed */
+    width: $page-width;
     margin: 0 auto;
   }
   /* no wrapper needed for bleed */
@@ -55,12 +57,18 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    padding: 0.35em 0.65em;
-    border: 1px solid rgba(map.get($dark-colors, secondary), 0.35);
+    padding: 0.45em 0.8em;
+    border: 1px solid rgb(0 0 0 / 18%);
     border-radius: 999px;
     text-transform: uppercase;
-    opacity: 0.9;
-    background: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 0.9em;
+    opacity: 1;
+    color: $dark-text;
+    background: rgba($light-background, 0.92);
+    backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 0 6px 18px -14px rgb(0 0 0 / 25%);
     margin-bottom: 0.9em; /* add a bit more breathing room above icons */
   }
 
@@ -69,14 +77,14 @@
     gap: 2.25em;
     align-items: center;
     animation: marquee linear infinite;
-    animation-duration: var(--marquee-duration, 92s);
+    animation-duration: var(--marquee-duration, 120s);
     animation-play-state: var(--marquee-play, running);
     will-change: transform;
     transform: translate3d(0, 0, 0);
     width: max-content;
   }
-  .lane-1 { animation-duration: 92s; }
-  .lane-2 { animation-direction: reverse; animation-duration: 112s; opacity: 0.9; }
+  .lane-1 { animation-duration: 120s; }
+  .lane-2 { animation-direction: reverse; animation-duration: 150s; opacity: 0.9; }
 
   /* removed CTA */
 
@@ -89,7 +97,9 @@
     opacity: 0.85;
     transition: opacity 120ms ease, filter 120ms ease, transform 120ms ease;
 
-    &:hover { opacity: 1; transform: translateY(-2px); }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { opacity: 1; transform: translateY(-2px); }
+    }
 
     img {
       height: 52px;
@@ -142,7 +152,13 @@
     color: $light-text;
     background: rgba(255, 255, 255, 0.06);
   }
-  .tools-ship-badge { border-color: rgba(255, 255, 255, 0.4); background: none; color: $light-text; }
+  .tools-ship-badge {
+    border-color: rgb(255 255 255 / 18%);
+    background: rgba($dark-background, 0.65);
+    color: $light-text;
+    opacity: 1;
+    box-shadow: 0 10px 22px -18px rgb(0 0 0 / 70%);
+  }
 
   /* dark mode edge fade */
   &::before {

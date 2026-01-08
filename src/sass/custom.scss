@@ -12,6 +12,7 @@ body {
   margin: 0;
   overscroll-behavior: none;
   transition: all 0.5s ease-in-out;
+  /* Keep content responsive; avoid clipping */
 
   &.dark {
     background-color: $dark-background;

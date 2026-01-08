@@ -1,0 +1,141 @@
+@use 'sass:map';
+
+@keyframes aio-travel {
+  from { stroke-dashoffset: var(--aio-dash-from, 0); }
+  to { stroke-dashoffset: var(--aio-dash-to, -400); }
+}
+
+@keyframes aio-draw-offset {
+  from { stroke-dashoffset: var(--aio-perimeter, 400); }
+  88% { stroke-dashoffset: var(--aio-eps, 2); }
+  100% { stroke-dashoffset: var(--aio-eps, 2); }
+}
+
+@keyframes aio-draw-seq-offset {
+  0%   { stroke-dashoffset: var(--aio-seq-start, 400); }
+  23%  { stroke-dashoffset: var(--aio-seq-a1, 300); }
+  25%  { stroke-dashoffset: var(--aio-seq-d1, 300); }
+  48%  { stroke-dashoffset: var(--aio-seq-a2, 200); }
+  50%  { stroke-dashoffset: var(--aio-seq-d2, 200); }
+  73%  { stroke-dashoffset: var(--aio-seq-a3, 100); }
+  75%  { stroke-dashoffset: var(--aio-seq-d3, 100); }
+  88%  { stroke-dashoffset: var(--aio-eps, 2); }
+  100% { stroke-dashoffset: var(--aio-eps, 2); }
+}
+
+@keyframes aio-draw-anim-fadeout {
+  0%, 72% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes aio-draw-base-fadein {
+  0%, 72% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animated-image-outline {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  overflow: visible; /* allow the outline to sit outside the container */
+}
+
+.animated-image-outline .aio-content {
+  position: relative;
+  z-index: 1; /* image below outline; specific controls can sit above via their own z-index */
+  display: block;
+  width: 100%;
+  border-radius: var(--aio-radius, 18px);
+  overflow: hidden; /* clip the image, not the outline */
+}
+
+.animated-image-outline.no-clip .aio-content {
+  border-radius: 0;
+  overflow: visible; /* allow overlays (e.g. audio control) to render fully */
+}
+
+.animated-image-outline .aio-overlay {
+  position: absolute;
+  /* expand outward by half the stroke so the stroke sits OUTSIDE the image container
+     (use explicit sizing to avoid inset+width conflicts that can misalign on mobile) */
+  left: calc(var(--aio-strokeWidth, 3px) * -0.5);
+  top: calc(var(--aio-strokeWidth, 3px) * -0.5);
+  width: calc(100% + var(--aio-strokeWidth, 3px));
+  height: calc(100% + var(--aio-strokeWidth, 3px));
+  pointer-events: none;
+  z-index: 4; /* above the image, below explicit overlays like audio controls */
+  overflow: visible;
+}
+
+.animated-image-outline .aio-rect {
+  stroke-width: var(--aio-strokeWidth, 3px);
+}
+
+.animated-image-outline .aio-rect.base {
+  opacity: 0.22; /* always-visible full outline (subtle) */
+  filter: none;  /* keep base crisp */
+}
+
+.animated-image-outline .aio-rect.anim {
+  opacity: 1;
+  animation: none; /* enabled once we know the real path length to avoid jumps */
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.10));
+}
+
+.animated-image-outline.ready.run.travel .aio-rect.anim {
+  animation: aio-travel var(--aio-speed, 1.8s) linear infinite;
+}
+
+.animated-image-outline.draw .aio-rect.base,
+.animated-image-outline.draw .aio-rect.anim,
+.animated-image-outline.draw .aio-rect.draw {
+  display: none;
+}
+
+.animated-image-outline .aio-rect.draw-base {
+  opacity: 0;
+  filter: none;
+}
+
+.animated-image-outline .aio-rect.draw-anim {
+  opacity: 1;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.10));
+}
+
+.animated-image-outline.ready.run.draw .aio-rect.draw-anim {
+  animation:
+    aio-draw-offset var(--aio-speed, 1.8s) linear 1 forwards,
+    aio-draw-anim-fadeout var(--aio-speed, 1.8s) ease-out 1 forwards;
+}
+
+.animated-image-outline.ready.run.draw.seq .aio-rect.draw-anim {
+  animation-name: aio-draw-seq-offset, aio-draw-anim-fadeout;
+  animation-timing-function: linear, ease-out;
+}
+
+.animated-image-outline.ready.run.draw .aio-rect.draw-base {
+  animation: aio-draw-base-fadein var(--aio-speed, 1.8s) ease-out 1 forwards;
+}
+
+.dark .animated-image-outline .aio-rect {
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+}
+
+.dark .animated-image-outline .aio-rect.base {
+  opacity: 0.28;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-image-outline.travel .aio-rect.anim {
+    animation: none;
+  }
+  .animated-image-outline.draw .aio-rect.draw-anim {
+    animation: none;
+    opacity: 0;
+  }
+  .animated-image-outline.draw .aio-rect.draw-base {
+    animation: none;
+    opacity: 1;
+  }
+}
+

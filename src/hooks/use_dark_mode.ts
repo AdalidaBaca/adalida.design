@@ -15,13 +15,25 @@ const useDarkMode = (): [boolean | null, () => void] => {
   // Use this hook only from *pages*, not from components.
   const [darkMode, setDarkMode] = useState<boolean | null>(() => {
     if (typeof window === 'undefined') return null
-    const isDarkMode = JSON.parse(localStorage.getItem('darkMode') ?? 'true')
-    setHTMLAttributes(isDarkMode as boolean)
-    return isDarkMode
+    try {
+      const isDarkMode = JSON.parse(localStorage.getItem('darkMode') ?? 'true') as boolean
+      setHTMLAttributes(isDarkMode)
+      return isDarkMode
+    } catch {
+      // Some browsers (notably mobile Safari in certain privacy modes) can throw on localStorage access.
+      const fallback = true
+      setHTMLAttributes(fallback)
+      return fallback
+    }
   })
 
   useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode))
+    if (darkMode === null) return
+    try {
+      localStorage.setItem('darkMode', JSON.stringify(darkMode))
+    } catch {
+      // Ignore storage write failures (privacy mode / disabled storage)
+    }
   }, [darkMode])
 
   const toggleDarkMode = (): void => {

@@ -10,6 +10,18 @@
   display: flex;
   flex-direction: column;
   gap: 4em;
+  /* Give the intro breathing room from the navbar, without moving the Ships With marquee */
+  padding-top: 1em;
+
+  .tools-carousel {
+    /* cancel the added padding so the carousel stays put */
+    margin-top: calc($section-gap-mobile - 1em);
+  }
+
+  @media (width >= $breakpoint) {
+    padding-top: 1.5em;
+    .tools-carousel { margin-top: calc($section-gap-desktop - 1.5em); }
+  }
 }
 
 .stacking-cards {

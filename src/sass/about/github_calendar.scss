@@ -22,6 +22,16 @@
     gap: 1em;
   }
 
+  .github-calendar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+  }
+
+  .github-calendar-count {
+    opacity: 0.85;
+  }
+
   .github-calendar-link {
     font-weight: 600;
     text-decoration: none;

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import Section from './section'
 
@@ -25,6 +25,9 @@ const levelFromCount = (count: number, max: number): number => {
 const GitHubCalendar = (): JSX.Element => {
   const [days, setDays] = useState<Array<ApiDay & { level: number }> | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const total = useMemo(() => (days ?? []).reduce((sum, d) => sum + d.count, 0), [days])
+  const gridRef = useRef<HTMLDivElement>(null)
+  const didAutoScroll = useRef(false)
 
   const apiUrl = useMemo(
     () => `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`,
@@ -50,14 +53,31 @@ const GitHubCalendar = (): JSX.Element => {
     return () => { alive = false }
   }, [apiUrl])
 
+  useEffect(() => {
+    if (days === null) return
+    if (didAutoScroll.current) return
+    // After initial render, scroll to the far right (most recent weeks), like GitHub.
+    const raf = requestAnimationFrame(() => {
+      const el = gridRef.current
+      if (el === null) return
+      el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth)
+      didAutoScroll.current = true
+    })
+    return () => { cancelAnimationFrame(raf) }
+  }, [days])
+
   return (
-    <Section title='GitHub Contributions'>
+    <Section title='Contributions'>
       <div className='resource-intro'>
         Staying close to implementation helps me validate ideas quickly and understand how systems behave in practice.
       </div>
       <div className='github-calendar'>
         <div className='github-calendar-header'>
-          <span className='subtitle-2'>Last 12 months</span>
+          <div className='github-calendar-meta'>
+            <div className='caption-1 github-calendar-count'>
+              {days === null && error === null ? 'Loading contributions…' : `${total.toLocaleString()} contributions in the last year`}
+            </div>
+          </div>
           <a
             className='github-calendar-link'
             href={`https://github.com/${GITHUB_USERNAME}`}
@@ -74,17 +94,14 @@ const GitHubCalendar = (): JSX.Element => {
           </div>
         ) : null}
 
-        {days === null && error === null ? (
-          <div className='github-calendar-loading' aria-label='Loading GitHub contributions'>
-            Loading…
-          </div>
-        ) : null}
+        {/* loading state is shown inline in the header count */}
 
         {days !== null ? (
           <div
             className='github-calendar-grid'
             role='img'
             aria-label={`${GITHUB_USERNAME} GitHub contributions calendar (last 12 months)`}
+            ref={gridRef}
           >
             {days.map((d) => (
               <div

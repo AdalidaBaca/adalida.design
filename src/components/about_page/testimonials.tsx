@@ -17,18 +17,23 @@ const testimonials: Testimonial[] = [
   },
   {
     name: 'Mariana Lucchesi',
-    title: 'Women in Design',
-    quote: 'Adalida is a strong designer with a clear bias toward shipping and making progress.'
+    title: 'Mentor, Women in Design',
+    quote: 'Adalida is decisive, practical, and focused on progress.'
   },
   {
-    name: 'Jeannette',
-    title: 'Project ECHO',
+    name: 'Jeanette Acosta Fresquez',
+    title: 'Manager, Project ECHO',
     quote: 'I’ve never seen anyone so excited to get work before. Adalida is a great utility player.'
   },
   {
     name: 'Armando Diaz',
     title: 'Owner, Airbrush Art',
     quote: 'Adalida was heaven sent. Once I had a real website, clients trusted my business more and I was able to close bigger deals.'
+  },
+  {
+    name: 'Kevin Irwin',
+    title: 'IT Director, Menaul School',
+    quote: 'Adalida proved to be a valuable asset to our team, and her contributions greatly enhanced our department\'s productivity and effectiveness.'
   }
 ]
 
@@ -70,10 +75,34 @@ const Testimonials = (): JSX.Element => {
       if (track === null || container === null) return
       const cards = Array.from(track.querySelectorAll<HTMLElement>('.testimonial-card'))
       if (cards.length === 0) return
+
+      // Temporarily measure intrinsic card height (not the already-locked height),
+      // otherwise we can "lock in" extra whitespace.
+      const prevTrackHeight = track.style.height
+      const prevMinHeight = container.style.minHeight
+      const prevVar = container.style.getPropertyValue('--testimonial-card-height')
+      const prevCardHeights = cards.map((c) => c.style.height)
+
+      container.style.removeProperty('--testimonial-card-height')
+      container.style.minHeight = ''
+      track.style.height = 'auto'
+      cards.forEach((c) => { c.style.height = 'auto' })
+
       // Measure a sample of unique cards (first items.length is enough) and take the max
       const sample = cards.slice(0, items.length)
       const maxHeight = sample.reduce((m, el) => Math.max(m, el.offsetHeight), 0)
-      if (maxHeight > 0) container.style.minHeight = `${maxHeight}px`
+
+      // Restore inline styles, then apply the new lock height
+      track.style.height = prevTrackHeight
+      cards.forEach((c, i) => { c.style.height = prevCardHeights[i] ?? '' })
+
+      if (maxHeight > 0) {
+        container.style.minHeight = `${maxHeight}px`
+        container.style.setProperty('--testimonial-card-height', `${maxHeight}px`)
+      } else {
+        container.style.minHeight = prevMinHeight
+        if (prevVar !== '') container.style.setProperty('--testimonial-card-height', prevVar)
+      }
     }
     const raf = requestAnimationFrame(setStableHeight)
     window.addEventListener('resize', setStableHeight)
