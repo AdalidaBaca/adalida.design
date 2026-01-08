@@ -40,6 +40,7 @@
     /* allow the image + audio embed to define height */
     max-height: none;
     isolation: isolate;
+    overflow: visible; /* ensure audio control is not clipped */
     display: flex;            /* center image frame within column */
     align-items: center;
 
@@ -149,10 +150,11 @@
       position: absolute;
       left: 10px;
       bottom: 10px;
-      z-index: 5; /* always above the animated outline */
+      z-index: 10; /* always above the animated outline */
       display: inline-flex;
       align-items: center;
       gap: 6px; /* tiny gap between icon and text */
+      pointer-events: auto; /* ensure clicks work */
 
       .audio-icon-button {
         width: 44px;
@@ -164,9 +166,16 @@
         background: rgba(0,0,0,0.6);
         color: $light-text;
         cursor: pointer;
+        pointer-events: auto; /* ensure button is clickable */
+        position: relative;
+        z-index: 11; /* above the audio-control container */
         transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
         &:hover { transform: translateY(-1px); filter: brightness(1.05); }
         &:focus-visible { outline: 2px solid $light-text; outline-offset: 2px; }
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
       .audio-state {
         margin-left: 2px; /* micro nudge */
