@@ -9,8 +9,8 @@ const PortfolioContainer = (): JSX.Element => {
   const portfolioProjects = [
     Projects.Gaintain,
     Projects.SmartVentureMedia,
-    Projects.ProjectEcho,
-    Projects.InvibeEsthetics
+    Projects.InvibeEsthetics,
+    Projects.ProjectEcho
   ]
 
   return (
