@@ -61,6 +61,9 @@ const Testimonials = (): JSX.Element => {
           <blockquote
             key={`${name}-${title}`}
             className='testimonial-card card'
+            data-aos='fade-up'
+            data-aos-offset='100'
+            data-aos-duration='800'
           >
             <p className='quote'>{quote}</p>
             <footer className='attribution'>

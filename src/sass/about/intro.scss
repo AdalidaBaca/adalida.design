@@ -89,6 +89,14 @@
           justify-content: center;
           position: relative; /* Ensure it's a positioning context for audio-control */
 
+          /* Skip animation on subsequent visits */
+          &.animation-complete {
+            animation: none;
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0deg);
+            filter: none;
+          }
+
       /* Gatsby image wrapper */
       :where(img, .gatsby-image-wrapper) {
         border-radius: 0; /* image should flush to frame edges */

@@ -1,0 +1,171 @@
+@use 'sass:map';
+@import '../colors';
+
+.contact-cta-section {
+  margin: 3em auto 0;
+  max-width: min(1280px, 96dvw);
+  padding: 0 1dvw;
+  width: 100%;
+
+  @media (width >= $breakpoint) {
+    margin-top: 4em;
+  }
+}
+
+.contact-cta-container {
+  width: 100%;
+  background: linear-gradient(135deg, rgb(74 158 255 / 8%) 0%, rgb(90 200 250 / 5%) 100%);
+  border: 1px solid rgb(74 158 255 / 15%);
+  border-radius: 20px;
+  padding: 2em 1.5em;
+  box-shadow: 
+    0 8px 24px -12px rgb(74 158 255 / 20%),
+    0 2px 8px -2px rgb(74 158 255 / 10%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width >= $breakpoint) {
+    padding: 2.5em 2em;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 16px 48px -16px rgb(74 158 255 / 25%),
+        0 6px 16px -4px rgb(74 158 255 / 15%);
+    }
+  }
+}
+
+.contact-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
+
+  @media (width >= $breakpoint) {
+    gap: 1.25em;
+  }
+}
+
+.contact-cta-heading {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $dark-text;
+  margin: 0;
+}
+
+.contact-cta-description {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.6;
+  color: rgba($dark-text, 0.75);
+  max-width: 55ch;
+  margin: 0;
+}
+
+.contact-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  width: 100%;
+  max-width: 450px;
+  margin-top: 0.25em;
+
+  @media (width >= 480px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  /* Style second button (email) as secondary/outline variant */
+  .btn.badge.big-badge:not(:first-child) {
+    background: rgb(255 255 255 / 95%);
+    border: 1.5px solid rgb(0 0 0 / 15%);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 10%),
+      0 2px 4px rgb(0 0 0 / 5%);
+
+    a {
+      color: rgb(0 0 0 / 85%);
+      font-weight: 500;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(255 255 255 / 98%);
+        border-color: rgb(0 0 0 / 20%);
+        transform: translateY(-0.5px);
+        box-shadow:
+          0 6px 16px rgb(0 0 0 / 15%),
+          0 3px 8px rgb(0 0 0 / 8%);
+
+        a {
+          color: rgb(0 0 0 / 90%);
+        }
+      }
+    }
+  }
+}
+
+/* Dark mode */
+.dark .contact-cta-container {
+  background: linear-gradient(135deg, rgb(90 200 250 / 12%) 0%, rgb(74 158 255 / 8%) 100%);
+  border-color: rgb(90 200 250 / 20%);
+  box-shadow: 
+    0 12px 40px -16px rgb(90 200 250 / 25%),
+    0 4px 12px -4px rgb(90 200 250 / 15%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 
+        0 16px 48px -16px rgb(90 200 250 / 30%),
+        0 6px 16px -4px rgb(90 200 250 / 20%);
+    }
+  }
+}
+
+.dark .contact-cta-heading {
+  color: $light-text;
+}
+
+.dark .contact-cta-description {
+  color: rgba($light-text, 0.8);
+}
+
+.dark .contact-cta-buttons {
+  .btn.badge.big-badge:not(:first-child) {
+    background: rgb(30 30 30 / 90%);
+    border: 1.5px solid rgb(255 255 255 / 20%);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 30%),
+      0 2px 6px rgb(0 0 0 / 20%);
+
+    a {
+      color: rgb(255 255 255 / 95%);
+      font-weight: 500;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(35 35 35 / 92%);
+        border-color: rgb(255 255 255 / 25%);
+        transform: translateY(-0.5px);
+        box-shadow:
+          0 6px 16px rgb(0 0 0 / 35%),
+          0 3px 8px rgb(0 0 0 / 25%);
+
+        a {
+          color: rgb(255 255 255 / 100%);
+        }
+      }
+    }
+  }
+}

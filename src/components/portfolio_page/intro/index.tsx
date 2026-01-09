@@ -59,7 +59,7 @@ const Intro = (): React.ReactElement | null => {
   return (
     <>
       <Confetti trigger={showConfetti} onComplete={() => { setShowConfetti(false) }} />
-      <div className='portfolio-intro' data-aos='fade-up'>
+    <div className='portfolio-intro' data-aos='fade-up'>
         <div className='portfolio-intro-left'>
           <div className='intro-name-section'>
             <h1 className='intro-name-line'>

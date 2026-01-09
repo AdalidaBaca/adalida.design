@@ -8,7 +8,7 @@ const PortfolioContainer = (): JSX.Element => {
   // All cards use the unified CaseStudyCard component for consistent styling
   const portfolioProjects = [
     Projects.Gaintain,
-    Projects.AirbrushArtStudio,
+    Projects.SmartVentureMedia,
     Projects.ProjectEcho,
     Projects.InvibeEsthetics
   ]

@@ -7,8 +7,8 @@ const NameAndCategory = ({ project }: { project: Project }): React.ReactElement 
 
   return (
     <div className='name-and-category' data-title-container>
-      <div className='project-category'>{category}</div>
       <h5 className='project-name'>{name}</h5>
+      <div className='project-category'>{category}</div>
     </div>
   )
 }

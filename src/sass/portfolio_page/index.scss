@@ -129,14 +129,16 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 1.5em; /* Increased gap for better spacing between cards */
+  gap: 2.5em; /* Increased gap for better spacing between cards */
   width: 100%;
   margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
+  margin-bottom: 2em; /* Minimized bottom margin for spacing before testimonials on desktop */
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 1em;
+    gap: 2.5em; /* Increased gap on mobile */
+    margin-bottom: 4em; /* Increased bottom margin on mobile */
   }
 }
 
@@ -173,12 +175,12 @@
 
   .testimonial-author {
     display: block;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: clamp(0.85rem, 1.3vw, 0.9rem);
     color: rgba($dark-text, 0.6);
     margin-top: 1em;
     margin-left: 2.5em;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
   }
 }
 
@@ -232,7 +234,6 @@
   flex-direction: column;
   gap: 0;
   width: 100%;
-  position: relative; /* For absolute positioning of desktop CTA */
   background: #ffffff; /* Solid white for better contrast */
   border: none; /* Remove border from child since parent has it */
   border-top: none; /* No border at top where it meets image section */
@@ -245,7 +246,7 @@
     padding-left: 1.5em !important;
     padding-right: 1.5em !important;
     padding-top: 1.25em !important;
-    padding-bottom: 2em !important; /* Standard bottom padding */
+    padding-bottom: 0.25em !important; /* Minimal bottom padding to hug content */
     border-radius: 0; /* Let parent handle border-radius */
     overflow: hidden;
     max-width: 100%;
@@ -256,7 +257,7 @@
     padding: 2em;
     padding-top: 1.5em;
     padding-right: 2em; /* Standard padding */
-    padding-bottom: 3em; /* Standard bottom padding */
+    padding-bottom: 1.5em; /* Reduced bottom padding to hug content */
     border-radius: 0 0 1.5em 1.5em; /* Round bottom corners only */
   }
 
@@ -301,15 +302,64 @@
     /* Mobile: Badges now above subtitle - spacing below badges */
     @media (max-width: 768px) {
       gap: 0.65em;
-      margin-bottom: 1em !important; /* Spacing below badges (before subtitle) */
+      margin-bottom: 1.5em !important; /* Increased spacing below badges (before flexbox) */
       margin-top: 0; /* No top margin since badges are first */
     }
 
     /* Desktop: Different spacing */
     @media (width >= $breakpoint) {
       gap: 0.65em;
-      margin-bottom: 1em; /* Spacing below badges (before subtitle) */
+      margin-bottom: 1.5em; /* Increased spacing below badges (before flexbox) */
       margin-top: 0;
+    }
+  }
+
+  /* Container for text section and CTA - flex row */
+  .text-and-cta-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1em;
+    width: 100%;
+
+    /* Mobile: Keep flex row layout */
+    @media (max-width: 768px) {
+      flex-direction: row;
+      gap: 0.75em;
+    }
+  }
+
+  /* Text section - takes up majority (75%) */
+  .text-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Allow text to shrink if needed */
+    /* Constrain width to encourage subtitle wrapping */
+    max-width: calc(100% - 60px); /* Leave space for CTA */
+  }
+
+  /* CTA section - takes up quarter (25%) */
+  .cta-section {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Center vertically in column */
+    justify-content: flex-end; /* Move to right edge of the space */
+    min-width: 0;
+    /* Position CTA to center in gap between title and subtitle */
+    /* Desktop: Title font-size ~2rem, line-height 1.2 = ~2.4em height, gap is 1em, so center of gap = 2.4em + 0.5em */
+    padding-top: calc(2.4em + 0.5em);
+    transform: translateY(-50%); /* Center it in the gap */
+
+    /* Mobile: Keep flex layout, center in gap */
+    @media (max-width: 768px) {
+      flex: 0 0 auto; /* Don't grow, just take needed space */
+      justify-content: flex-end; /* Move to right edge of the space */
+      align-items: center; /* Center vertically in column */
+      margin-top: 0;
+      /* Mobile: Title font-size ~1.6rem, line-height 1.2 = ~1.92em height, gap is 1em, so center of gap = 1.92em + 0.5em */
+      padding-top: calc(1.92em + 0.5em);
+      transform: translateY(-50%); /* Center it in the gap */
     }
   }
 
@@ -333,6 +383,8 @@
       display: block !important; /* Ensure it's visible */
       visibility: visible !important; /* Force visibility */
       opacity: 1 !important; /* Ensure full opacity */
+      white-space: normal; /* Allow wrapping */
+      word-wrap: break-word; /* Allow breaking long words if needed */
 
       /* Mobile: Standardized category font size (based on Airbrush Art Studio) */
       @media (max-width: 768px) {
@@ -353,16 +405,17 @@
       line-height: 1.2;
       letter-spacing: -0.02em;
       color: rgb(0 0 0 / 95%);
+      white-space: nowrap; /* Prevent wrapping to ensure title stays on one line */
 
-      /* Mobile: Standardized name font size (based on Airbrush Art Studio) */
+      /* Mobile: Larger font size for better readability */
       @media (max-width: 768px) {
-        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+        font-size: clamp(1.1rem, 2.2vw, 1.4rem);
         height: auto;
       }
 
-      /* Desktop: Different font size */
+      /* Desktop: Smaller font size to fit on one line */
       @media (width >= $breakpoint) {
-        font-size: clamp(1.6rem, 3vw, 2rem);
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
       }
     }
 
@@ -376,7 +429,7 @@
     /* Desktop: Different spacing */
     @media (width >= $breakpoint) {
       gap: 1em;
-      margin-bottom: 1.25em;
+      margin-bottom: 0; /* Remove bottom margin to hug content */
     }
   }
 
@@ -393,7 +446,7 @@
   @media (width >= $breakpoint) {
     .name-and-category {
       gap: 0.5em;
-      margin-bottom: 1em; /* Reduced spacing on desktop */
+      margin-bottom: 0; /* Remove bottom margin to hug content */
 
       .project-category {
         font-size: clamp(0.75rem, 1.2vw, 0.8rem);
@@ -488,10 +541,6 @@
 
 /* CTA in text section - visible on both mobile and desktop */
 .portfolio-project-link {
-  position: absolute;
-  /* Mobile: Bottom-right corner with margin from edge */
-  bottom: calc(2em + 0.5em); /* Match padding-bottom + extra margin */
-  right: calc(1.5em + 0.5em); /* Match padding-right + extra margin */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -511,7 +560,6 @@
   box-shadow: 
     0 1px 2px rgb(0 0 0 / 4%),
     0 0.5px 1px rgb(0 0 0 / 2%);
-  z-index: 2;
   cursor: pointer;
   touch-action: manipulation;
   
@@ -522,9 +570,6 @@
   }
 
   @media (width >= $breakpoint) {
-    /* Desktop: Bottom-right corner with margin from edge */
-    bottom: calc(3em + 0.75em); /* Match padding-bottom + extra margin */
-    right: calc(2em + 0.75em); /* Match padding-right + extra margin */
     min-width: 48px; /* Desktop size */
     min-height: 48px;
     width: 48px;
@@ -541,8 +586,7 @@
       background: var(--project-cover-color, rgb(0 0 0 / 6%)); /* Fill with project cover color */
       border-color: var(--project-cover-color, rgb(0 0 0 / 15%));
       color: rgb(255 255 255 / 98%); /* White arrow for contrast on colored background */
-      /* Scale up without moving position */
-      transform: scale(1.05);
+      transform: scale(1.05); /* Only scale, don't translate - parent handles positioning */
       box-shadow: 
         0 4px 12px rgba(0, 0, 0, 0.15),
         0 2px 6px rgba(0, 0, 0, 0.1);
@@ -555,8 +599,7 @@
   }
 
   &:active {
-    /* Scale down slightly without moving position */
-    transform: scale(1.02);
+    transform: scale(1.02); /* Only scale, don't translate - parent handles positioning */
     box-shadow: 
       0 2px 4px rgb(0 0 0 / 6%),
       0 1px 2px rgb(0 0 0 / 3%);
@@ -598,7 +641,7 @@
         background: var(--project-cover-color, rgb(255 255 255 / 10%)); /* Fill with project cover color */
         border-color: var(--project-cover-color, rgb(255 255 255 / 15%));
         color: rgb(255 255 255 / 98%); /* White arrow for contrast */
-        transform: translateY(-2px) scale(1.05);
+        transform: scale(1.05); /* Only scale, don't translate - parent handles positioning */
         box-shadow: 
           0 4px 12px rgba(0, 0, 0, 0.3),
           0 2px 6px rgba(0, 0, 0, 0.25);
@@ -611,7 +654,7 @@
     }
 
     &:active {
-      transform: translateY(-1px) scale(1.02);
+      transform: scale(1.02); /* Only scale, don't translate - parent handles positioning */
       box-shadow: 
         0 2px 4px rgb(0 0 0 / 25%),
         0 1px 2px rgb(0 0 0 / 20%);

@@ -27,10 +27,10 @@ export interface Project {
 export const Projects: Record<string, Project> = {
   Gaintain: {
     name: 'GainTain',
-    category: 'Workout Tracking',
+    category: 'AI Fitness Personalization',
     description: 'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
-    badges: ['Product', 'Research', 'Founder'],
+    badges: ['Founder', 'Product', 'Research'],
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'
@@ -117,23 +117,38 @@ export const Projects: Record<string, Project> = {
   },
   InvibeEsthetics: {
     name: 'Invibe Esthetics',
-    category: 'Website Development',
+    category: 'Booking and Scheduling',
     badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
     description: 'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SunbeltImage,
     link: {
       text: 'Visit Website',
-      url: 'https://www.sunbeltpropertiesnm.com/'
+      url: 'https://www.invibeesthetics.com'
     },
     colors: {
       cover: '#965738',
       primary: '#965738'
     }
   },
+  SmartVentureMedia: {
+    name: 'Smart Venture Media',
+    category: 'CMS Workflow Automation',
+    badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
+    description: 'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
+    heroImage: SunbeltImage,
+    link: {
+      text: 'Visit Website',
+      url: 'https://www.smartventuremedia.com'
+    },
+    colors: {
+      cover: '#FF69B4',
+      primary: 'linear-gradient(135deg, #FF69B4 0%, #F5F5DC 100%)'
+    }
+  },
   ProjectEcho: {
     name: 'Project ECHO',
-    category: 'Technical Writer Portfolio',
-    badges: ['UX Writing', 'Data Visualization', 'Power BI'],
+    category: 'Healthcare Dashboard',
+    badges: ['Data Visualization', 'Documentation', 'Power BI'],
     description: 'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,
     link: {

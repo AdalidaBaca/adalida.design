@@ -29,6 +29,8 @@
   }
 
   .github-calendar-count {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 500;
     opacity: 0.85;
   }
 
@@ -71,6 +73,14 @@
   .cell[data-level='2'] { background: var(--lvl2); }
   .cell[data-level='3'] { background: var(--lvl3); }
   .cell[data-level='4'] { background: var(--lvl4); }
+
+  .github-calendar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5em;
+    margin-top: 0.5em;
+  }
 
   .github-calendar-legend {
     display: flex;

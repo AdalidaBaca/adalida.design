@@ -10,6 +10,16 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
   text-transform: uppercase;
 }
 
+/* Apply same header style to Resources, Contributions, and My Process sections */
+.resources-section .section-heading-container > h4,
+.contributions-section .section-heading-container > h4,
+.my-process-section .section-heading-container > h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .testimonials { max-width: 70ch; margin: $section-gap-mobile auto 0; display: grid; gap: 1.5em; }
 .testimonials-full { display: grid; gap: 1.25em; }
 .testimonials-grid-compact {
@@ -221,8 +231,8 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
       line-height: 1.3; /* Increased from 1.1 for better spacing */
     }
     .name { 
-      font-weight: 600; 
-      font-size: 1.2em; /* Increased from 1.12em */
+      font-weight: 400; 
+      font-size: 1em;
       line-height: 1.3;
     }
 
@@ -244,18 +254,11 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
     
     /* Names and titles should be smaller than quote on desktop */
     .testimonial-card .attribution {
-      .name { font-size: 1rem; /* Smaller than quote (1.2rem) */ }
-      .title { font-size: 0.9rem; /* Smaller than name */ }
-      .avatar {
-        width: 44px;
-        height: 44px;
+      .name { 
+        font-size: 0.95rem; /* Smaller than quote (1.2rem) */
+        font-weight: 400;
       }
-    }
-    
-    /* Larger names and titles on desktop */
-    .testimonial-card .attribution {
-      .name { font-size: 1.3em; }
-      .title { font-size: 1.05em; }
+      .title { font-size: 0.85rem; /* Smaller than name */ }
       .avatar {
         width: 44px;
         height: 44px;

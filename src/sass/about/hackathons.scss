@@ -146,31 +146,32 @@
       opacity: 0.85;
     }
 
-    /* Style second button as secondary/outline variant - Premium style */
+    /* Style second button as secondary/outline variant - Premium style with better visibility */
     .btn.badge.big-badge:not(:first-child) {
       background: rgb(255 255 255 / 95%);
-      border: none;
+      border: 1.5px solid rgb(0 0 0 / 15%); /* Stronger border for better visibility */
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 
-        0 2px 8px rgb(0 0 0 / 6%),
-        0 1px 2px rgb(0 0 0 / 3%);
+        0 3px 10px rgb(0 0 0 / 10%),
+        0 1px 3px rgb(0 0 0 / 5%);
 
       a {
-        color: rgb(0 0 0 / 95%); /* Increased contrast for better readability */
-        font-weight: 500; /* Ensure text is bold enough */
+        color: rgb(0 0 0 / 85%); /* Restore original text color */
+        font-weight: 500; /* Restore original font weight */
       }
 
       @media (hover: hover) and (pointer: fine) {
         &:hover {
           background: rgb(255 255 255 / 98%);
+          border-color: rgb(0 0 0 / 25%); /* Darker border on hover */
           transform: translateY(-0.5px);
           box-shadow: 
             0 4px 12px rgb(0 0 0 / 10%),
             0 2px 4px rgb(0 0 0 / 5%);
           
           a {
-            color: rgb(0 0 0 / 100%); /* Full opacity on hover */
+            color: rgb(0 0 0 / 95%); /* Slightly darker on hover */
           }
         }
       }
@@ -198,21 +199,22 @@
 .dark .resource-card .resource-cta {
     .btn.badge.big-badge:not(:first-child) {
       background: rgb(30 30 30 / 90%);
-      border: none;
+      border: 1.5px solid rgb(255 255 255 / 20%); /* Stronger border for better visibility */
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 
-        0 2px 8px rgb(0 0 0 / 25%),
-        0 1px 2px rgb(0 0 0 / 15%);
+        0 3px 10px rgb(0 0 0 / 40%),
+        0 1px 3px rgb(0 0 0 / 20%);
 
     a {
-      color: rgb(255 255 255 / 100%); /* Full opacity for better readability in dark mode */
-      font-weight: 500; /* Ensure text is bold enough */
+      color: rgb(255 255 255 / 100%); /* Keep full opacity for readability */
+      font-weight: 500; /* Restore original font weight */
     }
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         background: rgb(35 35 35 / 92%);
+        border-color: rgb(255 255 255 / 30%); /* Lighter border on hover */
         transform: translateY(-0.5px);
         box-shadow: 
           0 4px 12px rgb(0 0 0 / 30%),

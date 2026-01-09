@@ -149,7 +149,7 @@ const Intro = (): JSX.Element | null => {
         <div className='splash-image-wrapper'>
           {faceUrl !== undefined ? (
             <div
-              className='splash-frame has-bg'
+              className={`splash-frame has-bg ${animationSkipped ? 'animation-complete' : ''}`}
               style={{ backgroundImage: `url(${faceUrl})` }}
               role='img'
               aria-label='Adalida Baca portrait'
@@ -174,7 +174,7 @@ const Intro = (): JSX.Element | null => {
               </div>
             </div>
           ) : (
-            <div className='splash-frame'>
+            <div className={`splash-frame ${animationSkipped ? 'animation-complete' : ''}`}>
               {makeMediaTag({
                 media: AdalidaFace,
                 imgObjectFit: 'cover',

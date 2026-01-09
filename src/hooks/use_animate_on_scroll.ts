@@ -56,10 +56,10 @@ const useAnimateOnScroll = (): void => {
       }
     })
     
-    // On mobile, only observe direct children, not subtree (less overhead)
+    // Observe the entire document to catch all new elements
     observer.observe(document.body, {
       childList: true,
-      subtree: !isMobile // Only watch subtree on desktop
+      subtree: true // Watch full subtree to catch all elements
     })
     
     return () => {

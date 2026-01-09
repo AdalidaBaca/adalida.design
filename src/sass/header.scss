@@ -33,7 +33,12 @@ $header-height: 56px;
     > * { transition: none; } /* prevent initial mount animation jitter */
   }
 
-  .left { justify-self: start; position: relative; }
+  .left { 
+    justify-self: start; 
+    position: relative; 
+    overflow: visible;
+    min-width: 0; /* Allow flex shrinking */
+  }
   .primary-nav { 
     justify-self: center; 
     display: inline-flex; 
@@ -212,6 +217,14 @@ $header-height: 56px;
   transform: translateY(-50%);
 }
 
+/* Ensure back button doesn't extend past viewport */
+.navbar .left .header-button.absolute {
+  position: relative; /* Change from absolute to relative to respect container */
+  left: auto;
+  top: auto;
+  transform: none;
+}
+
 /* Header home logo: match toggle size/padding, avoid glass background, prevent SVG clipping */
 .navbar .home-link .header-button {
   width: var(--nav-logo-size);
@@ -256,6 +269,7 @@ $header-height: 56px;
   max-height: 100%;
   padding: 0; /* override global .home-page-logo padding from index.scss */
   overflow: visible;
+  color: map.get($light-colors, danger); /* Use blue accent color */
 }
 
 .dark .navbar .home-link .header-button {
@@ -278,6 +292,10 @@ $header-height: 56px;
         inset 0 1px 0 rgb(255 255 255 / 12%);
     }
   }
+}
+
+.dark .navbar .home-link .home-page-logo {
+  color: map.get($dark-colors, danger); /* Use blue accent color for dark mode */
 }
 
 /* Respect reduced motion */

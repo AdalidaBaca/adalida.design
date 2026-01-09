@@ -68,24 +68,13 @@ const GitHubCalendar = (): JSX.Element => {
 
   return (
     <Section title='Contributions'>
-      <div className='resource-intro'>
-        Staying close to implementation helps me validate ideas quickly and understand how systems behave in practice.
-      </div>
       <div className='github-calendar'>
         <div className='github-calendar-header'>
           <div className='github-calendar-meta'>
-            <div className='caption-1 github-calendar-count'>
+            <div className='github-calendar-count'>
               {days === null && error === null ? 'Loading contributions…' : `${total.toLocaleString()} contributions in the last year`}
             </div>
           </div>
-          <a
-            className='github-calendar-link'
-            href={`https://github.com/${GITHUB_USERNAME}`}
-            target='_blank'
-            rel='noreferrer'
-          >
-            View on GitHub
-          </a>
         </div>
 
         {error !== null ? (
@@ -115,16 +104,26 @@ const GitHubCalendar = (): JSX.Element => {
           </div>
         ) : null}
 
-        <div className='github-calendar-legend' aria-label='Contribution intensity legend'>
-          <span className='legend-label'>Less</span>
-          <div className='legend-cells' aria-hidden='true'>
-            <span className='cell' data-level='0' />
-            <span className='cell' data-level='1' />
-            <span className='cell' data-level='2' />
-            <span className='cell' data-level='3' />
-            <span className='cell' data-level='4' />
+        <div className='github-calendar-footer'>
+          <a
+            className='github-calendar-link'
+            href={`https://github.com/${GITHUB_USERNAME}`}
+            target='_blank'
+            rel='noreferrer'
+          >
+            View on GitHub
+          </a>
+          <div className='github-calendar-legend' aria-label='Contribution intensity legend'>
+            <span className='legend-label'>Less</span>
+            <div className='legend-cells' aria-hidden='true'>
+              <span className='cell' data-level='0' />
+              <span className='cell' data-level='1' />
+              <span className='cell' data-level='2' />
+              <span className='cell' data-level='3' />
+              <span className='cell' data-level='4' />
+            </div>
+            <span className='legend-label'>More</span>
           </div>
-          <span className='legend-label'>More</span>
         </div>
       </div>
     </Section>

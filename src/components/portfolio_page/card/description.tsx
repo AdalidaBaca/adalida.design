@@ -14,8 +14,14 @@ const Description = ({ project }: { project: Project }): React.ReactElement => {
       style={{ '--project-cover-color': coverColor } as React.CSSProperties}
     >
       <Badges project={project} />
-      <NameAndCategory project={project} />
-      <ProjectLinkWrapper project={project} />
+      <div className='text-and-cta-container'>
+        <div className='text-section'>
+          <NameAndCategory project={project} />
+        </div>
+        <div className='cta-section'>
+          <ProjectLinkWrapper project={project} />
+        </div>
+      </div>
     </div>
   )
 }

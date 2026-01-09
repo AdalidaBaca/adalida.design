@@ -19,9 +19,6 @@ const Resources = (): JSX.Element => {
 
   return (
     <Section title='Resources'>
-      <div className='body-2 resource-intro'>
-        Writing and design help me slow down thinking, surface assumptions, and make systems easier to understand.
-      </div>
       <div className='hackathons odd'>
         <div
           className='glass card hackathon resource-card'
@@ -55,7 +52,7 @@ const Resources = (): JSX.Element => {
           </div>
           <div className='resource-cta'>
             <BadgeButton to={writingUrl}>SUBSTACK</BadgeButton>
-            <BadgeButton to={highlightsUrl}>HIGHLIGHTS</BadgeButton>
+            <BadgeButton to={highlightsUrl}>ACADEMIC</BadgeButton>
           </div>
         </div>
         <div

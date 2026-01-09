@@ -17,15 +17,19 @@ interface Props {
  */
 const CaseStudyCard = ({ project }: Props): JSX.Element => {
   const color = project.colors.cover
-  // Consistent gradient position for all cards - center-top
+  const primary = project.colors.primary
+  // Use primary gradient if it's a gradient string, otherwise use radial gradient
+  const isGradient = typeof primary === 'string' && primary.includes('gradient')
   const imageSectionStyle = {
-    backgroundImage: `
-      radial-gradient(
-        circle at 50% 25%,
-        color-mix(in lch shorter hue, ${color} 100%, #FFFFFF 100%),
-        ${color}
-      )
-    `,
+    backgroundImage: isGradient 
+      ? primary 
+      : `
+        radial-gradient(
+          circle at 50% 25%,
+          color-mix(in lch shorter hue, ${color} 100%, #FFFFFF 100%),
+          ${color}
+        )
+      `,
     '--project-cover-color': color
   } as React.CSSProperties
 

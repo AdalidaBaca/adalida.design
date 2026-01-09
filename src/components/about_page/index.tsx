@@ -4,7 +4,7 @@ import Intro from './intro'
 import HowIThink from './how_i_think'
 import Resources from './resources'
 import GitHubCalendar from './github_calendar'
-import Thanks from './thanks'
+import ContactCTA from './contact_cta'
 import ToolsCarousel from 'components/tools_carousel'
 
 const AboutPage = (): JSX.Element => {
@@ -15,7 +15,7 @@ const AboutPage = (): JSX.Element => {
       <HowIThink />
       <Resources />
       <GitHubCalendar />
-      <Thanks />
+      <ContactCTA />
     </div>
   )
 }
