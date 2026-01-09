@@ -1,3 +1,6 @@
+@use 'sass:map';
+@import './colors';
+
 $header-height: 56px;
 
 .navbar {
@@ -15,11 +18,12 @@ $header-height: 56px;
   /* even edge padding on mobile/desktop */
   padding: 6px clamp(14px, 4dvw, 22px);
   height: $header-height;
-  background: $light-background; /* match page bg in light mode */
+  background: rgb(255 255 255 / 80%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border: 0;
-  border-bottom: 1px solid rgb(0 0 0 / 8%); /* minimalist hairline */
-  box-shadow: none;
-  backdrop-filter: none;
+  border-bottom: 0.5px solid rgb(0 0 0 / 6%);
+  box-shadow: 0 0.5px 1px rgb(0 0 0 / 3%);
 
   .flex-center {
     display: inline-flex;
@@ -30,14 +34,22 @@ $header-height: 56px;
   }
 
   .left { justify-self: start; position: relative; }
-  .primary-nav { justify-self: center; display: inline-flex; align-items: center; gap: 1.25em; }
+  .primary-nav { 
+    justify-self: center; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 1.25em;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
   .right { justify-self: end; position: relative; }
 
   /* Clear, accessible focus and larger hit targets */
   a, button {
     min-height: var(--nav-control-size);
     min-width: var(--nav-control-size);
-    border-radius: 10px;
+    border-radius: 20px;
   }
   a:focus-visible, button:focus-visible {
     outline: 2px solid currentColor;
@@ -45,13 +57,39 @@ $header-height: 56px;
   }
 }
 
-.dark .navbar { border-bottom-color: rgb(255 255 255 / 10%); background: $dark-background; box-shadow: none; }
-.dark .switch-grid { border-color: rgb(255 255 255 / 16%); background: rgb(20 21 21 / 75%); }
-.dark .switch-indicator { background: $primary; box-shadow: 0 1px 2px rgb(0 0 0 / 60%), 0 0 0 1px rgb(255 255 255 / 8%) inset; }
-.dark .switch-button { color: $light-text; }
-.dark .switch-button.active { color: $light-text; }
-.light .switch-button { color: $dark-text; }
-.light .switch-button.active { color: $dark-text; }
+.dark .navbar { 
+  border-bottom-color: rgb(255 255 255 / 8%); 
+  background: rgb(20 20 20 / 85%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 0.5px 1px rgb(0 0 0 / 20%);
+}
+.dark .switch-grid { 
+  background: transparent; /* Remove fill - keep transparent like light mode */
+  border: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.dark .switch-indicator { 
+  background: map.get($dark-colors, danger); /* Use accent color */
+  box-shadow: 0 1px 2px rgb(0 0 0 / 60%), 0 0 0 1px rgb(255 255 255 / 8%) inset; 
+}
+.dark .switch-button { 
+  color: $light-text; 
+  text-shadow: 0 0.5px 1px rgb(0 0 0 / 20%);
+}
+.dark .switch-button.active { 
+  color: $light-text; 
+  text-shadow: 0 0.5px 1px rgb(0 0 0 / 30%);
+}
+.light .switch-button { 
+  color: $dark-text; 
+  text-shadow: 0 0.5px 0.5px rgb(255 255 255 / 30%);
+}
+.light .switch-button.active { 
+  color: $dark-text; 
+  text-shadow: 0 0.5px 0.5px rgb(255 255 255 / 50%);
+}
 
 @keyframes nav-logo-splash {
   0% {
@@ -74,6 +112,9 @@ $header-height: 56px;
 
 .switch-container {
   padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .switch-grid {
@@ -102,15 +143,26 @@ $header-height: 56px;
   color: $dark-text;
   border: none;
   cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 1em;
-  letter-spacing: 0.02em;
-  transition: color 120ms ease, opacity 120ms ease;
+  font-size: 0.9em;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-align: center; /* Center text within button */
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative; /* ensure text sits above the moving indicator */
   z-index: 1;
-  opacity: 0.65; /* lighter for inactive */
-  &:focus-visible { opacity: 0.9; }
-  &.active { color: $dark-text; opacity: 1; }
+  opacity: 0.6; /* lighter for inactive */
+  text-shadow: 0 0.5px 0.5px rgb(255 255 255 / 30%);
+  display: flex; /* Use flexbox for centering */
+  align-items: center;
+  justify-content: center;
+  &:focus-visible { opacity: 0.85; }
+  &.active { 
+    color: $dark-text; 
+    opacity: 1;
+    text-shadow: 0 0.5px 0.5px rgb(255 255 255 / 50%);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -120,13 +172,14 @@ $header-height: 56px;
 .switch-indicator {
   position: absolute;
   width: 50%;
-  height: 3px;                /* slightly thicker for contrast */
+  height: 2.5px;
   left: 0;
   bottom: 0;                  /* underline sits at the bottom */
-  border-radius: 2px;
-  transition: transform 220ms ease;
+  border-radius: 1.5px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
-  background: $primary;
+  background: map.get($light-colors, danger); /* Use accent color */
+  box-shadow: 0 0.5px 1px rgb(0 0 0 / 10%);
 }
 
 /* Match light-mode accent to the LinkedIn/CTA badge color */
@@ -167,10 +220,16 @@ $header-height: 56px;
   min-height: var(--nav-logo-size);
   padding: 6px; /* bigger mark while keeping edges safe */
   /* restore the same "control container" style as the header buttons */
-  border: 1px solid rgb(0 0 0 / 10%);
-  border-radius: 12px;
-  background: rgb(255 255 255 / 70%);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 1px 0 rgb(255 255 255 / 60%) inset;
+  border: 0.5px solid rgb(0 0 0 / 8%);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 85%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 
+    0 1px 3px rgb(0 0 0 / 4%),
+    0 0.5px 1px rgb(0 0 0 / 2%),
+    inset 0 1px 0 rgb(255 255 255 / 80%);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   /* moment of delight (initial load only) */
   transform-origin: 50% 50%;
   backface-visibility: hidden;
@@ -178,6 +237,17 @@ $header-height: 56px;
   animation: nav-logo-splash 720ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
   /* come in slightly after the toggle text to feel intentional */
   animation-delay: 220ms;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(255 255 255 / 92%);
+      border-color: rgb(0 0 0 / 10%);
+      box-shadow: 
+        0 2px 6px rgb(0 0 0 / 6%),
+        0 1px 2px rgb(0 0 0 / 3%),
+        inset 0 1px 0 rgb(255 255 255 / 90%);
+    }
+  }
 }
 .navbar .home-link .home-page-logo {
   width: 100%;
@@ -189,9 +259,25 @@ $header-height: 56px;
 }
 
 .dark .navbar .home-link .header-button {
-  border-color: rgb(255 255 255 / 12%);
-  background: rgb(22 23 23 / 60%);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 6%) inset;
+  border-color: rgb(255 255 255 / 15%);
+  background: rgb(30 30 30 / 75%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 
+    0 1px 3px rgb(0 0 0 / 30%),
+    0 0.5px 1px rgb(0 0 0 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(35 35 35 / 80%);
+      border-color: rgb(255 255 255 / 18%);
+      box-shadow: 
+        0 2px 6px rgb(0 0 0 / 35%),
+        0 1px 2px rgb(0 0 0 / 25%),
+        inset 0 1px 0 rgb(255 255 255 / 12%);
+    }
+  }
 }
 
 /* Respect reduced motion */
@@ -209,18 +295,51 @@ $header-height: 56px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid rgb(0 0 0 / 10%);
-  border-radius: 12px;
-  background: rgb(255 255 255 / 70%);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 1px 0 rgb(255 255 255 / 60%) inset;
+  border: 0.5px solid rgb(0 0 0 / 8%);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 85%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 
+    0 1px 3px rgb(0 0 0 / 4%),
+    0 0.5px 1px rgb(0 0 0 / 2%),
+    inset 0 1px 0 rgb(255 255 255 / 80%);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   &.animated-link {
     padding: 0 0.75em 0 0.5em;
   }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(255 255 255 / 92%);
+      border-color: rgb(0 0 0 / 10%);
+      box-shadow: 
+        0 2px 6px rgb(0 0 0 / 6%),
+        0 1px 2px rgb(0 0 0 / 3%),
+        inset 0 1px 0 rgb(255 255 255 / 90%);
+    }
+  }
 }
 
 .dark .header-button {
-  border-color: rgb(255 255 255 / 12%);
-  background: rgb(22 23 23 / 60%);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 6%) inset;
+  border-color: rgb(255 255 255 / 15%);
+  background: rgb(30 30 30 / 75%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 
+    0 1px 3px rgb(0 0 0 / 30%),
+    0 0.5px 1px rgb(0 0 0 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(35 35 35 / 80%);
+      border-color: rgb(255 255 255 / 18%);
+      box-shadow: 
+        0 2px 6px rgb(0 0 0 / 35%),
+        0 1px 2px rgb(0 0 0 / 25%),
+        inset 0 1px 0 rgb(255 255 255 / 12%);
+    }
+  }
 }

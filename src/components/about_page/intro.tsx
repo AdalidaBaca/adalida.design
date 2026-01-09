@@ -6,10 +6,10 @@ import { makeMediaTag } from 'components/media_with_text'
 import FileQuery from 'queries/file'
 import DarkModeContext from 'dark_mode_context'
 import { IconPlayerPlayFilled, IconPlayerPauseFilled } from '@tabler/icons-react'
-import AnimatedImageOutline from 'components/animated_image_outline'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'
+const ABOUT_ANIMATION_COMPLETED_KEY = 'aboutAnimationCompleted'
 
 declare global {
   interface Window {
@@ -23,6 +23,23 @@ declare global {
 const Intro = (): JSX.Element | null => {
   const isMobile = useIsMobile()
   const { darkMode } = useContext(DarkModeContext)
+  const [animationSkipped, setAnimationSkipped] = useState(false)
+  
+  useEffect(() => {
+    if (typeof sessionStorage !== 'undefined') {
+      const completed = sessionStorage.getItem(ABOUT_ANIMATION_COMPLETED_KEY) === 'true'
+      setAnimationSkipped(completed)
+      
+      // Mark as completed after animations finish (handwriting: 3.3s + underline: 1.4s = ~4.7s total)
+      if (!completed) {
+        const timer = setTimeout(() => {
+          sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
+        }, 5000) // Slightly after all animations complete
+        return () => clearTimeout(timer)
+      }
+    }
+  }, [])
+  
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   let faceUrl: string | undefined
   try {
@@ -129,28 +146,33 @@ const Intro = (): JSX.Element | null => {
   return (
     <div className='about-intro' data-aos='fade-up'>
       <div className='splash-image'>
-        <AnimatedImageOutline
-          className='splash-outline'
-          speed={2.2}
-          strokeWidth={4}
-          radius={18}
-          start='top-left'
-          mode='draw'
-          sequential
-          gradient={{
-            from: 'var(--outline-accent-a)',
-            via: 'var(--outline-accent-b)',
-            to: 'var(--outline-accent-a)',
-            angleDeg: 135
-          }}
-        >
+        <div className='splash-image-wrapper'>
           {faceUrl !== undefined ? (
             <div
               className='splash-frame has-bg'
               style={{ backgroundImage: `url(${faceUrl})` }}
               role='img'
               aria-label='Adalida Baca portrait'
-            />
+            >
+              <div className='audio-control'>
+                <button
+                  className='audio-icon-button'
+                  onClick={onTogglePlay}
+                  aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
+                  aria-pressed={isPlaying}
+                  title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
+                  disabled={!playerReady}
+                >
+                  {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
+                </button>
+                <div className='yt-audio-player' aria-hidden='true'>
+                  <div id={playerIdRef.current} />
+                </div>
+                <span className='audio-state' aria-live='polite' aria-atomic='true'>
+                  {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
+                </span>
+              </div>
+            </div>
           ) : (
             <div className='splash-frame'>
               {makeMediaTag({
@@ -159,40 +181,52 @@ const Intro = (): JSX.Element | null => {
                 imgObjectPosition: 'center top',
                 style: { width: '100%', height: '100%' }
               })}
+              <div className='audio-control'>
+                <button
+                  className='audio-icon-button'
+                  onClick={onTogglePlay}
+                  aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
+                  aria-pressed={isPlaying}
+                  title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
+                  disabled={!playerReady}
+                >
+                  {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
+                </button>
+                <div className='yt-audio-player' aria-hidden='true'>
+                  <div id={playerIdRef.current} />
+                </div>
+                <span className='audio-state' aria-live='polite' aria-atomic='true'>
+                  {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
+                </span>
+              </div>
             </div>
           )}
-        </AnimatedImageOutline>
-        <div className='audio-control'>
-          <button
-            className='audio-icon-button'
-            onClick={onTogglePlay}
-            aria-label={isPlaying ? 'Pause “Adalida”' : 'Play “Adalida”'}
-            aria-pressed={isPlaying}
-            title={isPlaying ? 'Pause “Adalida”' : 'Play “Adalida”'}
-            disabled={!playerReady}
-          >
-            {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
-          </button>
-          <div className='yt-audio-player' aria-hidden='true'>
-            <div id={playerIdRef.current} />
-          </div>
-          <span className='audio-state' aria-live='polite' aria-atomic='true'>
-            {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
-          </span>
         </div>
       </div>
       <div className='about-intro-text'>
-        <h6>Hi, I&apos;m Adalida (A-duh-lye-duh)</h6>
+        <div className='handwriting-overlay'>
+          <div className={`handwriting-text ${animationSkipped ? 'animation-complete' : ''}`}>Hi, I&apos;m Adalida</div>
+        </div>
         <h5 className='intro-lead'>
-          I design <u className={`${underlineClassName} underline-draw`}>usable systems</u> from real‑world constraints.
+          I design <u className={`${underlineClassName} underline-draw ${animationSkipped ? 'animation-complete' : ''}`}>
+            <span className='underline-text'>usable systems</span>
+            <svg className='hand-drawn-underline' viewBox='0 0 200 12' preserveAspectRatio='none' aria-hidden='true'>
+              <path
+                d='M 0,9 Q 100,2 200,8'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1.8'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                vectorEffect='non-scaling-stroke'
+              />
+            </svg>
+          </u> from real‑world constraints.
         </h5>
         <div>
           I work on products where constraints, tradeoffs, and incomplete information are part of the job.
         </div>
-        <div className='intro-support'>
-          I start by understanding how the system works in practice, then design solutions that teams can actually build, use, and evolve.
-        </div>
-        <BadgeButton to={resumeUrl}>Let&apos;s connect</BadgeButton>
+        <BadgeButton to={resumeUrl}>LET&apos;S CONNECT</BadgeButton>
       </div>
     </div>
   )

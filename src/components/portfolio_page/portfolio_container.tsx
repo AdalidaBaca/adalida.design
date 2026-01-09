@@ -1,24 +1,26 @@
 import React from 'react'
 
 import Projects from 'projects'
-import Card from './card'
+import CaseStudyCard from './card'
 
 const PortfolioContainer = (): JSX.Element => {
-  // Only show these three projects on the portfolio page
+  // Show these four projects on the portfolio page in a 2x2 grid
+  // All cards use the unified CaseStudyCard component for consistent styling
   const portfolioProjects = [
     Projects.Gaintain,
     Projects.AirbrushArtStudio,
-    Projects.ProjectEcho
+    Projects.ProjectEcho,
+    Projects.InvibeEsthetics
   ]
 
   return (
     <>
-      <div className='featured-projects-heading'>
+      <div className='featured-projects-heading' data-aos='fade-up'>
         <span>FEATURED PROJECTS</span>
       </div>
       <div className='portfolio-container'>
-        {portfolioProjects.map((project, index) =>
-          <Card key={project.name} reverse={index % 2 === 1} project={project} />
+        {portfolioProjects.map((project) =>
+          <CaseStudyCard key={project.name} project={project} />
         )}
       </div>
     </>

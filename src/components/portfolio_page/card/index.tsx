@@ -1,6 +1,5 @@
 import React from 'react'
 
-import useIsMobile from 'hooks/use_is_mobile'
 import type { Project } from 'projects'
 
 import HeroImage from './hero_image'
@@ -8,33 +7,41 @@ import Description from './description'
 
 interface Props {
   project: Project
-  reverse: boolean
 }
 
-const Card = ({ project, reverse }: Props): JSX.Element => {
-  const isMobile = useIsMobile()
-  const at = isMobile === true ? '50% 25%' : reverse ? '75%' : '25%'
+/**
+ * Unified Case Study Card Component
+ * 
+ * All case study cards use this component to ensure identical styling.
+ * Based on Invibe Esthetics as the reference template.
+ */
+const CaseStudyCard = ({ project }: Props): JSX.Element => {
   const color = project.colors.cover
-  const style = {
+  // Consistent gradient position for all cards - center-top
+  const imageSectionStyle = {
     backgroundImage: `
       radial-gradient(
-        circle at ${at},
+        circle at 50% 25%,
         color-mix(in lch shorter hue, ${color} 100%, #FFFFFF 100%),
         ${color}
       )
-    `
-  }
+    `,
+    '--project-cover-color': color
+  } as React.CSSProperties
+
   return (
     <div
-      className={`portfolio-card${reverse ? ' reverse' : ''}`}
+      className='portfolio-card'
       data-aos='fade-up'
-      data-aos-offset='0'
-      style={style}
+      data-aos-offset='100'
+      data-aos-duration='800'
     >
-      <HeroImage project={project} />
+      <div className='portfolio-image-section' style={imageSectionStyle}>
+        <HeroImage project={project} />
+      </div>
       <Description project={project} />
     </div>
   )
 }
 
-export default Card
+export default CaseStudyCard

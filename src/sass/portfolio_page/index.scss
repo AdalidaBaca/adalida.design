@@ -1,17 +1,27 @@
+@use 'sass:map';
+@import '../typography'; // For $h4-size
+@import '../variables'; // For $breakpoint
+@import '../colors'; // For dark-colors
 @import './intro';
 @import './badges';
 
 .featured-projects-heading {
+  /* Match section-heading-container margin and width, but keep smaller uppercase style */
+  margin: 0.5em 0 1.5em; /* Bottom margin matches section-heading-container (1.5em) */
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.75em;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: $dark-text;
-  margin-bottom: 2em;
-  margin-top: 0.5em;
+
+  > span {
+    /* Keep smaller size but match other styling aspects */
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    color: $dark-text;
+    text-transform: uppercase; /* Keep uppercase as originally */
+  }
 
   .curved-arrow {
     color: $dark-text;
@@ -20,35 +30,113 @@
 }
 
 .dark .featured-projects-heading {
-  color: $light-text;
+  > span {
+    color: map.get($dark-colors, secondary); /* Match section-heading dark mode color */
+  }
   
   svg {
-    color: $light-text;
+    color: map.get($dark-colors, secondary);
+  }
+}
+
+/* Match testimonials header to featured projects style */
+.testimonials-section .section-heading-container > h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-image-section {
+  width: 100%;
+  flex: 0 0 65%; /* Slightly smaller to give more room for text section */
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* For absolute positioning of mobile CTA */
+  box-sizing: border-box; /* Ensure padding is included in width */
+
+  /* Mobile: Fixed height to ensure all cards are identical (based on Airbrush Art Studio) */
+  @media (max-width: 768px) {
+    flex: 0 0 240px; /* Fixed height for consistent card sizing */
+    min-height: 240px;
+    max-height: 240px;
+    padding: 1.25em;
+    padding-bottom: 0.75em;
+    border-radius: 0; /* Let parent handle border-radius */
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  /* Desktop: Different padding */
+  @media (width >= $breakpoint) {
+    padding: 1.5em;
+    padding-bottom: 1em;
+    border-radius: 1.5em 1.5em 0 0; /* Round top corners only */
   }
 }
 
 .portfolio-container-for-hero-image {
   width: 100%;
+  height: 100%;
   position: relative;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9; /* Slightly reduce image opacity to let text stand out more */
+  overflow: hidden; /* Prevent overflow */
+
+  /* Mobile: Ensure container doesn't overflow */
+  @media (max-width: 768px) {
+    max-width: 100%;
+    max-height: 100%;
+  }
 
   .portfolio-hero-image {
-    width: 100%;
+    object-fit: contain; /* Changed from cover to contain to prevent overflow */
+    
+    /* Mobile: Standardized image sizing (based on Airbrush Art Studio) */
+    /* Use auto height to maintain aspect ratio and prevent layout breaking */
+    @media (max-width: 768px) {
+      width: 90% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      border-radius: 0.75em;
+      /* Ensure image doesn't break layout */
+      display: block;
+      margin: 0 auto;
+      /* Prevent any inline styles from overriding */
+      min-width: 0;
+      min-height: 0;
+    }
 
+    /* Desktop: Different sizing and filter */
     @media (width >= $breakpoint) {
-      height: calc(450px - 1.5em);
+      width: 90%;
+      height: 90%;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0.75em;
+      filter: brightness(0.95) contrast(1.05); /* Enhance image for better text contrast */
     }
   }
 }
 
 .portfolio-container {
-  display: flex;
-  flex-direction: column;
-  gap: 9.375em;
-  height: min-content;
-  margin-top: -1em; /* Allow first card to peek ~3% from bottom */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5em; /* Increased gap for better spacing between cards */
+  width: 100%;
+  margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
   
-  @media (width >= $breakpoint) {
-    margin-top: -1.5em;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1em;
   }
 }
 
@@ -112,71 +200,455 @@
 }
 
 .portfolio-card {
-  @include glass;
-
-  grid-template-columns: 1fr;
   border-radius: 1.5em;
-  display: grid;
-  padding: 2.5em;
-  gap: 2.5em;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+  align-items: stretch;
   justify-content: stretch;
-  margin: 0 auto;
-  color: $light-text;
+  margin: 0;
+  aspect-ratio: 1 / 1; /* Square cards for grid */
+  min-height: 0; /* Allow grid to control sizing */
+  overflow: hidden;
+  background: transparent; /* Remove glass effect from card itself */
+  border: 1px solid rgb(0 0 0 / 10%); /* Add border to parent card */
+  box-sizing: border-box; /* Include border in width/height calculations */
 
-  @media (width >= $breakpoint) {
-    min-height: 450px;
-    grid-template-columns: 1fr 1fr;
-
-    &.reverse > .portfolio-container-for-hero-image {
-      order: 2;
-    }
-
+  /* Mobile: Allow cards to grow taller to fit content */
+  @media (max-width: 768px) {
+    aspect-ratio: auto;
+    height: auto;
+    /* Ensure overflow is properly contained */
+    overflow: hidden;
+    /* Ensure border is included in dimensions */
+    box-sizing: border-box;
   }
 }
 
 .project-description {
+  flex: 0 0 auto; /* Hug content - no fixed height */
   display: flex;
   flex-direction: column;
-  gap: 0.875em;
-  padding-top: 0.375em;
+  gap: 0;
+  width: 100%;
+  position: relative; /* For absolute positioning of desktop CTA */
+  background: #ffffff; /* Solid white for better contrast */
+  border: none; /* Remove border from child since parent has it */
+  border-top: none; /* No border at top where it meets image section */
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 4%);
+  color: $dark-text; /* Dark text on light background */
+  box-sizing: border-box; /* Ensure padding is included in width */
+
+  /* Mobile: Standardized padding and styling (based on Airbrush Art Studio) */
+  @media (max-width: 768px) {
+    padding-left: 1.5em !important;
+    padding-right: 1.5em !important;
+    padding-top: 1.25em !important;
+    padding-bottom: 2em !important; /* Standard bottom padding */
+    border-radius: 0; /* Let parent handle border-radius */
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  /* Desktop: Different padding */
+  @media (width >= $breakpoint) {
+    padding: 2em;
+    padding-top: 1.5em;
+    padding-right: 2em; /* Standard padding */
+    padding-bottom: 3em; /* Standard bottom padding */
+    border-radius: 0 0 1.5em 1.5em; /* Round bottom corners only */
+  }
 
   .badge-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.625em;
+    flex-wrap: nowrap; /* Don't wrap badges to new line */
+    overflow: hidden; /* Hide any overflow (component will only render badges that fit) */
+
+    /* Mobile: Fixed height to ensure consistent spacing regardless of badge count */
+    @media (max-width: 768px) {
+      min-height: 32px; /* Fixed height for badge row */
+      align-items: center;
+    }
 
     > div {
-      padding: 0.3125em 0.5em;
+      display: inline-flex;
+      align-items: center;
+      border: 0.5px solid rgb(0 0 0 / 6%);
+      border-radius: 20px;
+      background: rgb(0 0 0 / 2%);
+      box-shadow: none; /* Clean, no shadow for minimal look */
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 12px; /* 12pt equivalent */
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      color: rgb(0 0 0 / 70%);
+      white-space: nowrap; /* Prevent text wrapping within badge */
+      flex-shrink: 0; /* Don't shrink badges */
+
+      /* Mobile: Standardized badge padding (based on Airbrush Art Studio) */
+      @media (max-width: 768px) {
+        padding: 0.3em 0.6em;
+      }
+
+      /* Desktop: Different padding */
+      @media (width >= $breakpoint) {
+        padding: 0.3em 0.6em;
+      }
+    }
+
+    /* Mobile: Badges now above subtitle - spacing below badges */
+    @media (max-width: 768px) {
+      gap: 0.65em;
+      margin-bottom: 1em !important; /* Spacing below badges (before subtitle) */
+      margin-top: 0; /* No top margin since badges are first */
+    }
+
+    /* Desktop: Different spacing */
+    @media (width >= $breakpoint) {
+      gap: 0.65em;
+      margin-bottom: 1em; /* Spacing below badges (before subtitle) */
+      margin-top: 0;
     }
   }
 
   .name-and-category {
     display: flex;
     flex-direction: column;
-    gap: 0.375em;
 
-    > h1 {
-      font-weight: 500;
-      margin: 0;
+    /* Mobile: Fixed height to ensure consistent spacing */
+    @media (max-width: 768px) {
+      min-height: 80px; /* Fixed height for title section */
     }
 
-    > h2 {
-      font-weight: 400;
+    .project-category {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: rgb(0 0 0 / 55%);
       margin: 0;
+      display: block !important; /* Ensure it's visible */
+      visibility: visible !important; /* Force visibility */
+      opacity: 1 !important; /* Ensure full opacity */
+
+      /* Mobile: Standardized category font size (based on Airbrush Art Studio) */
+      @media (max-width: 768px) {
+        font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+        height: auto;
+      }
+
+      /* Desktop: Different font size */
+      @media (width >= $breakpoint) {
+        font-size: clamp(0.75rem, 1.2vw, 0.8rem);
+      }
+    }
+
+    .project-name {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: rgb(0 0 0 / 95%);
+
+      /* Mobile: Standardized name font size (based on Airbrush Art Studio) */
+      @media (max-width: 768px) {
+        font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+        height: auto;
+      }
+
+      /* Desktop: Different font size */
+      @media (width >= $breakpoint) {
+        font-size: clamp(1.6rem, 3vw, 2rem);
+      }
+    }
+
+    /* Mobile: Standardized spacing (based on Airbrush Art Studio) */
+    @media (max-width: 768px) {
+      gap: 1em !important; /* Force consistent gap for all cards */
+      margin-bottom: 0 !important; /* No bottom margin since CTA comes after */
+      margin-top: 0; /* No top margin since badges come before */
+    }
+
+    /* Desktop: Different spacing */
+    @media (width >= $breakpoint) {
+      gap: 1em;
+      margin-bottom: 1.25em;
     }
   }
 
-  @media (width >= $breakpoint) {
-    padding-top: unset;
+  /* Description text styling */
+  > p,
+  > div:not(.badge-list):not(.name-and-category) {
+    font-size: clamp(0.875rem, 1.3vw, 1rem);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
 
-    .title {
-      font-size: 2.25rem;
+  @media (width >= $breakpoint) {
+    .name-and-category {
+      gap: 0.5em;
+      margin-bottom: 1em; /* Reduced spacing on desktop */
+
+      .project-category {
+        font-size: clamp(0.75rem, 1.2vw, 0.8rem);
+      }
+
+      .project-name {
+        font-size: clamp(1.6rem, 3vw, 2rem);
+      }
+    }
+
+    .badge-list {
+      margin-bottom: 1em; /* Reduced spacing on desktop */
+      gap: 0.5em;
     }
   }
 }
 
+/* Mobile CTA in image section - visible on mobile only */
+.portfolio-project-link-mobile {
+  position: absolute;
+  top: 0.5em; /* Closer to top edge */
+  right: 0.5em; /* Closer to right edge */
+  display: inline-flex; /* Show by default on mobile */
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-width: 48px; /* Adequate touch target */
+  min-height: 48px;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgb(255 255 255 / 60%); /* Stronger border for better visibility */
+  border-radius: 50%;
+  background: rgb(255 255 255 / 40%); /* More opaque background for better visibility */
+  backdrop-filter: saturate(180%) blur(8px); /* Subtle blur for depth */
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  color: rgb(255 255 255 / 100%);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 
+    0 4px 12px rgb(0 0 0 / 40%),
+    0 2px 6px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 20%); /* Inner highlight for depth */
+  z-index: 30; /* Very high z-index to sit above everything */
+  cursor: pointer;
+  touch-action: manipulation;
+  pointer-events: auto; /* Ensure it's clickable */
+  /* Performance optimizations */
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU acceleration */
+
+  svg {
+    width: 1.5em; /* Slightly larger arrow */
+    height: 1.5em;
+    transition: transform 0.2s ease;
+    filter: brightness(0) invert(1); /* White arrow for visibility on colored background */
+    stroke-width: 2; /* Thicker stroke for better visibility */
+  }
+
+  /* Hide on desktop (>= 768px) */
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--project-cover-color, rgb(255 255 255 / 50%));
+      border-color: rgb(255 255 255 / 70%);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 
+        0 6px 16px rgb(0 0 0 / 45%),
+        0 3px 8px rgb(0 0 0 / 35%),
+        inset 0 1px 0 rgb(255 255 255 / 30%);
+      
+      svg {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    opacity: 0.95;
+    box-shadow: 
+      0 2px 6px rgb(0 0 0 / 35%),
+      0 1px 3px rgb(0 0 0 / 25%);
+    
+    svg {
+      transform: rotate(-30deg);
+    }
+  }
+}
+
+/* CTA in text section - visible on both mobile and desktop */
 .portfolio-project-link {
-  font-size: 0.875em;
-  font-weight: 700;
+  position: absolute;
+  /* Mobile: Bottom-right corner with margin from edge */
+  bottom: calc(2em + 0.5em); /* Match padding-bottom + extra margin */
+  right: calc(1.5em + 0.5em); /* Match padding-right + extra margin */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-width: 44px; /* Mobile touch target */
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  border: 0.5px solid rgb(0 0 0 / 10%);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 2%);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  color: rgb(0 0 0 / 90%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-shadow: 
+    0 1px 2px rgb(0 0 0 / 4%),
+    0 0.5px 1px rgb(0 0 0 / 2%);
+  z-index: 2;
+  cursor: pointer;
+  touch-action: manipulation;
+  
+  svg {
+    width: 1.3em; /* Mobile size */
+    height: 1.3em;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (width >= $breakpoint) {
+    /* Desktop: Bottom-right corner with margin from edge */
+    bottom: calc(3em + 0.75em); /* Match padding-bottom + extra margin */
+    right: calc(2em + 0.75em); /* Match padding-right + extra margin */
+    min-width: 48px; /* Desktop size */
+    min-height: 48px;
+    width: 48px;
+    height: 48px;
+    
+    svg {
+      width: 1.4em; /* Desktop size */
+      height: 1.4em;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: var(--project-cover-color, rgb(0 0 0 / 6%)); /* Fill with project cover color */
+      border-color: var(--project-cover-color, rgb(0 0 0 / 15%));
+      color: rgb(255 255 255 / 98%); /* White arrow for contrast on colored background */
+      /* Scale up without moving position */
+      transform: scale(1.05);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        0 2px 6px rgba(0, 0, 0, 0.1);
+      
+      svg {
+        transform: rotate(-45deg); /* Arrow rotates to point up-right */
+        filter: brightness(0) invert(1); /* Ensure arrow is white/visible */
+      }
+    }
+  }
+
+  &:active {
+    /* Scale down slightly without moving position */
+    transform: scale(1.02);
+    box-shadow: 
+      0 2px 4px rgb(0 0 0 / 6%),
+      0 1px 2px rgb(0 0 0 / 3%);
+    
+    svg {
+      transform: rotate(-30deg); /* Slight rotation on press */
+    }
+  }
+}
+
+.dark .portfolio-card {
+  border-color: rgb(255 255 255 / 15%); /* Dark mode border color */
+}
+
+.dark .project-description {
+  background: #0f0f0f; /* Darker background for stronger contrast */
+  border: none; /* Remove border from child since parent has it */
+  box-shadow: 0 4px 16px rgb(0 0 0 / 50%), 0 1px 4px rgb(0 0 0 / 30%);
+  color: $light-text;
+
+  .badge-list > div {
+    border-color: rgb(255 255 255 / 10%);
+    background: rgb(255 255 255 / 6%);
+    color: rgb(255 255 255 / 75%);
+    border-radius: 20px;
+    box-shadow: none; /* Clean, no shadow for minimal look */
+  }
+
+  .portfolio-project-link {
+    border-color: rgb(255 255 255 / 12%);
+    background: rgb(255 255 255 / 6%);
+    color: rgb(255 255 255 / 95%);
+    box-shadow: 
+      0 1px 2px rgb(0 0 0 / 20%),
+      0 0.5px 1px rgb(0 0 0 / 15%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--project-cover-color, rgb(255 255 255 / 10%)); /* Fill with project cover color */
+        border-color: var(--project-cover-color, rgb(255 255 255 / 15%));
+        color: rgb(255 255 255 / 98%); /* White arrow for contrast */
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 2px 6px rgba(0, 0, 0, 0.25);
+        
+        svg {
+          transform: rotate(-45deg); /* Arrow rotates to point up-right */
+          filter: brightness(0) invert(1); /* Ensure arrow is white/visible */
+        }
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 
+        0 2px 4px rgb(0 0 0 / 25%),
+        0 1px 2px rgb(0 0 0 / 20%);
+      
+      svg {
+        transform: rotate(-30deg); /* Slight rotation on press */
+      }
+    }
+  }
+
+  .name-and-category {
+    .project-name {
+      color: rgb(255 255 255 / 95%);
+    }
+
+    .project-category {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: clamp(0.7rem, 1.5vw, 0.8rem) !important; /* Match mobile font size */
+      font-weight: 500 !important;
+      letter-spacing: 0.08em !important;
+      line-height: 1.2 !important;
+      text-transform: uppercase !important;
+      color: rgb(255 255 255 / 60%) !important;
+      margin: 0 !important;
+      display: block !important; /* Ensure it's visible in dark mode */
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+
+  .portfolio-project-link {
+    color: rgb(255 255 255 / 90%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: rgb(255 255 255 / 100%);
+      }
+    }
+  }
 }

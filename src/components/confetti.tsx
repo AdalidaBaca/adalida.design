@@ -6,7 +6,6 @@ import type { Container, Engine } from '@tsparticles/engine'
 
 interface Props {
   trigger: boolean
-  sourceElement?: HTMLElement | null
   onComplete?: () => void
 }
 
@@ -26,7 +25,7 @@ if (typeof window !== 'undefined') {
   initEngine().catch(console.error)
 }
 
-const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element => {
+const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
   const [key, setKey] = useState(0)
   const [shouldRender, setShouldRender] = useState(false)
   const [emitterPosition, setEmitterPosition] = useState({ x: 50, y: 50 })
@@ -43,9 +42,9 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
       const darkMode = document.body?.classList.contains('dark') || 
                        document.documentElement.classList.contains('dark') ||
                        document.querySelector('.dark') !== null
-      return darkMode ? '#B21661' : '#FCD8FF'
+      return darkMode ? '#5AC8FA' : '#4A9EFF' // Apple-inspired blue accent colors
     }
-    return '#FCD8FF'
+    return '#4A9EFF'
   }
   const accentColor = getAccentColor()
 
@@ -57,7 +56,7 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
     }
   }, [])
 
-  // Check for dark mode
+  // Check for dark mode - only update color, don't trigger confetti
   useEffect(() => {
     const checkDarkMode = (): void => {
       if (typeof document !== 'undefined') {
@@ -65,7 +64,11 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
                          document.documentElement.classList.contains('dark') ||
                          document.querySelector('.dark') !== null
         setIsDarkMode(darkMode)
-        accentColorRef.current = darkMode ? '#B21661' : '#FCD8FF'
+        // Only update color if confetti hasn't been triggered yet
+        // Once triggered, keep the original color
+        if (!hasTriggeredRef.current) {
+          accentColorRef.current = darkMode ? '#5AC8FA' : '#4A9EFF' // Apple-inspired blue accent colors
+        }
       }
     }
     
@@ -90,13 +93,11 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
     }
   }, [])
 
-  // Set emitter position to center of viewport when triggered
+  // Set emitter position to center of viewport - always center, no sourceElement logic
   useEffect(() => {
-    if (trigger) {
-      // Center of viewport
-      setEmitterPosition({ x: 50, y: 50 })
-    }
-  }, [trigger])
+    // Always center, set immediately
+    setEmitterPosition({ x: 50, y: 50 })
+  }, [])
 
   useEffect(() => {
     // Only trigger once - never toggle off
@@ -108,8 +109,8 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
            document.documentElement.classList.contains('dark') ||
            document.querySelector('.dark') !== null)
         : false
-      setIsDarkMode(darkMode)
-      accentColorRef.current = darkMode ? '#B21661' : '#FCD8FF'
+        setIsDarkMode(darkMode)
+        accentColorRef.current = darkMode ? '#5AC8FA' : '#4A9EFF' // Apple-inspired blue accent colors
       
       console.log('Confetti triggered', { 
         darkMode, 
@@ -146,7 +147,7 @@ const Confetti = ({ trigger, sourceElement, onComplete }: Props): JSX.Element =>
       }}
     >
       <Particles
-        key={`${key}-${accentColorRef.current}`}
+        key={key}
         id={`confetti-particles-${key}`}
         particlesLoaded={particlesLoaded}
         options={{

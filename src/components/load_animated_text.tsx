@@ -5,9 +5,10 @@ interface Props {
   delay?: number
   letterDelay?: number
   onComplete?: () => void
+  skipAnimation?: boolean
 }
 
-const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Props): JSX.Element => {
+const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete, skipAnimation = false }: Props): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const onCompleteRef = useRef(onComplete)
   const hasCompletedRef = useRef(false)
@@ -26,6 +27,20 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Pr
 
     // Reset completion flag when text changes
     hasCompletedRef.current = false
+
+    // If skipAnimation is true, show all letters immediately
+    if (skipAnimation) {
+      letters.forEach((letter) => {
+        letter.style.setProperty('opacity', '1')
+        letter.classList.add('filled')
+      })
+      // Call onComplete immediately if skipping animation
+      if (!hasCompletedRef.current && onCompleteRef.current) {
+        hasCompletedRef.current = true
+        onCompleteRef.current()
+      }
+      return
+    }
 
     const startAnimation = (): void => {
       let currentIndex = 0
@@ -62,7 +77,7 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete }: Pr
       // Reset completion flag on cleanup
       hasCompletedRef.current = false
     }
-  }, [delay, letterDelay, text])
+  }, [delay, letterDelay, text, skipAnimation])
 
   return (
     <div ref={containerRef}>

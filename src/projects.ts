@@ -26,18 +26,18 @@ export interface Project {
 
 export const Projects: Record<string, Project> = {
   Gaintain: {
-    name: 'Gaintain',
-    category: 'Mobile Workout Tracking',
+    name: 'GainTain',
+    category: 'Workout Tracking',
     description: 'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
-    badges: ['Product Strategy', 'UX / UI Design', 'Prototyping'],
+    badges: ['Product', 'Research', 'Founder'],
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'
     },
     colors: {
-      cover: '#09D5C8',
-      primary: 'linear-gradient(135deg, #FF512F, #DD2476)'
+      cover: '#FF512F',
+      primary: 'linear-gradient(45deg, #FF512F, #DD2476)'
     }
   },
   Phronesis: {
@@ -81,8 +81,8 @@ export const Projects: Record<string, Project> = {
       url: 'https://www.airbrushart.studio'
     },
     colors: {
-      cover: '#606060',
-      primary: '#606060'
+      cover: '#6B46C1',
+      primary: '#6B46C1'
     }
   },
   JSharpMusic: {
@@ -111,6 +111,21 @@ export const Projects: Record<string, Project> = {
       url: 'https://www.sunbeltpropertiesnm.com/'
     },
     colors: {
+      cover: '#0EA5E9',
+      primary: '#0EA5E9'
+    }
+  },
+  InvibeEsthetics: {
+    name: 'Invibe Esthetics',
+    category: 'Website Development',
+    badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
+    description: 'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
+    heroImage: SunbeltImage,
+    link: {
+      text: 'Visit Website',
+      url: 'https://www.sunbeltpropertiesnm.com/'
+    },
+    colors: {
       cover: '#965738',
       primary: '#965738'
     }
@@ -126,8 +141,8 @@ export const Projects: Record<string, Project> = {
       url: 'mailto:hi@adalida.design'
     },
     colors: {
-      cover: '#C7001D',
-      primary: '#C7001D'
+      cover: '#0891B2',
+      primary: '#0891B2'
     }
   },
   LoboGardens: {

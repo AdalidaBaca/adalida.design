@@ -137,6 +137,7 @@
     justify-content: flex-start;
     gap: 0.75em;
     align-items: center;
+    flex-wrap: wrap;
 
     .secondary-cta {
       display: inline-flex;
@@ -144,17 +145,39 @@
       gap: 0.4em;
       opacity: 0.85;
     }
+
+    /* Style second button as secondary/outline variant - Premium style */
+    .btn.badge.big-badge:not(:first-child) {
+      background: rgb(255 255 255 / 95%);
+      border: none;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      box-shadow: 
+        0 2px 8px rgb(0 0 0 / 6%),
+        0 1px 2px rgb(0 0 0 / 3%);
+
+      a {
+        color: rgb(0 0 0 / 95%); /* Increased contrast for better readability */
+        font-weight: 500; /* Ensure text is bold enough */
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: rgb(255 255 255 / 98%);
+          transform: translateY(-0.5px);
+          box-shadow: 
+            0 4px 12px rgb(0 0 0 / 10%),
+            0 2px 4px rgb(0 0 0 / 5%);
+          
+          a {
+            color: rgb(0 0 0 / 100%); /* Full opacity on hover */
+          }
+        }
+      }
+    }
   }
 
-  /* Make the CTA prominent and consistent with site badges */
-  .btn.badge.big-badge {
-    box-shadow: 0 6px 18px -4px rgb(0 0 0 / 25%);
-    transition: transform 120ms ease, filter 120ms ease;
-  }
-  .btn.badge.big-badge:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
-  }
+  /* Buttons inherit site-wide Apple-style from badges.scss */
 }
 
 /* Dark mode match */
@@ -170,4 +193,35 @@
   border-color: rgb(255 255 255 / 45%); /* stronger outline for dark mode */
   color: $light-text;
   background: rgba(255 255 255 / 6%);
+}
+
+.dark .resource-card .resource-cta {
+    .btn.badge.big-badge:not(:first-child) {
+      background: rgb(30 30 30 / 90%);
+      border: none;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      box-shadow: 
+        0 2px 8px rgb(0 0 0 / 25%),
+        0 1px 2px rgb(0 0 0 / 15%);
+
+    a {
+      color: rgb(255 255 255 / 100%); /* Full opacity for better readability in dark mode */
+      font-weight: 500; /* Ensure text is bold enough */
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(35 35 35 / 92%);
+        transform: translateY(-0.5px);
+        box-shadow: 
+          0 4px 12px rgb(0 0 0 / 30%),
+          0 2px 4px rgb(0 0 0 / 15%);
+        
+        a {
+          color: rgb(255 255 255 / 100%); /* Maintain full opacity on hover */
+        }
+      }
+    }
+  }
 }

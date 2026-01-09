@@ -1,13 +1,13 @@
 import React from 'react'
 
 import Projects from 'projects'
-import Card from './card'
+import CaseStudyCard from './card'
 
 const Container = (): JSX.Element => {
   return (
     <div className='portfolio-container'>
-      {Object.values(Projects).map((project, index) =>
-        <Card key={project.name} reverse={index % 2 === 1} project={project} />
+      {Object.values(Projects).map((project) =>
+        <CaseStudyCard key={project.name} project={project} />
       )}
     </div>
   )

@@ -9,11 +9,11 @@
   --gap: 3px;
   /* Single-accent scale (light mode): use light-mode accent */
   --lvl0: rgb(0 0 0 / 7%);
-  /* Mix in primary so light-mode accent has enough contrast on white */
-  --lvl1: #{rgba(mix($primary, map.get($light-colors, danger), 70%), 0.22)};
-  --lvl2: #{rgba(mix($primary, map.get($light-colors, danger), 70%), 0.40)};
-  --lvl3: #{rgba(mix($primary, map.get($light-colors, danger), 70%), 0.62)};
-  --lvl4: #{rgba(mix($primary, map.get($light-colors, danger), 70%), 0.88)};
+  /* Use accent color directly with varying opacity */
+  --lvl1: #{rgba(map.get($light-colors, danger), 0.25)};
+  --lvl2: #{rgba(map.get($light-colors, danger), 0.45)};
+  --lvl3: #{rgba(map.get($light-colors, danger), 0.65)};
+  --lvl4: #{rgba(map.get($light-colors, danger), 0.90)};
 
   .github-calendar-header {
     display: flex;

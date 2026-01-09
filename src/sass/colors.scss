@@ -5,11 +5,11 @@ $light-background: $light-text;
 $primary: #B21661;
 $light-colors: (
   info: #D1EFFF,
-  danger: #FCD8FF,
+  danger: #4A9EFF, // Apple-inspired blue for light mode
   secondary: #3E4242
 );
 $dark-colors: (
   info: #0057D2,
-  danger: #B21661,
+  danger: #5AC8FA, // Apple-inspired blue for dark mode
   secondary: #A19B9B
 );

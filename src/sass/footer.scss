@@ -74,12 +74,16 @@
 }
 
 .footer-button {
-  background-color: $primary;
+  background-color: map.get($light-colors, danger);
   color: $light-text;
   box-shadow: 0 4px 24px -1px #15216340;
   padding: 0.5rem 1rem;
   border-radius: 100px;
   width: max-content;
+}
+
+.dark .footer-button {
+  background-color: map.get($dark-colors, danger);
 }
 
 .footer-logo {

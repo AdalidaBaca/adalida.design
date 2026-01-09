@@ -88,7 +88,7 @@ const ToolsCarousel = (): JSX.Element => {
   }, [])
 
   return (
-    <section className='tools-carousel full-bleed' ref={containerRef} aria-label='Tools I use'>
+    <section className='tools-carousel full-bleed' data-aos='fade-up' ref={containerRef} aria-label='Tools I use'>
       <div className='inner'>
         <div className='tools-ship-badge subtitle-2'>Toolkit</div>
       </div>

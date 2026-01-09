@@ -1,12 +1,14 @@
 import React from 'react'
 
 import Section from './section'
-import { IconNotes, IconBrandNotion } from '@tabler/icons-react'
+import { IconNotes, IconBrandNotion, IconBrandFigma, IconBooks } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 
 const Resources = (): JSX.Element => {
   const writingUrl = 'https://adalida.substack.com/?utm_source=site&utm_medium=resources&utm_campaign=writing_primary'
+  const highlightsUrl = '/experiments'
   const templatesUrl = 'https://www.notion.com/@adalidabaca'
+  const figmaUrl = 'https://www.figma.com/@adalida'
 
   const handleKeyActivate = (event: React.KeyboardEvent, href: string): void => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -18,7 +20,7 @@ const Resources = (): JSX.Element => {
   return (
     <Section title='Resources'>
       <div className='body-2 resource-intro'>
-        Writing and document design help me slow down thinking, surface assumptions, and make systems easier to understand.
+        Writing and design help me slow down thinking, surface assumptions, and make systems easier to understand.
       </div>
       <div className='hackathons odd'>
         <div
@@ -36,9 +38,15 @@ const Resources = (): JSX.Element => {
                 <div className='caption-1 secondary-subtitle'>A Heavenly Read</div>
               </div>
             </div>
-            <div className='platform-badge'>
-              <IconNotes size={16} />
-              <span>Substack</span>
+            <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
+              <div className='platform-badge'>
+                <IconNotes size={16} />
+                <span>Substack</span>
+              </div>
+              <div className='platform-badge'>
+                <IconBooks size={16} />
+                <span>Academic</span>
+              </div>
             </div>
             <div className='caption-1'>
               I write at the intersection of design, philosophy, and technology. Writing is how I clarify ideas before they
@@ -46,7 +54,8 @@ const Resources = (): JSX.Element => {
             </div>
           </div>
           <div className='resource-cta'>
-            <BadgeButton to={writingUrl}>BROWSE ARTICLES</BadgeButton>
+            <BadgeButton to={writingUrl}>SUBSTACK</BadgeButton>
+            <BadgeButton to={highlightsUrl}>HIGHLIGHTS</BadgeButton>
           </div>
         </div>
         <div
@@ -60,21 +69,28 @@ const Resources = (): JSX.Element => {
           <div className='inside'>
             <div className='resource-header'>
               <div className='title-wrap'>
-                <div className='subtitle-1'><strong>Templates</strong></div>
-                <div className='caption-1 secondary-subtitle'>Notion Creator</div>
+                <div className='subtitle-1'><strong>Design</strong></div>
+                <div className='caption-1 secondary-subtitle'>Community Templates</div>
               </div>
             </div>
-            <div className='platform-badge'>
-              <IconBrandNotion size={16} />
-              <span>Notion</span>
+            <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
+              <div className='platform-badge'>
+                <IconBrandNotion size={16} />
+                <span>Notion</span>
+              </div>
+              <div className='platform-badge'>
+                <IconBrandFigma size={16} />
+                <span>Figma</span>
+              </div>
             </div>
             <div className='caption-1'>
-              I design document templates to structure thinking, planning, and execution. These are tools I use to support
+              I design templates and documents to structure thinking, planning, and execution. These are tools I use to support
               product, research, and operational work. Each template is designed to be practical and reusable.
             </div>
           </div>
           <div className='resource-cta'>
-            <BadgeButton to={templatesUrl}>BROWSE TEMPLATES</BadgeButton>
+            <BadgeButton to={templatesUrl}>NOTION</BadgeButton>
+            <BadgeButton to={figmaUrl}>FIGMA</BadgeButton>
           </div>
         </div>
       </div>

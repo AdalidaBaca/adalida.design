@@ -20,29 +20,42 @@
 
 .about-intro {
   /* Theme-aware accent colors for the animated outline */
-  /* Light mode accent should match the site's light-mode "danger" (CTA) pink */
+  /* Light mode accent should match the site's light-mode "danger" (CTA) accent */
   --outline-accent-a: #{map.get($light-colors, danger)};
   /* Slightly deeper stop so the gradient still reads as an accent stroke */
-  --outline-accent-b: #{mix(map.get($light-colors, danger), $primary, 60%)};
+  --outline-accent-b: #{mix(map.get($light-colors, danger), #000, 40%)};
 
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25em; /* more breathing room between photo and text on mobile */
+  gap: 1.5em; /* spacing between elements */
   margin-top: 0.25em;
   margin-bottom: $section-gap-mobile;
   justify-items: center; /* avoid stretched text on mobile */
 
   .splash-image {
     position: relative;
-    /* Never exceed the page container on mobile */
+    /* Larger image on mobile */
     width: 100%;
-    max-width: 320px;
+    max-width: 360px; /* Increased from 280px */
     /* allow the image + audio embed to define height */
     max-height: none;
     isolation: isolate;
     overflow: visible; /* ensure audio control is not clipped */
-    display: flex;            /* center image frame within column */
+    display: flex;
+    flex-direction: column; /* Stack image and handwriting text */
     align-items: center;
+    gap: 0.5em; /* Space between image and handwriting */
+    
+    /* Create positioning context for audio-control */
+    > .splash-frame {
+      position: relative; /* Ensure audio-control positions relative to frame */
+    }
+
+    /* Wrapper for image and audio control */
+    .splash-image-wrapper {
+      position: relative;
+      width: 100%;
+    }
 
     /* The animated outline wrapper should behave like the original container */
     .splash-outline {
@@ -51,29 +64,30 @@
       max-width: 100%;
     }
 
-    .splash-frame {
-      position: relative;
-      z-index: 1; /* image below outline+controls */
-      padding: 0; /* remove inner gutter so image fully covers */
-      border-radius: 18px;
-      background: transparent; /* prevent container background showing at edges */
-      overflow: hidden; /* clip image to rounded frame */
-      transform-origin: 50% 50%;
-      will-change: transform, opacity, filter;
-      outline: 2px solid transparent;
-      outline-offset: 0;
-      box-shadow:
-        0 12px 36px -12px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-      animation: about-avatar-pop 640ms cubic-bezier(0.2, 0.9, 0.2, 1) both 140ms;
-      margin: 0 auto;         /* horizontally center the frame */
-      width: 100%;
-      /* slightly taller for more vertical presence */
-      aspect-ratio: 4 / 5;
-      min-height: clamp(140px, 20vw, 220px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        .splash-frame {
+          position: relative;
+          z-index: 1; /* image below outline+controls */
+          padding: 0; /* remove inner gutter so image fully covers */
+          border-radius: 20px; /* Rounded square */
+          background: transparent; /* prevent container background showing at edges */
+          overflow: hidden; /* clip image to rounded frame - ensures audio control stays within */
+          transform-origin: 50% 50%;
+          will-change: transform, opacity, filter;
+          outline: 2px solid transparent;
+          outline-offset: 0;
+          box-shadow:
+            0 12px 36px -12px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+          animation: about-avatar-pop 640ms cubic-bezier(0.2, 0.9, 0.2, 1) both 140ms;
+          margin: 0 auto;         /* horizontally center the frame */
+          width: 100%;
+          max-width: 360px; /* Increased size */
+          aspect-ratio: 1 / 1; /* Square */
+          min-height: clamp(240px, 30vw, 360px); /* Increased size */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative; /* Ensure it's a positioning context for audio-control */
 
       /* Gatsby image wrapper */
       :where(img, .gatsby-image-wrapper) {
@@ -148,13 +162,17 @@
 
     .audio-control {
       position: absolute;
-      left: 10px;
-      bottom: 10px;
+      left: clamp(8px, 2vw, 12px); /* Responsive padding from left edge */
+      bottom: clamp(8px, 2vw, 12px); /* Responsive padding from bottom edge */
       z-index: 10; /* always above the animated outline */
       display: inline-flex;
       align-items: center;
       gap: 6px; /* tiny gap between icon and text */
       pointer-events: auto; /* ensure clicks work */
+      /* Ensure it never overflows the image bounds */
+      max-width: calc(100% - clamp(16px, 4vw, 24px)); /* Account for left + right padding */
+      max-height: calc(100% - clamp(16px, 4vw, 24px)); /* Account for top + bottom padding */
+      box-sizing: border-box;
 
       .audio-icon-button {
         width: 44px;
@@ -204,8 +222,8 @@
       inset: -4%;
       border-radius: 32px;
       background:
-        radial-gradient(40% 35% at 25% 20%, rgba($primary, 0.25), transparent 60%),
-        radial-gradient(45% 40% at 80% 70%, rgba(210, 105, 180, 0.20), transparent 60%);
+        radial-gradient(40% 35% at 25% 20%, rgba(map.get($light-colors, danger), 0.25), transparent 60%),
+        radial-gradient(45% 40% at 80% 70%, rgba(map.get($light-colors, danger), 0.20), transparent 60%);
       filter: blur(24px);
       z-index: -1;
       pointer-events: none;
@@ -224,15 +242,71 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.9em;
+    gap: 1.1em; /* Increased gap for better spacing */
     max-width: 56ch;
     width: 100%;
     padding-block: 6px; /* visually balance with splash frame padding */
 
-    /* Heading */
+    .handwriting-overlay {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start; /* Left align to match text and CTA */
+      pointer-events: none;
+      margin-bottom: 0.05em; /* Minimal gap to bring text very close */
+    }
+
+    .handwriting-text {
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 3em; /* Increased from 2.4em for larger handwriting */
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: map.get($light-colors, danger); /* Accent blue color */
+      text-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.9);
+      position: relative;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      animation: 
+        handwriting-reveal 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards,
+        handwriting-write 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards; /* Slower reveal for handwriting effect */
+      
+      /* Skip animation if already completed */
+      &.animation-complete {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        animation: none;
+      }
+    }
+
+    @keyframes handwriting-reveal {
+      0% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes handwriting-write {
+      0% {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      }
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    /* Heading - Larger on mobile */
     h6 {
-      font-size: 1.1em; /* stable sizing (avoid vw-based jumps on scroll) */
-      line-height: 1.25;
+      font-size: 1.25em; /* Increased from 1.1em */
+      line-height: 1.3;
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
@@ -241,12 +315,20 @@
     .intro-lead {
       font-weight: 500;
       letter-spacing: 0.01em;
-      line-height: 1.35;
-      font-size: 1.22em; /* stable sizing (avoid vw-based jumps on scroll) */
+      line-height: 1.4;
+      font-size: 1.5em; /* Increased from 1.22em for better readability */
+      margin-top: -0.4em; /* Reduce gap from handwriting text above */
     }
     .intro-support {
       opacity: 0.9;
-      font-size: 1.02em; /* nudge up slightly */
+      font-size: 1.15em; /* Increased from 1.02em */
+      line-height: 1.6;
+    }
+    
+    /* Regular paragraph text */
+    > div {
+      font-size: 1.12em; /* Larger body text */
+      line-height: 1.65;
     }
     .sound-link {
       display: inline-flex;
@@ -278,21 +360,29 @@
       /* allow content height (image + audio) */
       max-height: none;
       /* ensure reasonable min/max width for various screens */
-      min-width: 176px;
-      width: clamp(176px, 15.5vw, 224px); /* +~10–12% */
+      min-width: 360px;
+      max-width: 440px;
+      width: clamp(360px, 28vw, 440px);
     }
     .splash-frame {
-      aspect-ratio: 4 / 5;
-      min-height: clamp(168px, 18vw, 260px);
+      aspect-ratio: 1 / 1; /* Square */
+      min-height: clamp(360px, 30vw, 440px);
+      max-width: 440px;
+      border-radius: 24px; /* Rounded square */
     }
-    .audio-control { left: 12px; bottom: 12px; }
+    .audio-control { 
+      left: clamp(10px, 1.5vw, 14px); /* Consistent padding on desktop */
+      bottom: clamp(10px, 1.5vw, 14px);
+    }
     .about-intro-text {
       flex: 1 1 0;
       max-width: 52ch;
     }
     /* bump type slightly on desktop without vw units */
-    .about-intro-text h6 { font-size: 1.15em; }
-    .about-intro-text .intro-lead { font-size: 1.3em; }
+    .about-intro-text h6 { font-size: 1.2em; }
+    .about-intro-text .intro-lead { font-size: 1.4em; }
+    .about-intro-text .intro-support { font-size: 1.1em; }
+    .about-intro-text > div { font-size: 1.08em; }
     .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
   }
 
@@ -309,8 +399,16 @@
 }
 
 .dark .about-intro {
-  --outline-accent-a: #{$primary};
-  --outline-accent-b: #{mix($primary, $light-text, 25%)};
+  /* Glass effect for dark mode - use lighter white with transparency */
+  --outline-glass-a: rgba(255, 255, 255, 0.5);
+  --outline-glass-b: rgba(255, 255, 255, 0.3);
+  
+  .about-intro-text .handwriting-text {
+    color: map.get($dark-colors, danger); /* Accent blue color for dark mode */
+    text-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.2);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -347,34 +445,48 @@
   position: relative;
   display: inline-block;
   --underline-color: #{map.get($light-colors, danger)};
+  
+  .underline-text {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hand-drawn-underline {
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 0.4em;
+    color: var(--underline-color);
+    overflow: visible;
+    pointer-events: none;
+    
+    path {
+      stroke-dasharray: 250;
+      stroke-dashoffset: 250;
+      transition: stroke-dashoffset 1400ms cubic-bezier(0.2, 0.9, 0.2, 1); /* Slower reveal */
+    }
+  }
 }
 .dark .fancy-underline.underline-draw {
   --underline-color: #{map.get($dark-colors, danger)};
 }
-.fancy-underline.underline-draw::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.08em;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--underline-color);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  will-change: transform;
-  /* AOS hides the intro on mount; we start the animation once AOS reveals it */
-  animation: none;
-}
 
 /* When the About intro finishes its AOS reveal, draw the underline */
-.about-intro.aos-animate .fancy-underline.underline-draw::after {
-  animation: underline-draw 900ms cubic-bezier(0.2, 0.9, 0.2, 1) 1 forwards;
-  animation-delay: 120ms;
+/* Handwriting animation: 0.5s delay + 2.8s duration = 3.3s total */
+.about-intro.aos-animate .fancy-underline.underline-draw .hand-drawn-underline path {
+  stroke-dashoffset: 0;
+  transition-delay: 3.4s; /* Start after handwriting finishes (3.3s) with slight pause */
+}
+
+/* Skip animation if already completed - show final state immediately */
+.fancy-underline.underline-draw.animation-complete .hand-drawn-underline path {
+  stroke-dashoffset: 0;
+  transition: none; /* No animation, show immediately */
 }
 @media (prefers-reduced-motion: reduce) {
-  .fancy-underline.underline-draw::after {
-    animation: none;
-    transform: scaleX(1);
+  .fancy-underline.underline-draw .hand-drawn-underline path {
+    stroke-dashoffset: 0;
+    transition: none;
   }
 }

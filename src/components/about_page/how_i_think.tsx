@@ -26,7 +26,7 @@ const HowIThink = (): JSX.Element => {
   const startIndices = useMemo(() => letterCounts.map((_, i) => letterCounts.slice(0, i).reduce((a, b) => a + b, 0)), [letterCounts])
 
   return (
-    <Section title='My Process' aos='none'>
+    <Section title='My Process'>
       <div className='how-i-think' ref={sectionRef}>
         <p>
           <ScrollAnimatedText
