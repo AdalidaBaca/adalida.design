@@ -1,38 +1,79 @@
-import React, { forwardRef, type Ref } from 'react'
+import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
 import DiscoveringImage from 'images/gaintain/discovering.webp'
+import ResearchImage from 'images/gaintain/research.webp'
 
 import SectionHeading from 'components/section_heading'
 
-const Discovering = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
-  <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-    <div className='case-study-explanation'>
-      <section>
-        <SectionHeading title='Discovering the Gap:' />
-        <div className='body-2'>
-          Workout tracking is valuable, but most apps lock it behind coaching or subscriptions.
+interface Props {
+  keyInsightRef?: Ref<HTMLDivElement>
+}
+
+const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element => {
+  const { keyInsightRef } = props
+  const keyInsightExplanationRef = useRef<HTMLDivElement>(null)
+  const keyInsightImageRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const matchHeights = (): void => {
+      if (keyInsightExplanationRef.current === null || keyInsightImageRef.current === null) return
+      const explanationHeight = keyInsightExplanationRef.current.offsetHeight
+      keyInsightImageRef.current.style.height = `${explanationHeight}px`
+    }
+
+    matchHeights()
+    window.addEventListener('resize', matchHeights)
+    const resizeObserver = new ResizeObserver(matchHeights)
+    if (keyInsightExplanationRef.current !== null) {
+      resizeObserver.observe(keyInsightExplanationRef.current)
+    }
+
+    return () => {
+      window.removeEventListener('resize', matchHeights)
+      resizeObserver.disconnect()
+    }
+  }, [])
+
+  return (
+    <>
+      <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
+        <div className='gaintain-image-container gaintain-problem-image'>
+          <img src={ResearchImage} alt='About Gaintain' />
         </div>
-        <div className='body-2'>
-          <strong>
-            <em>How can we give trainees full control&mdash;seamlessly tracking progress without relying on a trainer?</em>
-          </strong>
+        <div className='case-study-explanation'>
+          <div className='gaintain-details-card'>
+            <SectionHeading title='Problem' />
+            <div className='body-2'>
+              An estimated 80 million gym-goers lose momentum when structured workout programs end, driving churn across fitness apps.
+            </div>
+            <div className='body-2'>
+              While AI fitness apps personalize workouts well, personalization alone does not prevent drop-off once motivation fades.
+            </div>
+          </div>
         </div>
-      </section>
-      <section>
-        <SectionHeading title='Ideating the Solution:' />
-        <div className='body-2'>
-          A seamless, fast workout tracker that prioritizes effortless logging&mdash;eliminating the need for multiple apps
-          while giving trainees full control over their progress.
+      </div>
+      <div data-aos='fade-up' data-aos-offset='150' className='case-study-side-by-side gaintain-key-insight' ref={keyInsightRef}>
+        <div className='case-study-explanation' ref={keyInsightExplanationRef}>
+          <div className='gaintain-details-card'>
+            <SectionHeading title='Key Insight' />
+            <div className='body-2'>
+              Planning is over-designed, while follow-through is under-designed.
+            </div>
+            <div className='body-2'>
+              I saw this repeatedly after reviewing 180+ fitness and tracking apps and collecting survey feedback from active lifters.
+            </div>
+            <div className='body-2'>
+              Without accountability and visible feedback, consistency breaks down.
+            </div>
+          </div>
         </div>
-        <div className='body-2'>
-          By focusing on <strong><em>input efficiency over complexity,</em></strong> it <strong><em>ensures consistent
-          tracking and meaningful insights without reliance on a trainer.</em></strong>
+        <div className='gaintain-image-container' ref={keyInsightImageRef}>
+          <img src={DiscoveringImage} alt='Research' />
         </div>
-      </section>
-    </div>
-    <img src={DiscoveringImage} alt='About Gaintain' />
-  </div>
-))
+      </div>
+    </>
+  )
+})
 
 Discovering.displayName = 'Discovering'
 

@@ -20,6 +20,7 @@
     max-width: 100%;
     box-sizing: border-box;
     min-width: 0;
+    scroll-margin-top: 72px; // 56px header + 16px spacing
   }
 }
 
@@ -55,11 +56,14 @@
 
 .table-of-contents {
   position: fixed;
+  top: calc(56px + 3em);
+  left: 2em;
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
-  left: 2em;
-  margin: 2em;
+  gap: 0.625em;
+  margin: 0;
+  padding-top: 1em;
   transition: transform 1s ease-in-out;
 
   > strong {
@@ -71,26 +75,38 @@
   background: #000;
   background-clip: text;
   border: none;
-  padding: 0;
+  padding: 0.25em 0;
   cursor: pointer;
   color: transparent;
-  opacity: 0.75;
-  transition: all 0.5s ease-in-out;
-  filter: grayscale(1);
-  font-size: 0.875rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out, transform 0.2s ease-in-out, font-weight 0.2s ease-in-out, color 0.2s ease-in-out;
+  filter: grayscale(0.5);
+  font-size: 0.95rem;
+  line-height: 1.5;
   text-align: left;
+  font-weight: 400;
+  transform: translateX(0);
+  will-change: opacity, filter, transform;
 
-  &:hover {
-    opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+      filter: grayscale(0);
+      transform: translateX(4px);
+      font-weight: 500;
+    }
   }
 
   &.active {
-    background: none;
-    background-clip: unset;
-    color: $dark-text;
+    background: transparent !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    color: $dark-text !important;
     opacity: 1;
     filter: none;
     font-weight: 600;
+    transform: translateX(0);
+    transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out, transform 0.2s ease-in-out, font-weight 0.2s ease-in-out, color 0.2s ease-in-out, background 0s ease-in-out, background-clip 0s ease-in-out;
   }
 }
 
@@ -103,14 +119,22 @@
 .case-study-explanation {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 3em;
+  gap: 1.25em;
+
+  @media (width >= $case-study-breakpoint) {
+    gap: 1.5em;
+    min-width: 375px;
+  }
 
   > section {
     display: flex;
     flex-direction: column;
     gap: 0.75em;
     font-size: 1em;
+  }
+
+  > .gaintain-details-card {
+    width: 100%;
 
     em {
       font-style: oblique 10deg;
@@ -120,18 +144,23 @@
       padding: 2.5em 0;
     }
   }
-
-  @media (width >= $case-study-breakpoint) {
-    min-width: 375px;
-  }
 }
 
 @mixin case-study-card-container {
   display: flex;
   flex-direction: column;
-  gap: 3em;
+  gap: 2em;
   align-items: center;
-  padding: 7.5em 0;
+  padding: 3em 0.5em;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @media (width >= $case-study-breakpoint) {
+    gap: 3em;
+    padding: 7.5em 0;
+  }
 
   > img {
     border-radius: 0.875em;
@@ -141,10 +170,37 @@
 
 .case-study-top-to-bottom {
   @include case-study-card-container;
+
+  > img {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3.2 / 1;
+    object-fit: cover;
+    border-radius: 0.875em;
+  }
+
+  > .gaintain-image-container {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3.2 / 1;
+  }
 }
 
 .case-study-side-by-side {
-  @include case-study-card-container;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  margin: 0 auto;
+  padding: 3em 0.5em;
+  box-sizing: border-box;
+
+  > img {
+    border-radius: 0.875em;
+    max-width: 100%;
+  }
 
   > video {
     border-radius: 1.5em;
@@ -152,16 +208,69 @@
   }
 
   @media (width >= $case-study-breakpoint) {
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding-top: 7.5em;
+    padding-bottom: 7.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    gap: 2em;
+    width: 100%;
+    max-width: min(1200px, 100%);
+    margin: 0 auto;
+    box-sizing: border-box;
 
     &.reverse {
-      flex-direction: row-reverse;
+      > .case-study-explanation {
+        grid-column: 2;
+      }
+      
+      > img, video {
+        grid-column: 1;
+      }
+    }
+
+    > .case-study-explanation {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      grid-row: 1;
     }
 
     > img, video {
-      max-width: 50%;
-      max-height: 100dvh;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      grid-row: 1;
+      align-self: stretch;
+      overflow: hidden;
+    }
+
+    > .gaintain-image-container {
+      grid-row: 1;
+      align-self: stretch;
+      height: 100%;
+    }
+
+    > div {
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      
+      > video {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &.key-insight-layout {
+      grid-template-columns: 3fr 2fr;
+    }
+
+    &.pledge-flow-layout {
+      grid-template-columns: 1fr 3fr;
     }
   }
 }

@@ -15,7 +15,6 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
   const [scrolledTooFar, setScrolledTooFar] = useState(true)
   const project = useContext(Context)
   const color = project?.colors?.primary ?? text
-  const caseStudyName = project?.name?.toUpperCase() ?? 'CONTENTS'
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -46,7 +45,6 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
 
   return (
     <div className={`table-of-contents${scrolledTooFar ? ' hide-left' : ''}`}>
-      <div style={{ opacity: 0.75 }}>{caseStudyName}</div>
       {Object.entries(links).map(([link, element]) => {
         const active = activeLink === link
         return (
@@ -54,7 +52,16 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
             <button
               className={`link-button${active ? ' active' : ''}`}
               style={active ? undefined : { backgroundImage: color }}
-              onClick={() => { element.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
+              onClick={() => {
+                if (element.current === null) return
+                const headerHeight = 56
+                const elementPosition = element.current.getBoundingClientRect().top + window.pageYOffset
+                const offsetPosition = elementPosition - headerHeight - 16 // 16px for extra spacing
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                })
+              }}
             >
               {link}
             </button>

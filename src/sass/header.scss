@@ -7,8 +7,10 @@ $header-height: 56px;
   --nav-control-size: 40px;
   --nav-logo-size: var(--nav-control-size);
 
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   width: 100%;
   max-width: 100%;

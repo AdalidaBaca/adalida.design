@@ -1,31 +1,55 @@
-import React, { forwardRef, type Ref } from 'react'
+import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
 import InteractiveLibraryVideo from 'videos/gaintain/interactive_library.mp4'
 
 import SectionHeading from 'components/section_heading'
 
-const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
-  <div data-aos='fade-up' className='case-study-side-by-side' ref={ref}>
-    <div className='case-study-explanation'>
-      <section>
-        <SectionHeading title='Exercise Library' />
-        <p>
-          GainTain&apos;s <strong><em>on-demand instructional library</em></strong> provides video and text-based
-          guides to help users maintain proper form.
-        </p>
-        <p>
-          A <strong><em>tappable play button</em></strong> offers real-time, step-by-step tutorials, ensuring
-          exercises are performed safely and effectively.
-        </p>
-        <p>
-          Designed for <strong><em>seamless access</em></strong>, this feature supports different learning preferences,
-          helping users refine technique and train with confidence.
-        </p>
-      </section>
+const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
+  const explanationRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const matchHeights = (): void => {
+      if (explanationRef.current === null || videoRef.current === null) return
+      const explanationHeight = explanationRef.current.offsetHeight
+      videoRef.current.style.height = `${explanationHeight}px`
+    }
+
+    matchHeights()
+    window.addEventListener('resize', matchHeights)
+    const resizeObserver = new ResizeObserver(matchHeights)
+    if (explanationRef.current !== null) {
+      resizeObserver.observe(explanationRef.current)
+    }
+
+    return () => {
+      window.removeEventListener('resize', matchHeights)
+      resizeObserver.disconnect()
+    }
+  }, [])
+
+  return (
+    <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
+      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
+        <video src={InteractiveLibraryVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
+      </div>
+      <div className='case-study-explanation' ref={explanationRef}>
+        <div className='gaintain-details-card'>
+          <SectionHeading title='Pledge Setup' />
+          <div className='body-2'>
+            The pledge flow turns motivation into commitment.
+          </div>
+          <div className='body-2'>
+            Users set how often they plan to train, choose the stakes, and confirm where accountability goes.
+          </div>
+          <div className='body-2'>
+            This anchors consistency in a way that mirrors paying for a human coach.
+          </div>
+        </div>
+      </div>
     </div>
-    <video src={InteractiveLibraryVideo} autoPlay loop muted playsInline />
-  </div>
-))
+  )
+})
 
 InteractiveLibrary.displayName = 'InteractiveLibrary'
 

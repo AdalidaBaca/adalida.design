@@ -1,18 +1,18 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
-import DeveloperImage from 'images/gaintain/developer.webp'
+import FrictionlessVideo from 'videos/gaintain/frictionless.mp4'
 
 import SectionHeading from 'components/section_heading'
 
-const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
+const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const explanationRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const matchHeights = (): void => {
-      if (explanationRef.current === null || imageRef.current === null) return
+      if (explanationRef.current === null || videoRef.current === null) return
       const explanationHeight = explanationRef.current.offsetHeight
-      imageRef.current.style.height = `${explanationHeight}px`
+      videoRef.current.style.height = `${explanationHeight}px`
     }
 
     matchHeights()
@@ -30,20 +30,20 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
 
   return (
     <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-      <div className='gaintain-image-container' ref={imageRef}>
-        <img src={DeveloperImage} alt='Developer specifications' />
+      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
+        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
       </div>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
-          <SectionHeading title='Social Timeline' />
+          <SectionHeading title='Workout Dashboard' />
           <div className='body-2'>
-            The timeline reinforces consistency through visibility.
+            The workout landing page is the daily decision surface.
           </div>
           <div className='body-2'>
-            Workout check-ins and pledge progress appear as simple, repeatable signals of effort.
+            A calendar at the top shows streaks tied to the user's frequency goal, while the bottom card adapts to how they train.
           </div>
           <div className='body-2'>
-            This creates social accountability without forcing social behavior.
+            Users can quick-log, reuse templates, or generate a workout with AI without breaking momentum.
           </div>
         </div>
       </div>
@@ -51,6 +51,6 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
   )
 })
 
-Developer.displayName = 'Developer'
+WorkoutLanding.displayName = 'WorkoutLanding'
 
-export default Developer
+export default WorkoutLanding
