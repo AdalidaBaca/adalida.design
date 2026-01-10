@@ -5,92 +5,142 @@ interface Point {
   y: number
 }
 
+interface LabelConfig {
+  text: string
+  width: number
+  dotIndex: number // Which dot (0-3) this label corresponds to
+  animationClass: string // CSS class for animation (n1, n2, n3, n4, drop)
+  placement: 'left' | 'right' | 'top' | 'bottom' // Where to place label relative to dot
+}
+
+// Explicit map from labels to their configuration
+const LABEL_CONFIGS: LabelConfig[] = [
+  { text: 'New goal or program', width: 220, dotIndex: 0, animationClass: 'n4', placement: 'left' },  // Left dot -> label to the left
+  { text: 'Planning', width: 160, dotIndex: 1, animationClass: 'n1', placement: 'top' },              // Top dot -> label above
+  { text: 'Life gets in the way', width: 240, dotIndex: 2, animationClass: 'n2', placement: 'right' }, // Right dot -> label to the right
+  { text: 'Drop-off', width: 160, dotIndex: 3, animationClass: 'n3 drop', placement: 'bottom' }        // Bottom dot -> label below
+]
+
 const ResetLoop = (): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [hasAnimated, setHasAnimated] = useState(false)
   const [pathLength, setPathLength] = useState<number>(1600)
-  const [nodePositions, setNodePositions] = useState<Point[]>([
-    { x: 300, y: 215 },  // Planning - below ellipse, left
-    { x: 480, y: 215 },  // Life gets in the way - below ellipse, center-left
-    { x: 740, y: 215 },  // Drop-off - below ellipse, center-right
-    { x: 920, y: 215 }   // New goal or program - below ellipse, right
+  const [dotPositions, setDotPositions] = useState<Point[]>([
+    { x: 120, y: 130 },  // Left (0%)
+    { x: 600, y: 50 },   // Top (25%)
+    { x: 1080, y: 130 }, // Right (50%)
+    { x: 600, y: 210 }   // Bottom (75%)
   ])
-  const [quarterPoints, setQuarterPoints] = useState<Point[]>([
-    { x: 120, y: 130 },
-    { x: 600, y: 50 },
-    { x: 1080, y: 130 },
-    { x: 600, y: 210 }
+  // Initial label positions: outside ellipse, aligned with dots
+  const [labelPositions, setLabelPositions] = useState<Point[]>([
+    { x: -100, y: 105 },   // New goal or program - to the left of left dot
+    { x: 520, y: -10 },    // Planning - above top dot
+    { x: 1120, y: 105 },   // Life gets in the way - to the right of right dot
+    { x: 520, y: 230 }     // Drop-off - below bottom dot
   ])
+  const [viewBox, setViewBox] = useState<string>('0 0 1200 260')
 
-  // Calculate path length and equal-distance points along the path
+  // Calculate path length, dot positions, and label positions
   useEffect(() => {
     const path = pathRef.current
     if (path === null) return
 
-    // Wait for SVG to be rendered and path to be measured
     const calculatePositions = () => {
-      try {
-        const totalLength = path.getTotalLength()
-        if (totalLength === 0) {
-          // Retry if path not ready
-          requestAnimationFrame(calculatePositions)
-          return
-        }
-
-        // Store the actual path length for animation
-        setPathLength(totalLength)
-
-        const numNodes = 4
-        const segmentLength = totalLength / numNodes
-
-        // Calculate quarter points for dots
-        // Order: 0% (left), 25% (top), 50% (right), 75% (bottom)
-        const quarterPositions: Point[] = []
-        for (let i = 0; i < 4; i++) {
-          const distance = i * segmentLength
-          const point = path.getPointAtLength(distance)
-          quarterPositions.push({ x: point.x, y: point.y })
-        }
-        setQuarterPoints(quarterPositions)
-        
-        // Position all labels below the ellipse
-        // Ellipse bottom is around y=210 (center y=130 + radius y=80)
-        // Place labels below at y=240
-        const labelY = 240
-        const labelWidths = [160, 240, 160, 220] // Width of each label rect: Planning, Life gets in the way, Drop-off, New goal or program
-        const labelHeights = 50
-        const labelGap = 20 // Gap between labels
-        
-        // Calculate total width of all labels plus gaps
-        const totalWidth = labelWidths.reduce((sum, width) => sum + width, 0) + (labelGap * 3)
-        const startX = (1200 - totalWidth) / 2 // Center the group horizontally
-        
-        // Arrange labels horizontally from left to right
-        const nodePositionsWithOffset: Point[] = []
-        let currentX = startX
-        
-        for (let i = 0; i < 4; i++) {
-          const width = labelWidths[i]
-          
-          // Position each label, centered on its x position
-          nodePositionsWithOffset.push({
-            x: currentX,
-            y: labelY - labelHeights / 2
-          })
-          
-          // Move to next position
-          currentX += width + labelGap
-        }
-        setNodePositions(nodePositionsWithOffset)
-      } catch (error) {
-        // Fallback to default positions if getTotalLength/getPointAtLength fails
-        console.warn('Failed to calculate path points:', error)
+      const totalLength = path.getTotalLength()
+      if (totalLength === 0) {
+        requestAnimationFrame(calculatePositions)
+        return
       }
+
+      setPathLength(totalLength)
+
+      const numDots = 4
+      const segmentLength = totalLength / numDots
+
+      // Calculate dot positions at each quarter
+      const dots: Point[] = []
+      for (let i = 0; i < numDots; i++) {
+        const distance = i * segmentLength
+        const point = path.getPointAtLength(distance)
+        dots.push({ x: point.x, y: point.y })
+      }
+      setDotPositions(dots)
+
+      // Calculate label positions outside the ellipse, aligned with their corresponding dots
+      const labelHeight = 50
+      const gap = 20 // Gap between dot and label
+      const labels: Point[] = []
+
+      for (const config of LABEL_CONFIGS) {
+        const dot = dots[config.dotIndex]
+        let x: number
+        let y: number
+
+        switch (config.placement) {
+          case 'left':
+            // Label to the left of dot, vertically centered on dot's y
+            x = dot.x - config.width - gap
+            y = dot.y - (labelHeight / 2)
+            break
+          case 'right':
+            // Label to the right of dot, vertically centered on dot's y
+            x = dot.x + gap
+            y = dot.y - (labelHeight / 2)
+            break
+          case 'top':
+            // Label above dot, horizontally centered on dot's x
+            x = dot.x - (config.width / 2)
+            y = dot.y - labelHeight - gap
+            break
+          case 'bottom':
+            // Label below dot, horizontally centered on dot's x
+            x = dot.x - (config.width / 2)
+            y = dot.y + gap
+            break
+        }
+
+        labels.push({ x, y })
+      }
+
+      setLabelPositions(labels)
+
+      // Calculate viewBox bounds to include all labels
+      let minX = 0
+      let minY = 0
+      let maxX = 1200
+      let maxY = 260
+
+      for (let i = 0; i < labels.length; i++) {
+        const label = labels[i]
+        const config = LABEL_CONFIGS[i]
+        
+        // Calculate label bounds
+        const labelMinX = label.x
+        const labelMaxX = label.x + config.width
+        const labelMinY = label.y
+        const labelMaxY = label.y + labelHeight
+
+        minX = Math.min(minX, labelMinX)
+        maxX = Math.max(maxX, labelMaxX)
+        minY = Math.min(minY, labelMinY)
+        maxY = Math.max(maxY, labelMaxY)
+      }
+
+      // Add padding
+      const padding = 30
+      minX -= padding
+      minY -= padding
+      maxX += padding
+      maxY += padding
+
+      // Update viewBox
+      const width = maxX - minX
+      const height = maxY - minY
+      setViewBox(`${minX} ${minY} ${width} ${height}`)
     }
 
-    // Try immediately, then retry if needed
     const timeoutId = setTimeout(calculatePositions, 50)
     requestAnimationFrame(calculatePositions)
 
@@ -129,7 +179,7 @@ const ResetLoop = (): JSX.Element => {
         '--path-length': `${pathLength}px`
       } as React.CSSProperties}
     >
-      <svg viewBox='0 0 1200 260' role='img'>
+      <svg viewBox={viewBox} role='img'>
         {/* Path - wide ellipse, continuous in one direction, closes smoothly at minimum x */}
         <path
           ref={pathRef}
@@ -146,9 +196,9 @@ const ResetLoop = (): JSX.Element => {
         <polygon className='arrow' points='120,130 140,125 140,135' />
 
         {/* Thick dots at each quarter of the path - revealed as animation passes */}
-        {quarterPoints.map((point, index) => (
+        {dotPositions.map((point, index) => (
           <circle
-            key={`quarter-${index}`}
+            key={`dot-${index}`}
             className={`quarter-dot quarter-dot-${index}`}
             cx={point.x}
             cy={point.y}
@@ -158,37 +208,20 @@ const ResetLoop = (): JSX.Element => {
           />
         ))}
 
-        {/* Nodes - positioned below the ellipse in a horizontal row */}
-        {/* Order: Planning, Life gets in the way, Drop-off, New goal or program */}
-        <g transform={`translate(${nodePositions[0]?.x ?? 300} ${nodePositions[0]?.y ?? 240})`}>
-          <g className='node n1'>
-            <rect rx='14' ry='14' width='160' height='50' />
-            <text x='18' y='32'>Planning</text>
-          </g>
-        </g>
-
-        <g transform={`translate(${nodePositions[1]?.x ?? 480} ${nodePositions[1]?.y ?? 240})`}>
-          <g className='node n2'>
-            <rect rx='14' ry='14' width='240' height='50' />
-            <text x='18' y='32'>Life gets in the way</text>
-          </g>
-        </g>
-
-        <g transform={`translate(${nodePositions[2]?.x ?? 740} ${nodePositions[2]?.y ?? 240})`}>
-          <g className='node n3 drop'>
-            <rect rx='14' ry='14' width='160' height='50' />
-            <text x='18' y='32'>Drop-off</text>
-          </g>
-        </g>
-
-        <g transform={`translate(${nodePositions[3]?.x ?? 920} ${nodePositions[3]?.y ?? 240})`}>
-          <g className='node n4'>
-            <rect rx='14' ry='14' width='220' height='50' />
-            <text x='18' y='32'>New goal or program</text>
-          </g>
-        </g>
+        {/* Labels - positioned below the ellipse, aligned with their corresponding dots */}
+        {LABEL_CONFIGS.map((config, index) => {
+          const position = labelPositions[index]
+          return (
+            <g key={`label-${index}`} transform={`translate(${position.x} ${position.y})`}>
+              <g className={`node ${config.animationClass}`}>
+                <rect rx='14' ry='14' width={config.width} height='50' />
+                <text x='18' y='32'>{config.text}</text>
+              </g>
+            </g>
+          )
+        })}
       </svg>
-    </div >
+    </div>
   )
 }
 

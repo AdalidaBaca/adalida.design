@@ -949,6 +949,8 @@
   fill: rgba(255, 255, 255, 0.75);
 }
 
+/* Node animations - only affect opacity and scale, not position */
+/* Position is handled by SVG transform attribute on parent group */
 .reset-loop .node {
   opacity: 0;
   transform-origin: center;
