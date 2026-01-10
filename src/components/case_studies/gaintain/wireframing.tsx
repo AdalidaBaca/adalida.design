@@ -14,13 +14,13 @@ const Wireframing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEl
         <div className='gaintain-details-card'>
           <SectionHeading title='Design strategy' />
           <div className='body-2'>
-            To strengthen the AI coach, I treated consistency as a design problem rather than a motivation problem.
+            To strengthen the <strong>AI coach</strong>, I treated <strong>consistency as a design problem</strong> rather than a motivation problem.
           </div>
           <div className='body-2'>
-            The system already reflected NASM-level training knowledge, but human coaches succeed not just by prescribing plans, they create accountability.
+            The system already reflected NASM-level training knowledge, but human coaches succeed not just by prescribing plans, they create <strong>accountability</strong>.
           </div>
           <div className='body-2'>
-            I focused on accountability mechanisms, like pledges and progress feedback, so the AI could support follow-through, not just generate workouts.
+            I focused on <strong>accountability</strong> mechanisms, like pledges and progress feedback, so the AI could support <strong>follow-through</strong>, not just generate workouts.
           </div>
         </div>
       </div>

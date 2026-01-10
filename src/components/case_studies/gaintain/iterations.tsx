@@ -14,13 +14,13 @@ const Iterations = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEle
         <div className='gaintain-details-card'>
           <SectionHeading title='Implementation' />
           <div className='body-2'>
-            I worked as part of a two-person founding team, with my co-founder owning backend architecture and data models while I led product design and front-end interaction work.
+            I worked as part of a <strong>two-person founding team</strong>, with my co-founder owning <strong>backend architecture and data models</strong> while I led product design and front-end interaction work.
           </div>
           <div className='body-2'>
-            Using Cursor with shared rules, Swift linters, and XcodeGen, I prototyped and implemented production-quality flows that bridged design and engineering.
+            Using <strong>Cursor</strong> with shared rules, <strong>Swift linters</strong>, and <strong>XcodeGen</strong>, I prototyped and implemented <strong>production-quality flows</strong> that bridged design and engineering.
           </div>
           <div className='body-2'>
-            We tested builds on real devices in-gym, reviewed changes together, and shipped frequently with roughly 30 App Store releases.
+            We tested builds on real devices in-gym, reviewed changes together, and shipped frequently with roughly <strong>30 App Store releases</strong>.
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
 import DiscoveringImage from 'images/gaintain/discovering.webp'
-import ResearchImage from 'images/gaintain/research.webp'
 
 import SectionHeading from 'components/section_heading'
+import ResetLoop from './reset_loop'
 
 interface Props {
   keyInsightRef?: Ref<HTMLDivElement>
@@ -38,16 +38,16 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
     <>
       <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
         <div className='gaintain-image-container gaintain-problem-image'>
-          <img src={ResearchImage} alt='About Gaintain' />
+          <ResetLoop />
         </div>
         <div className='case-study-explanation'>
           <div className='gaintain-details-card'>
             <SectionHeading title='Problem' />
             <div className='body-2'>
-              An estimated 80 million gym-goers lose momentum when structured workout programs end, driving churn across fitness apps.
+              An estimated <strong>80 million gym-goers lose momentum</strong> when structured workout programs end, driving churn across fitness apps.
             </div>
             <div className='body-2'>
-              While AI fitness apps personalize workouts well, personalization alone does not prevent drop-off once motivation fades.
+              While <strong>AI fitness apps personalize workouts well</strong>, personalization alone <strong>does not prevent drop-off</strong> once motivation fades.
             </div>
           </div>
         </div>
@@ -57,13 +57,13 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
           <div className='gaintain-details-card'>
             <SectionHeading title='Key Insight' />
             <div className='body-2'>
-              Planning is over-designed, while follow-through is under-designed.
+              <strong>Planning is over-designed, while follow-through is under-designed</strong>.
             </div>
             <div className='body-2'>
-              I saw this repeatedly after reviewing 180+ fitness and tracking apps and collecting survey feedback from active lifters.
+              I saw this repeatedly after reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active lifters.
             </div>
             <div className='body-2'>
-              Without accountability and visible feedback, consistency breaks down.
+              Without <strong>accountability and visible feedback</strong>, consistency breaks down.
             </div>
           </div>
         </div>

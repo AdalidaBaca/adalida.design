@@ -15,13 +15,13 @@
   padding-top: 1em;
 
   .tools-carousel {
-    /* cancel the added padding so the carousel stays put */
-    margin-top: calc($section-gap-mobile - 1em);
+    /* Add gap between intro and toolkit */
+    margin-top: 2em;
   }
 
   @media (width >= $breakpoint) {
     padding-top: 1.5em;
-    .tools-carousel { margin-top: calc($section-gap-desktop - 1.5em); }
+    .tools-carousel { margin-top: 3em; }
   }
 }
 

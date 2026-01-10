@@ -37,13 +37,13 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
         <div className='gaintain-details-card'>
           <SectionHeading title='Social Timeline' />
           <div className='body-2'>
-            The timeline reinforces consistency through visibility.
+            The timeline reinforces consistency through <strong>visibility</strong>.
           </div>
           <div className='body-2'>
             Workout check-ins and pledge progress appear as simple, repeatable signals of effort.
           </div>
           <div className='body-2'>
-            This creates social accountability without forcing social behavior.
+            This creates <strong>social accountability</strong> without forcing social behavior.
           </div>
         </div>
       </div>

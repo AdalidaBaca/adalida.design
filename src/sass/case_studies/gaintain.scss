@@ -142,20 +142,43 @@
 .gaintain-details {
   width: 100%;
   max-width: 100%;
-  padding: 0 0 2em;
+  padding: 2em 0;
+  padding-top: calc(56px + 3em);
+  padding-bottom: 0;
+  min-height: calc(100svh - 56px - 4em);
+  scroll-margin-top: 72px; // 56px header + 16px spacing
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   text-align: left;
   gap: 1.25em;
+  position: relative;
 
   @media (width >= 768px) {
     gap: 2em;
+    padding: 2em 0;
+    padding-top: calc(56px + 4em);
+    padding-bottom: 0;
+    min-height: calc(100svh - 56px - 4em);
   }
 
   > .gaintain-download-strip {
     margin-bottom: 0;
+    margin-top: 0;
+    width: 100%;
+    max-width: min(1200px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5em;
+  }
+
+  > .gaintain-details-container {
+    width: 100%;
+    max-width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 0 0.5em;
   }
 }
 
@@ -189,8 +212,11 @@
   width: 100%;
   max-width: min(1200px, 100%);
   margin: 0 auto;
+  margin-top: 0;
   padding: 0 0.5em;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .gaintain-download-content {
@@ -232,14 +258,16 @@
 
 .gaintain-download-text {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
+  background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 2px #E65C00;
   margin: 0;
   text-align: center;
-  font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
-  letter-spacing: 0.02em;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.02em;
 
   @media (width >= 768px) {
     text-align: left;
@@ -264,8 +292,10 @@
 }
 
 .dark .gaintain-download-text {
+  background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 2px #F9D423;
 }
 
 .gaintain-insight-strip {
@@ -577,38 +607,44 @@
 }
 
 .gaintain-link-primary {
-  background: linear-gradient(45deg, rgba(230, 92, 0, 0.85), rgba(249, 212, 35, 0.85)) !important;
+  background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
   border: none !important;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
   box-shadow: 
-    0 2px 8px rgba(230, 92, 0, 0.15),
+    0 2px 8px rgba(230, 92, 0, 0.2),
     0 1px 2px rgba(230, 92, 0, 0.1);
-  padding: 0.75em 1.25em !important;
-  font-size: 0.95rem !important;
+  padding: 0.6em 1.2em !important;
+  font-size: 0.875rem !important;
   min-height: 44px !important;
   min-width: 44px !important;
+  border-radius: 20px !important;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
   
   @media (width >= 768px) {
-    padding: 0.5em 0.875em !important;
-    font-size: 0.875em !important;
+    padding: 0.6em 1.2em !important;
+    font-size: 0.875rem !important;
     min-height: auto !important;
     min-width: auto !important;
   }
   
   a {
-    color: rgb(255 255 255 / 95%) !important;
-    font-weight: 500;
+    color: rgb(255 255 255 / 98%) !important;
+    font-weight: 600 !important;
     padding: 0 !important;
     font-size: inherit !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    letter-spacing: 0.02em !important;
   }
   
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: linear-gradient(45deg, rgba(230, 92, 0, 0.95), rgba(249, 212, 35, 0.95)) !important;
+      background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
       transform: translateY(-0.5px);
       box-shadow: 
-        0 4px 12px rgba(230, 92, 0, 0.2),
+        0 4px 12px rgba(230, 92, 0, 0.25),
         0 2px 4px rgba(230, 92, 0, 0.15);
       
       /* Ensure arrow has space on desktop hover */
@@ -625,17 +661,21 @@
 }
 
 .dark .gaintain-link-primary {
-  background: linear-gradient(45deg, rgba(230, 92, 0, 0.75), rgba(249, 212, 35, 0.75)) !important;
+  background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
   box-shadow: 
-    0 2px 8px rgba(230, 92, 0, 0.2),
-    0 1px 2px rgba(230, 92, 0, 0.15);
+    0 2px 8px rgba(249, 212, 35, 0.2),
+    0 1px 2px rgba(249, 212, 35, 0.1);
+  
+  a {
+    color: rgb(255 255 255 / 98%) !important;
+  }
   
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: linear-gradient(45deg, rgba(230, 92, 0, 0.85), rgba(249, 212, 35, 0.85)) !important;
+      background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
       box-shadow: 
-        0 4px 12px rgba(230, 92, 0, 0.3),
-        0 2px 4px rgba(230, 92, 0, 0.2);
+        0 4px 12px rgba(249, 212, 35, 0.25),
+        0 2px 4px rgba(249, 212, 35, 0.15);
     }
   }
 }
@@ -643,13 +683,32 @@
 .gaintain-link-secondary {
   background: transparent !important;
   border: none !important;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: none;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
   padding: 0 !important;
   font-size: inherit !important;
   min-height: auto !important;
   min-width: auto !important;
+  border-radius: 0 !important;
+
+  /* Arrow appears on hover, positioned next to text */
+  .flex-center {
+    position: relative;
+    padding-right: 0 !important;
+    transition: padding-right 160ms ease;
+  }
+  
+  .flex-center::after {
+    content: '→' !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(-8px) !important;
+    opacity: 0 !important;
+    transition: opacity 160ms ease, transform 160ms ease !important;
+    pointer-events: none;
+  }
 
   a {
     color: rgb(0 0 0 / 70%) !important;
@@ -668,6 +727,15 @@
         color: rgb(0 0 0 / 90%) !important;
         text-decoration-color: rgb(0 0 0 / 50%);
       }
+      
+      .flex-center {
+        padding-right: 1.1em !important;
+      }
+      
+      .flex-center::after {
+        opacity: 1 !important;
+        transform: translateY(-50%) translateX(0) !important;
+      }
     }
   }
 }
@@ -685,6 +753,15 @@
       a {
         color: rgb(255 255 255 / 90%) !important;
         text-decoration-color: rgb(255 255 255 / 50%);
+      }
+      
+      .flex-center {
+        padding-right: 1.1em !important;
+      }
+      
+      .flex-center::after {
+        opacity: 1 !important;
+        transform: translateY(-50%) translateX(0) !important;
       }
     }
   }
@@ -749,6 +826,176 @@
     > video {
       border-radius: 0.875em;
     }
+  }
+
+  /* Reset loop animation container */
+  > .reset-loop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    box-sizing: border-box;
+  }
+}
+
+/* Reset loop animation styles */
+.reset-loop {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-loop svg {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.reset-loop .loop {
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+  animation: none;
+  /* stroke-dasharray and stroke-dashoffset set via inline style */
+}
+
+.reset-loop.animate .loop {
+  animation: reset-loop-draw-cycle 12s ease-in-out 1 forwards;
+}
+
+.dark .reset-loop .loop {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+.reset-loop .arrow {
+  fill: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  animation: none;
+}
+
+.reset-loop.animate .arrow {
+  animation: reset-loop-arrow-cycle 12s ease-in-out 1 forwards;
+}
+
+@keyframes reset-loop-arrow-cycle {
+  0% { opacity: 0; }
+  3% { opacity: 1; }      /* Appears at start */
+  50% { opacity: 1; }     /* Stays visible through cycle */
+  100% { opacity: 1; }
+}
+
+.dark .reset-loop .arrow {
+  fill: rgba(255, 255, 255, 0.35);
+}
+
+.reset-loop .quarter-dot {
+  fill: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  animation: none;
+}
+
+.dark .reset-loop .quarter-dot {
+  fill: rgba(255, 255, 255, 0.35);
+}
+
+/* Reveal dots as animation passes each quarter point */
+.reset-loop.animate .quarter-dot-0 {
+  animation: reset-loop-reveal-dot 0.3s ease forwards;
+  animation-delay: 0.5s; /* Appears shortly after start */
+}
+
+.reset-loop.animate .quarter-dot-1 {
+  animation: reset-loop-reveal-dot 0.3s ease forwards;
+  animation-delay: 3.5s; /* Appears at ~25% of 12s animation */
+}
+
+.reset-loop.animate .quarter-dot-2 {
+  animation: reset-loop-reveal-dot 0.3s ease forwards;
+  animation-delay: 6.5s; /* Appears at ~50% of 12s animation */
+}
+
+.reset-loop.animate .quarter-dot-3 {
+  animation: reset-loop-reveal-dot 0.3s ease forwards;
+  animation-delay: 9.5s; /* Appears at ~75% of 12s animation */
+}
+
+@keyframes reset-loop-reveal-dot {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reset-loop .node rect {
+  fill: rgba(255, 255, 255, 0.75);
+  stroke: rgba(0, 0, 0, 0.12);
+}
+
+.dark .reset-loop .node rect {
+  fill: rgba(30, 30, 30, 0.75);
+  stroke: rgba(255, 255, 255, 0.12);
+}
+
+.reset-loop .node text {
+  font: 500 18px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  fill: rgba(0, 0, 0, 0.75);
+}
+
+.dark .reset-loop .node text {
+  fill: rgba(255, 255, 255, 0.75);
+}
+
+.reset-loop .node {
+  opacity: 0;
+  transform-origin: center;
+  animation: none;
+}
+
+.reset-loop.animate .node {
+  animation: reset-loop-nodeIn 0.5s ease forwards;
+}
+
+.reset-loop.animate .n1 { animation-delay: 0.4s; }
+.reset-loop.animate .n2 { animation-delay: 1.0s; }
+.reset-loop.animate .n3 { animation-delay: 1.8s; }
+.reset-loop.animate .n4 { animation-delay: 2.6s; }
+
+/* make Drop-off feel "lossy" */
+.reset-loop.animate .drop {
+  animation:
+    reset-loop-nodeIn 0.5s ease forwards 2.6s,
+    reset-loop-dim 0.8s ease forwards 3.4s;
+}
+
+/* Main loop drawing animation - draws continuously from start to finish */
+@keyframes reset-loop-draw-cycle {
+  /* Draw the ellipse continuously from start to finish */
+  0% { stroke-dashoffset: var(--path-length, 1600); }
+  100% { stroke-dashoffset: 0; }    /* Complete the ellipse - closes at minimum x (leftmost point: 120,130) */
+}
+
+@keyframes reset-loop-nodeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes reset-loop-dim {
+  to { opacity: 0.45; }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reset-loop .loop,
+  .reset-loop .node,
+  .reset-loop .arrow,
+  .reset-loop .drop {
+    animation: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
   }
 }
 

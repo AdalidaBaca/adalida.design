@@ -37,13 +37,13 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
         <div className='gaintain-details-card'>
           <SectionHeading title='Workout Dashboard' />
           <div className='body-2'>
-            The workout landing page is the daily decision surface.
+            The workout landing page is the <strong>daily decision surface</strong>.
           </div>
           <div className='body-2'>
-            A calendar at the top shows streaks tied to the user's frequency goal, while the bottom card adapts to how they train.
+            A <strong>calendar</strong> at the top shows streaks tied to the user's frequency goal, while the bottom card adapts to how they train.
           </div>
           <div className='body-2'>
-            Users can quick-log, reuse templates, or generate a workout with AI without breaking momentum.
+            Users can <strong>quick-log</strong>, reuse templates, or <strong>generate workouts with AI</strong> without breaking momentum.
           </div>
         </div>
       </div>

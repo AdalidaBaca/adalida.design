@@ -28,9 +28,17 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5em; /* spacing between elements */
-  margin-top: 0.25em;
+  margin-top: 0;
+  padding-top: calc(56px + 1em);
   margin-bottom: $section-gap-mobile;
   justify-items: center; /* avoid stretched text on mobile */
+  min-height: auto;
+  align-content: flex-start;
+
+  @media (width >= 768px) {
+    padding-top: calc(56px + 1.5em);
+    min-height: auto;
+  }
 
   .splash-image {
     position: relative;

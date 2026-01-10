@@ -31,13 +31,13 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
           <div data-aos='fade-up' data-aos-offset='150' className='gaintain-details-card'>
             <h6 className='gaintain-details-label'>Overview</h6>
             <p className='gaintain-details-text'>
-              GainTain is an AI-guided fitness app for weightlifters that pairs workout personalization with designed accountability.
+              GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs <strong>workout personalization with designed accountability</strong>.
             </p>
           </div>
           <div data-aos='fade-up' data-aos-offset='150' data-aos-delay='100' className='gaintain-details-card'>
             <h6 className='gaintain-details-label'>Role</h6>
             <p className='gaintain-details-text'>
-              CEO and Product Designer. I led product strategy, UX design, and front-end interaction design, working closely with an engineering co-founder on data models and iOS architecture.
+              <strong>CEO and Product Designer</strong>. I led <strong>product strategy, UX design, and front-end interaction design</strong>, working closely with an engineering co-founder on <strong>data models and iOS architecture</strong>.
             </p>
           </div>
         </div>
@@ -45,15 +45,15 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
           <div data-aos='fade-up' data-aos-offset='150' data-aos-delay='50' className='gaintain-details-meta-grid'>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Team</h6>
-              <p className='gaintain-details-text'>2 person founding team</p>
+              <p className='gaintain-details-text'><strong>Two-person founding team</strong></p>
             </div>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Timeline</h6>
-              <p className='gaintain-details-text'>9 weeks to launch</p>
+              <p className='gaintain-details-text'><strong>9 weeks to launch</strong></p>
             </div>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Platform</h6>
-              <p className='gaintain-details-text'>iOS</p>
+              <p className='gaintain-details-text'><strong>iOS</strong></p>
             </div>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Website</h6>

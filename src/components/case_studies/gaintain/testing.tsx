@@ -34,7 +34,7 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
         <div className='gaintain-details-card'>
           <SectionHeading title='Solution' />
           <div className='body-2'>
-            I paired AI-guided workouts with designed accountability to support follow-through.
+            I paired <strong>AI-guided workouts</strong> with <strong>designed accountability</strong> to support follow-through.
           </div>
           <ul className='body-2' style={{ margin: '0.5em 0', paddingLeft: '1em' }}>
             <li style={{ marginBottom: '0.75em' }}>AI workouts → handle planning and personalization</li>
@@ -42,7 +42,7 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
             <li style={{ marginBottom: '0.75em' }}>Calendar and timeline → gamify consistency through visible progress</li>
           </ul>
           <div className='body-2'>
-            Together, these systems allow the AI coach to support showing up, not just generating workouts.
+            Together, these systems allow the AI coach to support <strong>showing up</strong>, not just generating workouts.
           </div>
         </div>
       </div>
