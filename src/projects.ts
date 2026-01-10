@@ -36,8 +36,8 @@ export const Projects: Record<string, Project> = {
       url: '/case_studies/gaintain'
     },
     colors: {
-      cover: '#FF512F',
-      primary: 'linear-gradient(45deg, #FF512F, #DD2476)'
+      cover: '#E65C00',
+      primary: 'linear-gradient(45deg, #E65C00, #F9D423)'
     }
   },
   Phronesis: {

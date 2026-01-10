@@ -11,6 +11,16 @@
 .case-study-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  
+  > * {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
 }
 
 .case-study-gradient-text {
@@ -67,13 +77,26 @@
   opacity: 0.75;
   transition: all 0.5s ease-in-out;
   filter: grayscale(1);
+  font-size: 0.875rem;
+  text-align: left;
 
-  &:hover, &.active {
+  &:hover {
     opacity: 1;
   }
 
   &.active {
-    filter: grayscale(0);
+    background: none;
+    background-clip: unset;
+    color: $dark-text;
+    opacity: 1;
+    filter: none;
+    font-weight: 600;
+  }
+}
+
+.dark .link-button {
+  &.active {
+    color: $light-text;
   }
 }
 

@@ -131,8 +131,10 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 2.5em; /* Increased gap for better spacing between cards */
   width: 100%;
+  max-width: 100%;
   margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
   margin-bottom: 2em; /* Minimized bottom margin for spacing before testimonials on desktop */
+  box-sizing: border-box;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -216,6 +218,8 @@
   background: transparent; /* Remove glass effect from card itself */
   border: 1px solid rgb(0 0 0 / 10%); /* Add border to parent card */
   box-sizing: border-box; /* Include border in width/height calculations */
+  width: 100%;
+  max-width: 100%;
 
   /* Mobile: Allow cards to grow taller to fit content */
   @media (max-width: 768px) {
@@ -321,6 +325,9 @@
     align-items: flex-start;
     gap: 1em;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
 
     /* Mobile: Keep flex row layout */
     @media (max-width: 768px) {
@@ -337,6 +344,10 @@
     min-width: 0; /* Allow text to shrink if needed */
     /* Constrain width to encourage subtitle wrapping */
     max-width: calc(100% - 60px); /* Leave space for CTA */
+    width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   /* CTA section - takes up quarter (25%) */
@@ -366,6 +377,10 @@
   .name-and-category {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 
     /* Mobile: Fixed height to ensure consistent spacing */
     @media (max-width: 768px) {
@@ -406,6 +421,10 @@
       letter-spacing: -0.02em;
       color: rgb(0 0 0 / 95%);
       white-space: nowrap; /* Prevent wrapping to ensure title stays on one line */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      min-width: 0;
 
       /* Mobile: Larger font size for better readability */
       @media (max-width: 768px) {

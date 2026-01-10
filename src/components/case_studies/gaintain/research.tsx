@@ -1,17 +1,16 @@
-import { IconDatabaseCog } from '@tabler/icons-react'
 import React, { forwardRef, type Ref } from 'react'
 
 import OrderedFeatureList from 'components/feature_list/ordered'
 import UnorderedFeatureList from 'components/feature_list/unordered'
 import ResearchImage from 'images/gaintain/research.webp'
 
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const Research = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
   <div data-aos='fade-up' className='case-study-side-by-side' ref={ref}>
     <div className='case-study-explanation'>
       <section>
-        <IconHeading icon={<IconDatabaseCog />} heading='Research & Key Insights:' />
+        <SectionHeading title='Research & Key Insights:' />
         <div className='body-2'>
 
           To understand how people track workouts, I explored tracking strategies shared in fitness blogs, guides, and

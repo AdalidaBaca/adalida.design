@@ -1,16 +1,15 @@
-import { IconPlusMinus } from '@tabler/icons-react'
 import React from 'react'
 
 import FrictionlessVideo from 'videos/gaintain/frictionless.mp4'
 
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const Frictionless = (): JSX.Element => {
   return (
     <div data-aos='fade-up' className='case-study-side-by-side reverse'>
       <div className='case-study-explanation'>
         <section>
-          <IconHeading icon={<IconPlusMinus />} heading='Workout Logging' />
+          <SectionHeading title='Workout Logging' />
           <p>
             GainTain simplifies tracking by <strong><em>automatically pre-filling weight and reps</em></strong> based on
             the last recorded input.

@@ -43,7 +43,7 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5em;
-  max-width: min(1280px, 96dvw);
+  max-width: min(1280px, 96%);
   margin: $section-gap-mobile auto 0;
   padding-inline: 1dvw;
 
@@ -55,7 +55,7 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
 .testimonials-slider-cards {
   position: relative;
-  max-width: min(1280px, 96dvw);
+  max-width: min(1280px, 96%);
   margin: $section-gap-mobile auto 0;
   display: grid;
   align-items: center;

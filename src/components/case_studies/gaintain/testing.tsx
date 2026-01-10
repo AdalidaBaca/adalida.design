@@ -1,16 +1,15 @@
-import { IconBubbleText } from '@tabler/icons-react'
 import React, { forwardRef, type Ref } from 'react'
 
 import UnorderedFeatureList from 'components/feature_list/unordered'
 import TestingImage from 'images/gaintain/testing.webp'
 
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
   <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
     <div className='case-study-explanation'>
       <section className='more-padding'>
-        <IconHeading icon={<IconBubbleText />} heading='Testing for Usability' />
+        <SectionHeading title='Testing for Usability' />
         <div className='body-2'>
           Using <strong><em>contextual inquiry</em></strong>, I tested two MVP UI designs in a real-world gym
           environment to evaluate usability. Observing users in their routines revealed key challenges that

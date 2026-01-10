@@ -1,16 +1,15 @@
-import { IconMoodUp } from '@tabler/icons-react'
 import React, { forwardRef, type Ref } from 'react'
 
 import OrderedFeatureList from 'components/feature_list/ordered'
 import FinalDesignImage from 'images/gaintain/final_design.webp'
 
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const FinalDesign = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
   <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
     <div className='case-study-explanation'>
       <section className='more-padding'>
-        <IconHeading icon={<IconMoodUp />} heading='Final Design:' />
+        <SectionHeading title='Final Design:' />
         <p>
           To <strong><em>validate GainTain&apos;s adaptability</em></strong>, I conducted internal scenario testing,
           simulating real-world workout conditions to  to support three key workout types:

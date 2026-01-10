@@ -13,7 +13,9 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
   const { text } = darkModeStyle(darkMode)
   const [activeLink, setActiveLink] = useState<string | null>(null)
   const [scrolledTooFar, setScrolledTooFar] = useState(true)
-  const color = useContext(Context)?.colors?.primary ?? text
+  const project = useContext(Context)
+  const color = project?.colors?.primary ?? text
+  const caseStudyName = project?.name?.toUpperCase() ?? 'CONTENTS'
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -44,14 +46,14 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
 
   return (
     <div className={`table-of-contents${scrolledTooFar ? ' hide-left' : ''}`}>
-      <div style={{ opacity: 0.75 }}>CONTENTS</div>
+      <div style={{ opacity: 0.75 }}>{caseStudyName}</div>
       {Object.entries(links).map(([link, element]) => {
         const active = activeLink === link
         return (
           <div key={link}>
             <button
               className={`link-button${active ? ' active' : ''}`}
-              style={{ backgroundImage: color }}
+              style={active ? undefined : { backgroundImage: color }}
               onClick={() => { element.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}
             >
               {link}

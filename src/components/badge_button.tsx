@@ -8,14 +8,16 @@ interface Props {
   to: string
   children: React.ReactNode
   style?: React.CSSProperties
+  className?: string
 }
 
-const BadgeButton = ({ to, children, style }: Props): JSX.Element => {
+const BadgeButton = ({ to, children, style, className }: Props): JSX.Element => {
   const { darkMode } = useContext(DarkModeContext)
-  const className = useMemo(() => `btn badge big-badge badge-danger${darkMode ? ' dark' : ''}`, [darkMode])
+  const baseClassName = useMemo(() => `btn badge big-badge badge-danger${darkMode ? ' dark' : ''}`, [darkMode])
+  const finalClassName = className ? `${baseClassName} ${className}` : baseClassName
 
   return (
-    <div className={className} style={style}>
+    <div className={finalClassName} style={style}>
       <UniversalLink to={to} className='flex-center'>{children}</UniversalLink>
     </div>
   )

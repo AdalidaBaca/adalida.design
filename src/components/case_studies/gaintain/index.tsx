@@ -23,6 +23,7 @@ import KeyTakeaways from './key_takeaways'
 
 const Gaintain = (): JSX.Element => {
   const sections = {
+    'GAINTAIN': useRef(null),
     About: useRef(null),
     Discovery: useRef(null),
     Research: useRef(null),
@@ -40,7 +41,7 @@ const Gaintain = (): JSX.Element => {
     <Context.Provider value={Projects.Gaintain}>
       {isMobile === false && <TableOfContents links={sections} />}
       <div className='case-study-container'>
-        <About ref={sections.About} />
+        <About heroRef={sections['GAINTAIN']} aboutRef={sections.About} />
         <Discovering ref={sections.Discovery} />
         <Research ref={sections.Research} />
         <Wireframing ref={sections.Wireframes} />

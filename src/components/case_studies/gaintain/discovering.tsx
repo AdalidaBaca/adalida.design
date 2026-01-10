@@ -1,16 +1,14 @@
-import { IconExclamationMark } from '@tabler/icons-react'
 import React, { forwardRef, type Ref } from 'react'
 
 import DiscoveringImage from 'images/gaintain/discovering.webp'
 
-import Duck from 'components/duck'
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const Discovering = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
   <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
     <div className='case-study-explanation'>
       <section>
-        <IconHeading icon={<IconExclamationMark />} heading='Discovering the Gap:' />
+        <SectionHeading title='Discovering the Gap:' />
         <div className='body-2'>
           Workout tracking is valuable, but most apps lock it behind coaching or subscriptions.
         </div>
@@ -21,7 +19,7 @@ const Discovering = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEl
         </div>
       </section>
       <section>
-        <IconHeading icon={<Duck />} heading='Ideating the Solution:' />
+        <SectionHeading title='Ideating the Solution:' />
         <div className='body-2'>
           A seamless, fast workout tracker that prioritizes effortless logging&mdash;eliminating the need for multiple apps
           while giving trainees full control over their progress.

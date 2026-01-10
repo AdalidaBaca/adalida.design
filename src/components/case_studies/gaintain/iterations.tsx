@@ -1,16 +1,15 @@
-import { IconBulb } from '@tabler/icons-react'
 import React, { forwardRef, type Ref } from 'react'
 
 import UnorderedFeatureList from 'components/feature_list/unordered'
 import IterationsImage from 'images/gaintain/iterations.webp'
 
-import IconHeading from '../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 const Iterations = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
   <div data-aos='fade-up' className='case-study-side-by-side padding' ref={ref}>
     <div className='case-study-explanation'>
       <section className='more-padding'>
-        <IconHeading icon={<IconBulb />} heading='UI Iterations' />
+        <SectionHeading title='UI Iterations' />
         <p>Through iterations and internal testing, I refined key usability aspects:</p>
         <UnorderedFeatureList
           italic

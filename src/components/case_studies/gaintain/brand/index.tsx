@@ -1,4 +1,3 @@
-import { IconPalette } from '@tabler/icons-react'
 import React, { forwardRef, useContext, type Ref } from 'react'
 
 import DarkModeContext from 'dark_mode_context'
@@ -6,7 +5,7 @@ import darkModeStyle from 'dark_mode_style'
 import { Projects } from 'projects'
 import BrandImage from 'images/gaintain/brand.webp'
 
-import IconHeading from '../../icon_heading'
+import SectionHeading from 'components/section_heading'
 
 import Logo from './logo'
 
@@ -22,7 +21,7 @@ const Brand = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>
     <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
       <div className='case-study-explanation'>
         <section>
-          <IconHeading icon={<IconPalette />} heading='Injecting the Brand:' />
+          <SectionHeading title='Injecting the Brand:' />
           <p>
             GainTain&apos;s brand is built to be both personal and motivating. Users can customize their environment with
             gradients during onboarding, unlocking additional options as they progress, creating a sense of

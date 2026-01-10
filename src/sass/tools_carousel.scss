@@ -2,8 +2,8 @@
 
 .tools-carousel {
   /* True full-bleed to the viewport edges */
-  width: 100dvw;
-  max-width: 100dvw;
+  width: 100%;
+  max-width: 100%;
   margin-left: calc(50% - 50dvw);
   margin-right: calc(50% - 50dvw);
   margin-top: $section-gap-mobile;
