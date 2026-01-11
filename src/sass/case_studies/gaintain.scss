@@ -7,17 +7,21 @@
   max-width: min(1200px, 100%);
   margin: 0 auto;
   gap: 1.5em;
-  padding: 1.5em 0.5em;
+  padding: 1.5em 0.5em 0 0.5em; /* Remove bottom padding to minimize gap */
   padding-top: calc(56px + 3em);
   box-sizing: border-box;
   position: relative;
-  margin-bottom: 3em;
+  margin-bottom: 0; /* Minimize gap between hero and download section */
+  
+  @media (max-width: 768px) {
+    margin-bottom: 4em; /* Add gap on mobile between hero and download section */
+  }
 
   @media (width >= 768px) {
     gap: 2em;
-    padding: 2em 0.5em;
+    padding: 2em 0.5em 0 0.5em; /* Remove bottom padding to minimize gap */
     padding-top: calc(56px + 4em);
-    margin-bottom: 8em;
+    margin-bottom: 0; /* Minimize gap between hero and download section */
   }
 
   > .intro-videos {
@@ -105,13 +109,15 @@
     aspect-ratio: 1;
 
     @media (max-width: 768px) {
-      height: 550px;
-      max-height: 65svh;
+      height: 650px;
+      max-height: 70svh;
+      aspect-ratio: 3 / 4; /* Taller than wide on mobile */
     }
 
     @media (max-width: 511px) {
-      height: 450px;
-      max-height: 55svh;
+      height: 600px;
+      max-height: 65svh;
+      aspect-ratio: 3 / 4; /* Taller than wide on mobile */
     }
   }
 
@@ -139,11 +145,37 @@
   }
 }
 
+/* Override case-study-top-to-bottom aspect-ratio for problem diagram container on mobile only */
+.case-study-top-to-bottom {
+  > .gaintain-image-container {
+    /* Desktop styles remain unchanged - index.scss handles this */
+    
+    @media (max-width: 768px) {
+      height: 325px !important;
+      max-height: 35svh !important;
+      min-height: 325px;
+      aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
+    }
+
+    @media (max-width: 511px) {
+      height: 300px !important;
+      max-height: 32.5svh !important;
+      min-height: 300px;
+      aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
+    }
+  }
+}
+
 .gaintain-details {
   width: 100%;
   max-width: 100%;
-  padding: 2em 0;
-  padding-top: calc(56px + 3em);
+  padding: 0; /* Remove all padding to minimize gap */
+  margin-bottom: 4em; /* Add gap between About and Problem sections */
+  
+  @media (max-width: 768px) {
+    margin-bottom: 6em; /* More gap on mobile */
+  }
+  padding-top: 0; /* Minimize gap between hero and download section */
   padding-bottom: 0;
   min-height: calc(100svh - 56px - 4em);
   scroll-margin-top: 72px; // 56px header + 16px spacing
@@ -212,11 +244,15 @@
   width: 100%;
   max-width: min(1200px, 100%);
   margin: 0 auto;
-  margin-top: 0;
+  margin-top: -3em; /* Increased negative margin to minimize gap with hero */
   padding: 0 0.5em;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+  
+  @media (max-width: 768px) {
+    margin-top: 0; /* Reset margin-top on mobile, gap controlled by hero margin-bottom */
+  }
 }
 
 .gaintain-download-content {
@@ -782,6 +818,11 @@
   height: 100%;
   overflow: hidden;
   min-height: 0;
+  
+  @media (max-width: 768px) {
+    /* Allow labels to be visible on mobile when scaled */
+    overflow: visible;
+  }
 
   @media (max-width: 768px) {
     padding: 0.5em;
@@ -831,6 +872,7 @@
   /* Reset loop animation container */
   > .reset-loop {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -847,34 +889,65 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .reset-loop svg {
   width: 100%;
-  height: auto;
+  height: 100%;
   max-height: 100%;
+  object-fit: contain;
+  overflow: visible; /* Allow labels to be visible outside bounds on mobile */
+  
+  @media (max-width: 768px) {
+    /* Ensure ellipse scales properly on mobile with taller container */
+    min-height: 100%;
+    overflow: visible; /* Ensure labels aren't clipped */
+  }
+}
+
+/* Make ellipse circular on mobile only and scale to fill card */
+@media (max-width: 768px) {
+  .reset-loop svg {
+    /* Scale the entire SVG larger to fill the card */
+    transform: scale(2.5);
+    transform-origin: center;
+  }
+  
+  .reset-loop .loop-ghost,
+  .reset-loop .loop {
+    /* Scale to make ellipse circular: rx=480->150, ry=80->150 */
+    transform: scaleX(0.3125) scaleY(1.875);
+    transform-origin: 600px 130px; /* Center of ellipse */
+  }
+}
+
+/* Ghost ellipse - static gray background */
+.reset-loop .loop-ghost {
+  stroke: rgba(0, 0, 0, 0.15);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dark .reset-loop .loop-ghost {
+  stroke: rgba(255, 255, 255, 0.15);
 }
 
 .reset-loop .loop {
-  stroke: rgba(0, 0, 0, 0.35);
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 1;
   animation: none;
-  /* stroke-dasharray and stroke-dashoffset set via inline style */
+  /* stroke and stroke-dasharray/stroke-dashoffset set via inline style */
 }
 
 .reset-loop.animate .loop {
-  animation: reset-loop-draw-cycle 12s ease-in-out 1 forwards;
-}
-
-.dark .reset-loop .loop {
-  stroke: rgba(255, 255, 255, 0.35);
+  animation: reset-loop-draw-cycle 4s ease-in-out 1 forwards;
 }
 
 .reset-loop .arrow {
-  fill: rgba(0, 0, 0, 0.35);
   opacity: 0;
   animation: none;
 }
@@ -890,63 +963,107 @@
   100% { opacity: 1; }
 }
 
-.dark .reset-loop .arrow {
-  fill: rgba(255, 255, 255, 0.35);
-}
-
 .reset-loop .quarter-dot {
-  fill: rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  animation: none;
+  opacity: 1; /* Visible before animation starts */
 }
 
-.dark .reset-loop .quarter-dot {
-  fill: rgba(255, 255, 255, 0.35);
-}
-
-/* Reveal dots as animation passes each quarter point */
-.reset-loop.animate .quarter-dot-0 {
-  animation: reset-loop-reveal-dot 0.3s ease forwards;
-  animation-delay: 0.5s; /* Appears shortly after start */
-}
-
-.reset-loop.animate .quarter-dot-1 {
-  animation: reset-loop-reveal-dot 0.3s ease forwards;
-  animation-delay: 3.5s; /* Appears at ~25% of 12s animation */
-}
-
-.reset-loop.animate .quarter-dot-2 {
-  animation: reset-loop-reveal-dot 0.3s ease forwards;
-  animation-delay: 6.5s; /* Appears at ~50% of 12s animation */
-}
-
-.reset-loop.animate .quarter-dot-3 {
-  animation: reset-loop-reveal-dot 0.3s ease forwards;
-  animation-delay: 9.5s; /* Appears at ~75% of 12s animation */
-}
-
-@keyframes reset-loop-reveal-dot {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.reset-loop .node rect {
+.reset-loop .node-bg {
   fill: rgba(255, 255, 255, 0.75);
   stroke: rgba(0, 0, 0, 0.12);
+  stroke-width: 1;
+  transition: stroke 0.3s ease;
 }
 
-.dark .reset-loop .node rect {
+.dark .reset-loop .node-bg {
   fill: rgba(30, 30, 30, 0.75);
   stroke: rgba(255, 255, 255, 0.12);
 }
 
-.reset-loop .node text {
-  font: 500 18px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  fill: rgba(0, 0, 0, 0.75);
+/* Gradient border animation - appears when ellipse passes */
+.reset-loop .node-border-gradient {
+  opacity: 0;
+  animation: none;
 }
 
-.dark .reset-loop .node text {
-  fill: rgba(255, 255, 255, 0.75);
+.reset-loop.animate .n1 .node-border-gradient {
+  animation: reset-loop-border-appear 0.3s ease forwards 0.4s;
+}
+
+.reset-loop.animate .n2 .node-border-gradient {
+  animation: reset-loop-border-appear 0.3s ease forwards 1.9s;
+}
+
+.reset-loop.animate .n4 .node-border-gradient {
+  animation: reset-loop-border-appear 0.3s ease forwards 0s; /* Already visible, animate immediately */
+}
+
+@keyframes reset-loop-border-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reset-loop .node-gradient {
+  opacity: 1;
+  clip-path: inset(0 100% 0 0);
+  animation: none;
+}
+
+/* Drop-off (n3) - switch from not filled to filled when ellipse reaches 75% */
+/* Ellipse reaches 75% at the end of 4s animation */
+.reset-loop.animate .n3 .node-gradient {
+  animation: reset-loop-label-fill-switch 0.1s ease-out forwards 3.8s;
+}
+
+@keyframes reset-loop-gradient-dim {
+  to { opacity: 0.7; }
+}
+
+@keyframes reset-loop-label-fill-switch {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.reset-loop .node-text {
+  font: 700 24px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  fill: rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.02em;
+}
+
+.dark .reset-loop .node-text {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+/* Drop-off has larger font */
+.reset-loop .drop .node-text {
+  font-size: 28px;
+}
+
+/* Text on gradient labels - only Drop-off (n3) uses white text when gradient appears */
+.reset-loop .node-text-gradient {
+  fill: rgba(0, 0, 0, 0.9); /* Dark text for readability on white background */
+}
+
+.dark .reset-loop .node-text-gradient {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+/* Only Drop-off (n3) switches to white text when gradient appears */
+.reset-loop.animate .n3 .node-text-gradient {
+  animation: reset-loop-text-to-white 0.3s ease forwards 3.8s;
+}
+
+@keyframes reset-loop-text-to-white {
+  to {
+    fill: rgba(255, 255, 255, 0.98);
+  }
 }
 
 /* Node animations - only affect opacity and scale, not position */
@@ -961,23 +1078,43 @@
   animation: reset-loop-nodeIn 0.5s ease forwards;
 }
 
-.reset-loop.animate .n1 { animation-delay: 0.4s; }
-.reset-loop.animate .n2 { animation-delay: 1.0s; }
-.reset-loop.animate .n3 { animation-delay: 1.8s; }
-.reset-loop.animate .n4 { animation-delay: 2.6s; }
-
-/* make Drop-off feel "lossy" */
-.reset-loop.animate .drop {
+.reset-loop.animate .n1 { 
   animation:
-    reset-loop-nodeIn 0.5s ease forwards 2.6s,
-    reset-loop-dim 0.8s ease forwards 3.4s;
+    reset-loop-nodeIn 0.5s ease forwards 0.4s,
+    reset-loop-dim 0.8s ease forwards 1.2s;
+}
+.reset-loop.animate .n2 { 
+  animation:
+    reset-loop-nodeIn 0.5s ease forwards 1.0s,
+    reset-loop-dim 0.8s ease forwards 1.8s;
+}
+.reset-loop.animate .n3 { animation-delay: 1.8s; }
+/* New goal (n4) - visible from start with dimming */
+.reset-loop .n4 {
+  opacity: 1;
+}
+.reset-loop.animate .n4 { 
+  animation: reset-loop-dim 0.8s ease forwards 0.8s;
+}
+
+/* Drop-off - no dimming */
+.reset-loop.animate .drop {
+  animation: reset-loop-nodeIn 0.5s ease forwards 2.6s;
 }
 
 /* Main loop drawing animation - draws continuously from start to finish */
 @keyframes reset-loop-draw-cycle {
-  /* Draw the ellipse continuously from start to finish */
-  0% { stroke-dashoffset: var(--path-length, 1600); }
-  100% { stroke-dashoffset: 0; }    /* Complete the ellipse - closes at minimum x (leftmost point: 120,130) */
+  /* Fill from "Planning" (25%) to "Drop-off" (75%) */
+  /* First 25% (0% to 25%) is already filled when animation starts */
+  /* Animation grows the fill from 25% to 75% */
+  0% { 
+    stroke-dasharray: var(--initial-fill, 400) var(--path-length); /* First 25% already filled */
+    stroke-dashoffset: 0;
+  }
+  100% { 
+    stroke-dasharray: var(--final-fill, 1200) var(--path-length); /* Filled from 0% to 75% */
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes reset-loop-nodeIn {
@@ -986,7 +1123,7 @@
 }
 
 @keyframes reset-loop-dim {
-  to { opacity: 0.45; }
+  to { opacity: 0.7; }
 }
 
 /* accessibility */

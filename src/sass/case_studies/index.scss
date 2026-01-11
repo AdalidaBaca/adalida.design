@@ -61,10 +61,14 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 0.625em;
+  gap: 1em;
   margin: 0;
   padding-top: 1em;
   transition: transform 1s ease-in-out;
+
+  @media (max-width: 768px) {
+    gap: 2em; /* More gap between sections on mobile */
+  }
 
   > strong {
     opacity: 0.5;
@@ -112,7 +116,9 @@
 
 .dark .link-button {
   &.active {
-    color: $light-text;
+    color: $light-text !important;
+    opacity: 1 !important; /* Ensure full opacity in dark mode for visibility */
+    filter: none !important; /* Remove any filters for better visibility */
   }
 }
 

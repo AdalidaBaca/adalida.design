@@ -37,7 +37,7 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
   return (
     <>
       <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
-        <div className='gaintain-image-container gaintain-problem-image'>
+        <div className='gaintain-image-container'>
           <ResetLoop />
         </div>
         <div className='case-study-explanation'>
@@ -63,7 +63,7 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
               I saw this repeatedly after reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active lifters.
             </div>
             <div className='body-2'>
-              Without <strong>accountability and visible feedback</strong>, consistency breaks down.
+              <strong>Different training styles still fail at the same point:</strong> without accountability and visible feedback, consistency breaks down.
             </div>
           </div>
         </div>
