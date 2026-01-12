@@ -808,8 +808,17 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(230, 92, 0, 0.2);
   border-radius: 0.75em;
-  padding: 0.75em;
+  padding: 0 0.75em 0.75em 0.75em; /* Remove top padding */
   box-sizing: border-box;
+  
+  /* Remove bottom and left padding for key insight section */
+  .gaintain-key-insight & {
+    padding: 0 0.75em 0 0; /* Remove bottom and left padding */
+    
+    @media (max-width: 768px) {
+      padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
+    }
+  }
   box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
   display: flex;
   align-items: center;
@@ -825,7 +834,7 @@
   }
 
   @media (max-width: 768px) {
-    padding: 0.5em;
+    padding: 0 0.5em 0.5em 0.5em; /* Remove top padding on mobile too */
   }
 
   > img,
@@ -873,6 +882,17 @@
   > .reset-loop {
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    box-sizing: border-box;
+  }
+
+  /* Persona cards container */
+  > .triangle-insight {
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1136,6 +1156,211 @@
     opacity: 1 !important;
     stroke-dashoffset: 0 !important;
   }
+}
+
+/* Persona cards styles */
+.triangle-insight {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
+.persona-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountability-gap-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: -1em; /* Negative margin to overlap with row above */
+  margin-bottom: 1em; /* Positive margin to add gap below (between accountability gap and hybrid) */
+
+  @media (max-width: 768px) {
+    margin-top: -0.75em;
+    margin-bottom: 0.75em;
+  }
+}
+
+.persona-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 1em;
+  }
+}
+
+.accountability-gap-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.accountability-gap-text {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.dark .accountability-gap-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.persona-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5em;
+  width: 100%;
+  max-width: 200px;
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: 768px) {
+    max-width: 140px;
+    gap: 0.375em;
+  }
+
+  /* Reduce gap for cards with image below (Nomad and Program) */
+  &.image-below-card {
+    gap: 0;
+
+    @media (max-width: 768px) {
+      gap: 0;
+    }
+
+    .persona-image-container {
+      margin-top: -1em; /* Increased negative margin to move image closer to label */
+
+      @media (max-width: 768px) {
+        margin-top: -0.75em;
+      }
+    }
+  }
+
+  &.hybrid-card {
+    gap: 0; /* Remove gap for overlap */
+    max-width: 150px; /* Make card smaller */
+
+    @media (max-width: 768px) {
+      max-width: 100px;
+    }
+
+    .persona-image-container {
+      width: 120px;
+      height: 120px;
+
+      @media (max-width: 768px) {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .persona-text-card {
+      margin-top: -1em; /* Reduced negative margin to add more gap between image and label */
+
+      @media (max-width: 768px) {
+        margin-top: -0.5em;
+      }
+    }
+  }
+}
+
+.persona-image-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.persona-text-card {
+  background: transparent;
+  border: none;
+  padding: 0.75em 1em;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  @media (max-width: 768px) {
+    padding: 0.625em 0.75em;
+    gap: 0.375em;
+  }
+}
+
+.persona-title {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+.dark .persona-title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.persona-subtitle {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.75);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+.dark .persona-subtitle {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .gaintain-internal-testing-image-container {
@@ -1569,6 +1794,7 @@
     }
   }
 }
+
 
 .gaintain-solution {
   > .case-study-explanation {

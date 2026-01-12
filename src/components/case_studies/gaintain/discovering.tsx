@@ -1,9 +1,10 @@
-import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
+import React, { forwardRef, type Ref } from 'react'
 
 import DiscoveringImage from 'images/gaintain/discovering.webp'
 
 import SectionHeading from 'components/section_heading'
 import ResetLoop from './reset_loop'
+import TriangleInsight from './triangle_insight'
 
 interface Props {
   keyInsightRef?: Ref<HTMLDivElement>
@@ -11,28 +12,6 @@ interface Props {
 
 const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element => {
   const { keyInsightRef } = props
-  const keyInsightExplanationRef = useRef<HTMLDivElement>(null)
-  const keyInsightImageRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const matchHeights = (): void => {
-      if (keyInsightExplanationRef.current === null || keyInsightImageRef.current === null) return
-      const explanationHeight = keyInsightExplanationRef.current.offsetHeight
-      keyInsightImageRef.current.style.height = `${explanationHeight}px`
-    }
-
-    matchHeights()
-    window.addEventListener('resize', matchHeights)
-    const resizeObserver = new ResizeObserver(matchHeights)
-    if (keyInsightExplanationRef.current !== null) {
-      resizeObserver.observe(keyInsightExplanationRef.current)
-    }
-
-    return () => {
-      window.removeEventListener('resize', matchHeights)
-      resizeObserver.disconnect()
-    }
-  }, [])
 
   return (
     <>
@@ -53,7 +32,7 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
         </div>
       </div>
       <div data-aos='fade-up' data-aos-offset='150' className='case-study-side-by-side gaintain-key-insight' ref={keyInsightRef}>
-        <div className='case-study-explanation' ref={keyInsightExplanationRef}>
+        <div className='case-study-explanation'>
           <div className='gaintain-details-card'>
             <SectionHeading title='Key Insight' />
             <div className='body-2'>
@@ -67,8 +46,8 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
             </div>
           </div>
         </div>
-        <div className='gaintain-image-container' ref={keyInsightImageRef}>
-          <img src={DiscoveringImage} alt='Research' />
+        <div className='gaintain-image-container'>
+          <TriangleInsight />
         </div>
       </div>
     </>
