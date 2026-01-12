@@ -15,10 +15,10 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  gap: 3em; /* Add gap between sections */
+  gap: 4em; /* Add gap between sections */
   
   @media (max-width: 768px) {
-    gap: 2em; /* Smaller gap on mobile */
+    gap: 3em; /* Smaller gap on mobile */
   }
   
   > * {

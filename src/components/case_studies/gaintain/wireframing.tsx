@@ -1,14 +1,14 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import WireframingImage from 'images/gaintain/wireframing.webp'
-
 import SectionHeading from 'components/section_heading'
+
+import DesignStrategyGraphic from './design_strategy_graphic'
 
 const Wireframing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
-      <div className='gaintain-image-container gaintain-wireframing'>
-        <img src={WireframingImage} alt='Mockups' />
+    <div data-aos='fade-up' className='case-study-top-to-bottom gaintain-design-strategy' ref={ref}>
+      <div className='gaintain-image-container'>
+        <DesignStrategyGraphic />
       </div>
       <div className='case-study-explanation'>
         <div className='gaintain-details-card'>

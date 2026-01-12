@@ -164,6 +164,55 @@
       aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
     }
   }
+  
+  /* Remove padding for design strategy section like key insights */
+  &.gaintain-design-strategy {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+    margin-top: 2em; /* Extra gap after Key Insight section */
+    margin-bottom: 0;
+    gap: 2em; /* Match problem section gap */
+    
+    @media (width >= $case-study-breakpoint) {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0.5em !important;
+      padding-right: 0.5em !important;
+      margin-top: 3em; /* Extra gap after Key Insight section on desktop */
+      gap: 2em; /* Match problem section gap */
+    }
+    
+    > .gaintain-image-container {
+      aspect-ratio: unset !important;
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0.75em !important;
+      padding-right: 0.75em !important;
+      border-radius: 0.75em; // Match other cards
+      
+      @media (max-width: 768px) {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        width: 100% !important;
+        padding-left: 0.5em !important;
+        padding-right: 0.5em !important;
+      }
+      
+      @media (width >= $case-study-breakpoint) {
+        // Match the problem graphic container height (aspect-ratio: 3.2 / 1)
+        aspect-ratio: 3.2 / 1 !important;
+        width: 100%;
+        height: auto;
+        max-height: none;
+      }
+    }
+  }
 }
 
 .gaintain-details {
@@ -819,6 +868,18 @@
       padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
     }
   }
+  
+  /* Remove all padding for design strategy graphic section */
+  .case-study-top-to-bottom > & {
+    .design-strategy-graphic-container {
+      padding: 0; /* Already handled in design-strategy-graphic-container */
+    }
+  }
+  
+  /* Remove padding from container when it has design strategy graphic */
+  &:has(.design-strategy-graphic-container) {
+    padding: 0; /* Remove all padding like key insights */
+  }
   box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
   display: flex;
   align-items: center;
@@ -876,6 +937,16 @@
     > video {
       border-radius: 0.875em;
     }
+    
+    /* Ensure reset loop labels stay within card on mobile */
+    @media (max-width: 768px) {
+      overflow: hidden;
+      
+      /* Ensure reset loop container respects overflow */
+      > .reset-loop {
+        overflow: hidden;
+      }
+    }
   }
 
   /* Reset loop animation container */
@@ -887,6 +958,10 @@
     justify-content: center;
     padding: 2em;
     box-sizing: border-box;
+    
+    @media (max-width: 768px) {
+      padding: 1em; /* Reduce padding to give more space for labels */
+    }
   }
 
   /* Persona cards container */
@@ -917,12 +992,12 @@
   height: 100%;
   max-height: 100%;
   object-fit: contain;
-  overflow: visible; /* Allow labels to be visible outside bounds on mobile */
+  overflow: visible; /* Allow labels to be visible outside bounds on desktop */
   
   @media (max-width: 768px) {
     /* Ensure ellipse scales properly on mobile with taller container */
     min-height: 100%;
-    overflow: visible; /* Ensure labels aren't clipped */
+    overflow: visible; /* Keep labels visible, viewBox will handle bounds */
   }
 }
 
@@ -1055,6 +1130,10 @@
   font: 700 24px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   fill: rgba(0, 0, 0, 0.9);
   letter-spacing: 0.02em;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .dark .reset-loop .node-text {
@@ -1064,6 +1143,10 @@
 /* Drop-off has larger font */
 .reset-loop .drop .node-text {
   font-size: 28px;
+  
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 /* Text on gradient labels - only Drop-off (n3) uses white text when gradient appears */
@@ -1174,9 +1257,10 @@
   flex-direction: column;
   gap: 0;
   width: 100%;
-  height: auto;
+  height: 100%; /* Fill available height to match text column */
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .accountability-gap-row {
@@ -1200,25 +1284,101 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  position: relative;
 
   @media (max-width: 768px) {
     gap: 1em;
+  }
+
+  @media (max-width: 768px) and (orientation: portrait) {
+    gap: 2em; /* More spacing in portrait mode */
+  }
+
+  @media (max-width: 768px) and (orientation: landscape) {
+    gap: 0.5em; /* Less spacing in landscape mode */
+    justify-content: space-between; /* Push cards to edges */
+  }
+}
+
+/* Keep Hybrid row centered even in landscape mode */
+.persona-row:not(.persona-row-with-arrow) {
+  @media (max-width: 768px) and (orientation: landscape) {
+    justify-content: center; /* Keep Hybrid centered (it's in a row without the arrow class) */
+  }
+}
+
+.persona-row-with-arrow {
+  position: relative;
+}
+
+.persona-row-with-diagonal-arrow {
+  position: relative;
+}
+
+.program-to-nomad-arrow {
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  top: calc(50% - 50px); /* Center vertically, accounting for arrow height */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 80px;
+    top: calc(50% - 40px);
+  }
+}
+
+.program-to-hybrid-arrow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 0; /* Start from top row */
+  left: 0; /* Start from left (Program position) */
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.hybrid-to-nomad-arrow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 0; /* Start from top row - mirrors program-to-hybrid-arrow */
+  right: 0; /* Mirrors left: 0 from program-to-hybrid-arrow */
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 300px;
   }
 }
 
 .accountability-gap-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  gap: 0.5em;
 }
 
 .accountability-gap-text {
-  font-family: 'Patrick Hand', cursive;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 18px;
   color: rgba(0, 0, 0, 0.9);
   text-align: center;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 
   @media (max-width: 768px) {
     font-size: 16px;
@@ -1226,7 +1386,29 @@
 }
 
 .dark .accountability-gap-text {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.accountability-gap-subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.85); /* Darker for more contrast */
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.4;
+  margin: 0 auto;
+  font-weight: 500; /* Slightly bolder */
+  letter-spacing: 0.01em; /* Slight letter spacing */
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    max-width: 180px;
+    padding: 0 0.5em;
+  }
+}
+
+.dark .accountability-gap-subtitle {
+  color: rgba(255, 255, 255, 0.85); /* Brighter for more contrast */
 }
 
 .persona-card {
@@ -1245,8 +1427,17 @@
     gap: 0.375em;
   }
 
+  @media (max-width: 768px) and (orientation: landscape) {
+    max-width: none; /* Remove max-width constraint to allow expansion */
+    flex: 1; /* Allow cards to grow and fill space */
+  }
+
   /* Reduce gap for cards with image below (Nomad and Program) */
   &.image-below-card {
+    @media (max-width: 768px) and (orientation: landscape) {
+      max-width: none; /* Allow Program and Nomad to expand to edges */
+      flex: 1;
+    }
     gap: 0;
 
     @media (max-width: 768px) {
@@ -1270,6 +1461,11 @@
       max-width: 100px;
     }
 
+    @media (max-width: 768px) and (orientation: landscape) {
+      max-width: 100px; /* Keep hybrid card small and centered */
+      flex: 0 0 auto; /* Don't allow hybrid to grow, keep it centered */
+    }
+
     .persona-image-container {
       width: 120px;
       height: 120px;
@@ -1277,6 +1473,19 @@
       @media (max-width: 768px) {
         width: 60px;
         height: 60px;
+      }
+
+      /* Scale down hybrid image in key insight graphic column */
+      .gaintain-key-insight & {
+        @media (width >= $case-study-breakpoint) {
+          width: 100px;
+          height: 100px;
+
+          @media (max-width: 1024px) {
+            width: 80px;
+            height: 80px;
+          }
+        }
       }
     }
 
@@ -1306,6 +1515,19 @@
     height: 80px;
   }
 
+  /* Scale down images in key insight graphic column to fit height */
+  .gaintain-key-insight & {
+    @media (width >= 768px) {
+      width: 120px;
+      height: 120px;
+
+      @media (max-width: 1024px) {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -1330,11 +1552,11 @@
 }
 
 .persona-title {
-  font-family: 'Patrick Hand', cursive;
-  font-weight: 400;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 600;
   font-size: 13px;
   color: rgba(0, 0, 0, 0.9);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   line-height: 1.3;
 
   @media (max-width: 768px) {
@@ -1792,6 +2014,13 @@
     > img {
       order: unset;
     }
+
+    > .gaintain-image-container {
+      height: 100%; /* Match text column height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 
@@ -1839,4 +2068,87 @@
       }
     }
   }
+}
+
+.design-strategy-graphic-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch; // Stretch to fill height
+  justify-content: center;
+  padding: 0; // Remove all padding like key insights
+  margin: 0; // Remove any margin
+  min-height: 0; // Allow flex shrinking
+  
+  @media (max-width: 768px) {
+    align-items: stretch; // Ensure it fills the full height on mobile
+  }
+}
+
+.design-strategy-graphic {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; // Ensure it fits within container
+  
+  // On desktop, fill width
+  @media (width >= 768px) {
+    width: 100%;
+    height: 100%;
+  }
+  
+  // On mobile, fill height
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.design-strategy-axis-label {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  fill: rgb(0 0 0 / 60%);
+  letter-spacing: 0.01em;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+.dark .design-strategy-axis-label {
+  fill: rgb(255 255 255 / 60%);
+}
+
+.design-strategy-axis-title {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  fill: rgb(0 0 0 / 85%);
+  letter-spacing: 0.01em;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+.dark .design-strategy-axis-title {
+  fill: rgb(255 255 255 / 85%);
+}
+
+.design-strategy-point-label {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  fill: rgb(0 0 0 / 90%);
+  letter-spacing: 0.01em;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
+}
+
+.dark .design-strategy-point-label {
+  fill: rgb(255 255 255 / 90%);
 }

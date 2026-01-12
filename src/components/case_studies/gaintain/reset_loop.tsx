@@ -17,9 +17,9 @@ interface LabelConfig {
 
 // Explicit map from labels to their configuration
 const LABEL_CONFIGS: LabelConfig[] = [
-  { text: ['NEW GOAL', 'OR PROGRAM'], width: 220, dotIndex: 0, animationClass: 'n4', placement: 'left' },  // Left dot -> label to the left
-  { text: ['PLANNING', 'SELF / TRAINER'], width: 160, dotIndex: 1, animationClass: 'n1', placement: 'top' },              // Top dot -> label above
-  { text: ['LIFE GETS', 'IN THE WAY'], width: 240, dotIndex: 2, animationClass: 'n2', placement: 'right' }, // Right dot -> label to the right
+  { text: ['NEW GOAL', '/ PROGRAM'], width: 180, dotIndex: 0, animationClass: 'n4', placement: 'left' },  // Left dot -> label to the left
+  { text: 'SELF TRAINING / TRAINER', width: 160, dotIndex: 1, animationClass: 'n1', placement: 'top' },              // Top dot -> label above
+  { text: 'RINSE AND REPEAT', width: 240, dotIndex: 2, animationClass: 'n2', placement: 'right' }, // Right dot -> label to the right
   { text: 'Drop-off', width: 160, dotIndex: 3, animationClass: 'n3 drop', placement: 'bottom' }        // Bottom dot -> label below
 ]
 
@@ -44,7 +44,7 @@ const ResetLoop = (): JSX.Element => {
   ])
   const [viewBox, setViewBox] = useState<string>('0 0 1200 260')
   const textRefs = useRef<(SVGTextElement | null)[]>([])
-  const [labelWidths, setLabelWidths] = useState<number[]>([220, 160, 240, 160]) // Initial widths
+  const [labelWidths, setLabelWidths] = useState<number[]>([180, 160, 240, 160]) // Initial widths
   const isMobile = useIsMobile(768)
 
   // Measure text widths after rendering
@@ -116,8 +116,8 @@ const ResetLoop = (): JSX.Element => {
       setDotPositions(dots)
 
       // Calculate label positions outside the ellipse, aligned with their corresponding dots
-      const baseLabelHeight = 56
-      const lineHeight = 28 // Height per line of text
+      const baseLabelHeight = isMobile ? 40 : 56 // Smaller height on mobile
+      const lineHeight = isMobile ? 20 : 28 // Height per line of text (smaller on mobile)
       const gap = 20 // Gap between dot and label
       const labels: Point[] = []
       const labelHeights: number[] = []
@@ -140,13 +140,25 @@ const ResetLoop = (): JSX.Element => {
         switch (config.placement) {
           case 'left':
             // Label to the left of dot, vertically centered on dot's y
-            x = dot.x - width - gap
-            y = dot.y - (height / 2)
+            // On mobile, position inside ellipse on the left side, closer to center
+            if (isMobile) {
+              x = dot.x - (width / 2) - 30 // Position inside ellipse, shifted left from center (reduced offset)
+              y = dot.y - (height / 2) // Vertically centered on dot
+            } else {
+              x = dot.x - width - gap
+              y = dot.y - (height / 2)
+            }
             break
           case 'right':
             // Label to the right of dot, vertically centered on dot's y
-            x = dot.x + gap
-            y = dot.y - (height / 2)
+            // On mobile, position inside ellipse on the right side, closer to center
+            if (isMobile) {
+              x = dot.x - (width / 2) + 30 // Position inside ellipse, shifted right from center (reduced offset)
+              y = dot.y - (height / 2) // Vertically centered on dot
+            } else {
+              x = dot.x + gap
+              y = dot.y - (height / 2)
+            }
             break
           case 'top':
             // Label above dot, horizontally centered on dot's x
@@ -183,7 +195,7 @@ const ResetLoop = (): JSX.Element => {
         const width = labelWidths[i] || LABEL_CONFIGS[i].width
         const config = LABEL_CONFIGS[i]
         const isMultiLine = Array.isArray(config.text)
-        const height = isMultiLine ? 84 : 56 // 56 base + 28 for second line
+        const height = isMultiLine ? (isMobile ? 60 : 84) : (isMobile ? 40 : 56) // Smaller height on mobile
         
         // Calculate label bounds
         const labelMinX = label.x
@@ -197,8 +209,9 @@ const ResetLoop = (): JSX.Element => {
         maxY = Math.max(maxY, labelMaxY)
       }
 
-      // Add padding - more on mobile to account for scaling
-      const padding = isMobile ? 80 : 30
+      // Add padding - more on mobile to account for scaling and keep labels within card
+      // Reduce padding to ensure left/right labels are visible
+      const padding = isMobile ? 60 : 30
       minX -= padding
       minY -= padding
       maxX += padding
