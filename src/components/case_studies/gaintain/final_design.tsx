@@ -1,10 +1,15 @@
 import React, { forwardRef, type Ref } from 'react'
 
+import FinalDesignImage from 'images/gaintain/final_design.webp'
+
 import SectionHeading from 'components/section_heading'
 
 const FinalDesign = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
     <div data-aos='fade-up' className='case-study-top-to-bottom gaintain-results-section' ref={ref}>
+      <div className='gaintain-image-container'>
+        <img src={FinalDesignImage} alt='Different types of sets' />
+      </div>
       <div className='case-study-explanation'>
         <SectionHeading title='Results' />
         <div className='gaintain-results-grid' style={{ marginTop: '0.25em' }}>

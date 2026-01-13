@@ -210,6 +210,12 @@
         width: 100%;
         height: auto;
         max-height: none;
+        
+        // Allow implementation image to grow to match text height
+        &.gaintain-implementation-image {
+          aspect-ratio: unset !important;
+          height: 100%;
+        }
       }
     }
   }
@@ -894,6 +900,15 @@
     overflow: visible;
   }
 
+  /* Allow persona labels to overflow in Problem section on desktop */
+  .case-study-top-to-bottom > & {
+    overflow: visible !important; /* Override overflow: hidden for Problem section */
+
+    .persona-cards-container {
+      overflow: visible;
+    }
+  }
+
   @media (max-width: 768px) {
     padding: 0 0.5em 0.5em 0.5em; /* Remove top padding on mobile too */
   }
@@ -908,7 +923,20 @@
     min-height: 0;
   }
 
-  &.gaintain-wireframing,
+  &.gaintain-wireframing {
+    aspect-ratio: 4 / 1 !important;
+    max-height: 400px;
+    max-width: min(100%, 550px);
+
+    @media (max-width: 768px) {
+      max-height: 300px;
+    }
+
+    @media (max-width: 511px) {
+      max-height: 250px;
+    }
+  }
+  
   &.gaintain-implementation-image {
     aspect-ratio: 4 / 1 !important;
     max-height: 400px;
@@ -920,6 +948,30 @@
 
     @media (max-width: 511px) {
       max-height: 250px;
+    }
+    
+    // In design strategy layout, match key takeaways image height
+    .gaintain-design-strategy & {
+      aspect-ratio: unset !important;
+      max-height: 200px !important; // Reduced height
+      height: auto !important;
+      padding: 0 !important; // Remove all padding so image fills space
+      background: transparent !important; // Remove background
+      border: none !important; // Remove border
+      box-shadow: none !important; // Remove shadow
+      backdrop-filter: none !important; // Remove backdrop filter
+      
+      @media (width >= $case-study-breakpoint) {
+        max-height: 250px !important; // Reduced height on desktop
+      }
+      
+      > img {
+        border-radius: 0.75em; // Match card border radius
+        object-fit: cover; // Fill the container
+        object-position: bottom; // Focus from bottom instead of center
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 
@@ -1261,6 +1313,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: visible; /* Allow labels to be visible outside container */
 }
 
 .accountability-gap-row {
@@ -1282,7 +1335,7 @@
   flex-direction: row;
   gap: 2em;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   position: relative;
 
@@ -1290,13 +1343,70 @@
     gap: 1em;
   }
 
+  /* Inline images layout for Problem section */
+  &.persona-row-images-inline {
+    align-items: flex-end; /* Align to bottom so titles line up */
+    justify-content: space-evenly;
+    gap: 0; /* Remove gap since space-evenly handles spacing */
+
+    @media (max-width: 768px) {
+      gap: 0;
+    }
+
+    .persona-card {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end; /* Push content to bottom so titles align */
+    }
+
+    .persona-arrow {
+      flex-shrink: 0;
+      width: 60px;
+      height: 30px;
+      align-self: flex-start;
+      margin-top: 60px; /* Position at image level */
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 20px;
+        margin-top: 30px; /* Position at image level on mobile */
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+      }
+    }
+
+    .program-to-nomad-arrow {
+      align-self: center; /* Center arrow vertically between images */
+      flex-shrink: 0;
+      margin-top: 60px; /* Position arrow at image level */
+
+      @media (max-width: 768px) {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  /* Reduce gap in Problem section */
+  .case-study-top-to-bottom & {
+    justify-content: space-evenly;
+    gap: 0; /* Remove gap since space-evenly handles spacing */
+    overflow: visible; /* Allow labels to overflow */
+    padding-top: 0; /* Remove padding since labels are below now */
+
+    @media (max-width: 768px) {
+      gap: 0;
+    }
+  }
+
   @media (max-width: 768px) and (orientation: portrait) {
-    gap: 2em; /* More spacing in portrait mode */
+    gap: 0; /* Remove gap since space-evenly handles spacing */
   }
 
   @media (max-width: 768px) and (orientation: landscape) {
-    gap: 0.5em; /* Less spacing in landscape mode */
-    justify-content: space-between; /* Push cards to edges */
+    gap: 0; /* Remove gap since space-evenly handles spacing */
+    justify-content: space-evenly; /* Even spacing instead of space-between */
   }
 }
 
@@ -1345,6 +1455,17 @@
     width: 300px;
     height: 300px;
   }
+
+  /* Scale down arrow in Problem section */
+  .case-study-top-to-bottom & {
+    width: 320px;
+    height: 320px;
+
+    @media (max-width: 768px) {
+      width: 240px;
+      height: 240px;
+    }
+  }
 }
 
 .hybrid-to-nomad-arrow {
@@ -1360,6 +1481,17 @@
     width: 300px;
     height: 300px;
   }
+
+  /* Scale down arrow in Problem section */
+  .case-study-top-to-bottom & {
+    width: 320px;
+    height: 320px;
+
+    @media (max-width: 768px) {
+      width: 240px;
+      height: 240px;
+    }
+  }
 }
 
 .accountability-gap-row {
@@ -1367,7 +1499,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  flex-shrink: 0;
   gap: 0.5em;
 }
 
@@ -1405,6 +1537,17 @@
     max-width: 180px;
     padding: 0 0.5em;
   }
+
+  /* Scale down subtitle in Problem section */
+  .case-study-top-to-bottom & {
+    font-size: 10px;
+    max-width: 250px;
+
+    @media (max-width: 768px) {
+      font-size: 9px;
+      max-width: 160px;
+    }
+  }
 }
 
 .dark .accountability-gap-subtitle {
@@ -1427,6 +1570,15 @@
     gap: 0.375em;
   }
 
+  /* Scale down cards in Problem section (top-to-bottom layout) */
+  .case-study-top-to-bottom & {
+    max-width: 160px;
+
+    @media (max-width: 768px) {
+      max-width: 110px;
+    }
+  }
+
   @media (max-width: 768px) and (orientation: landscape) {
     max-width: none; /* Remove max-width constraint to allow expansion */
     flex: 1; /* Allow cards to grow and fill space */
@@ -1438,19 +1590,39 @@
       max-width: none; /* Allow Program and Nomad to expand to edges */
       flex: 1;
     }
-    gap: 0;
+    gap: 0.5em; /* Small gap between image and label */
 
     @media (max-width: 768px) {
-      gap: 0;
+      gap: 0.375em;
     }
 
-    .persona-image-container {
-      margin-top: -1em; /* Increased negative margin to move image closer to label */
+    /* For inline images layout in Problem section */
+    .persona-row-images-inline & {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
 
-      @media (max-width: 768px) {
-        margin-top: -0.75em;
+      .persona-image-container {
+        margin-top: 0;
+      }
+
+      .persona-text-card {
+        position: static;
+        transform: none;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        white-space: normal;
       }
     }
+  }
+
+  /* Dark mode support for labels outside image */
+  .dark .case-study-top-to-bottom .image-below-card .persona-text-card {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   &.hybrid-card {
@@ -1466,6 +1638,15 @@
       flex: 0 0 auto; /* Don't allow hybrid to grow, keep it centered */
     }
 
+    /* Scale down hybrid card in Problem section */
+    .case-study-top-to-bottom & {
+      max-width: 120px;
+
+      @media (max-width: 768px) {
+        max-width: 90px;
+      }
+    }
+
     .persona-image-container {
       width: 120px;
       height: 120px;
@@ -1473,6 +1654,17 @@
       @media (max-width: 768px) {
         width: 60px;
         height: 60px;
+      }
+
+      /* Scale down hybrid image in Problem section - use same size as other cards */
+      .case-study-top-to-bottom & {
+        width: 120px;
+        height: 120px;
+
+        @media (max-width: 768px) {
+          width: 60px;
+          height: 60px;
+        }
       }
 
       /* Scale down hybrid image in key insight graphic column */
@@ -1510,6 +1702,12 @@
   justify-content: center;
   flex-shrink: 0;
 
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
   @media (max-width: 768px) {
     width: 80px;
     height: 80px;
@@ -1525,6 +1723,17 @@
         width: 100px;
         height: 100px;
       }
+    }
+  }
+
+  /* Scale down images in Problem section (top-to-bottom layout) */
+  .case-study-top-to-bottom & {
+    width: 120px;
+    height: 120px;
+
+    @media (max-width: 768px) {
+      width: 70px;
+      height: 70px;
     }
   }
 
@@ -1562,6 +1771,15 @@
   @media (max-width: 768px) {
     font-size: 11px;
   }
+
+  /* Scale down title in Problem section */
+  .case-study-top-to-bottom & {
+    font-size: 12px;
+
+    @media (max-width: 768px) {
+      font-size: 10px;
+    }
+  }
 }
 
 .dark .persona-title {
@@ -1578,6 +1796,15 @@
 
   @media (max-width: 768px) {
     font-size: 10px;
+  }
+
+  /* Scale down subtitle in Problem section */
+  .case-study-top-to-bottom & {
+    font-size: 10px;
+
+    @media (max-width: 768px) {
+      font-size: 9px;
+    }
   }
 }
 
@@ -2002,13 +2229,65 @@
     order: 2;
   }
 
+  /* Reduce gap when following Problem section */
+  &.gaintain-key-insight-close {
+    margin-top: -2em;
+
+    @media (width >= $case-study-breakpoint) {
+      margin-top: -3em;
+    }
+  }
+
   > img {
     order: 1;
   }
 
+  .system-diagram-container {
+    order: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    box-sizing: border-box;
+    min-height: 0;
+    flex: 1;
+
+    @media (width >= $case-study-breakpoint) {
+      padding: 2em;
+      height: 100% !important;
+      min-height: 100%;
+      align-items: stretch;
+    }
+  }
+
+  .system-diagram {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+
+    @media (width >= $case-study-breakpoint) {
+      height: 100% !important;
+      width: 100% !important;
+      flex: 1;
+      min-height: 0;
+      display: block;
+    }
+  }
+
   @media (width >= $case-study-breakpoint) {
+    align-items: stretch !important; /* Make grid items stretch to match height */
+    display: grid !important; /* Ensure grid layout */
+    grid-template-columns: 1fr 1fr !important;
+    
     > .case-study-explanation {
       order: unset;
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Ensure it takes full height */
     }
 
     > img {
@@ -2016,10 +2295,50 @@
     }
 
     > .gaintain-image-container {
-      height: 100%; /* Match text column height */
+      height: 100% !important; /* Match text column height */
       display: flex;
-      align-items: center;
+      align-items: stretch; /* Stretch to fill height */
       justify-content: center;
+      min-height: 0;
+      
+      /* Ensure graph fills height in Key Insight section */
+      .design-strategy-graphic-container {
+        height: 100% !important;
+        min-height: 100%;
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+      }
+      
+      .design-strategy-graphic {
+        height: 100% !important;
+        width: 100% !important;
+        flex: 1;
+        min-height: 0;
+        display: block; /* Ensure SVG displays as block element */
+        object-fit: contain; /* Scale to fit within container */
+      }
+
+      .system-diagram-container {
+        height: 100% !important;
+        min-height: 100%;
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+      }
+
+      .system-diagram {
+        height: 100% !important;
+        width: 100% !important;
+        flex: 1;
+        min-height: 0;
+        display: block;
+        object-fit: contain;
+      }
     }
   }
 }
@@ -2079,6 +2398,7 @@
   padding: 0; // Remove all padding like key insights
   margin: 0; // Remove any margin
   min-height: 0; // Allow flex shrinking
+  flex: 1; // Take up available space
   
   @media (max-width: 768px) {
     align-items: stretch; // Ensure it fills the full height on mobile
@@ -2091,11 +2411,14 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain; // Ensure it fits within container
+  flex: 1; // Take up available space
+  min-height: 0; // Allow flex shrinking
   
-  // On desktop, fill width
+  // On desktop, fill width and height
   @media (width >= 768px) {
     width: 100%;
     height: 100%;
+    flex: 1;
   }
   
   // On mobile, fill height

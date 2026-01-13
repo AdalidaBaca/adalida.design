@@ -32,21 +32,21 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
     <div data-aos='fade-up' className='case-study-side-by-side gaintain-solution' ref={ref}>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
-          <SectionHeading title='Solution' />
-          <div className='body-2'>
-            I paired <strong>AI-guided workouts</strong> with <strong>designed accountability</strong> to support follow-through.
-          </div>
-          <ul className='body-2' style={{ margin: '0.5em 0', paddingLeft: '1em' }}>
-            <li style={{ marginBottom: '0.75em' }}>AI workouts → handle planning and personalization</li>
-            <li style={{ marginBottom: '0.75em' }}>Pledges → create commitment similar to paying for a coach</li>
-            <li style={{ marginBottom: '0.75em' }}>Calendar and timeline → gamify consistency through visible progress</li>
-          </ul>
-          <div className='body-2'>
-            Together, these systems allow the AI coach to support <strong>showing up</strong>, not just generating workouts.
-          </div>
+                      <SectionHeading title='Solution' />
+                      <div className='body-2'>
+                        I paired <strong>AI-guided workouts</strong> with <strong>designed accountability</strong> to support follow-through.
+                      </div>
+                      <ul className='body-2' style={{ margin: '0.5em 0', paddingLeft: '1em' }}>
+                        <li style={{ marginBottom: '0.75em' }}>AI workouts handle planning and personalization</li>
+                        <li style={{ marginBottom: '0.75em' }}><strong>Pledges</strong> apply <strong>loss aversion</strong> to create commitment</li>
+                        <li style={{ marginBottom: '0.75em' }}>Calendar feedback makes progress visible over time</li>
+                      </ul>
+                      <div className='body-2'>
+                        Together, this <strong>reduces drop-off</strong> across training styles by designing for showing up, not restarting.
+                      </div>
         </div>
       </div>
-      <div className='gaintain-internal-testing-image-container'>
+      <div className='gaintain-image-container'>
         <img ref={imageRef} className='gaintain-internal-testing-image' src={TestingImage} alt='Comparing two versions' />
       </div>
     </div>

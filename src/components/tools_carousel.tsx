@@ -37,7 +37,13 @@ const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   )
 }
 
-const ToolsCarousel = (): JSX.Element => {
+interface ToolsCarouselProps {
+  badgeText?: string
+  fullBleed?: boolean
+  ariaLabel?: string
+}
+
+const ToolsCarousel = ({ badgeText = 'Toolkit', fullBleed = true, ariaLabel = 'Tools I use' }: ToolsCarouselProps = {}): JSX.Element => {
   const data = useStaticQuery(graphql`
     query ShipsWithLogos {
       allFile(
@@ -88,9 +94,9 @@ const ToolsCarousel = (): JSX.Element => {
   }, [])
 
   return (
-    <section className='tools-carousel full-bleed' data-aos='fade-up' ref={containerRef} aria-label='Tools I use'>
+    <section className={`tools-carousel ${fullBleed ? 'full-bleed' : ''}`} data-aos='fade-up' ref={containerRef} aria-label={ariaLabel}>
       <div className='inner'>
-        <div className='tools-ship-badge subtitle-2'>Toolkit</div>
+        <div className='tools-ship-badge subtitle-2'>{badgeText}</div>
       </div>
       <div className='marquee lane-1'>
         {marqueeTools.map((t, i) => (<ToolLogo key={`lane1-${t.label}-${i}`} {...t} />))}

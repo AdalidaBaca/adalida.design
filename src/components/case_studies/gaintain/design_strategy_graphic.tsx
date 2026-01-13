@@ -6,13 +6,11 @@ import useIsMobile from 'hooks/use_is_mobile'
 const DesignStrategyGraphic = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
   const isMobile = useIsMobile(768)
-  // Graph dimensions - responsive
-  const graphWidth = isMobile ? 400 : 600
-  // On mobile, use fixed height that fits content; on desktop, use fixed height to match problem graphic (3.2:1 aspect ratio)
-  // For 600px width, container height = 600 / 3.2 = 187.5px
-  // Reduce padding on desktop to fit better in the constrained height
-  const graphHeight = isMobile ? 260 : 187
-  const padding = isMobile ? 50 : 40 // Reduced padding on desktop to fit 3.2:1 aspect ratio
+  // Graph dimensions - responsive, adjusted width and height
+  const graphWidth = isMobile ? 280 : 350 // Reduced width
+  // Further reduced height to fit container better
+  const graphHeight = isMobile ? 320 : 300 // Reduced desktop height significantly
+  const padding = isMobile ? 50 : 50 // Reduced padding on desktop
   const chartWidth = graphWidth - (padding * 2)
   const chartHeight = graphHeight - (padding * 2)
   
@@ -21,22 +19,34 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const weakLabelY = padding + chartHeight + (isMobile ? 12 : 15) // Aligned with Low label
   const yAxisTitleY = (strongLabelY + (padding + chartHeight + (isMobile ? 12 : 15))) / 2 // Center between Strong and Weak
   
-  // Data points
+  // Data points - moved down on y-axis
   // AI Fitness apps: some drop-off prevention (middle-low y) and low cost (left x)
   const aiFitnessX = padding + (chartWidth * 0.15)
-  const aiFitnessY = padding + (chartHeight * 0.7)
-  
-  // Gaintain: strong (high y) and middle cost (middle x)
-  const gaintainX = padding + (chartWidth * 0.5)
-  const gaintainY = padding + (chartHeight * 0.2)
-  
+  const aiFitnessY = padding + (chartHeight * 0.85) // Moved down
+
+  // Gaintain: slightly higher x than AI Fitness Apps, moved down on y-axis
+  const gaintainX = padding + (chartWidth * 0.25) // Slightly higher x (move right)
+  const gaintainY = padding + (chartHeight * 0.5) // Moved down
+
   // Human: strong (high y) and costly (right x)
   const humanX = padding + (chartWidth * 0.85)
-  const humanY = padding + (chartHeight * 0.15)
+  const humanY = padding + (chartHeight * 0.4) // Moved down
+  
+  // Control points for smooth curved line from AI Fitness Apps to GainTain
+  // Create a smooth downward curve
+  const cp1x = aiFitnessX + (gaintainX - aiFitnessX) * 0.5
+  const cp1y = aiFitnessY - (aiFitnessY - gaintainY) * 0.2 // Smooth curve downward
+  const cp2x = gaintainX - (gaintainX - aiFitnessX) * 0.3
+  const cp2y = gaintainY + (aiFitnessY - gaintainY) * 0.1 // Curve through GainTain
+  // Second segment: GainTain to Human Coach (not highlighted)
+  const cp3x = gaintainX + (humanX - gaintainX) * 0.2
+  const cp3y = gaintainY - (gaintainY - humanY) * 0.2
+  const cp4x = humanX - (humanX - gaintainX) * 0.5
+  const cp4y = humanY + (gaintainY - humanY) * 0.3
   
   return (
-    <div className='design-strategy-graphic-container'>
-      <svg className='design-strategy-graphic' viewBox={`0 0 ${graphWidth} ${graphHeight}`} preserveAspectRatio='xMidYMid meet' style={{ width: '100%', height: 'auto' }}>
+                <div className='design-strategy-graphic-container'>
+                  <svg className='design-strategy-graphic' viewBox={`0 0 ${graphWidth} ${graphHeight}`} preserveAspectRatio='xMidYMid meet' style={{ width: '100%', height: '100%' }}>
         <defs>
           <linearGradient id='gaintain-gradient-design-strategy' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
             <stop offset='0%' stopColor='#E65C00' />
@@ -133,21 +143,29 @@ const DesignStrategyGraphic = (): JSX.Element => {
           High
         </text>
         
-        {/* Curve from AI Fitness apps through Gaintain to Human - smooth curved line through all points */}
-        {/* Use cubic bezier with smooth control points for natural curve */}
-        {/* Control points create smooth upward curve: AI Fitness (weak, low) -> Gaintain (strong, middle) -> Human (strong, high) */}
+        {/* Full curve from AI Fitness Apps through GainTain to Human Coach - shadow/outline */}
         <path
-          d={`M ${aiFitnessX} ${aiFitnessY} C ${aiFitnessX + (gaintainX - aiFitnessX) * 0.5} ${aiFitnessY - (aiFitnessY - gaintainY) * 0.3} ${gaintainX - (gaintainX - aiFitnessX) * 0.2} ${gaintainY - (gaintainY - humanY) * 0.2} ${gaintainX} ${gaintainY} C ${gaintainX + (humanX - gaintainX) * 0.2} ${gaintainY - (gaintainY - humanY) * 0.2} ${humanX - (humanX - gaintainX) * 0.5} ${humanY + (gaintainY - humanY) * 0.3} ${humanX} ${humanY}`}
+          d={`M ${aiFitnessX} ${aiFitnessY} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${gaintainX} ${gaintainY} C ${cp3x} ${cp3y} ${cp4x} ${cp4y} ${humanX} ${humanY}`}
           fill='none'
           stroke={darkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)'}
           strokeWidth={isMobile ? '2.5' : '3'}
           strokeLinecap='round'
           strokeLinejoin='round'
         />
+        {/* Highlighted segment: AI Fitness Apps to GainTain only */}
         <path
-          d={`M ${aiFitnessX} ${aiFitnessY} C ${aiFitnessX + (gaintainX - aiFitnessX) * 0.5} ${aiFitnessY - (aiFitnessY - gaintainY) * 0.3} ${gaintainX - (gaintainX - aiFitnessX) * 0.2} ${gaintainY - (gaintainY - humanY) * 0.2} ${gaintainX} ${gaintainY} C ${gaintainX + (humanX - gaintainX) * 0.2} ${gaintainY - (gaintainY - humanY) * 0.2} ${humanX - (humanX - gaintainX) * 0.5} ${humanY + (gaintainY - humanY) * 0.3} ${humanX} ${humanY}`}
+          d={`M ${aiFitnessX} ${aiFitnessY} C ${cp1x} ${cp1y} ${cp2x} ${cp2y} ${gaintainX} ${gaintainY}`}
           fill='none'
           stroke='url(#gaintain-gradient-design-strategy)'
+          strokeWidth={isMobile ? '2' : '2.5'}
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+        {/* Unhighlighted segment: GainTain to Human Coach */}
+        <path
+          d={`M ${gaintainX} ${gaintainY} C ${cp3x} ${cp3y} ${cp4x} ${cp4y} ${humanX} ${humanY}`}
+          fill='none'
+          stroke={darkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.12)'}
           strokeWidth={isMobile ? '2' : '2.5'}
           strokeLinecap='round'
           strokeLinejoin='round'
@@ -172,14 +190,14 @@ const DesignStrategyGraphic = (): JSX.Element => {
           strokeWidth={isMobile ? '0.5' : '1'}
         />
         <text
-          x={aiFitnessX}
-          y={aiFitnessY - (isMobile ? 25 : 30)}
-          textAnchor='middle'
+          x={aiFitnessX + (isMobile ? 12 : 15)}
+          y={aiFitnessY - (isMobile ? 35 : 40)}
+          textAnchor='start'
           dominantBaseline='middle'
           className='design-strategy-point-label'
         >
-          <tspan x={aiFitnessX} dy='0'>AI Fitness</tspan>
-          <tspan x={aiFitnessX} dy='1.2em'>Apps</tspan>
+          <tspan x={aiFitnessX + (isMobile ? 12 : 15)} dy='0'>AI Fitness</tspan>
+          <tspan x={aiFitnessX + (isMobile ? 12 : 15)} dy='1.2em'>Apps</tspan>
         </text>
         
         {/* Gaintain point */}
@@ -210,15 +228,15 @@ const DesignStrategyGraphic = (): JSX.Element => {
           GainTain
         </text>
         
-        {/* Human point */}
+        {/* Human Coach point - same styling as other points but inactive (grey fill) */}
         <circle
           cx={humanX}
           cy={humanY}
           r={isMobile ? '5' : '7'}
-          fill='url(#gaintain-gradient-design-strategy)'
+          fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)'}
           stroke='white'
           strokeWidth={isMobile ? '2' : '2.5'}
-          opacity='0.95'
+          opacity='1'
         />
         <circle
           cx={humanX}
@@ -234,9 +252,11 @@ const DesignStrategyGraphic = (): JSX.Element => {
           textAnchor='middle'
           dominantBaseline='middle'
           className='design-strategy-point-label'
+          fill={darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)'}
         >
           Human Coach
         </text>
+        
       </svg>
     </div>
   )

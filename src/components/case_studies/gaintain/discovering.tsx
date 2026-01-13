@@ -1,10 +1,10 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import DiscoveringImage from 'images/gaintain/discovering.webp'
-
 import SectionHeading from 'components/section_heading'
-import ResetLoop from './reset_loop'
+import ToolsCarousel from 'components/tools_carousel'
 import TriangleInsight from './triangle_insight'
+import SystemDiagram from './system_diagram'
+import DesignStrategyGraphic from './design_strategy_graphic'
 
 interface Props {
   keyInsightRef?: Ref<HTMLDivElement>
@@ -17,37 +17,38 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
     <>
       <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
         <div className='gaintain-image-container'>
-          <ResetLoop />
+          <TriangleInsight />
         </div>
         <div className='case-study-explanation'>
           <div className='gaintain-details-card'>
             <SectionHeading title='Problem' />
             <div className='body-2'>
-              An estimated <strong>80 million gym-goers lose momentum</strong> when structured workout programs end, driving churn across fitness apps.
+              An estimated <strong>80 million gym-goers</strong> <strong>lose momentum</strong> when structured workout programs end.
             </div>
             <div className='body-2'>
-              While <strong>AI fitness apps personalize workouts well</strong>, personalization alone <strong>does not prevent drop-off</strong> once motivation fades.
+              Most fitness products are designed around <strong>plans and programs</strong>, but break down once <strong>motivation dips</strong>, driving long-term <strong>churn</strong>.
             </div>
           </div>
         </div>
       </div>
-      <div data-aos='fade-up' data-aos-offset='150' className='case-study-side-by-side gaintain-key-insight' ref={keyInsightRef}>
+      <ToolsCarousel badgeText='Competitors' fullBleed={false} ariaLabel='Competitors' />
+      <div data-aos='fade-up' data-aos-offset='150' className='case-study-side-by-side gaintain-key-insight gaintain-key-insight-close' ref={keyInsightRef}>
         <div className='case-study-explanation'>
           <div className='gaintain-details-card'>
             <SectionHeading title='Key Insight' />
             <div className='body-2'>
-              <strong>Planning is over-designed, while follow-through is under-designed</strong>.
+              Planning is <strong>over-designed</strong>, while follow-through is <strong>under-designed</strong>.
             </div>
             <div className='body-2'>
-              I saw this repeatedly after reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active lifters.
+              After reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active lifters, the same breakdown appeared repeatedly.
             </div>
             <div className='body-2'>
-              <strong>Different training styles still fail at the same point:</strong> without accountability and visible feedback, consistency breaks down.
+              Without <strong>accountability</strong> and <strong>visible progress</strong>, consistency breaks down.
             </div>
           </div>
         </div>
         <div className='gaintain-image-container'>
-          <TriangleInsight />
+          <DesignStrategyGraphic />
         </div>
       </div>
     </>

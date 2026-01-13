@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 
-import FinalDesignImage from 'images/gaintain/final_design.webp'
 import useIsMobile from 'hooks/use_is_mobile'
 import { Projects } from 'projects'
 
@@ -28,10 +27,10 @@ const Gaintain = (): JSX.Element => {
     'Key Insight': useRef(null),
     'Design Strategy': useRef(null),
     Solution: useRef(null),
+    Implementation: useRef(null),
     'Workout Dashboard': useRef(null),
     'Pledge Setup': useRef(null),
     'Social Timeline': useRef(null),
-    Implementation: useRef(null),
     Results: useRef(null),
     'Key Takeaways': useRef(null)
   }
@@ -44,15 +43,10 @@ const Gaintain = (): JSX.Element => {
         <Discovering ref={sections.Problem} keyInsightRef={sections['Key Insight']} />
         <Wireframing ref={sections['Design Strategy']} />
         <Testing ref={sections.Solution} />
-        <WorkoutLanding ref={sections['Workout Dashboard']} />
         <InteractiveLibrary ref={sections['Pledge Setup']} />
+        <WorkoutLanding ref={sections['Workout Dashboard']} />
         <Developer ref={sections['Social Timeline']} />
         <Iterations ref={sections.Implementation} />
-        <div data-aos='fade-up' className='gaintain-hero-2'>
-          <div className='gaintain-image-container'>
-            <img src={FinalDesignImage} alt='Different types of sets' />
-          </div>
-        </div>
         <FinalDesign ref={sections.Results} />
         <KeyTakeaways ref={sections['Key Takeaways']} />
         <EndCTA />

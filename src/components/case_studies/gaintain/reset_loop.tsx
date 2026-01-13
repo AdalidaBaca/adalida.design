@@ -19,8 +19,7 @@ interface LabelConfig {
 const LABEL_CONFIGS: LabelConfig[] = [
   { text: ['NEW GOAL', '/ PROGRAM'], width: 180, dotIndex: 0, animationClass: 'n4', placement: 'left' },  // Left dot -> label to the left
   { text: 'SELF TRAINING / TRAINER', width: 160, dotIndex: 1, animationClass: 'n1', placement: 'top' },              // Top dot -> label above
-  { text: 'RINSE AND REPEAT', width: 240, dotIndex: 2, animationClass: 'n2', placement: 'right' }, // Right dot -> label to the right
-  { text: 'Drop-off', width: 160, dotIndex: 3, animationClass: 'n3 drop', placement: 'bottom' }        // Bottom dot -> label below
+  { text: 'RINSE AND REPEAT', width: 240, dotIndex: 2, animationClass: 'n2', placement: 'right' } // Right dot -> label to the right
 ]
 
 const ResetLoop = (): JSX.Element => {
@@ -32,19 +31,17 @@ const ResetLoop = (): JSX.Element => {
   const [dotPositions, setDotPositions] = useState<Point[]>([
     { x: 120, y: 130 },  // Left (0%)
     { x: 600, y: 50 },   // Top (25%)
-    { x: 1080, y: 130 }, // Right (50%)
-    { x: 600, y: 210 }   // Bottom (75%)
+    { x: 1080, y: 130 }  // Right (50%)
   ])
   // Initial label positions: outside ellipse, aligned with dots
   const [labelPositions, setLabelPositions] = useState<Point[]>([
     { x: -100, y: 105 },   // New goal or program - to the left of left dot
     { x: 520, y: -10 },    // Planning - above top dot
-    { x: 1120, y: 105 },   // Life gets in the way - to the right of right dot
-    { x: 520, y: 230 }     // Drop-off - below bottom dot
+    { x: 1120, y: 105 }    // Life gets in the way - to the right of right dot
   ])
   const [viewBox, setViewBox] = useState<string>('0 0 1200 260')
   const textRefs = useRef<(SVGTextElement | null)[]>([])
-  const [labelWidths, setLabelWidths] = useState<number[]>([180, 160, 240, 160]) // Initial widths
+  const [labelWidths, setLabelWidths] = useState<number[]>([180, 160, 240]) // Initial widths
   const isMobile = useIsMobile(768)
 
   // Measure text widths after rendering
@@ -103,13 +100,14 @@ const ResetLoop = (): JSX.Element => {
 
       setPathLength(totalLength)
 
-      const numDots = 4
-      const segmentLength = totalLength / numDots
+      const numDots = 3
+      const segmentLength = totalLength / 4 // Still divide by 4 to get quarter positions
+      const dotIndices = [0, 1, 2] // Left, Top, Right
 
-      // Calculate dot positions at each quarter
+      // Calculate dot positions
       const dots: Point[] = []
-      for (let i = 0; i < numDots; i++) {
-        const distance = i * segmentLength
+      for (const i of dotIndices) {
+        const distance = i * (totalLength / 4)
         const point = path.getPointAtLength(distance)
         dots.push({ x: point.x, y: point.y })
       }
@@ -272,7 +270,7 @@ const ResetLoop = (): JSX.Element => {
       style={{ 
         '--path-length': `${pathLength}px`,
         '--initial-fill': `${pathLength * 0.25}px`,  // First 25% already filled (0% to 25%)
-        '--final-fill': `${pathLength * 0.75}px`      // End: filled from 0% to 75% (Planning to Drop-off)
+        '--final-fill': `${pathLength * 0.5}px`      // End: filled from 0% to 50% (Planning to Rinse and Repeat)
       } as React.CSSProperties}
     >
       <svg viewBox={viewBox} role='img'>
@@ -333,8 +331,6 @@ const ResetLoop = (): JSX.Element => {
           // Center text vertically in the card
           // Using dominantBaseline='middle', so y should be at the vertical center
           const textStartY = rectHeight / 2
-          // Only Drop-off (n3) gets gradient fill
-          const hasGradient = config.animationClass.includes('n3')
           // Labels that get gradient border when ellipse passes: n1, n2, n4
           const hasGradientBorder = config.animationClass.includes('n1') || config.animationClass.includes('n2') || config.animationClass.includes('n4')
           return (
@@ -359,23 +355,13 @@ const ResetLoop = (): JSX.Element => {
                     className={`node-border-gradient ${config.animationClass}`}
                   />
                 )}
-                {/* Gradient fill rect (animated) - only for Drop-off */}
-                {hasGradient && (
-                  <rect 
-                    rx='14' ry='14' 
-                    width={width} 
-                    height={rectHeight} 
-                    fill='url(#gaintain-gradient-label)'
-                    className={`node-gradient ${config.animationClass}`}
-                  />
-                )}
                 <text 
                   ref={(el) => { textRefs.current[index] = el }}
                   x={textX} 
                   y={textStartY}
                   textAnchor='middle'
                   dominantBaseline='middle'
-                  className={`node-text ${hasGradient ? 'node-text-gradient' : ''}`}
+                  className='node-text'
                 >
                   {Array.isArray(config.text) ? (
                     config.text.map((line, lineIndex) => (

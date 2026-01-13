@@ -135,6 +135,7 @@
   @media (width >= $case-study-breakpoint) {
     gap: 1.5em;
     min-width: 375px;
+    width: 100%; // Fill available width
   }
 
   > section {
@@ -194,6 +195,42 @@
     width: 100%;
     max-width: 100%;
     aspect-ratio: 3.2 / 1;
+  }
+
+  /* Reduce gap when followed by ToolsCarousel (Competitors) */
+  + .tools-carousel {
+    margin-top: -2.5em;
+
+    @media (width >= $case-study-breakpoint) {
+      margin-top: -5em;
+    }
+  }
+
+  /* Reduce bottom padding when followed by ToolsCarousel */
+  &:has(+ .tools-carousel) {
+    padding-bottom: 1em;
+
+    @media (width >= $case-study-breakpoint) {
+      padding-bottom: 2em;
+    }
+  }
+
+  /* Reduce bottom padding when followed by Key Insight */
+  &:has(+ .gaintain-key-insight-close) {
+    padding-bottom: 1em;
+
+    @media (width >= $case-study-breakpoint) {
+      padding-bottom: 2em;
+    }
+  }
+
+  /* Allow persona labels to overflow in Problem section */
+  > .gaintain-image-container {
+    overflow: visible;
+
+    .persona-cards-container {
+      overflow: visible;
+    }
   }
 }
 

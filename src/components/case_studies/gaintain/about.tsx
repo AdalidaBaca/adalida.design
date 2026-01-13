@@ -31,13 +31,16 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
           <div data-aos='fade-up' data-aos-offset='150' className='gaintain-details-card'>
             <h6 className='gaintain-details-label'>Overview</h6>
             <p className='gaintain-details-text'>
-              GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs <strong>workout personalization with designed accountability</strong>.
+              GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs <strong>workout personalization with designed accountability</strong> to <strong>reduce drop-off</strong>.
             </p>
           </div>
           <div data-aos='fade-up' data-aos-offset='150' data-aos-delay='100' className='gaintain-details-card'>
             <h6 className='gaintain-details-label'>Role</h6>
             <p className='gaintain-details-text'>
-              <strong>CEO and Product Designer</strong>. I led <strong>product strategy, UX design, and front-end interaction design</strong>, working closely with an engineering co-founder on <strong>data models and iOS architecture</strong>.
+              <strong>CEO & Product Designer</strong>
+            </p>
+            <p className='gaintain-details-text'>
+              I led <strong>product strategy, UX, and front-end interaction design</strong>, working closely with my engineering co-founder on <strong>data models and iOS architecture</strong>.
             </p>
           </div>
         </div>
@@ -49,7 +52,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             </div>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Timeline</h6>
-              <p className='gaintain-details-text'><strong>9 weeks to launch</strong></p>
+              <p className='gaintain-details-text'><strong>8 months total</strong><br />9 weeks to ship the initial MVP</p>
             </div>
             <div className='gaintain-details-meta-item'>
               <h6 className='gaintain-details-label'>Platform</h6>

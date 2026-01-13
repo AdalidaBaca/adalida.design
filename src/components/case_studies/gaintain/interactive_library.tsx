@@ -37,13 +37,13 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
         <div className='gaintain-details-card'>
           <SectionHeading title='Pledge Setup' />
           <div className='body-2'>
-            The pledge flow turns <strong>motivation into commitment</strong>.
+            The pledge flow turns intention into <strong>commitment</strong>.
           </div>
           <div className='body-2'>
-            Users set how often they plan to train, choose the stakes, and confirm where accountability goes.
+            Users set how often they plan to train, define the <strong>stakes</strong>, and choose where accountability goes.
           </div>
           <div className='body-2'>
-            This anchors consistency in a way that mirrors <strong>paying for a human coach</strong>.
+            By putting money on the line, the product mirrors the <strong>external pressure</strong> of a human coach without requiring one.
           </div>
         </div>
       </div>

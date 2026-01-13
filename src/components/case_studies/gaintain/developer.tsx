@@ -40,10 +40,10 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
             The timeline reinforces consistency through <strong>visibility</strong>.
           </div>
           <div className='body-2'>
-            Workout check-ins and pledge progress appear as simple, repeatable signals of effort.
+            Workout check-ins and pledge progress appear as simple signals of effort over time.
           </div>
           <div className='body-2'>
-            This creates <strong>social accountability</strong> without forcing social behavior.
+            This adds <strong>social accountability</strong> without requiring users to compete or post performatively.
           </div>
         </div>
       </div>
