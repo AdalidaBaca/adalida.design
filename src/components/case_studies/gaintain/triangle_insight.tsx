@@ -19,10 +19,10 @@ const PersonaCard = ({ image, title, subtitle, imageBelow = false, className }: 
 
   return (
     <div className={classNames}>
-      <div className='persona-image-container'>
-        <img src={image} alt={title} />
-      </div>
       <div className='persona-text-card'>
+        <div className='persona-image-container'>
+          <img src={image} alt={title} />
+        </div>
         <div className='persona-title'>{title}</div>
         <div className='persona-subtitle'>{subtitle}</div>
       </div>
@@ -33,83 +33,33 @@ const PersonaCard = ({ image, title, subtitle, imageBelow = false, className }: 
 const TriangleInsight = (): JSX.Element => {
   return (
     <div className='persona-cards-container'>
+      <div className='persona-row persona-row-top'>
+        <div className='persona-card image-below-card drop-off-card'>
+          <div className='persona-text-card'>
+            <div className='persona-image-container drop-off-image-container'>
+              <span className='drop-off-x'>x</span>
+            </div>
+            <div className='drop-off-text-container'>
+              <div className='persona-title'>DROP OFF</div>
+              <div className='persona-subtitle'>Life friction break point</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='persona-brace-container'>
+        <svg className='brace-svg-horizontal' viewBox='0 -30 1000 30' preserveAspectRatio='none'>
+          <path
+            className='brace-path-horizontal'
+            d='M 0 0 C 0 -10, 15 -10, 15 0 h 470 C 500 0, 500 -25, 500 -25 S 500 0, 515 0 h 470 C 1000 0, 1000 -10, 1000 0'
+            stroke='#DC2626'
+            strokeWidth='8'
+            fill='none'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </svg>
+      </div>
       <div className='persona-row persona-row-images-inline'>
-        <PersonaCard
-          image={NomadImage}
-          title='PROGRAM'
-          subtitle='Predefined Plans / Trainer'
-          imageBelow={false}
-          className='image-below-card'
-        />
-        <svg className='persona-arrow' viewBox='0 0 100 50' preserveAspectRatio='xMidYMid meet'>
-          <defs>
-            <linearGradient id='gaintain-gradient-arrow-inline' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
-              <stop offset='0%' stopColor='#E65C00' />
-              <stop offset='100%' stopColor='#F9D423' />
-            </linearGradient>
-          </defs>
-          <path
-            d='M 10 25 L 90 25'
-            fill='none'
-            stroke='url(#gaintain-gradient-arrow-inline)'
-            strokeWidth='2.5'
-            strokeLinecap='round'
-            markerEnd='url(#arrowhead-inline)'
-          />
-          <defs>
-            <marker
-              id='arrowhead-inline'
-              markerWidth='10'
-              markerHeight='10'
-              refX='9'
-              refY='5'
-              orient='auto'
-            >
-              <polygon
-                points='0,0 10,5 0,10'
-                fill='url(#gaintain-gradient-arrow-inline)'
-              />
-            </marker>
-          </defs>
-        </svg>
-        <PersonaCard
-          image={ProgramGoerImage}
-          title='HYBRID'
-          subtitle='Mix of programs / freely'
-          imageBelow={false}
-          className='hybrid-card image-below-card'
-        />
-        <svg className='persona-arrow' viewBox='0 0 100 50' preserveAspectRatio='xMidYMid meet'>
-          <defs>
-            <linearGradient id='gaintain-gradient-arrow-inline-2' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
-              <stop offset='0%' stopColor='#E65C00' />
-              <stop offset='100%' stopColor='#F9D423' />
-            </linearGradient>
-          </defs>
-          <path
-            d='M 10 25 L 90 25'
-            fill='none'
-            stroke='url(#gaintain-gradient-arrow-inline-2)'
-            strokeWidth='2.5'
-            strokeLinecap='round'
-            markerEnd='url(#arrowhead-inline-2)'
-          />
-          <defs>
-            <marker
-              id='arrowhead-inline-2'
-              markerWidth='10'
-              markerHeight='10'
-              refX='9'
-              refY='5'
-              orient='auto'
-            >
-              <polygon
-                points='0,0 10,5 0,10'
-                fill='url(#gaintain-gradient-arrow-inline-2)'
-              />
-            </marker>
-          </defs>
-        </svg>
         <PersonaCard
           image={HybridImage}
           title='NOMAD'
@@ -117,48 +67,20 @@ const TriangleInsight = (): JSX.Element => {
           imageBelow={false}
           className='image-below-card'
         />
-        <svg className='persona-arrow' viewBox='0 0 100 50' preserveAspectRatio='xMidYMid meet'>
-          <defs>
-            <linearGradient id='gaintain-gradient-arrow-inline-3' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
-              <stop offset='0%' stopColor='#E65C00' />
-              <stop offset='100%' stopColor='#F9D423' />
-            </linearGradient>
-          </defs>
-          <path
-            d='M 10 25 L 90 25'
-            fill='none'
-            stroke='url(#gaintain-gradient-arrow-inline-3)'
-            strokeWidth='2.5'
-            strokeLinecap='round'
-            markerEnd='url(#arrowhead-inline-3)'
-          />
-          <defs>
-            <marker
-              id='arrowhead-inline-3'
-              markerWidth='10'
-              markerHeight='10'
-              refX='9'
-              refY='5'
-              orient='auto'
-            >
-              <polygon
-                points='0,0 10,5 0,10'
-                fill='url(#gaintain-gradient-arrow-inline-3)'
-              />
-            </marker>
-          </defs>
-        </svg>
-        <div className='persona-card image-below-card'>
-          <div className='persona-image-container'>
-            <svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M 8 8 L 32 32 M 32 8 L 8 32' stroke='#DC2626' strokeWidth='4' strokeLinecap='round' strokeLinejoin='round' />
-            </svg>
-          </div>
-          <div className='persona-text-card'>
-            <div className='persona-title'>DROP OFF</div>
-            <div className='persona-subtitle'>shared break point</div>
-          </div>
-        </div>
+        <PersonaCard
+          image={ProgramGoerImage}
+          title='HYBRID'
+          subtitle='Workout templates / trains freely'
+          imageBelow={false}
+          className='hybrid-card image-below-card'
+        />
+        <PersonaCard
+          image={NomadImage}
+          title='PROGRAM'
+          subtitle='Trainer / predefined plans'
+          imageBelow={false}
+          className='image-below-card'
+        />
       </div>
     </div>
   )

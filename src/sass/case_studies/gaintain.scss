@@ -401,12 +401,12 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  background: rgb(255 255 255 / 1%);
-  border: 1px solid rgb(0 0 0 / 8%);
+  background: rgb(255 255 255 / 98%);
+  border: 1px solid rgb(0 0 0 / 12%);
   border-radius: 12px;
   padding: 2em 1.5em;
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 
   @media (width >= 768px) {
@@ -416,9 +416,9 @@
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: rgb(255 255 255 / 2%);
-      border-color: rgb(0 0 0 / 12%);
-      box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.08);
+      background: rgb(255 255 255 / 100%);
+      border-color: rgb(0 0 0 / 16%);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 6px 20px rgba(0, 0, 0, 0.08);
     }
   }
 }
@@ -433,15 +433,15 @@
 }
 
 .dark .gaintain-insight-content {
-  background: rgb(255 255 255 / 2%);
-  border-color: rgb(255 255 255 / 10%);
-  box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 90%);
+  border-color: rgb(255 255 255 / 25%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: rgb(255 255 255 / 3%);
-      border-color: rgb(255 255 255 / 15%);
-      box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.3);
+      background: rgb(0 0 0 / 95%);
+      border-color: rgb(255 255 255 / 30%);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.5);
     }
   }
 }
@@ -869,6 +869,10 @@
   /* Remove bottom and left padding for key insight section */
   .gaintain-key-insight & {
     padding: 0 0.75em 0 0; /* Remove bottom and left padding */
+    background: transparent !important; /* Remove gradient fill */
+    backdrop-filter: none !important; /* Remove backdrop filter */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove box shadow */
     
     @media (max-width: 768px) {
       padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
@@ -903,6 +907,13 @@
   /* Allow persona labels to overflow in Problem section on desktop */
   .case-study-top-to-bottom > & {
     overflow: visible !important; /* Override overflow: hidden for Problem section */
+    width: 100% !important; /* Ensure full width */
+    max-width: 100% !important; /* Ensure no max-width constraint */
+    padding: 0 0.75em 0.75em 0.75em !important; /* Maintain padding for problem graphic */
+    background: transparent !important; /* Remove gradient fill */
+    backdrop-filter: none !important; /* Remove backdrop filter */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove box shadow */
 
     .persona-cards-container {
       overflow: visible;
@@ -1314,6 +1325,45 @@
   justify-content: center;
   position: relative;
   overflow: visible; /* Allow labels to be visible outside container */
+
+  /* Brace container with vertical line */
+  .persona-brace-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-bottom: 1em !important;
+    min-height: 60px !important;
+    visibility: visible !important;
+    padding: 0 2em !important; /* Horizontal padding */
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.75em !important;
+      min-height: 40px !important;
+      padding: 0 1em !important; /* Less padding on mobile */
+    }
+
+    .brace-svg-horizontal {
+      width: 100% !important;
+      height: 40px !important;
+      display: block !important;
+      visibility: visible !important;
+      flex-shrink: 0 !important;
+
+      @media (max-width: 768px) {
+        height: 30px !important;
+      }
+
+      .brace-path-horizontal {
+        stroke: #DC2626 !important;
+        stroke-width: 8 !important;
+
+        @media (max-width: 768px) {
+          stroke-width: 6 !important;
+        }
+      }
+    }
+  }
 }
 
 .accountability-gap-row {
@@ -1343,21 +1393,56 @@
     gap: 1em;
   }
 
-  /* Inline images layout for Problem section */
-  &.persona-row-images-inline {
-    align-items: flex-end; /* Align to bottom so titles line up */
-    justify-content: space-evenly;
-    gap: 0; /* Remove gap since space-evenly handles spacing */
+      /* Top row with drop off */
+      &.persona-row-top {
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5em;
 
-    @media (max-width: 768px) {
-      gap: 0;
-    }
+        @media (max-width: 768px) {
+          margin-bottom: 0.375em;
+          justify-content: center !important; /* Center the drop-off content on mobile */
+        }
+      }
 
-    .persona-card {
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end; /* Push content to bottom so titles align */
-    }
+      /* Brace row - full width, rotated - matches cards row width */
+      &.persona-row-brace {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 200px; /* Ensure row has height to contain rotated brace */
+        margin-bottom: 1em;
+        overflow: hidden; /* Contain the brace within the row - prevents extension */
+        position: relative;
+        max-width: 100%; /* Don't extend past container */
+
+        @media (max-width: 768px) {
+          margin-bottom: 0.75em;
+          min-height: 150px;
+        }
+      }
+
+      /* Inline images layout for Problem section */
+      &.persona-row-images-inline {
+        align-items: flex-start; /* Align to top so images align */
+        justify-content: center;
+        gap: 0.5em !important; /* Minimal gap between cards on desktop */
+
+        @media (max-width: 768px) {
+          gap: 0.25em !important; /* Minimal gap on mobile */
+          flex-wrap: nowrap; /* Prevent wrapping - keep all 3 cards in one row */
+        }
+
+        .persona-card {
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start; /* Align to top so images align */
+          gap: 1.5em !important; /* Consistent spacing between image and label for all cards */
+
+          @media (max-width: 768px) {
+            gap: 1em !important; /* Reduced gap between image and text on mobile */
+          }
+        }
 
     .persona-arrow {
       flex-shrink: 0;
@@ -1365,15 +1450,79 @@
       height: 30px;
       align-self: flex-start;
       margin-top: 60px; /* Position at image level */
-      margin-left: 0.5em;
-      margin-right: 0.5em;
+      margin-left: 0;
+      margin-right: 0;
 
       @media (max-width: 768px) {
         width: 40px;
         height: 20px;
         margin-top: 30px; /* Position at image level on mobile */
-        margin-left: 0.25em;
-        margin-right: 0.25em;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    /* Right brace - larger and more prominent to show summation */
+    .persona-brace {
+      width: 80px !important;
+      height: 100px !important;
+      align-self: center !important;
+      margin-top: 0 !important;
+      margin-left: 0.75em !important;
+      margin-right: 0.75em !important;
+
+      @media (max-width: 768px) {
+        width: 60px !important;
+        height: 80px !important;
+        margin-left: 0.5em !important;
+        margin-right: 0.5em !important;
+      }
+    }
+
+
+    /* Right brace as SVG path */
+    .persona-brace-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 2000px; /* Height that becomes visual width after rotation - spans cards */
+      max-width: 100%; /* Don't extend past container */
+      margin-left: 0;
+      margin-right: 0;
+      transform: rotate(-90deg); /* Rotate counter-clockwise */
+      transform-origin: center center;
+      flex-shrink: 0; /* Prevent shrinking */
+      overflow: hidden; /* Contain within bounds */
+      position: relative;
+      
+      /* Constrain to parent width after rotation */
+      @media (min-width: 769px) {
+        max-height: 2000px;
+      }
+      
+      @media (max-width: 768px) {
+        height: 1500px; /* Smaller on mobile */
+        max-height: 1500px;
+      }
+
+      .brace-svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .brace-path {
+        stroke: rgba(0, 0, 0, 0.85);
+        stroke-width: 8;
+
+        .dark & {
+          stroke: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+          stroke-width: 6;
+        }
       }
     }
 
@@ -1390,13 +1539,22 @@
 
   /* Reduce gap in Problem section */
   .case-study-top-to-bottom & {
-    justify-content: space-evenly;
-    gap: 0; /* Remove gap since space-evenly handles spacing */
+    justify-content: center;
+    gap: 1.25em !important; /* Visible gap between cards */
     overflow: visible; /* Allow labels to overflow */
     padding-top: 0; /* Remove padding since labels are below now */
 
+    /* Override for images-inline row */
+    &.persona-row-images-inline {
+      gap: 1.25em !important;
+
+      @media (max-width: 768px) {
+        gap: 0.75em !important;
+      }
+    }
+
     @media (max-width: 768px) {
-      gap: 0;
+      gap: 0.75em !important;
     }
   }
 
@@ -1565,6 +1723,13 @@
   flex: 1;
   min-width: 0;
 
+  /* Drop-off card should fit content */
+  &.drop-off-card {
+    width: auto;
+    max-width: none;
+    flex: 0 0 auto;
+  }
+
   @media (max-width: 768px) {
     max-width: 140px;
     gap: 0.375em;
@@ -1572,10 +1737,24 @@
 
   /* Scale down cards in Problem section (top-to-bottom layout) */
   .case-study-top-to-bottom & {
-    max-width: 160px;
+    max-width: none; /* Allow cards to grow */
+    flex: 1; /* Allow cards to fill available space */
+    min-width: 0; /* Allow flex shrinking */
 
     @media (max-width: 768px) {
-      max-width: 110px;
+      max-width: none; /* Allow cards to grow on mobile too */
+    }
+
+    /* For images-inline row, allow full growth */
+    .persona-row-images-inline & {
+      max-width: none;
+      flex: 1;
+      min-width: 0; /* Allow shrinking on mobile */
+      
+      @media (max-width: 768px) {
+        flex: 1 1 0; /* Allow equal distribution and shrinking */
+        min-width: 0;
+      }
     }
   }
 
@@ -1590,39 +1769,67 @@
       max-width: none; /* Allow Program and Nomad to expand to edges */
       flex: 1;
     }
-    gap: 0.5em; /* Small gap between image and label */
-
-    @media (max-width: 768px) {
-      gap: 0.375em;
-    }
+    gap: 0; /* No gap needed since image is inside text card */
 
     /* For inline images layout in Problem section */
     .persona-row-images-inline & {
       flex-direction: column;
-      align-items: center;
-      gap: 0.5em;
-
-      .persona-image-container {
-        margin-top: 0;
-      }
+      align-items: stretch; /* Stretch to fill width */
+      gap: 0; /* No gap needed since image is inside text card */
+      flex: 1; /* Allow cards to grow and fill available space */
+      min-width: 0; /* Allow flex shrinking */
 
       .persona-text-card {
         position: static;
         transform: none;
-        background: transparent;
-        backdrop-filter: none;
-        box-shadow: none;
-        padding: 0;
-        width: 100%;
+        background: rgba(255, 255, 255, 1);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 1em;
+        box-shadow: 
+          0 2px 6px rgba(0, 0, 0, 0.08),
+          0 4px 16px rgba(0, 0, 0, 0.06);
+        padding: 1em 1em;
+        width: 100%; /* Fill container width */
+        min-width: 160px; /* Minimum width for readability */
+        max-width: none; /* Allow growth */
         white-space: normal;
+
+        .dark & {
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 
+            0 2px 6px rgba(0, 0, 0, 0.6),
+            0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+          display: flex !important;
+          flex-direction: column !important;
+          padding: 0.5em 0.4em !important; /* Reduced padding to match other cards */
+          border-radius: 0.75em;
+          width: 100% !important; /* Fill available flex space */
+          min-width: 0 !important; /* Allow shrinking */
+          max-width: 100% !important; /* No max width constraint */
+          flex: 1 1 0 !important; /* Allow equal distribution and shrinking */
+          box-sizing: border-box !important; /* Include padding in width calculation */
+        }
       }
     }
   }
 
-  /* Dark mode support for labels outside image */
+  /* Dark mode support for labels outside image - premium styling */
   .dark .case-study-top-to-bottom .image-below-card .persona-text-card {
-    background: rgba(30, 30, 30, 0.95);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 2px 6px rgba(0, 0, 0, 0.6),
+      0 4px 16px rgba(0, 0, 0, 0.5);
   }
 
   &.hybrid-card {
@@ -1638,12 +1845,25 @@
       flex: 0 0 auto; /* Don't allow hybrid to grow, keep it centered */
     }
 
+    /* Override for images-inline row to allow growth */
+    .persona-row-images-inline & {
+      max-width: none;
+      flex: 1;
+    }
+
     /* Scale down hybrid card in Problem section */
     .case-study-top-to-bottom & {
-      max-width: 120px;
+      max-width: none; /* Allow hybrid card to grow like others */
+      flex: 1; /* Allow it to fill available space */
 
       @media (max-width: 768px) {
-        max-width: 90px;
+        max-width: none; /* Allow growth on mobile too */
+      }
+
+      /* For images-inline row, ensure hybrid grows */
+      .persona-row-images-inline & {
+        max-width: none;
+        flex: 1;
       }
     }
 
@@ -1658,12 +1878,12 @@
 
       /* Scale down hybrid image in Problem section - use same size as other cards */
       .case-study-top-to-bottom & {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
 
         @media (max-width: 768px) {
-          width: 60px;
-          height: 60px;
+          width: 75px;
+          height: 75px;
         }
       }
 
@@ -1682,10 +1902,10 @@
     }
 
     .persona-text-card {
-      margin-top: -1em; /* Reduced negative margin to add more gap between image and label */
+      margin-top: 0; /* Remove negative margin - gap is handled by parent .persona-card gap */
 
       @media (max-width: 768px) {
-        margin-top: -0.5em;
+        margin-top: 0;
       }
     }
   }
@@ -1696,11 +1916,23 @@
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
+  .dark & {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Drop-off gets no fill or border */
+  &.drop-off-image-container {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
 
   svg {
     width: 100%;
@@ -1730,10 +1962,36 @@
   .case-study-top-to-bottom & {
     width: 120px;
     height: 120px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    .dark & {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
 
     @media (max-width: 768px) {
       width: 70px;
       height: 70px;
+    }
+
+    /* Drop-off gets no fill or border */
+    &.drop-off-image-container {
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
     }
   }
 
@@ -1741,22 +1999,188 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
+    filter: brightness(1.05) contrast(1.1);
+  }
+
+  /* Drop off image container - no fill or border */
+  &.drop-off-image-container {
+    width: 120px;
+    height: 120px;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    transition: none;
+
+    @media (max-width: 768px) {
+      width: 70px;
+      height: 70px;
+    }
+
+    .drop-off-x {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 64px;
+      font-weight: 400;
+      color: #DC2626;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      @media (max-width: 768px) {
+        font-size: 40px;
+      }
+    }
   }
 }
 
 .persona-text-card {
-  background: transparent;
-  border: none;
-  padding: 0.75em 1em;
-  width: 100%;
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 1em;
+  padding: 1em 1em;
+  width: 160px; /* Fixed width for all labels - wider for better readability */
+  min-width: 160px;
+  max-width: 160px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.375em;
+  align-items: center;
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+
+  .dark & {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 2px 6px rgba(0, 0, 0, 0.6),
+      0 4px 16px rgba(0, 0, 0, 0.5);
+  }
 
   @media (max-width: 768px) {
-    padding: 0.625em 0.75em;
-    gap: 0.375em;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0.5em 0.4em !important; /* Reduced padding on mobile */
+    gap: 0.25em !important; /* Reduced gap between title and subtitle */
+    border-radius: 0.75em;
+    width: 100% !important; /* Fill available flex space */
+    min-width: 0 !important; /* Allow shrinking */
+    max-width: 100% !important; /* No max width constraint */
+    flex: 1 1 0 !important; /* Allow equal distribution and shrinking */
+    box-sizing: border-box !important; /* Include padding in width calculation */
+  }
+
+  /* Image container inside text card */
+  .persona-image-container {
+    margin-bottom: 0.375em;
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    background: transparent !important; /* Remove fill for nomad, hybrid, and program */
+    box-shadow: none !important; /* Remove box shadow */
+
+    .dark & {
+      background: transparent !important; /* Remove fill in dark mode */
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.5em; /* Increased margin for better spacing */
+      width: 70px; /* Slightly smaller image on mobile */
+      height: 70px;
+    }
+
+    /* Drop-off image container */
+    &.drop-off-image-container {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 0;
+      margin-right: 0.25em; /* Minimized gap between x and text */
+      flex-shrink: 0;
+
+      @media (max-width: 768px) {
+        width: 55px;
+        height: 55px;
+        margin-right: 0.25em; /* Minimized gap on mobile */
+      }
+    }
+  }
+
+  /* Drop-off card: horizontal layout with text to the right - no card styling */
+  .drop-off-card & {
+    flex-direction: row; /* Horizontal layout on desktop - text to the right of x */
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: auto;
+    min-width: auto;
+    max-width: none;
+    padding: 0; /* Remove padding */
+    background: transparent !important; /* Remove background */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove shadow */
+    backdrop-filter: none !important; /* Remove backdrop filter */
+    -webkit-backdrop-filter: none !important; /* Remove backdrop filter */
+
+    @media (max-width: 768px) {
+      flex-direction: row !important; /* Horizontal layout on mobile - text to the right of x */
+      align-items: center !important;
+      justify-content: center !important; /* Center the content on mobile */
+      text-align: left !important;
+      padding: 0; /* Remove padding on mobile */
+    }
+
+    .drop-off-text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375em;
+      align-items: flex-start;
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 0;
+      max-width: none;
+
+      @media (max-width: 768px) {
+        gap: 0.3em;
+        align-items: flex-start !important; /* Align text to left on mobile */
+      }
+    }
+
+    .persona-title,
+    .persona-subtitle {
+      text-align: left;
+      width: auto;
+      white-space: nowrap;
+
+      @media (max-width: 768px) {
+        text-align: left !important; /* Text aligned left on mobile */
+      }
+    }
+
+    /* Increase drop-off text size for emphasis */
+    .persona-title {
+      font-size: 16px !important; /* Larger title for drop-off */
+
+      @media (max-width: 768px) {
+        font-size: clamp(10px, 3vw, 12px) !important; /* Responsive but larger on mobile */
+      }
+    }
+
+    .persona-subtitle {
+      font-size: 13px !important; /* Larger subtitle for drop-off */
+
+      @media (max-width: 768px) {
+        font-size: clamp(8px, 2.2vw, 10px) !important; /* Responsive but larger on mobile */
+      }
+    }
   }
 }
 
@@ -1764,12 +2188,25 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 13px;
-  color: rgba(0, 0, 0, 0.9);
-  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.92);
+  letter-spacing: 0.02em;
   line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+
+  .dark & {
+    color: rgba(255, 255, 255, 0.92);
+  }
 
   @media (max-width: 768px) {
-    font-size: 11px;
+    font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size that scales with viewport */
+    letter-spacing: 0.01em;
+    white-space: normal; /* Allow wrapping on very small screens */
+    line-height: 1.2;
   }
 
   /* Scale down title in Problem section */
@@ -1777,25 +2214,31 @@
     font-size: 12px;
 
     @media (max-width: 768px) {
-      font-size: 10px;
+      font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size for problem section */
+      letter-spacing: 0.02em;
     }
   }
 }
 
-.dark .persona-title {
-  color: rgba(255, 255, 255, 0.9);
-}
-
 .persona-subtitle {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 11px;
-  color: rgba(0, 0, 0, 0.75);
-  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.65);
+  letter-spacing: 0.005em;
   line-height: 1.4;
+  text-align: center;
+  width: 100%;
+
+  .dark & {
+    color: rgba(255, 255, 255, 0.65);
+  }
 
   @media (max-width: 768px) {
-    font-size: 10px;
+    font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size that scales with viewport */
+    line-height: 1.25 !important; /* Tighter line height */
+    word-wrap: break-word; /* Allow word breaking */
+    hyphens: auto; /* Add hyphens for long words */
   }
 
   /* Scale down subtitle in Problem section */
@@ -1803,14 +2246,12 @@
     font-size: 10px;
 
     @media (max-width: 768px) {
-      font-size: 9px;
+      font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size for problem section */
+      line-height: 1.25 !important; /* Tighter line height */
     }
   }
 }
 
-.dark .persona-subtitle {
-  color: rgba(255, 255, 255, 0.75);
-}
 
 .gaintain-internal-testing-image-container {
   @extend .gaintain-image-container;
@@ -2446,24 +2887,8 @@
 
 .design-strategy-axis-title {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  fill: rgb(0 0 0 / 85%);
-  letter-spacing: 0.01em;
-
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-}
-
-.dark .design-strategy-axis-title {
-  fill: rgb(255 255 255 / 85%);
-}
-
-.design-strategy-point-label {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   fill: rgb(0 0 0 / 90%);
   letter-spacing: 0.01em;
 
@@ -2472,6 +2897,82 @@
   }
 }
 
+.dark .design-strategy-axis-title {
+  fill: rgb(255 255 255 / 95%);
+}
+
+.design-strategy-point-label {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  fill: rgb(0 0 0 / 95%);
+  letter-spacing: 0.01em;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
 .dark .design-strategy-point-label {
-  fill: rgb(255 255 255 / 90%);
+  fill: rgb(255 255 255 / 95%);
+}
+
+// Animation for gradient line fill from AI Fitness Apps to GainTain
+// Progressive fill similar to Product Builder text animation
+@keyframes gaintain-line-fill {
+  from {
+    stroke-dashoffset: var(--path-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// GainTain label letter-by-letter animation (similar to Product Builder)
+.gaintain-label-animated {
+  fill: #F5F5F5 !important; /* Light background color - invisible on first load */
+  
+  .dark & {
+    fill: #090B0B !important; /* Dark background color - invisible on first load */
+  }
+
+  .animated-letter {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out, fill 0.6s ease-in-out;
+    fill: #F5F5F5; /* Light background color - invisible on first load */
+  }
+
+  .dark & .animated-letter {
+    fill: #090B0B; /* Dark background color - invisible on first load */
+  }
+
+  .animated-letter.filled {
+    opacity: 1;
+    fill: rgba(0, 0, 0, 0.92); /* Same fill as Human Coach */
+  }
+}
+
+.dark .gaintain-label-animated {
+  fill: #090B0B !important; /* Dark background color - invisible on first load */
+}
+
+.dark .gaintain-label-animated .animated-letter.filled {
+  fill: rgba(255, 255, 255, 0.92); /* Same fill as Human Coach in dark mode */
+}
+
+// Respect reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .design-strategy-graphic path[style*="gaintain-line-fill"] {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  
+  .gaintain-label-animated .animated-letter {
+    opacity: 1 !important;
+    fill: rgba(0, 0, 0, 0.92) !important; /* Same fill as Human Coach */
+  }
+
+  .dark .gaintain-label-animated .animated-letter {
+    fill: rgba(255, 255, 255, 0.92) !important; /* Same fill as Human Coach in dark mode */
+  }
 }

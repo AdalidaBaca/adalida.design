@@ -9,8 +9,8 @@
 
   /* Smaller size for case study variant */
   &:not(.full-bleed) {
-    padding: 0.75em 0;
-    min-height: 80px;
+    padding: 0.5em 0;
+    min-height: 60px;
   }
 
   /* When not full-bleed (case study variant), reduce margins to match section spacing */
@@ -85,8 +85,8 @@
     &:not(.full-bleed) {
       margin-top: 0;
       margin-bottom: 0;
-      padding: 1em 0;
-      min-height: 90px;
+      padding: 0.75em 0;
+      min-height: 70px;
     }
   }
   .inner {
@@ -136,6 +136,11 @@
     display: inline-flex;
     gap: 2.25em;
     align-items: center;
+
+    /* Smaller gap for case study variant */
+    .tools-carousel:not(.full-bleed) & {
+      gap: 1.5em;
+    }
     animation: marquee linear infinite;
     animation-duration: var(--marquee-duration, 120s);
     animation-play-state: var(--marquee-play, running);
@@ -182,17 +187,17 @@
 
     /* Smaller size for case study variant */
     .tools-carousel:not(.full-bleed) & {
-      width: 72px;
-      height: 72px;
+      width: 56px;
+      height: 56px;
 
       img {
-        height: 40px;
+        height: 32px;
       }
 
       .tool-fallback {
-        width: 72px;
-        height: 72px;
-        font-size: 0.75em;
+        width: 56px;
+        height: 56px;
+        font-size: 0.7em;
       }
     }
   }
@@ -217,16 +222,16 @@
 
   /* Smaller size for case study variant on desktop */
   .tools-carousel:not(.full-bleed) .tool-logo {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
 
     img {
-      height: 44px;
+      height: 36px;
     }
 
     .tool-fallback {
-      width: 80px;
-      height: 80px;
+      width: 64px;
+      height: 64px;
     }
   }
 }
