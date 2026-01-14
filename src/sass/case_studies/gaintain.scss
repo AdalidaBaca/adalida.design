@@ -238,33 +238,37 @@
       margin: 0 !important;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      padding-left: 0.75em !important;
-      padding-right: 0.75em !important;
-      border-radius: 0.75em; // Match other cards
+      padding: 0 !important;
+      border-radius: 0 !important;
+      background: none !important;
+      border: none !important;
+      height: auto !important;
+      min-height: auto !important;
+      max-height: none !important;
+      display: flex !important;
+      align-items: flex-start !important;
       
       @media (max-width: 768px) {
-        height: auto !important;
-        min-height: 0 !important;
-        max-height: none !important;
         width: 100% !important;
-        padding-left: 0.5em !important;
-        padding-right: 0.5em !important;
       }
       
       @media (width >= $case-study-breakpoint) {
-        // Match the problem graphic container height (aspect-ratio: 3.2 / 1)
-        aspect-ratio: 3.2 / 1 !important;
         width: 100%;
-        height: auto;
-        max-height: none;
         
         // Allow implementation image to grow to match text height
         &.gaintain-implementation-image {
           aspect-ratio: unset !important;
           height: 100%;
         }
+      }
+      
+      // Make accountability levers container determine height
+      .accountability-levers-container {
+        width: 100%;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        flex-shrink: 0;
       }
     }
   }
@@ -573,6 +577,26 @@
   gap: 1em;
   padding: 1.25em;
   border-radius: 0.75em;
+  
+  /* Style ToolsCarousel when inside card */
+  > .tools-carousel {
+    margin: 0 !important;
+    margin-top: 0.5em !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove background for Competitors card but keep padding to align with other sections */
+  &.gaintain-competitors-card {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 1.25em !important;
+    
+    @media (width >= 768px) {
+      padding: 2em !important;
+    }
+  }
   background: rgb(255 255 255 / 2%);
   backdrop-filter: blur(10px);
   border: 1px solid rgb(0 0 0 / 5%);
@@ -934,6 +958,16 @@
     .design-strategy-graphic-container {
       padding: 0; /* Already handled in design-strategy-graphic-container */
     }
+  }
+  
+  /* Remove background/border when it contains accountability levers */
+  &:has(.accountability-levers-container) {
+    background: none !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
   }
   
   /* Remove padding from container when it has design strategy graphic */
@@ -2446,6 +2480,37 @@
 }
 
 
+.accountability-levers-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 1em;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 100%;
+
+  @media (width >= $case-study-breakpoint) {
+    padding: 1.25em 1.5em;
+  }
+  
+  .accountability-levers {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+.dark .accountability-levers-container {
+  background: none;
+  border: none;
+}
+
 .gaintain-internal-testing-image-container {
   @extend .gaintain-image-container;
 }
@@ -3188,7 +3253,7 @@
 
 .design-strategy-axis-title {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 11px; /* Smaller than point labels */
+  font-size: 12px; /* Smaller than point labels */
   font-weight: 500; /* Lighter weight than point labels (700) */
   fill: rgb(0 0 0 / 70%); /* More subtle opacity than point labels */
   letter-spacing: 0.02em; /* Slightly more letter spacing */
@@ -3196,7 +3261,7 @@
   text-transform: uppercase; /* Uppercase for axis labels */
 
   @media (max-width: 768px) {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 

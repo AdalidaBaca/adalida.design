@@ -1,10 +1,10 @@
 import React, { forwardRef, type Ref } from 'react'
 
 import SectionHeading from 'components/section_heading'
-import ToolsCarousel from 'components/tools_carousel'
 import TriangleInsight from './triangle_insight'
 import SystemDiagram from './system_diagram'
 import DesignStrategyGraphic from './design_strategy_graphic'
+import CompetitorsCarousel from './competitors_carousel'
 
 interface Props {
   keyInsightRef?: Ref<HTMLDivElement>
@@ -31,7 +31,7 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
           </div>
         </div>
       </div>
-      <ToolsCarousel badgeText='Competitors' fullBleed={false} ariaLabel='Competitors' />
+      <CompetitorsCarousel ariaLabel='Competitors' />
       <div data-aos='fade-up' data-aos-offset='150' className='case-study-side-by-side gaintain-key-insight gaintain-key-insight-close' ref={keyInsightRef}>
         <div className='case-study-explanation'>
           <div className='gaintain-details-card'>

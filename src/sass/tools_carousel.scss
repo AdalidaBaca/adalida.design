@@ -13,7 +13,8 @@
     padding-bottom: 0.5em !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    min-height: 60px;
+    min-height: auto !important;
+    height: auto !important;
   }
 
   /* When not full-bleed (case study variant), reduce margins to match section spacing */
@@ -31,21 +32,45 @@
     margin-right: calc(50% - 50vw);
   }
 
-  /* Constrained width when not full-bleed - ensure no horizontal padding */
+  /* Constrained width when not full-bleed - match case-study-top-to-bottom padding */
   &:not(.full-bleed) {
     width: 100%;
-    max-width: 100%;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    max-width: min(1200px, 100%);
+    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding-top: 0.5em !important;
     padding-bottom: 0.5em !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    /* Match case-study-top-to-bottom and case-study-side-by-side padding */
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
     position: relative;
-    overflow: visible;
+    overflow: visible !important;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align children to left edge */
+    min-height: auto !important;
+    height: auto !important;
+    box-sizing: border-box;
+  }
+  
+  /* Remove any indentation from inner wrapper */
+  &:not(.full-bleed) .inner {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+  
+  /* Match gaintain-details-card padding (0.5em from ToolsCarousel + this = total) */
+  &:not(.full-bleed) .marquee {
+    margin-left: 0 !important;
+    /* gaintain-details-card padding: 1.25em (mobile) / 2em (desktop) */
+    padding-left: 1.25em !important;
+    height: auto !important;
+    min-height: auto !important;
+    
+    @media (width >= 768px) {
+      padding-left: 2em !important;
+    }
   }
   /* Light mode background - using accent color */
   background: linear-gradient(
@@ -54,13 +79,9 @@
     rgba(map.get($light-colors, danger), 0.05)
   );
 
-  /* Case study variant - use GainTain colors */
+  /* Case study variant - remove background strip */
   &:not(.full-bleed) {
-    background: linear-gradient(
-      160deg,
-      rgba(230, 92, 0, 0.12),
-      rgba(230, 92, 0, 0.05)
-    );
+    background: transparent;
   }
   border: 0;
   position: relative;
@@ -95,8 +116,12 @@
     &:not(.full-bleed) {
       margin-top: 0;
       margin-bottom: 0;
-      padding: 0.75em 0;
-      min-height: 70px;
+      padding-top: 0.5em !important;
+      padding-bottom: 0.5em !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      min-height: auto !important;
+      height: auto !important;
     }
   }
   .inner {
@@ -119,8 +144,10 @@
       flex-direction: column !important;
       align-items: flex-start !important; /* Align badge to left */
       position: relative;
+      opacity: 1 !important; /* Ensure inner wrapper and badge are always visible */
     }
   }
+  
   /* no wrapper needed for bleed */
 
   .tools-ship-badge {
@@ -134,7 +161,7 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     font-size: 0.9em;
-    opacity: 1;
+    opacity: 1 !important; /* Ensure badge is always fully visible */
     color: $dark-text;
     background: rgba($light-background, 0.92);
     backdrop-filter: blur(10px) saturate(150%);
@@ -155,6 +182,17 @@
       top: auto !important;
       width: fit-content;
       align-self: flex-start;
+      opacity: 1 !important; /* Ensure badge is always fully visible, not affected by parent animations */
+    }
+    
+    /* Ensure badge is never affected by AOS or parent fade animations */
+    &[data-aos],
+    .tools-carousel[data-aos] & {
+      opacity: 1 !important;
+    }
+    
+    &:not(.aos-animate) {
+      opacity: 1 !important;
     }
   }
 
@@ -162,10 +200,21 @@
     display: inline-flex;
     gap: 2.25em;
     align-items: center;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative;
+    z-index: 0;
 
     /* Smaller gap for case study variant */
     .tools-carousel:not(.full-bleed) & {
       gap: 1.5em;
+      margin-left: 0 !important;
+      /* Padding will be set by the rule above */
+      height: auto !important;
+      min-height: auto !important;
+      overflow: visible !important;
     }
     animation: marquee linear infinite;
     animation-duration: var(--marquee-duration, 120s);

@@ -29,10 +29,7 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
   }, [])
 
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
-        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
-      </div>
+    <div data-aos='fade-up' className='case-study-side-by-side gaintain-workout-dashboard' ref={ref}>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
           <SectionHeading title='Workout Dashboard' />
@@ -46,6 +43,9 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
             Users can quick-log, reuse templates, or generate workouts with AI <strong>without breaking momentum</strong>.
           </div>
         </div>
+      </div>
+      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
+        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
       </div>
     </div>
   )

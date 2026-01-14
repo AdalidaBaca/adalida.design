@@ -5,21 +5,6 @@ import SectionHeading from 'components/section_heading'
 
 type Tool = { label: string, src: string }
 
-const fallbackTools: Tool[] = [
-  { label: 'Notion', src: '/images/logos/notion.png' },
-  { label: 'Figma', src: '/images/logos/figma.png' },
-  { label: 'Cursor', src: '/images/logos/cursor.png' },
-  { label: 'HTML / CSS', src: '/images/logos/html-css.png' },
-  { label: 'SQL', src: '/images/logos/sql.png' },
-  { label: 'Git (CLI)', src: '/images/logos/git.png' },
-  { label: 'GitHub', src: '/images/logos/github.png' },
-  { label: 'CMS', src: '/images/logos/cms.png' },
-  { label: 'PostHog', src: '/images/logos/posthog.png' },
-  { label: 'Google Analytics', src: '/images/logos/google-analytics.png' },
-  { label: 'Adobe CC', src: '/images/logos/adobe-cc.png' },
-  { label: 'Google Workspace', src: '/images/logos/google-workspace.png' }
-]
-
 const titleCase = (s: string): string =>
   s
     .replace(/[-_]+/g, ' ')
@@ -31,23 +16,21 @@ const titleCase = (s: string): string =>
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   const [broken, setBroken] = useState(false)
   return (
-    <div className='tool-logo' title={label} aria-label={label}>
+    <div className='competitor-logo' title={label} aria-label={label}>
       {!broken
         ? <img src={src} alt={label} onError={() => { setBroken(true) }} />
-        : <div className='tool-fallback'>{label}</div>}
+        : <div className='competitor-fallback'>{label}</div>}
     </div>
   )
 }
 
-interface ToolsCarouselProps {
-  badgeText?: string
-  fullBleed?: boolean
+interface CompetitorsCarouselProps {
   ariaLabel?: string
 }
 
-const ToolsCarousel = ({ badgeText = 'Toolkit', fullBleed = true, ariaLabel = 'Tools I use' }: ToolsCarouselProps = {}): JSX.Element => {
+const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
   const data = useStaticQuery(graphql`
-    query ShipsWithLogos {
+    query CompetitorsShipsWithLogos {
       allFile(
         filter: { sourceInstanceName: { eq: "images" }, relativeDirectory: { regex: "/[Ss]hips with/" } }
         sort: { name: ASC }
@@ -62,20 +45,24 @@ const ToolsCarousel = ({ badgeText = 'Toolkit', fullBleed = true, ariaLabel = 'T
 
   const tools = useMemo<Tool[]>(() => {
     const nodes = data.allFile.nodes
-    if (nodes.length === 0) return fallbackTools
+    if (nodes.length === 0) return []
     return nodes.map(n => ({ label: titleCase(n.name), src: n.publicURL }))
   }, [data])
 
   const containerRef = useRef<HTMLDivElement>(null)
   const marqueeTools = useMemo(() => {
+    if (tools.length === 0) return []
     // Ensure the marquee has enough content to animate smoothly even with only a few logos.
     const baseCopies = Math.max(6, Math.ceil(14 / tools.length))
     const base = Array.from({ length: baseCopies }, () => tools).flat()
     return [...base, ...base] // animation moves -50%, so we need 2 identical halves
   }, [tools])
+
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) containerRef.current?.style.setProperty('--marquee-duration', '0s')
+    if (prefersReduced && containerRef.current) {
+      containerRef.current.style.setProperty('--marquee-duration', '0s')
+    }
   }, [])
 
   useEffect(() => {
@@ -95,19 +82,18 @@ const ToolsCarousel = ({ badgeText = 'Toolkit', fullBleed = true, ariaLabel = 'T
     return () => { observer.disconnect() }
   }, [])
 
+  if (tools.length === 0) return <></>
+
   return (
-    <section className={`tools-carousel ${fullBleed ? 'full-bleed' : ''}`} ref={containerRef} aria-label={ariaLabel}>
-      {badgeText && (
-        <div className='inner'>
-          <div className='tools-ship-badge subtitle-2'>{badgeText}</div>
-        </div>
-      )}
-      <div className='marquee lane-1' data-aos='fade' data-aos-offset='50' data-aos-duration='800' data-aos-easing='ease-out-cubic'>
-        {marqueeTools.map((t, i) => (<ToolLogo key={`lane1-${t.label}-${i}`} {...t} />))}
+    <div className='competitors-carousel' ref={containerRef} aria-label={ariaLabel}>
+      <div className='competitors-title-container'>
+        <SectionHeading title='Competitors' />
       </div>
-    </section>
+      <div className='competitors-marquee lane-1' data-aos='fade' data-aos-offset='50' data-aos-duration='800' data-aos-easing='ease-out-cubic'>
+        {marqueeTools.map((t, i) => (<ToolLogo key={`competitor-${t.label}-${i}`} {...t} />))}
+      </div>
+    </div>
   )
 }
 
-export default ToolsCarousel
-
+export default CompetitorsCarousel

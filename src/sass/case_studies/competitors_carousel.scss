@@ -1,0 +1,158 @@
+@use 'sass:map';
+@import '../variables';
+@import '../colors';
+
+.competitors-carousel {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 1.25em 0.5em;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  min-height: 60px;
+  /* Match gaintain-download-content background - GainTain system color */
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
+  border: none;
+  border-radius: 16px;
+  box-shadow: none;
+  contain: paint;
+  
+  /* Edge fade to blend marquee ends - match tools carousel */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15vw;
+    pointer-events: none;
+    z-index: 3;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+  
+  @media (width >= 768px) {
+    padding: 1.5em 0.5em;
+  }
+  
+  /* Dark mode background - match gaintain-download-content */
+  .dark & {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
+    border: none;
+    box-shadow: none;
+    
+    /* Dark mode edge fade - match tools carousel */
+    &::before {
+      background: linear-gradient(90deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+    }
+    &::after {
+      background: linear-gradient(270deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+    }
+  }
+}
+
+.competitors-title-container {
+  padding-left: 1.25em;
+  margin-bottom: 1em;
+  
+  @media (width >= 768px) {
+    padding-left: 2em;
+    margin-bottom: 1.5em;
+  }
+  
+  .section-heading-container {
+    margin: 0 0 0.75em;
+  }
+}
+
+.competitors-marquee {
+  display: inline-flex;
+  gap: 1.5em;
+  align-items: center;
+  padding-left: 1.25em;
+  animation: competitors-marquee linear infinite;
+  animation-duration: var(--marquee-duration, 120s);
+  animation-play-state: var(--marquee-play, running);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  width: max-content;
+  position: relative;
+  z-index: 2;
+  
+  @media (width >= 768px) {
+    padding-left: 2em;
+  }
+}
+
+.competitor-logo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  opacity: 0.85;
+  transition: opacity 120ms ease, filter 120ms ease, transform 120ms ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+  }
+
+  img {
+    height: 52px;
+    filter: none;
+    border-radius: 12px;
+  }
+  
+  .competitor-fallback {
+    width: 96px;
+    height: 96px;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 12px;
+    font-size: 0.85em;
+    opacity: 0.9;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.55);
+  }
+  
+  /* Dark mode fallback */
+  .dark & .competitor-fallback {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: $light-text;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
+  /* Desktop sizes */
+  @media (width >= 768px) {
+    width: 104px;
+    height: 104px;
+
+    img {
+      height: 56px;
+    }
+
+    .competitor-fallback {
+      width: 104px;
+      height: 104px;
+    }
+  }
+}
+
+@keyframes competitors-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

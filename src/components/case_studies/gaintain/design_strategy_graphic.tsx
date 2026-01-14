@@ -7,7 +7,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
   const isMobile = useIsMobile(768)
   const gradientPathRef = useRef<SVGPathElement>(null)
-  const gaintainLabelRef = useRef<SVGTextElement>(null)
   const motionPathRef = useRef<SVGPathElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
@@ -96,65 +95,8 @@ const DesignStrategyGraphic = (): JSX.Element => {
         // Path might not be rendered yet, will retry
       }
     }
-  }, [aiFitnessX, aiFitnessY, q1X, q1Y, r1X, r1Y, gaintainX, gaintainY])
+  }, [aiFitnessX, aiFitnessY, cp1X, cp1Y, cp2X, cp2Y, humanX, humanY])
 
-  // Set initial state of GainTain label to be invisible (background color)
-  useEffect(() => {
-    if (gaintainLabelRef.current) {
-      gaintainLabelRef.current.setAttribute('fill', darkMode ? '#090B0B' : '#F5F5F5')
-    }
-  }, [darkMode])
-
-  // Animate GainTain label letter by letter after dot animation completes
-  useEffect(() => {
-    if (!dotAnimationComplete || !gaintainLabelRef.current) return
-
-    const textElement = gaintainLabelRef.current
-    const textContent = textElement.textContent || 'GainTain'
-    const letters = textContent.split('')
-    
-    // Clear existing content and create letter spans
-    while (textElement.firstChild) {
-      textElement.removeChild(textElement.firstChild)
-    }
-    
-    letters.forEach((letter, index) => {
-      const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan')
-      tspan.textContent = letter === ' ' ? '\u00A0' : letter
-      tspan.setAttribute('class', 'animated-letter')
-      tspan.setAttribute('opacity', '1')
-      // Start with background color to be invisible on first load
-      tspan.setAttribute('fill', darkMode ? '#090B0B' : '#F5F5F5')
-      if (index > 0) {
-        // Position each letter after the previous one
-        tspan.setAttribute('dx', '0')
-      }
-      textElement.appendChild(tspan)
-    })
-
-    // Animate letters one by one
-    const letterDelay = 80
-    let currentIndex = 0
-
-    const animateNext = (): void => {
-      if (currentIndex < letters.length) {
-        const tspans = textElement.querySelectorAll('tspan.animated-letter')
-        if (tspans[currentIndex]) {
-          tspans[currentIndex].setAttribute('opacity', '1')
-          tspans[currentIndex].setAttribute('class', 'animated-letter filled')
-          // Use same fill as Human Coach instead of gradient
-          tspans[currentIndex].setAttribute('fill', darkMode ? 'rgba(255, 255, 255, 0.92)' : 'rgba(0, 0, 0, 0.92)')
-        }
-        currentIndex++
-        if (currentIndex < letters.length) {
-          setTimeout(animateNext, letterDelay)
-        }
-      }
-    }
-
-    // Start animation after a short delay
-    setTimeout(animateNext, 100)
-  }, [dotAnimationComplete])
 
   // Handle dot animation completion
   useEffect(() => {
@@ -209,20 +151,15 @@ const DesignStrategyGraphic = (): JSX.Element => {
                 <div className='design-strategy-graphic-container' ref={containerRef}>
                   <svg ref={svgRef} className='design-strategy-graphic' viewBox={`0 0 ${graphWidth} ${graphHeight}`} preserveAspectRatio='xMidYMid meet' style={{ width: '100%', height: '100%' }}>
         <defs>
-          {/* Gradient for line from GainTain to AI Fitness Apps - coordinates set dynamically */}
-          <linearGradient id='gaintain-line-gradient' x1={gaintainX} y1={gaintainY} x2={aiFitnessX} y2={aiFitnessY} gradientUnits='userSpaceOnUse'>
-            <stop offset='0%' stopColor='#22C55E' />
-            <stop offset='100%' stopColor='#10B981' />
+          {/* Gradient for line from AI Fitness Apps to Human Coach - using GainTain gradient colors */}
+          <linearGradient id='gaintain-line-gradient' x1={aiFitnessX} y1={aiFitnessY} x2={humanX} y2={humanY} gradientUnits='userSpaceOnUse'>
+            <stop offset='0%' stopColor='#E65C00' />
+            <stop offset='100%' stopColor='#F9D423' />
           </linearGradient>
-          {/* Gradient for line from GainTain to Human Coach - coordinates set dynamically */}
-          <linearGradient id='gaintain-to-human-gradient' x1={gaintainX} y1={gaintainY} x2={humanX} y2={humanY} gradientUnits='userSpaceOnUse'>
-            <stop offset='0%' stopColor='#22C55E' />
-            <stop offset='100%' stopColor='#10B981' />
-          </linearGradient>
-          {/* Gradient for GainTain label text and points */}
+          {/* Gradient for animated dot */}
           <linearGradient id='gaintain-gradient-design-strategy' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
-            <stop offset='0%' stopColor='#22C55E' />
-            <stop offset='100%' stopColor='#10B981' />
+            <stop offset='0%' stopColor='#E65C00' />
+            <stop offset='100%' stopColor='#F9D423' />
           </linearGradient>
         </defs>
         
@@ -232,9 +169,18 @@ const DesignStrategyGraphic = (): JSX.Element => {
           y1={padding}
           x2={padding}
           y2={padding + chartHeight}
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.35)'}
-          strokeWidth={isMobile ? '2' : '2.5'}
+          stroke={darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)'}
+          strokeWidth={isMobile ? '1' : '1.5'}
           strokeLinecap='round'
+        />
+        {/* Up arrow at top (Strong) - pointing down */}
+        <path
+          d={`M ${padding},${padding} L ${padding - (isMobile ? 3 : 4)},${padding + (isMobile ? 5 : 6)} L ${padding + (isMobile ? 3 : 4)},${padding + (isMobile ? 5 : 6)} Z`}
+          fill={darkMode ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)'}
+          stroke={darkMode ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)'}
+          strokeWidth={isMobile ? '1' : '1.5'}
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
         
         {/* Y-axis label: Strong (top) */}
@@ -266,6 +212,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
           textAnchor='middle'
           dominantBaseline='middle'
           className='design-strategy-axis-title'
+          fontSize={isMobile ? '11' : '12'}
           transform={`rotate(-90 ${padding - (isMobile ? 12 : 15)} ${yAxisTitleY})`}
         >
           Drop off Prevention
@@ -277,9 +224,18 @@ const DesignStrategyGraphic = (): JSX.Element => {
           y1={padding + chartHeight}
           x2={padding + chartWidth}
           y2={padding + chartHeight}
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.35)'}
-          strokeWidth={isMobile ? '2' : '2.5'}
+          stroke={darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)'}
+          strokeWidth={isMobile ? '1' : '1.5'}
           strokeLinecap='round'
+        />
+        {/* Right arrow (High) - pointing left */}
+        <path
+          d={`M ${padding + chartWidth},${padding + chartHeight} L ${padding + chartWidth - (isMobile ? 5 : 6)},${padding + chartHeight - (isMobile ? 3 : 4)} L ${padding + chartWidth - (isMobile ? 5 : 6)},${padding + chartHeight + (isMobile ? 3 : 4)} Z`}
+          fill={darkMode ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)'}
+          stroke={darkMode ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)'}
+          strokeWidth={isMobile ? '1' : '1.5'}
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
         
         {/* X-axis label: Low (left) - positioned at the corner */}
@@ -300,6 +256,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
           textAnchor='middle'
           dominantBaseline='middle'
           className='design-strategy-axis-title'
+          fontSize={isMobile ? '11' : '12'}
         >
           Accountability Cost
         </text>
@@ -316,10 +273,10 @@ const DesignStrategyGraphic = (): JSX.Element => {
         </text>
         
         {/* Academic/data-style straight lines connecting points */}
-        {/* Continuous curved line from AI Fitness Apps through GainTain to Human Coach */}
+        {/* Continuous curved line from AI Fitness Apps to Human Coach */}
         {/* Grey outline - always visible */}
         <path
-          d={`M ${aiFitnessX} ${aiFitnessY} C ${q1X} ${q1Y}, ${r1X} ${r1Y}, ${gaintainX} ${gaintainY}`}
+          d={`M ${aiFitnessX} ${aiFitnessY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${humanX} ${humanY}`}
           fill='none'
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.25)'}
           strokeWidth={isMobile ? '1.5' : '2'}
@@ -329,16 +286,16 @@ const DesignStrategyGraphic = (): JSX.Element => {
         <path
           ref={motionPathRef}
           id='gaintain-motion-path'
-          d={`M ${aiFitnessX} ${aiFitnessY} C ${q1X} ${q1Y}, ${r1X} ${r1Y}, ${gaintainX} ${gaintainY}`}
+          d={`M ${aiFitnessX} ${aiFitnessY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${humanX} ${humanY}`}
           fill='none'
           stroke='transparent'
           strokeWidth='1'
         />
-        {/* First segment: AI Fitness Apps to GainTain (with gradient and animation) */}
+        {/* Continuous line from AI Fitness Apps to Human Coach (with GainTain gradient and animation) */}
         <path
           ref={gradientPathRef}
           id='gaintain-line-path'
-          d={`M ${aiFitnessX} ${aiFitnessY} C ${q1X} ${q1Y}, ${r1X} ${r1Y}, ${gaintainX} ${gaintainY}`}
+          d={`M ${aiFitnessX} ${aiFitnessY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${humanX} ${humanY}`}
           fill='none'
           stroke='url(#gaintain-line-gradient)'
           strokeWidth={isMobile ? '1.5' : '2'}
@@ -374,21 +331,13 @@ const DesignStrategyGraphic = (): JSX.Element => {
             <mpath href='#gaintain-motion-path' />
           </animateMotion>
         </circle>
-        {/* Second segment: GainTain to Human Coach (grey to match the outline) */}
-        <path
-          d={`M ${gaintainX} ${gaintainY} C ${r2X} ${r2Y}, ${q3X} ${q3Y}, ${humanX} ${humanY}`}
-          fill='none'
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.25)'}
-          strokeWidth={isMobile ? '1.5' : '2'}
-          strokeLinecap='round'
-        />
         
-        {/* AI Fitness apps point - same color as Human Coach */}
+        {/* AI Fitness apps point - with GainTain gradient fill */}
         <circle
           cx={aiFitnessX}
           cy={aiFitnessY}
           r={isMobile ? '4' : '5'}
-          fill={darkMode ? '#9CA3AF' : '#6B7280'}
+          fill='url(#gaintain-gradient-design-strategy)'
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
         />
@@ -399,42 +348,20 @@ const DesignStrategyGraphic = (): JSX.Element => {
           dominantBaseline='middle'
           className='design-strategy-point-label'
         >
-          AI Fitness Apps
+          Fitness Apps
         </text>
         
-        {/* Gaintain point - static, appears when dot reaches it */}
-        <circle
-          cx={gaintainX}
-          cy={gaintainY}
-          r={isMobile ? '4' : '5'}
-          fill='url(#gaintain-gradient-design-strategy)'
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
-          strokeWidth={isMobile ? '1' : '1.5'}
-          opacity={dotAnimationComplete ? 1 : 0}
-          style={{
-            transition: 'opacity 0.3s ease-in'
-          }}
-        />
-        <text
-          ref={gaintainLabelRef}
-          x={gaintainX + (isMobile ? 12 : 15)}
-          y={gaintainY}
-          textAnchor='start'
-          dominantBaseline='middle'
-          className='design-strategy-point-label gaintain-label-animated'
-          fill={darkMode ? '#090B0B' : '#F5F5F5'}
-        >
-          GainTain
-        </text>
-        
-        {/* Human Coach point - grey to match the line */}
+        {/* Human Coach point - grey until animation completes, then gradient fill */}
         <circle
           cx={humanX}
           cy={humanY}
           r={isMobile ? '4' : '5'}
-          fill={darkMode ? '#9CA3AF' : '#6B7280'}
+          fill={dotAnimationComplete ? 'url(#gaintain-gradient-design-strategy)' : (darkMode ? '#9CA3AF' : '#6B7280')}
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
+          style={{
+            transition: 'fill 0.3s ease-in'
+          }}
         />
         <text
           x={humanX}

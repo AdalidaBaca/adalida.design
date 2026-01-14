@@ -1,21 +1,39 @@
-import React, { forwardRef, type Ref } from 'react'
-
-import TrackImage from 'images/gaintain/track.webp'
+import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
 import SectionHeading from 'components/section_heading'
 
-import SystemDiagram from './system_diagram'
+import AccountabilityLevers from './accountability_levers'
 
 const Wireframing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
+  const explanationRef = useRef<HTMLDivElement>(null)
+  const diagramRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const matchHeights = (): void => {
+      if (explanationRef.current === null || diagramRef.current === null) return
+      const explanationHeight = explanationRef.current.offsetHeight
+      diagramRef.current.style.height = `${explanationHeight}px`
+    }
+
+    matchHeights()
+    window.addEventListener('resize', matchHeights)
+    const resizeObserver = new ResizeObserver(matchHeights)
+    if (explanationRef.current !== null) {
+      resizeObserver.observe(explanationRef.current)
+    }
+
+    return () => {
+      window.removeEventListener('resize', matchHeights)
+      resizeObserver.disconnect()
+    }
+  }, [])
+
   return (
-    <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
-      <div className='gaintain-image-container gaintain-design-strategy-track'>
-        <img src={TrackImage} alt='Where Gains are Data-Driven' />
+    <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
+      <div className='gaintain-image-container' ref={diagramRef}>
+        <AccountabilityLevers />
       </div>
-      <div className='gaintain-image-container'>
-        <SystemDiagram />
-      </div>
-      <div className='case-study-explanation'>
+      <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
           <SectionHeading title='Design strategy' />
           <div className='body-2'>
