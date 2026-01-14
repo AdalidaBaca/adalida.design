@@ -31,7 +31,6 @@ const Brand = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>
       </div>
       <div>
       <div className='gaintain-brand'>
-        <img src={BrandImage} alt='Logo with lines' className='gaintain-wireframing' />
         <div className='typography'>
           <div className='avenir glass card'>
             <h3 className='case-study-gradient-text' style={{ backgroundImage }}><strong>Aa</strong></h3>

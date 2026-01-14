@@ -152,7 +152,7 @@
 .case-study-top-to-bottom {
   > .gaintain-image-container {
     /* Desktop styles remain unchanged - index.scss handles this */
-    
+
     @media (max-width: 768px) {
       height: 325px !important;
       max-height: 35svh !important;
@@ -165,6 +165,15 @@
       max-height: 32.5svh !important;
       min-height: 300px;
       aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
+    }
+  }
+
+  /* Reduce gap for implementation section */
+  &:has(.gaintain-implementation-images-row) {
+    gap: 0.75em;
+
+    @media (width >= $case-study-breakpoint) {
+      gap: 1em;
     }
   }
   
@@ -953,6 +962,24 @@
     }
   }
   
+  /* Remove background for Solution section */
+  .gaintain-solution > & {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove background for Social Timeline section */
+  .case-study-side-by-side.reverse > & {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  
   /* Remove all padding for design strategy graphic section */
   .case-study-top-to-bottom > & {
     .design-strategy-graphic-container {
@@ -1073,9 +1100,9 @@
     }
   }
 
-  &.gaintain-implementation-images-row {
+  &.gaintain-implementation-images-stack {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1em;
     padding: 0.75em;
     aspect-ratio: unset !important;
@@ -1083,21 +1110,57 @@
     max-height: none !important;
 
     @media (max-width: 768px) {
+      gap: 0.75em;
+      padding: 0.5em;
+    }
+
+    > img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1.2 / 1;
+      object-fit: contain;
+      border-radius: 0.75em;
+      padding: 0.5em;
+      box-sizing: border-box;
+
+      @media (max-width: 768px) {
+        aspect-ratio: unset;
+        object-fit: contain;
+        padding: 0.375em;
+      }
+    }
+  }
+
+  &.gaintain-implementation-images-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5em;
+    padding: 0.75em;
+    aspect-ratio: unset !important;
+    height: auto !important;
+    max-height: none !important;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
       gap: 0.5em;
       padding: 0.5em;
     }
 
     > img {
-      flex: 1;
-      width: 0; // Allow flex to control width
+      width: 100%;
       height: auto;
-      aspect-ratio: 2.8 / 1; // Slightly taller (was 3.2 / 1)
-      min-height: 200px; // Allow growth
-      object-fit: cover;
+      aspect-ratio: 1.2 / 1;
+      object-fit: contain;
       border-radius: 0.75em;
+      padding: 0.5em;
+      box-sizing: border-box;
 
       @media (max-width: 768px) {
-        min-height: 150px;
+        aspect-ratio: unset;
+        object-fit: contain;
+        padding: 0.375em;
+        max-width: 70%;
+        margin: 0 auto;
       }
     }
   }
@@ -2595,6 +2658,7 @@
   width: 100%;
   max-width: 450px;
   margin-top: 0.25em;
+  align-items: center;
 
   @media (width >= 480px) {
     flex-direction: row;
@@ -2904,6 +2968,217 @@
   }
 }
 
+.gaintain-results-primary-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625em;
+  width: 100%;
+  margin-top: 1em;
+
+  @media (width >= $case-study-breakpoint) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+  }
+}
+
+.gaintain-results-secondary-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625em;
+  width: 100%;
+  margin-top: 1em;
+
+  @media (width >= $case-study-breakpoint) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+  }
+}
+
+.gaintain-validation-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75em;
+  width: 100%;
+  margin-top: 1.25em !important;
+
+  @media (width >= $case-study-breakpoint) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+}
+
+.gaintain-validation-card {
+  padding: 1em 1.25em;
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
+  border-radius: 0.875em;
+  border: 1px solid rgba(230, 92, 0, 0.15);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px -4px rgba(230, 92, 0, 0.2);
+    }
+  }
+
+  .dark & {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
+    border-color: rgba(230, 92, 0, 0.25);
+  }
+
+  @media (width >= 768px) {
+    padding: 1.25em 1.5em;
+    gap: 1.25em;
+  }
+
+  > .body-2 {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.9em;
+    flex: 1;
+
+    @media (width >= 768px) {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+  }
+}
+
+.gaintain-validation-icon {
+  width: 2.25em;
+  height: 2.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.15) 0%, rgba(249, 212, 35, 0.1) 100%);
+  border-radius: 0.5em;
+  color: rgba(230, 92, 0, 0.9);
+  flex-shrink: 0;
+
+  .dark & {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.2) 0%, rgba(249, 212, 35, 0.15) 100%);
+    color: rgba(249, 212, 35, 0.9);
+  }
+
+  > svg {
+    width: 1.25em;
+    height: 1.25em;
+    stroke-width: 1.5;
+  }
+
+  @media (width >= 768px) {
+    width: 2.5em;
+    height: 2.5em;
+
+    > svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+}
+
+.gaintain-metric-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.75em;
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.06) 0%, rgba(249, 212, 35, 0.04) 100%);
+  border-radius: 0.625em;
+  border: 1px solid rgba(230, 92, 0, 0.12);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px -2px rgba(230, 92, 0, 0.15);
+    }
+  }
+
+  .dark & {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.1) 0%, rgba(249, 212, 35, 0.06) 100%);
+    border-color: rgba(230, 92, 0, 0.2);
+  }
+
+  @media (width >= 768px) {
+    padding: 1.125em;
+    border-radius: 0.75em;
+  }
+
+  &.gaintain-metric-primary {
+    border-width: 1px;
+    border-color: rgba(230, 92, 0, 0.2);
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.1) 0%, rgba(249, 212, 35, 0.06) 100%);
+
+    .dark & {
+      border-color: rgba(230, 92, 0, 0.3);
+      background: linear-gradient(135deg, rgba(230, 92, 0, 0.14) 0%, rgba(249, 212, 35, 0.1) 100%);
+    }
+
+    @media (width < 768px) {
+      padding: 0.875em;
+    }
+
+    @media (width >= 768px) {
+      padding: 1.25em 1.125em;
+    }
+
+    .gaintain-metric-value {
+      @media (width >= 768px) {
+        font-size: 2.75em;
+      }
+
+      @media (width >= 1024px) {
+        font-size: 3em;
+      }
+    }
+  }
+}
+
+.gaintain-metric-value {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 0.2em 0;
+  color: $dark-text;
+  letter-spacing: -0.01em;
+
+  .dark & {
+    color: $light-text;
+  }
+
+  @media (width >= 768px) {
+    font-size: 2.25em;
+    margin-bottom: 0.375em;
+  }
+
+  @media (width >= 1024px) {
+    font-size: 2.5em;
+  }
+}
+
+.gaintain-metric-label {
+  font-size: 0.75em;
+  line-height: 1.3;
+  color: $dark-text;
+  opacity: 0.7;
+  font-weight: 400;
+
+  .dark & {
+    color: $light-text;
+    opacity: 0.75;
+  }
+
+  @media (width >= 768px) {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+}
+
 .gaintain-results-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -2926,7 +3201,45 @@
     @media (width >= 768px) {
       gap: 0.75em;
     }
+  }
 
+  > .gaintain-metric-style-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    @media (width >= 768px) {
+      gap: 1.5em;
+    }
+
+    > .gaintain-metric-card {
+      margin: 0;
+      width: 100%;
+    }
+
+    > .gaintain-validation-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75em;
+      margin-top: 0.5em;
+
+      > .body-2 {
+        margin: 0;
+        line-height: 1.6;
+        font-size: 0.9em;
+
+        @media (width >= 768px) {
+          font-size: 1em;
+          line-height: 1.7;
+        }
+      }
+    }
+  }
+
+  > .gaintain-details-card:not(.gaintain-metric-style-card) {
     .gaintain-results-title {
       font-weight: 600;
       margin: 0 0 0.5em 0;

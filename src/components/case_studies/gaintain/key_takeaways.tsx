@@ -15,19 +15,19 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
         <div className='gaintain-results-grid' style={{ marginTop: '0.25em' }}>
         <div className='gaintain-details-card'>
           <div className='body-2'>
-            Aligning early on <strong>data models</strong> reduced rework as priorities shifted.
+            Aligning early on <strong>data models</strong> saves time and prevents costly rework.
           </div>
         </div>
 
         <div className='gaintain-details-card'>
           <div className='body-2'>
-            <strong>Prototyping in code</strong> enabled fast testing with real users in context.
+            <strong>Prototyping in code</strong> accelerates validation with real users.
           </div>
         </div>
 
         <div className='gaintain-details-card'>
           <div className='body-2'>
-            Evaluating <strong>revenue impact</strong> per feature prevented early <strong>scope creep</strong>.
+            Gaining <strong>first users</strong> requires different strategies than retaining existing ones.
           </div>
         </div>
         </div>

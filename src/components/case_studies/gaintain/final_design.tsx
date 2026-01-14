@@ -1,5 +1,7 @@
 import React, { forwardRef, type Ref } from 'react'
 
+import { IconSchool, IconTrophy } from '@tabler/icons-react'
+
 import FinalDesignImage from 'images/gaintain/final_design.webp'
 
 import SectionHeading from 'components/section_heading'
@@ -12,30 +14,60 @@ const FinalDesign = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEl
       </div>
       <div className='case-study-explanation'>
         <SectionHeading title='Results' />
-        <div className='gaintain-results-grid' style={{ marginTop: '0.25em' }}>
-          <div className='gaintain-details-card'>
-            <div className='body-2 gaintain-results-title'>Outcomes</div>
-            <ul className='body-2 gaintain-results-list'>
-              <li className='gaintain-results-item'>MVP shipped in <strong>9 weeks</strong> with roughly <strong>30 App Store releases</strong></li>
-              <li className='gaintain-results-item'><strong>117 downloads</strong> across <strong>148 countries</strong> with no paid marketing</li>
-              <li className='gaintain-results-item'><strong>~40% reduction</strong> in onboarding drop-off after redesign</li>
-            </ul>
+        
+        {/* Primary Metrics - Most Impactful */}
+        <div className='gaintain-results-primary-metrics'>
+          <div className='gaintain-metric-card gaintain-metric-primary'>
+            <div className='gaintain-metric-value'>40%</div>
+            <div className='gaintain-metric-label'>Reduction in onboarding drop-off</div>
           </div>
-          <div className='gaintain-details-card'>
-            <div className='body-2 gaintain-results-title'>Signals</div>
-            <ul className='body-2 gaintain-results-list'>
-              <li className='gaintain-results-item'><strong>1.17K App Store impressions</strong> → 364 product page views</li>
-              <li className='gaintain-results-item'><strong>12% App Store conversion rate</strong>, above average for new consumer apps</li>
-              <li className='gaintain-results-item'>Organic traffic driven primarily by <strong>Google and LinkedIn</strong></li>
-            </ul>
+          <div className='gaintain-metric-card gaintain-metric-primary'>
+            <div className='gaintain-metric-value'>12%</div>
+            <div className='gaintain-metric-label'>App Store conversion rate</div>
           </div>
-          <div className='gaintain-details-card'>
-            <div className='body-2 gaintain-results-title'>Validation</div>
-            <ul className='body-2 gaintain-results-list'>
-              <li className='gaintain-results-item'>Positive early App Store ratings</li>
-              <li className='gaintain-results-item'><strong>100% Lighthouse scores</strong> for SEO, accessibility, and best practices</li>
-              <li className='gaintain-results-item'>Accepted into <strong>Founder University</strong> and selected as a <strong>Gamma pitch competition finalist</strong></li>
-            </ul>
+          <div className='gaintain-metric-card gaintain-metric-primary'>
+            <div className='gaintain-metric-value'>9 weeks</div>
+            <div className='gaintain-metric-label'>From MVP to launch</div>
+          </div>
+          <div className='gaintain-metric-card gaintain-metric-primary'>
+            <div className='gaintain-metric-value'>117</div>
+            <div className='gaintain-metric-label'>Downloads since first launch</div>
+          </div>
+        </div>
+
+        {/* Secondary Metrics Grid */}
+        <div className='gaintain-results-secondary-metrics'>
+          <div className='gaintain-metric-card'>
+            <div className='gaintain-metric-value'>30</div>
+            <div className='gaintain-metric-label'>App Store releases</div>
+          </div>
+          <div className='gaintain-metric-card'>
+            <div className='gaintain-metric-value'>1.17K</div>
+            <div className='gaintain-metric-label'>App Store impressions</div>
+          </div>
+          <div className='gaintain-metric-card'>
+            <div className='gaintain-metric-value'>364</div>
+            <div className='gaintain-metric-label'>Product page views</div>
+          </div>
+          <div className='gaintain-metric-card'>
+            <div className='gaintain-metric-value'>100%</div>
+            <div className='gaintain-metric-label'>Lighthouse scores</div>
+          </div>
+        </div>
+
+        {/* Validation Items */}
+        <div className='gaintain-validation-items'>
+          <div className='gaintain-validation-card'>
+            <div className='gaintain-validation-icon'>
+              <IconSchool />
+            </div>
+            <div className='body-2'>Accepted into <strong>Founder University</strong></div>
+          </div>
+          <div className='gaintain-validation-card'>
+            <div className='gaintain-validation-icon'>
+              <IconTrophy />
+            </div>
+            <div className='body-2'><strong>Gamma pitch competition</strong> finalist</div>
           </div>
         </div>
       </div>

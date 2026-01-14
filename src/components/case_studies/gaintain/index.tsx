@@ -32,7 +32,8 @@ const Gaintain = (): JSX.Element => {
     'Social Timeline': useRef(null),
     Implementation: useRef(null),
     Results: useRef(null),
-    'Key Takeaways': useRef(null)
+    'Key Takeaways': useRef(null),
+    'The Brand': useRef(null)
   }
   const isMobile = useIsMobile(1400)
   return (
@@ -43,6 +44,7 @@ const Gaintain = (): JSX.Element => {
         <Discovering ref={sections.Problem} keyInsightRef={sections['Key Insight']} />
         <Wireframing ref={sections['Design Strategy']} />
         <Testing ref={sections.Solution} />
+        <Brand ref={sections['The Brand']} />
         <InteractiveLibrary ref={sections['Pledge Setup']} />
         <WorkoutLanding ref={sections['Workout Dashboard']} />
         <Developer ref={sections['Social Timeline']} />
@@ -50,7 +52,6 @@ const Gaintain = (): JSX.Element => {
         <FinalDesign ref={sections.Results} />
         <KeyTakeaways ref={sections['Key Takeaways']} />
         <EndCTA />
-        {/* <Brand ref={sections['The Brand']} /> */}
       </div>
     </Context.Provider>
   )

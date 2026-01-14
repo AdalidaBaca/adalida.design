@@ -1,0 +1,138 @@
+@use 'sass:map';
+@import '../variables';
+@import '../colors'; // Imported to access $light-background/$dark-background for fades
+
+.community-carousel {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0.375em 0.5em !important;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  min-height: 120px !important;
+  max-height: 240px !important;
+  /* Remove background */
+  background: transparent !important;
+  border: none; // Removed all borders
+  border-radius: 0;
+  box-shadow: none; // Removed background glow
+  contain: paint;
+
+  /* Edge fade to blend marquee ends - match tools carousel */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15vw;
+    pointer-events: none;
+    z-index: 3;
+  }
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, $light-background 0%, rgba($light-background, 0) 100%);
+  }
+
+  @media (width >= 768px) {
+    padding: 0.75em 0.5em !important;
+    min-height: 140px !important;
+    max-height: 260px !important;
+  }
+
+  /* Dark mode background */
+  .dark & {
+    background: transparent !important;
+    border: none; // Removed all borders in dark mode
+    box-shadow: none; // Removed background glow in dark mode
+
+    /* Dark mode edge fade - match tools carousel */
+    &::before {
+      background: linear-gradient(90deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+    }
+    &::after {
+      background: linear-gradient(270deg, $dark-background 0%, rgba($dark-background, 0) 100%);
+    }
+  }
+}
+
+.community-title-container {
+  padding-left: 1.25em; // Matches gaintain-details-card
+  margin-bottom: 1em; // Gap between title and marquee
+
+  @media (width >= 768px) {
+    padding-left: 2em; // Matches gaintain-details-card on desktop
+    margin-bottom: 1.25em; // Gap on desktop
+  }
+
+  .section-heading-container {
+    margin: 0 0 0.25em; // Reduced margin
+  }
+}
+
+.community-marquee {
+  display: inline-flex;
+  gap: 1em;
+  align-items: center;
+  padding-left: 1.25em; // Matches gaintain-details-card padding
+  animation: community-marquee linear infinite;
+  animation-duration: var(--marquee-duration, 120s);
+  animation-play-state: var(--marquee-play, running);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  width: max-content;
+  position: relative;
+  z-index: 2; // Below fade overlays
+
+  @media (width >= 768px) {
+    padding-left: 2em; // Matches gaintain-details-card on desktop
+    gap: 1.25em;
+  }
+}
+
+.community-image {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  height: 100px !important;
+  opacity: 0.85;
+  transition: opacity 120ms ease, filter 120ms ease, transform 120ms ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+  }
+
+  img {
+    height: 100px !important;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  /* Desktop sizes */
+  @media (width >= 768px) {
+    height: 120px !important;
+
+    img {
+      height: 120px !important;
+    }
+  }
+}
+
+@keyframes community-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

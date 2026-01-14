@@ -1,19 +1,12 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import GymCollageImage from 'images/gaintain/gym collage.webp'
-import IterationsImage from 'images/gaintain/iterations.webp'
-import TestingImage from 'images/gaintain/testing.webp'
-
 import SectionHeading from 'components/section_heading'
+import CommunityCarousel from './community_carousel'
 
 const Iterations = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
     <div data-aos='fade-up' className='case-study-top-to-bottom' ref={ref}>
-      <div className='gaintain-image-container gaintain-implementation-images-row'>
-        <img src={GymCollageImage} alt='Gym collage' />
-        <img src={IterationsImage} alt='Iterations' />
-        <img src={TestingImage} alt='Testing' />
-      </div>
+      <CommunityCarousel ariaLabel='Community' />
       <div className='case-study-explanation'>
                     <div className='gaintain-details-card'>
                       <SectionHeading title='Implementation' />
