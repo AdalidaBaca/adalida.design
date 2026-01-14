@@ -9,7 +9,10 @@
 
   /* Smaller size for case study variant */
   &:not(.full-bleed) {
-    padding: 0.5em 0;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     min-height: 60px;
   }
 
@@ -28,14 +31,21 @@
     margin-right: calc(50% - 50vw);
   }
 
-  /* Constrained width when not full-bleed */
+  /* Constrained width when not full-bleed - ensure no horizontal padding */
   &:not(.full-bleed) {
     width: 100%;
-    max-width: min(1200px, 100%);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align children to left edge */
   }
   /* Light mode background - using accent color */
   background: linear-gradient(
@@ -94,16 +104,21 @@
     width: $page-width;
     margin: 0 auto;
 
-    /* When not full-bleed, inner should match container width and align with case study content */
+    /* When not full-bleed, remove inner wrapper constraints completely */
     .tools-carousel:not(.full-bleed) & {
-      width: 100%;
-      max-width: min(1200px, 100%);
-      margin: 0 auto;
-      padding: 0 0.5em;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* Left-align content to match case study cards */
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important; /* Align badge to left */
+      position: relative;
     }
   }
   /* no wrapper needed for bleed */
@@ -125,10 +140,21 @@
     backdrop-filter: blur(10px) saturate(150%);
     box-shadow: 0 6px 18px -14px rgb(0 0 0 / 25%);
     margin-bottom: 0.9em; /* add a bit more breathing room above icons */
+    margin-left: 0; /* Ensure no left margin */
 
     /* Left-align badge when not full-bleed to match case study content */
     .tools-carousel:not(.full-bleed) & {
-      display: flex;
+      display: block !important;
+      margin: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      margin-bottom: 0.9em !important;
+      padding: 0.45em 0.8em !important; /* Keep normal padding */
+      position: static !important; /* Normal flow */
+      left: auto !important;
+      top: auto !important;
+      width: fit-content;
+      align-self: flex-start;
     }
   }
 

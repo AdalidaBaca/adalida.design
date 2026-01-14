@@ -1,35 +1,75 @@
-import { IconMailFilled, IconBrandLinkedin } from '@tabler/icons-react'
+import { IconDeviceMobile, IconUserPlus, IconArrowRight } from '@tabler/icons-react'
 import React, { useContext } from 'react'
 
 import BadgeButton from 'components/badge_button'
+import { Projects } from 'projects'
 
 import Context from '../context'
 
 const EndCTA = (): JSX.Element => {
   const color = useContext(Context)?.colors?.primary
+  const nextProject = Projects.ProjectEcho
+  const nextProjectUrl = '/case_studies/project_echo'
 
-  return (
-    <div className='gaintain-end-cta-section' data-aos='fade-up' data-aos-offset='100'>
-      <div className='gaintain-end-cta-container'>
-        <div className='gaintain-end-cta-content'>
-          <h3 className='gaintain-end-cta-heading'>Ready to ship your product?</h3>
-          <p className='gaintain-end-cta-description'>
-            Let's discuss how we can bring your vision to life with thoughtful design and rapid iteration.
-          </p>
-          <div className='gaintain-end-cta-buttons'>
-            <BadgeButton 
-              to='https://www.linkedin.com/in/adalidabaca/'
-              style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}
-            >
-              <IconBrandLinkedin height='1em' width='1em' />&nbsp; MESSAGE ON LINKEDIN
-            </BadgeButton>
-            <BadgeButton to='mailto:hi@adalida.design'>
-              <IconMailFilled height='1em' width='1em' />&nbsp; SEND EMAIL
-            </BadgeButton>
+  if (!nextProject) {
+    return (
+      <div className='gaintain-end-cta-section' data-aos='fade-up' data-aos-offset='100'>
+        <div className='gaintain-end-cta-container'>
+          <div className='gaintain-end-cta-content'>
+            <h3 className='gaintain-end-cta-heading'>Try GanTain</h3>
+            <p className='gaintain-end-cta-description'>
+              Download the app or join the pilot program to experience AI-guided fitness tracking.
+            </p>
+            <div className='gaintain-end-cta-buttons'>
+              <BadgeButton 
+                to='https://gaintain.co/app'
+                style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}
+              >
+                <IconDeviceMobile height='1em' width='1em' />&nbsp; DOWNLOAD
+              </BadgeButton>
+              <BadgeButton to='mailto:hi@adalida.design?subject=Gaintain Pilot Signup'>
+                <IconUserPlus height='1em' width='1em' />&nbsp; JOIN PILOT
+              </BadgeButton>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
+  }
+
+  return (
+    <>
+      <div className='gaintain-end-cta-section' data-aos='fade-up' data-aos-offset='100'>
+        <div className='gaintain-end-cta-container'>
+          <div className='gaintain-end-cta-content'>
+            <h3 className='gaintain-end-cta-heading'>Try GanTain</h3>
+            <p className='gaintain-end-cta-description'>
+              Download the app or join the pilot program to experience AI-guided fitness tracking.
+            </p>
+            <div className='gaintain-end-cta-buttons'>
+              <BadgeButton 
+                to='https://gaintain.co/app'
+                style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}
+              >
+                <IconDeviceMobile height='1em' width='1em' />&nbsp; DOWNLOAD
+              </BadgeButton>
+              <BadgeButton to='mailto:hi@adalida.design?subject=Gaintain Pilot Signup'>
+                <IconUserPlus height='1em' width='1em' />&nbsp; JOIN PILOT
+              </BadgeButton>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='gaintain-next-project-section' data-aos='fade-up' data-aos-offset='100'>
+        <div className='gaintain-next-project-content'>
+          <span className='gaintain-next-project-label'>Next Case Study</span>
+          <a href={nextProjectUrl} className='gaintain-next-project-link'>
+            <span className='gaintain-next-project-name'>{nextProject.name}</span>
+            <IconArrowRight height='1em' width='1em' />
+          </a>
+        </div>
+      </div>
+    </>
   )
 }
 

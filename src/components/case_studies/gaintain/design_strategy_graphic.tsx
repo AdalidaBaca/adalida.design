@@ -9,9 +9,12 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const gradientPathRef = useRef<SVGPathElement>(null)
   const gaintainLabelRef = useRef<SVGTextElement>(null)
   const motionPathRef = useRef<SVGPathElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
   const [pathLength, setPathLength] = useState<number | null>(null)
   const [lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
+  const [isInView, setIsInView] = useState(false)
   // Graph dimensions - responsive, adjusted width and height for better fit
   const graphWidth = isMobile ? 300 : 400
   const graphHeight = isMobile ? 350 : 380
@@ -24,21 +27,26 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const weakLabelY = padding + chartHeight - (isMobile ? 12 : 15) // Above the axis line endpoint
   const yAxisTitleY = (strongLabelY + weakLabelY) / 2 // Center between Strong and Weak
   
-  // Data points - curved line from Human Coach to AI Fitness Apps
-  // Human: strong (high y) and costly (right x)
-  const humanX = padding + (chartWidth * 0.85)
-  const humanY = padding + (chartHeight * 0.2) // Top area for strong drop-off prevention
+  // Data points - curved line from AI Fitness Apps through GainTain to Human Coach (peak/asymptote)
+  // Human Coach: peak/asymptote of the curve (highest point, center-right)
+  const humanX = padding + (chartWidth * 0.7) // Center-right position for peak
+  const humanY = padding + (chartHeight * 0.1) // Peak/asymptote - highest point on curve
 
-  // AI Fitness apps: some drop-off prevention (middle-low y) and low cost (left x)
+  // AI Fitness apps: starting point (low y) and low cost (left x)
   const aiFitnessX = padding + (chartWidth * 0.15)
   const aiFitnessY = padding + (chartHeight * 0.85) // Bottom area for weak drop-off prevention
 
-  // Create a smooth continuous curve from AI Fitness Apps to Human Coach
-  // Use a cubic bezier with control points positioned for natural upward parabolic curve
-  const cp1X = aiFitnessX + (humanX - aiFitnessX) * 0.3
-  const cp1Y = aiFitnessY - (isMobile ? 50 : 70) // First control point above AI Fitness Apps
-  const cp2X = humanX - (humanX - aiFitnessX) * 0.3
-  const cp2Y = humanY - (isMobile ? 30 : 40) // Second control point above Human Coach
+  // Create a logarithmic curve from AI Fitness Apps through GainTain to Human Coach (asymptote)
+  // Control points positioned to create logarithmic curve shape
+  // Logarithmic: steep initial rise that gradually flattens, approaching horizontal asymptote at Human Coach
+  // First control point: positioned early to create steep initial rise (logarithmic characteristic)
+  const cp1X = aiFitnessX + (humanX - aiFitnessX) * 0.25 // Early in the curve for steep initial rise
+  const cp1Y = aiFitnessY - (isMobile ? 120 : 150) // Steep initial rise - logarithmic starts steep
+  
+  // Second control point: positioned to create horizontal asymptote at Human Coach
+  // Logarithmic curves flatten out as they approach the asymptote
+  const cp2X = humanX // Same X as Human Coach - creates horizontal approach (asymptote)
+  const cp2Y = humanY + (isMobile ? 10 : 15) // Just below peak - creates horizontal flattening (asymptote behavior)
   
   // Calculate GainTain position at t=0.5 on the cubic bezier curve
   // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
@@ -150,28 +158,71 @@ const DesignStrategyGraphic = (): JSX.Element => {
 
   // Handle dot animation completion
   useEffect(() => {
-    if (pathLength) {
+    if (pathLength && isInView) {
       // Dot animation duration is 2.5s + 0.5s delay = 3.0s total
       const timeout = setTimeout(() => {
         setDotAnimationComplete(true)
       }, 3000)
       return () => clearTimeout(timeout)
     }
-  }, [pathLength])
+  }, [pathLength, isInView])
+
+  // IntersectionObserver to trigger animation when section scrolls into view
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInView) {
+            setIsInView(true)
+            // Manually trigger the animations after a short delay
+            setTimeout(() => {
+              if (svgRef.current) {
+                const lineAnimate = svgRef.current.querySelector('animate[attributeName="stroke-dashoffset"]')
+                const dotAnimate = svgRef.current.querySelector('animateMotion')
+                if (lineAnimate && lineAnimate instanceof SVGAnimateElement) {
+                  lineAnimate.beginElement()
+                }
+                if (dotAnimate && dotAnimate instanceof SVGAnimateMotionElement) {
+                  dotAnimate.beginElement()
+                }
+              }
+            }, 500) // 0.5s delay to match the original begin time
+          }
+        })
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the element is visible
+        rootMargin: '0px'
+      }
+    )
+
+    observer.observe(container)
+    return () => {
+      observer.disconnect()
+    }
+  }, [isInView])
   
   return (
-                <div className='design-strategy-graphic-container'>
-                  <svg className='design-strategy-graphic' viewBox={`0 0 ${graphWidth} ${graphHeight}`} preserveAspectRatio='xMidYMid meet' style={{ width: '100%', height: '100%' }}>
+                <div className='design-strategy-graphic-container' ref={containerRef}>
+                  <svg ref={svgRef} className='design-strategy-graphic' viewBox={`0 0 ${graphWidth} ${graphHeight}`} preserveAspectRatio='xMidYMid meet' style={{ width: '100%', height: '100%' }}>
         <defs>
           {/* Gradient for line from GainTain to AI Fitness Apps - coordinates set dynamically */}
           <linearGradient id='gaintain-line-gradient' x1={gaintainX} y1={gaintainY} x2={aiFitnessX} y2={aiFitnessY} gradientUnits='userSpaceOnUse'>
-            <stop offset='0%' stopColor='#E65C00' />
-            <stop offset='100%' stopColor='#F9D423' />
+            <stop offset='0%' stopColor='#22C55E' />
+            <stop offset='100%' stopColor='#10B981' />
           </linearGradient>
-          {/* Gradient for GainTain label text */}
+          {/* Gradient for line from GainTain to Human Coach - coordinates set dynamically */}
+          <linearGradient id='gaintain-to-human-gradient' x1={gaintainX} y1={gaintainY} x2={humanX} y2={humanY} gradientUnits='userSpaceOnUse'>
+            <stop offset='0%' stopColor='#22C55E' />
+            <stop offset='100%' stopColor='#10B981' />
+          </linearGradient>
+          {/* Gradient for GainTain label text and points */}
           <linearGradient id='gaintain-gradient-design-strategy' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='objectBoundingBox'>
-            <stop offset='0%' stopColor='#E65C00' />
-            <stop offset='100%' stopColor='#F9D423' />
+            <stop offset='0%' stopColor='#22C55E' />
+            <stop offset='100%' stopColor='#10B981' />
           </linearGradient>
         </defs>
         
@@ -300,7 +351,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
             from={pathLength ? `${pathLength}` : '0'}
             to='0'
             dur='2.5s'
-            begin='0.5s'
+            begin='indefinite'
             fill='freeze'
             calcMode='linear'
           />
@@ -315,7 +366,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
         >
           <animateMotion
             dur='2.5s'
-            begin='0.5s'
+            begin='indefinite'
             fill='freeze'
             calcMode='linear'
             keyTimes='0;1'
@@ -323,21 +374,21 @@ const DesignStrategyGraphic = (): JSX.Element => {
             <mpath href='#gaintain-motion-path' />
           </animateMotion>
         </circle>
-        {/* Second segment: GainTain to Human Coach (solid) */}
+        {/* Second segment: GainTain to Human Coach (grey to match the outline) */}
         <path
           d={`M ${gaintainX} ${gaintainY} C ${r2X} ${r2Y}, ${q3X} ${q3Y}, ${humanX} ${humanY}`}
           fill='none'
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'}
+          stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.25)'}
           strokeWidth={isMobile ? '1.5' : '2'}
           strokeLinecap='round'
         />
         
-        {/* AI Fitness apps point - academic/data style */}
+        {/* AI Fitness apps point - same color as Human Coach */}
         <circle
           cx={aiFitnessX}
           cy={aiFitnessY}
           r={isMobile ? '4' : '5'}
-          fill='url(#gaintain-gradient-design-strategy)'
+          fill={darkMode ? '#9CA3AF' : '#6B7280'}
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
         />
@@ -376,12 +427,12 @@ const DesignStrategyGraphic = (): JSX.Element => {
           GainTain
         </text>
         
-        {/* Human Coach point - academic/data style */}
+        {/* Human Coach point - grey to match the line */}
         <circle
           cx={humanX}
           cy={humanY}
           r={isMobile ? '4' : '5'}
-          fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)'}
+          fill={darkMode ? '#9CA3AF' : '#6B7280'}
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
         />

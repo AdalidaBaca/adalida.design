@@ -27,10 +27,10 @@ const Gaintain = (): JSX.Element => {
     'Key Insight': useRef(null),
     'Design Strategy': useRef(null),
     Solution: useRef(null),
-    Implementation: useRef(null),
-    'Workout Dashboard': useRef(null),
     'Pledge Setup': useRef(null),
+    'Workout Dashboard': useRef(null),
     'Social Timeline': useRef(null),
+    Implementation: useRef(null),
     Results: useRef(null),
     'Key Takeaways': useRef(null)
   }

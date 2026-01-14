@@ -54,12 +54,10 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
               style={active ? undefined : { backgroundImage: color }}
               onClick={() => {
                 if (element.current === null) return
-                const headerHeight = 56
-                const elementPosition = element.current.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerHeight - 16 // 16px for extra spacing
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
+                // Use scrollIntoView to respect scroll-margin-top CSS property
+                element.current.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
                 })
               }}
             >
