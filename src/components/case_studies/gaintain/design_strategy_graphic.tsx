@@ -14,6 +14,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const [lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
   const [isInView, setIsInView] = useState(false)
+  const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
   // Graph dimensions - responsive, adjusted width and height for better fit
   const graphWidth = isMobile ? 300 : 400
   const graphHeight = isMobile ? 350 : 380
@@ -74,6 +75,17 @@ const DesignStrategyGraphic = (): JSX.Element => {
   // First segment control points: aiFitnessX/Y, q1X/Y, r1X/Y, gaintainX/Y
   // Second segment control points: gaintainX/Y, r2X/Y, q3X/Y, humanX/Y
   
+  // Check if animation has been played before
+  useEffect(() => {
+    const hasPlayed = localStorage.getItem('gaintain-design-strategy-animated') === 'true'
+    setHasAnimatedBefore(hasPlayed)
+    if (hasPlayed) {
+      // If already animated, set final states immediately
+      setLineAnimationComplete(true)
+      setDotAnimationComplete(true)
+    }
+  }, [])
+
   // Calculate path length for animation
   useEffect(() => {
     if (gradientPathRef.current) {
@@ -101,14 +113,16 @@ const DesignStrategyGraphic = (): JSX.Element => {
 
   // Handle dot animation completion
   useEffect(() => {
-    if (pathLength && isInView) {
+    if (pathLength && isInView && !hasAnimatedBefore) {
       // Dot animation duration is 1.5s + 0.3s delay = 1.8s total
       const timeout = setTimeout(() => {
         setDotAnimationComplete(true)
+        // Mark animation as complete in localStorage
+        localStorage.setItem('gaintain-design-strategy-animated', 'true')
       }, 1800)
       return () => clearTimeout(timeout)
     }
-  }, [pathLength, isInView])
+  }, [pathLength, isInView, hasAnimatedBefore])
 
   // IntersectionObserver to trigger animation when section scrolls into view
   useEffect(() => {
@@ -120,19 +134,22 @@ const DesignStrategyGraphic = (): JSX.Element => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isInView) {
             setIsInView(true)
-            // Manually trigger the animations after a short delay
-            setTimeout(() => {
-              if (svgRef.current) {
-                const lineAnimate = svgRef.current.querySelector('animate[attributeName="stroke-dashoffset"]')
-                const dotAnimate = svgRef.current.querySelector('animateMotion')
-                if (lineAnimate && lineAnimate instanceof SVGAnimateElement) {
-                  lineAnimate.beginElement()
+            // Only trigger animation if it hasn't been played before
+            if (!hasAnimatedBefore) {
+              // Manually trigger the animations after a short delay
+              setTimeout(() => {
+                if (svgRef.current) {
+                  const lineAnimate = svgRef.current.querySelector('animate[attributeName="stroke-dashoffset"]')
+                  const dotAnimate = svgRef.current.querySelector('animateMotion')
+                  if (lineAnimate && lineAnimate instanceof SVGAnimateElement) {
+                    lineAnimate.beginElement()
+                  }
+                  if (dotAnimate && dotAnimate instanceof SVGAnimateMotionElement) {
+                    dotAnimate.beginElement()
+                  }
                 }
-                if (dotAnimate && dotAnimate instanceof SVGAnimateMotionElement) {
-                  dotAnimate.beginElement()
-                }
-              }
-            }, 300) // 0.3s delay
+              }, 300) // 0.3s delay
+            }
           }
         })
       },
@@ -146,7 +163,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
     return () => {
       observer.disconnect()
     }
-  }, [isInView])
+  }, [isInView, hasAnimatedBefore])
   
   return (
                 <div className='design-strategy-graphic-container' ref={containerRef}>
@@ -302,7 +319,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
           strokeWidth={isMobile ? '1.5' : '2'}
           strokeLinecap='round'
           strokeDasharray={pathLength ? `${pathLength}` : 'none'}
-          strokeDashoffset={pathLength ? `${pathLength}` : '0'}
+          strokeDashoffset={hasAnimatedBefore ? '0' : (pathLength ? `${pathLength}` : '0')}
         >
           <animate
             attributeName='stroke-dashoffset'
@@ -321,16 +338,20 @@ const DesignStrategyGraphic = (): JSX.Element => {
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
           opacity={pathLength ? 1 : 0}
+          cx={hasAnimatedBefore ? humanX : undefined}
+          cy={hasAnimatedBefore ? humanY : undefined}
         >
-          <animateMotion
-            dur='1.5s'
-            begin='indefinite'
-            fill='freeze'
-            calcMode='linear'
-            keyTimes='0;1'
-          >
-            <mpath href='#gaintain-motion-path' />
-          </animateMotion>
+          {!hasAnimatedBefore && (
+            <animateMotion
+              dur='1.5s'
+              begin='indefinite'
+              fill='freeze'
+              calcMode='linear'
+              keyTimes='0;1'
+            >
+              <mpath href='#gaintain-motion-path' />
+            </animateMotion>
+          )}
         </circle>
         
         {/* AI Fitness apps point - with GainTain gradient fill */}

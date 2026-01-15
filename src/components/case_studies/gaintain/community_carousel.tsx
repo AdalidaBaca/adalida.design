@@ -17,6 +17,12 @@ const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element 
   const [broken, setBroken] = useState(false)
   const needsRotation = (label.toLowerCase().includes('6394') || src.includes('6394')) ||
                         (label.toLowerCase().includes('6841') || src.includes('6841'))
+  const needsTopCenter = (label.toLowerCase().includes('6506') || src.includes('6506'))
+  const className = [
+    needsRotation ? 'rotate-90' : '',
+    needsTopCenter ? 'object-top-center' : ''
+  ].filter(Boolean).join(' ')
+  
   return (
     <div className='community-image-box' title={label} aria-label={label}>
       {!broken
@@ -24,7 +30,7 @@ const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element 
             src={src} 
             srcSet={srcSet}
             alt={label} 
-            className={needsRotation ? 'rotate-90' : ''} 
+            className={className}
             loading='lazy'
             decoding='async'
             onError={() => { setBroken(true) }} 

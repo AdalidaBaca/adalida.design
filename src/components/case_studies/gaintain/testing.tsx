@@ -106,7 +106,7 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
                 <h2 className='case-study-gradient-text' style={{ backgroundImage: selectedGradientImage }}><strong>Gg</strong></h2>
               </div>
               <div className='gaintain-typography-info'>
-                <div className='gaintain-typography-name case-study-gradient-text' style={{ backgroundImage: selectedGradientImage }}>Avenir Next LT PRO</div>
+                <div className='gaintain-typography-name case-study-gradient-text' style={{ backgroundImage: selectedGradientImage }}>Inter</div>
                 <div className='gaintain-typography-styles' style={{ color: darkMode ? 'rgba(243, 243, 243, 0.75)' : 'rgba(0, 0, 0, 0.75)' }}>
                   <span>Regular</span>
                   <span><em>Italic</em></span>
@@ -187,11 +187,13 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
                   {gradientOptions.map((option, index) => {
                     const currentIndex = gradientOptions.findIndex(opt => opt.id === selectedGradient.id)
                     return (
-                      <span
+                      <button
                         key={option.id}
+                        type='button'
                         className={`gaintain-gradient-dot ${currentIndex === index ? 'active' : ''}`}
                         style={{ background: option.gradient }}
                         aria-label={`Gradient option ${index + 1}`}
+                        onClick={() => setSelectedGradient(option)}
                       />
                     )
                   })}

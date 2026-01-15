@@ -119,6 +119,10 @@
     &.rotate-90 {
       transform: rotate(90deg);
     }
+    
+    &.object-top-center {
+      object-position: 30% center;
+    }
   }
   
   .community-fallback {
@@ -151,6 +155,10 @@
       
       &.rotate-90 {
         transform: rotate(90deg);
+      }
+      
+      &.object-top-center {
+        object-position: 30% center;
       }
     }
 

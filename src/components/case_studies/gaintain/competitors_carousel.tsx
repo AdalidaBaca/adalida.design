@@ -15,8 +15,9 @@ const titleCase = (s: string): string =>
 
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   const [broken, setBroken] = useState(false)
+  const isNotion = label.toLowerCase().includes('notion')
   return (
-    <div className='competitor-logo' title={label} aria-label={label}>
+    <div className={`competitor-logo ${isNotion ? 'notion-logo' : ''}`} title={label} aria-label={label}>
       {!broken
         ? <img src={src} alt={label} onError={() => { setBroken(true) }} />
         : <div className='competitor-fallback'>{label}</div>}
@@ -30,9 +31,9 @@ interface CompetitorsCarouselProps {
 
 const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
   const data = useStaticQuery(graphql`
-    query CompetitorsShipsWithLogos {
+    query CompetitorsAbraLogos {
       allFile(
-        filter: { sourceInstanceName: { eq: "images" }, relativeDirectory: { regex: "/[Ss]hips with/" } }
+        filter: { sourceInstanceName: { eq: "images" }, relativeDirectory: { eq: "gaintain/abra" } }
         sort: { name: ASC }
       ) {
         nodes {
