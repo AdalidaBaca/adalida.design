@@ -41,7 +41,8 @@
     overflow: hidden;
     margin: 0 auto;
     border-radius: 1.5em;
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.15) 0%, rgba(249, 212, 35, 0.1) 100%);
+    /* Match GainTain’s portfolio card gradient fill */
+    background: linear-gradient(45deg, #E65C00, #F9D423);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(230, 92, 0, 0.18);
     box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.1);
@@ -51,7 +52,7 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
-      opacity: 0.85;
+      opacity: 0;
       mix-blend-mode: soft-light;
       pointer-events: none;
       z-index: 0;
@@ -113,12 +114,13 @@
   }
 
 .dark .gaintain-hero > .intro-videos {
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
+  /* Match GainTain’s portfolio card gradient fill (dark mode) */
+  background: linear-gradient(45deg, #E65C00, #F9D423);
   border-color: rgba(230, 92, 0, 0.18);
 
   &::after {
     background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
-    opacity: 0.95;
+    opacity: 0;
   }
 }
 
@@ -3692,14 +3694,14 @@
 
   > .gaintain-image-container {
     aspect-ratio: 4 / 1 !important; // Taller aspect ratio = shorter height
-    max-height: 200px;
+    max-height: 280px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
     border: 1px solid rgba(230, 92, 0, 0.12);
 
     @media (width >= $case-study-breakpoint) {
-      max-height: 250px;
+      max-height: 360px;
     }
 
     &::after {
@@ -3942,15 +3944,18 @@
 
   > .gaintain-image-container {
     aspect-ratio: 4 / 1 !important; // Taller aspect ratio = shorter height
-    max-height: 200px;
+    max-height: 280px;
 
     @media (width >= $case-study-breakpoint) {
-      max-height: 250px;
+      max-height: 360px;
     }
 
     > img {
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
+      width: 100%;
+      display: block;
     }
   }
 

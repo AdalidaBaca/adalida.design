@@ -1,6 +1,6 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import TrackImage from 'images/gaintain/Hero Photos/track.webp'
+import KeyTakeawayImage from 'images/gaintain/Hero Photos/key takeaway 1.png'
 
 import SectionHeading from 'components/section_heading'
 
@@ -8,7 +8,7 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
   return (
     <div data-aos='fade-up' ref={ref} className='case-study-top-to-bottom gaintain-key-takeaways'>
       <div className='gaintain-image-container'>
-        <img src={TrackImage} alt='Where Gains are Data-Driven' />
+        <img src={KeyTakeawayImage} alt='Key takeaways' />
       </div>
       <div className='case-study-explanation'>
         <SectionHeading title='Key Takeaways' />
