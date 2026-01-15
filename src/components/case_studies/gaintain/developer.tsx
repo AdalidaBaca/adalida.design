@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
-import FrictionlessVideo from 'videos/gaintain/frictionless.mp4'
+import SocialTimelineVideo from 'videos/gaintain/social_timeline.mp4'
 
 import SectionHeading from 'components/section_heading'
 
@@ -31,7 +31,7 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
   return (
     <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
       <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
-        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
+        <video src={SocialTimelineVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
       </div>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
