@@ -3693,15 +3693,15 @@
   }
 
   > .gaintain-image-container {
-    aspect-ratio: 4 / 1 !important; // Taller aspect ratio = shorter height
-    max-height: 280px;
+    aspect-ratio: 16 / 9 !important;
+    max-height: 420px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
     border: 1px solid rgba(230, 92, 0, 0.12);
 
     @media (width >= $case-study-breakpoint) {
-      max-height: 360px;
+      max-height: 560px;
     }
 
     &::after {
@@ -3717,6 +3717,7 @@
     > img {
       height: 100%;
       object-fit: cover;
+      object-position: center;
       width: 100%;
       display: block;
       position: relative;
@@ -3943,16 +3944,16 @@
   gap: 0;
 
   > .gaintain-image-container {
-    aspect-ratio: 4 / 1 !important; // Taller aspect ratio = shorter height
-    max-height: 280px;
+    aspect-ratio: 16 / 9 !important;
+    max-height: 420px;
 
     @media (width >= $case-study-breakpoint) {
-      max-height: 360px;
+      max-height: 560px;
     }
 
     > img {
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       width: 100%;
       display: block;
