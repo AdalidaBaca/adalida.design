@@ -1,6 +1,6 @@
 import React, { type Ref } from 'react'
 
-import AboutHeroImage from 'images/gaintain/Hero Photos/workout_dashboard.png'
+import AboutHeroImage from 'images/gaintain/Hero Photos/about.png'
 import BadgeButton from 'components/badge_button'
 
 interface Props {
@@ -13,7 +13,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
     <>
       <div data-aos='fade-up' className='gaintain-hero' ref={heroRef}>
         <div className='intro-videos'>
-          <img className='gaintain-hero-image' src={AboutHeroImage} alt='GainTain workout dashboard' />
+          <img className='gaintain-hero-image' src={AboutHeroImage} alt='GainTain app preview' />
         </div>
       </div>
       <div data-aos='fade-up' data-aos-offset='100' className='gaintain-details' ref={aboutRef}>
@@ -21,7 +21,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className='gaintain-download-content'>
           <p className='gaintain-download-text'>GainTain</p>
           <div className='gaintain-download-buttons'>
-            <BadgeButton to='https://gaintain.co/app' className='gaintain-link-primary'>Download</BadgeButton>
+            <BadgeButton to='https://gaintain.co/app' className='gaintain-link-primary'>Download on the App Store</BadgeButton>
           </div>
         </div>
       </div>

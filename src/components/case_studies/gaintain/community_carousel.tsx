@@ -153,7 +153,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
   return (
     <div className='community-carousel' ref={containerRef} aria-label={ariaLabel}>
       <div className='community-title-container'>
-        <SectionHeading title='Community' />
+        <SectionHeading title='GainTain Beta Testers' />
       </div>
       <div className='community-marquee lane-1' data-aos='fade' data-aos-offset='50' data-aos-duration='800' data-aos-easing='ease-out-cubic'>
         {marqueeImages.map((img, i) => (<CommunityImageBox key={`community-${img.label}-${i}`} {...img} />))}

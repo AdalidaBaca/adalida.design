@@ -489,12 +489,11 @@
 }
 
 .dark .gaintain-key-takeaways > .gaintain-image-container {
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
-  border-color: rgba(230, 92, 0, 0.18);
+  background: linear-gradient(45deg, #E65C00, #F9D423);
+  border-color: rgba(230, 92, 0, 0.2);
 
   &::after {
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
-    opacity: 0.95;
+    opacity: 0;
   }
 }
 
@@ -995,9 +994,10 @@
 }
 
 .gaintain-image-container {
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(230, 92, 0, 0.2);
+  /* Default: no fill (only specific sections get gradient) */
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
   border-radius: 0.75em;
   padding: 0 0.75em 0.75em 0.75em; /* Remove top padding */
   box-sizing: border-box;
@@ -1005,33 +1005,25 @@
   /* Remove bottom and left padding for key insight section */
   .gaintain-key-insight & {
     padding: 0 0.75em 0 0; /* Remove bottom and left padding */
-    background: transparent !important; /* Remove gradient fill */
-    backdrop-filter: none !important; /* Remove backdrop filter */
-    border: none !important; /* Remove border */
-    box-shadow: none !important; /* Remove box shadow */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
     
     @media (max-width: 768px) {
       padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
     }
   }
-  
-  /* Remove background for Solution section */
-  .gaintain-solution > & {
+
+  /* Key Insight + Design Strategy graphic should NOT have the gradient fill */
+  .gaintain-key-insight > & {
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
-    padding: 0 !important;
   }
   
-  /* Remove background for Social Timeline section */
-  .case-study-side-by-side.reverse > & {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
+  /* Solution + Social Timeline: no fill by default (inherits transparent) */
 
   
   /* Remove all padding for design strategy graphic section */
@@ -1054,8 +1046,12 @@
   /* Remove padding from container when it has design strategy graphic */
   &:has(.design-strategy-graphic-container) {
     padding: 0; /* Remove all padding like key insights */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
-  box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1210,10 +1206,11 @@
     padding: 0;
     border-radius: 0.875em;
     overflow: hidden;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
+    background: linear-gradient(45deg, #E65C00, #F9D423);
+    border: 1px solid rgba(230, 92, 0, 0.2);
+    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
+    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
+    backdrop-filter: blur(10px);
     position: relative;
 
     > img,
@@ -3697,8 +3694,11 @@
     max-height: 420px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
-    border: 1px solid rgba(230, 92, 0, 0.12);
+    /* Force hero-gradient frame (like workout dashboard container) */
+    background: linear-gradient(45deg, #E65C00, #F9D423) !important;
+    border: 1px solid rgba(230, 92, 0, 0.2) !important;
+    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2) !important;
+    padding: 0 !important;
 
     @media (width >= $case-study-breakpoint) {
       max-height: 560px;
@@ -3710,7 +3710,7 @@
       inset: 0;
       background: linear-gradient(135deg, rgba(230, 92, 0, 0.14) 0%, rgba(249, 212, 35, 0.10) 100%);
       mix-blend-mode: soft-light;
-      opacity: 0.9;
+      opacity: 0;
       pointer-events: none;
     }
 
@@ -3722,7 +3722,11 @@
       display: block;
       position: relative;
       z-index: 1;
-      opacity: 0.92;
+      opacity: 1;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      border-radius: inherit;
     }
   }
 
@@ -3951,12 +3955,27 @@
       max-height: 560px;
     }
 
+    /* Force hero-gradient frame (like workout dashboard container) */
+    background: linear-gradient(45deg, #E65C00, #F9D423) !important;
+    border: 1px solid rgba(230, 92, 0, 0.2) !important;
+    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2) !important;
+    padding: 0 !important;
+
+    &::after {
+      opacity: 0;
+    }
+
     > img {
       height: 100%;
       object-fit: cover;
       object-position: center;
       width: 100%;
       display: block;
+      opacity: 1;
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      border-radius: inherit;
     }
   }
 
@@ -4128,4 +4147,12 @@
   .dark .gaintain-label-animated .animated-letter {
     fill: rgba(255, 255, 255, 0.92) !important; /* Same fill as Human Coach in dark mode */
   }
+}
+
+/* Final override: Key Insight (Design Strategy graphic) should have NO media fill */
+.case-study-side-by-side.gaintain-key-insight > .gaintain-image-container {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
