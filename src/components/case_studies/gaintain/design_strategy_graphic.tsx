@@ -44,8 +44,9 @@ const DesignStrategyGraphic = (): JSX.Element => {
   
   // Second control point: positioned to create horizontal asymptote at Human Coach
   // Logarithmic curves flatten out as they approach the asymptote
+  // Set both X and Y to match Human Coach exactly so line ends at center of point
   const cp2X = humanX // Same X as Human Coach - creates horizontal approach (asymptote)
-  const cp2Y = humanY + (isMobile ? 10 : 15) // Just below peak - creates horizontal flattening (asymptote behavior)
+  const cp2Y = humanY // Same Y as Human Coach - ensures line ends exactly at center of point
   
   // Calculate GainTain position at t=0.5 on the cubic bezier curve
   // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
@@ -101,10 +102,10 @@ const DesignStrategyGraphic = (): JSX.Element => {
   // Handle dot animation completion
   useEffect(() => {
     if (pathLength && isInView) {
-      // Dot animation duration is 2.5s + 0.5s delay = 3.0s total
+      // Dot animation duration is 1.5s + 0.3s delay = 1.8s total
       const timeout = setTimeout(() => {
         setDotAnimationComplete(true)
-      }, 3000)
+      }, 1800)
       return () => clearTimeout(timeout)
     }
   }, [pathLength, isInView])
@@ -131,7 +132,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
                   dotAnimate.beginElement()
                 }
               }
-            }, 500) // 0.5s delay to match the original begin time
+            }, 300) // 0.3s delay
           }
         })
       },
@@ -307,7 +308,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
             attributeName='stroke-dashoffset'
             from={pathLength ? `${pathLength}` : '0'}
             to='0'
-            dur='2.5s'
+            dur='1.5s'
             begin='indefinite'
             fill='freeze'
             calcMode='linear'
@@ -322,7 +323,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
           opacity={pathLength ? 1 : 0}
         >
           <animateMotion
-            dur='2.5s'
+            dur='1.5s'
             begin='indefinite'
             fill='freeze'
             calcMode='linear'

@@ -1,6 +1,6 @@
 import React, { forwardRef, type Ref } from 'react'
 
-import TrackImage from 'images/gaintain/track.webp'
+import TrackImage from 'images/gaintain/Hero Photos/track.webp'
 
 import SectionHeading from 'components/section_heading'
 

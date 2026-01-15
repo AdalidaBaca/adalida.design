@@ -1,9 +1,9 @@
 import React from 'react'
 
 import DarkModeContext from 'dark_mode_context'
-import HybridImage from 'images/gaintain/hybrid.png'
-import NomadImage from 'images/gaintain/nomad.png'
-import ProgramGoerImage from 'images/gaintain/program goer.png'
+import HybridImage from 'images/gaintain/Personas/hybrid.png'
+import NomadImage from 'images/gaintain/Personas/nomad.png'
+import ProgramGoerImage from 'images/gaintain/Personas/program goer.png'
 
 interface PersonaCardProps {
   image: string

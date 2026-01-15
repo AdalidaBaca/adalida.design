@@ -18,10 +18,10 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  gap: 4em; /* Add gap between sections */
+  gap: 6em; /* Add gap between sections */
   
   @media (max-width: 768px) {
-    gap: 3em; /* Smaller gap on mobile */
+    gap: 4.5em; /* Smaller gap on mobile */
   }
   
   > * {
@@ -271,6 +271,20 @@
   margin-bottom: 0; /* Ensure no bottom margin - container gap handles spacing */
   padding: 0 0.5em; /* Remove top and bottom padding */
   box-sizing: border-box;
+
+  /* Mobile-only: reorder workout dashboard video above text */
+  &.gaintain-workout-dashboard {
+    @media (max-width: 768px) {
+      > .gaintain-image-container,
+      > .gaintain-video-container {
+        order: -1;
+      }
+      
+      > .case-study-explanation {
+        order: 1;
+      }
+    }
+  }
 
   > img {
     border-radius: 0.875em;

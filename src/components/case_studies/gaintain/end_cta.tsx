@@ -27,7 +27,7 @@ const EndCTA = (): JSX.Element => {
               >
                 <IconDeviceMobile height='1em' width='1em' />&nbsp; DOWNLOAD
               </BadgeButton>
-              <BadgeButton to='mailto:hi@adalida.design?subject=Gaintain Pilot Signup'>
+              <BadgeButton to='https://gaintain.netlify.app'>
                 <IconUserPlus height='1em' width='1em' />&nbsp; JOIN PILOT
               </BadgeButton>
             </div>
@@ -53,7 +53,7 @@ const EndCTA = (): JSX.Element => {
               >
                 <IconDeviceMobile height='1em' width='1em' />&nbsp; DOWNLOAD
               </BadgeButton>
-              <BadgeButton to='mailto:hi@adalida.design?subject=Gaintain Pilot Signup'>
+              <BadgeButton to='https://gaintain.netlify.app'>
                 <IconUserPlus height='1em' width='1em' />&nbsp; JOIN PILOT
               </BadgeButton>
             </div>

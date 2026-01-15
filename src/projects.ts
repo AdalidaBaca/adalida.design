@@ -1,5 +1,5 @@
 const AirbrushImage = 'images/works/airbrush.webp'
-const GaintainImage = 'images/gaintain/about.webp'
+const GaintainImage = 'images/gaintain/Hero Photos/about.webp'
 const JSharpImage = 'images/works/jsharp.webp'
 const LoboGardensImage = 'images/works/lobogardens.webp'
 const PhronesisPhoto = 'images/works/phronesis.webp'

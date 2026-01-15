@@ -6,17 +6,15 @@
   width: 100%;
   max-width: min(1200px, 100%);
   margin: 0 auto;
-  padding: 0.375em 0.5em !important;
+  padding: 1.25em 0.5em;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  min-height: 120px !important;
-  max-height: 240px !important;
-  /* Remove background */
-  background: transparent !important;
-  border: none; // Removed all borders
-  border-radius: 0;
-  box-shadow: none; // Removed background glow
+  min-height: 60px;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  box-shadow: none;
   contain: paint;
 
   /* Edge fade to blend marquee ends - match tools carousel */
@@ -40,16 +38,14 @@
   }
 
   @media (width >= 768px) {
-    padding: 0.75em 0.5em !important;
-    min-height: 140px !important;
-    max-height: 260px !important;
+    padding: 1.5em 0.5em;
   }
-
+  
   /* Dark mode background */
   .dark & {
-    background: transparent !important;
-    border: none; // Removed all borders in dark mode
-    box-shadow: none; // Removed background glow in dark mode
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
     /* Dark mode edge fade - match tools carousel */
     &::before {
@@ -62,44 +58,44 @@
 }
 
 .community-title-container {
-  padding-left: 1.25em; // Matches gaintain-details-card
-  margin-bottom: 1em; // Gap between title and marquee
-
+  padding-left: 1.25em;
+  margin-bottom: 1em;
+  
   @media (width >= 768px) {
-    padding-left: 2em; // Matches gaintain-details-card on desktop
-    margin-bottom: 1.25em; // Gap on desktop
+    padding-left: 2em;
+    margin-bottom: 1.5em;
   }
-
+  
   .section-heading-container {
-    margin: 0 0 0.25em; // Reduced margin
+    margin: 0 0 0.75em;
   }
 }
 
 .community-marquee {
   display: inline-flex;
-  gap: 1em;
+  gap: 1.5em;
   align-items: center;
-  padding-left: 1.25em; // Matches gaintain-details-card padding
+  padding-left: 1.25em;
   animation: community-marquee linear infinite;
-  animation-duration: var(--marquee-duration, 120s);
+  animation-duration: var(--marquee-duration, 60s);
   animation-play-state: var(--marquee-play, running);
   will-change: transform;
   transform: translate3d(0, 0, 0);
   width: max-content;
   position: relative;
-  z-index: 2; // Below fade overlays
-
+  z-index: 2;
+  
   @media (width >= 768px) {
-    padding-left: 2em; // Matches gaintain-details-card on desktop
-    gap: 1.25em;
+    padding-left: 2em;
   }
 }
 
-.community-image {
+.community-image-box {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  height: 100px !important;
+  width: 96px;
+  height: 96px;
   opacity: 0.85;
   transition: opacity 120ms ease, filter 120ms ease, transform 120ms ease;
 
@@ -107,23 +103,60 @@
     &:hover {
       opacity: 1;
       transform: translateY(-2px);
+      
+      img.rotate-90 {
+        transform: rotate(90deg) translateY(-2px);
+      }
     }
   }
 
   img {
-    height: 100px !important;
-    width: auto;
-    max-width: none;
-    object-fit: contain;
-    border-radius: 8px;
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+    
+    &.rotate-90 {
+      transform: rotate(90deg);
+    }
   }
-
+  
+  .community-fallback {
+    width: 96px;
+    height: 96px;
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 50%;
+    font-size: 0.85em;
+    opacity: 0.9;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.55);
+  }
+  
+  /* Dark mode fallback */
+  .dark & .community-fallback {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: $light-text;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  
   /* Desktop sizes */
   @media (width >= 768px) {
-    height: 120px !important;
+    width: 104px;
+    height: 104px;
 
     img {
-      height: 120px !important;
+      width: 104px;
+      height: 104px;
+      
+      &.rotate-90 {
+        transform: rotate(90deg);
+      }
+    }
+
+    .community-fallback {
+      width: 104px;
+      height: 104px;
     }
   }
 }

@@ -1,18 +1,18 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
-import DeveloperImage from 'images/gaintain/developer.webp'
+import FrictionlessVideo from 'videos/gaintain/frictionless.mp4'
 
 import SectionHeading from 'components/section_heading'
 
 const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const explanationRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const matchHeights = (): void => {
-      if (explanationRef.current === null || imageRef.current === null) return
+      if (explanationRef.current === null || videoRef.current === null) return
       const explanationHeight = explanationRef.current.offsetHeight
-      imageRef.current.style.height = `${explanationHeight}px`
+      videoRef.current.style.height = `${explanationHeight}px`
     }
 
     matchHeights()
@@ -30,8 +30,8 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
 
   return (
     <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-      <div className='gaintain-image-container' ref={imageRef}>
-        <img src={DeveloperImage} alt='Developer specifications' />
+      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
+        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
       </div>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>

@@ -2,7 +2,6 @@ import React, { forwardRef, type Ref } from 'react'
 
 import OrderedFeatureList from 'components/feature_list/ordered'
 import UnorderedFeatureList from 'components/feature_list/unordered'
-import ResearchImage from 'images/gaintain/research.webp'
 
 import SectionHeading from 'components/section_heading'
 
@@ -36,7 +35,6 @@ const Research = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
         </div>
       </section>
     </div>
-    <img src={ResearchImage} alt='Analyzing' />
   </div>
 ))
 

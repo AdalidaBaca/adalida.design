@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TrackImage from 'images/gaintain/track.webp'
+import TrackImage from 'images/gaintain/Hero Photos/track.webp'
 import { Projects } from 'projects'
 
 const backgroundImage = Projects.Gaintain.colors.primary
