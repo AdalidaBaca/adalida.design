@@ -31,9 +31,9 @@ interface CompetitorsCarouselProps {
 
 const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
   const data = useStaticQuery(graphql`
-    query CompetitorsAbraLogos {
+    query CompetitorsLogos {
       allFile(
-        filter: { sourceInstanceName: { eq: "images" }, relativeDirectory: { eq: "gaintain/abra" } }
+        filter: { sourceInstanceName: { eq: "images" }, relativeDirectory: { eq: "gaintain/Competitors" } }
         sort: { name: ASC }
       ) {
         nodes {
