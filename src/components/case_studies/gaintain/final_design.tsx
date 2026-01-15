@@ -2,7 +2,7 @@ import React, { forwardRef, type Ref } from 'react'
 
 import { IconSchool, IconTrophy } from '@tabler/icons-react'
 
-import FinalDesignImage from 'images/gaintain/Hero Photos/final_design.webp'
+import FinalDesignImage from 'images/gaintain/Hero Photos/results_hero.webp'
 
 import SectionHeading from 'components/section_heading'
 

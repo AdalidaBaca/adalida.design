@@ -41,10 +41,21 @@
     overflow: hidden;
     margin: 0 auto;
     border-radius: 1.5em;
-    background: rgb(255 255 255 / 2%);
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.15) 0%, rgba(249, 212, 35, 0.1) 100%);
     backdrop-filter: blur(10px);
-    border: 1px solid rgb(0 0 0 / 8%);
+    border: 1px solid rgba(230, 92, 0, 0.18);
     box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.1);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
+      opacity: 0.85;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 0;
+    }
 
     @media (max-width: 768px) {
       max-width: 100%;
@@ -68,6 +79,7 @@
       height: 100%;
       object-fit: cover;
       border-radius: 1.5em;
+      z-index: 1;
       filter: drop-shadow(0 20px 60px rgba(230, 92, 0, 0.15)) drop-shadow(0 8px 24px rgba(230, 92, 0, 0.1));
       transition: filter 0.3s ease;
 
@@ -79,7 +91,36 @@
         border-radius: 1em;
       }
     }
+
+    // When the GainTain hero is an image (to match case study cover)
+    > img.gaintain-hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      padding: 0;
+      margin: 0;
+      display: block;
+      border-radius: inherit;
+      z-index: 1;
+      opacity: 1 !important;
+      filter: none !important;
+    }
   }
+
+.dark .gaintain-hero > .intro-videos {
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
+  border-color: rgba(230, 92, 0, 0.18);
+
+  &::after {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
+    opacity: 0.95;
+  }
+}
 
   > img {
     max-width: 100%;
@@ -442,6 +483,16 @@
         0 10px 28px -12px rgba(230, 92, 0, 0.25),
         0 4px 12px -6px rgba(230, 92, 0, 0.2);
     }
+  }
+}
+
+.dark .gaintain-key-takeaways > .gaintain-image-container {
+  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
+  border-color: rgba(230, 92, 0, 0.18);
+
+  &::after {
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
+    opacity: 0.95;
   }
 }
 
@@ -1161,10 +1212,19 @@
     border: none;
     box-shadow: none;
     backdrop-filter: none;
+    position: relative;
 
     > img,
     > video {
       border-radius: 0.875em;
+    }
+
+    // Make images fill the same way videos do
+    > img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
     }
     
     /* Ensure reset loop labels stay within card on mobile */
@@ -3633,14 +3693,33 @@
   > .gaintain-image-container {
     aspect-ratio: 4 / 1 !important; // Taller aspect ratio = shorter height
     max-height: 200px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
+    border: 1px solid rgba(230, 92, 0, 0.12);
 
     @media (width >= $case-study-breakpoint) {
       max-height: 250px;
     }
 
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(230, 92, 0, 0.14) 0%, rgba(249, 212, 35, 0.10) 100%);
+      mix-blend-mode: soft-light;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
     > img {
       height: 100%;
       object-fit: cover;
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      opacity: 0.92;
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
-import FrictionlessVideo from 'videos/gaintain/frictionless.mp4'
+import WorkoutDashboardImage from 'images/gaintain/Hero Photos/workout_dashboard.png'
 
 import SectionHeading from 'components/section_heading'
 
@@ -45,7 +45,7 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
         </div>
       </div>
       <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
-        <video src={FrictionlessVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
+        <img src={WorkoutDashboardImage} alt='GainTain workout dashboard' style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
       </div>
     </div>
   )

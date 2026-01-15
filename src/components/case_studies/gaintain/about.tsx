@@ -1,9 +1,6 @@
 import React, { type Ref } from 'react'
 
-import IntroVideo from 'videos/gaintain/intro.mp4'
-import IntroLoopVideo from 'videos/gaintain/intro_loop.mp4'
-
-import IntroVideos from '../intro_videos'
+import AboutHeroImage from 'images/gaintain/Hero Photos/workout_dashboard.png'
 import BadgeButton from 'components/badge_button'
 
 interface Props {
@@ -15,7 +12,9 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
   return (
     <>
       <div data-aos='fade-up' className='gaintain-hero' ref={heroRef}>
-        <IntroVideos videos={[IntroVideo, IntroLoopVideo]} />
+        <div className='intro-videos'>
+          <img className='gaintain-hero-image' src={AboutHeroImage} alt='GainTain workout dashboard' />
+        </div>
       </div>
       <div data-aos='fade-up' data-aos-offset='100' className='gaintain-details' ref={aboutRef}>
       <div data-aos='fade-up' data-aos-offset='150' className='gaintain-download-strip'>
