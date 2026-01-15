@@ -12,6 +12,7 @@ const getCaseStudyFromPath = (pathname: string): Project | null => {
   if (pathname.includes('/case_studies/gaintain')) return Projects.Gaintain
   if (pathname.includes('/case_studies/phronesis')) return Projects.Phronesis
   if (pathname.includes('/case_studies/querque_candles')) return Projects.QuerqueCandles
+  if (pathname.includes('/case_studies/project_echo')) return Projects.ProjectEcho
   return null
 }
 
@@ -25,7 +26,7 @@ const Header = (): JSX.Element => {
     if (caseStudy === null) return
 
     const handleScroll = (): void => {
-      const heroTitle = document.querySelector('.gaintain-hero h3, .phronesis-hero h3, .querque-hero h3')
+      const heroTitle = document.querySelector('.gaintain-hero h3, .phronesis-hero h3, .querque-hero h3, .project-echo-hero h3')
       if (heroTitle === null) return
 
       const heroRect = heroTitle.getBoundingClientRect()

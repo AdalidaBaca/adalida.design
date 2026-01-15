@@ -147,17 +147,17 @@ export const Projects: Record<string, Project> = {
   },
   ProjectEcho: {
     name: 'Project ECHO',
-    category: 'Healthcare Dashboard',
+    category: 'Data Visualization',
     badges: ['Data Visualization', 'Documentation', 'Power BI'],
     description: 'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,
     link: {
-      text: 'Request Access',
-      url: 'mailto:hi@adalida.design'
+      text: 'Read Case Study',
+      url: '/case_studies/project_echo'
     },
     colors: {
       cover: '#0891B2',
-      primary: '#0891B2'
+      primary: 'linear-gradient(45deg, #0891B2, #06B6D4)'
     }
   },
   LoboGardens: {
