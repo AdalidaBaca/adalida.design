@@ -1,6 +1,122 @@
 // Project ECHO Case Study Styles
 // Matches Gaintain styling pattern
 
+.project-echo-venn-diagram-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  
+  @media (width >= 768px) {
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
+}
+
+.case-study-top-to-bottom:has(.project-echo-venn-diagram-container) {
+  gap: 0 !important;
+  
+  @media (width >= 768px) {
+    gap: 0 !important;
+  }
+}
+
+.project-echo-venn-diagram-container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 0;
+}
+
+.project-echo-venn-diagram {
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  vertical-align: top;
+  display: block;
+}
+
+.project-echo-venn-diagram-container + .case-study-explanation {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+
+.case-study-top-to-bottom:has(.project-echo-venn-diagram-container) > .case-study-explanation {
+  margin-top: -2.5em !important;
+  padding-top: 0 !important;
+  
+  @media (width >= 768px) {
+    margin-top: -3em !important;
+  }
+}
+
+.case-study-top-to-bottom:has(.project-echo-venn-diagram-container) > .case-study-explanation > .project-echo-details-card {
+  margin-top: 0 !important;
+  padding-top: 1.25em !important;
+  padding-bottom: 1.25em !important;
+  padding-left: 1.25em !important;
+  padding-right: 1.25em !important;
+  
+  @media (width >= 768px) {
+    padding: 2em !important;
+  }
+}
+
+.case-study-side-by-side:has(.project-echo-venn-diagram-container) {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  align-items: flex-start !important;
+  
+  > .project-echo-venn-diagram-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+    align-self: flex-start;
+  }
+  
+  @media (width >= 768px) {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    gap: 2em; /* Keep gap between columns on desktop */
+    align-items: start !important;
+    
+    > .project-echo-venn-diagram-container {
+      align-self: start;
+    }
+  }
+}
+
+.project-echo-venn-diagram {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  display: block;
+  min-height: 200px;
+  
+  @media (width >= 768px) {
+    min-height: 280px;
+  }
+}
+
 .project-echo-hero {
   display: flex;
   flex-direction: column;

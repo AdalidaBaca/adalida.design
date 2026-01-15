@@ -15,7 +15,7 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             The visualization:
           </div>
           <ul className='body-2' style={{ marginTop: '0.5em', paddingLeft: '1.5em' }}>
-            <li>Makes overlap size explicit</li>
+            <li>Makes each of the seven intersections explicit</li>
             <li>Allows direct comparison between intersections</li>
             <li>Supports interaction instead of static interpretation</li>
             <li>Can be reused as data changes</li>

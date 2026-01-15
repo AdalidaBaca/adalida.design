@@ -7,7 +7,6 @@ import Context from '../context'
 import TableOfContents from '../table_of_contents'
 
 import About from './about'
-import Problem from './problem'
 import Insight from './insight'
 import Approach from './approach'
 import Solution from './solution'
@@ -32,7 +31,7 @@ const ProjectEcho = (): JSX.Element => {
       {isMobile === false && <TableOfContents links={sections} />}
       <div className='case-study-container'>
         <About heroRef={sections['PROJECT ECHO']} aboutRef={sections.About} />
-        <Problem ref={sections.Problem} />
+        <Insight copy='problem' ref={sections.Problem} />
         <Insight ref={sections.Insight} />
         <Approach ref={sections.Approach} />
         <Solution ref={sections.Solution} />
