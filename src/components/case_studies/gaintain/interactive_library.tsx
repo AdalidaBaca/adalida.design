@@ -1,6 +1,8 @@
 import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
 
-import InteractiveLibraryVideo from 'videos/gaintain/interactive_library.mp4'
+import IphoneFrame from 'images/iphone17 frame.webp'
+
+import PledgeSetupVideo from 'videos/gaintain/pledge_setup.mp4'
 
 import SectionHeading from 'components/section_heading'
 
@@ -30,8 +32,9 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
 
   return (
     <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
-        <video src={InteractiveLibraryVideo} autoPlay loop muted playsInline style={{ width: '100%', objectFit: 'cover' }} />
+      <div className='gaintain-image-container gaintain-video-container' ref={videoRef} style={{ position: 'relative' }}>
+        <video src={PledgeSetupVideo} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }} />
+        <img src={IphoneFrame} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0, userSelect: 'none', pointerEvents: 'none', zIndex: 2 }} />
       </div>
       <div className='case-study-explanation' ref={explanationRef}>
         <div className='gaintain-details-card'>
