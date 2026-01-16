@@ -12,7 +12,7 @@ type InsightProps = {
 
 const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<HTMLDivElement>): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
-  const isMobile = useIsMobile(768)
+  const isMobile = useIsMobile(768) ?? false
 
   const circleLabel1 = copy === 'problem' ? 'GM' : 'A'
   const circleLabel2 = copy === 'problem' ? 'IDU' : 'B'
@@ -145,7 +145,6 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
                   fontWeight='600'
-                  textTransform='uppercase'
                   letterSpacing='0.05em'
                   textAnchor='start'
                   dominantBaseline='hanging'
@@ -205,7 +204,6 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
                   fontWeight='600'
-                  textTransform='uppercase'
                   letterSpacing='0.05em'
                   textAnchor='end'
                   dominantBaseline='hanging'
@@ -259,7 +257,6 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
                   fontWeight='600'
-                  textTransform='uppercase'
                   letterSpacing='0.05em'
                   textAnchor='middle'
                   dominantBaseline='hanging'

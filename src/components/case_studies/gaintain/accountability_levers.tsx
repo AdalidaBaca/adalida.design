@@ -6,7 +6,7 @@ import useIsMobile from 'hooks/use_is_mobile'
 
 const AccountabilityLevers = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
-  const isMobile = useIsMobile(768)
+  const isMobile: boolean = useIsMobile(768) ?? false
 
   // Diagram dimensions - vertical layout for column container
   const width = isMobile ? 280 : 320
@@ -348,7 +348,6 @@ const AccountabilityLevers = (): JSX.Element => {
           fontSize={isMobile ? '18' : '20'}
           fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
           fontStyle='italic'
-          textTransform='uppercase'
           fontWeight='500'
           letterSpacing='0.02em'
           fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'}

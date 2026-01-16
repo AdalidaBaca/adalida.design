@@ -20,9 +20,8 @@ export const makeMediaTag = ({
         style={{ width: '100%', height: 'auto', ...style }}
         imgStyle={{ objectFit: imgObjectFit ?? 'contain', objectPosition: imgObjectPosition }}
         alt={media}
-        objectFit={(imgObjectFit ?? 'contain') as any}
-        // @ts-expect-error Prop passthrough for object position on our Image wrapper
-        objectPosition={imgObjectPosition as any}
+        objectFit={imgObjectFit ?? 'contain'}
+        objectPosition={imgObjectPosition}
       />
     )
   }
