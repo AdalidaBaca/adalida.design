@@ -32,7 +32,8 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
   const width = isMobile ? 300 : 400
   const height = copy === 'problem' ? (isMobile ? 170 : 160) : (isMobile ? 240 : 320)
   const centerX = width / 2
-  const centerY = height / 2
+  // Shift centerY down to center the diagram better (move content down, badge stays at top)
+  const centerY = copy === 'problem' ? height / 2 : height / 2 + (isMobile ? 15 : 20)
   // Circles: make larger ONLY on the Problem version - reduced size for desktop
   const radius = copy === 'problem' ? (isMobile ? 58 : 48) : (isMobile ? 40 : 55)
   const offset = copy === 'problem' ? (isMobile ? 46 : 38) : (isMobile ? 32 : 44)
@@ -151,7 +152,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
         )}
         <svg
           className='project-echo-venn-diagram'
-          viewBox={`0 ${copy === 'problem' ? -topPadding : 40} ${width} ${height + (copy === 'problem' ? topPadding + bottomPadding : 60)}`}
+          viewBox={`0 ${copy === 'problem' ? -topPadding : (isMobile ? 20 : 30)} ${width} ${height + (copy === 'problem' ? topPadding + bottomPadding : (isMobile ? 50 : 60))}`}
           preserveAspectRatio='xMidYMin meet'
           style={{
             display: 'block',

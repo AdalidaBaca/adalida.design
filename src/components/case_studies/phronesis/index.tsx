@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
+import useIsMobile from 'hooks/use_is_mobile'
+import { Projects } from 'projects'
 import CarouselOverlay, { carouselMediaTag } from '../../carousel_overlay'
+import Context from '../context'
 import Footer from '../footer'
+import TableOfContents from '../table_of_contents'
 import Card from './card'
 import About from './about'
 
@@ -39,34 +43,56 @@ const Phronesis = (): JSX.Element => {
     setShowCarousel(true)
   }
 
+  const sections = {
+    About: useRef(null),
+    'Information Architecture': useRef(null),
+    'Logo & App Icon': useRef(null),
+    'Typography & Color': useRef(null),
+    'Final Logo': useRef(null),
+    'Specs': useRef(null),
+    'Components': useRef(null),
+    'Final Design': useRef(null)
+  }
+
+  const isMobile = useIsMobile(1400)
+
   let imageIndex = 0
-  const images = allImages.map((imageGroup, index) =>
-    <div key={index} className='phronesis-container'>
-      {imageGroup.map((image: string) => {
-        const currentIndex = imageIndex++
-        return (
-          <div
-            key={image}
-            tabIndex={0}
-            data-aos='fade-up'
-            role='tab'
-            onKeyDown={(event) => { [' ', 'Enter'].includes(event.key) && displayCarousel(currentIndex) }}
-            onClick={() => { displayCarousel(currentIndex) }}
-          >
-            <Card media={image} />
-          </div>
-        )
-      })}
-    </div>
-  )
+  const images = allImages.map((imageGroup, index) => {
+    const sectionKeys = ['Information Architecture', 'Logo & App Icon', 'Typography & Color', 'Final Logo', 'Specs', 'Components', 'Final Design']
+    const sectionKey = sectionKeys[index]
+    const sectionRef = sectionKey ? sections[sectionKey as keyof typeof sections] : null
+    
+    return (
+      <div key={index} className='phronesis-container' ref={sectionRef}>
+        {imageGroup.map((image: string) => {
+          const currentIndex = imageIndex++
+          return (
+            <div
+              key={image}
+              tabIndex={0}
+              data-aos='fade-up'
+              role='tab'
+              onKeyDown={(event) => { [' ', 'Enter'].includes(event.key) && displayCarousel(currentIndex) }}
+              onClick={() => { displayCarousel(currentIndex) }}
+            >
+              <Card media={image} />
+            </div>
+          )
+        })}
+      </div>
+    )
+  })
 
   return (
-    <div className='case-study-container'>
-      <About />
-      {images}
-      <Footer />
-      {showCarousel && <CarouselOverlay dismiss={dismiss} media={carouselMedia} index={mediaIndex} />}
-    </div>
+    <Context.Provider value={Projects.Phronesis}>
+      {isMobile === false && <TableOfContents links={sections} />}
+      <div className='case-study-container'>
+        <About ref={sections.About} />
+        {images}
+        <Footer />
+        {showCarousel && <CarouselOverlay dismiss={dismiss} media={carouselMedia} index={mediaIndex} />}
+      </div>
+    </Context.Provider>
   )
 }
 

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef, type Ref } from 'react'
 
-const About = (): JSX.Element => {
+const About = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos='fade-up' className='about-phronesis'>
+    <div data-aos='fade-up' className='about-phronesis' ref={ref}>
       <div className='client-and-date'>
         <div><strong>Client</strong><span>Phronesis</span></div>
         <div><strong>Date</strong><span>2 weeks</span></div>
@@ -32,6 +32,8 @@ const About = (): JSX.Element => {
       </p>
     </div>
   )
-}
+})
+
+About.displayName = 'About'
 
 export default About

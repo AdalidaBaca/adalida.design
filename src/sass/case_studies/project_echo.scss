@@ -17,6 +17,13 @@
   margin-bottom: 0 !important;
   margin-top: 0 !important;
   overflow: visible;
+  min-height: 0;
+  height: auto;
+  
+  @media (max-width: 768px) {
+    min-height: 0;
+    height: auto;
+  }
   
   @media (width >= 768px) {
     padding: 0 !important;
