@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["dom", "esnext"],
-    "jsx": "react-jsx",
+    "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -12,5 +12,5 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*", "./__mocks__/*.ts", "./*.ts", "./*.tsx", "./plugins/**/*", "./vitest-setup.ts"]
+  "include": ["./src/**/*", "./__mocks__/*.ts", "./*.ts", "./*.tsx", "./plugins/**/*", "eslint.config.mjs"]
 }

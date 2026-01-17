@@ -1,7 +1,7 @@
-import React from 'react'
 import { IconBrandLinkedin, IconMailFilled } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import Duck from 'components/duck'
+import React from 'react'
 
 const ContactCTA = (): JSX.Element => {
   return (

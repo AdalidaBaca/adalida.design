@@ -1,5 +1,6 @@
 import { IconArrowNarrowRight, IconBrandLinkedin, IconMailFilled } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
+import React from 'react'
 
 const Footer = (): JSX.Element => (
   <div className="footer">
