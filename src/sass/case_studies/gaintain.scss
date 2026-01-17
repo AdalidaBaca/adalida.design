@@ -3050,7 +3050,7 @@
 
 .gaintain-gradient-controls-wrapper {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 1.5em;
@@ -3058,12 +3058,19 @@
 }
 
 .gaintain-gradient-prompt {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.4;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
   margin: 0;
   flex-shrink: 0;
+  opacity: 0.7;
+  font-style: italic;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .gaintain-gradient-controls {
@@ -3158,42 +3165,38 @@
 }
 
 .gaintain-gradient-dot {
-  width: 0.375em;
-  height: 0.375em;
+  width: 0.5em;
+  height: 0.5em;
   border-radius: 50%;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
   background: none;
   padding: 0;
   margin: 0;
   display: block;
-  
+  box-sizing: border-box;
+
   // Remove default button styles
   appearance: none;
   -webkit-appearance: none;
   outline: none;
-  
+
   @media (width >= 768px) {
     &:hover {
-      transform: scale(1.1);
+      filter: brightness(1.2);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
   }
 
   &.active {
-    width: 0.5em;
-    height: 0.5em;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    width: 0.625em;
+    height: 0.625em;
   }
 
   .dark & {
-    border-color: rgba(255, 255, 255, 0.2);
-
-    &.active {
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
-    }
+    // Border handled inline in component
   }
 }
 
@@ -3879,8 +3882,15 @@
 
 
 .gaintain-solution {
+  @media (width >= $case-study-breakpoint) {
+    align-items: stretch;
+  }
+
   > .case-study-explanation {
     order: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   > .gaintain-solution-cards {
@@ -3892,6 +3902,19 @@
     max-width: 440px;
     align-self: flex-start;
     height: 100%;
+  }
+
+  // Allow color picker to be visible in video container
+  > .gaintain-image-container.gaintain-video-container {
+    overflow: visible !important;
+  }
+
+  // Make the animation + picker container match the solution card height
+  > div:has(.gaintain-video-container) {
+    height: 100%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
   }
 
 .gaintain-design-system {

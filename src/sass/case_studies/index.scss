@@ -19,10 +19,19 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  gap: 6em; /* Add gap between sections */
+  gap: 3.5em; /* Reduced gap between sections */
   
   @media (max-width: 768px) {
-    gap: 4.5em; /* Smaller gap on mobile */
+    gap: 2.5em; /* Smaller gap on mobile */
+  }
+  
+  // Ensure Project ECHO sections have consistent spacing
+  &.project-echo-container {
+    gap: 3.5em;
+    
+    @media (max-width: 768px) {
+      gap: 2.5em;
+    }
   }
   
   > * {
@@ -71,7 +80,8 @@
   left: 2em;
   z-index: 100;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 1em;
   margin: 0;
   padding-top: 1em;
@@ -85,6 +95,149 @@
     opacity: 0.5;
   }
 }
+
+.table-of-contents-scrollbar {
+  position: relative;
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.table-of-contents-line {
+  position: absolute;
+  left: 50%;
+  top: calc(0.25em + 0.75em); /* Match dot margin top */
+  bottom: calc(0.25em + 0.75em); /* Match dot margin bottom */
+  width: 2px;
+  background: rgba($dark-text, 0.15);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.table-of-contents-dots-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.dark .table-of-contents-line {
+  background: rgba($light-text, 0.15);
+}
+
+.table-of-contents-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  min-width: 0;
+}
+
+.table-of-contents-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+  position: relative;
+  min-height: calc(0.25em * 2 + 1.5em); /* Match link-button height: padding + line-height */
+}
+
+.table-of-contents-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba($dark-text, 0.2);
+  border: 2px solid rgba($dark-text, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin: calc(0.25em + 0.75em - 6px) 0; /* Match link-button: top padding (0.25em) + half line-height (0.75em) - half dot height (6px) */
+
+  .dark & {
+    background: rgba($light-text, 0.2);
+    border-color: rgba($light-text, 0.3);
+  }
+
+  &.gradient {
+    &.active,
+    &.past {
+      background: var(--gradient);
+      border-color: transparent;
+    }
+  }
+
+  &.active {
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
+    
+    &:not(.gradient) {
+      border-color: var(--dot-color, rgba($dark-text, 0.6));
+      box-shadow: 0 0 0 4px rgba(var(--dot-color-rgb, 0, 0, 0), 0.1);
+    }
+    
+    &.gradient {
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    transform: scale(1.1);
+
+    .dark &:not(.gradient) {
+      border-color: var(--dot-color, rgba($light-text, 0.6));
+    }
+  }
+
+  &.past {
+    &:not(.gradient) {
+      background: var(--dot-color, rgba($dark-text, 0.4));
+      border-color: var(--dot-color, rgba($dark-text, 0.5));
+    }
+
+    .dark &:not(.gradient) {
+      background: var(--dot-color, rgba($light-text, 0.4));
+      border-color: var(--dot-color, rgba($light-text, 0.5));
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.15);
+      
+      &:not(.gradient) {
+        border-color: var(--dot-color, rgba($dark-text, 0.5));
+      }
+    }
+  }
+}
+
+.table-of-contents-dot-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--progress, 0) * 100%);
+  background: var(--gradient, var(--dot-color, rgba($dark-text, 0.6)));
+  border-radius: 0 0 50% 50%;
+  transition: height 0.1s ease-out;
+  z-index: 2;
+  pointer-events: none;
+  min-height: 0;
+
+  .dark & {
+    background: var(--gradient, var(--dot-color, rgba($light-text, 0.6)));
+  }
+}
+
 
 .link-button {
   background: #000;

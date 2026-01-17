@@ -1,9 +1,22 @@
-import React, { forwardRef, type Ref } from 'react'
+import React, { forwardRef, useState, useRef, type Ref } from 'react'
 
 import SectionHeading from 'components/section_heading'
 import GaintainLogo3D from './gaintain_logo_3d'
+import ColorPicker from './color_picker'
 
 const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [gradientStart, setGradientStart] = useState('#E65C00')
+  const [gradientEnd, setGradientEnd] = useState('#F9D423')
+
+  const handleGradientChange = (start: string, end: string): void => {
+    setGradientStart(start)
+    setGradientEnd(end)
+    if (containerRef.current) {
+      containerRef.current.style.background = `linear-gradient(45deg, ${start}, ${end})`
+    }
+  }
+
   return (
     <div data-aos='fade-up' className='case-study-side-by-side gaintain-solution' ref={ref}>
       <div className='case-study-explanation'>
@@ -22,8 +35,16 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
           </div>
         </div>
       </div>
-      <div className='gaintain-image-container gaintain-video-container' aria-hidden='true'>
-        <GaintainLogo3D />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5em', height: '100%', alignSelf: 'stretch' }}>
+        <div 
+          ref={containerRef}
+          className='gaintain-image-container gaintain-video-container' 
+          style={{ flex: '1 1 auto', minHeight: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          aria-hidden='true'
+        >
+          <GaintainLogo3D />
+        </div>
+        <ColorPicker onGradientChange={handleGradientChange} />
       </div>
     </div>
   )

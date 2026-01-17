@@ -1,10 +1,11 @@
 import React, { forwardRef, type Ref } from 'react'
 
 import SectionHeading from 'components/section_heading'
+import ApproachGraphic from './approach_graphic'
 
 const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side' ref={ref}>
+    <div data-aos='fade-up' className='case-study-side-by-side project-echo-approach-section' ref={ref}>
       <div className='case-study-explanation'>
         <div className='project-echo-details-card'>
           <SectionHeading title='Approach' />
@@ -15,6 +16,9 @@ const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             This led me to <strong>UpSet plots</strong>, a well-documented solution to a known visualization problem, supported by an <strong>interactive and reusable implementation</strong>.
           </div>
         </div>
+      </div>
+      <div className='gaintain-image-container'>
+        <ApproachGraphic />
       </div>
     </div>
   )

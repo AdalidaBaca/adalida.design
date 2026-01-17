@@ -21,8 +21,8 @@ const MoreFrom = (): JSX.Element => {
               <BadgeButton to='https://adalidabaca.wixsite.com/internship-portfolio' className='project-echo-link-primary'>
                 VIEW PORTFOLIO
               </BadgeButton>
-              <BadgeButton to='https://projectecho.unm.edu'>
-                LEARN ABOUT PROJECT ECHO
+              <BadgeButton to='https://www.linkedin.com/in/adalidabaca/'>
+                CHAT WITH ADI
               </BadgeButton>
             </div>
           </div>

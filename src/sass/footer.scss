@@ -17,7 +17,7 @@
 
 .footer {
   transition: all 0.5s ease-in-out;
-  padding: 6em 6.25dvw;
+  padding: 4em 6.25dvw 6em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -53,6 +53,27 @@
     width: 100%;
     border-top-width: 1px;
     border-top-color: map.get($dark-colors, secondary);
+  }
+
+  &.footer-bottom {
+    margin-top: 1em;
+    align-items: flex-start;
+
+    @media (width >= 768px) {
+      align-items: center;
+    }
+  }
+}
+
+.footer-copyright {
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.5em;
+
+  @media (width < 768px) {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 1em;
   }
 }
 
@@ -93,6 +114,176 @@
   > svg {
     height: $h6-size;
     width: auto;
+  }
+}
+
+.footer-cta-section {
+  width: 100%;
+  max-width: min(900px, 100%);
+  margin-bottom: 1em;
+}
+
+.footer-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25em;
+  padding: 2.5em 2em;
+  background: linear-gradient(135deg, rgb(74 158 255 / 10%) 0%, rgb(90 200 250 / 6%) 100%);
+  border: 1px solid rgb(74 158 255 / 18%);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px -12px rgb(74 158 255 / 20%),
+    0 2px 12px -4px rgb(74 158 255 / 12%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width >= 768px) {
+    padding: 3em 3em;
+    gap: 1.5em;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 16px 48px -16px rgb(74 158 255 / 25%),
+        0 6px 20px -6px rgb(74 158 255 / 15%);
+    }
+  }
+}
+
+.footer-cta-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+
+  > svg {
+    height: 2rem;
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+
+.footer-cta-heading {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $dark-text;
+  margin: 0;
+}
+
+.footer-cta-description {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  color: rgba($dark-text, 0.75);
+  max-width: 60ch;
+  margin: 0;
+}
+
+.footer-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 0.5em;
+
+  @media (width >= 480px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  /* Style second button (email) as secondary/outline variant */
+  .btn.badge.big-badge:not(:first-child) {
+    background: rgb(255 255 255 / 95%);
+    border: 1.5px solid rgb(0 0 0 / 15%);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 10%),
+      0 2px 4px rgb(0 0 0 / 5%);
+
+    a {
+      color: rgb(0 0 0 / 85%);
+      font-weight: 500;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(255 255 255 / 98%);
+        border-color: rgb(0 0 0 / 20%);
+        transform: translateY(-0.5px);
+        box-shadow:
+          0 6px 16px rgb(0 0 0 / 15%),
+          0 3px 8px rgb(0 0 0 / 8%);
+
+        a {
+          color: rgb(0 0 0 / 90%);
+        }
+      }
+    }
+  }
+}
+
+/* Dark mode for footer CTA */
+.dark .footer-cta-content {
+  background: linear-gradient(135deg, rgb(90 200 250 / 14%) 0%, rgb(74 158 255 / 10%) 100%);
+  border-color: rgb(90 200 250 / 22%);
+  box-shadow: 
+    0 12px 48px -16px rgb(90 200 250 / 25%),
+    0 4px 16px -6px rgb(90 200 250 / 15%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 
+        0 16px 56px -16px rgb(90 200 250 / 30%),
+        0 6px 24px -6px rgb(90 200 250 / 20%);
+    }
+  }
+}
+
+.dark .footer-cta-heading {
+  color: $light-text;
+}
+
+.dark .footer-cta-description {
+  color: rgba($light-text, 0.8);
+}
+
+.dark .footer-cta-buttons {
+  .btn.badge.big-badge:not(:first-child) {
+    background: rgb(30 30 30 / 90%);
+    border: 1.5px solid rgb(255 255 255 / 20%);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 4px 12px rgb(0 0 0 / 30%),
+      0 2px 6px rgb(0 0 0 / 20%);
+
+    a {
+      color: rgb(255 255 255 / 95%);
+      font-weight: 500;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(35 35 35 / 92%);
+        border-color: rgb(255 255 255 / 25%);
+        transform: translateY(-0.5px);
+        box-shadow:
+          0 6px 16px rgb(0 0 0 / 35%),
+          0 3px 8px rgb(0 0 0 / 25%);
+
+        a {
+          color: rgb(255 255 255 / 100%);
+        }
+      }
+    }
   }
 }
 

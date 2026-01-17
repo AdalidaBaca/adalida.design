@@ -189,6 +189,81 @@ export const Projects: Record<string, Project> = {
      cover: '#963981',
      primary: '#963981'
    }
+  },
+  Waugh: {
+    name: 'Waugh',
+    category: 'Hackathon',
+    badges: ['Hackathon', 'Product Design', 'AI'],
+    description: 'Real-time fact-checking tool that analyzes debate responses for clarity, exaggeration, and historical accuracy.',
+    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    link: {
+      text: 'View Presentation',
+      url: 'https://www.figma.com/deck/VkrMf6Xigfy1sdMCJmcWOR/WAUGH-PRESENTATION---PORTFOLIO'
+    },
+    colors: {
+      cover: '#6366F1',
+      primary: '#6366F1'
+    }
+  },
+  TLDR: {
+    name: 'TL;DR',
+    category: 'Hackathon',
+    badges: ['Hackathon', 'AI', 'Legal Tech'],
+    description: 'An AI-powered tool that translates dense legal terms and agreements into clear, concise summaries, helping users quickly understand their rights and obligations.',
+    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    link: {
+      text: 'View Presentation',
+      url: 'https://docs.google.com/presentation/d/1qXeKJTsfPWMx_gYd4cbBtRxIbwm7jJqWRpy747TrlWM'
+    },
+    colors: {
+      cover: '#8B5CF6',
+      primary: '#8B5CF6'
+    }
+  },
+  GreenAction: {
+    name: 'Green Action',
+    category: 'Hackathon',
+    badges: ['Hackathon', 'Mobile App', 'Civic Tech'],
+    description: 'A mobile app that helps users discover and create conservation petitions based on their location, streamlining advocacy efforts with integrated e-signatures.',
+    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    link: {
+      text: 'View Presentation',
+      url: 'https://docs.google.com/presentation/d/13ZXuHPRwbLdtYRgQjegQEoZxVz2YYASPrVZCrwM29x4'
+    },
+    colors: {
+      cover: '#10B981',
+      primary: '#10B981'
+    }
+  },
+  Cheevo: {
+    name: 'Cheevo',
+    category: 'Hackathon',
+    badges: ['Hackathon', 'Blockchain', 'Enterprise'],
+    description: 'A blockchain-powered system for verifying task completion in enterprise workflows, ensuring transparency, accountability, and tamper-proof audit trails.',
+    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    link: {
+      text: 'View Presentation',
+      url: 'https://docs.google.com/presentation/d/1hrNCgi0HB03YyJZnud2S_8XVQeN1PizSrVZ5yPawcY0'
+    },
+    colors: {
+      cover: '#F59E0B',
+      primary: '#F59E0B'
+    }
+  },
+  GoldenRecordRemix: {
+    name: 'Golden Record Remix',
+    category: 'Hackathon',
+    badges: ['Hackathon', 'NASA', 'First Place'],
+    description: 'Won first place in a Golden Record redesign using Rule 110 Cellular Automata to teach extraterrestrials computation, logic, and human behavior.',
+    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    link: {
+      text: 'View Presentation',
+      url: 'https://docs.google.com/presentation/d/1G4znJ9oEA8eAnprcVIGX4FeNw8zVAtnxMi_wkV0Odk4'
+    },
+    colors: {
+      cover: '#EC4899',
+      primary: '#EC4899'
+    }
   }
 }
 

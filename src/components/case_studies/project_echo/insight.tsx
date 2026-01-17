@@ -13,6 +13,8 @@ type InsightProps = {
 const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<HTMLDivElement>): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
   const isMobile = useIsMobile(768)
+  const isTablet = useIsMobile(1024)
+  const isLaptop = isTablet && !isMobile
 
   const circleLabel1 = copy === 'problem' ? 'GM' : 'A'
   const circleLabel2 = copy === 'problem' ? 'IDU' : 'B'
@@ -28,12 +30,17 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
 
   // Venn diagram dimensions - adjusted to fit section height
   const width = isMobile ? 300 : 400
-  const height = isMobile ? 240 : 320
+  const height = copy === 'problem' ? (isMobile ? 170 : 160) : (isMobile ? 240 : 320)
   const centerX = width / 2
   const centerY = height / 2
-  // Circles: make larger ONLY on the Problem version
-  const radius = copy === 'problem' ? (isMobile ? 58 : 82) : (isMobile ? 40 : 55)
-  const offset = copy === 'problem' ? (isMobile ? 46 : 66) : (isMobile ? 32 : 44)
+  // Circles: make larger ONLY on the Problem version - reduced size for desktop
+  const radius = copy === 'problem' ? (isMobile ? 58 : 48) : (isMobile ? 40 : 55)
+  const offset = copy === 'problem' ? (isMobile ? 46 : 38) : (isMobile ? 32 : 44)
+  
+  // Calculate top padding needed for problem version (circle extends above centerY)
+  const topPadding = copy === 'problem' ? (isMobile ? 30 : 25) : 0
+  // Calculate bottom padding needed for caption on problem version (caption is at Math.max(circle2Y, circle3Y) + radius + offset)
+  const bottomPadding = copy === 'problem' ? (isMobile ? 25 : 25) : 0
 
   // Circle positions - arranged in an equilateral triangle for even intersections
   const circle1X = centerX
@@ -74,7 +81,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               position: 'absolute',
               top: '0.5em',
               left: '0.5em',
-              fontSize: isMobile ? '0.55rem' : '0.65rem',
+              fontSize: isMobile ? '0.65rem' : '1rem',
               lineHeight: '1.35',
               color: darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)',
               fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif',
@@ -103,27 +110,48 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              background: darkMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-              border: darkMode ? '1px solid rgba(255, 255, 255, 0.10)' : '1px solid rgba(0, 0, 0, 0.08)',
-              borderRadius: '0.75em',
-              padding: isMobile ? '0.5em 0.65em' : '0.6em 0.75em',
-              boxShadow: darkMode ? 'none' : '0 8px 20px rgba(0, 0, 0, 0.06)',
+              justifyContent: 'center',
+              background: darkMode 
+                ? `linear-gradient(135deg, rgba(8, 145, 178, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%)`
+                : `linear-gradient(135deg, rgba(8, 145, 178, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%)`,
+              border: darkMode ? '1px solid rgba(8, 145, 178, 0.2)' : '1px solid rgba(8, 145, 178, 0.15)',
+              borderRadius: '16px',
+              padding: isMobile ? '0.75em 1em' : '1em 1.25em',
+              boxShadow: darkMode
+                ? '0 6px 20px -8px rgba(8, 145, 178, 0.2), 0 2px 8px -4px rgba(8, 145, 178, 0.15)'
+                : '0 4px 16px -8px rgba(8, 145, 178, 0.15), 0 2px 8px -4px rgba(8, 145, 178, 0.1)',
               backdropFilter: 'blur(10px)',
-              fontSize: isMobile ? '1rem' : '1.25rem',
-              fontWeight: '600',
-              color: darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)',
               fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif',
-              zIndex: 10,
-              lineHeight: '1.2'
+              zIndex: 1,
+              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
             }}>
-              <div>7</div>
-              <div style={{ fontStyle: 'italic', fontWeight: '400', textAlign: 'center' }}>sets</div>
+              <div style={{ 
+                fontWeight: '700', 
+                textAlign: 'center',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)'
+                  : 'linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                fontSize: isMobile ? '1.5rem' : '2rem',
+                lineHeight: '1.1'
+              }}>7</div>
+              <div style={{ 
+                fontStyle: 'italic', 
+                fontWeight: '400', 
+                textAlign: 'center',
+                fontSize: isMobile ? '0.75rem' : '0.875rem',
+                marginTop: '0.25em',
+                opacity: 0.8,
+                color: darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+              }}>sets</div>
             </div>
           </>
         )}
         <svg
           className='project-echo-venn-diagram'
-          viewBox={`0 ${copy === 'problem' ? 0 : 40} ${width} ${height + (copy === 'problem' ? 30 : 60)}`}
+          viewBox={`0 ${copy === 'problem' ? -topPadding : 40} ${width} ${height + (copy === 'problem' ? topPadding + bottomPadding : 60)}`}
           preserveAspectRatio='xMidYMin meet'
           style={{
             display: 'block',
@@ -154,7 +182,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 35 : 42)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 50 : 42)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -168,7 +196,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 50 : 59)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 57 : isLaptop ? 65 : 59)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -182,7 +210,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 65 : 76)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 72 : isLaptop ? 80 : 76)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -254,7 +282,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               <g>
                 <text
                   x={centerX}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : 25)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : isLaptop ? 28 : 25)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -268,7 +296,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={centerX}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 35 : 42)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 52 : 42)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -300,7 +328,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle1X}
             y={circle1Y}
             fill={darkMode ? 'rgba(139, 92, 246, 1)' : 'rgba(139, 92, 246, 0.9)'}
-            fontSize={isMobile ? '12' : '16'}
+            fontSize={copy === 'problem' ? (isMobile ? '12' : '13') : (isMobile ? '12' : '16')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='600'
             textAnchor='middle'
@@ -313,7 +341,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle1X}
             y={circle1Y - radius * 0.6}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -336,7 +364,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle2X}
             y={circle2Y}
             fill={darkMode ? 'rgba(8, 145, 178, 1)' : 'rgba(8, 145, 178, 0.9)'}
-            fontSize={isMobile ? '12' : '16'}
+            fontSize={copy === 'problem' ? (isMobile ? '12' : '13') : (isMobile ? '12' : '16')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='600'
             textAnchor='middle'
@@ -349,7 +377,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle2X - radius * 0.5}
             y={circle2Y + radius * 0.5}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -372,7 +400,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle3X}
             y={circle3Y}
             fill={darkMode ? 'rgba(245, 158, 11, 1)' : 'rgba(245, 158, 11, 0.9)'}
-            fontSize={isMobile ? '12' : '16'}
+            fontSize={copy === 'problem' ? (isMobile ? '12' : '13') : (isMobile ? '12' : '16')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='600'
             textAnchor='middle'
@@ -385,7 +413,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={circle3X + radius * 0.5}
             y={circle3Y + radius * 0.5}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -399,7 +427,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={intersectionAB_X}
             y={intersectionAB_Y}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -413,7 +441,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={intersectionAC_X}
             y={intersectionAC_Y}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -427,7 +455,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={intersectionBC_X}
             y={intersectionBC_Y + (isMobile ? 8 : 12)}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '9' : '11'}
+            fontSize={copy === 'problem' ? (isMobile ? '9' : '9') : (isMobile ? '9' : '11')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -441,7 +469,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             x={intersectionABC_X}
             y={intersectionABC_Y}
             fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
-            fontSize={isMobile ? '10' : '13'}
+            fontSize={copy === 'problem' ? (isMobile ? '10' : '10') : (isMobile ? '10' : '13')}
             fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
             fontWeight='700'
             textAnchor='middle'
@@ -477,19 +505,22 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           {copy === 'problem' ? (
             <>
               <div className='body-2'>
-                The challenge was to communicate the <strong>intersectionality of three vulnerable populations</strong>.
+                The existing visualization relied on a <strong>static Venn diagram</strong> to represent overlap between the three populations.
               </div>
               <div className='body-2'>
-                The existing solution used a <strong>static Venn diagram</strong>, which made it difficult to clearly show and compare the overlaps.
+                While familiar, the diagram forced viewers to interpret multiple relationships at once, making it difficult to isolate specific overlaps or compare them directly. As the data changed, the visualization had to be manually recreated as a static image, increasing effort and reducing consistency across analyses.
+              </div>
+              <div className='body-2'>
+                This made discussion slower and limited the usefulness of the visualization beyond a single moment in time.
               </div>
             </>
           ) : (
             <>
               <div className='body-2'>
-                Three populations do not produce one overlap. They produce <strong>seven distinct comparisons</strong>.
+                <strong>The intersection of three populations creates seven distinct groups that must be compared.</strong>
               </div>
               <div className='body-2'>
-                Once the problem was understood as needing to show and compare seven meaningful intersections, it became clear that a Venn diagram was the wrong abstraction.
+                Once the problem was understood as needing to show and compare those intersections, it became clear that the Venn diagram was the <strong>wrong abstraction</strong>.
               </div>
             </>
           )}
@@ -498,11 +529,11 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
   )
 
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side' ref={ref}>
+    <div data-aos='fade-up' className={`${copy === 'problem' ? 'case-study-top-to-bottom' : 'case-study-side-by-side'} ${copy !== 'problem' ? 'project-echo-insight-section' : ''}`} ref={ref}>
       {copy === 'problem' ? (
         <>
-          {explanation}
           {diagram}
+          {explanation}
         </>
       ) : (
         <>

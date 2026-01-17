@@ -26,12 +26,13 @@ const Header = (): JSX.Element => {
     if (caseStudy === null) return
 
     const handleScroll = (): void => {
-      const heroTitle = document.querySelector('.gaintain-hero h3, .phronesis-hero h3, .querque-hero h3, .project-echo-hero h3')
-      if (heroTitle === null) return
+      // Look for the title in the download/visit strip (the word copy that should trigger the nav title)
+      const downloadTitle = document.querySelector('.gaintain-download-text, .project-echo-download-text, .phronesis-hero h3, .querque-hero h3')
+      if (downloadTitle === null) return
 
-      const heroRect = heroTitle.getBoundingClientRect()
+      const titleRect = downloadTitle.getBoundingClientRect()
       const headerHeight = 56 // $header-height
-      const shouldShow = heroRect.bottom < headerHeight
+      const shouldShow = titleRect.bottom < headerHeight
 
       setShowNavTitle(shouldShow)
     }

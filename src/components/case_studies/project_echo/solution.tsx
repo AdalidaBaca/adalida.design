@@ -4,24 +4,18 @@ import SectionHeading from 'components/section_heading'
 
 const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side' ref={ref}>
+    <div data-aos='fade-up' className='case-study-top-to-bottom project-echo-solution-section' ref={ref}>
       <div className='case-study-explanation'>
         <div className='project-echo-details-card'>
           <SectionHeading title='Solution' />
           <div className='body-2'>
-            I replaced the static Venn diagram with an <strong>interactive UpSet plot</strong>.
+            I replaced the static Venn diagram with an <strong>interactive UpSet plot</strong> that makes each intersection explicit and comparable.
           </div>
           <div className='body-2'>
-            The visualization:
+            Unlike the original visualization, the new approach allows intersections to be isolated, compared, and explored individually. This reduces the need to mentally track overlaps and makes differences between populations easier to see and discuss.
           </div>
-          <ul className='body-2' style={{ marginTop: '0.5em', paddingLeft: '1.5em' }}>
-            <li>Makes each of the seven intersections explicit</li>
-            <li>Allows direct comparison between intersections</li>
-            <li>Supports interaction instead of static interpretation</li>
-            <li>Can be reused as data changes</li>
-          </ul>
-          <div className='body-2' style={{ marginTop: '1em' }}>
-            The underlying data remained unchanged.
+          <div className='body-2'>
+            Because the visualization is interactive and data-driven, it can be reused as the dataset evolves, rather than recreated as a static image each time.
           </div>
         </div>
       </div>
