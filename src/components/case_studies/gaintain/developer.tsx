@@ -1,6 +1,5 @@
+import IphoneFrame from 'components/iphone_frame'
 import SectionHeading from 'components/section_heading'
-
-import IphoneFrame from 'images/iphone17 frame.webp'
 import { forwardRef, type Ref, useEffect, useRef } from 'react'
 import SocialTimelineVideo from 'videos/gaintain/social_timeline.mp4'
 
@@ -37,29 +36,7 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
         ref={videoRef}
         style={{ position: 'relative' }}
       >
-        <video
-          src={SocialTimelineVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-        />
-        <img
-          src={IphoneFrame}
-          alt=""
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            userSelect: 'none',
-            pointerEvents: 'none',
-            zIndex: 2
-          }}
-        />
+        <IphoneFrame videoURL={SocialTimelineVideo} />
       </div>
       <div className="case-study-explanation" ref={explanationRef}>
         <div className="gaintain-details-card">
