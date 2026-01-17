@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-
 import AnimatedPath, { type Animate } from 'components/animated_path'
+import { useEffect, useRef, useState } from 'react'
 
 const startPath = `
 M12 3 a7.5 7.5 0 0 0 7.92 12.446
@@ -32,33 +31,38 @@ const Icon = ({ darkMode }: { darkMode: boolean }): JSX.Element => {
   const [opacity, setOpacity] = useState(0)
   const animate = useRef<Animate>(null)
 
-  const animateForward = (): void => { animate.current?.animateForward() }
-  const animateReverse = (): void => { animate.current?.animateReverse() }
-
   useEffect(() => {
-    const timeout = setTimeout(() => { darkMode ? animateReverse() : animateForward() }, 1)
-    return () => { clearTimeout(timeout) }
+    const timeout = setTimeout(() => {
+      darkMode ? animate.current?.animateReverse() : animate.current?.animateForward()
+    }, 1)
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [darkMode])
   // This prevents the animation from running on page load
   useEffect(() => {
-    const timeout = setTimeout(() => { setOpacity(1) }, 250)
-    return () => { clearTimeout(timeout) }
+    const timeout = setTimeout(() => {
+      setOpacity(1)
+    }, 250)
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
-      xmlnsXlink='http://www.w3.org/1999/xlink'
-      width='1.57em'
-      height='1.57em'
-      viewBox='0 0 24 24'
-      strokeWidth='1.5'
-      stroke='currentColor'
-      fill='none'
-      strokeLinecap='round'
-      strokeLinejoin='round'
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      width="1.57em"
+      height="1.57em"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <AnimatedPath startPath={startPath} endPath={endPath} dur='250ms' ref={animate} opacity={opacity} />
+      <AnimatedPath startPath={startPath} endPath={endPath} dur="250ms" ref={animate} opacity={opacity} />
     </svg>
   )
 }

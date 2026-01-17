@@ -1,1 +1,14 @@
-{"timestamp":1740040502873,"hash":"c564e0f6bf9d623cc6731fd6ad24bf51","assets":{"/dev-404-page/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/404/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/404.html":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/about/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/portfolio":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/portfolio/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/case_studies/gaintain/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true},"/case_studies/phronesis/":{"/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf":true}}}
+{
+  "timestamp": 1740040502873,
+  "hash": "c564e0f6bf9d623cc6731fd6ad24bf51",
+  "assets": {
+    "/dev-404-page/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/404/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/404.html": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/about/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/portfolio": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/portfolio/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/case_studies/gaintain/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true },
+    "/case_studies/phronesis/": { "/static/Inter-VariableFont_opsz,wght-e05c5f3d1fa6a3893d84c1eef4e89951.ttf": true }
+  }
+}

@@ -1,19 +1,26 @@
 import { useLocation } from '@reach/router'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-
 import DarkModeContext from 'dark_mode_context'
-import { Projects, type Project } from 'projects'
-import PortfolioPageSwitch from './portfolio_page_switch'
+import useIsMobile from 'hooks/use_is_mobile'
+import { type Project, Projects } from 'projects'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+import BackButton from './back_button'
 import DarkModeButton from './dark_mode_button'
 import HomeLink from './home_link'
-import BackButton from './back_button'
-import useIsMobile from 'hooks/use_is_mobile'
+import PortfolioPageSwitch from './portfolio_page_switch'
 
 const getCaseStudyFromPath = (pathname: string): Project | null => {
-  if (pathname.includes('/case_studies/gaintain')) return Projects.Gaintain
-  if (pathname.includes('/case_studies/phronesis')) return Projects.Phronesis
-  if (pathname.includes('/case_studies/querque_candles')) return Projects.QuerqueCandles
-  if (pathname.includes('/case_studies/project_echo')) return Projects.ProjectEcho
+  if (pathname.includes('/case_studies/gaintain')) {
+    return Projects.Gaintain
+  }
+  if (pathname.includes('/case_studies/phronesis')) {
+    return Projects.Phronesis
+  }
+  if (pathname.includes('/case_studies/querque_candles')) {
+    return Projects.QuerqueCandles
+  }
+  if (pathname.includes('/case_studies/project_echo')) {
+    return Projects.ProjectEcho
+  }
   return null
 }
 
@@ -26,26 +33,34 @@ const Header = (): JSX.Element => {
   const isMobile = useIsMobile(768)
 
   useEffect(() => {
-    if (caseStudy === null) return
+    if (caseStudy === null) {
+      return
+    }
 
     let rafId: number | null = null
 
     const handleScroll = (): void => {
       // Use requestAnimationFrame for smooth updates
-      if (rafId !== null) return
-      
+      if (rafId !== null) {
+        return
+      }
+
       rafId = requestAnimationFrame(() => {
         const currentScrollY = window.scrollY
-        
+
         // Look for the title in the download/visit strip (the word copy that should trigger the nav title)
-        const downloadTitle = document.querySelector('.gaintain-download-text, .project-echo-download-text, .phronesis-hero h3, .querque-hero h3')
+        const downloadTitle = document.querySelector(
+          '.gaintain-download-text, .project-echo-download-text, .phronesis-hero h3, .querque-hero h3'
+        )
         if (downloadTitle !== null) {
           const titleRect = downloadTitle.getBoundingClientRect()
           const headerHeight = 56 // $header-height
           const shouldShow = titleRect.bottom < headerHeight
           setShowNavTitle((prev) => {
             // Once it shows, keep it shown (never go back to false)
-            if (prev === true) return true
+            if (prev === true) {
+              return true
+            }
             return shouldShow
           })
         }
@@ -53,27 +68,25 @@ const Header = (): JSX.Element => {
         // Calculate scroll progress for horizontal scrollbar (mobile only) - direct calculation, no delays
         if (isMobile === true) {
           const caseStudyContainer = document.querySelector('.case-study-container')
-          if (caseStudyContainer !== null) {
+          if (caseStudyContainer instanceof HTMLElement) {
             // Get container bounds relative to document
             const containerTop = caseStudyContainer.offsetTop
             const containerHeight = caseStudyContainer.offsetHeight
-            const containerBottom = containerTop + containerHeight
-            
+            const _containerBottom = containerTop + containerHeight
+
             // Calculate total scrollable distance for the case study
             const documentHeight = document.documentElement.scrollHeight
             const viewportHeight = window.innerHeight
             const maxScroll = documentHeight - viewportHeight
-            
+
             // Progress: 0 = at top of page, 1 = scrolled to bottom
             // This directly ties to scroll position for immediate response
-            const progress = maxScroll > 0 
-              ? Math.min(1, Math.max(0, currentScrollY / maxScroll))
-              : 0
-            
+            const progress = maxScroll > 0 ? Math.min(1, Math.max(0, currentScrollY / maxScroll)) : 0
+
             setScrollProgress(progress)
           }
         }
-        
+
         rafId = null
       })
     }
@@ -92,18 +105,15 @@ const Header = (): JSX.Element => {
   const backgroundImage = caseStudy?.colors.primary ?? Projects.Gaintain.colors.primary
 
   return (
-    <header className={`navbar${darkMode ? ' dark' : ''}`} role='banner' aria-label='Site header'>
-      <div className='left flex-center' aria-label='Home and back'>
+    <header className={`navbar${darkMode ? ' dark' : ''}`}>
+      <div className="left flex-center" aria-label="Home and back" role="navigation">
         <HomeLink />
         <BackButton caseStudyName={caseStudy?.name} />
       </div>
-      <nav className='primary-nav' aria-label='Primary'>
+      <nav className="primary-nav" aria-label="Primary">
         {caseStudy !== null && showNavTitle ? (
-          <h4 key={caseStudy.name} className='navbar-case-study-title'>
-            <strong 
-              className='case-study-gradient-text' 
-              style={{ backgroundImage }}
-            >
+          <h4 key={caseStudy.name} className="navbar-case-study-title">
+            <strong className="case-study-gradient-text" style={{ backgroundImage }}>
               {caseStudy.name.toUpperCase()}
             </strong>
           </h4>
@@ -111,18 +121,26 @@ const Header = (): JSX.Element => {
           <PortfolioPageSwitch />
         )}
       </nav>
-      <div className='right flex-center' aria-label='Theme'>
+      <div className="right flex-center" aria-label="Theme" role="navigation">
         <DarkModeButton />
       </div>
       {caseStudy !== null && isMobile === true && (
-        <div 
-          className='navbar-scroll-progress'
-          style={{
-            '--scroll-progress': `${scrollProgress * 100}%`,
-            '--progress-gradient': typeof backgroundImage === 'string' && backgroundImage.includes('gradient') ? backgroundImage : undefined,
-            '--progress-color': typeof backgroundImage === 'string' && backgroundImage.includes('gradient') ? undefined : backgroundImage
-          } as React.CSSProperties}
-          aria-hidden='true'
+        <div
+          className="navbar-scroll-progress"
+          style={
+            {
+              '--scroll-progress': `${scrollProgress * 100}%`,
+              '--progress-gradient':
+                typeof backgroundImage === 'string' && backgroundImage.includes('gradient')
+                  ? backgroundImage
+                  : undefined,
+              '--progress-color':
+                typeof backgroundImage === 'string' && backgroundImage.includes('gradient')
+                  ? undefined
+                  : backgroundImage
+            } as React.CSSProperties
+          }
+          aria-hidden="true"
         />
       )}
     </header>

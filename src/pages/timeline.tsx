@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
 import AOS from 'aos'
-
-import Seo from 'components/seo'
-import Container from 'components/portfolio_page/container'
 import ContactCTA from 'components/about_page/contact_cta'
+import Container from 'components/portfolio_page/container'
+import Seo from 'components/seo'
+import { useEffect } from 'react'
 
 const Timeline = (): JSX.Element => {
   useEffect(() => {
@@ -13,7 +12,7 @@ const Timeline = (): JSX.Element => {
 
   return (
     <div style={{ paddingTop: '72px' }}>
-      <div className='featured-projects-heading' data-aos='fade-up'>
+      <div className="featured-projects-heading" data-aos="fade-up">
         <span>FEATURED CLIENTS</span>
       </div>
       <Container />
@@ -22,5 +21,5 @@ const Timeline = (): JSX.Element => {
   )
 }
 
-export const Head = (): JSX.Element => <Seo title='Timeline' />
+export const Head = (): JSX.Element => <Seo title="Timeline" />
 export default Timeline

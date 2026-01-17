@@ -16,9 +16,17 @@ const UniversalLink = ({ to, children, className }: Props): JSX.Element => {
   }, [to])
 
   if (external || mailTo) {
-    return <a href={to} className={className} {...rest}>{children}</a>
+    return (
+      <a href={to} className={className} {...rest}>
+        {children}
+      </a>
+    )
   } else {
-    return <Link to={to} className={className}>{children}</Link>
+    return (
+      <Link to={to} className={className}>
+        {children}
+      </Link>
+    )
   }
 }
 

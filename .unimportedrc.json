@@ -2,5 +2,5 @@
   "entry": ["src/pages/**/*.{js,ts}"],
   "extensions": [".ts", ".js"],
   "ignorePatterns": ["**/node_modules/**", "public/**"],
-  "aliases": {"components": "./src/components"}
+  "aliases": { "components": "./src/components" }
 }

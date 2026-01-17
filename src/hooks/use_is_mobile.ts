@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 
-export const BREAKPOINT = 768 // px
+const BREAKPOINT = 768 // px
 
 const useIsMobile = (breakpoint = BREAKPOINT): boolean | null => {
   const [windowWidth, setWindowWidth] = useState<null | number>(() =>
@@ -8,11 +8,15 @@ const useIsMobile = (breakpoint = BREAKPOINT): boolean | null => {
   )
 
   useLayoutEffect(() => {
-    const handleResize = (): void => { setWindowWidth(document.documentElement.clientWidth) }
+    const handleResize = (): void => {
+      setWindowWidth(document.documentElement.clientWidth)
+    }
     handleResize()
     window.addEventListener('resize', handleResize)
 
-    return () => { window.removeEventListener('resize', handleResize) }
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return windowWidth === null ? null : windowWidth < breakpoint

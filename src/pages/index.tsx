@@ -1,10 +1,11 @@
-import React, { useLayoutEffect } from 'react'
-
-import Portfolio from './portfolio'
 import Seo from 'components/seo'
+import { useLayoutEffect } from 'react'
+import Portfolio from './portfolio'
 
 const Root = (): JSX.Element => {
-  useLayoutEffect(() => { history.replaceState({}, '', '/portfolio') }, [])
+  useLayoutEffect(() => {
+    history.replaceState({}, '', '/portfolio')
+  }, [])
   return <Portfolio />
 }
 

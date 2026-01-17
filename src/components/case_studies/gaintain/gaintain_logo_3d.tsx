@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react'
-
-import * as THREE from 'three'
 import { gsap } from 'gsap'
+import { useEffect, useRef } from 'react'
+import * as THREE from 'three'
 
 interface Props {
   /** Square size of the canvas in px (defaults to 256). */
@@ -15,7 +14,9 @@ const GaintainLogo3D = ({ size = 256, className }: Props): JSX.Element => {
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container) return
+    if (!container) {
+      return
+    }
 
     // Clear any previous mount
     container.innerHTML = ''
@@ -51,7 +52,9 @@ const GaintainLogo3D = ({ size = 256, className }: Props): JSX.Element => {
     const LOGO_COLS = 10
     const LOGO_ROWS = 5
 
-    const prismGrid: Array<Array<THREE.Group | undefined>> = Array(LOGO_COLS).fill(null).map(() => Array(LOGO_ROWS).fill(undefined))
+    const prismGrid: Array<Array<THREE.Group | undefined>> = new Array(LOGO_COLS)
+      .fill(null)
+      .map(() => new Array(LOGO_ROWS).fill(undefined))
 
     // 1 for prism, 0 for empty
     const logoPattern = [
@@ -163,7 +166,9 @@ const GaintainLogo3D = ({ size = 256, className }: Props): JSX.Element => {
     }
 
     // Kick off and repeat (matches original timing)
-    const intervalId = window.setInterval(() => animatePrisms(), 3000)
+    const intervalId = window.setInterval(() => {
+      animatePrisms()
+    }, 3000)
 
     let rafId = 0
     const tick = (): void => {
@@ -196,4 +201,3 @@ const GaintainLogo3D = ({ size = 256, className }: Props): JSX.Element => {
 }
 
 export default GaintainLogo3D
-

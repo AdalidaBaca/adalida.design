@@ -7,7 +7,7 @@ interface DarkModeContextType {
 
 const DarkModeContext = createContext<DarkModeContextType>({
   darkMode: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // biome-ignore lint/suspicious/noEmptyBlockStatements: This is a placeholder
   toggleDarkMode: (): void => {}
 })
 export default DarkModeContext

@@ -1,12 +1,10 @@
-import { Link } from 'gatsby'
-import React from 'react'
-
 import Seo from 'components/seo'
+import { Link } from 'gatsby'
 
 const NotFoundPage = (): JSX.Element => (
-  <div className='not-found-page'>
+  <div className="not-found-page">
     <div style={{ fontSize: '8em', fontWeight: 900 }}>404</div>
-    <Link to='/'>Go back to the homepage</Link>
+    <Link to="/">Go back to the homepage</Link>
   </div>
 )
 

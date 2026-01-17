@@ -18,7 +18,6 @@ const lightModeDefaultColors: Colors = {
   text: darkColor
 }
 
-const darkModeStyle = (darkMode: boolean): Colors =>
-  darkMode ? darkModeDefaultColors : lightModeDefaultColors
+const darkModeStyle = (darkMode: boolean): Colors => (darkMode ? darkModeDefaultColors : lightModeDefaultColors)
 
 export default darkModeStyle

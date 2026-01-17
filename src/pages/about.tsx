@@ -1,5 +1,3 @@
-import React from 'react'
-
 import MainPage from 'components'
 import Seo from 'components/seo'
 import Profile from 'components/seo/profile'
@@ -10,7 +8,7 @@ const About = (): JSX.Element => {
 
 export const Head = (): JSX.Element => (
   <>
-    <Seo title='About' />
+    <Seo title="About" />
     <Profile />
   </>
 )

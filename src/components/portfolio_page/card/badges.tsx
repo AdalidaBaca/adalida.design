@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-
 import type { Project } from 'projects'
+import React, { useEffect, useRef, useState } from 'react'
 
 const Badges = ({ project }: { project: Project }): React.ReactElement => {
   const { badges } = project
@@ -9,7 +8,9 @@ const Badges = ({ project }: { project: Project }): React.ReactElement => {
 
   useEffect(() => {
     const updateVisibleBadges = (): void => {
-      if (containerRef.current === null) return
+      if (containerRef.current === null) {
+        return
+      }
 
       const container = containerRef.current
       const containerWidth = container.offsetWidth
@@ -39,13 +40,19 @@ const Badges = ({ project }: { project: Project }): React.ReactElement => {
     return () => {
       window.removeEventListener('resize', updateVisibleBadges)
     }
-  }, [badges.length])
+  }, [])
 
-  if (badges.length === 0) return <></>
+  if (badges.length === 0) {
+    return <></>
+  }
 
   return (
-    <div className='badge-list' ref={containerRef}>
-      {badges.slice(0, visibleBadges).map(badge => <div className='badge caption-1' key={badge}>{badge}</div>)}
+    <div className="badge-list" ref={containerRef}>
+      {badges.slice(0, visibleBadges).map((badge) => (
+        <div className="badge caption-1" key={badge}>
+          {badge}
+        </div>
+      ))}
     </div>
   )
 }

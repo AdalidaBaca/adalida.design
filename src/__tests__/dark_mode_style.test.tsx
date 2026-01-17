@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import darkModeStyle from '../dark_mode_style'
 
 describe('darkModeStyle', () => {

@@ -9,12 +9,12 @@
   margin-top: 0; /* Ensure no top margin - container gap handles spacing */
   margin-bottom: 0; /* Ensure no bottom margin - container gap handles spacing */
   gap: 1.5em;
-  padding: 1.5em 0.5em 0 0.5em;
+  padding: 1.5em 0.5em 0;
   padding-top: calc(56px + 1em);
   box-sizing: border-box;
   position: relative;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin-top: 0;
     margin-bottom: 0;
     padding-top: calc(56px + 0.75em);
@@ -22,7 +22,7 @@
 
   @media (width >= 768px) {
     gap: 1.5em;
-    padding: 2em 0.5em 0 0.5em;
+    padding: 2em 0.5em 0;
     padding-top: calc(56px + 1.5em);
     margin-top: 0;
     margin-bottom: 0;
@@ -37,7 +37,7 @@
     margin-right: auto;
     padding: 0 0.5em;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       margin-top: 2em;
     }
   }
@@ -56,31 +56,32 @@
     overflow: hidden;
     margin: 0 auto;
     border-radius: 1.5em;
+
     /* Match GainTain’s portfolio card gradient fill */
     background: linear-gradient(45deg, #E65C00, #F9D423);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(230, 92, 0, 0.18);
-    box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(230 92 0 / 18%);
+    box-shadow: 0 4px 16px -8px rgb(0 0 0 / 10%);
     
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
+      background: linear-gradient(135deg, rgb(230 92 0 / 20%) 0%, rgb(249 212 35 / 14%) 100%);
       opacity: 0;
       mix-blend-mode: soft-light;
       pointer-events: none;
       z-index: 0;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       max-width: 100%;
       height: 550px;
       max-height: 65svh;
       border-radius: 1.25em;
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 450px;
       max-height: 55svh;
       aspect-ratio: 1;
@@ -96,14 +97,14 @@
       object-fit: cover;
       border-radius: 1.5em;
       z-index: 1;
-      filter: drop-shadow(0 20px 60px rgba(230, 92, 0, 0.15)) drop-shadow(0 8px 24px rgba(230, 92, 0, 0.1));
+      filter: drop-shadow(0 20px 60px rgb(230 92 0 / 15%)) drop-shadow(0 8px 24px rgb(230 92 0 / 10%));
       transition: filter 0.3s ease;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         border-radius: 1.25em;
       }
 
-      @media (max-width: 511px) {
+      @media (width <= 511px) {
         border-radius: 1em;
       }
     }
@@ -131,10 +132,10 @@
 .dark .gaintain-hero > .intro-videos {
   /* Match GainTain’s portfolio card gradient fill (dark mode) */
   background: linear-gradient(45deg, #E65C00, #F9D423);
-  border-color: rgba(230, 92, 0, 0.18);
+  border-color: rgb(230 92 0 / 18%);
 
   &::after {
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.20) 0%, rgba(249, 212, 35, 0.14) 100%);
+    background: linear-gradient(135deg, rgb(230 92 0 / 20%) 0%, rgb(249 212 35 / 14%) 100%);
     opacity: 0;
   }
 }
@@ -169,13 +170,13 @@
     width: 100%;
     aspect-ratio: 1;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       height: 650px;
       max-height: 70svh;
       aspect-ratio: 3 / 4; /* Taller than wide on mobile */
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 600px;
       max-height: 65svh;
       aspect-ratio: 3 / 4; /* Taller than wide on mobile */
@@ -190,15 +191,15 @@
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 1.5em;
-    box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px -8px rgb(0 0 0 / 10%);
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       height: 550px;
       max-height: 65svh;
       border-radius: 1.25em;
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 450px;
       max-height: 55svh;
       border-radius: 1em;
@@ -209,16 +210,37 @@
 /* Override case-study-top-to-bottom aspect-ratio for problem diagram container on mobile only */
 .case-study-top-to-bottom {
   > .gaintain-image-container {
+    overflow: visible !important; /* Override overflow: hidden for Problem section */
+    width: 100% !important; /* Ensure full width */
+    max-width: 100% !important; /* Ensure no max-width constraint */
+    aspect-ratio: unset !important; /* Remove aspect-ratio constraint for persona graphic */
+    height: auto !important; /* Let persona graphic determine height */
+    padding: 0 0.75em 0.75em !important; /* Maintain padding for problem graphic */
+    background: transparent !important; /* Remove gradient fill */
+    backdrop-filter: none !important; /* Remove backdrop filter */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove box shadow */
+
+    .design-strategy-graphic-container {
+      padding: 0; /* Already handled in design-strategy-graphic-container */
+    }
+
+    .persona-cards-container {
+      overflow: visible;
+      height: auto !important; /* Let persona graphic determine its own height */
+    }
+
+
     /* Desktop styles remain unchanged - index.scss handles this */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       height: 325px !important;
       max-height: 35svh !important;
       min-height: 325px;
       aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 300px !important;
       max-height: 32.5svh !important;
       min-height: 300px;
@@ -252,14 +274,14 @@
     min-height: 100px !important;
     overflow: hidden !important; /* Crop if needed */
     
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       height: 100px !important; /* Override mobile height rule */
       max-height: 100px !important;
       min-height: 100px !important;
       aspect-ratio: 8 / 1 !important;
     }
     
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 100px !important; /* Override small mobile height rule */
       max-height: 100px !important;
       min-height: 100px !important;
@@ -283,19 +305,13 @@
   
   /* Remove padding for design strategy section like key insights */
   &.gaintain-design-strategy {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    padding-left: 0.5em !important;
-    padding-right: 0.5em !important;
+    padding: 0 0.5em !important;
     margin-top: 0; /* Let container gap handle spacing */
     margin-bottom: 0;
     gap: 2em; /* Match problem section gap */
     
     @media (width >= $case-study-breakpoint) {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      padding-left: 0.5em !important;
-      padding-right: 0.5em !important;
+      padding: 0 0.5em !important;
       margin-top: 0; /* Let container gap handle spacing */
       gap: 2em; /* Match problem section gap */
     }
@@ -315,7 +331,7 @@
       display: flex !important;
       align-items: flex-start !important;
       
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         width: 100% !important;
       }
       
@@ -347,9 +363,10 @@
   padding: 0; /* Remove all padding to minimize gap */
   margin: 0; /* Remove all margins - let container gap handle spacing */
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin: 0; /* Remove all margins */
   }
+
   padding-top: 0;
   padding-bottom: 0;
   scroll-margin-top: 72px;
@@ -364,10 +381,7 @@
 
   @media (width >= 768px) {
     gap: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
   }
 
 
@@ -400,6 +414,7 @@
   0%, 100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -415,7 +430,7 @@
   position: relative;
   z-index: 1;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin-top: 0; /* No negative margin needed */
   }
 }
@@ -426,13 +441,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
-  border: 1px solid rgba(230, 92, 0, 0.15);
+  background: linear-gradient(135deg, rgb(230 92 0 / 8%) 0%, rgb(249 212 35 / 5%) 100%);
+  border: 1px solid rgb(230 92 0 / 15%);
   border-radius: 16px;
   padding: 1.25em 1.5em;
   box-shadow: 
-    0 4px 16px -8px rgba(230, 92, 0, 0.15),
-    0 2px 8px -4px rgba(230, 92, 0, 0.1);
+    0 4px 16px -8px rgb(230 92 0 / 15%),
+    0 2px 8px -4px rgb(230 92 0 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width >= 768px) {
@@ -444,8 +459,8 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 8px 24px -12px rgba(230, 92, 0, 0.2),
-        0 4px 12px -6px rgba(230, 92, 0, 0.15);
+        0 8px 24px -12px rgb(230 92 0 / 20%),
+        0 4px 12px -6px rgb(230 92 0 / 15%);
     }
   }
 }
@@ -462,7 +477,6 @@
   font-weight: 700;
   line-height: 1.2;
   background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   margin: 0;
@@ -477,24 +491,24 @@
 }
 
 .dark .gaintain-download-content {
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
-  border-color: rgba(230, 92, 0, 0.2);
+  background: linear-gradient(135deg, rgb(230 92 0 / 12%) 0%, rgb(249 212 35 / 8%) 100%);
+  border-color: rgb(230 92 0 / 20%);
   box-shadow: 
-    0 6px 20px -8px rgba(230, 92, 0, 0.2),
-    0 2px 8px -4px rgba(230, 92, 0, 0.15);
+    0 6px 20px -8px rgb(230 92 0 / 20%),
+    0 2px 8px -4px rgb(230 92 0 / 15%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 
-        0 10px 28px -12px rgba(230, 92, 0, 0.25),
-        0 4px 12px -6px rgba(230, 92, 0, 0.2);
+        0 10px 28px -12px rgb(230 92 0 / 25%),
+        0 4px 12px -6px rgb(230 92 0 / 20%);
     }
   }
 }
 
 .dark .gaintain-key-takeaways > .gaintain-image-container {
   background: linear-gradient(45deg, #E65C00, #F9D423);
-  border-color: rgba(230, 92, 0, 0.2);
+  border-color: rgb(230 92 0 / 20%);
 
   &::after {
     opacity: 0;
@@ -503,7 +517,6 @@
 
 .dark .gaintain-download-text {
   background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
@@ -525,7 +538,7 @@
   border-radius: 12px;
   padding: 2em 1.5em;
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%), 0 4px 16px rgb(0 0 0 / 6%);
   transition: all 0.3s ease;
 
   @media (width >= 768px) {
@@ -537,7 +550,7 @@
     &:hover {
       background: rgb(255 255 255 / 100%);
       border-color: rgb(0 0 0 / 16%);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 6px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 12%), 0 6px 20px rgb(0 0 0 / 8%);
     }
   }
 }
@@ -554,13 +567,13 @@
 .dark .gaintain-insight-content {
   background: rgb(0 0 0 / 90%);
   border-color: rgb(255 255 255 / 25%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 50%), 0 4px 16px rgb(0 0 0 / 40%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background: rgb(0 0 0 / 95%);
       border-color: rgb(255 255 255 / 30%);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 60%), 0 6px 20px rgb(0 0 0 / 50%);
     }
   }
 }
@@ -630,10 +643,9 @@
 
 .gaintain-details-ctas {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 0.5em;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .gaintain-details-card {
@@ -662,6 +674,7 @@
       padding: 2em !important;
     }
   }
+
   background: rgb(255 255 255 / 2%);
   backdrop-filter: blur(10px);
   border: 1px solid rgb(0 0 0 / 5%);
@@ -747,26 +760,26 @@
 }
 
 .gaintain-website-link {
-  color: rgba(230, 92, 0, 0.8);
+  color: rgb(230 92 0 / 80%);
   text-decoration: none;
   transition: color 0.2s ease, text-decoration 0.2s ease;
   border-bottom: 1px solid transparent;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: rgba(230, 92, 0, 1);
-      border-bottom-color: rgba(230, 92, 0, 0.4);
+      color: rgb(230 92 0 / 100%);
+      border-bottom-color: rgb(230 92 0 / 40%);
     }
   }
 }
 
 .dark .gaintain-website-link {
-  color: rgba(249, 212, 35, 0.85);
+  color: rgb(249 212 35 / 85%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: rgba(249, 212, 35, 1);
-      border-bottom-color: rgba(249, 212, 35, 0.5);
+      color: rgb(249 212 35 / 100%);
+      border-bottom-color: rgb(249 212 35 / 50%);
     }
   }
 }
@@ -828,11 +841,10 @@
 
 .gaintain-details-links {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 0.75em;
   width: 100%;
   max-width: 100%;
-  flex-wrap: wrap;
   box-sizing: border-box;
 }
 
@@ -840,10 +852,9 @@
   background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
   border: none !important;
   backdrop-filter: saturate(180%) blur(20px) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
   box-shadow: 
-    0 2px 8px rgba(230, 92, 0, 0.2),
-    0 1px 2px rgba(230, 92, 0, 0.1);
+    0 2px 8px rgb(230 92 0 / 20%),
+    0 1px 2px rgb(230 92 0 / 10%);
   padding: 0.6em 1.2em !important;
   font-size: 0.875rem !important;
   min-height: 44px !important;
@@ -874,8 +885,8 @@
       background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
       transform: translateY(-0.5px);
       box-shadow: 
-        0 4px 12px rgba(230, 92, 0, 0.25),
-        0 2px 4px rgba(230, 92, 0, 0.15);
+        0 4px 12px rgb(230 92 0 / 25%),
+        0 2px 4px rgb(230 92 0 / 15%);
       
       /* Ensure arrow has space on desktop hover */
       .flex-center {
@@ -893,8 +904,8 @@
 .dark .gaintain-link-primary {
   background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
   box-shadow: 
-    0 2px 8px rgba(249, 212, 35, 0.2),
-    0 1px 2px rgba(249, 212, 35, 0.1);
+    0 2px 8px rgb(249 212 35 / 20%),
+    0 1px 2px rgb(249 212 35 / 10%);
   
   a {
     color: rgb(255 255 255 / 98%) !important;
@@ -904,8 +915,8 @@
     &:hover {
       background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
       box-shadow: 
-        0 4px 12px rgba(249, 212, 35, 0.25),
-        0 2px 4px rgba(249, 212, 35, 0.15);
+        0 4px 12px rgb(249 212 35 / 25%),
+        0 2px 4px rgb(249 212 35 / 15%);
     }
   }
 }
@@ -914,7 +925,6 @@
   background: transparent !important;
   border: none !important;
   backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   padding: 0 !important;
   font-size: inherit !important;
@@ -1003,7 +1013,7 @@
   backdrop-filter: none;
   border: none;
   border-radius: 0.75em;
-  padding: 0 0.75em 0.75em 0.75em; /* Remove top padding */
+  padding: 0 0.75em 0.75em; /* Remove top padding */
   box-sizing: border-box;
   
   /* Remove bottom and left padding for key insight section */
@@ -1014,7 +1024,7 @@
     border: none !important;
     box-shadow: none !important;
     
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
     }
   }
@@ -1025,16 +1035,6 @@
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
-  }
-  
-  /* Solution + Social Timeline: no fill by default (inherits transparent) */
-
-  
-  /* Remove all padding for design strategy graphic section */
-  .case-study-top-to-bottom > & {
-    .design-strategy-graphic-container {
-      padding: 0; /* Already handled in design-strategy-graphic-container */
-    }
   }
   
   /* Remove background/border when it contains accountability levers */
@@ -1055,6 +1055,7 @@
     border: none !important;
     box-shadow: none !important;
   }
+
   box-shadow: none;
   display: flex;
   align-items: center;
@@ -1064,32 +1065,13 @@
   overflow: hidden;
   min-height: 0;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     /* Allow labels to be visible on mobile when scaled */
     overflow: visible;
   }
 
-  /* Allow persona labels to overflow in Problem section on desktop */
-  .case-study-top-to-bottom > & {
-    overflow: visible !important; /* Override overflow: hidden for Problem section */
-    width: 100% !important; /* Ensure full width */
-    max-width: 100% !important; /* Ensure no max-width constraint */
-    aspect-ratio: unset !important; /* Remove aspect-ratio constraint for persona graphic */
-    height: auto !important; /* Let persona graphic determine height */
-    padding: 0 0.75em 0.75em 0.75em !important; /* Maintain padding for problem graphic */
-    background: transparent !important; /* Remove gradient fill */
-    backdrop-filter: none !important; /* Remove backdrop filter */
-    border: none !important; /* Remove border */
-    box-shadow: none !important; /* Remove box shadow */
-
-    .persona-cards-container {
-      overflow: visible;
-      height: auto !important; /* Let persona graphic determine its own height */
-    }
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 0.5em 0.5em 0.5em; /* Remove top padding on mobile too */
+  @media (width <= 768px) {
+    padding: 0 0.5em 0.5em; /* Remove top padding on mobile too */
   }
 
   > img,
@@ -1107,11 +1089,11 @@
     max-height: 400px;
     max-width: min(100%, 550px);
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       max-height: 300px;
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       max-height: 250px;
     }
     
@@ -1149,7 +1131,7 @@
     height: auto !important;
     max-height: none !important;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 0.75em;
       padding: 0.5em;
     }
@@ -1163,7 +1145,7 @@
       padding: 0.5em;
       box-sizing: border-box;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         aspect-ratio: unset;
         object-fit: contain;
         padding: 0.375em;
@@ -1180,7 +1162,7 @@
     height: auto !important;
     max-height: none !important;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       grid-template-columns: 1fr;
       gap: 0.5em;
       padding: 0.5em;
@@ -1195,7 +1177,7 @@
       padding: 0.5em;
       box-sizing: border-box;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         aspect-ratio: unset;
         object-fit: contain;
         padding: 0.375em;
@@ -1211,9 +1193,8 @@
     border-radius: 0.875em;
     overflow: hidden;
     background: linear-gradient(45deg, #E65C00, #F9D423);
-    border: 1px solid rgba(230, 92, 0, 0.2);
-    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
-    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2);
+    border: 1px solid rgb(230 92 0 / 20%);
+    box-shadow: 0 4px 16px -8px rgb(230 92 0 / 20%);
     backdrop-filter: blur(10px);
     position: relative;
 
@@ -1231,7 +1212,7 @@
     }
     
     /* Ensure reset loop labels stay within card on mobile */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       overflow: hidden;
       
       /* Ensure reset loop container respects overflow */
@@ -1251,7 +1232,7 @@
     padding: 2em;
     box-sizing: border-box;
     
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 1em; /* Reduce padding to give more space for labels */
     }
   }
@@ -1286,7 +1267,7 @@
   object-fit: contain;
   overflow: visible; /* Allow labels to be visible outside bounds on desktop */
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     /* Ensure ellipse scales properly on mobile with taller container */
     min-height: 100%;
     overflow: visible; /* Keep labels visible, viewBox will handle bounds */
@@ -1294,7 +1275,7 @@
 }
 
 /* Make ellipse circular on mobile only and scale to fill card */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .reset-loop svg {
     /* Scale the entire SVG larger to fill the card */
     transform: scale(2.5);
@@ -1311,14 +1292,14 @@
 
 /* Ghost ellipse - static gray background */
 .reset-loop .loop-ghost {
-  stroke: rgba(0, 0, 0, 0.15);
+  stroke: rgb(0 0 0 / 15%);
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .dark .reset-loop .loop-ghost {
-  stroke: rgba(255, 255, 255, 0.15);
+  stroke: rgb(255 255 255 / 15%);
 }
 
 .reset-loop .loop {
@@ -1327,6 +1308,7 @@
   stroke-linejoin: round;
   opacity: 1;
   animation: none;
+
   /* stroke and stroke-dasharray/stroke-dashoffset set via inline style */
 }
 
@@ -1355,15 +1337,15 @@
 }
 
 .reset-loop .node-bg {
-  fill: rgba(255, 255, 255, 0.75);
-  stroke: rgba(0, 0, 0, 0.12);
+  fill: rgb(255 255 255 / 75%);
+  stroke: rgb(0 0 0 / 12%);
   stroke-width: 1;
   transition: stroke 0.3s ease;
 }
 
 .dark .reset-loop .node-bg {
-  fill: rgba(30, 30, 30, 0.75);
-  stroke: rgba(255, 255, 255, 0.12);
+  fill: rgb(30 30 30 / 75%);
+  stroke: rgb(255 255 255 / 12%);
 }
 
 /* Gradient border animation - appears when ellipse passes */
@@ -1388,6 +1370,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1400,6 +1383,7 @@
 }
 
 /* Drop-off (n3) - switch from not filled to filled when ellipse reaches 75% */
+
 /* Ellipse reaches 75% at the end of 4s animation */
 .reset-loop.animate .n3 .node-gradient {
   animation: reset-loop-label-fill-switch 0.1s ease-out forwards 3.8s;
@@ -1413,6 +1397,7 @@
   0% {
     clip-path: inset(0 100% 0 0);
   }
+
   100% {
     clip-path: inset(0 0% 0 0);
   }
@@ -1420,34 +1405,34 @@
 
 .reset-loop .node-text {
   font: 700 24px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  fill: rgba(0, 0, 0, 0.9);
+  fill: rgb(0 0 0 / 90%);
   letter-spacing: 0.02em;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 14px;
   }
 }
 
 .dark .reset-loop .node-text {
-  fill: rgba(255, 255, 255, 0.9);
+  fill: rgb(255 255 255 / 90%);
 }
 
 /* Drop-off has larger font */
 .reset-loop .drop .node-text {
   font-size: 28px;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 16px;
   }
 }
 
 /* Text on gradient labels - only Drop-off (n3) uses white text when gradient appears */
 .reset-loop .node-text-gradient {
-  fill: rgba(0, 0, 0, 0.9); /* Dark text for readability on white background */
+  fill: rgb(0 0 0 / 90%); /* Dark text for readability on white background */
 }
 
 .dark .reset-loop .node-text-gradient {
-  fill: rgba(255, 255, 255, 0.9);
+  fill: rgb(255 255 255 / 90%);
 }
 
 /* Only Drop-off (n3) switches to white text when gradient appears */
@@ -1457,11 +1442,12 @@
 
 @keyframes reset-loop-text-to-white {
   to {
-    fill: rgba(255, 255, 255, 0.98);
+    fill: rgb(255 255 255 / 98%);
   }
 }
 
 /* Node animations - only affect opacity and scale, not position */
+
 /* Position is handled by SVG transform attribute on parent group */
 .reset-loop .node {
   opacity: 0;
@@ -1470,51 +1456,64 @@
 }
 
 .reset-loop.animate .node {
-  animation: reset-loop-nodeIn 0.5s ease forwards;
+  animation: reset-loop-node-in 0.5s ease forwards;
 }
 
 .reset-loop.animate .n1 { 
   animation:
-    reset-loop-nodeIn 0.5s ease forwards 0.4s,
+    reset-loop-node-in 0.5s ease forwards 0.4s,
     reset-loop-dim 0.8s ease forwards 1.2s;
 }
+
 .reset-loop.animate .n2 { 
   animation:
-    reset-loop-nodeIn 0.5s ease forwards 1.0s,
+    reset-loop-node-in 0.5s ease forwards 1.0s,
     reset-loop-dim 0.8s ease forwards 1.8s;
 }
 .reset-loop.animate .n3 { animation-delay: 1.8s; }
+
 /* New goal (n4) - visible from start with dimming */
 .reset-loop .n4 {
   opacity: 1;
 }
+
 .reset-loop.animate .n4 { 
   animation: reset-loop-dim 0.8s ease forwards 0.8s;
 }
 
 /* Drop-off - no dimming */
 .reset-loop.animate .drop {
-  animation: reset-loop-nodeIn 0.5s ease forwards 2.6s;
+  animation: reset-loop-node-in 0.5s ease forwards 2.6s;
 }
 
 /* Main loop drawing animation - draws continuously from start to finish */
 @keyframes reset-loop-draw-cycle {
   /* Fill from "Planning" (25%) to "Drop-off" (75%) */
+
   /* First 25% (0% to 25%) is already filled when animation starts */
+
   /* Animation grows the fill from 25% to 75% */
   0% { 
     stroke-dasharray: var(--initial-fill, 400) var(--path-length); /* First 25% already filled */
     stroke-dashoffset: 0;
   }
+
   100% { 
     stroke-dasharray: var(--final-fill, 1200) var(--path-length); /* Filled from 0% to 75% */
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes reset-loop-nodeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to   { opacity: 1; transform: scale(1); }
+@keyframes reset-loop-node-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes reset-loop-dim {
@@ -1574,7 +1573,7 @@
     visibility: visible !important;
     padding: 0 2em !important; /* Horizontal padding */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       margin-top: 2em !important; /* Increased gap on mobile */
       margin-bottom: 0.75em !important;
       min-height: 40px !important;
@@ -1589,19 +1588,19 @@
       flex-shrink: 0 !important;
       transform: scaleY(-1) !important; /* Flip vertically */
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         height: 30px !important;
       }
 
       .brace-path-horizontal {
-        stroke: rgba(0, 0, 0, 0.7) !important; /* Accessible grey for light mode - good contrast */
+        stroke: rgb(0 0 0 / 70%) !important; /* Accessible grey for light mode - good contrast */
         stroke-width: 4 !important; /* Thinner line */
 
         .dark & {
-          stroke: rgba(255, 255, 255, 0.75) !important; /* Accessible grey for dark mode - good contrast */
+          stroke: rgb(255 255 255 / 75%) !important; /* Accessible grey for dark mode - good contrast */
         }
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           stroke-width: 3 !important; /* Thinner line on mobile */
         }
       }
@@ -1610,6 +1609,9 @@
 }
 
 .accountability-gap-row {
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1617,7 +1619,7 @@
   margin-top: -1em; /* Negative margin to overlap with row above */
   margin-bottom: 1em; /* Positive margin to add gap below (between accountability gap and hybrid) */
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin-top: -0.75em;
     margin-bottom: 0.75em;
   }
@@ -1632,7 +1634,7 @@
   width: 100%;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     gap: 1em;
   }
 
@@ -1646,7 +1648,7 @@
         box-sizing: border-box;
         overflow: hidden; /* Prevent content from extending beyond row */
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           margin-bottom: 0.375em;
           justify-content: center !important; /* Center the drop-off content on mobile */
         }
@@ -1663,7 +1665,7 @@
         position: relative;
         max-width: 100%; /* Don't extend past container */
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           margin-bottom: 0.75em;
           min-height: 150px;
         }
@@ -1675,7 +1677,7 @@
         justify-content: center;
         gap: 0.5em !important; /* Minimal gap between cards on desktop */
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           gap: 0.25em !important; /* Minimal gap on mobile */
           flex-wrap: nowrap; /* Prevent wrapping - keep all 3 cards in one row */
         }
@@ -1686,7 +1688,7 @@
           justify-content: flex-start; /* Align to top so images align */
           gap: 0 !important; /* Gap is handled by individual element margins */
 
-          @media (max-width: 768px) {
+          @media (width <= 768px) {
             gap: 0 !important; /* Gap is handled by individual element margins */
           }
         }
@@ -1700,7 +1702,7 @@
       margin-left: 0;
       margin-right: 0;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         width: 40px;
         height: 20px;
         margin-top: 30px; /* Position at image level on mobile */
@@ -1718,7 +1720,7 @@
       margin-left: 0.75em !important;
       margin-right: 0.75em !important;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         width: 60px !important;
         height: 80px !important;
         margin-left: 0.5em !important;
@@ -1744,11 +1746,11 @@
       position: relative;
       
       /* Constrain to parent width after rotation */
-      @media (min-width: 769px) {
+      @media (width >= 769px) {
         max-height: 2000px;
       }
       
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         height: 1500px; /* Smaller on mobile */
         max-height: 1500px;
       }
@@ -1760,14 +1762,14 @@
       }
 
       .brace-path {
-        stroke: rgba(0, 0, 0, 0.85);
+        stroke: rgb(0 0 0 / 85%);
         stroke-width: 8;
 
         .dark & {
-          stroke: rgba(255, 255, 255, 0.9);
+          stroke: rgb(255 255 255 / 90%);
         }
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           stroke-width: 6;
         }
       }
@@ -1778,7 +1780,7 @@
       flex-shrink: 0;
       margin-top: 60px; /* Position arrow at image level */
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         margin-top: 40px;
       }
     }
@@ -1795,21 +1797,21 @@
     &.persona-row-images-inline {
       gap: 1.25em !important;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         gap: 0.75em !important;
       }
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 0.75em !important;
     }
   }
 
-  @media (max-width: 768px) and (orientation: portrait) {
+  @media (width <= 768px) and (orientation: portrait) {
     gap: 0; /* Remove gap since space-evenly handles spacing */
   }
 
-  @media (max-width: 768px) and (orientation: landscape) {
+  @media (width <= 768px) and (orientation: landscape) {
     gap: 0; /* Remove gap since space-evenly handles spacing */
     justify-content: space-evenly; /* Even spacing instead of space-between */
   }
@@ -1817,7 +1819,7 @@
 
 /* Keep Hybrid row centered even in landscape mode */
 .persona-row:not(.persona-row-with-arrow) {
-  @media (max-width: 768px) and (orientation: landscape) {
+  @media (width <= 768px) and (orientation: landscape) {
     justify-content: center; /* Keep Hybrid centered (it's in a row without the arrow class) */
   }
 }
@@ -1840,7 +1842,7 @@
   z-index: 1;
   pointer-events: none;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     width: 150px;
     height: 80px;
     top: calc(50% - 40px);
@@ -1856,7 +1858,7 @@
   z-index: 1;
   pointer-events: none;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     width: 300px;
     height: 300px;
   }
@@ -1866,7 +1868,7 @@
     width: 320px;
     height: 320px;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       width: 240px;
       height: 240px;
     }
@@ -1882,7 +1884,7 @@
   z-index: 1;
   pointer-events: none;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     width: 300px;
     height: 300px;
   }
@@ -1892,44 +1894,35 @@
     width: 320px;
     height: 320px;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       width: 240px;
       height: 240px;
     }
   }
 }
 
-.accountability-gap-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  gap: 0.5em;
-}
-
 .accountability-gap-text {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgb(0 0 0 / 90%);
   text-align: center;
   letter-spacing: 0.01em;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-shadow: 0 1px 2px rgb(0 0 0 / 10%); /* Subtle shadow for depth */
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 16px;
   }
 }
 
 .dark .accountability-gap-text {
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  color: rgb(255 255 255 / 95%);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
 }
 
 .accountability-gap-subtitle {
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.85); /* Darker for more contrast */
+  color: rgb(0 0 0 / 85%); /* Darker for more contrast */
   text-align: center;
   max-width: 300px;
   line-height: 1.4;
@@ -1937,7 +1930,7 @@
   font-weight: 500; /* Slightly bolder */
   letter-spacing: 0.01em; /* Slight letter spacing */
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 10px;
     max-width: 180px;
     padding: 0 0.5em;
@@ -1948,7 +1941,7 @@
     font-size: 10px;
     max-width: 250px;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       font-size: 9px;
       max-width: 160px;
     }
@@ -1956,7 +1949,7 @@
 }
 
 .dark .accountability-gap-subtitle {
-  color: rgba(255, 255, 255, 0.85); /* Brighter for more contrast */
+  color: rgb(255 255 255 / 85%); /* Brighter for more contrast */
 }
 
 .persona-card {
@@ -1990,28 +1983,28 @@
       display: inline-flex;
       align-items: center;
       padding: 0.25em 0.875em; /* Further reduced vertical padding to make it less tall */
-      background: rgba(220, 38, 38, 0.1);
+      background: rgb(220 38 38 / 10%);
       border: 2px solid #DC2626;
       border-radius: 0.75em;
-      box-shadow: 0 1px 3px rgba(220, 38, 38, 0.15); /* Reduced shadow for better readability */
+      box-shadow: 0 1px 3px rgb(220 38 38 / 15%); /* Reduced shadow for better readability */
       max-width: 100%; /* Prevent container from exceeding parent */
       box-sizing: border-box;
       width: fit-content; /* Hug content but respect max-width */
 
       .dark & {
-        background: rgba(239, 68, 68, 0.15);
+        background: rgb(239 68 68 / 15%);
         border-color: #EF4444;
-        box-shadow: 0 1px 3px rgba(239, 68, 68, 0.2); /* Reduced shadow for better readability */
+        box-shadow: 0 1px 3px rgb(239 68 68 / 20%); /* Reduced shadow for better readability */
       }
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         padding: 0.2em 0.65em; /* Further reduced vertical padding on mobile */
         border-radius: 0.5em;
       }
     }
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     max-width: 140px;
     gap: 0.375em;
   }
@@ -2022,7 +2015,7 @@
     flex: 1; /* Allow cards to fill available space */
     min-width: 0; /* Allow flex shrinking */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       max-width: none; /* Allow cards to grow on mobile too */
     }
 
@@ -2032,24 +2025,25 @@
       flex: 1;
       min-width: 0; /* Allow shrinking on mobile */
       
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         flex: 1 1 0; /* Allow equal distribution and shrinking */
         min-width: 0;
       }
     }
   }
 
-  @media (max-width: 768px) and (orientation: landscape) {
+  @media (width <= 768px) and (orientation: landscape) {
     max-width: none; /* Remove max-width constraint to allow expansion */
     flex: 1; /* Allow cards to grow and fill space */
   }
 
   /* Reduce gap for cards with image below (Nomad and Program) */
   &.image-below-card {
-    @media (max-width: 768px) and (orientation: landscape) {
+    @media (width <= 768px) and (orientation: landscape) {
       max-width: none; /* Allow Program and Nomad to expand to edges */
       flex: 1;
     }
+
     gap: 0; /* No gap needed since image is inside text card */
 
     /* For inline images layout in Problem section */
@@ -2063,31 +2057,29 @@
       .persona-text-card {
         position: static;
         transform: none;
-        background: rgba(255, 255, 255, 1);
+        background: rgb(255 255 255 / 100%);
         backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border: 1px solid rgba(0, 0, 0, 0.12);
+        border: 1px solid rgb(0 0 0 / 12%);
         border-radius: 1em;
         box-shadow: 
-          0 2px 6px rgba(0, 0, 0, 0.08),
-          0 4px 16px rgba(0, 0, 0, 0.06);
-        padding: 1em 1em;
+          0 2px 6px rgb(0 0 0 / 8%),
+          0 4px 16px rgb(0 0 0 / 6%);
+        padding: 1em;
         width: 100%; /* Fill container width */
         min-width: 160px; /* Minimum width for readability */
         max-width: none; /* Allow growth */
         white-space: normal;
 
         .dark & {
-          background: rgba(0, 0, 0, 0.9);
+          background: rgb(0 0 0 / 90%);
           backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
-          border-color: rgba(255, 255, 255, 0.3);
+          border-color: rgb(255 255 255 / 30%);
           box-shadow: 
-            0 2px 6px rgba(0, 0, 0, 0.6),
-            0 4px 16px rgba(0, 0, 0, 0.5);
+            0 2px 6px rgb(0 0 0 / 60%),
+            0 4px 16px rgb(0 0 0 / 50%);
         }
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           display: flex !important;
           flex-direction: column !important;
           padding: 0.5em 0.4em !important; /* Reduced padding to match other cards */
@@ -2104,24 +2096,23 @@
 
   /* Dark mode support for labels outside image - premium styling */
   .dark .case-study-top-to-bottom .image-below-card .persona-text-card {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgb(0 0 0 / 90%);
     backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgb(255 255 255 / 30%);
     box-shadow: 
-      0 2px 6px rgba(0, 0, 0, 0.6),
-      0 4px 16px rgba(0, 0, 0, 0.5);
+      0 2px 6px rgb(0 0 0 / 60%),
+      0 4px 16px rgb(0 0 0 / 50%);
   }
 
   &.hybrid-card {
     gap: 0; /* Remove gap for overlap */
     max-width: 150px; /* Make card smaller */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       max-width: 100px;
     }
 
-    @media (max-width: 768px) and (orientation: landscape) {
+    @media (width <= 768px) and (orientation: landscape) {
       max-width: 100px; /* Keep hybrid card small and centered */
       flex: 0 0 auto; /* Don't allow hybrid to grow, keep it centered */
     }
@@ -2137,7 +2128,7 @@
       max-width: none; /* Allow hybrid card to grow like others */
       flex: 1; /* Allow it to fill available space */
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         max-width: none; /* Allow growth on mobile too */
       }
 
@@ -2152,7 +2143,7 @@
       width: 120px;
       height: 120px;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         width: 60px;
         height: 60px;
       }
@@ -2162,7 +2153,7 @@
         width: 100px;
         height: 100px;
 
-        @media (max-width: 768px) {
+        @media (width <= 768px) {
           width: 75px;
           height: 75px;
         }
@@ -2174,7 +2165,7 @@
           width: 100px;
           height: 100px;
 
-          @media (max-width: 1024px) {
+          @media (width <= 1024px) {
             width: 80px;
             height: 80px;
           }
@@ -2185,7 +2176,7 @@
     .persona-text-card {
       margin-top: 0; /* Remove negative margin - gap is handled by parent .persona-card gap */
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         margin-top: 0;
       }
     }
@@ -2197,22 +2188,51 @@
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 20%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 
   .dark & {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgb(255 255 255 / 25%);
   }
 
   /* Drop-off gets no fill or border */
   &.drop-off-image-container {
+    width: 120px;
+    height: 120px;
     background: transparent;
     border-radius: 0;
     border: none;
     box-shadow: none;
+    transition: none;
+    display: flex; /* Ensure flex container for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+
+    @media (width <= 768px) {
+      width: 70px;
+      height: 70px;
+    }
+
+    .drop-off-x {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 55px; /* Further reduced to make card less tall */
+      font-weight: 700;
+      color: #DC2626;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      text-shadow: 0 2px 8px rgb(220 38 38 / 40%);
+
+      @media (width <= 768px) {
+        font-size: 40px; /* Further reduced on mobile */
+      }
+    }
   }
 
   svg {
@@ -2221,7 +2241,7 @@
     object-fit: contain;
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     width: 80px;
     height: 80px;
   }
@@ -2232,7 +2252,7 @@
       width: 120px;
       height: 120px;
 
-      @media (max-width: 1024px) {
+      @media (width <= 1024px) {
         width: 100px;
         height: 100px;
       }
@@ -2243,26 +2263,26 @@
   .case-study-top-to-bottom & {
     width: 120px;
     height: 120px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgb(0 0 0 / 20%);
     box-shadow: 
-      0 4px 16px rgba(0, 0, 0, 0.12),
-      0 2px 8px rgba(0, 0, 0, 0.08),
-      0 0 0 1px rgba(0, 0, 0, 0.04);
+      0 4px 16px rgb(0 0 0 / 12%),
+      0 2px 8px rgb(0 0 0 / 8%),
+      0 0 0 1px rgb(0 0 0 / 4%);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     .dark & {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgb(255 255 255 / 25%);
     }
 
     &:hover {
       transform: scale(1.05);
       box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.16),
-        0 4px 12px rgba(0, 0, 0, 0.12),
-        0 0 0 1px rgba(0, 0, 0, 0.06);
+        0 8px 24px rgb(0 0 0 / 16%),
+        0 4px 12px rgb(0 0 0 / 12%),
+        0 0 0 1px rgb(0 0 0 / 6%);
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       width: 70px;
       height: 70px;
     }
@@ -2284,49 +2304,13 @@
     filter: brightness(1.05) contrast(1.1);
   }
 
-  /* Drop off image container - no fill or border */
-  &.drop-off-image-container {
-    width: 120px;
-    height: 120px;
-    background: transparent;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    transition: none;
-    display: flex; /* Ensure flex container for centering */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
 
-    @media (max-width: 768px) {
-      width: 70px;
-      height: 70px;
-    }
-
-    .drop-off-x {
-      font-family: 'Patrick Hand', cursive;
-      font-size: 55px; /* Further reduced to make card less tall */
-      font-weight: 700;
-      color: #DC2626;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      text-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
-
-      @media (max-width: 768px) {
-        font-size: 40px; /* Further reduced on mobile */
-      }
-    }
-  }
 }
 
 .persona-text-card {
-  background: rgba(255, 255, 255, 1);
+  background: rgb(255 255 255 / 100%);
   backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgba(0, 0, 0, 0.18); /* Stronger border for better definition */
+  border: 1.5px solid rgb(0 0 0 / 18%); /* Stronger border for better definition */
   border-radius: 1em;
   padding: 1.5em 1.25em; /* Increased padding to better utilize space */
   width: 180px; /* Increased width from 160px to better utilize space */
@@ -2339,22 +2323,21 @@
   align-items: center;
   justify-content: center; /* Center content vertically */
   box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.12),
-    0 2px 6px rgba(0, 0, 0, 0.08),
-    0 0 0 0.5px rgba(0, 0, 0, 0.05); /* Enhanced shadow for depth and prominence */
+    0 4px 12px rgb(0 0 0 / 12%),
+    0 2px 6px rgb(0 0 0 / 8%),
+    0 0 0 0.5px rgb(0 0 0 / 5%); /* Enhanced shadow for depth and prominence */
 
   .dark & {
-    background: rgba(0, 0, 0, 0.95); /* Slightly more opaque for better contrast */
+    background: rgb(0 0 0 / 95%); /* Slightly more opaque for better contrast */
     backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-color: rgba(255, 255, 255, 0.4); /* Stronger border in dark mode */
+    border-color: rgb(255 255 255 / 40%); /* Stronger border in dark mode */
     box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.8),
-      0 2px 6px rgba(0, 0, 0, 0.6),
-      0 0 0 0.5px rgba(255, 255, 255, 0.1); /* Enhanced shadow for depth */
+      0 4px 12px rgb(0 0 0 / 80%),
+      0 2px 6px rgb(0 0 0 / 60%),
+      0 0 0 0.5px rgb(255 255 255 / 10%); /* Enhanced shadow for depth */
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     display: flex !important;
     flex-direction: column !important;
     padding: 0.5em 0.4em !important; /* Reduced padding on mobile */
@@ -2374,23 +2357,23 @@
     align-self: center;
     width: 110px; /* Increased from 100px to better fill card space */
     height: 110px; /* Increased from 100px to better fill card space */
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.15) 100%) !important; /* Green success-like gradient */
-    border: 2px solid rgba(34, 197, 94, 0.3); /* Green border */
+    background: linear-gradient(135deg, rgb(34 197 94 / 20%) 0%, rgb(16 185 129 / 15%) 100%) !important; /* Green success-like gradient */
+    border: 2px solid rgb(34 197 94 / 30%); /* Green border */
     border-radius: 50%; /* Circular shape */
     padding: 0.5em; /* Padding around image */
     box-sizing: border-box;
     box-shadow: 
-      0 2px 8px rgba(34, 197, 94, 0.2),
-      0 1px 3px rgba(34, 197, 94, 0.15),
-      inset 0 1px 2px rgba(16, 185, 129, 0.15); /* Green shadow with inner glow */
+      0 2px 8px rgb(34 197 94 / 20%),
+      0 1px 3px rgb(34 197 94 / 15%),
+      inset 0 1px 2px rgb(16 185 129 / 15%); /* Green shadow with inner glow */
 
     .dark & {
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(16, 185, 129, 0.2) 100%) !important; /* Slightly more intense in dark mode */
-      border-color: rgba(34, 197, 94, 0.4); /* Brighter green border in dark mode */
+      background: linear-gradient(135deg, rgb(34 197 94 / 25%) 0%, rgb(16 185 129 / 20%) 100%) !important; /* Slightly more intense in dark mode */
+      border-color: rgb(34 197 94 / 40%); /* Brighter green border in dark mode */
       box-shadow: 
-        0 2px 8px rgba(34, 197, 94, 0.3),
-        0 1px 3px rgba(34, 197, 94, 0.25),
-        inset 0 1px 2px rgba(16, 185, 129, 0.2); /* Enhanced green shadow in dark mode */
+        0 2px 8px rgb(34 197 94 / 30%),
+        0 1px 3px rgb(34 197 94 / 25%),
+        inset 0 1px 2px rgb(16 185 129 / 20%); /* Enhanced green shadow in dark mode */
     }
 
     /* Image styling within container */
@@ -2401,7 +2384,7 @@
       display: block;
     }
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       margin-top: 0.125em; /* Minimized space from title above on mobile */
       margin-bottom: 0.125em; /* Minimized space to subtitle below on mobile */
       width: 70px; /* Slightly smaller image on mobile */
@@ -2424,7 +2407,7 @@
       align-items: center !important; /* Center vertically */
       justify-content: center !important; /* Center horizontally */
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         width: 40px; /* Further reduced on mobile */
         height: 40px; /* Further reduced on mobile */
         margin-right: 0.25em; /* Minimized gap on mobile */
@@ -2444,11 +2427,10 @@
     padding: 0; /* Remove padding */
     background: transparent !important; /* Remove background */
     border: none !important; /* Remove border */
-    box-shadow: none !important; /* Remove shadow */
+    box-shadow: none !important; /* Remove shadow */ /* Remove backdrop filter */
     backdrop-filter: none !important; /* Remove backdrop filter */
-    -webkit-backdrop-filter: none !important; /* Remove backdrop filter */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       flex-direction: row !important; /* Horizontal layout on mobile - text to the right of x */
       align-items: center !important;
       justify-content: center !important; /* Center the content on mobile */
@@ -2466,7 +2448,7 @@
       min-width: 0;
       max-width: none;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         gap: 0.3em;
         align-items: flex-start !important; /* Align text to left on mobile */
       }
@@ -2478,7 +2460,7 @@
       width: auto;
       white-space: nowrap;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         text-align: left !important; /* Text aligned left on mobile */
       }
     }
@@ -2495,12 +2477,12 @@
         text-shadow: none !important; /* Remove text shadow for better readability */
       }
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         font-size: clamp(11px, 3.2vw, 13px) !important; /* Slightly reduced on mobile */
         text-shadow: none !important; /* Remove text shadow for better readability */
         
         .dark & {
-          text-shadow: 0 1px 2px rgba(239, 68, 68, 0.6) !important; /* Fixed shadow for mobile in dark mode */
+          text-shadow: 0 1px 2px rgb(239 68 68 / 60%) !important; /* Fixed shadow for mobile in dark mode */
         }
       }
     }
@@ -2516,7 +2498,7 @@
         opacity: 0.95;
       }
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         font-size: clamp(8px, 2.2vw, 10px) !important; /* Slightly reduced on mobile */
       }
     }
@@ -2527,7 +2509,7 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700; /* Increased from 600 for stronger hierarchy */
   font-size: 15px; /* Increased from 14px to better utilize card space */
-  color: rgba(0, 0, 0, 0.95); /* Increased contrast */
+  color: rgb(0 0 0 / 95%); /* Increased contrast */
   letter-spacing: 0.03em; /* Slightly more letter spacing for clarity */
   line-height: 1.4; /* Increased line height for better spacing */
   text-transform: uppercase;
@@ -2538,10 +2520,10 @@
   text-align: center;
 
   .dark & {
-    color: rgba(255, 255, 255, 0.95); /* Increased contrast */
+    color: rgb(255 255 255 / 95%); /* Increased contrast */
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size that scales with viewport */
     letter-spacing: 0.01em;
     white-space: normal; /* Allow wrapping on very small screens */
@@ -2552,7 +2534,7 @@
   .case-study-top-to-bottom & {
     font-size: 12px;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size for problem section */
       letter-spacing: 0.02em;
     }
@@ -2564,17 +2546,17 @@
   font-weight: 500; /* Increased from 400 for better readability */
   font-size: 14px; /* Increased from 13px to better utilize card space */
   font-style: italic; /* Italicized subtitle */
-  color: rgba(0, 0, 0, 0.75); /* Increased contrast from 0.65 */
+  color: rgb(0 0 0 / 75%); /* Increased contrast from 0.65 */
   letter-spacing: 0.01em; /* Slightly more letter spacing */
   line-height: 1.5; /* Increased line height for better spacing */
   text-align: center;
   width: 100%;
 
   .dark & {
-    color: rgba(255, 255, 255, 0.8); /* Increased contrast from 0.65 */
+    color: rgb(255 255 255 / 80%); /* Increased contrast from 0.65 */
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size that scales with viewport */
     line-height: 1.25 !important; /* Tighter line height */
     word-wrap: break-word; /* Allow word breaking */
@@ -2585,7 +2567,7 @@
   .case-study-top-to-bottom & {
     font-size: 12px; /* Increased from 10px for better readability on desktop */
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size for problem section */
       line-height: 1.25 !important; /* Tighter line height */
     }
@@ -2598,7 +2580,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em 1em;
+  padding: 1em;
   background: none;
   border: none;
   border-radius: 0;
@@ -2624,15 +2606,6 @@
   border: none;
 }
 
-.gaintain-internal-testing-image-container {
-  @extend .gaintain-image-container;
-}
-.gaintain-internal-testing-image {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 0.5em;
-}
-
 .gaintain-end-cta-section {
   margin: 0 auto; /* Remove top margin - container gap handles spacing */
   margin-top: 0; /* Ensure no top margin - container gap handles spacing */
@@ -2648,13 +2621,13 @@
 
 .gaintain-end-cta-container {
   width: 100%;
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
-  border: 1px solid rgba(230, 92, 0, 0.2);
+  background: linear-gradient(135deg, rgb(230 92 0 / 12%) 0%, rgb(249 212 35 / 8%) 100%);
+  border: 1px solid rgb(230 92 0 / 20%);
   border-radius: 20px;
   padding: 2em 1.5em;
   box-shadow: 
-    0 8px 24px -12px rgba(230, 92, 0, 0.2),
-    0 2px 8px -2px rgba(230, 92, 0, 0.1);
+    0 8px 24px -12px rgb(230 92 0 / 20%),
+    0 2px 8px -2px rgb(230 92 0 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width >= 768px) {
@@ -2665,8 +2638,8 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 16px 48px -16px rgba(230, 92, 0, 0.25),
-        0 6px 16px -4px rgba(230, 92, 0, 0.15);
+        0 16px 48px -16px rgb(230 92 0 / 25%),
+        0 6px 16px -4px rgb(230 92 0 / 15%);
     }
   }
 }
@@ -2720,7 +2693,6 @@
     background: rgb(255 255 255 / 95%);
     border: 1.5px solid rgb(0 0 0 / 15%);
     backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow:
       0 4px 12px rgb(0 0 0 / 10%),
       0 2px 4px rgb(0 0 0 / 5%);
@@ -2748,17 +2720,17 @@
 }
 
 .dark .gaintain-end-cta-container {
-  background: linear-gradient(135deg, rgba(249, 212, 35, 0.12) 0%, rgba(230, 92, 0, 0.08) 100%);
-  border-color: rgba(249, 212, 35, 0.2);
+  background: linear-gradient(135deg, rgb(249 212 35 / 12%) 0%, rgb(230 92 0 / 8%) 100%);
+  border-color: rgb(249 212 35 / 20%);
   box-shadow: 
-    0 12px 40px -16px rgba(249, 212, 35, 0.25),
-    0 4px 12px -4px rgba(249, 212, 35, 0.15);
+    0 12px 40px -16px rgb(249 212 35 / 25%),
+    0 4px 12px -4px rgb(249 212 35 / 15%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 
-        0 16px 48px -16px rgba(249, 212, 35, 0.3),
-        0 6px 16px -4px rgba(249, 212, 35, 0.2);
+        0 16px 48px -16px rgb(249 212 35 / 30%),
+        0 6px 16px -4px rgb(249 212 35 / 20%);
     }
   }
 }
@@ -2773,30 +2745,29 @@
 
 .dark .gaintain-end-cta-buttons {
   .btn.badge.big-badge:not(:first-child) {
-    background: rgba(30, 30, 30, 0.9);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    background: rgb(30 30 30 / 90%);
+    border: 1.5px solid rgb(255 255 255 / 20%);
     backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      0 2px 4px rgba(0, 0, 0, 0.1);
+      0 4px 12px rgb(0 0 0 / 20%),
+      0 2px 4px rgb(0 0 0 / 10%);
 
     a {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgb(255 255 255 / 90%);
       font-weight: 500;
     }
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: rgba(40, 40, 40, 0.95);
-        border-color: rgba(255, 255, 255, 0.25);
+        background: rgb(40 40 40 / 95%);
+        border-color: rgb(255 255 255 / 25%);
         transform: translateY(-0.5px);
         box-shadow:
-          0 6px 16px rgba(0, 0, 0, 0.25),
-          0 3px 8px rgba(0, 0, 0, 0.15);
+          0 6px 16px rgb(0 0 0 / 25%),
+          0 3px 8px rgb(0 0 0 / 15%);
 
         a {
-          color: rgba(255, 255, 255, 0.95);
+          color: rgb(255 255 255 / 95%);
         }
       }
     }
@@ -2902,8 +2873,8 @@
   padding: 1.25em;
   border-radius: 0.875em;
   backdrop-filter: none !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgb(0 0 0 / 10%) !important;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 4%), 0 1px 3px rgb(0 0 0 / 6%) !important;
   width: 100%;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: visible;
@@ -2916,7 +2887,7 @@
     overflow: visible;
     font-family: Inter, sans-serif;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       padding: 0.75em 1em;
     }
   }
@@ -2931,11 +2902,10 @@
   margin: 0;
   overflow: visible;
 
-  @media (max-width: 768px) {
-    flex-direction: row;
+  @media (width <= 768px) {
+    flex-flow: row wrap;
     align-items: center;
     gap: 0.875em;
-    flex-wrap: wrap;
   }
 }
 
@@ -2949,7 +2919,7 @@
   padding: 0.1em 0;
   overflow: visible;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     min-width: 80px;
     padding: 0.15em 0;
   }
@@ -2957,16 +2927,16 @@
   h2 {
     font-size: 3.5rem;
     margin: 0;
-    padding: 0.15em 0 0.2em 0;
+    padding: 0.15em 0 0.2em;
     line-height: 1.3;
     letter-spacing: -0.03em;
     font-weight: 700;
     overflow: visible;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       font-size: 2rem;
       line-height: 1.35;
-      padding: 0.2em 0 0.25em 0;
+      padding: 0.2em 0 0.25em;
     }
   }
 }
@@ -2979,7 +2949,7 @@
   min-width: 0;
   margin: 0;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     gap: 0.375em;
     flex: 1 1 auto;
     min-width: 0;
@@ -2993,7 +2963,7 @@
   letter-spacing: -0.02em;
   line-height: 1.3;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 0.9375rem;
     line-height: 1.2;
   }
@@ -3006,7 +2976,7 @@
   margin: 0;
   font-weight: 400;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 0.8125rem;
     line-height: 1.4;
     display: none;
@@ -3022,7 +2992,7 @@
   line-height: 1.4;
   font-weight: 500;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     gap: 0.875em;
     font-size: 0.8125rem;
   }
@@ -3043,8 +3013,8 @@
   justify-content: space-between;
   padding: 0.75em;
   border-radius: 0.625em;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 3px 10px rgba(230, 92, 0, 0.15), 0 1px 4px rgba(230, 92, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgb(255 255 255 / 15%);
+  box-shadow: 0 3px 10px rgb(230 92 0 / 15%), 0 1px 4px rgb(230 92 0 / 10%), 0 2px 6px rgb(0 0 0 / 8%) !important;
   backdrop-filter: none !important;
   min-height: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -3093,13 +3063,13 @@
   height: 2.25em;
   border-radius: 0.625em;
   border: none;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
   flex-shrink: 0;
-  color: rgba(0, 0, 0, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.12);
+  color: rgb(0 0 0 / 90%);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 12%);
   position: relative;
   overflow: hidden;
 
@@ -3111,16 +3081,16 @@
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.08);
+    background: rgb(0 0 0 / 8%);
     transform: translate(-50%, -50%);
     transition: width 0.4s ease, height 0.4s ease;
   }
 
   &:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgb(0 0 0 / 10%);
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.15);
-    color: rgba(0, 0, 0, 1);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%), 0 2px 6px rgb(0 0 0 / 15%);
+    color: rgb(0 0 0 / 100%);
 
     &::before {
       width: 100%;
@@ -3130,7 +3100,7 @@
 
   &:active {
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
   }
 
   svg {
@@ -3152,12 +3122,12 @@
 }
 
 .dark .gaintain-gradient-change {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+  background: rgb(255 255 255 / 10%) !important;
+  color: rgb(255 255 255 / 90%) !important;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    color: rgba(255, 255, 255, 1) !important;
+    background: rgb(255 255 255 / 15%) !important;
+    color: rgb(255 255 255 / 100%) !important;
   }
 }
 
@@ -3183,14 +3153,13 @@
 
   // Remove default button styles
   appearance: none;
-  -webkit-appearance: none;
   outline: none;
 
   @media (width >= 768px) {
     &:hover {
       filter: brightness(1.2);
       transform: translateY(-2px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
     }
   }
 
@@ -3219,16 +3188,16 @@
   font-weight: 800;
   letter-spacing: -0.01em;
   opacity: 0.95;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
 }
 
 .gaintain-gradient-hex {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
   opacity: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 15%);
   margin: 0;
 }
 
@@ -3250,7 +3219,7 @@
   flex: 1;
   min-height: 0;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     flex-direction: column;
   }
 }
@@ -3270,7 +3239,7 @@
     padding: 0.75em;
     border-radius: 0.625em;
     border: 1px solid;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 8%), 0 1px 2px rgb(0 0 0 / 6%) !important;
     backdrop-filter: none !important;
     min-height: 0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -3303,7 +3272,7 @@
       font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: -0.01em;
-      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+      font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
       opacity: 0.95;
     }
   }
@@ -3323,9 +3292,9 @@
     aspect-ratio: 1 / 1;
     border-radius: 0.875em;
     padding: 0.875em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(0 0 0 / 10%);
     backdrop-filter: none !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 4%), 0 1px 2px rgb(0 0 0 / 6%) !important;
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 
     svg {
@@ -3343,11 +3312,11 @@
 
   // Only set solid background for cards without gradient or explicit background
   // Cards with backgroundImage or background will keep their styles via inline styles (higher specificity)
-  .gaintain-logo-card:not([style*='background-image']):not([style*='backgroundImage']):not([style*='background']) {
+  .gaintain-logo-card:not([style*='background-image'], [style*='backgroundImage'], [style*='background']) {
     background-color: transparent !important;
   }
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -3417,9 +3386,9 @@
 
 .gaintain-validation-card {
   padding: 1em 1.25em;
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.08) 0%, rgba(249, 212, 35, 0.05) 100%);
+  background: linear-gradient(135deg, rgb(230 92 0 / 8%) 0%, rgb(249 212 35 / 5%) 100%);
   border-radius: 0.875em;
-  border: 1px solid rgba(230, 92, 0, 0.15);
+  border: 1px solid rgb(230 92 0 / 15%);
   transition: transform 200ms ease, box-shadow 200ms ease;
   display: flex;
   flex-direction: row;
@@ -3429,13 +3398,13 @@
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px -4px rgba(230, 92, 0, 0.2);
+      box-shadow: 0 4px 12px -4px rgb(230 92 0 / 20%);
     }
   }
 
   .dark & {
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.12) 0%, rgba(249, 212, 35, 0.08) 100%);
-    border-color: rgba(230, 92, 0, 0.25);
+    background: linear-gradient(135deg, rgb(230 92 0 / 12%) 0%, rgb(249 212 35 / 8%) 100%);
+    border-color: rgb(230 92 0 / 25%);
   }
 
   @media (width >= 768px) {
@@ -3462,14 +3431,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.15) 0%, rgba(249, 212, 35, 0.1) 100%);
+  background: linear-gradient(135deg, rgb(230 92 0 / 15%) 0%, rgb(249 212 35 / 10%) 100%);
   border-radius: 0.5em;
-  color: rgba(230, 92, 0, 0.9);
+  color: rgb(230 92 0 / 90%);
   flex-shrink: 0;
 
   .dark & {
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.2) 0%, rgba(249, 212, 35, 0.15) 100%);
-    color: rgba(249, 212, 35, 0.9);
+    background: linear-gradient(135deg, rgb(230 92 0 / 20%) 0%, rgb(249 212 35 / 15%) 100%);
+    color: rgb(249 212 35 / 90%);
   }
 
   > svg {
@@ -3495,21 +3464,21 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0.75em;
-  background: linear-gradient(135deg, rgba(230, 92, 0, 0.06) 0%, rgba(249, 212, 35, 0.04) 100%);
+  background: linear-gradient(135deg, rgb(230 92 0 / 6%) 0%, rgb(249 212 35 / 4%) 100%);
   border-radius: 0.625em;
-  border: 1px solid rgba(230, 92, 0, 0.12);
+  border: 1px solid rgb(230 92 0 / 12%);
   transition: transform 200ms ease, box-shadow 200ms ease;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-1px);
-      box-shadow: 0 2px 8px -2px rgba(230, 92, 0, 0.15);
+      box-shadow: 0 2px 8px -2px rgb(230 92 0 / 15%);
     }
   }
 
   .dark & {
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.1) 0%, rgba(249, 212, 35, 0.06) 100%);
-    border-color: rgba(230, 92, 0, 0.2);
+    background: linear-gradient(135deg, rgb(230 92 0 / 10%) 0%, rgb(249 212 35 / 6%) 100%);
+    border-color: rgb(230 92 0 / 20%);
   }
 
   @media (width >= 768px) {
@@ -3519,12 +3488,12 @@
 
   &.gaintain-metric-primary {
     border-width: 1px;
-    border-color: rgba(230, 92, 0, 0.2);
-    background: linear-gradient(135deg, rgba(230, 92, 0, 0.1) 0%, rgba(249, 212, 35, 0.06) 100%);
+    border-color: rgb(230 92 0 / 20%);
+    background: linear-gradient(135deg, rgb(230 92 0 / 10%) 0%, rgb(249 212 35 / 6%) 100%);
 
     .dark & {
-      border-color: rgba(230, 92, 0, 0.3);
-      background: linear-gradient(135deg, rgba(230, 92, 0, 0.14) 0%, rgba(249, 212, 35, 0.1) 100%);
+      border-color: rgb(230 92 0 / 30%);
+      background: linear-gradient(135deg, rgb(230 92 0 / 14%) 0%, rgb(249 212 35 / 10%) 100%);
     }
 
     @media (width < 768px) {
@@ -3551,7 +3520,7 @@
   font-size: 1.5em;
   font-weight: 600;
   line-height: 1.1;
-  margin: 0 0 0.2em 0;
+  margin: 0 0 0.2em;
   color: $dark-text;
   letter-spacing: -0.01em;
 
@@ -3650,7 +3619,7 @@
   > .gaintain-details-card:not(.gaintain-metric-style-card) {
     .gaintain-results-title {
       font-weight: 600;
-      margin: 0 0 0.5em 0;
+      margin: 0 0 0.5em;
       font-size: 0.95em;
       line-height: 1.4;
 
@@ -3671,7 +3640,7 @@
     }
 
     .gaintain-results-item {
-      margin: 0 0 0.75em 0;
+      margin: 0 0 0.75em;
       line-height: 1.6;
       font-size: 0.9em;
 
@@ -3701,10 +3670,11 @@
     max-height: 420px;
     position: relative;
     overflow: hidden;
+
     /* Force hero-gradient frame (like workout dashboard container) */
     background: linear-gradient(45deg, #E65C00, #F9D423) !important;
-    border: 1px solid rgba(230, 92, 0, 0.2) !important;
-    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2) !important;
+    border: 1px solid rgb(230 92 0 / 20%) !important;
+    box-shadow: 0 4px 16px -8px rgb(230 92 0 / 20%) !important;
     padding: 0 !important;
 
     @media (width >= $case-study-breakpoint) {
@@ -3715,7 +3685,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(230, 92, 0, 0.14) 0%, rgba(249, 212, 35, 0.10) 100%);
+      background: linear-gradient(135deg, rgb(230 92 0 / 14%) 0%, rgb(249 212 35 / 10%) 100%);
       mix-blend-mode: soft-light;
       opacity: 0;
       pointer-events: none;
@@ -3845,7 +3815,6 @@
       /* Ensure graph fills height in Key Insight section */
       .design-strategy-graphic-container {
         height: 100% !important;
-        min-height: 100%;
         display: flex;
         align-items: stretch;
         flex: 1;
@@ -3864,7 +3833,6 @@
 
       .system-diagram-container {
         height: 100% !important;
-        min-height: 100%;
         display: flex;
         align-items: stretch;
         flex: 1;
@@ -3930,7 +3898,7 @@
   justify-content: flex-start;
   align-items: stretch;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     > .gaintain-typography-card {
       order: 1;
     }
@@ -3984,8 +3952,8 @@
 
     /* Force hero-gradient frame (like workout dashboard container) */
     background: linear-gradient(45deg, #E65C00, #F9D423) !important;
-    border: 1px solid rgba(230, 92, 0, 0.2) !important;
-    box-shadow: 0 4px 16px -8px rgba(230, 92, 0, 0.2) !important;
+    border: 1px solid rgb(230 92 0 / 20%) !important;
+    box-shadow: 0 4px 16px -8px rgb(230 92 0 / 20%) !important;
     padding: 0 !important;
 
     &::after {
@@ -4038,7 +4006,7 @@
   min-height: 0; // Allow flex shrinking
   flex: 1; // Take up available space
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     align-items: stretch; // Ensure it fills the full height on mobile
   }
 }
@@ -4060,7 +4028,7 @@
   }
   
   // On mobile, fill height
-  @media (max-width: 767px) {
+  @media (width <= 767px) {
     width: 100%;
     height: 100%;
   }
@@ -4073,7 +4041,7 @@
   fill: rgb(0 0 0 / 60%);
   letter-spacing: 0.01em;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 10px;
   }
 }
@@ -4091,7 +4059,7 @@
   font-style: italic; /* Italicized to differentiate from point labels */
   text-transform: uppercase; /* Uppercase for axis labels */
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 11px;
   }
 }
@@ -4107,7 +4075,7 @@
   fill: rgb(0 0 0 / 95%);
   letter-spacing: 0.01em;
 
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     font-size: 12px;
   }
 }
@@ -4122,6 +4090,7 @@
   from {
     stroke-dashoffset: var(--path-length);
   }
+
   to {
     stroke-dashoffset: 0;
   }
@@ -4147,16 +4116,12 @@
 
   .animated-letter.filled {
     opacity: 1;
-    fill: rgba(0, 0, 0, 0.92); /* Same fill as Human Coach */
+    fill: rgb(0 0 0 / 92%); /* Same fill as Human Coach */
   }
 }
 
-.dark .gaintain-label-animated {
-  fill: #090B0B !important; /* Dark background color - invisible on first load */
-}
-
 .dark .gaintain-label-animated .animated-letter.filled {
-  fill: rgba(255, 255, 255, 0.92); /* Same fill as Human Coach in dark mode */
+  fill: rgb(255 255 255 / 92%); /* Same fill as Human Coach in dark mode */
 }
 
 // Respect reduced motion preferences
@@ -4168,11 +4133,11 @@
   
   .gaintain-label-animated .animated-letter {
     opacity: 1 !important;
-    fill: rgba(0, 0, 0, 0.92) !important; /* Same fill as Human Coach */
+    fill: rgb(0 0 0 / 92%) !important; /* Same fill as Human Coach */
   }
 
   .dark .gaintain-label-animated .animated-letter {
-    fill: rgba(255, 255, 255, 0.92) !important; /* Same fill as Human Coach in dark mode */
+    fill: rgb(255 255 255 / 92%) !important; /* Same fill as Human Coach in dark mode */
   }
 }
 
