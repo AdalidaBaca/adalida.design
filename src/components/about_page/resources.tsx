@@ -5,7 +5,7 @@ import Section from './section'
 
 const Resources = (): JSX.Element => {
   const writingUrl = 'https://adalida.substack.com/?utm_source=site&utm_medium=resources&utm_campaign=writing_primary'
-  const highlightsUrl = '/experiments'
+  const _highlightsUrl = '/experiments'
   const templatesUrl = 'https://www.notion.com/@adalidabaca'
   const figmaUrl = 'https://www.figma.com/@adalida'
 
@@ -57,7 +57,9 @@ const Resources = (): JSX.Element => {
           </div>
           <div className="resource-cta">
             <BadgeButton to={writingUrl}>SUBSTACK</BadgeButton>
-            <BadgeButton to="https://adalida.notion.site/Adalida-s-B-A-English-Philosophy-13634efdeebd4c83ad11fabc7c4f09c0">ACADEMIC</BadgeButton>
+            <BadgeButton to="https://adalida.notion.site/Adalida-s-B-A-English-Philosophy-13634efdeebd4c83ad11fabc7c4f09c0">
+              ACADEMIC
+            </BadgeButton>
           </div>
         </div>
         <div

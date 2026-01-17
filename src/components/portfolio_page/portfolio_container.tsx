@@ -4,10 +4,7 @@ import CaseStudyCard from './card'
 const PortfolioContainer = (): JSX.Element => {
   // Show only featured projects on the portfolio page
   // All cards use the unified CaseStudyCard component for consistent styling
-  const portfolioProjects = [
-    Projects.Gaintain,
-    Projects.ProjectEcho
-  ]
+  const portfolioProjects = [Projects.Gaintain, Projects.ProjectEcho]
 
   return (
     <>
