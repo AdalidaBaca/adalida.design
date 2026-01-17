@@ -48,7 +48,7 @@
   font-size: 1.12em;    /* enlarge intro copy */
   line-height: 1.7;
   max-width: 70ch;      /* keep readable line length */
-  margin: 0 0 0.75em 0; /* slight spacing from cards */
+  margin: 0 0 0.75em; /* slight spacing from cards */
 }
 
 /* Resource cards (reuse hackathon card structure, tuned for conversion) */
@@ -68,6 +68,7 @@
     transform: translateY(-1px);
     box-shadow: 0 12px 28px -16px rgb(0 0 0 / 24%);
   }
+
   &:focus-visible {
     outline: 2px solid map.get($dark-colors, secondary);
     outline-offset: 3px;
@@ -95,6 +96,7 @@
         line-height: 1.35;
         margin: 0;
       }
+
       > .secondary-subtitle {
         opacity: 0.9;
         font-size: 0.95em;    /* make subtitle more readable */
@@ -113,7 +115,7 @@
       border-radius: 999px;
       font-size: 0.75em;
       opacity: 0.75;
-      margin: 0.1em 0 0.35em 0; /* sit between title and paragraph */
+      margin: 0.1em 0 0.35em; /* sit between title and paragraph */
     }
 
     /* Main description copy */
@@ -151,7 +153,6 @@
       background: rgb(255 255 255 / 95%);
       border: 1.5px solid rgb(0 0 0 / 15%); /* Stronger border for better visibility */
       backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 
         0 3px 10px rgb(0 0 0 / 10%),
         0 1px 3px rgb(0 0 0 / 5%);
@@ -201,7 +202,6 @@
       background: rgb(30 30 30 / 90%);
       border: 1.5px solid rgb(255 255 255 / 20%); /* Stronger border for better visibility */
       backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 
         0 3px 10px rgb(0 0 0 / 40%),
         0 1px 3px rgb(0 0 0 / 20%);

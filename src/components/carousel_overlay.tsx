@@ -94,8 +94,8 @@ const CarouselOverlay = ({
     // biome-ignore lint/a11y/useKeyWithClickEvents: <div> has onClick
     <div className="carousel-overlay" onClick={dismiss} tabIndex={0} role="tab">
       <div style={{ height: '90vh', width: '90vw', display: 'flex', placeItems: 'center', placeContent: 'center' }}>
-      {/*biome-ignore lint/a11y/noNoninteractiveElementInteractions: All this does is stop propagation*/}
-      {/*biome-ignore lint/a11y/useKeyWithClickEvents: <div> has onClick*/}
+        {/*biome-ignore lint/a11y/noNoninteractiveElementInteractions: All this does is stop propagation*/}
+        {/*biome-ignore lint/a11y/useKeyWithClickEvents: <div> has onClick*/}
         <div
           role="dialog"
           style={{ position: 'relative', width: '100%', maxWidth: '100%', background }}

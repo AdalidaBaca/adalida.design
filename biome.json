@@ -1,4 +1,9 @@
 {
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "formatter": {
     "lineWidth": 120,
     "indentWidth": 2,
@@ -169,7 +174,7 @@
     }
   },
   "overrides": [
-    { "includes": ["src/**/*.ts", "src/**/*.tsx", "eslint.config.mjs"] },
+    { "includes": ["src/**/*.ts", "src/**/*.tsx"] },
     {
       "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "linter": {

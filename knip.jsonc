@@ -9,5 +9,8 @@
       "src/html.{js,jsx,ts,tsx}",
       "plugins/**/gatsby-{browser,ssr}.{js,jsx,ts,tsx}"
     ]
-  }
+  },
+  "ignoreDependencies": ["@reach/router"],
+  "ignoreBinaries": ["pkill"],
+  "ignoreFiles": ["vitest-setup.js"]
 }

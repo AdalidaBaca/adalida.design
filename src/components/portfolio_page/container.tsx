@@ -1,4 +1,4 @@
-import Projects from 'projects'
+import { Projects } from 'projects'
 import React from 'react'
 import CaseStudyCard from './card'
 

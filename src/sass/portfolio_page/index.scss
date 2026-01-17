@@ -58,7 +58,7 @@
   box-sizing: border-box; /* Ensure padding is included in width */
 
   /* Mobile: Fixed height to ensure all cards are identical (based on Airbrush Art Studio) */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     flex: 0 0 240px; /* Fixed height for consistent card sizing */
     min-height: 240px;
     max-height: 240px;
@@ -89,7 +89,7 @@
   overflow: hidden; /* Prevent overflow */
 
   /* Mobile: Ensure container doesn't overflow */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     max-width: 100%;
     max-height: 100%;
   }
@@ -98,16 +98,19 @@
     object-fit: contain; /* Changed from cover to contain to prevent overflow */
     
     /* Mobile: Standardized image sizing (based on Airbrush Art Studio) */
+
     /* Use auto height to maintain aspect ratio and prevent layout breaking */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       width: 100% !important;
       height: 100% !important;
       max-width: 100% !important;
       max-height: 100% !important;
       border-radius: 0.75em;
+
       /* Ensure image doesn't break layout */
       display: block;
       margin: 0 auto;
+
       /* Prevent any inline styles from overriding */
       min-width: 0;
       min-height: 0;
@@ -136,7 +139,7 @@
   margin-bottom: 2em; /* Minimized bottom margin for spacing before testimonials on desktop */
   box-sizing: border-box;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 2.5em; /* Increased gap on mobile */
@@ -222,11 +225,13 @@
   max-width: 100%;
 
   /* Mobile: Allow cards to grow taller to fit content */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     aspect-ratio: auto;
     height: auto;
+
     /* Ensure overflow is properly contained */
     overflow: hidden;
+
     /* Ensure border is included in dimensions */
     box-sizing: border-box;
   }
@@ -238,7 +243,7 @@
   flex-direction: column;
   gap: 0;
   width: 100%;
-  background: #ffffff; /* Solid white for better contrast */
+  background: #fff; /* Solid white for better contrast */
   border: none; /* Remove border from child since parent has it */
   border-top: none; /* No border at top where it meets image section */
   box-shadow: 0 4px 12px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 4%);
@@ -246,11 +251,8 @@
   box-sizing: border-box; /* Ensure padding is included in width */
 
   /* Mobile: Standardized padding and styling (based on Airbrush Art Studio) */
-  @media (max-width: 768px) {
-    padding-left: 1.5em !important;
-    padding-right: 1.5em !important;
-    padding-top: 1.25em !important;
-    padding-bottom: 0.25em !important; /* Minimal bottom padding to hug content */
+  @media (width <= 768px) {
+    padding: 1.25em 1.5em 0.25em !important; /* Minimal bottom padding to hug content */
     border-radius: 0; /* Let parent handle border-radius */
     overflow: hidden;
     max-width: 100%;
@@ -271,7 +273,7 @@
     overflow: hidden; /* Hide any overflow (component will only render badges that fit) */
 
     /* Mobile: Fixed height to ensure consistent spacing regardless of badge count */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       min-height: 32px; /* Fixed height for badge row */
       align-items: center;
     }
@@ -293,7 +295,7 @@
       flex-shrink: 0; /* Don't shrink badges */
 
       /* Mobile: Standardized badge padding (based on Airbrush Art Studio) */
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         padding: 0.3em 0.6em;
       }
 
@@ -304,7 +306,7 @@
     }
 
     /* Mobile: Badges now above subtitle - spacing below badges */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 0.65em;
       margin-bottom: 1.5em !important; /* Increased spacing below badges (before flexbox) */
       margin-top: 0; /* No top margin since badges are first */
@@ -330,7 +332,7 @@
     min-width: 0;
 
     /* Mobile: Keep flex row layout */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       flex-direction: row;
       gap: 0.75em;
     }
@@ -342,6 +344,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0; /* Allow text to shrink if needed */
+
     /* Constrain width to encourage subtitle wrapping */
     max-width: calc(100% - 60px); /* Leave space for CTA */
     width: 100%;
@@ -357,17 +360,20 @@
     align-items: center; /* Center vertically in column */
     justify-content: flex-end; /* Move to right edge of the space */
     min-width: 0;
+
     /* Position CTA to center in gap between title and subtitle */
+
     /* Desktop: Title font-size ~2rem, line-height 1.2 = ~2.4em height, gap is 1em, so center of gap = 2.4em + 0.5em */
     padding-top: calc(2.4em + 0.5em);
     transform: translateY(-50%); /* Center it in the gap */
 
     /* Mobile: Keep flex layout, center in gap */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       flex: 0 0 auto; /* Don't grow, just take needed space */
       justify-content: flex-end; /* Move to right edge of the space */
       align-items: center; /* Center vertically in column */
       margin-top: 0;
+
       /* Mobile: Title font-size ~1.6rem, line-height 1.2 = ~1.92em height, gap is 1em, so center of gap = 1.92em + 0.5em */
       padding-top: calc(1.92em + 0.5em);
       transform: translateY(-50%); /* Center it in the gap */
@@ -383,7 +389,7 @@
     box-sizing: border-box;
 
     /* Mobile: Fixed height to ensure consistent spacing */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       min-height: 80px; /* Fixed height for title section */
     }
 
@@ -402,7 +408,7 @@
       word-wrap: break-word; /* Allow breaking long words if needed */
 
       /* Mobile: Standardized category font size (based on Airbrush Art Studio) */
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         font-size: clamp(0.7rem, 1.5vw, 0.8rem);
         height: auto;
       }
@@ -427,7 +433,7 @@
       min-width: 0;
 
       /* Mobile: Larger font size for better readability */
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         font-size: clamp(1.1rem, 2.2vw, 1.4rem);
         height: auto;
       }
@@ -439,7 +445,7 @@
     }
 
     /* Mobile: Standardized spacing (based on Airbrush Art Studio) */
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 1em !important; /* Force consistent gap for all cards */
       margin-bottom: 0 !important; /* No bottom margin since CTA comes after */
       margin-top: 0; /* No top margin since badges come before */
@@ -454,12 +460,12 @@
 
   /* Description text styling */
   > p,
-  > div:not(.badge-list):not(.name-and-category) {
+  > div:not(.badge-list, .name-and-category) {
     font-size: clamp(0.875rem, 1.3vw, 1rem);
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 10%);
   }
 
   @media (width >= $breakpoint) {
@@ -498,9 +504,8 @@
   height: 48px;
   border: 1.5px solid rgb(255 255 255 / 60%); /* Stronger border for better visibility */
   border-radius: 50%;
-  background: rgb(255 255 255 / 40%); /* More opaque background for better visibility */
-  backdrop-filter: saturate(180%) blur(8px); /* Subtle blur for depth */
-  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  background: rgb(255 255 255 / 40%); /* More opaque background for better visibility */ /* Subtle blur for depth */
+  backdrop-filter: saturate(180%) blur(8px);
   color: rgb(255 255 255 / 100%);
   transition: all 0.2s ease;
   text-decoration: none;
@@ -508,10 +513,12 @@
     0 4px 12px rgb(0 0 0 / 40%),
     0 2px 6px rgb(0 0 0 / 30%),
     inset 0 1px 0 rgb(255 255 255 / 20%); /* Inner highlight for depth */
+
   z-index: 30; /* Very high z-index to sit above everything */
   cursor: pointer;
   touch-action: manipulation;
   pointer-events: auto; /* Ensure it's clickable */
+
   /* Performance optimizations */
   will-change: transform;
   transform: translateZ(0); /* Force GPU acceleration */
@@ -525,7 +532,7 @@
   }
 
   /* Hide on desktop (>= 768px) */
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     display: none !important;
   }
 
@@ -572,7 +579,6 @@
   border-radius: 50%;
   background: rgb(0 0 0 / 2%);
   backdrop-filter: saturate(180%) blur(10px);
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
   color: rgb(0 0 0 / 90%);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -607,8 +613,8 @@
       color: rgb(255 255 255 / 98%); /* White arrow for contrast on colored background */
       transform: scale(1.05); /* Only scale, don't translate - parent handles positioning */
       box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.15),
-        0 2px 6px rgba(0, 0, 0, 0.1);
+        0 4px 12px rgb(0 0 0 / 15%),
+        0 2px 6px rgb(0 0 0 / 10%);
       
       svg {
         transform: rotate(-45deg); /* Arrow rotates to point up-right */
@@ -648,9 +654,9 @@
   }
 
   .portfolio-project-link {
+    color: rgb(255 255 255 / 90%);
     border-color: rgb(255 255 255 / 12%);
     background: rgb(255 255 255 / 6%);
-    color: rgb(255 255 255 / 95%);
     box-shadow: 
       0 1px 2px rgb(0 0 0 / 20%),
       0 0.5px 1px rgb(0 0 0 / 15%);
@@ -662,8 +668,8 @@
         color: rgb(255 255 255 / 98%); /* White arrow for contrast */
         transform: scale(1.05); /* Only scale, don't translate - parent handles positioning */
         box-shadow: 
-          0 4px 12px rgba(0, 0, 0, 0.3),
-          0 2px 6px rgba(0, 0, 0, 0.25);
+          0 4px 12px rgb(0 0 0 / 30%),
+          0 2px 6px rgb(0 0 0 / 25%);
         
         svg {
           transform: rotate(-45deg); /* Arrow rotates to point up-right */
@@ -701,16 +707,6 @@
       display: block !important; /* Ensure it's visible in dark mode */
       visibility: visible !important;
       opacity: 1 !important;
-    }
-  }
-
-  .portfolio-project-link {
-    color: rgb(255 255 255 / 90%);
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        color: rgb(255 255 255 / 100%);
-      }
     }
   }
 }

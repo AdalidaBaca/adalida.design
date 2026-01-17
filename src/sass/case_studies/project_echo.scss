@@ -9,15 +9,17 @@
   padding: 0 !important;
   margin: 0 !important;
   margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
   margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 0;
   
   @media (width >= 768px) {
     padding: 0 !important;
     margin: 0 !important;
     margin-bottom: 0 !important;
     margin-top: 0 !important;
-    align-self: flex-start;
-    justify-self: flex-start;
+    place-self: flex-start flex-start;
   }
 }
 
@@ -29,13 +31,6 @@
   }
 }
 
-.project-echo-venn-diagram-container {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  line-height: 0;
-}
 
 .project-echo-venn-diagram {
   margin: 0 !important;
@@ -43,7 +38,15 @@
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   vertical-align: top;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
   display: block;
+  min-height: 200px;
+  
+  @media (width >= 768px) {
+    min-height: 280px;
+  }
 }
 
 .project-echo-venn-diagram-container + .case-study-explanation {
@@ -63,10 +66,7 @@
 
 .case-study-top-to-bottom:has(.project-echo-venn-diagram-container) > .case-study-explanation > .project-echo-details-card {
   margin-top: 0 !important;
-  padding-top: 1.25em !important;
-  padding-bottom: 1.25em !important;
-  padding-left: 1.25em !important;
-  padding-right: 1.25em !important;
+  padding: 1.25em !important;
   
   @media (width >= 768px) {
     padding: 2em !important;
@@ -101,22 +101,6 @@
   }
 }
 
-.project-echo-venn-diagram {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  margin: 0 !important;
-  padding: 0 !important;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  display: block;
-  min-height: 200px;
-  
-  @media (width >= 768px) {
-    min-height: 280px;
-  }
-}
-
 .project-echo-hero {
   display: flex;
   flex-direction: column;
@@ -128,19 +112,19 @@
   margin-top: 0;
   margin-bottom: 0;
   gap: 1.5em;
-  padding: 1.5em 0.5em 0 0.5em;
+  padding: 1.5em 0.5em 0;
   padding-top: calc(56px + 3em);
   box-sizing: border-box;
   position: relative;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin-top: 0;
     margin-bottom: 0;
   }
 
   @media (width >= 768px) {
     gap: 2em;
-    padding: 2em 0.5em 0 0.5em;
+    padding: 2em 0.5em 0;
     padding-top: calc(56px + 4em);
     margin-top: 0;
     margin-bottom: 0;
@@ -161,16 +145,16 @@
     margin: 0 auto;
     border-radius: 1.5em;
     background: #0891B2;
-    box-shadow: 0 4px 16px -8px rgba(8, 145, 178, 0.2);
+    box-shadow: 0 4px 16px -8px rgb(8 145 178 / 20%);
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       max-width: 100%;
       height: 550px;
       max-height: 65svh;
       border-radius: 1.25em;
     }
 
-    @media (max-width: 511px) {
+    @media (width <= 511px) {
       height: 450px;
       max-height: 55svh;
       aspect-ratio: 1;
@@ -185,13 +169,13 @@
       object-fit: contain;
       border-radius: 1.5em;
 
-      @media (max-width: 768px) {
+      @media (width <= 768px) {
         max-width: 80%;
         max-height: 80%;
         border-radius: 1.25em;
       }
 
-      @media (max-width: 511px) {
+      @media (width <= 511px) {
         max-width: 75%;
         max-height: 75%;
         border-radius: 1em;
@@ -215,9 +199,10 @@
   padding: 0;
   margin: 0;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin: 0;
   }
+
   padding-top: 0;
   padding-bottom: 0;
   min-height: calc(100svh - 56px - 4em);
@@ -233,20 +218,14 @@
 
   @media (width >= 768px) {
     gap: 2em;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     min-height: calc(100svh - 56px - 4em);
   }
 
   > .project-echo-download-strip {
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0 auto;
     width: 100%;
     max-width: min(1200px, 100%);
-    margin-left: auto;
-    margin-right: auto;
     padding: 0 0.5em;
   }
 
@@ -427,7 +406,7 @@
   position: relative;
   z-index: 1;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     margin-top: 0;
   }
 }
@@ -438,13 +417,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  background: linear-gradient(135deg, rgba(8, 145, 178, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
-  border: 1px solid rgba(8, 145, 178, 0.15);
+  background: linear-gradient(135deg, rgb(8 145 178 / 8%) 0%, rgb(6 182 212 / 5%) 100%);
+  border: 1px solid rgb(8 145 178 / 15%);
   border-radius: 16px;
   padding: 1.25em 1.5em;
   box-shadow: 
-    0 4px 16px -8px rgba(8, 145, 178, 0.15),
-    0 2px 8px -4px rgba(8, 145, 178, 0.1);
+    0 4px 16px -8px rgb(8 145 178 / 15%),
+    0 2px 8px -4px rgb(8 145 178 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width >= 768px) {
@@ -456,18 +435,17 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 8px 24px -12px rgba(8, 145, 178, 0.2),
-        0 4px 12px -6px rgba(8, 145, 178, 0.15);
+        0 8px 24px -12px rgb(8 145 178 / 20%),
+        0 4px 12px -6px rgb(8 145 178 / 15%);
     }
   }
 }
 
 .project-echo-download-buttons {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   gap: 0.75em;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .project-echo-download-text {
@@ -475,7 +453,6 @@
   font-weight: 700;
   line-height: 1.2;
   background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   margin: 0;
@@ -505,42 +482,41 @@
   text-decoration: none !important;
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   box-shadow: 
-    0 2px 8px rgba(8, 145, 178, 0.2),
-    0 1px 2px rgba(8, 145, 178, 0.15) !important;
+    0 2px 8px rgb(8 145 178 / 20%),
+    0 1px 2px rgb(8 145 178 / 15%) !important;
   cursor: pointer !important;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-0.3px) !important;
       box-shadow: 
-        0 4px 12px rgba(8, 145, 178, 0.3),
-        0 2px 4px rgba(8, 145, 178, 0.2) !important;
+        0 4px 12px rgb(8 145 178 / 30%),
+        0 2px 4px rgb(8 145 178 / 20%) !important;
     }
   }
 }
 
 .dark .project-echo-download-content {
-  background: linear-gradient(135deg, rgba(8, 145, 178, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
-  border-color: rgba(8, 145, 178, 0.2);
+  background: linear-gradient(135deg, rgb(8 145 178 / 12%) 0%, rgb(6 182 212 / 8%) 100%);
+  border-color: rgb(8 145 178 / 20%);
 }
 
 .dark .project-echo-link-primary {
   box-shadow: 
-    0 2px 8px rgba(8, 145, 178, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.2) !important;
+    0 2px 8px rgb(8 145 178 / 30%),
+    0 1px 2px rgb(0 0 0 / 20%) !important;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 
-        0 4px 12px rgba(8, 145, 178, 0.4),
-        0 2px 4px rgba(0, 0, 0, 0.25) !important;
+        0 4px 12px rgb(8 145 178 / 40%),
+        0 2px 4px rgb(0 0 0 / 25%) !important;
     }
   }
 }
 
 .dark .project-echo-download-text {
   background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
@@ -561,13 +537,13 @@
 
 .project-echo-end-cta-container {
   width: 100%;
-  background: linear-gradient(135deg, rgba(8, 145, 178, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
-  border: 1px solid rgba(8, 145, 178, 0.2);
+  background: linear-gradient(135deg, rgb(8 145 178 / 12%) 0%, rgb(6 182 212 / 8%) 100%);
+  border: 1px solid rgb(8 145 178 / 20%);
   border-radius: 20px;
   padding: 2em 1.5em;
   box-shadow: 
-    0 8px 24px -12px rgba(8, 145, 178, 0.2),
-    0 2px 8px -2px rgba(8, 145, 178, 0.1);
+    0 8px 24px -12px rgb(8 145 178 / 20%),
+    0 2px 8px -2px rgb(8 145 178 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width >= 768px) {
@@ -578,8 +554,8 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 16px 48px -16px rgba(8, 145, 178, 0.25),
-        0 6px 16px -4px rgba(8, 145, 178, 0.15);
+        0 16px 48px -16px rgb(8 145 178 / 25%),
+        0 6px 16px -4px rgb(8 145 178 / 15%);
     }
   }
 }
@@ -633,7 +609,6 @@
     background: rgb(255 255 255 / 95%);
     border: 1.5px solid rgb(0 0 0 / 15%);
     backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow:
       0 4px 12px rgb(0 0 0 / 10%),
       0 2px 4px rgb(0 0 0 / 5%);
@@ -661,17 +636,17 @@
 }
 
 .dark .project-echo-end-cta-container {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(8, 145, 178, 0.08) 100%);
-  border-color: rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, rgb(6 182 212 / 12%) 0%, rgb(8 145 178 / 8%) 100%);
+  border-color: rgb(6 182 212 / 20%);
   box-shadow: 
-    0 12px 40px -16px rgba(6, 182, 212, 0.25),
-    0 4px 12px -4px rgba(6, 182, 212, 0.15);
+    0 12px 40px -16px rgb(6 182 212 / 25%),
+    0 4px 12px -4px rgb(6 182 212 / 15%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 
-        0 16px 48px -16px rgba(6, 182, 212, 0.3),
-        0 6px 16px -4px rgba(6, 182, 212, 0.2);
+        0 16px 48px -16px rgb(6 182 212 / 30%),
+        0 6px 16px -4px rgb(6 182 212 / 20%);
     }
   }
 }
@@ -686,29 +661,28 @@
 
 .dark .project-echo-end-cta-buttons {
   .btn.badge.big-badge:not(:first-child) {
-    background: rgba(30, 30, 30, 0.9);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    background: rgb(30 30 30 / 90%);
+    border: 1.5px solid rgb(255 255 255 / 20%);
     backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
     box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      0 2px 4px rgba(0, 0, 0, 0.1);
+      0 4px 12px rgb(0 0 0 / 20%),
+      0 2px 4px rgb(0 0 0 / 10%);
 
     a {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgb(255 255 255 / 90%);
       font-weight: 500;
     }
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
-        background: rgba(35, 35, 35, 0.92);
-        border-color: rgba(255, 255, 255, 0.25);
+        background: rgb(35 35 35 / 92%);
+        border-color: rgb(255 255 255 / 25%);
         box-shadow:
-          0 6px 16px rgba(0, 0, 0, 0.3),
-          0 3px 8px rgba(0, 0, 0, 0.15);
+          0 6px 16px rgb(0 0 0 / 30%),
+          0 3px 8px rgb(0 0 0 / 15%);
 
         a {
-          color: rgba(255, 255, 255, 0.95);
+          color: rgb(255 255 255 / 95%);
         }
       }
     }
@@ -796,7 +770,6 @@
   background: transparent !important;
   border: none !important;
   backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   padding: 0 !important;
   font-size: inherit !important;

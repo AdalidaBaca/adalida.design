@@ -20,16 +20,19 @@ interface YTStateChangeEvent {
 }
 
 interface YTNamespace {
-  Player: new (elementId: string, options: {
-    width: string
-    height: string
-    videoId: string
-    playerVars: { [key: string]: string | number }
-    events: {
-      onReady: (event: unknown) => void
-      onStateChange: (event: YTStateChangeEvent) => void
+  Player: new (
+    elementId: string,
+    options: {
+      width: string
+      height: string
+      videoId: string
+      playerVars: { [key: string]: string | number | undefined }
+      events: {
+        onReady: (event: unknown) => void
+        onStateChange: (event: YTStateChangeEvent) => void
+      }
     }
-  }) => YTPlayer
+  ) => YTPlayer
 }
 
 declare global {

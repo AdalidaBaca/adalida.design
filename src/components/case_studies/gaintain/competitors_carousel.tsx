@@ -35,6 +35,11 @@ interface CompetitorsCarouselProps {
   ariaLabel?: string
 }
 
+interface CompetitorData {
+  name: string
+  publicURL: string
+}
+
 const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
   const data = useStaticQuery(graphql`
     query CompetitorsLogos {
@@ -55,7 +60,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
     if (nodes.length === 0) {
       return []
     }
-    return nodes.map((n) => ({ label: titleCase(n.name), src: n.publicURL }))
+    return nodes.map((n: CompetitorData) => ({ label: titleCase(n.name), src: n.publicURL }))
   }, [data])
 
   const containerRef = useRef<HTMLDivElement>(null)

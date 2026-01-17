@@ -23,7 +23,7 @@ jobs:
       run: npm run lint
     - name: Stylelint check
       run: npm run stylelint
-    - name: Run jest tests
+    - name: Run vitest tests
       run: npm test
     - name: Build the bundle
       run: npm run build

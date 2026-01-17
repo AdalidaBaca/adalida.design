@@ -51,6 +51,11 @@ interface ToolsCarouselProps {
   ariaLabel?: string
 }
 
+interface ToolData {
+  name: string
+  publicURL: string
+}
+
 const ToolsCarousel = ({
   badgeText = 'Toolkit',
   fullBleed = true,
@@ -75,7 +80,7 @@ const ToolsCarousel = ({
     if (nodes.length === 0) {
       return fallbackTools
     }
-    return nodes.map((n) => ({ label: titleCase(n.name), src: n.publicURL }))
+    return nodes.map((n: ToolData) => ({ label: titleCase(n.name), src: n.publicURL }))
   }, [data])
 
   const containerRef = useRef<HTMLDivElement>(null)

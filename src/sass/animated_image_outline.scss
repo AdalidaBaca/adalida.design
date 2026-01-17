@@ -6,7 +6,7 @@
 }
 
 @keyframes aio-draw-offset {
-  from { stroke-dashoffset: var(--aio-perimeter, 400); }
+  0% { stroke-dashoffset: var(--aio-perimeter, 400); }
   88% { stroke-dashoffset: var(--aio-eps, 2); }
   100% { stroke-dashoffset: var(--aio-eps, 2); }
 }
@@ -56,19 +56,20 @@
 
 .animated-image-outline .aio-overlay {
   position: absolute;
+
   /* expand outward by half the stroke so the stroke sits OUTSIDE the image container
      (use explicit sizing to avoid inset+width conflicts that can misalign on mobile) */
-  left: calc(var(--aio-strokeWidth, 3px) * -0.5);
-  top: calc(var(--aio-strokeWidth, 3px) * -0.5);
-  width: calc(100% + var(--aio-strokeWidth, 3px));
-  height: calc(100% + var(--aio-strokeWidth, 3px));
+  left: calc(var(--aio-stroke-width, 3px) * -0.5);
+  top: calc(var(--aio-stroke-width, 3px) * -0.5);
+  width: calc(100% + var(--aio-stroke-width, 3px));
+  height: calc(100% + var(--aio-stroke-width, 3px));
   pointer-events: none;
   z-index: 4; /* above the image, below explicit overlays like audio controls */
   overflow: visible;
 }
 
 .animated-image-outline .aio-rect {
-  stroke-width: var(--aio-strokeWidth, 3px);
+  stroke-width: var(--aio-stroke-width, 3px);
 }
 
 .animated-image-outline .aio-rect.base {
@@ -79,7 +80,7 @@
 .animated-image-outline .aio-rect.anim {
   opacity: 1;
   animation: none; /* enabled once we know the real path length to avoid jumps */
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.10));
+  filter: drop-shadow(0 10px 22px rgb(0 0 0 / 10%));
 }
 
 .animated-image-outline.ready.run.travel .aio-rect.anim {
@@ -99,7 +100,7 @@
 
 .animated-image-outline .aio-rect.draw-anim {
   opacity: 1;
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.10));
+  filter: drop-shadow(0 10px 22px rgb(0 0 0 / 10%));
 }
 
 .animated-image-outline.ready.run.draw .aio-rect.draw-anim {
@@ -118,7 +119,7 @@
 }
 
 .dark .animated-image-outline .aio-rect {
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 14px 28px rgb(0 0 0 / 45%));
 }
 
 .dark .animated-image-outline .aio-rect.base {
@@ -129,10 +130,12 @@
   .animated-image-outline.travel .aio-rect.anim {
     animation: none;
   }
+
   .animated-image-outline.draw .aio-rect.draw-anim {
     animation: none;
     opacity: 0;
   }
+
   .animated-image-outline.draw .aio-rect.draw-base {
     animation: none;
     opacity: 1;

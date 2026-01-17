@@ -1,4 +1,4 @@
-import { useLocation } from '@reach/router' // knip-ignore
+import { useLocation } from '@reach/router'
 import DarkModeContext from 'dark_mode_context'
 import { type Project, Projects } from 'projects'
 import React, { useContext, useEffect, useMemo, useState } from 'react'

@@ -37,14 +37,7 @@ const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element 
   return (
     <div className="community-image-box" title={label} aria-label={label} role="img">
       {!broken ? (
-        <img
-          src={src}
-          srcSet={srcSet}
-          alt={label}
-          className={className}
-          loading="lazy"
-          decoding="async"
-        />
+        <img src={src} srcSet={srcSet} alt={label} className={className} loading="lazy" decoding="async" />
       ) : (
         <div className="community-fallback">{label}</div>
       )}
@@ -54,6 +47,20 @@ const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element 
 
 interface CommunityCarouselProps {
   ariaLabel?: string
+}
+
+interface CommunityImageData {
+  name: string
+  publicURL: string
+  extension: string
+  childImageSharp?: {
+    fixed?: {
+      src: string
+      srcSet: string
+      width: number
+      height: number
+    }
+  }
 }
 
 const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps): JSX.Element => {
@@ -89,8 +96,8 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
 
     // Map all nodes to images, prioritizing processed images
     const mapped = nodes
-      .filter((n) => n.name && n.publicURL) // Ensure we have valid data
-      .map((n) => {
+      .filter((n: CommunityImageData) => n.name && n.publicURL) // Ensure we have valid data
+      .map((n: CommunityImageData) => {
         // Prioritize Sharp-processed image, fallback to publicURL
         // Sharp should process HEIC files during build, but if it doesn't, use publicURL
         const src = n.childImageSharp?.fixed?.src || n.publicURL
@@ -102,7 +109,8 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
           extension: n.extension
         }
       })
-      .filter((img) => img.src) // Remove any images without a valid src
+      // .filter((img) => img.src) // Remove any images without a valid src
+      .filter((img: CommunityImage) => img.src)
 
     // Shuffle the array to randomize order
     const shuffled = [...mapped]

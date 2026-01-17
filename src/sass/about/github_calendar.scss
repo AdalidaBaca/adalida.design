@@ -7,8 +7,10 @@
 
   --cell: 11px;
   --gap: 3px;
+
   /* Single-accent scale (light mode): use light-mode accent */
   --lvl0: rgb(0 0 0 / 7%);
+
   /* Use accent color directly with varying opacity */
   --lvl1: #{rgba(map.get($light-colors, danger), 0.25)};
   --lvl2: #{rgba(map.get($light-colors, danger), 0.45)};
@@ -37,7 +39,7 @@
   .github-calendar-link {
     font-weight: 600;
     text-decoration: none;
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid currentcolor;
     opacity: 0.85;
     &:hover { opacity: 1; }
   }
@@ -89,6 +91,7 @@
     gap: 0.6em;
     opacity: 0.85;
   }
+
   .legend-cells {
     display: inline-flex;
     align-items: center;
