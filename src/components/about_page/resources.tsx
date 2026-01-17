@@ -57,7 +57,7 @@ const Resources = (): JSX.Element => {
           </div>
           <div className="resource-cta">
             <BadgeButton to={writingUrl}>SUBSTACK</BadgeButton>
-            <BadgeButton to={highlightsUrl}>ACADEMIC</BadgeButton>
+            <BadgeButton to="https://adalida.notion.site/Adalida-s-B-A-English-Philosophy-13634efdeebd4c83ad11fabc7c4f09c0">ACADEMIC</BadgeButton>
           </div>
         </div>
         <div

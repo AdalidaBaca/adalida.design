@@ -131,19 +131,19 @@
 .portfolio-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: auto; /* Changed from repeat(2, 1fr) to auto for 2 cards */
   gap: 2.5em; /* Increased gap for better spacing between cards */
   width: 100%;
   max-width: 100%;
   margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
-  margin-bottom: 2em; /* Minimized bottom margin for spacing before testimonials on desktop */
+  margin-bottom: 1em; /* Reduced bottom margin for spacing before testimonials on desktop (2 cards instead of 4) */
   box-sizing: border-box;
   
   @media (width <= 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 2.5em; /* Increased gap on mobile */
-    margin-bottom: 4em; /* Increased bottom margin on mobile */
+    margin-bottom: 2em; /* Reduced bottom margin on mobile (2 cards instead of 4) */
   }
 }
 

@@ -480,6 +480,19 @@
     }
   }
 
+  /* Mobile-only: reorder problem image above text for Project ECHO */
+  &:has(.project-echo-venn-diagram-container) {
+    @media (width <= 768px) {
+      > .project-echo-venn-diagram-container {
+        order: -1;
+      }
+      
+      > .case-study-explanation {
+        order: 1;
+      }
+    }
+  }
+
   /* Mobile-only: reduce gap for insight section to match other sections */
   &.project-echo-insight-section {
     @media (width <= 768px) {

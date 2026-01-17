@@ -50,7 +50,7 @@ export const Projects: Record<string, Project> = {
     badges: ['UI Design', 'Brand Design', 'Design System'],
     link: {
       text: 'Read Case Study',
-      url: '/case_studies/phronesis'
+      url: 'https://www.figma.com/community/file/1275945844735159445/phronesis'
     },
     colors: {
       cover: '#146272',

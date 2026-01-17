@@ -11,12 +11,10 @@ const Experiments = (): JSX.Element => {
     Projects.Waugh,
     Projects.Phronesis,
     Projects.TLDR,
-    Projects.ProjectEcho,
     Projects.GoldenRecordRemix,
     Projects.GreenAction,
     Projects.Cheevo,
-    Projects.LoboGardens,
-    Projects.UniNights
+    Projects.LoboGardens
   ]
 
   useEffect(() => {

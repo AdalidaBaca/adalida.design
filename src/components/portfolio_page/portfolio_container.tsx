@@ -2,12 +2,10 @@ import { Projects } from 'projects'
 import CaseStudyCard from './card'
 
 const PortfolioContainer = (): JSX.Element => {
-  // Show these four projects on the portfolio page in a 2x2 grid
+  // Show only featured projects on the portfolio page
   // All cards use the unified CaseStudyCard component for consistent styling
   const portfolioProjects = [
     Projects.Gaintain,
-    Projects.SmartVentureMedia,
-    Projects.InvibeEsthetics,
     Projects.ProjectEcho
   ]
 
