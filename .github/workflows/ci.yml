@@ -17,13 +17,15 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Knip check
+      run: npm run knip
+    - name: Biome check
+      run: npm run biome
     - name: TypeScript type check
       run: npm run tsc
-    - name: ESLint/TSLint check
-      run: npm run lint
-    - name: Stylelint check
-      run: npm run stylelint
     - name: Run vitest tests
       run: npm test
+    - name: Stylelint check
+      run: npm run stylelint
     - name: Build the bundle
       run: npm run build
