@@ -6,7 +6,7 @@ interface File {
   relativePath: string
 }
 
-export const FileQuery = (filePath: string): File => {
+const FileQuery = (filePath: string): File => {
   const files = useStaticQuery(graphql`
     query {
       allFile(filter: {sourceInstanceName: {eq: "files"}}) {

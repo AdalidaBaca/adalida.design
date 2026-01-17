@@ -40,7 +40,7 @@ const ResetLoop = (): JSX.Element => {
     { x: 1120, y: 105 }    // Life gets in the way - to the right of right dot
   ])
   const [viewBox, setViewBox] = useState<string>('0 0 1200 260')
-  const textRefs = useRef<(SVGTextElement | null)[]>([])
+  const textRefs = useRef<Array<SVGTextElement | null>>([])
   const [labelWidths, setLabelWidths] = useState<number[]>([180, 160, 240]) // Initial widths
   const isMobile = useIsMobile(768)
 
@@ -83,7 +83,7 @@ const ResetLoop = (): JSX.Element => {
     const timeoutId = setTimeout(measureTexts, 100)
     requestAnimationFrame(measureTexts)
 
-    return () => clearTimeout(timeoutId)
+    return () => { clearTimeout(timeoutId); }
   }, [labelPositions])
 
   // Calculate path length, dot positions, and label positions
@@ -236,7 +236,7 @@ const ResetLoop = (): JSX.Element => {
     const timeoutId = setTimeout(calculatePositions, 50)
     requestAnimationFrame(calculatePositions)
 
-    return () => clearTimeout(timeoutId)
+    return () => { clearTimeout(timeoutId); }
   }, [labelWidths, isMobile]) // Depend on labelWidths and isMobile to re-calculate positions
 
   useEffect(() => {

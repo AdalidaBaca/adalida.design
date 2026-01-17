@@ -4,12 +4,12 @@ import Section from './section'
 
 const GITHUB_USERNAME = 'adalidabaca'
 
-type ApiDay = {
+interface ApiDay {
   date: string // YYYY-MM-DD
   count: number
 }
 
-type ApiResponse = {
+interface ApiResponse {
   contributions: ApiDay[]
 }
 

@@ -163,7 +163,7 @@ const GaintainLogo3D = ({ size = 256, className }: Props): JSX.Element => {
     }
 
     // Kick off and repeat (matches original timing)
-    const intervalId = window.setInterval(() => animatePrisms(), 3000)
+    const intervalId = window.setInterval(() => { animatePrisms(); }, 3000)
 
     let rafId = 0
     const tick = (): void => {

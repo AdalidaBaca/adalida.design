@@ -120,7 +120,7 @@ const DesignStrategyGraphic = (): JSX.Element => {
         // Mark animation as complete in localStorage
         localStorage.setItem('gaintain-design-strategy-animated', 'true')
       }, 1800)
-      return () => clearTimeout(timeout)
+      return () => { clearTimeout(timeout); }
     }
   }, [pathLength, isInView, hasAnimatedBefore])
 

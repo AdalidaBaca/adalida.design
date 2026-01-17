@@ -5,7 +5,7 @@ import useIsMobile from 'hooks/use_is_mobile'
 
 import SectionHeading from 'components/section_heading'
 
-type InsightProps = {
+interface InsightProps {
   title?: string
   copy?: 'insight' | 'problem'
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
 
-type Gradient = {
+interface Gradient {
   from: string
   to: string
   /** Optional middle stop for a richer stroke */
@@ -9,7 +9,7 @@ type Gradient = {
   angleDeg?: number
 }
 
-type Props = {
+interface Props {
   /** Animation duration in seconds (lower = faster). */
   speed?: number
   /** Stroke width in px. */

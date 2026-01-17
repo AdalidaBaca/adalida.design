@@ -63,4 +63,3 @@ const MediaWithText = ({ media, text, reversed = false }: Props): JSX.Element =>
   )
 }
 
-export default MediaWithText

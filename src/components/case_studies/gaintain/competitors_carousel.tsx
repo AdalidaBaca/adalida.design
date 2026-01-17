@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import SectionHeading from 'components/section_heading'
 
-type Tool = { label: string, src: string }
+interface Tool { label: string, src: string }
 
 const titleCase = (s: string): string =>
   s
@@ -42,7 +42,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
         }
       }
     }
-  `) as { allFile: { nodes: Array<{ name: string, publicURL: string }> } }
+  `)
 
   const tools = useMemo<Tool[]>(() => {
     const nodes = data.allFile.nodes

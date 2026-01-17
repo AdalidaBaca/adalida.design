@@ -7,7 +7,7 @@ export interface Hackathon {
   link: string
 }
 
-export const Hackathons: Hackathon[] = [
+const Hackathons: Hackathon[] = [
   {
     name: 'Waugh',
     location: 'SF, CA',

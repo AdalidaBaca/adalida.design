@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import SectionHeading from 'components/section_heading'
 
-type Tool = { label: string, src: string }
+interface Tool { label: string, src: string }
 
 const fallbackTools: Tool[] = [
   { label: 'Notion', src: '/images/logos/notion.png' },
@@ -58,7 +58,7 @@ const ToolsCarousel = ({ badgeText = 'Toolkit', fullBleed = true, ariaLabel = 'T
         }
       }
     }
-  `) as { allFile: { nodes: Array<{ name: string, publicURL: string }> } }
+  `)
 
   const tools = useMemo<Tool[]>(() => {
     const nodes = data.allFile.nodes

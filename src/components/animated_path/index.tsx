@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef, type SVGAttributes } from 'react'
 
-export type Path = SVGAttributes<SVGPathElement>['d']
+type Path = SVGAttributes<SVGPathElement>['d']
 
 interface Props {
   startPath: Path

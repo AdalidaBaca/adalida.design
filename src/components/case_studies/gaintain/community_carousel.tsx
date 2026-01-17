@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import SectionHeading from 'components/section_heading'
 
-type CommunityImage = { label: string, src: string, srcSet?: string }
+interface CommunityImage { label: string, src: string, srcSet?: string }
 
 const titleCase = (s: string): string =>
   s
@@ -67,24 +67,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
         }
       }
     }
-  `) as { 
-    allFile: { 
-      nodes: Array<{ 
-        name: string
-        publicURL: string
-        extension: string
-        relativePath: string
-        childImageSharp?: {
-          fixed: {
-            src: string
-            srcSet: string
-            width: number
-            height: number
-          }
-        } | null
-      }> 
-    } 
-  }
+  `)
 
   const images = useMemo<CommunityImage[]>(() => {
     const nodes = data.allFile.nodes

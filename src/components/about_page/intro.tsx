@@ -35,7 +35,7 @@ const Intro = (): JSX.Element | null => {
         const timer = setTimeout(() => {
           sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
         }, 5000) // Slightly after all animations complete
-        return () => clearTimeout(timer)
+        return () => { clearTimeout(timer); }
       }
     }
   }, [])

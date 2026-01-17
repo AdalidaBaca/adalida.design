@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 
-export const BREAKPOINT = 768 // px
+const BREAKPOINT = 768 // px
 
 const useIsMobile = (breakpoint = BREAKPOINT): boolean | null => {
   const [windowWidth, setWindowWidth] = useState<null | number>(() =>
