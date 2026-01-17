@@ -169,7 +169,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               <g>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : 25)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : isLaptop ? 18 : 25)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -183,7 +183,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 50 : 42)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 58 : 42)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -197,7 +197,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 57 : isLaptop ? 65 : 59)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 57 : isLaptop ? 73 : 59)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -211,7 +211,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={isMobile ? 20 : 30}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 72 : isLaptop ? 80 : 76)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 72 : isLaptop ? 88 : 76)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -283,7 +283,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               <g>
                 <text
                   x={centerX}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : isLaptop ? 28 : 25)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : isLaptop ? 26 : 25)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                   fontSize={isMobile ? '10' : '12'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -297,7 +297,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 </text>
                 <text
                   x={centerX}
-                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 52 : 42)}
+                  y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 42 : isLaptop ? 60 : 42)}
                   fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                   fontSize={isMobile ? '11' : '14'}
                   fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'

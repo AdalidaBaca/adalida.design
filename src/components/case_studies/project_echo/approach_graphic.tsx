@@ -383,10 +383,10 @@ const ApproachGraphic = (): JSX.Element => {
           strokeWidth={isMobile ? '1' : '1.5'}
         />
         <text
-          x={matrixX}
-          y={matrixY - (isMobile ? 12 : 15)}
-          textAnchor='middle'
-          dominantBaseline='bottom'
+          x={matrixX + (isMobile ? 12 : 15)}
+          y={matrixY}
+          textAnchor='start'
+          dominantBaseline='middle'
           className='design-strategy-point-label'
         >
           Matrix-based
