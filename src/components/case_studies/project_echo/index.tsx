@@ -28,7 +28,7 @@ const ProjectEcho = (): JSX.Element => {
   return (
     <Context.Provider value={Projects.ProjectEcho}>
       {isMobile === false && <TableOfContents links={sections} />}
-      <div className="case-study-container">
+      <div className="case-study-container project-echo-container">
         <About heroRef={sections['PROJECT ECHO']} aboutRef={sections.About} />
         <Insight copy="problem" ref={sections.Problem} />
         <Insight ref={sections.Insight} />

@@ -1,9 +1,10 @@
 import SectionHeading from 'components/section_heading'
-import React, { forwardRef, type Ref } from 'react'
+import React, { forwardRef, Ref } from 'react'
+import ApproachGraphic from './approach_graphic'
 
 const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos="fade-up" className="case-study-side-by-side" ref={ref}>
+    <div data-aos="fade-up" className="case-study-side-by-side project-echo-approach-section" ref={ref}>
       <div className="case-study-explanation">
         <div className="project-echo-details-card">
           <SectionHeading title="Approach" />
@@ -16,6 +17,9 @@ const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             supported by an <strong>interactive and reusable implementation</strong>.
           </div>
         </div>
+      </div>
+      <div className="gaintain-image-container">
+        <ApproachGraphic />
       </div>
     </div>
   )

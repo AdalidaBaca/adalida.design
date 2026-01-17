@@ -11,7 +11,7 @@ interface InsightProps {
 
 const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<HTMLDivElement>): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
-  const isMobile = useIsMobile(768) ?? false
+  const isMobile = useIsMobile(768)
 
   const circleLabel1 = copy === 'problem' ? 'GM' : 'A'
   const circleLabel2 = copy === 'problem' ? 'IDU' : 'B'

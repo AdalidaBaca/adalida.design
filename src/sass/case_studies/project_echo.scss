@@ -1,6 +1,12 @@
 // Project ECHO Case Study Styles
 // Matches Gaintain styling pattern
 
+// Ensure consistent spacing between all sections
+.project-echo-container {
+  // All sections use the container gap for consistent spacing
+  // No negative margins - let the container gap handle all spacing uniformly
+}
+
 .project-echo-venn-diagram-container {
   display: flex;
   align-items: flex-start;
@@ -11,8 +17,14 @@
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
-  padding-top: 0 !important;
-  line-height: 0;
+  overflow: visible;
+  min-height: 0;
+  height: auto;
+  
+  @media (width <= 768px) {
+    min-height: 0;
+    height: auto;
+  }
   
   @media (width >= 768px) {
     padding: 0 !important;
@@ -20,6 +32,7 @@
     margin-bottom: 0 !important;
     margin-top: 0 !important;
     place-self: flex-start flex-start;
+    overflow: visible;
   }
 }
 
@@ -43,9 +56,11 @@
   height: auto;
   display: block;
   min-height: 200px;
+  overflow: visible;
   
   @media (width >= 768px) {
     min-height: 280px;
+    overflow: visible;
   }
 }
 
@@ -56,11 +71,11 @@
 
 
 .case-study-top-to-bottom:has(.project-echo-venn-diagram-container) > .case-study-explanation {
-  margin-top: -2.5em !important;
+  margin-top: 1em !important;
   padding-top: 0 !important;
   
   @media (width >= 768px) {
-    margin-top: -3em !important;
+    margin-top: 1.5em !important;
   }
 }
 
@@ -113,21 +128,36 @@
   margin-bottom: 0;
   gap: 1.5em;
   padding: 1.5em 0.5em 0;
-  padding-top: calc(56px + 3em);
+  padding-top: calc(56px + 1em);
   box-sizing: border-box;
   position: relative;
   
   @media (width <= 768px) {
     margin-top: 0;
     margin-bottom: 0;
+    padding-top: calc(56px + 0.75em);
   }
 
   @media (width >= 768px) {
-    gap: 2em;
+    gap: 1.5em;
     padding: 2em 0.5em 0;
-    padding-top: calc(56px + 4em);
+    padding-top: calc(56px + 1.5em);
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  > .project-echo-download-strip {
+    margin: 0;
+    margin-top: 3em;
+    width: 100%;
+    max-width: min(1200px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5em;
+
+    @media (width <= 768px) {
+      margin-top: 2em;
+    }
   }
 
   > .project-echo-hero-image {
@@ -205,29 +235,21 @@
 
   padding-top: 0;
   padding-bottom: 0;
-  min-height: calc(100svh - 56px - 4em);
   scroll-margin-top: 72px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: left;
-  gap: 1.25em;
+  gap: 0;
   position: relative;
 
   @media (width >= 768px) {
-    gap: 2em;
+    gap: 0;
     padding: 0;
-    min-height: calc(100svh - 56px - 4em);
   }
 
-  > .project-echo-download-strip {
-    margin: 0 auto;
-    width: 100%;
-    max-width: min(1200px, 100%);
-    padding: 0 0.5em;
-  }
 
   > .project-echo-details-container {
     width: 100%;
@@ -322,6 +344,43 @@
 
   > .section-heading-container {
     margin: 0 0 0.75em;
+  }
+
+  // Enhanced outcome card styling
+  &.project-echo-outcome-card {
+    background: linear-gradient(135deg, rgb(8 145 178 / 10%) 0%, rgb(6 182 212 / 6%) 100%);
+    border: 1px solid rgb(8 145 178 / 20%);
+    box-shadow: 0 4px 16px -8px rgb(8 145 178 / 20%), 0 2px 8px -4px rgb(8 145 178 / 10%);
+    padding: 1.5em;
+
+    @media (width >= 768px) {
+      padding: 2.5em;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, rgb(8 145 178 / 14%) 0%, rgb(6 182 212 / 10%) 100%);
+      border-color: rgb(8 145 178 / 30%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px -12px rgb(8 145 178 / 25%), 0 4px 12px -6px rgb(8 145 178 / 15%);
+    }
+
+    > .body-2 {
+      font-size: 1.1em;
+      line-height: 1.8;
+
+      @media (width >= 768px) {
+        font-size: 1.2em;
+        line-height: 1.9;
+      }
+    }
+
+    > .section-heading-container {
+      margin-bottom: 1em;
+
+      @media (width >= 768px) {
+        margin-bottom: 1.25em;
+      }
+    }
   }
 }
 
@@ -834,6 +893,18 @@
     &:hover {
       background: rgb(255 255 255 / 3%);
       border-color: rgb(255 255 255 / 12%);
+    }
+
+    &.project-echo-outcome-card {
+      background: linear-gradient(135deg, rgb(8 145 178 / 14%) 0%, rgb(6 182 212 / 10%) 100%);
+      border-color: rgb(8 145 178 / 30%);
+      box-shadow: 0 4px 16px -8px rgb(8 145 178 / 30%), 0 2px 8px -4px rgb(6 182 212 / 20%);
+
+      &:hover {
+        background: linear-gradient(135deg, rgb(8 145 178 / 18%) 0%, rgb(6 182 212 / 14%) 100%);
+        border-color: rgb(8 145 178 / 40%);
+        box-shadow: 0 8px 24px -12px rgb(8 145 178 / 35%), 0 4px 12px -6px rgb(6 182 212 / 25%);
+      }
     }
   }
 

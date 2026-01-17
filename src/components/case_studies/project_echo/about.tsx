@@ -17,8 +17,6 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className="project-echo-hero-image">
           <img src={ProjectEchoImage} alt="Visualizing Overlap in Intersectional Health Data" />
         </div>
-      </div>
-      <div data-aos="fade-up" data-aos-offset="100" className="project-echo-details" ref={aboutRef}>
         <div data-aos="fade-up" data-aos-offset="150" className="project-echo-download-strip">
           <div className="project-echo-download-content">
             <p className="project-echo-download-text">Project ECHO</p>
@@ -29,14 +27,17 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             </div>
           </div>
         </div>
+      </div>
+      <div data-aos="fade-up" data-aos-offset="100" className="project-echo-details" ref={aboutRef}>
         <div className="project-echo-details-container">
           <div className="project-echo-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="project-echo-details-card">
               <h6 className="project-echo-details-label">Overview</h6>
               <p className="project-echo-details-text">
-                A researcher needed to communicate the intersectionality of three vulnerable populations. I replaced a
-                static Venn diagram with an <strong>interactive visualization</strong> that made overlap clear,
-                comparable, and reusable.
+                A researcher at Project ECHO needed a way to present intersectional health data involving{' '}
+                <strong>three vulnerable populations:</strong> gender minorities, individuals with unstable housing, and
+                IV drug users. The work was part of an internal effort to improve how complex datasets were communicated
+                across research, reporting, and funding contexts.
               </p>
             </div>
             <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="project-echo-details-card">

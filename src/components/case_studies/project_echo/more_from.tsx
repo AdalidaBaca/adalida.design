@@ -12,9 +12,9 @@ const MoreFrom = (): JSX.Element => {
       <div className="project-echo-end-cta-section" data-aos="fade-up" data-aos-offset="100">
         <div className="project-echo-end-cta-container">
           <div className="project-echo-end-cta-content">
-            <h3 className="project-echo-end-cta-heading">View Technical Writing Portfolio</h3>
+            <h3 className="project-echo-end-cta-heading">More work from Project ECHO</h3>
             <p className="project-echo-end-cta-description">
-              Documentation and internal projects from my time at Project ECHO.
+              Selected dashboards, documentation, and internal tools from my internship at Project ECHO.
             </p>
             <div className="project-echo-end-cta-buttons">
               <BadgeButton
@@ -23,7 +23,7 @@ const MoreFrom = (): JSX.Element => {
               >
                 VIEW PORTFOLIO
               </BadgeButton>
-              <BadgeButton to="https://projectecho.unm.edu">LEARN ABOUT PROJECT ECHO</BadgeButton>
+              <BadgeButton to="https://www.linkedin.com/in/adalidabaca/">CHAT WITH ADI</BadgeButton>
             </div>
           </div>
         </div>

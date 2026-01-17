@@ -19,10 +19,19 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  gap: 6em; /* Add gap between sections */
+  gap: 4em; /* Aligned with table of contents dot spacing rhythm */
   
   @media (width <= 768px) {
-    gap: 4.5em; /* Smaller gap on mobile */
+    gap: 3em; /* Smaller gap on mobile, still aligned with dot rhythm */
+  }
+  
+  // Ensure Project ECHO sections have consistent spacing
+  &.project-echo-container {
+    gap: 4em;
+    
+    @media (width <= 768px) {
+      gap: 3em;
+    }
   }
   
   > * {
@@ -32,6 +41,7 @@
     scroll-margin-top: 72px; // 56px header + 16px spacing
     margin-top: 0 !important; // Ensure no top margin - container gap handles spacing
     margin-bottom: 0 !important; // Ensure no bottom margin - container gap handles spacing
+    display: block; // Ensure sections are block elements so gap applies
   }
 }
 
@@ -71,14 +81,15 @@
   left: 2em;
   z-index: 100;
   display: flex;
-  flex-direction: column;
-  gap: 1em;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75em;
   margin: 0;
   padding-top: 1em;
   transition: transform 1s ease-in-out;
 
   @media (width <= 768px) {
-    gap: 2em; /* More gap between sections on mobile */
+    display: none; /* Hide on mobile, use horizontal scrollbar in nav instead */
   }
 
   > strong {
@@ -86,22 +97,199 @@
   }
 }
 
-.link-button {
+.table-of-contents-line {
+  position: absolute;
+  left: 10px; /* Center of the 20px dot wrapper */
+  width: 1.5px;
+  background: rgba($dark-text, 0.12);
+  transform: translateX(-50%);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* Start exactly at center of first dot, end exactly at center of last dot */
+
+  /* Nav padding-top (1em) + first item dot center (0.2em padding + 0.7em half line-height) */
+  top: calc(1em + 0.2em + 0.7em);
+
+  /* End at center of last dot - same offset from bottom */
+  bottom: calc(1em + 0.2em + 0.7em);
+
+  /* Ensure line doesn't extend beyond dots */
+  max-height: calc(100% - (1em + 0.2em + 0.7em) * 2);
+}
+
+
+.table-of-contents-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--line-fill, 0%);
+  background: var(--line-gradient, var(--line-color, rgba($dark-text, 0.6)));
+  will-change: height;
+  z-index: 1;
+
+  .dark & {
+    background: var(--line-gradient, var(--line-color, rgba($light-text, 0.6)));
+  }
+}
+
+.dark .table-of-contents-line {
+  background: rgba($light-text, 0.15);
+}
+
+.table-of-contents-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  min-width: 0;
+  position: relative;
+}
+
+
+.table-of-contents-item {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.table-of-contents-item-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75em;
+  position: relative;
+  min-height: calc(0.2em * 2 + 1.4em); /* Match link-button height: padding + line-height */
+}
+
+.table-of-contents-dot-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  flex-shrink: 0;
+  position: relative;
+  height: 100%;
+  z-index: 2;
+}
+
+.table-of-contents-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E5E5E5; /* Solid light grey, no opacity */
+  border: 1.5px solid #D3D3D3; /* Solid light grey border */
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  z-index: 2;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: block;
+
+  .dark & {
+    background: #4A4A4A; /* Solid medium grey for dark mode */
+    border-color: #5A5A5A; /* Slightly lighter grey border for dark mode */
+  }
+
+  &.gradient {
+    &.active,
+    &.past {
+      background: transparent;
+      border-color: transparent;
+    }
+  }
+
+  &.active {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+    
+    &:not(.gradient) {
+      border-color: var(--dot-color, rgba($dark-text, 0.7));
+      background: var(--dot-color, rgba($dark-text, 0.2));
+    }
+    
+    &.gradient {
+      background: var(--gradient);
+      border-color: transparent;
+    }
+    
+    transform: none;
+
+    .dark &:not(.gradient) {
+      border-color: var(--dot-color, rgba($light-text, 0.7));
+      background: var(--dot-color, rgba($light-text, 0.2));
+    }
+  }
+
+  &.past {
+    &:not(.gradient) {
+      background: var(--dot-color, rgba($dark-text, 0.25));
+      border-color: var(--dot-color, rgba($dark-text, 0.35));
+    }
+
+    .dark &:not(.gradient) {
+      background: var(--dot-color, rgba($light-text, 0.25));
+      border-color: var(--dot-color, rgba($light-text, 0.35));
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: none;
+      border-color: var(--dot-color, rgba($dark-text, 0.4));
+      
+      .dark & {
+        border-color: var(--dot-color, rgba($light-text, 0.4));
+      }
+    }
+  }
+}
+
+.table-of-contents-dot-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--progress, 0%);
+  background: var(--gradient, var(--dot-color, rgba($dark-text, 0.5)));
+  border-radius: 0 0 50% 50%;
+  transition: height 0.1s ease-out;
+  z-index: 1;
+  pointer-events: none;
+  min-height: 0;
+
+  .dark & {
+    background: var(--gradient, var(--dot-color, rgba($light-text, 0.5)));
+  }
+}
+
+
+.table-of-contents-item-content .link-button {
   background: #000;
   background-clip: text;
   border: none;
-  padding: 0.25em 0;
+  padding: 0.2em 0;
   cursor: pointer;
   color: transparent;
   opacity: 0.85;
   transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out, transform 0.2s ease-in-out, font-weight 0.2s ease-in-out, color 0.2s ease-in-out;
   filter: grayscale(0.5);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.4;
   text-align: left;
   font-weight: 400;
   transform: translateX(0);
   will-change: opacity, filter, transform;
+  flex: 1;
+  min-width: 0;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
@@ -275,6 +463,38 @@
       
       > .case-study-explanation {
         order: 1;
+      }
+    }
+  }
+
+  /* Mobile-only: reorder approach image above text for Project ECHO */
+  &.project-echo-approach-section {
+    @media (width <= 768px) {
+      > .gaintain-image-container {
+        order: -1;
+      }
+      
+      > .case-study-explanation {
+        order: 1;
+      }
+    }
+  }
+
+  /* Mobile-only: reduce gap for insight section to match other sections */
+  &.project-echo-insight-section {
+    @media (width <= 768px) {
+      gap: 0.5em;
+      
+      > .project-echo-venn-diagram-container {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        min-height: 0;
+        height: auto;
+      }
+      
+      > .case-study-explanation {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
       }
     }
   }

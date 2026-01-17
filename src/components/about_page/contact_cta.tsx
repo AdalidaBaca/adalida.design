@@ -1,13 +1,17 @@
+import React from 'react'
 import { IconBrandLinkedin, IconMailFilled } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
-import React from 'react'
+import Duck from 'components/duck'
 
 const ContactCTA = (): JSX.Element => {
   return (
     <div className="contact-cta-section" data-aos="fade-up" data-aos-offset="100">
       <div className="contact-cta-container">
         <div className="contact-cta-content">
-          <h3 className="contact-cta-heading">Let's book an intro call</h3>
+          <div className="contact-cta-header">
+            <Duck />
+            <h3 className="contact-cta-heading">Let's book an intro call</h3>
+          </div>
           <p className="contact-cta-description">
             Have a project in mind? Let's have coffee and chat about how we can work together.
           </p>
