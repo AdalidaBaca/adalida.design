@@ -1,4 +1,5 @@
 import React from 'react'
+
 const gatsby = jest.requireActual('gatsby')
 
 interface LinkProps {
@@ -17,17 +18,7 @@ module.exports = {
   graphql: jest.fn(),
   Link: jest.fn().mockImplementation(
     // these props are invalid for an `a` tag
-    ({
-      activeClassName,
-      activeStyle,
-      getProps,
-      innerRef,
-      partiallyActive,
-      ref,
-      replace,
-      to,
-      ...rest
-    }: LinkProps) =>
+    ({ activeClassName, activeStyle, getProps, innerRef, partiallyActive, ref, replace, to, ...rest }: LinkProps) =>
       React.createElement('a', {
         ...rest,
         href: to

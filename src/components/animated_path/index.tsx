@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, type SVGAttributes } from 'react'
+import React, { forwardRef, type SVGAttributes, useImperativeHandle, useRef } from 'react'
 
 type Path = SVGAttributes<SVGPathElement>['d']
 
@@ -27,26 +27,18 @@ const AnimatedPath = forwardRef((props: Props, ref: React.Ref<Animate>): JSX.Ele
   const animateReverseRef = useRef<SVGAnimateElement>(null)
 
   useImperativeHandle(ref, () => ({
-    animateForward: () => { animateRef.current?.beginElement() },
-    animateReverse: () => { animateReverseRef.current?.beginElement() }
+    animateForward: () => {
+      animateRef.current?.beginElement()
+    },
+    animateReverse: () => {
+      animateReverseRef.current?.beginElement()
+    }
   }))
 
   return (
     <path d={startPath} opacity={opacity}>
-      <animate
-        ref={animateRef}
-        from={startPath}
-        to={endPath}
-        dur={dur}
-        {...animateProps}
-      />
-      <animate
-        ref={animateReverseRef}
-        from={endPath}
-        to={startPath}
-        dur={dur}
-        {...animateProps}
-      />
+      <animate ref={animateRef} from={startPath} to={endPath} dur={dur} {...animateProps} />
+      <animate ref={animateReverseRef} from={endPath} to={startPath} dur={dur} {...animateProps} />
     </path>
   )
 })

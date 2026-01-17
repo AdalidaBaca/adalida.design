@@ -1,26 +1,25 @@
-import React, { useRef } from 'react'
-
 import useIsMobile from 'hooks/use_is_mobile'
 import { Projects } from 'projects'
+import React, { useRef } from 'react'
 
 import Context from '../context'
 import TableOfContents from '../table_of_contents'
 
 import About from './about'
-import Discovering from './discovering'
-import Wireframing from './wireframing'
-import Testing from './testing'
-import Iterations from './iterations'
-import FinalDesign from './final_design'
 import Developer from './developer'
-import InteractiveLibrary from './interactive_library'
-import WorkoutLanding from './workout_landing'
-import KeyTakeaways from './key_takeaways'
+import Discovering from './discovering'
 import EndCTA from './end_cta'
+import FinalDesign from './final_design'
+import InteractiveLibrary from './interactive_library'
+import Iterations from './iterations'
+import KeyTakeaways from './key_takeaways'
+import Testing from './testing'
+import Wireframing from './wireframing'
+import WorkoutLanding from './workout_landing'
 
 const Gaintain = (): JSX.Element => {
   const sections = {
-    'GAINTAIN': useRef(null),
+    GAINTAIN: useRef(null),
     About: useRef(null),
     Problem: useRef(null),
     'Key Insight': useRef(null),
@@ -31,13 +30,13 @@ const Gaintain = (): JSX.Element => {
     'Social Timeline': useRef(null),
     Implementation: useRef(null),
     Results: useRef(null),
-    'Key Takeaways': useRef(null),
+    'Key Takeaways': useRef(null)
   }
   const isMobile = useIsMobile(1400)
   return (
     <Context.Provider value={Projects.Gaintain}>
       {isMobile === false && <TableOfContents links={sections} />}
-      <div className='case-study-container'>
+      <div className="case-study-container">
         <About heroRef={sections.GAINTAIN} aboutRef={sections.About} />
         <Discovering ref={sections.Problem} keyInsightRef={sections['Key Insight']} />
         <Wireframing ref={sections['Design Strategy']} />

@@ -1,10 +1,8 @@
-import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
+import SectionHeading from 'components/section_heading'
 
 import IphoneFrame from 'images/iphone17 frame.webp'
-
+import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
 import PledgeSetupVideo from 'videos/gaintain/pledge_setup.mp4'
-
-import SectionHeading from 'components/section_heading'
 
 const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const explanationRef = useRef<HTMLDivElement>(null)
@@ -12,7 +10,9 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
 
   useEffect(() => {
     const matchHeights = (): void => {
-      if (explanationRef.current === null || videoRef.current === null) return
+      if (explanationRef.current === null || videoRef.current === null) {
+        return
+      }
       const explanationHeight = explanationRef.current.offsetHeight
       videoRef.current.style.height = `${explanationHeight}px`
     }
@@ -31,22 +31,49 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
   }, [])
 
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side reverse' ref={ref}>
-      <div className='gaintain-image-container gaintain-video-container' ref={videoRef} style={{ position: 'relative' }}>
-        <video src={PledgeSetupVideo} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }} />
-        <img src={IphoneFrame} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0, userSelect: 'none', pointerEvents: 'none', zIndex: 2 }} />
+    <div data-aos="fade-up" className="case-study-side-by-side reverse" ref={ref}>
+      <div
+        className="gaintain-image-container gaintain-video-container"
+        ref={videoRef}
+        style={{ position: 'relative' }}
+      >
+        <video
+          src={PledgeSetupVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+        />
+        <img
+          src={IphoneFrame}
+          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            userSelect: 'none',
+            pointerEvents: 'none',
+            zIndex: 2
+          }}
+        />
       </div>
-      <div className='case-study-explanation' ref={explanationRef}>
-        <div className='gaintain-details-card'>
-          <SectionHeading title='Pledge Setup' />
-          <div className='body-2'>
+      <div className="case-study-explanation" ref={explanationRef}>
+        <div className="gaintain-details-card">
+          <SectionHeading title="Pledge Setup" />
+          <div className="body-2">
             The pledge flow turns intention into <strong>commitment</strong>.
           </div>
-          <div className='body-2'>
-            Users set how often they plan to train, define the <strong>stakes</strong>, and choose where accountability goes.
+          <div className="body-2">
+            Users set how often they plan to train, define the <strong>stakes</strong>, and choose where accountability
+            goes.
           </div>
-          <div className='body-2'>
-            By putting money on the line, the product mirrors the <strong>external pressure</strong> of a human coach without requiring one.
+          <div className="body-2">
+            By putting money on the line, the product mirrors the <strong>external pressure</strong> of a human coach
+            without requiring one.
           </div>
         </div>
       </div>

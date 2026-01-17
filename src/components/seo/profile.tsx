@@ -1,8 +1,7 @@
-import React from 'react'
-import type { ProfilePage, WithContext } from 'schema-dts'
-
 import AdalidaFace from 'images/about/adalida_face.webp'
 import BuildTimeQuery from 'queries/build_time'
+import React from 'react'
+import type { ProfilePage, WithContext } from 'schema-dts'
 
 const ldJson = (buildTime: string): WithContext<ProfilePage> => ({
   '@context': 'https://schema.org',
@@ -20,11 +19,7 @@ const ldJson = (buildTime: string): WithContext<ProfilePage> => ({
 
 const Profile = (): JSX.Element => {
   const buildTime = BuildTimeQuery()
-  return (
-    <script type='application/ld+json'>
-      {JSON.stringify(ldJson(buildTime.toISOString()))}
-    </script>
-  )
+  return <script type="application/ld+json">{JSON.stringify(ldJson(buildTime.toISOString()))}</script>
 }
 
 export default Profile

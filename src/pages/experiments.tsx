@@ -1,7 +1,6 @@
-import React from 'react'
-
 import Hackathons from 'components/about_page/hackathons'
 import Seo from 'components/seo'
+import React from 'react'
 
 const Experiments = (): JSX.Element => {
   return <Hackathons />
@@ -9,9 +8,8 @@ const Experiments = (): JSX.Element => {
 
 export const Head = (): JSX.Element => (
   <>
-    <Seo title='Experiments' />
+    <Seo title="Experiments" />
   </>
 )
 
 export default Experiments
-

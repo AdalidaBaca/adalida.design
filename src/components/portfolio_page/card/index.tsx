@@ -1,9 +1,7 @@
-import React from 'react'
-
 import type { Project } from 'projects'
-
-import HeroImage from './hero_image'
+import React from 'react'
 import Description from './description'
+import HeroImage from './hero_image'
 
 interface Props {
   project: Project
@@ -11,7 +9,7 @@ interface Props {
 
 /**
  * Unified Case Study Card Component
- * 
+ *
  * All case study cards use this component to ensure identical styling.
  * Based on Invibe Esthetics as the reference template.
  */
@@ -21,8 +19,8 @@ const CaseStudyCard = ({ project }: Props): JSX.Element => {
   // Use primary gradient if it's a gradient string, otherwise use radial gradient
   const isGradient = typeof primary === 'string' && primary.includes('gradient')
   const imageSectionStyle = {
-    backgroundImage: isGradient 
-      ? primary 
+    backgroundImage: isGradient
+      ? primary
       : `
         radial-gradient(
           circle at 50% 25%,
@@ -34,13 +32,8 @@ const CaseStudyCard = ({ project }: Props): JSX.Element => {
   } as React.CSSProperties
 
   return (
-    <div
-      className='portfolio-card'
-      data-aos='fade-up'
-      data-aos-offset='100'
-      data-aos-duration='800'
-    >
-      <div className='portfolio-image-section' style={imageSectionStyle}>
+    <div className="portfolio-card" data-aos="fade-up" data-aos-offset="100" data-aos-duration="800">
+      <div className="portfolio-image-section" style={imageSectionStyle}>
         <HeroImage project={project} />
       </div>
       <Description project={project} />

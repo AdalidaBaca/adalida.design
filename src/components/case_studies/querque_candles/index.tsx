@@ -1,22 +1,20 @@
-import React, { useRef } from 'react'
-
 import useIsMobile from 'hooks/use_is_mobile'
 import { Projects } from 'projects'
+import React, { useRef } from 'react'
 
 import Context from '../context'
 import Footer from '../footer'
 import TableOfContents from '../table_of_contents'
-
-import Overview from './overview'
-import ChallengeSolution from './challenge_solution'
 import BrandPrinciples from './brand_principles'
-import VisionBoard from './vision_board'
+import ChallengeSolution from './challenge_solution'
 import ColorPalette from './color_palette'
-import TypeGuidelines from './type_guidelines'
-import ProportionsAndPadding from './proportions_and_padding'
 import Considerations from './considerations'
-import NextSteps from './next_steps'
 import KeyTakeaways from './key_takeaways'
+import NextSteps from './next_steps'
+import Overview from './overview'
+import ProportionsAndPadding from './proportions_and_padding'
+import TypeGuidelines from './type_guidelines'
+import VisionBoard from './vision_board'
 
 const QuerqueCandles = (): JSX.Element => {
   const sections = {
@@ -35,7 +33,7 @@ const QuerqueCandles = (): JSX.Element => {
   return (
     <Context.Provider value={Projects.QuerqueCandles}>
       {isMobile === false && <TableOfContents links={sections} />}
-      <div className='case-study-container'>
+      <div className="case-study-container">
         <Overview ref={sections.Overview} />
         <ChallengeSolution ref={sections['Challenge / Solution']} />
         <BrandPrinciples ref={sections['Brand Principles']} />

@@ -1,9 +1,6 @@
 {
   "gatsby": {
-    "config": [
-      "gatsby-{config,node}.{js,jsx,ts,tsx}",
-      "plugins/**/gatsby-node.{js,jsx,ts,tsx}"
-    ],
+    "config": ["gatsby-{config,node}.{js,jsx,ts,tsx}", "plugins/**/gatsby-node.{js,jsx,ts,tsx}"],
     "entry": [
       "gatsby-{browser,ssr}.{js,jsx,ts,tsx}",
       "src/api/**/*.{js,ts}",

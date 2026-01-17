@@ -8,12 +8,14 @@ interface HomePageContextType {
 
 const HomePageContext = React.createContext<HomePageContextType>({})
 
-const HomePageProvider = ({ pathname, children }: { pathname: string, children: JSX.Element }): JSX.Element => {
+const HomePageProvider = ({ pathname, children }: { pathname: string; children: JSX.Element }): JSX.Element => {
   const [isPortfolioPage, setIsPortfolioPage] = useState(pathname === '/' || pathname.startsWith('/portfolio'))
   const [isAboutPage, setIsAboutPage] = useState(pathname.startsWith('/about'))
 
   useEffect(() => {
-    if (pathname === undefined) return
+    if (pathname === undefined) {
+      return
+    }
 
     if (pathname === '/' || pathname.startsWith('/portfolio')) {
       setIsPortfolioPage(true)
@@ -28,7 +30,9 @@ const HomePageProvider = ({ pathname, children }: { pathname: string, children: 
   }, [pathname])
 
   const setPortfolioPage = useMemo(() => {
-    if (!isPortfolioPage && !isAboutPage) return
+    if (!isPortfolioPage && !isAboutPage) {
+      return
+    }
 
     return (portfolioPage: boolean): void => {
       setIsPortfolioPage((oldIsPortfolioPage: boolean) => {

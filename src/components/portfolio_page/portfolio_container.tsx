@@ -1,6 +1,5 @@
-import React from 'react'
-
 import Projects from 'projects'
+import React from 'react'
 import CaseStudyCard from './card'
 
 const PortfolioContainer = (): JSX.Element => {
@@ -15,13 +14,13 @@ const PortfolioContainer = (): JSX.Element => {
 
   return (
     <>
-      <div className='featured-projects-heading' data-aos='fade-up'>
+      <div className="featured-projects-heading" data-aos="fade-up">
         <span>FEATURED PROJECTS</span>
       </div>
-      <div className='portfolio-container'>
-        {portfolioProjects.map((project) =>
+      <div className="portfolio-container">
+        {portfolioProjects.map((project) => (
           <CaseStudyCard key={project.name} project={project} />
-        )}
+        ))}
       </div>
     </>
   )

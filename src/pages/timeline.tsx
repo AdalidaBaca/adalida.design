@@ -1,8 +1,7 @@
-import React from 'react'
-
-import Seo from 'components/seo'
 import Container from 'components/portfolio_page/container'
 import Thanks from 'components/portfolio_page/thanks'
+import Seo from 'components/seo'
+import React from 'react'
 
 const Timeline = (): JSX.Element => {
   return (
@@ -13,5 +12,5 @@ const Timeline = (): JSX.Element => {
   )
 }
 
-export const Head = (): JSX.Element => <Seo title='Timeline' />
+export const Head = (): JSX.Element => <Seo title="Timeline" />
 export default Timeline

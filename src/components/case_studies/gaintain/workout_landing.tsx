@@ -1,8 +1,7 @@
-import React, { forwardRef, useEffect, useRef, type Ref } from 'react'
+import SectionHeading from 'components/section_heading'
 
 import WorkoutDashboardImage from 'images/gaintain/Hero Photos/workout_dashboard.png'
-
-import SectionHeading from 'components/section_heading'
+import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
 
 const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const explanationRef = useRef<HTMLDivElement>(null)
@@ -10,7 +9,9 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
 
   useEffect(() => {
     const matchHeights = (): void => {
-      if (explanationRef.current === null || videoRef.current === null) return
+      if (explanationRef.current === null || videoRef.current === null) {
+        return
+      }
       const explanationHeight = explanationRef.current.offsetHeight
       videoRef.current.style.height = `${explanationHeight}px`
     }
@@ -29,23 +30,29 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
   }, [])
 
   return (
-    <div data-aos='fade-up' className='case-study-side-by-side gaintain-workout-dashboard' ref={ref}>
-      <div className='case-study-explanation' ref={explanationRef}>
-        <div className='gaintain-details-card'>
-          <SectionHeading title='Workout Dashboard' />
-          <div className='body-2'>
+    <div data-aos="fade-up" className="case-study-side-by-side gaintain-workout-dashboard" ref={ref}>
+      <div className="case-study-explanation" ref={explanationRef}>
+        <div className="gaintain-details-card">
+          <SectionHeading title="Workout Dashboard" />
+          <div className="body-2">
             The workout dashboard is the <strong>daily decision surface</strong>.
           </div>
-          <div className='body-2'>
-            A calendar at the top reflects progress against the user's <strong>frequency goal</strong>, while the primary card adapts to how they train.
+          <div className="body-2">
+            A calendar at the top reflects progress against the user's <strong>frequency goal</strong>, while the
+            primary card adapts to how they train.
           </div>
-          <div className='body-2'>
-            Users can quick-log, reuse templates, or generate workouts with AI <strong>without breaking momentum</strong>.
+          <div className="body-2">
+            Users can quick-log, reuse templates, or generate workouts with AI{' '}
+            <strong>without breaking momentum</strong>.
           </div>
         </div>
       </div>
-      <div className='gaintain-image-container gaintain-video-container' ref={videoRef}>
-        <img src={WorkoutDashboardImage} alt='GainTain workout dashboard' style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      <div className="gaintain-image-container gaintain-video-container" ref={videoRef}>
+        <img
+          src={WorkoutDashboardImage}
+          alt="GainTain workout dashboard"
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
       </div>
     </div>
   )

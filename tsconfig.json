@@ -12,12 +12,5 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": [
-    "./src/**/*",
-    "./__mocks__/*.ts",
-    "./*.ts",
-    "./*.tsx",
-    "./plugins/**/*",
-    "eslint.config.mjs"
-  ]
+  "include": ["./src/**/*", "./__mocks__/*.ts", "./*.ts", "./*.tsx", "./plugins/**/*", "eslint.config.mjs"]
 }

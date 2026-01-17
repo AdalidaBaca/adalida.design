@@ -1,19 +1,40 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
 
 import BadgeButton from 'components/badge_button'
-import useIsMobile from 'hooks/use_is_mobile'
 import { makeMediaTag } from 'components/media_with_text'
-import FileQuery from 'queries/file'
 import DarkModeContext from 'dark_mode_context'
-import { IconPlayerPlayFilled, IconPlayerPauseFilled } from '@tabler/icons-react'
+import FileQuery from 'queries/file'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'
 const ABOUT_ANIMATION_COMPLETED_KEY = 'aboutAnimationCompleted'
 
+interface YTPlayer {
+  playVideo: () => void
+  pauseVideo: () => void
+}
+
+interface YTStateChangeEvent {
+  data: number
+}
+
+interface YTNamespace {
+  Player: new (elementId: string, options: {
+    width: string
+    height: string
+    videoId: string
+    playerVars: { [key: string]: string | number }
+    events: {
+      onReady: (event: unknown) => void
+      onStateChange: (event: YTStateChangeEvent) => void
+    }
+  }) => YTPlayer
+}
+
 declare global {
   interface Window {
-    YT?: any
+    YT?: YTNamespace
     onYouTubeIframeAPIReady?: () => void
     __ytApiReadyPromise?: Promise<void>
     __ytApiResolve?: () => void
@@ -21,25 +42,26 @@ declare global {
 }
 
 const Intro = (): JSX.Element | null => {
-  const isMobile = useIsMobile()
   const { darkMode } = useContext(DarkModeContext)
   const [animationSkipped, setAnimationSkipped] = useState(false)
-  
+
   useEffect(() => {
     if (typeof sessionStorage !== 'undefined') {
       const completed = sessionStorage.getItem(ABOUT_ANIMATION_COMPLETED_KEY) === 'true'
       setAnimationSkipped(completed)
-      
+
       // Mark as completed after animations finish (handwriting: 3.3s + underline: 1.4s = ~4.7s total)
       if (!completed) {
         const timer = setTimeout(() => {
           sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
         }, 5000) // Slightly after all animations complete
-        return () => { clearTimeout(timer); }
+        return () => {
+          clearTimeout(timer)
+        }
       }
     }
   }, [])
-  
+
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   let faceUrl: string | undefined
   try {
@@ -52,23 +74,28 @@ const Intro = (): JSX.Element | null => {
   } catch {
     faceUrl = undefined
   }
-  if (isMobile === null) return null
   const underlineClassName = darkMode ? 'fancy-underline dark' : 'fancy-underline'
   const [isPlaying, setIsPlaying] = useState(false)
   const [playerReady, setPlayerReady] = useState(false)
-  const playerRef = useRef<any>(null)
+  const playerRef = useRef<YTPlayer | null>(null)
   const playerIdRef = useRef(`yt-audio-${Math.random().toString(36).slice(2)}`)
 
   const ensureYTApi = useMemo(() => {
     return async (): Promise<void> => {
-      if (typeof window === 'undefined') return
-      if (window.YT?.Player !== undefined) return
+      if (typeof window === 'undefined') {
+        return
+      }
+      if (window.YT?.Player !== undefined) {
+        return
+      }
 
       if (window.__ytApiReadyPromise === undefined) {
         window.__ytApiReadyPromise = new Promise<void>((resolve) => {
           window.__ytApiResolve = resolve
         })
-        window.onYouTubeIframeAPIReady = () => { window.__ytApiResolve?.() }
+        window.onYouTubeIframeAPIReady = () => {
+          window.__ytApiResolve?.()
+        }
 
         const existing = document.querySelector<HTMLScriptElement>('script[src="https://www.youtube.com/iframe_api"]')
         if (existing === null) {
@@ -87,9 +114,15 @@ const Intro = (): JSX.Element | null => {
     let alive = true
     const init = async (): Promise<void> => {
       await ensureYTApi()
-      if (!alive) return
-      if (playerRef.current !== null) return
-      if (window.YT?.Player === undefined) return
+      if (!alive) {
+        return
+      }
+      if (playerRef.current !== null) {
+        return
+      }
+      if (window.YT?.Player === undefined) {
+        return
+      }
 
       const origin = typeof window !== 'undefined' ? window.location.origin : undefined
 
@@ -109,29 +142,45 @@ const Intro = (): JSX.Element | null => {
         },
         events: {
           onReady: () => {
-            if (!alive) return
+            if (!alive) {
+              return
+            }
             setPlayerReady(true)
           },
-          onStateChange: (e: any) => {
-            if (!alive) return
+          onStateChange: (e: YTStateChangeEvent) => {
+            if (!alive) {
+              return
+            }
             // 1 = playing, 2 = paused, 0 = ended
-            if (e?.data === 1) setIsPlaying(true)
-            if (e?.data === 2) setIsPlaying(false)
+            if (e?.data === 1) {
+              setIsPlaying(true)
+            }
+            if (e?.data === 2) {
+              setIsPlaying(false)
+            }
             if (e?.data === 0) {
               // Safety: ensure it loops if the player doesn't
-              try { playerRef.current?.playVideo?.() } catch { /* noop */ }
+              try {
+                playerRef.current?.playVideo?.()
+              } catch {
+                /* noop */
+              }
             }
           }
         }
       })
     }
-    void init()
-    return () => { alive = false }
+    init()
+    return () => {
+      alive = false
+    }
   }, [ensureYTApi])
 
   const onTogglePlay = (): void => {
     // iOS requires play() be called from a user gesture, and the player must be ready.
-    if (!playerReady) return
+    if (!playerReady) {
+      return
+    }
     try {
       if (isPlaying) {
         playerRef.current?.pauseVideo?.()
@@ -144,19 +193,19 @@ const Intro = (): JSX.Element | null => {
   }
 
   return (
-    <div className='about-intro' data-aos='fade-up'>
-      <div className='splash-image'>
-        <div className='splash-image-wrapper'>
+    <div className="about-intro" data-aos="fade-up">
+      <div className="splash-image">
+        <div className="splash-image-wrapper">
           {faceUrl !== undefined ? (
             <div
               className={`splash-frame has-bg ${animationSkipped ? 'animation-complete' : ''}`}
               style={{ backgroundImage: `url(${faceUrl})` }}
-              role='img'
-              aria-label='Adalida Baca portrait'
+              role="img"
+              aria-label="Adalida Baca portrait"
             >
-              <div className='audio-control'>
+              <div className="audio-control">
                 <button
-                  className='audio-icon-button'
+                  className="audio-icon-button"
                   onClick={onTogglePlay}
                   aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   aria-pressed={isPlaying}
@@ -165,10 +214,10 @@ const Intro = (): JSX.Element | null => {
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
                 </button>
-                <div className='yt-audio-player' aria-hidden='true'>
+                <div className="yt-audio-player" aria-hidden="true">
                   <div id={playerIdRef.current} />
                 </div>
-                <span className='audio-state' aria-live='polite' aria-atomic='true'>
+                <span className="audio-state" aria-live="polite" aria-atomic="true">
                   {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
                 </span>
               </div>
@@ -181,9 +230,9 @@ const Intro = (): JSX.Element | null => {
                 imgObjectPosition: 'center top',
                 style: { width: '100%', height: '100%' }
               })}
-              <div className='audio-control'>
+              <div className="audio-control">
                 <button
-                  className='audio-icon-button'
+                  className="audio-icon-button"
                   onClick={onTogglePlay}
                   aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   aria-pressed={isPlaying}
@@ -192,10 +241,10 @@ const Intro = (): JSX.Element | null => {
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
                 </button>
-                <div className='yt-audio-player' aria-hidden='true'>
+                <div className="yt-audio-player" aria-hidden="true">
                   <div id={playerIdRef.current} />
                 </div>
-                <span className='audio-state' aria-live='polite' aria-atomic='true'>
+                <span className="audio-state" aria-live="polite" aria-atomic="true">
                   {isPlaying ? 'Playing Adalida by George Strait' : 'Paused'}
                 </span>
               </div>
@@ -203,29 +252,29 @@ const Intro = (): JSX.Element | null => {
           )}
         </div>
       </div>
-      <div className='about-intro-text'>
-        <div className='handwriting-overlay'>
+      <div className="about-intro-text">
+        <div className="handwriting-overlay">
           <div className={`handwriting-text ${animationSkipped ? 'animation-complete' : ''}`}>Hi, I&apos;m Adalida</div>
         </div>
-        <h5 className='intro-lead'>
-          I design <u className={`${underlineClassName} underline-draw ${animationSkipped ? 'animation-complete' : ''}`}>
-            <span className='underline-text'>usable systems</span>
-            <svg className='hand-drawn-underline' viewBox='0 0 200 12' preserveAspectRatio='none' aria-hidden='true'>
+        <h5 className="intro-lead">
+          I design{' '}
+          <u className={`${underlineClassName} underline-draw ${animationSkipped ? 'animation-complete' : ''}`}>
+            <span className="underline-text">usable systems</span>
+            <svg className="hand-drawn-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
               <path
-                d='M 0,9 Q 100,2 200,8'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='1.8'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                vectorEffect='non-scaling-stroke'
+                d="M 0,9 Q 100,2 200,8"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                vectorEffect="non-scaling-stroke"
               />
             </svg>
-          </u> from real‑world constraints.
+          </u>{' '}
+          from real‑world constraints.
         </h5>
-        <div>
-          I work on products where constraints, tradeoffs, and incomplete information are part of the job.
-        </div>
+        <div>I work on products where constraints, tradeoffs, and incomplete information are part of the job.</div>
         <BadgeButton to={resumeUrl}>LET&apos;S CONNECT</BadgeButton>
       </div>
     </div>

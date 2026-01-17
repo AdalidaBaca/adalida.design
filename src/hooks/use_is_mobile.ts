@@ -8,11 +8,15 @@ const useIsMobile = (breakpoint = BREAKPOINT): boolean | null => {
   )
 
   useLayoutEffect(() => {
-    const handleResize = (): void => { setWindowWidth(document.documentElement.clientWidth) }
+    const handleResize = (): void => {
+      setWindowWidth(document.documentElement.clientWidth)
+    }
     handleResize()
     window.addEventListener('resize', handleResize)
 
-    return () => { window.removeEventListener('resize', handleResize) }
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return windowWidth === null ? null : windowWidth < breakpoint

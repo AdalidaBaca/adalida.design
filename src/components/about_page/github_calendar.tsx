@@ -14,11 +14,19 @@ interface ApiResponse {
 }
 
 const levelFromCount = (count: number, max: number): number => {
-  if (count <= 0 || max <= 0) return 0
+  if (count <= 0 || max <= 0) {
+    return 0
+  }
   const t = count / max
-  if (t <= 0.2) return 1
-  if (t <= 0.4) return 2
-  if (t <= 0.7) return 3
+  if (t <= 0.2) {
+    return 1
+  }
+  if (t <= 0.4) {
+    return 2
+  }
+  if (t <= 0.7) {
+    return 3
+  }
   return 4
 }
 
@@ -29,56 +37,71 @@ const GitHubCalendar = (): JSX.Element => {
   const gridRef = useRef<HTMLDivElement>(null)
   const didAutoScroll = useRef(false)
 
-  const apiUrl = useMemo(
-    () => `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`,
-    []
-  )
+  const apiUrl = useMemo(() => `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`, [])
 
   useEffect(() => {
     let alive = true
     const load = async (): Promise<void> => {
       try {
         const res = await fetch(apiUrl, { headers: { Accept: 'application/json' } })
-        if (!res.ok) throw new Error(`Request failed (${res.status})`)
+        if (!res.ok) {
+          throw new Error(`Request failed (${res.status})`)
+        }
         const data = (await res.json()) as ApiResponse
-        if (!alive) return
+        if (!alive) {
+          return
+        }
         const max = data.contributions.reduce((m, d) => Math.max(m, d.count), 0)
         setDays(data.contributions.map((d) => ({ ...d, level: levelFromCount(d.count, max) })))
       } catch (e) {
-        if (!alive) return
+        if (!alive) {
+          return
+        }
         setError(e instanceof Error ? e.message : 'Failed to load GitHub contributions')
       }
     }
-    void load()
-    return () => { alive = false }
+    load()
+    return () => {
+      alive = false
+    }
   }, [apiUrl])
 
   useEffect(() => {
-    if (days === null) return
-    if (didAutoScroll.current) return
+    if (days === null) {
+      return
+    }
+    if (didAutoScroll.current) {
+      return
+    }
     // After initial render, scroll to the far right (most recent weeks), like GitHub.
     const raf = requestAnimationFrame(() => {
       const el = gridRef.current
-      if (el === null) return
+      if (el === null) {
+        return
+      }
       el.scrollLeft = Math.max(0, el.scrollWidth - el.clientWidth)
       didAutoScroll.current = true
     })
-    return () => { cancelAnimationFrame(raf) }
+    return () => {
+      cancelAnimationFrame(raf)
+    }
   }, [days])
 
   return (
-    <Section title='Contributions'>
-      <div className='github-calendar'>
-        <div className='github-calendar-header'>
-          <div className='github-calendar-meta'>
-            <div className='github-calendar-count'>
-              {days === null && error === null ? 'Loading contributions…' : `${total.toLocaleString()} contributions in the last year`}
+    <Section title="Contributions">
+      <div className="github-calendar">
+        <div className="github-calendar-header">
+          <div className="github-calendar-meta">
+            <div className="github-calendar-count">
+              {days === null && error === null
+                ? 'Loading contributions…'
+                : `${total.toLocaleString()} contributions in the last year`}
             </div>
           </div>
         </div>
 
         {error !== null ? (
-          <div className='github-calendar-error' role='status'>
+          <div className="github-calendar-error" role="status">
             Couldn’t load contributions ({error}).
           </div>
         ) : null}
@@ -87,15 +110,16 @@ const GitHubCalendar = (): JSX.Element => {
 
         {days !== null ? (
           <div
-            className='github-calendar-grid'
-            role='img'
+            className="github-calendar-grid"
+            role="img"
             aria-label={`${GITHUB_USERNAME} GitHub contributions calendar (last 12 months)`}
             ref={gridRef}
           >
             {days.map((d) => (
               <div
                 key={d.date}
-                className='cell'
+                role="img"
+                className="cell"
                 data-level={d.level}
                 title={`${d.count} contributions on ${d.date}`}
                 aria-label={`${d.count} contributions on ${d.date}`}
@@ -104,25 +128,25 @@ const GitHubCalendar = (): JSX.Element => {
           </div>
         ) : null}
 
-        <div className='github-calendar-footer'>
+        <div className="github-calendar-footer">
           <a
-            className='github-calendar-link'
+            className="github-calendar-link"
             href={`https://github.com/${GITHUB_USERNAME}`}
-            target='_blank'
-            rel='noreferrer'
+            target="_blank"
+            rel="noreferrer"
           >
             View on GitHub
           </a>
-          <div className='github-calendar-legend' aria-label='Contribution intensity legend'>
-            <span className='legend-label'>Less</span>
-            <div className='legend-cells' aria-hidden='true'>
-              <span className='cell' data-level='0' />
-              <span className='cell' data-level='1' />
-              <span className='cell' data-level='2' />
-              <span className='cell' data-level='3' />
-              <span className='cell' data-level='4' />
+          <div className="github-calendar-legend" aria-label="Contribution intensity legend" role="img">
+            <span className="legend-label">Less</span>
+            <div className="legend-cells" aria-hidden="true">
+              <span className="cell" data-level="0" />
+              <span className="cell" data-level="1" />
+              <span className="cell" data-level="2" />
+              <span className="cell" data-level="3" />
+              <span className="cell" data-level="4" />
             </div>
-            <span className='legend-label'>More</span>
+            <span className="legend-label">More</span>
           </div>
         </div>
       </div>
@@ -131,4 +155,3 @@ const GitHubCalendar = (): JSX.Element => {
 }
 
 export default GitHubCalendar
-

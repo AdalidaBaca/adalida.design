@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState, type MutableRefObject } from 'react'
-
 import DarkModeContext from 'dark_mode_context'
 import darkModeStyle from 'dark_mode_style'
+import React, { type MutableRefObject, useContext, useEffect, useState } from 'react'
 import Context from './context'
 
 interface Props {
@@ -22,10 +21,14 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
       const orderedLinks = Object.entries(links)
       const halfwayDownViewport = window.scrollY + window.innerHeight / 2
       for (const [link, element] of orderedLinks) {
-        if (element.current === null) return
+        if (element.current === null) {
+          return
+        }
 
         const elementTop = element.current.offsetTop
-        if (halfwayDownViewport < elementTop) break
+        if (halfwayDownViewport < elementTop) {
+          break
+        }
 
         closestLink = link
       }
@@ -40,8 +43,10 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
-    return () => { window.removeEventListener('scroll', handleScroll) }
-  }, [links, scrolledTooFar])
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [links])
 
   return (
     <div className={`table-of-contents${scrolledTooFar ? ' hide-left' : ''}`}>
@@ -53,7 +58,9 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
               className={`link-button${active ? ' active' : ''}`}
               style={active ? undefined : { backgroundImage: color }}
               onClick={() => {
-                if (element.current === null) return
+                if (element.current === null) {
+                  return
+                }
                 // Use scrollIntoView to respect scroll-margin-top CSS property
                 element.current.scrollIntoView({
                   behavior: 'smooth',

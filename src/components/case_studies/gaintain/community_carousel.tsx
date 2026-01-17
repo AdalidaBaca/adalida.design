@@ -1,41 +1,53 @@
-import React, { useMemo, useRef, useEffect, useState } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-
 import SectionHeading from 'components/section_heading'
+import { graphql, useStaticQuery } from 'gatsby'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-interface CommunityImage { label: string, src: string, srcSet?: string }
+interface CommunityImage {
+  label: string
+  src: string
+  srcSet?: string
+}
 
 const titleCase = (s: string): string =>
   s
     .replace(/[-_]+/g, ' ')
     .trim()
     .split(/\s+/)
-    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
+    .map((w) => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
     .join(' ')
 
 const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element => {
   const [broken, setBroken] = useState(false)
-  const needsRotation = (label.toLowerCase().includes('6394') || src.includes('6394')) ||
-                        (label.toLowerCase().includes('6841') || src.includes('6841'))
-  const needsTopCenter = (label.toLowerCase().includes('6506') || src.includes('6506'))
-  const className = [
-    needsRotation ? 'rotate-90' : '',
-    needsTopCenter ? 'object-top-center' : ''
-  ].filter(Boolean).join(' ')
-  
+  useEffect(() => {
+    const img = new Image()
+    img.src = src
+    img.onload = () => setBroken(false)
+    img.onerror = () => setBroken(true)
+  }, [src])
+  const needsRotation =
+    label.toLowerCase().includes('6394') ||
+    src.includes('6394') ||
+    label.toLowerCase().includes('6841') ||
+    src.includes('6841')
+  const needsTopCenter = label.toLowerCase().includes('6506') || src.includes('6506')
+  const className = [needsRotation ? 'rotate-90' : '', needsTopCenter ? 'object-top-center' : '']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className='community-image-box' title={label} aria-label={label}>
-      {!broken
-        ? <img 
-            src={src} 
-            srcSet={srcSet}
-            alt={label} 
-            className={className}
-            loading='lazy'
-            decoding='async'
-            onError={() => { setBroken(true) }} 
-          />
-        : <div className='community-fallback'>{label}</div>}
+    <div className="community-image-box" title={label} aria-label={label} role="img">
+      {!broken ? (
+        <img
+          src={src}
+          srcSet={srcSet}
+          alt={label}
+          className={className}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div className="community-fallback">{label}</div>
+      )}
     </div>
   )
 }
@@ -71,37 +83,41 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
 
   const images = useMemo<CommunityImage[]>(() => {
     const nodes = data.allFile.nodes
-    if (nodes.length === 0) return []
-    
+    if (nodes.length === 0) {
+      return []
+    }
+
     // Map all nodes to images, prioritizing processed images
     const mapped = nodes
-      .filter(n => n.name && n.publicURL) // Ensure we have valid data
-      .map(n => {
+      .filter((n) => n.name && n.publicURL) // Ensure we have valid data
+      .map((n) => {
         // Prioritize Sharp-processed image, fallback to publicURL
         // Sharp should process HEIC files during build, but if it doesn't, use publicURL
         const src = n.childImageSharp?.fixed?.src || n.publicURL
         const srcSet = n.childImageSharp?.fixed?.srcSet || undefined
-        return { 
-          label: titleCase(n.name), 
+        return {
+          label: titleCase(n.name),
           src,
           srcSet,
-          extension: n.extension 
+          extension: n.extension
         }
       })
-      .filter(img => img.src) // Remove any images without a valid src
-    
+      .filter((img) => img.src) // Remove any images without a valid src
+
     // Shuffle the array to randomize order
     const shuffled = [...mapped]
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
     return shuffled.map(({ extension, ...rest }) => rest) // Remove extension from final output
   }, [data])
 
   const containerRef = useRef<HTMLDivElement>(null)
   const marqueeImages = useMemo(() => {
-    if (images.length === 0) return []
+    if (images.length === 0) {
+      return []
+    }
     // Ensure the marquee has enough content to animate smoothly even with only a few images.
     const baseCopies = Math.max(6, Math.ceil(14 / images.length))
     const base = Array.from({ length: baseCopies }, () => images).flat()
@@ -117,29 +133,45 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
 
   useEffect(() => {
     const el = containerRef.current
-    if (el === null) return
+    if (el === null) {
+      return
+    }
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
-        if (entry === undefined) return
+        if (entry === undefined) {
+          return
+        }
         el.style.setProperty('--marquee-play', entry.isIntersecting ? 'running' : 'paused')
       },
       { root: null, threshold: 0.01, rootMargin: '200px' }
     )
     observer.observe(el)
-    return () => { observer.disconnect() }
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
-  if (images.length === 0) return <></>
+  if (images.length === 0) {
+    return <></>
+  }
 
   return (
-    <div className='community-carousel' ref={containerRef} aria-label={ariaLabel}>
-      <div className='community-title-container'>
-        <SectionHeading title='GainTain Beta Testers' />
+    <div className="community-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+      <div className="community-title-container">
+        <SectionHeading title="GainTain Beta Testers" />
       </div>
-      <div className='community-marquee lane-1' data-aos='fade' data-aos-offset='50' data-aos-duration='800' data-aos-easing='ease-out-cubic'>
-        {marqueeImages.map((img, i) => (<CommunityImageBox key={`community-${img.label}-${i}`} {...img} />))}
+      <div
+        className="community-marquee lane-1"
+        data-aos="fade"
+        data-aos-offset="50"
+        data-aos-duration="800"
+        data-aos-easing="ease-out-cubic"
+      >
+        {marqueeImages.map((img, i) => (
+          <CommunityImageBox key={`community-${img.label}-${i}`} {...img} />
+        ))}
       </div>
     </div>
   )

@@ -8,7 +8,13 @@ interface Props {
   skipAnimation?: boolean
 }
 
-const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete, skipAnimation = false }: Props): JSX.Element => {
+const LoadAnimatedText = ({
+  text,
+  delay = 0,
+  letterDelay = 100,
+  onComplete,
+  skipAnimation = false
+}: Props): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const onCompleteRef = useRef(onComplete)
   const hasCompletedRef = useRef(false)
@@ -20,7 +26,9 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete, skip
 
   useEffect(() => {
     const container = containerRef.current
-    if (container === null) return
+    if (container === null) {
+      return
+    }
 
     const letters = container.querySelectorAll<HTMLSpanElement>('.animated-letter')
     const totalLetters = letters.length
@@ -72,26 +80,28 @@ const LoadAnimatedText = ({ text, delay = 0, letterDelay = 100, onComplete, skip
 
     // Start animation after a short delay to ensure DOM is ready
     const timeout = setTimeout(startAnimation, 100)
-    return () => { 
+    return () => {
       clearTimeout(timeout)
       // Reset completion flag on cleanup
       hasCompletedRef.current = false
     }
-  }, [delay, letterDelay, text, skipAnimation])
+  }, [delay, letterDelay, skipAnimation])
 
   return (
     <div ref={containerRef}>
-      {
-        text.split('').map((letter, index) => {
-          if (letter === ' ') {
-            return <span key={index}> </span>
-          } else if (letter === '\n') {
-            return <br key={index} />
-          } else {
-            return <span key={index} className='animated-letter'>{letter}</span>
-          }
-        })
-      }
+      {text.split('').map((letter, index) => {
+        if (letter === ' ') {
+          return <span key={index}> </span>
+        } else if (letter === '\n') {
+          return <br key={index} />
+        } else {
+          return (
+            <span key={index} className="animated-letter">
+              {letter}
+            </span>
+          )
+        }
+      })}
     </div>
   )
 }

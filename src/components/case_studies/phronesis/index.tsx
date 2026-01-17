@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import CarouselOverlay, { carouselMediaTag } from '../../carousel_overlay'
 import Footer from '../footer'
-import Card from './card'
 import About from './about'
+import Card from './card'
 
 const InformationArchitecture = 'images/phronesis/info_arch.webp'
 const Logo = 'images/phronesis/logo.webp'
@@ -33,35 +33,41 @@ const carouselMedia = allImages.flat().map(carouselMediaTag)
 const Phronesis = (): JSX.Element => {
   const [showCarousel, setShowCarousel] = useState(false)
   const [mediaIndex, setMediaIndex] = useState(0)
-  const dismiss = (): void => { setShowCarousel(false) }
+  const dismiss = (): void => {
+    setShowCarousel(false)
+  }
   const displayCarousel = (index: number): void => {
     setMediaIndex(index)
     setShowCarousel(true)
   }
 
   let imageIndex = 0
-  const images = allImages.map((imageGroup, index) =>
-    <div key={index} className='phronesis-container'>
+  const images = allImages.map((imageGroup, index) => (
+    <div key={index} className="phronesis-container">
       {imageGroup.map((image: string) => {
         const currentIndex = imageIndex++
         return (
           <div
             key={image}
             tabIndex={0}
-            data-aos='fade-up'
-            role='tab'
-            onKeyDown={(event) => { [' ', 'Enter'].includes(event.key) && displayCarousel(currentIndex) }}
-            onClick={() => { displayCarousel(currentIndex) }}
+            data-aos="fade-up"
+            role="tab"
+            onKeyDown={(event) => {
+              ;[' ', 'Enter'].includes(event.key) && displayCarousel(currentIndex)
+            }}
+            onClick={() => {
+              displayCarousel(currentIndex)
+            }}
           >
             <Card media={image} />
           </div>
         )
       })}
     </div>
-  )
+  ))
 
   return (
-    <div className='case-study-container'>
+    <div className="case-study-container">
       <About />
       {images}
       <Footer />

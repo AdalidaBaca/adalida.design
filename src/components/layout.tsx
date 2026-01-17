@@ -1,8 +1,7 @@
-import React from 'react'
+import DarkModeContext from 'dark_mode_context'
 
 import useAnimateOnScroll from 'hooks/use_animate_on_scroll'
-
-import DarkModeContext from 'dark_mode_context'
+import React from 'react'
 
 import Footer from './footer'
 import Header from './header'
@@ -14,12 +13,12 @@ interface Props {
   toggleDarkMode: () => void
 }
 
-const Layout = (
-  { children, darkMode, toggleDarkMode }: Props
-): JSX.Element | null => {
+const Layout = ({ children, darkMode, toggleDarkMode }: Props): JSX.Element | null => {
   useAnimateOnScroll()
 
-  if (darkMode === null) return null
+  if (darkMode === null) {
+    return null
+  }
   return (
     <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
       <div data-nosnippet className={darkMode ? 'dark' : 'light'}>

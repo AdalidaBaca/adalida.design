@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-
 import darkModeStyle from 'dark_mode_style'
+import { useEffect, useState } from 'react'
 
 const setHTMLAttributes = (darkMode: boolean): void => {
   const themeColorTag = document.querySelector('meta[name="theme-color"]')
@@ -14,7 +13,9 @@ const setHTMLAttributes = (darkMode: boolean): void => {
 const useDarkMode = (): [boolean | null, () => void] => {
   // Use this hook only from *pages*, not from components.
   const [darkMode, setDarkMode] = useState<boolean | null>(() => {
-    if (typeof window === 'undefined') return null
+    if (typeof window === 'undefined') {
+      return null
+    }
     try {
       const isDarkMode = JSON.parse(localStorage.getItem('darkMode') ?? 'true') as boolean
       setHTMLAttributes(isDarkMode)
@@ -28,7 +29,9 @@ const useDarkMode = (): [boolean | null, () => void] => {
   })
 
   useEffect(() => {
-    if (darkMode === null) return
+    if (darkMode === null) {
+      return
+    }
     try {
       localStorage.setItem('darkMode', JSON.stringify(darkMode))
     } catch {
@@ -37,8 +40,10 @@ const useDarkMode = (): [boolean | null, () => void] => {
   }, [darkMode])
 
   const toggleDarkMode = (): void => {
-    setDarkMode(oldDarkMode => {
-      if (oldDarkMode === null) return null
+    setDarkMode((oldDarkMode) => {
+      if (oldDarkMode === null) {
+        return null
+      }
       const isDarkMode = !oldDarkMode
       setHTMLAttributes(isDarkMode)
       return isDarkMode

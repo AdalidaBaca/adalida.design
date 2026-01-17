@@ -1,6 +1,5 @@
-import path from 'path'
-
 import GatsbyAdapterNetlify from 'gatsby-adapter-netlify'
+import path from 'path'
 
 module.exports = {
   adapter: GatsbyAdapterNetlify({ excludeDatastoreFromEngineFunction: false }),

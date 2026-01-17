@@ -1,26 +1,32 @@
-import React, { useMemo, useRef, useEffect, useState } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-
 import SectionHeading from 'components/section_heading'
+import { graphql, useStaticQuery } from 'gatsby'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-interface Tool { label: string, src: string }
+interface Tool {
+  label: string
+  src: string
+}
 
 const titleCase = (s: string): string =>
   s
     .replace(/[-_]+/g, ' ')
     .trim()
     .split(/\s+/)
-    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
+    .map((w) => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
     .join(' ')
 
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   const [broken, setBroken] = useState(false)
+  useEffect(() => {
+    const img = new Image()
+    img.src = src
+    img.onload = () => setBroken(false)
+    img.onerror = () => setBroken(true)
+  }, [src])
   const isNotion = label.toLowerCase().includes('notion')
   return (
-    <div className={`competitor-logo ${isNotion ? 'notion-logo' : ''}`} title={label} aria-label={label}>
-      {!broken
-        ? <img src={src} alt={label} onError={() => { setBroken(true) }} />
-        : <div className='competitor-fallback'>{label}</div>}
+    <div className={`competitor-logo ${isNotion ? 'notion-logo' : ''}`} title={label} aria-label={label} role="img">
+      {!broken ? <img src={src} alt={label} /> : <div className="competitor-fallback">{label}</div>}
     </div>
   )
 }
@@ -46,13 +52,17 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
 
   const tools = useMemo<Tool[]>(() => {
     const nodes = data.allFile.nodes
-    if (nodes.length === 0) return []
-    return nodes.map(n => ({ label: titleCase(n.name), src: n.publicURL }))
+    if (nodes.length === 0) {
+      return []
+    }
+    return nodes.map((n) => ({ label: titleCase(n.name), src: n.publicURL }))
   }, [data])
 
   const containerRef = useRef<HTMLDivElement>(null)
   const marqueeTools = useMemo(() => {
-    if (tools.length === 0) return []
+    if (tools.length === 0) {
+      return []
+    }
     // Ensure the marquee has enough content to animate smoothly even with only a few logos.
     const baseCopies = Math.max(6, Math.ceil(14 / tools.length))
     const base = Array.from({ length: baseCopies }, () => tools).flat()
@@ -68,30 +78,46 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
 
   useEffect(() => {
     const el = containerRef.current
-    if (el === null) return
+    if (el === null) {
+      return
+    }
     // Pause the animation when offscreen to reduce scroll jank, keep it running while visible.
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]
-        if (entry === undefined) return
+        if (entry === undefined) {
+          return
+        }
         el.style.setProperty('--marquee-play', entry.isIntersecting ? 'running' : 'paused')
       },
       { root: null, threshold: 0.01, rootMargin: '200px' }
     )
     observer.observe(el)
-    return () => { observer.disconnect() }
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
-  if (tools.length === 0) return <></>
+  if (tools.length === 0) {
+    return <></>
+  }
 
   return (
-    <div className='competitors-carousel' ref={containerRef} aria-label={ariaLabel}>
-      <div className='competitors-title-container'>
-        <SectionHeading title='Competitors' />
+    <div className="competitors-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+      <div className="competitors-title-container">
+        <SectionHeading title="Competitors" />
       </div>
-      <div className='competitors-marquee lane-1' data-aos='fade' data-aos-offset='50' data-aos-duration='800' data-aos-easing='ease-out-cubic'>
-        {marqueeTools.map((t, i) => (<ToolLogo key={`competitor-${t.label}-${i}`} {...t} />))}
+      <div
+        className="competitors-marquee lane-1"
+        data-aos="fade"
+        data-aos-offset="50"
+        data-aos-duration="800"
+        data-aos-easing="ease-out-cubic"
+      >
+        {marqueeTools.map((t, i) => (
+          <ToolLogo key={`competitor-${t.label}-${i}`} {...t} />
+        ))}
       </div>
     </div>
   )
