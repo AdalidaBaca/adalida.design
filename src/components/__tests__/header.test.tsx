@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
 import React from 'react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { axe } from 'vitest-axe'
-import type { AxeMatchers } from 'vitest-axe/matchers'
-import { toHaveNoViolations } from 'vitest-axe/matchers'
+
+vi.mock('@gatsbyjs/reach-router', () => ({ useLocation: () => ({ pathname: '/' }) }))
 
 import Header from '../header'
 
@@ -12,7 +12,6 @@ describe('Header', () => {
     const { container } = render(<Header />)
     const results = await axe(container)
 
-    // The proof now holds.
     expect(results).toHaveNoViolations()
   })
 })

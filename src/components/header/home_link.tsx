@@ -13,7 +13,7 @@ const HomeLink = (): JSX.Element | null => {
   }
 
   return (
-    <Link className={`home-link absolute ${hide ? 'hide-up' : ''}`} to="/">
+    <Link className={`home-link absolute ${hide ? 'hide-up' : ''}`} to="/" aria-label="Home">
       <Logo />
     </Link>
   )

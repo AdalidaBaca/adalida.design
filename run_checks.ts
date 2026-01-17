@@ -17,14 +17,16 @@ const commands = {
     { name: 'Grammar (Biome)', cmd: 'biome check .' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}"' }
+    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}"' },
+    { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
     { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
     { name: 'Pruning (Knip)', cmd: 'knip --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}" --fix' }
+    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}" --fix' },
+    { name: 'Build', cmd: 'npm run build' }
   ]
 }
 

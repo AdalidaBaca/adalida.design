@@ -28,10 +28,10 @@ const AnimatedPath = forwardRef((props: Props, ref: React.Ref<Animate>): JSX.Ele
 
   useImperativeHandle(ref, () => ({
     animateForward: () => {
-      animateRef.current?.beginElement()
+      animateRef.current?.beginElement?.()
     },
     animateReverse: () => {
-      animateReverseRef.current?.beginElement()
+      animateReverseRef.current?.beginElement?.()
     }
   }))
 
