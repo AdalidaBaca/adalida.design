@@ -21,8 +21,8 @@ const commands = {
     { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
-    { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
     { name: 'Pruning (Knip)', cmd: 'knip --fix' },
+    { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
     { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}" --fix' },
