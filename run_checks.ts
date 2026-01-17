@@ -17,7 +17,7 @@ const commands = {
     { name: 'Grammar (Biome)', cmd: 'biome check .' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}"' },
+    { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}"' },
     { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
@@ -25,7 +25,7 @@ const commands = {
     { name: 'Pruning (Knip)', cmd: 'knip --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "**/*.{css,scss}" --fix' },
+    { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}" --fix' },
     { name: 'Build', cmd: 'npm run build' }
   ]
 }

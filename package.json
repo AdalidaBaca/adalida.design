@@ -67,7 +67,7 @@
     "test": "vitest run",
     "tsc": "tsc",
     "biome": "biome check",
-    "stylelint": "stylelint \"**/*.{css,scss}\"",
+    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "knip": "knip"
   },
   "repository": {
