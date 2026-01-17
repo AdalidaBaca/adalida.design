@@ -18,8 +18,6 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className='project-echo-hero-image'>
           <img src={ProjectEchoImage} alt='Visualizing Overlap in Intersectional Health Data' />
         </div>
-      </div>
-      <div data-aos='fade-up' data-aos-offset='100' className='project-echo-details' ref={aboutRef}>
         <div data-aos='fade-up' data-aos-offset='150' className='project-echo-download-strip'>
           <div className='project-echo-download-content'>
             <p className='project-echo-download-text'>Project ECHO</p>
@@ -28,6 +26,8 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             </div>
           </div>
         </div>
+      </div>
+      <div data-aos='fade-up' data-aos-offset='100' className='project-echo-details' ref={aboutRef}>
         <div className='project-echo-details-container'>
           <div className='project-echo-details-main'>
             <div data-aos='fade-up' data-aos-offset='150' className='project-echo-details-card'>
