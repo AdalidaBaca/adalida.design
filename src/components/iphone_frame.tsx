@@ -2,7 +2,7 @@ import IphoneFrameImage from 'images/iphone17 frame.webp'
 import IphoneMask from 'images/iphone17 mask.svg'
 
 const FRAME_ASPECT_RATIO = '950 / 1971' // Width / Height
-const SCREEN_ASPECT_RATIO = '201 / 437' // Simplified from 1206 x 2622 iPhone 1 Pro
+const SCREEN_ASPECT_RATIO = '201 / 437' // Simplified from 1206 x 2622 iPhone 17 Pro
 
 const IphoneFrame = ({ videoURL }: { videoURL: string }): JSX.Element => (
   <div
