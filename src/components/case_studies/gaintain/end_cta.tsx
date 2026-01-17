@@ -1,7 +1,7 @@
 import { IconArrowRight, IconDeviceMobile, IconUserPlus } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import { Projects } from 'projects'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import Context from '../context'
 

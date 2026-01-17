@@ -1,5 +1,5 @@
 import DarkModeContext from 'dark_mode_context'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Icon from './icon'
 
 const DarkModeButton = (): JSX.Element => {

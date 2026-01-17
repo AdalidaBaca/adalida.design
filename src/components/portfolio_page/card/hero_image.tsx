@@ -1,6 +1,5 @@
 import Image from 'components/image'
 import type { Project } from 'projects'
-import React from 'react'
 
 const HeroImage = ({ project }: { project: Project }): JSX.Element => {
   const { name, heroImage } = project

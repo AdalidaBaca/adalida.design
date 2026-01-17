@@ -1,8 +1,7 @@
 import SectionHeading from 'components/section_heading'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 import CompetitorsCarousel from './competitors_carousel'
 import DesignStrategyGraphic from './design_strategy_graphic'
-import SystemDiagram from './system_diagram'
 import TriangleInsight from './triangle_insight'
 
 interface Props {

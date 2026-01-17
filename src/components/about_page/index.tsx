@@ -1,6 +1,5 @@
 import ToolsCarousel from 'components/tools_carousel'
 import useIsMobile from 'hooks/use_is_mobile'
-import React from 'react'
 import ContactCTA from './contact_cta'
 import GitHubCalendar from './github_calendar'
 import HowIThink from './how_i_think'

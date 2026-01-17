@@ -1,6 +1,6 @@
 import useIsMobile from 'hooks/use_is_mobile'
 import { Projects } from 'projects'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 
 import Context from '../context'
 import Footer from '../footer'

@@ -1,5 +1,5 @@
 import DarkModeContext from 'dark_mode_context'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 const SectionHeading = ({ title }: { title: string }): JSX.Element => {
   const { darkMode } = useContext(DarkModeContext)

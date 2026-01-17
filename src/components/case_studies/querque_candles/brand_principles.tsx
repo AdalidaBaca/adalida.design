@@ -1,6 +1,6 @@
 import { IconRuler } from '@tabler/icons-react'
 import BrandPrinciplesImage from 'images/querque_candles/brand_principles.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

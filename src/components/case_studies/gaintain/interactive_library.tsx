@@ -1,7 +1,7 @@
 import SectionHeading from 'components/section_heading'
 
 import IphoneFrame from 'images/iphone17 frame.webp'
-import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
+import { forwardRef, type Ref, useEffect, useRef } from 'react'
 import PledgeSetupVideo from 'videos/gaintain/pledge_setup.mp4'
 
 const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {

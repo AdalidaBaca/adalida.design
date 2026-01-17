@@ -1,6 +1,5 @@
 import Seo from 'components/seo'
 import { Link } from 'gatsby'
-import React from 'react'
 
 const NotFoundPage = (): JSX.Element => (
   <div className="not-found-page">

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import AboutPage from './about_page'
 import { HomePageContext } from './home_page_context'
 import PortfolioPage from './portfolio_page'

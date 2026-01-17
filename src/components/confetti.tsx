@@ -1,8 +1,8 @@
-import type { Container, Engine } from '@tsparticles/engine'
+import type { Container } from '@tsparticles/engine'
 import { loadConfettiPreset } from '@tsparticles/preset-confetti'
 import Particles from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 interface Props {
   trigger: boolean

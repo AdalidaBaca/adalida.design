@@ -1,5 +1,4 @@
 import { Projects } from 'projects'
-import React from 'react'
 import CaseStudyCard from './card'
 
 const PortfolioContainer = (): JSX.Element => {

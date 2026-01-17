@@ -1,6 +1,6 @@
 import { IconPalette } from '@tabler/icons-react'
 import ColorPaletteImage from 'images/querque_candles/color_palette.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

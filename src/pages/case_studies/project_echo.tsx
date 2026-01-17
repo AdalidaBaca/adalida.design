@@ -1,7 +1,6 @@
 import ProjectEcho from 'components/case_studies/project_echo'
 
 import Seo from 'components/seo'
-import React from 'react'
 
 const ProjectEchoPage = (): JSX.Element => <ProjectEcho />
 

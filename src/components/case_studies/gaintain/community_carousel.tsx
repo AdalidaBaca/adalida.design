@@ -1,6 +1,6 @@
 import SectionHeading from 'components/section_heading'
 import { graphql, useStaticQuery } from 'gatsby'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 interface CommunityImage {
   label: string

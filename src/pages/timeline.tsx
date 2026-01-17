@@ -2,7 +2,7 @@ import AOS from 'aos'
 import ContactCTA from 'components/about_page/contact_cta'
 import Container from 'components/portfolio_page/container'
 import Seo from 'components/seo'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const Timeline = (): JSX.Element => {
   useEffect(() => {

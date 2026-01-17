@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import useIsMobile from 'hooks/use_is_mobile'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { HomePageContext } from '../home_page_context'
 import Logo from '../logo'
 

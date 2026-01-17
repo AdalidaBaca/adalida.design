@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
+import { forwardRef, type Ref, useEffect, useRef } from 'react'
 
 import AccountabilityLevers from './accountability_levers'
 

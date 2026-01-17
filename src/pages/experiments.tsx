@@ -3,7 +3,7 @@ import CaseStudyCard from 'components/portfolio_page/card'
 
 import Seo from 'components/seo'
 import { Projects } from 'projects'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const Experiments = (): JSX.Element => {
   // Experiments ordered from newest to oldest

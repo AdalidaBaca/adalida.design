@@ -1,7 +1,7 @@
 import BadgeButton from 'components/badge_button'
 import ScrollAnimatedText from 'components/scroll_animated_text'
 import FileQuery from 'queries/file'
-import React, { useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 
 import Section from './section'
 

@@ -1,6 +1,6 @@
 import { IconEyeHeart } from '@tabler/icons-react'
 import VisionBoardImage from 'images/querque_candles/vision_board.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

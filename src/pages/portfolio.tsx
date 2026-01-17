@@ -1,6 +1,5 @@
 import MainPage from 'components'
 import Seo from 'components/seo'
-import React from 'react'
 
 const Portfolio = (): JSX.Element => {
   return <MainPage />

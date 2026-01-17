@@ -1,7 +1,7 @@
 import SectionHeading from 'components/section_heading'
 
 import WorkoutDashboardImage from 'images/gaintain/Hero Photos/workout_dashboard.png'
-import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
+import { forwardRef, type Ref, useEffect, useRef } from 'react'
 
 const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const explanationRef = useRef<HTMLDivElement>(null)

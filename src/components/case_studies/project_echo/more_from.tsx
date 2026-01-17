@@ -1,7 +1,6 @@
 import { IconArrowRight } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import { Projects } from 'projects'
-import React from 'react'
 
 const MoreFrom = (): JSX.Element => {
   const nextProject = Projects.Gaintain

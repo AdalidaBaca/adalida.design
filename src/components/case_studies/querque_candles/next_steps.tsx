@@ -1,6 +1,6 @@
 import { IconChevronsRight } from '@tabler/icons-react'
 import NextStepsImage from 'images/querque_candles/next_steps.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

@@ -1,7 +1,6 @@
 import MainPage from 'components'
 import Seo from 'components/seo'
 import Profile from 'components/seo/profile'
-import React from 'react'
 
 const About = (): JSX.Element => {
   return <MainPage />

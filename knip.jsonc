@@ -12,6 +12,6 @@
   },
   "ignoreDependencies": ["@reach/router"],
   "ignoreBinaries": ["pkill"],
-  "ignoreFiles": ["vitest-setup.ts"],
+  "ignoreFiles": ["vitest-setup.ts", "babel.config.js"],
   "ignoreUnresolved": ["https://fonts.googleapis.com/.*"]
 }

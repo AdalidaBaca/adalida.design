@@ -1,6 +1,6 @@
 import { IconSpacingHorizontal } from '@tabler/icons-react'
 import ProportionsAndPaddingImage from 'images/querque_candles/proportions_and_padding.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

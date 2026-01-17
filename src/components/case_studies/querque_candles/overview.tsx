@@ -1,6 +1,6 @@
 import OverviewImage from 'images/querque_candles/overview.webp'
 import { Projects } from 'projects'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 const backgroundImage = Projects.QuerqueCandles.colors.primary
 

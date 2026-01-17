@@ -1,5 +1,5 @@
 import Seo from 'components/seo'
-import React, { useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import Portfolio from './portfolio'
 
 const Root = (): JSX.Element => {

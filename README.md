@@ -3,7 +3,7 @@ This personal webpage is for fun, practice, and to show off a bit of a portfolio
 
 ## 🚀 Quick start
     ```shell
-    git clone https://github.com/rickpr/adalida.design
+    git clone https://github.com/adalidabaca/adalida.design
     cd adalida.design
     npm install
     npm start

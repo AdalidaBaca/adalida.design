@@ -1,6 +1,6 @@
 import { IconTypography } from '@tabler/icons-react'
 import TypeGuidelinesImage from 'images/querque_candles/type_guidelines.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 import IconHeading from '../icon_heading'
 

@@ -1,5 +1,5 @@
 import AnimatedPath, { type Animate } from 'components/animated_path'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const startPath = `
 M12 3 a7.5 7.5 0 0 0 7.92 12.446

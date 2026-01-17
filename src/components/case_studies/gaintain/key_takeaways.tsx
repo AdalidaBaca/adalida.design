@@ -1,7 +1,7 @@
 import SectionHeading from 'components/section_heading'
 
 import KeyTakeawayImage from 'images/gaintain/Hero Photos/key takeaway 1.png'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 
 const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (

@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import React, { forwardRef, type Ref, useRef, useState } from 'react'
+import { forwardRef, type Ref, useRef, useState } from 'react'
 import ColorPicker from './color_picker'
 import GaintainLogo3D from './gaintain_logo_3d'
 

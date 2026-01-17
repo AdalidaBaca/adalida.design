@@ -4,7 +4,7 @@ import BadgeButton from 'components/badge_button'
 import { makeMediaTag } from 'components/media_with_text'
 import DarkModeContext from 'dark_mode_context'
 import FileQuery from 'queries/file'
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'

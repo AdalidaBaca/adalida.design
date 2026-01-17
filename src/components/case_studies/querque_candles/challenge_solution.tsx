@@ -2,7 +2,7 @@ import { IconExclamationMark } from '@tabler/icons-react'
 import Duck from 'components/duck'
 
 import ChallengeImage from 'images/querque_candles/challenge.webp'
-import React, { forwardRef, type Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 import IconHeading from '../icon_heading'
 
 const ChallengeSolution = forwardRef(

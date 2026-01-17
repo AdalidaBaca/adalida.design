@@ -1,7 +1,7 @@
 import SectionHeading from 'components/section_heading'
 
 import IphoneFrame from 'images/iphone17 frame.webp'
-import React, { forwardRef, type Ref, useEffect, useRef } from 'react'
+import { forwardRef, type Ref, useEffect, useRef } from 'react'
 import SocialTimelineVideo from 'videos/gaintain/social_timeline.mp4'
 
 const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {

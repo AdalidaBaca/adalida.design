@@ -1,7 +1,6 @@
 import HybridImage from 'images/gaintain/Personas/hybrid.png'
 import NomadImage from 'images/gaintain/Personas/nomad.png'
 import ProgramGoerImage from 'images/gaintain/Personas/program goer.png'
-import React from 'react'
 
 interface PersonaCardProps {
   image: string

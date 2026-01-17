@@ -9,7 +9,6 @@ import Layout from 'components/layout'
 import type { WrapPageElementBrowserArgs } from 'gatsby'
 import useDarkMode from 'hooks/use_dark_mode'
 import useIsMobile from 'hooks/use_is_mobile'
-import React from 'react'
 
 import './src/sass/index.scss'
 

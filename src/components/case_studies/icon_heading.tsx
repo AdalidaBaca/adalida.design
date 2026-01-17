@@ -1,6 +1,6 @@
 import DarkModeContext from 'dark_mode_context'
 import darkModeStyle from 'dark_mode_style'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import Context from './context'
 import Icon from './icon'

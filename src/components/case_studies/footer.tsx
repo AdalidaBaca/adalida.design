@@ -2,7 +2,7 @@ import { useLocation } from '@reach/router'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import Duck from 'components/duck'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import Context from './context'
 import IconHeading from './icon_heading'
 

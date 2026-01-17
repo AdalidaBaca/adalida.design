@@ -1,6 +1,5 @@
 import AdalidaFace from 'images/about/adalida_face.webp'
 import BuildTimeQuery from 'queries/build_time'
-import React from 'react'
 import type { ProfilePage, WithContext } from 'schema-dts'
 
 const ldJson = (buildTime: string): WithContext<ProfilePage> => ({

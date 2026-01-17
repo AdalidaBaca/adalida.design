@@ -1,6 +1,6 @@
 import { IconArrowLeft } from '@tabler/icons-react'
 import { Link } from 'gatsby'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import { HomePageContext } from '../home_page_context'
 

@@ -1,5 +1,5 @@
 import DarkModeContext from 'dark_mode_context'
-import React, { forwardRef, type Ref, useContext } from 'react'
+import { forwardRef, type Ref, useContext } from 'react'
 
 import Card from '../key_takeaway_card'
 

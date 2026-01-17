@@ -1,6 +1,5 @@
 import { GatsbyImage, type GatsbyImageProps, getImage } from 'gatsby-plugin-image'
 import ImageQuery from 'queries/image'
-import React from 'react'
 
 interface Props extends Omit<GatsbyImageProps, 'image'> {
   path: string
