@@ -19,18 +19,18 @@
   max-width: 100%;
   box-sizing: border-box;
   position: relative;
-  gap: 3.5em; /* Reduced gap between sections */
+  gap: 4em; /* Aligned with table of contents dot spacing rhythm */
   
   @media (max-width: 768px) {
-    gap: 2.5em; /* Smaller gap on mobile */
+    gap: 3em; /* Smaller gap on mobile, still aligned with dot rhythm */
   }
   
   // Ensure Project ECHO sections have consistent spacing
   &.project-echo-container {
-    gap: 3.5em;
+    gap: 4em;
     
     @media (max-width: 768px) {
-      gap: 2.5em;
+      gap: 3em;
     }
   }
   
@@ -41,6 +41,7 @@
     scroll-margin-top: 72px; // 56px header + 16px spacing
     margin-top: 0 !important; // Ensure no top margin - container gap handles spacing
     margin-bottom: 0 !important; // Ensure no bottom margin - container gap handles spacing
+    display: block; // Ensure sections are block elements so gap applies
   }
 }
 
@@ -99,15 +100,21 @@
 .table-of-contents-line {
   position: absolute;
   left: 10px; /* Center of the 20px dot wrapper */
-  top: 0;
-  bottom: 0;
   width: 1.5px;
   background: rgba($dark-text, 0.12);
   transform: translateX(-50%);
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  /* Start exactly at center of first dot, end exactly at center of last dot */
+  /* Nav padding-top (1em) + first item dot center (0.2em padding + 0.7em half line-height) */
+  top: calc(1em + 0.2em + 0.7em);
+  /* End at center of last dot - same offset from bottom */
+  bottom: calc(1em + 0.2em + 0.7em);
+  /* Ensure line doesn't extend beyond dots */
+  max-height: calc(100% - (1em + 0.2em + 0.7em) * 2);
 }
+
 
 .table-of-contents-line-fill {
   position: absolute;
@@ -116,7 +123,7 @@
   width: 100%;
   height: var(--line-fill, 0%);
   background: var(--line-gradient, var(--line-color, rgba($dark-text, 0.6)));
-  transition: height 0.1s ease-out;
+  will-change: height;
   z-index: 1;
 
   .dark & {
@@ -138,6 +145,7 @@
   min-width: 0;
   position: relative;
 }
+
 
 .table-of-contents-item {
   margin: 0;
@@ -170,8 +178,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba($dark-text, 0.15);
-  border: 1.5px solid rgba($dark-text, 0.25);
+  background: #E5E5E5; /* Solid light grey, no opacity */
+  border: 1.5px solid #D3D3D3; /* Solid light grey border */
   cursor: pointer;
   transition: all 0.2s ease-out;
   z-index: 2;
@@ -182,8 +190,8 @@
   display: block;
 
   .dark & {
-    background: rgba($light-text, 0.15);
-    border-color: rgba($light-text, 0.25);
+    background: #4A4A4A; /* Solid medium grey for dark mode */
+    border-color: #5A5A5A; /* Slightly lighter grey border for dark mode */
   }
 
   &.gradient {

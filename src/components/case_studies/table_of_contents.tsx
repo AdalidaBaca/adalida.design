@@ -25,14 +25,19 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
   const color = project?.colors?.primary ?? text
 
   useEffect(() => {
-    const handleScroll = (): void => {
-      const orderedLinks = Object.entries(links)
-      const scrollY = window.scrollY
-      const viewportHeight = window.innerHeight
-      const viewportCenter = scrollY + viewportHeight / 2
-      const progressMap: Record<string, SectionProgress> = {}
+    let rafId: number | null = null
 
-      // Calculate overall line fill progress based on scroll position relative to first and last sections
+    const handleScroll = (): void => {
+      if (rafId !== null) return
+      
+      rafId = requestAnimationFrame(() => {
+        const orderedLinks = Object.entries(links)
+        const scrollY = window.scrollY
+        const viewportHeight = window.innerHeight
+        const viewportCenter = scrollY + viewportHeight / 2
+        const progressMap: Record<string, SectionProgress> = {}
+
+        // Calculate overall line fill progress based on scroll position relative to first and last sections
       let firstSectionTop = Infinity
       let lastSectionBottom = 0
       let activeLink: string | null = null
@@ -89,35 +94,67 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
       }
 
       // Calculate continuous line fill: scroll position relative to total content height
+      // Start filling when first section enters viewport, complete when last section exits
       const totalContentHeight = lastSectionBottom - firstSectionTop
       let lineProgress = 0
       if (totalContentHeight > 0) {
-        // Use viewport top (20% from top) as reference point for line fill
-        const viewportTop = scrollY + viewportHeight * 0.2
-        const scrolledThroughContent = Math.max(0, viewportTop - firstSectionTop)
-        lineProgress = Math.min(1, scrolledThroughContent / totalContentHeight)
+        // Calculate where we are in the scroll journey
+        // Start tracking from when first section top reaches viewport top
+        const startPoint = Math.max(0, firstSectionTop - viewportHeight * 0.1)
+        const endPoint = lastSectionBottom - viewportHeight * 0.9
+        
+        // Total scrollable distance for the line fill
+        const totalScrollDistance = endPoint - startPoint
+        
+        // Current position in that journey
+        const currentPosition = scrollY - startPoint
+        
+        // Progress: 0 = at start, 1 = at end
+        lineProgress = totalScrollDistance > 0 
+          ? Math.min(1, Math.max(0, currentPosition / totalScrollDistance))
+          : 0
       }
       
       setLineFillProgress(lineProgress)
       setSectionProgress(progressMap)
       setActiveLink(activeLink)
       
-      if (activeLink === orderedLinks[orderedLinks.length - 1][0]) {
-        const lastElement = orderedLinks[orderedLinks.length - 1][1].current
-        if (lastElement !== null) {
-          const rect = lastElement.getBoundingClientRect()
-          const bottomOfLastElement = rect.bottom + scrollY
-          setScrolledTooFar(viewportCenter > bottomOfLastElement)
-        } else {
-          setScrolledTooFar(false)
-        }
+      // Check if footer with "Clients" link is fully in view
+      // Look for the main site footer - it has class "footer" and contains "Clients"
+      const footer = document.querySelector('.footer')
+      let shouldHide = false
+      
+      if (footer !== null && footer.textContent?.includes('Clients')) {
+        const footerRect = footer.getBoundingClientRect()
+        // Hide table of contents when footer enters viewport (when footer top reaches viewport)
+        // footerRect.top is relative to viewport: negative = above, 0 = at top, > viewportHeight = below
+        // Hide when footer top is within or above viewport
+        shouldHide = footerRect.top < viewportHeight
       } else {
-        setScrolledTooFar(false)
+        // Fallback: hide when last section is scrolled past
+        if (activeLink === orderedLinks[orderedLinks.length - 1][0]) {
+          const lastElement = orderedLinks[orderedLinks.length - 1][1].current
+          if (lastElement !== null) {
+            const rect = lastElement.getBoundingClientRect()
+            const bottomOfLastElement = rect.bottom + scrollY
+            shouldHide = viewportCenter > bottomOfLastElement
+          }
+        }
       }
+      
+      setScrolledTooFar(shouldHide)
+        
+        rafId = null
+      })
     }
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => { window.removeEventListener('scroll', handleScroll) }
+    return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [links])
 
   return (
