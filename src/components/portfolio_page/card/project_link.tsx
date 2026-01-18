@@ -1,6 +1,5 @@
 import { IconArrowNarrowRight, IconLockShare } from '@tabler/icons-react'
 import UniversalLink from 'components/universal_link'
-import React from 'react'
 
 interface Props {
   link: { url: string; text: string }

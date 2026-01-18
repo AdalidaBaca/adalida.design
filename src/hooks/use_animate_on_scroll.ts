@@ -49,10 +49,10 @@ const useAnimateOnScroll = (): void => {
 
     // Use MutationObserver with debouncing - only watch for new elements, not attributes
     // On mobile, be more conservative to save performance
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(mutations => {
       // Only refresh if actual elements were added/removed
       const hasRelevantChanges = mutations.some(
-        (mutation) => mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0
+        mutation => mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0
       )
       if (hasRelevantChanges) {
         debouncedRefresh()

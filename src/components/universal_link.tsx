@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 interface Props {
   to: string

@@ -6,11 +6,10 @@ interface PersonaCardProps {
   image: string
   title: string
   subtitle: string
-  imageBelow?: boolean
   className?: string
 }
 
-const PersonaCard = ({ image, title, subtitle, imageBelow = false, className }: PersonaCardProps): JSX.Element => {
+const PersonaCard = ({ image, title, subtitle, className }: PersonaCardProps): JSX.Element => {
   const classNames = ['persona-card', className].filter(Boolean).join(' ')
 
   return (
@@ -34,21 +33,18 @@ const TriangleInsight = (): JSX.Element => {
           image={HybridImage}
           title="NOMAD"
           subtitle="Trains freely, logs as they go"
-          imageBelow={false}
           className="image-below-card"
         />
         <PersonaCard
           image={ProgramGoerImage}
           title="HYBRID"
           subtitle="Workout templates / trains freely"
-          imageBelow={false}
           className="hybrid-card image-below-card"
         />
         <PersonaCard
           image={NomadImage}
           title="PROGRAM"
           subtitle="Trainer / predefined plans"
-          imageBelow={false}
           className="image-below-card"
         />
       </div>

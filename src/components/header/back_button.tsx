@@ -4,11 +4,7 @@ import { useContext } from 'react'
 
 import { HomePageContext } from '../home_page_context'
 
-interface Props {
-  caseStudyName?: string
-}
-
-const BackButton = ({ caseStudyName }: Props): JSX.Element => {
+const BackButton = (): JSX.Element => {
   const { isPortfolioPage, isAboutPage } = useContext(HomePageContext)
   const hide = isPortfolioPage === true || isAboutPage === true
   return (

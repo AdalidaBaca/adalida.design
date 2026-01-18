@@ -53,7 +53,6 @@ const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
     // Store container reference for cleanup
     if (container) {
       containerRef.current = container
-      console.log('Particles container loaded')
     }
   }, [])
 
@@ -114,16 +113,9 @@ const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
           : false
       setIsDarkMode(darkMode)
       accentColorRef.current = darkMode ? '#5AC8FA' : '#4A9EFF' // Apple-inspired blue accent colors
-
-      console.log('Confetti triggered', {
-        darkMode,
-        accentColor: accentColorRef.current,
-        bodyHasDark: document.body?.classList.contains('dark'),
-        htmlHasDark: document.documentElement.classList.contains('dark')
-      })
       hasTriggeredRef.current = true
       setShouldRender(true)
-      setKey((prev) => prev + 1) // Force re-render with new key
+      setKey(prev => prev + 1) // Force re-render with new key
 
       // Call onComplete after a short delay to signal animation started
       // But don't destroy particles - let them stay

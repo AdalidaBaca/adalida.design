@@ -1,6 +1,5 @@
 import { IconBooks, IconBrandFigma, IconBrandNotion, IconNotes } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
-import React from 'react'
 import Section from './section'
 
 const Resources = (): JSX.Element => {
@@ -27,7 +26,7 @@ const Resources = (): JSX.Element => {
           onClick={() => {
             window.location.assign(writingUrl)
           }}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             handleKeyActivate(e, writingUrl)
           }}
         >
@@ -70,7 +69,7 @@ const Resources = (): JSX.Element => {
           onClick={() => {
             window.location.assign(templatesUrl)
           }}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             handleKeyActivate(e, templatesUrl)
           }}
         >

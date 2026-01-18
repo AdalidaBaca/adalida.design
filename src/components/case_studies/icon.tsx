@@ -1,6 +1,6 @@
 import DarkModeContext from 'dark_mode_context'
 import darkModeStyle from 'dark_mode_style'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 
 import Context from './context'
 

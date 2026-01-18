@@ -1,5 +1,4 @@
 import type { Project } from 'projects'
-import React from 'react'
 
 import ProjectLink from './project_link'
 

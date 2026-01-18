@@ -1,5 +1,5 @@
 import type { Project } from 'projects'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const Badges = ({ project }: { project: Project }): React.ReactElement => {
   const { badges } = project
@@ -48,7 +48,7 @@ const Badges = ({ project }: { project: Project }): React.ReactElement => {
 
   return (
     <div className="badge-list" ref={containerRef}>
-      {badges.slice(0, visibleBadges).map((badge) => (
+      {badges.slice(0, visibleBadges).map(badge => (
         <div className="badge caption-1" key={badge}>
           {badge}
         </div>

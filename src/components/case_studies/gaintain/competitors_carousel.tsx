@@ -12,7 +12,7 @@ const titleCase = (s: string): string =>
     .replace(/[-_]+/g, ' ')
     .trim()
     .split(/\s+/)
-    .map((w) => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
+    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
     .join(' ')
 
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
@@ -89,7 +89,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
     // Pause the animation when offscreen to reduce scroll jank, keep it running while visible.
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         const entry = entries[0]
         if (entry === undefined) {
           return
@@ -105,7 +105,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
   }, [])
 
   if (tools.length === 0) {
-    return <></>
+    return null
   }
 
   return (

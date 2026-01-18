@@ -1,5 +1,5 @@
 import Image from 'components/image'
-import React, { type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 
 export const makeMediaTag = ({
   media,

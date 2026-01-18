@@ -22,7 +22,7 @@ const HowIThink = (): JSX.Element => {
     []
   )
 
-  const letterCounts = useMemo(() => texts.map((t) => t.replace(/\s/g, '').length), [texts])
+  const letterCounts = useMemo(() => texts.map(t => t.replace(/\s/g, '').length), [texts])
   const totalLetters = useMemo(() => letterCounts.reduce((a, b) => a + b, 0), [letterCounts])
   const startIndices = useMemo(
     () => letterCounts.map((_, i) => letterCounts.slice(0, i).reduce((a, b) => a + b, 0)),

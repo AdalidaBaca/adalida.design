@@ -1,5 +1,5 @@
+import path from 'node:path'
 import type { CreateWebpackConfigArgs } from 'gatsby'
-import path from 'path'
 
 exports.onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
   // Allow absolute imports

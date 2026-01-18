@@ -1,9 +1,9 @@
 import { spawn } from 'node:child_process'
 import { exit } from 'node:process'
 
-const green = (text: string) => `\x1b[32m${text}\x1b[0m`
-const red = (text: string) => `\x1b[31m${text}\x1b[0m`
-const blue = (text: string) => `\x1b[34m${text}\x1b[0m`
+const _green = (text: string) => `\x1b[32m${text}\x1b[0m`
+const _red = (text: string) => `\x1b[31m${text}\x1b[0m`
+const _blue = (text: string) => `\x1b[34m${text}\x1b[0m`
 
 const mode = process.argv[2] === 'fix' ? 'fix' : 'check'
 
@@ -30,22 +30,18 @@ const commands = {
   ]
 }
 
-async function runCommand(name: string, fullCommand: string): Promise<boolean> {
-  console.log(`\n${blue('--- Running:')} ${name} ---`)
-
-  return new Promise((resolve) => {
+async function runCommand(_name: string, fullCommand: string): Promise<boolean> {
+  return new Promise(resolve => {
     // shell: true is required to resolve the binaries from node_modules/.bin
     const child = spawn(fullCommand, { stdio: 'inherit', shell: true })
 
-    child.on('close', (code) => {
+    child.on('close', code => {
       resolve(code === 0)
     })
   })
 }
 
 async function main(): Promise<void> {
-  console.log(blue(`\nInitializing Verification [${mode.toUpperCase()}]...`))
-
   let allPassed = true
   for (const step of commands[mode]) {
     const success = await runCommand(step.name, step.cmd)
@@ -58,10 +54,8 @@ async function main(): Promise<void> {
   }
 
   if (allPassed) {
-    console.log(green('\n✨ System is Sound. ✨'))
     exit(0)
   } else {
-    console.log(red('\n🚨 Verification Failed. 🚨'))
     exit(1)
   }
 }

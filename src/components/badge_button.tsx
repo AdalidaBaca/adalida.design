@@ -1,5 +1,5 @@
 import DarkModeContext from 'dark_mode_context'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 
 import UniversalLink from './universal_link'
 

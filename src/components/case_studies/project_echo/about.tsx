@@ -2,7 +2,7 @@ import BadgeButton from 'components/badge_button'
 
 import ProjectEchoImage from 'images/works/project_echo.webp'
 import { Projects } from 'projects'
-import { type Ref } from 'react'
+import type { Ref } from 'react'
 
 interface Props {
   heroRef: Ref<HTMLDivElement>

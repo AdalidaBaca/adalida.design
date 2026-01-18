@@ -1,5 +1,4 @@
 import SectionHeading from 'components/section_heading'
-import React from 'react'
 
 interface Props {
   title: string

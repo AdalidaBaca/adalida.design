@@ -52,15 +52,9 @@ const ApproachGraphic = (): JSX.Element => {
   // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
   const t = 0.3
   const matrixX =
-    Math.pow(1 - t, 3) * vennX +
-    3 * Math.pow(1 - t, 2) * t * cp1X +
-    3 * (1 - t) * Math.pow(t, 2) * cp2X +
-    Math.pow(t, 3) * interactiveX
+    (1 - t) ** 3 * vennX + 3 * (1 - t) ** 2 * t * cp1X + 3 * (1 - t) * t ** 2 * cp2X + t ** 3 * interactiveX
   const matrixY =
-    Math.pow(1 - t, 3) * vennY +
-    3 * Math.pow(1 - t, 2) * t * cp1Y +
-    3 * (1 - t) * Math.pow(t, 2) * cp2Y +
-    Math.pow(t, 3) * interactiveY
+    (1 - t) ** 3 * vennY + 3 * (1 - t) ** 2 * t * cp1Y + 3 * (1 - t) * t ** 2 * cp2Y + t ** 3 * interactiveY
 
   // Use De Casteljau's algorithm to split the curve at t=0.3
   // This gives us two cubic bezier curves that connect perfectly at Matrix-based
@@ -138,8 +132,8 @@ const ApproachGraphic = (): JSX.Element => {
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting && !isInView) {
             setIsInView(true)
             // Only trigger animation if it hasn't been played before

@@ -1,5 +1,4 @@
 import type { Project } from 'projects'
-import React from 'react'
 import Description from './description'
 import HeroImage from './hero_image'
 

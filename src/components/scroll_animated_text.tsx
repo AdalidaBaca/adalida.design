@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const offset = 0.2
 
@@ -49,7 +49,7 @@ const ScrollAnimatedText = ({ text, targetRef, startIndex = 0, totalLetters }: P
 
       if (scrolled >= fullyVisibleThreshold) {
         completed = true
-        letters.forEach((letter) => {
+        letters.forEach(letter => {
           letter.style.setProperty('opacity', '1')
           letter.classList.add('filled')
         })

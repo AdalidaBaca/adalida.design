@@ -38,7 +38,7 @@ const LoadAnimatedText = ({
 
     // If skipAnimation is true, show all letters immediately
     if (skipAnimation) {
-      letters.forEach((letter) => {
+      letters.forEach(letter => {
         letter.style.setProperty('opacity', '1')
         letter.classList.add('filled')
       })
