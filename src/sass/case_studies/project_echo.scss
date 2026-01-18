@@ -346,49 +346,6 @@
     margin: 0 0 0.75em;
   }
 
-
-  &.project-echo-upset-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 50dvh;
-
-    > .upset-iframe-container {
-      width: calc(200% - 5em);
-      height: calc(200% - 5em);
-      transform: scale(0.5);
-      background: white;
-      position: absolute;
-      border-radius: 0.75em;
-      overflow: hidden;
-
-      > iframe {
-        width: 100%;
-        height: 100%;
-      }
-
-      > .external-link {
-        position: absolute;
-        bottom: 1dvh;
-        right: 1dvh;
-        background: rgb(0 0 0 / 90%);
-        border-radius: 2dvh;
-        padding: 1dvh;
-        color: rgb(255 255 255 / 85%);
-        transition: all 0.2s ease;
-
-        @media (hover: hover) and (pointer: fine) {
-          &:hover {
-            background: rgb(255 255 255 / 95%);
-            border-color: rgb(0 0 0 / 15%);
-            color: rgb(0 0 0 / 90%);
-          }
-        }
-      }
-    }
-  }
-
   // Enhanced outcome card styling
   &.project-echo-outcome-card {
     background: linear-gradient(135deg, rgb(8 145 178 / 10%) 0%, rgb(6 182 212 / 6%) 100%);
@@ -422,6 +379,56 @@
 
       @media (width >= 768px) {
         margin-bottom: 1.25em;
+      }
+    }
+  }
+}
+
+.project-echo-upset {
+  width: 100%;
+  position: relative;
+
+  $upset-width: 1080px;
+  $upset-height: 850px;
+  
+  height: calc($upset-height * var(--scale, 1)); 
+  overflow: hidden;
+
+  .upset-iframe-container {
+    width: $upset-width;
+    height: $upset-height;
+    transform-origin: 0 0;
+    transform: scale(var(--scale, 1));
+    border-radius: 0.75em;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    
+    > iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    > .external-link {
+      position: absolute;
+      bottom: 0.5em;
+      right: 0.5em;
+      background: rgb(0 0 0 / 90%);
+      border: 1px solid rgb(0 0 0 / 15%);
+      border-radius: 50%;
+      padding: 0.5em;
+      color: rgb(255 255 255 / 85%);
+      transition: all 0.2s ease;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: rgb(255 255 255 / 95%);
+          border-color: rgb(0 0 0 / 15%);
+          color: rgb(0 0 0 / 90%);
+        }
       }
     }
   }
