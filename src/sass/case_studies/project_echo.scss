@@ -384,6 +384,56 @@
   }
 }
 
+.project-echo-upset {
+  width: 100%;
+  position: relative;
+
+  $upset-width: 1080px;
+  $upset-height: 850px;
+  
+  height: calc($upset-height * var(--scale, 1)); 
+  overflow: hidden;
+
+  .upset-iframe-container {
+    width: $upset-width;
+    height: $upset-height;
+    transform-origin: 0 0;
+    transform: scale(var(--scale, 1));
+    border-radius: 0.75em;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    
+    > iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    > .external-link {
+      position: absolute;
+      bottom: 0.5em;
+      right: 0.5em;
+      background: rgb(0 0 0 / 90%);
+      border: 1px solid rgb(0 0 0 / 15%);
+      border-radius: 50%;
+      padding: 0.5em;
+      color: rgb(255 255 255 / 85%);
+      transition: all 0.2s ease;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background: rgb(255 255 255 / 95%);
+          border-color: rgb(0 0 0 / 15%);
+          color: rgb(0 0 0 / 90%);
+        }
+      }
+    }
+  }
+}
+
 .project-echo-details-meta-grid {
   display: flex;
   flex-direction: column;
