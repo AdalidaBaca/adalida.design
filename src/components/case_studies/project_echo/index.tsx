@@ -12,6 +12,7 @@ import KeyTakeaways from './key_takeaways'
 import MoreFrom from './more_from'
 import Outcome from './outcome'
 import Solution from './solution'
+import Upset from './upset'
 
 const ProjectEcho = (): JSX.Element => {
   const sections = {
@@ -21,6 +22,7 @@ const ProjectEcho = (): JSX.Element => {
     Insight: useRef(null),
     Approach: useRef(null),
     Solution: useRef(null),
+    Upset: useRef(null),
     Outcome: useRef(null),
     'Key Takeaways': useRef(null)
   }
@@ -34,6 +36,7 @@ const ProjectEcho = (): JSX.Element => {
         <Insight ref={sections.Insight} />
         <Approach ref={sections.Approach} />
         <Solution ref={sections.Solution} />
+        <Upset ref={sections.Upset} />
         <Outcome ref={sections.Outcome} />
         <KeyTakeaways ref={sections['Key Takeaways']} />
         <MoreFrom />
