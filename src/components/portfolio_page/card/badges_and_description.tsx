@@ -2,10 +2,10 @@ import type { Project } from 'projects'
 
 import ProjectLink from './project_link'
 
-const ProjectLinkWrapper = ({ project }: { project: Project }): React.ReactElement => {
+const ProjectLinkWrapper = ({ project }: { project: Project }): React.ReactElement | null => {
   const { link } = project
   if (link === undefined) {
-    return <></>
+    return null
   }
   return <ProjectLink link={link} />
 }

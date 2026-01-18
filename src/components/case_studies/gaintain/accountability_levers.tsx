@@ -48,6 +48,7 @@ const AccountabilityLevers = (): JSX.Element => {
   return (
     <div className="accountability-levers-container">
       <svg className="accountability-levers" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+        <title>Accountability Levers Diagram</title>
         <defs>
           {/* Gradient for $ badge - more visible */}
           <linearGradient id="badge-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">

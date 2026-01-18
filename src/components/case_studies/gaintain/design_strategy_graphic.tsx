@@ -178,6 +178,10 @@ const DesignStrategyGraphic = (): JSX.Element => {
         preserveAspectRatio="xMidYMid meet"
         style={{ width: '100%', height: '100%' }}
       >
+        <title>
+          Design Strategy Graphic - Comparing AI Fitness Apps and Human Coaches in terms of Drop-off Prevention and
+          Accountability Cost
+        </title>
         <defs>
           {/* Gradient for line from AI Fitness Apps to Human Coach - using GainTain gradient colors */}
           <linearGradient

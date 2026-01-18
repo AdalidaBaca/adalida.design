@@ -22,10 +22,11 @@ const initEngine = async (): Promise<void> => {
 
 // Initialize on module load
 if (typeof window !== 'undefined') {
+  // biome-ignore lint/suspicious/noConsole: catch block requires error logging
   initEngine().catch(console.error)
 }
 
-const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
+const Confetti = ({ trigger, onComplete }: Props): JSX.Element | null => {
   const [key, setKey] = useState(0)
   const [shouldRender, setShouldRender] = useState(false)
   const [emitterPosition, setEmitterPosition] = useState({ x: 50, y: 50 })
@@ -126,7 +127,7 @@ const Confetti = ({ trigger, onComplete }: Props): JSX.Element => {
   }, [trigger, onComplete])
 
   if (!shouldRender) {
-    return <></>
+    return null
   }
 
   return (

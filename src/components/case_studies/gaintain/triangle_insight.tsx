@@ -50,6 +50,7 @@ const TriangleInsight = (): JSX.Element => {
       </div>
       <div className="persona-brace-container">
         <svg className="brace-svg-horizontal" viewBox="0 -30 1000 30" preserveAspectRatio="none">
+          <title>Brace connecting the personas</title>
           <path
             className="brace-path-horizontal"
             d="M 0 0 C 0 -10, 15 -10, 15 0 h 470 C 500 0, 500 -25, 500 -25 S 500 0, 515 0 h 470 C 1000 0, 1000 -10, 1000 0"

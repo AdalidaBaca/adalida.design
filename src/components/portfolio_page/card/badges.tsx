@@ -1,7 +1,7 @@
 import type { Project } from 'projects'
 import { useEffect, useRef, useState } from 'react'
 
-const Badges = ({ project }: { project: Project }): React.ReactElement => {
+const Badges = ({ project }: { project: Project }): React.ReactElement | null => {
   const { badges } = project
   const containerRef = useRef<HTMLDivElement>(null)
   const [visibleBadges, setVisibleBadges] = useState<number>(badges.length)
@@ -43,7 +43,7 @@ const Badges = ({ project }: { project: Project }): React.ReactElement => {
   }, [])
 
   if (badges.length === 0) {
-    return <></>
+    return null
   }
 
   return (

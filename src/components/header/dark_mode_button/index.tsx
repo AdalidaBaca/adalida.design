@@ -6,7 +6,7 @@ const DarkModeButton = (): JSX.Element => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
   return (
-    <button className="header-button" aria-label="Toggle dark mode" onClick={toggleDarkMode}>
+    <button className="header-button" aria-label="Toggle dark mode" onClick={toggleDarkMode} type="button">
       <Icon darkMode={darkMode} />
     </button>
   )

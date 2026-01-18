@@ -147,6 +147,9 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           minHeight: copy === 'problem' ? 0 : undefined
         }}
       >
+        <title>
+          {copy === 'problem' ? 'Problem: Venn Diagram with Mock Data' : 'Insight: Venn Diagram with Mock Data'}
+        </title>
         {copy !== 'problem' && (
           <>
             {/* Pairwise intersections legend in bottom left */}

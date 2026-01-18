@@ -8,7 +8,7 @@ const Resources = (): JSX.Element => {
   const templatesUrl = 'https://www.notion.com/@adalidabaca'
   const figmaUrl = 'https://www.figma.com/@adalida'
 
-  const handleKeyActivate = (event: React.KeyboardEvent, href: string): void => {
+  const _handleKeyActivate = (event: React.KeyboardEvent, href: string): void => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       window.location.assign(href)
@@ -18,17 +18,11 @@ const Resources = (): JSX.Element => {
   return (
     <Section title="Resources">
       <div className="hackathons odd">
-        <div
+        <a
           className="glass card hackathon resource-card"
-          role="link"
           tabIndex={0}
           aria-label="Read the latest issue on Substack"
-          onClick={() => {
-            window.location.assign(writingUrl)
-          }}
-          onKeyDown={e => {
-            handleKeyActivate(e, writingUrl)
-          }}
+          href={writingUrl}
         >
           <div className="inside">
             <div className="resource-header">
@@ -60,18 +54,12 @@ const Resources = (): JSX.Element => {
               ACADEMIC
             </BadgeButton>
           </div>
-        </div>
-        <div
+        </a>
+        <a
           className="glass card hackathon resource-card"
-          role="link"
           tabIndex={0}
           aria-label="Browse templates on Notion"
-          onClick={() => {
-            window.location.assign(templatesUrl)
-          }}
-          onKeyDown={e => {
-            handleKeyActivate(e, templatesUrl)
-          }}
+          href={templatesUrl}
         >
           <div className="inside">
             <div className="resource-header">
@@ -101,7 +89,7 @@ const Resources = (): JSX.Element => {
             <BadgeButton to={templatesUrl}>NOTION</BadgeButton>
             <BadgeButton to={figmaUrl}>FIGMA</BadgeButton>
           </div>
-        </div>
+        </a>
       </div>
     </Section>
   )

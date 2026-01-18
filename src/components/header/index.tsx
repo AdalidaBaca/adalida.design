@@ -106,10 +106,10 @@ const Header = (): JSX.Element => {
 
   return (
     <header className={`navbar${darkMode ? ' dark' : ''}`}>
-      <div className="left flex-center" aria-label="Home and back" role="navigation">
+      <nav className="left flex-center" aria-label="Home and back">
         <HomeLink />
         <BackButton />
-      </div>
+      </nav>
       <nav className="primary-nav" aria-label="Primary">
         {caseStudy !== null && showNavTitle ? (
           <h4 key={caseStudy.name} className="navbar-case-study-title">
@@ -121,9 +121,9 @@ const Header = (): JSX.Element => {
           <PortfolioPageSwitch />
         )}
       </nav>
-      <div className="right flex-center" aria-label="Theme" role="navigation">
+      <nav className="right flex-center" aria-label="Theme">
         <DarkModeButton />
-      </div>
+      </nav>
       {caseStudy !== null && isMobile === true && (
         <div
           className="navbar-scroll-progress"

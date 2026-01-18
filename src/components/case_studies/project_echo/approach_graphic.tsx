@@ -176,6 +176,7 @@ const ApproachGraphic = (): JSX.Element => {
         preserveAspectRatio="xMidYMid meet"
         style={{ width: '100%', height: '100%' }}
       >
+        <title>Design Strategy Approach Graphic</title>
         <defs>
           {/* Gradient for line from Venn Diagram + Lists to Interactive Set Comparisons - using Project ECHO gradient colors */}
           <linearGradient

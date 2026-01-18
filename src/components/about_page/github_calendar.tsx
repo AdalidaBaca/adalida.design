@@ -101,9 +101,7 @@ const GitHubCalendar = (): JSX.Element => {
         </div>
 
         {error !== null ? (
-          <output className="github-calendar-error" role="status">
-            Couldn’t load contributions ({error}).
-          </output>
+          <output className="github-calendar-error">Couldn’t load contributions ({error}).</output>
         ) : null}
 
         {/* loading state is shown inline in the header count */}

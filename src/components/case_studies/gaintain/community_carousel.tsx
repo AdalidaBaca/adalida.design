@@ -63,7 +63,7 @@ interface CommunityImageData {
   }
 }
 
-const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps): JSX.Element => {
+const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps): JSX.Element | null => {
   const data = useStaticQuery(graphql`
     query CommunityImages {
       allFile(
@@ -166,7 +166,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
   }
 
   return (
-    <div className="community-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+    <section className="community-carousel" ref={containerRef} aria-label={ariaLabel}>
       <div className="community-title-container">
         <SectionHeading title="GainTain Beta Testers" />
       </div>
@@ -181,7 +181,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
           <CommunityImageBox key={`community-${img.label}-${i}`} {...img} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

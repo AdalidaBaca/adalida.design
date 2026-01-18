@@ -15,6 +15,7 @@ const commands = {
   check: [
     { name: 'Parsimony (Knip)', cmd: 'knip' },
     { name: 'Grammar (Biome)', cmd: 'biome check .' },
+    { name: 'Structure (ESLint)', cmd: 'eslint "src/**/*.{ts,tsx}"' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
     { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}"' },
@@ -23,6 +24,7 @@ const commands = {
   fix: [
     { name: 'Pruning (Knip)', cmd: 'knip --fix' },
     { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
+    { name: 'Structure (ESLint)', cmd: 'eslint "src/**/*.{ts,tsx}" --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
     { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}" --fix' },

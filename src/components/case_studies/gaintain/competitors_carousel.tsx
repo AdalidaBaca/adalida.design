@@ -40,7 +40,7 @@ interface CompetitorData {
   publicURL: string
 }
 
-const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
+const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element | null => {
   const data = useStaticQuery(graphql`
     query CompetitorsLogos {
       allFile(
@@ -109,7 +109,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
   }
 
   return (
-    <div className="competitors-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+    <section className="competitors-carousel" ref={containerRef} aria-label={ariaLabel}>
       <div className="competitors-title-container">
         <SectionHeading title="Competitors" />
       </div>
@@ -124,7 +124,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
           <ToolLogo key={`competitor-${t.label}-${i}`} {...t} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

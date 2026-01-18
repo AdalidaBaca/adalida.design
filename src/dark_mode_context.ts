@@ -7,7 +7,6 @@ interface DarkModeContextType {
 
 const DarkModeContext = createContext<DarkModeContextType>({
   darkMode: true,
-  // biome-ignore lint/suspicious/noEmptyBlockStatements: This is a placeholder
   toggleDarkMode: (): void => {}
 })
 export default DarkModeContext
