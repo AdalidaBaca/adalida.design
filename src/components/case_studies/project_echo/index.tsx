@@ -22,7 +22,7 @@ const ProjectEcho = (): JSX.Element => {
     Insight: useRef(null),
     Approach: useRef(null),
     Solution: useRef(null),
-    Upset: useRef(null),
+    UpSet: useRef(null),
     Outcome: useRef(null),
     'Key Takeaways': useRef(null)
   }
@@ -36,7 +36,7 @@ const ProjectEcho = (): JSX.Element => {
         <Insight ref={sections.Insight} />
         <Approach ref={sections.Approach} />
         <Solution ref={sections.Solution} />
-        <Upset ref={sections.Upset} />
+        <Upset ref={sections.UpSet} />
         <Outcome ref={sections.Outcome} />
         <KeyTakeaways ref={sections['Key Takeaways']} />
         <MoreFrom />
