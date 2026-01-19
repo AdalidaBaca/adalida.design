@@ -156,7 +156,7 @@ export const Projects: Record<string, Project> = {
   ProjectEcho: {
     name: 'Project ECHO',
     category: 'Data Visualization Tool',
-    badges: ['Data ', 'Patterns', 'Interpretation''],
+    badges: ['Data ', 'Patterns', 'Interpretation'],
     description:
       'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,
