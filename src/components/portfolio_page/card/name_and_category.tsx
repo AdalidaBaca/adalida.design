@@ -1,5 +1,4 @@
 import type { Project } from 'projects'
-import React from 'react'
 
 const NameAndCategory = ({ project }: { project: Project }): React.ReactElement => {
   const { category, name } = project

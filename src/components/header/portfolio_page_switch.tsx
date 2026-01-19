@@ -20,6 +20,7 @@ const PortfolioPageSwitch = (): JSX.Element => {
           onClick={() => {
             setPortfolioPage?.(true)
           }}
+          type="button"
         >
           PORTFOLIO
         </button>
@@ -30,6 +31,7 @@ const PortfolioPageSwitch = (): JSX.Element => {
           onClick={() => {
             setPortfolioPage?.(false)
           }}
+          type="button"
         >
           ABOUT
         </button>

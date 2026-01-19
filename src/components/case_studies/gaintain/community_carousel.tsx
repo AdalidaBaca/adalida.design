@@ -13,7 +13,7 @@ const titleCase = (s: string): string =>
     .replace(/[-_]+/g, ' ')
     .trim()
     .split(/\s+/)
-    .map((w) => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
+    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
     .join(' ')
 
 const CommunityImageBox = ({ label, src, srcSet }: CommunityImage): JSX.Element => {
@@ -63,7 +63,7 @@ interface CommunityImageData {
   }
 }
 
-const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps): JSX.Element => {
+const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps): JSX.Element | null => {
   const data = useStaticQuery(graphql`
     query CommunityImages {
       allFile(
@@ -146,7 +146,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
     }
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         const entry = entries[0]
         if (entry === undefined) {
           return
@@ -162,11 +162,11 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
   }, [])
 
   if (images.length === 0) {
-    return <></>
+    return null
   }
 
   return (
-    <div className="community-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+    <section className="community-carousel" ref={containerRef} aria-label={ariaLabel}>
       <div className="community-title-container">
         <SectionHeading title="GainTain Beta Testers" />
       </div>
@@ -181,7 +181,7 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
           <CommunityImageBox key={`community-${img.label}-${i}`} {...img} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

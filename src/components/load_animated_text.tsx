@@ -38,7 +38,7 @@ const LoadAnimatedText = ({
 
     // If skipAnimation is true, show all letters immediately
     if (skipAnimation) {
-      letters.forEach((letter) => {
+      letters.forEach(letter => {
         letter.style.setProperty('opacity', '1')
         letter.classList.add('filled')
       })
@@ -91,11 +91,14 @@ const LoadAnimatedText = ({
     <div ref={containerRef}>
       {text.split('').map((letter, index) => {
         if (letter === ' ') {
+          // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
           return <span key={index}> </span>
         } else if (letter === '\n') {
+          // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
           return <br key={index} />
         } else {
           return (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
             <span key={index} className="animated-letter">
               {letter}
             </span>

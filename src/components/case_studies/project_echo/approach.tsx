@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import { forwardRef, Ref } from 'react'
+import { forwardRef, type Ref } from 'react'
 import ApproachGraphic from './approach_graphic'
 
 const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {

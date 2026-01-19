@@ -93,7 +93,7 @@ const Intro = (): JSX.Element | null => {
       }
 
       if (window.__ytApiReadyPromise === undefined) {
-        window.__ytApiReadyPromise = new Promise<void>((resolve) => {
+        window.__ytApiReadyPromise = new Promise<void>(resolve => {
           window.__ytApiResolve = resolve
         })
         window.onYouTubeIframeAPIReady = () => {
@@ -214,6 +214,7 @@ const Intro = (): JSX.Element | null => {
                   aria-pressed={isPlaying}
                   title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   disabled={!playerReady}
+                  type="button"
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
                 </button>
@@ -241,6 +242,7 @@ const Intro = (): JSX.Element | null => {
                   aria-pressed={isPlaying}
                   title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   disabled={!playerReady}
+                  type="button"
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
                 </button>

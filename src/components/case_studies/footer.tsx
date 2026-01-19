@@ -11,7 +11,7 @@ const studies = ['gaintain', 'phronesis', 'querque_candles']
 const Footer = (): JSX.Element => {
   const { pathname } = useLocation()
   const color = useContext(Context)?.colors?.primary
-  const currentIndex = studies.findIndex((study) => pathname.includes(study))
+  const currentIndex = studies.findIndex(study => pathname.includes(study))
   const nextCaseStudy = studies[(currentIndex + 1) % studies.length]
   const to = `/case_studies/${nextCaseStudy}`
 

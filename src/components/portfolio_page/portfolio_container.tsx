@@ -12,7 +12,7 @@ const PortfolioContainer = (): JSX.Element => {
         <span>FEATURED PROJECTS</span>
       </div>
       <div className="portfolio-container">
-        {portfolioProjects.map((project) => (
+        {portfolioProjects.map(project => (
           <CaseStudyCard key={project.name} project={project} />
         ))}
       </div>

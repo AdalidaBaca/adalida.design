@@ -12,7 +12,7 @@ const Upset = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>
       return
     }
 
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const contentWidth = 1080
         const availableWidth = entry.contentRect.width

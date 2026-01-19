@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const offset = 0.2
 
@@ -49,7 +49,7 @@ const ScrollAnimatedText = ({ text, targetRef, startIndex = 0, totalLetters }: P
 
       if (scrolled >= fullyVisibleThreshold) {
         completed = true
-        letters.forEach((letter) => {
+        letters.forEach(letter => {
           letter.style.setProperty('opacity', '1')
           letter.classList.add('filled')
         })
@@ -70,11 +70,14 @@ const ScrollAnimatedText = ({ text, targetRef, startIndex = 0, totalLetters }: P
     <div ref={containerRef}>
       {text.split('').map((letter, index) => {
         if (letter === ' ') {
+          // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
           return <span key={index}> </span>
         } else if (letter === '\n') {
+          // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
           return <br key={index} />
         } else {
           return (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Order of letters is static and will not change
             <span key={index} className="animated-letter">
               {letter}
             </span>

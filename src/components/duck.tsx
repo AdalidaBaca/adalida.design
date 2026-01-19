@@ -1,5 +1,6 @@
 const Duck = (): JSX.Element => (
   <svg width="750" height="621" viewBox="0 0 750 621" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Duck</title>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

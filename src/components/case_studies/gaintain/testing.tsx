@@ -1,16 +1,12 @@
 import SectionHeading from 'components/section_heading'
-import { forwardRef, type Ref, useRef, useState } from 'react'
+import { forwardRef, type Ref, useRef } from 'react'
 import ColorPicker from './color_picker'
 import GaintainLogo3D from './gaintain_logo_3d'
 
 const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [_gradientStart, setGradientStart] = useState('#E65C00')
-  const [_gradientEnd, setGradientEnd] = useState('#F9D423')
 
   const handleGradientChange = (start: string, end: string): void => {
-    setGradientStart(start)
-    setGradientEnd(end)
     if (containerRef.current) {
       containerRef.current.style.background = `linear-gradient(45deg, ${start}, ${end})`
     }

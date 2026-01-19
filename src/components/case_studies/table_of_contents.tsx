@@ -221,6 +221,7 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
                     aria-label={`Navigate to ${link} section`}
                     aria-current={active ? 'location' : undefined}
                     tabIndex={0}
+                    type="button"
                   >
                     <div className="table-of-contents-dot-fill" aria-hidden="true" />
                   </button>
@@ -232,6 +233,7 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
                   onKeyDown={handleKeyDown}
                   aria-label={`Navigate to ${link} section`}
                   aria-current={active ? 'location' : undefined}
+                  type="button"
                 >
                   {link}
                 </button>

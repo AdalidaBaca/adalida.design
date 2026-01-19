@@ -2,7 +2,7 @@ import { useLocation } from '@reach/router'
 import DarkModeContext from 'dark_mode_context'
 import useIsMobile from 'hooks/use_is_mobile'
 import { type Project, Projects } from 'projects'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import BackButton from './back_button'
 import DarkModeButton from './dark_mode_button'
 import HomeLink from './home_link'
@@ -56,7 +56,7 @@ const Header = (): JSX.Element => {
           const titleRect = downloadTitle.getBoundingClientRect()
           const headerHeight = 56 // $header-height
           const shouldShow = titleRect.bottom < headerHeight
-          setShowNavTitle((prev) => {
+          setShowNavTitle(prev => {
             // Once it shows, keep it shown (never go back to false)
             if (prev === true) {
               return true
@@ -69,11 +69,6 @@ const Header = (): JSX.Element => {
         if (isMobile === true) {
           const caseStudyContainer = document.querySelector('.case-study-container')
           if (caseStudyContainer instanceof HTMLElement) {
-            // Get container bounds relative to document
-            const containerTop = caseStudyContainer.offsetTop
-            const containerHeight = caseStudyContainer.offsetHeight
-            const _containerBottom = containerTop + containerHeight
-
             // Calculate total scrollable distance for the case study
             const documentHeight = document.documentElement.scrollHeight
             const viewportHeight = window.innerHeight
@@ -106,10 +101,10 @@ const Header = (): JSX.Element => {
 
   return (
     <header className={`navbar${darkMode ? ' dark' : ''}`}>
-      <div className="left flex-center" aria-label="Home and back" role="navigation">
+      <nav className="left flex-center" aria-label="Home and back">
         <HomeLink />
-        <BackButton caseStudyName={caseStudy?.name} />
-      </div>
+        <BackButton />
+      </nav>
       <nav className="primary-nav" aria-label="Primary">
         {caseStudy !== null && showNavTitle ? (
           <h4 key={caseStudy.name} className="navbar-case-study-title">
@@ -121,9 +116,9 @@ const Header = (): JSX.Element => {
           <PortfolioPageSwitch />
         )}
       </nav>
-      <div className="right flex-center" aria-label="Theme" role="navigation">
+      <nav className="right flex-center" aria-label="Theme">
         <DarkModeButton />
-      </div>
+      </nav>
       {caseStudy !== null && isMobile === true && (
         <div
           className="navbar-scroll-progress"

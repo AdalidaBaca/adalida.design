@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
 
 const getInitials = (name: string): string => {
   const parts = name.trim().split(/\s+/).slice(0, 2)
-  return parts.map((p) => p[0]?.toUpperCase() ?? '').join('')
+  return parts.map(p => p[0]?.toUpperCase() ?? '').join('')
 }
 
 const Avatar = ({ name, photo }: { name: string; photo?: string }): JSX.Element => {

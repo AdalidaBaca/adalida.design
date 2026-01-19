@@ -1,7 +1,7 @@
 import type { Project } from 'projects'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-const Badges = ({ project }: { project: Project }): React.ReactElement => {
+const Badges = ({ project }: { project: Project }): React.ReactElement | null => {
   const { badges } = project
   const containerRef = useRef<HTMLDivElement>(null)
   const [visibleBadges, setVisibleBadges] = useState<number>(badges.length)
@@ -43,12 +43,12 @@ const Badges = ({ project }: { project: Project }): React.ReactElement => {
   }, [])
 
   if (badges.length === 0) {
-    return <></>
+    return null
   }
 
   return (
     <div className="badge-list" ref={containerRef}>
-      {badges.slice(0, visibleBadges).map((badge) => (
+      {badges.slice(0, visibleBadges).map(badge => (
         <div className="badge caption-1" key={badge}>
           {badge}
         </div>

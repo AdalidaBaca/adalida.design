@@ -1,5 +1,4 @@
 import type { Project } from 'projects'
-import React from 'react'
 
 import Badges from './badges'
 import ProjectLinkWrapper from './badges_and_description'

@@ -28,7 +28,7 @@ const Experiments = (): JSX.Element => {
         <span>EXPERIMENTS</span>
       </div>
       <div className="portfolio-container" style={{ marginBottom: '4em' }}>
-        {experimentProjects.map((project) => (
+        {experimentProjects.map(project => (
           <CaseStudyCard key={project.name} project={project} />
         ))}
       </div>

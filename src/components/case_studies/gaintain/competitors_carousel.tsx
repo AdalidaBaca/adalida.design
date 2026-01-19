@@ -12,7 +12,7 @@ const titleCase = (s: string): string =>
     .replace(/[-_]+/g, ' ')
     .trim()
     .split(/\s+/)
-    .map((w) => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
+    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
     .join(' ')
 
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
@@ -40,7 +40,7 @@ interface CompetitorData {
   publicURL: string
 }
 
-const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element => {
+const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselProps): JSX.Element | null => {
   const data = useStaticQuery(graphql`
     query CompetitorsLogos {
       allFile(
@@ -89,7 +89,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
     // Pause the animation when offscreen to reduce scroll jank, keep it running while visible.
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         const entry = entries[0]
         if (entry === undefined) {
           return
@@ -105,11 +105,11 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
   }, [])
 
   if (tools.length === 0) {
-    return <></>
+    return null
   }
 
   return (
-    <div className="competitors-carousel" ref={containerRef} aria-label={ariaLabel} role="region">
+    <section className="competitors-carousel" ref={containerRef} aria-label={ariaLabel}>
       <div className="competitors-title-container">
         <SectionHeading title="Competitors" />
       </div>
@@ -124,7 +124,7 @@ const CompetitorsCarousel = ({ ariaLabel = 'Competitors' }: CompetitorsCarouselP
           <ToolLogo key={`competitor-${t.label}-${i}`} {...t} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 

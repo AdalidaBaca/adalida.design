@@ -10,7 +10,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [pathLength, setPathLength] = useState<number | null>(null)
-  const [_lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
@@ -48,47 +47,12 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const cp2X = humanX // Same X as Human Coach - creates horizontal approach (asymptote)
   const cp2Y = humanY // Same Y as Human Coach - ensures line ends exactly at center of point
 
-  // Calculate GainTain position at t=0.5 on the cubic bezier curve
-  // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
-  const t = 0.5
-  const _gaintainX =
-    Math.pow(1 - t, 3) * aiFitnessX +
-    3 * Math.pow(1 - t, 2) * t * cp1X +
-    3 * (1 - t) * Math.pow(t, 2) * cp2X +
-    Math.pow(t, 3) * humanX
-  const _gaintainY =
-    Math.pow(1 - t, 3) * aiFitnessY +
-    3 * Math.pow(1 - t, 2) * t * cp1Y +
-    3 * (1 - t) * Math.pow(t, 2) * cp2Y +
-    Math.pow(t, 3) * humanY
-
-  // Use De Casteljau's algorithm to split the curve at t=0.5
-  // This gives us two cubic bezier curves that connect perfectly at GainTain
-  // Step 1: First level of interpolation
-  const q1X = aiFitnessX + (cp1X - aiFitnessX) * t
-  const q1Y = aiFitnessY + (cp1Y - aiFitnessY) * t
-  const q2X = cp1X + (cp2X - cp1X) * t
-  const q2Y = cp1Y + (cp2Y - cp1Y) * t
-  const q3X = cp2X + (humanX - cp2X) * t
-  const q3Y = cp2Y + (humanY - cp2Y) * t
-
-  // Step 2: Second level of interpolation
-  const _r1X = q1X + (q2X - q1X) * t
-  const _r1Y = q1Y + (q2Y - q1Y) * t
-  const _r2X = q2X + (q3X - q2X) * t
-  const _r2Y = q2Y + (q3Y - q2Y) * t
-
-  // Step 3: Final point (GainTain) - should match our calculated gaintainX/Y
-  // First segment control points: aiFitnessX/Y, q1X/Y, r1X/Y, gaintainX/Y
-  // Second segment control points: gaintainX/Y, r2X/Y, q3X/Y, humanX/Y
-
   // Check if animation has been played before
   useEffect(() => {
     const hasPlayed = localStorage.getItem('gaintain-design-strategy-animated') === 'true'
     setHasAnimatedBefore(hasPlayed)
     if (hasPlayed) {
       // If already animated, set final states immediately
-      setLineAnimationComplete(true)
       setDotAnimationComplete(true)
     }
   }, [])
@@ -140,8 +104,8 @@ const DesignStrategyGraphic = (): JSX.Element => {
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting && !isInView) {
             setIsInView(true)
             // Only trigger animation if it hasn't been played before
@@ -184,6 +148,10 @@ const DesignStrategyGraphic = (): JSX.Element => {
         preserveAspectRatio="xMidYMid meet"
         style={{ width: '100%', height: '100%' }}
       >
+        <title>
+          Design Strategy Graphic - Comparing AI Fitness Apps and Human Coaches in terms of Drop-off Prevention and
+          Accountability Cost
+        </title>
         <defs>
           {/* Gradient for line from AI Fitness Apps to Human Coach - using GainTain gradient colors */}
           <linearGradient

@@ -47,7 +47,6 @@ const ColorPicker = ({ onGradientChange }: ColorPickerProps): JSX.Element => {
     if (onGradientChange) {
       onGradientChange(selectedGradient.start, selectedGradient.end)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onGradientChange, selectedGradient.end, selectedGradient.start])
 
   return (
@@ -58,13 +57,14 @@ const ColorPicker = ({ onGradientChange }: ColorPickerProps): JSX.Element => {
           className="gaintain-gradient-change gaintain-gradient-prev"
           onClick={handlePrevious}
           aria-label="Previous gradient"
+          type="button"
         >
           <IconChevronLeft />
         </button>
         <div className="gaintain-gradient-dots">
           {gradientOptions.map((option, index) => (
             <button
-              key={index}
+              key={option.label}
               className={`gaintain-gradient-dot ${index === selectedIndex ? 'active' : ''}`}
               onClick={() => handleDotClick(index)}
               aria-label={`Select gradient ${index + 1}`}
@@ -78,6 +78,7 @@ const ColorPicker = ({ onGradientChange }: ColorPickerProps): JSX.Element => {
                     : 'transparent',
                 borderWidth: index === selectedIndex ? '1px' : '0'
               }}
+              type="button"
             />
           ))}
         </div>
@@ -85,6 +86,7 @@ const ColorPicker = ({ onGradientChange }: ColorPickerProps): JSX.Element => {
           className="gaintain-gradient-change gaintain-gradient-next"
           onClick={handleNext}
           aria-label="Next gradient"
+          type="button"
         >
           <IconChevronRight />
         </button>

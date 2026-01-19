@@ -56,13 +56,10 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
 
   // Three distinct colors for the populations
   // Gender Minority - Purple/Blue
-  const _color1 = darkMode ? 'rgba(139, 92, 246, 0.4)' : 'rgba(139, 92, 246, 0.3)'
   const stroke1 = darkMode ? 'rgba(139, 92, 246, 0.7)' : 'rgba(139, 92, 246, 0.6)'
   // IV Drug Users - Teal/Blue (Project ECHO primary)
-  const _color2 = darkMode ? 'rgba(8, 145, 178, 0.4)' : 'rgba(8, 145, 178, 0.3)'
   const stroke2 = darkMode ? 'rgba(8, 145, 178, 0.7)' : 'rgba(8, 145, 178, 0.6)'
   // Unstable Housing - Orange/Amber
-  const _color3 = darkMode ? 'rgba(245, 158, 11, 0.4)' : 'rgba(245, 158, 11, 0.3)'
   const stroke3 = darkMode ? 'rgba(245, 158, 11, 0.7)' : 'rgba(245, 158, 11, 0.6)'
 
   const diagram = (
@@ -147,6 +144,9 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           minHeight: copy === 'problem' ? 0 : undefined
         }}
       >
+        <title>
+          {copy === 'problem' ? 'Problem: Venn Diagram with Mock Data' : 'Insight: Venn Diagram with Mock Data'}
+        </title>
         {copy !== 'problem' && (
           <>
             {/* Pairwise intersections legend in bottom left */}

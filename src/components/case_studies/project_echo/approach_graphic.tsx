@@ -10,7 +10,6 @@ const ApproachGraphic = (): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [pathLength, setPathLength] = useState<number | null>(null)
-  const [_lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
@@ -52,35 +51,9 @@ const ApproachGraphic = (): JSX.Element => {
   // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
   const t = 0.3
   const matrixX =
-    Math.pow(1 - t, 3) * vennX +
-    3 * Math.pow(1 - t, 2) * t * cp1X +
-    3 * (1 - t) * Math.pow(t, 2) * cp2X +
-    Math.pow(t, 3) * interactiveX
+    (1 - t) ** 3 * vennX + 3 * (1 - t) ** 2 * t * cp1X + 3 * (1 - t) * t ** 2 * cp2X + t ** 3 * interactiveX
   const matrixY =
-    Math.pow(1 - t, 3) * vennY +
-    3 * Math.pow(1 - t, 2) * t * cp1Y +
-    3 * (1 - t) * Math.pow(t, 2) * cp2Y +
-    Math.pow(t, 3) * interactiveY
-
-  // Use De Casteljau's algorithm to split the curve at t=0.3
-  // This gives us two cubic bezier curves that connect perfectly at Matrix-based
-  // Step 1: First level of interpolation
-  const q1X = vennX + (cp1X - vennX) * t
-  const q1Y = vennY + (cp1Y - vennY) * t
-  const q2X = cp1X + (cp2X - cp1X) * t
-  const q2Y = cp1Y + (cp2Y - cp1Y) * t
-  const q3X = cp2X + (interactiveX - cp2X) * t
-  const q3Y = cp2Y + (interactiveY - cp2Y) * t
-
-  // Step 2: Second level of interpolation
-  const _r1X = q1X + (q2X - q1X) * t
-  const _r1Y = q1Y + (q2Y - q1Y) * t
-  const _r2X = q2X + (q3X - q2X) * t
-  const _r2Y = q2Y + (q3Y - q2Y) * t
-
-  // Step 3: Final point (Matrix-based) - should match our calculated matrixX/Y
-  // First segment control points: vennX/Y, q1X/Y, r1X/Y, matrixX/Y
-  // Second segment control points: matrixX/Y, r2X/Y, q3X/Y, interactiveX/Y
+    (1 - t) ** 3 * vennY + 3 * (1 - t) ** 2 * t * cp1Y + 3 * (1 - t) * t ** 2 * cp2Y + t ** 3 * interactiveY
 
   // Check if animation has been played before
   useEffect(() => {
@@ -88,7 +61,6 @@ const ApproachGraphic = (): JSX.Element => {
     setHasAnimatedBefore(hasPlayed)
     if (hasPlayed) {
       // If already animated, set final states immediately
-      setLineAnimationComplete(true)
       setDotAnimationComplete(true)
     }
   }, [])
@@ -138,8 +110,8 @@ const ApproachGraphic = (): JSX.Element => {
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting && !isInView) {
             setIsInView(true)
             // Only trigger animation if it hasn't been played before
@@ -182,6 +154,7 @@ const ApproachGraphic = (): JSX.Element => {
         preserveAspectRatio="xMidYMid meet"
         style={{ width: '100%', height: '100%' }}
       >
+        <title>Design Strategy Approach Graphic</title>
         <defs>
           {/* Gradient for line from Venn Diagram + Lists to Interactive Set Comparisons - using Project ECHO gradient colors */}
           <linearGradient

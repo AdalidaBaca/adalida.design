@@ -6,11 +6,10 @@ interface PersonaCardProps {
   image: string
   title: string
   subtitle: string
-  imageBelow?: boolean
   className?: string
 }
 
-const PersonaCard = ({ image, title, subtitle, imageBelow = false, className }: PersonaCardProps): JSX.Element => {
+const PersonaCard = ({ image, title, subtitle, className }: PersonaCardProps): JSX.Element => {
   const classNames = ['persona-card', className].filter(Boolean).join(' ')
 
   return (
@@ -34,26 +33,24 @@ const TriangleInsight = (): JSX.Element => {
           image={HybridImage}
           title="NOMAD"
           subtitle="Trains freely, logs as they go"
-          imageBelow={false}
           className="image-below-card"
         />
         <PersonaCard
           image={ProgramGoerImage}
           title="HYBRID"
           subtitle="Workout templates / trains freely"
-          imageBelow={false}
           className="hybrid-card image-below-card"
         />
         <PersonaCard
           image={NomadImage}
           title="PROGRAM"
           subtitle="Trainer / predefined plans"
-          imageBelow={false}
           className="image-below-card"
         />
       </div>
       <div className="persona-brace-container">
         <svg className="brace-svg-horizontal" viewBox="0 -30 1000 30" preserveAspectRatio="none">
+          <title>Brace connecting the personas</title>
           <path
             className="brace-path-horizontal"
             d="M 0 0 C 0 -10, 15 -10, 15 0 h 470 C 500 0, 500 -25, 500 -25 S 500 0, 515 0 h 470 C 1000 0, 1000 -10, 1000 0"

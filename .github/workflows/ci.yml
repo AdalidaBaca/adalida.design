@@ -21,6 +21,8 @@ jobs:
       run: npm run knip
     - name: Biome check
       run: npm run biome
+    - name: ESLint
+      run: npm run lint
     - name: TypeScript type check
       run: npm run tsc
     - name: Run vitest tests

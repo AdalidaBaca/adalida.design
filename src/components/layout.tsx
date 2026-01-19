@@ -1,7 +1,6 @@
 import DarkModeContext from 'dark_mode_context'
 
 import useAnimateOnScroll from 'hooks/use_animate_on_scroll'
-import React from 'react'
 
 import Footer from './footer'
 import Header from './header'

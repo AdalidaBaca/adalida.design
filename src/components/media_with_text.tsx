@@ -1,5 +1,5 @@
 import Image from 'components/image'
-import React, { type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 
 export const makeMediaTag = ({
   media,
@@ -35,33 +35,4 @@ export const makeMediaTag = ({
     return <img alt="" src={media} style={style} />
   }
   throw new Error(`Could not identify type of media ${media}`)
-}
-
-interface Props {
-  media: string
-  text: React.ReactNode
-  reversed?: boolean
-}
-
-const style = { maxHeight: '82vh', borderRadius: '10px', height: '100%', width: '100%' }
-
-const _MediaWithText = ({ media, text, reversed = false }: Props): JSX.Element => {
-  const mediaTag = makeMediaTag({ media, style })
-  const imageTag = (
-    <div key="image" className="media-with-text-image">
-      {mediaTag}
-    </div>
-  )
-  const textTag = (
-    <div key="text" className="media-with-text-text">
-      {text}
-    </div>
-  )
-
-  const flexWrap = reversed ? 'wrap' : 'wrap-reverse'
-  return (
-    <div className="media-with-text" style={{ flexWrap }}>
-      {reversed ? [textTag, imageTag] : [imageTag, textTag]}
-    </div>
-  )
 }

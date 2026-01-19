@@ -15,7 +15,7 @@ const Container = (): JSX.Element => {
 
   return (
     <div className="portfolio-container">
-      {clientProjects.map((project) => (
+      {clientProjects.map(project => (
         <CaseStudyCard key={project.name} project={project} />
       ))}
     </div>

@@ -40,7 +40,7 @@ const useDarkMode = (): [boolean | null, () => void] => {
   }, [darkMode])
 
   const toggleDarkMode = (): void => {
-    setDarkMode((oldDarkMode) => {
+    setDarkMode(oldDarkMode => {
       if (oldDarkMode === null) {
         return null
       }

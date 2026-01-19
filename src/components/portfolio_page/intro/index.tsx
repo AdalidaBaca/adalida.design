@@ -2,7 +2,7 @@ import { IconMapPin } from '@tabler/icons-react'
 import Confetti from 'components/confetti'
 import LoadAnimatedText from 'components/load_animated_text'
 import useIsMobile from 'hooks/use_is_mobile'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const ANIMATION_COMPLETE_KEY = 'portfolio-intro-animation-complete'
 
@@ -43,7 +43,7 @@ const Intro = (): React.ReactElement | null => {
       hasTriggeredConfettiRef.current = true
       sessionStorage.setItem(ANIMATION_COMPLETE_KEY, 'true')
       // Start the text fill animation and confetti at the same time.
-      setAnimationRunKey((k) => k + 1)
+      setAnimationRunKey(k => k + 1)
 
       // Small delay so layout paints before confetti
       setTimeout(() => {
@@ -63,9 +63,6 @@ const Intro = (): React.ReactElement | null => {
   }, [skipIntroAnimation])
 
   const roleText = isMobile ? 'Product\nBuilder' : 'Product Builder'
-  const productText = isMobile ? 'Product\n' : 'Product '
-  const productDelay = 300
-  const _builderDelay = productDelay + productText.length * 80
 
   return (
     <>

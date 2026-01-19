@@ -52,7 +52,7 @@ const GitHubCalendar = (): JSX.Element => {
           return
         }
         const max = data.contributions.reduce((m, d) => Math.max(m, d.count), 0)
-        setDays(data.contributions.map((d) => ({ ...d, level: levelFromCount(d.count, max) })))
+        setDays(data.contributions.map(d => ({ ...d, level: levelFromCount(d.count, max) })))
       } catch (e) {
         if (!alive) {
           return
@@ -101,9 +101,7 @@ const GitHubCalendar = (): JSX.Element => {
         </div>
 
         {error !== null ? (
-          <div className="github-calendar-error" role="status">
-            Couldn’t load contributions ({error}).
-          </div>
+          <output className="github-calendar-error">Couldn’t load contributions ({error}).</output>
         ) : null}
 
         {/* loading state is shown inline in the header count */}
@@ -115,7 +113,7 @@ const GitHubCalendar = (): JSX.Element => {
             aria-label={`${GITHUB_USERNAME} GitHub contributions calendar (last 12 months)`}
             ref={gridRef}
           >
-            {days.map((d) => (
+            {days.map(d => (
               <div
                 key={d.date}
                 role="img"

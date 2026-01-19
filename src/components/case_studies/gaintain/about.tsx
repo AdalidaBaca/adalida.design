@@ -1,7 +1,7 @@
 import BadgeButton from 'components/badge_button'
 
 import AboutHeroImage from 'images/gaintain/Hero Photos/about.png'
-import { type Ref } from 'react'
+import type { Ref } from 'react'
 
 interface Props {
   heroRef: Ref<HTMLDivElement>
