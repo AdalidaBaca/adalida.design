@@ -10,7 +10,6 @@ const ApproachGraphic = (): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [pathLength, setPathLength] = useState<number | null>(null)
-  const [_lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
@@ -66,12 +65,6 @@ const ApproachGraphic = (): JSX.Element => {
   const q3X = cp2X + (interactiveX - cp2X) * t
   const q3Y = cp2Y + (interactiveY - cp2Y) * t
 
-  // Step 2: Second level of interpolation
-  const _r1X = q1X + (q2X - q1X) * t
-  const _r1Y = q1Y + (q2Y - q1Y) * t
-  const _r2X = q2X + (q3X - q2X) * t
-  const _r2Y = q2Y + (q3Y - q2Y) * t
-
   // Step 3: Final point (Matrix-based) - should match our calculated matrixX/Y
   // First segment control points: vennX/Y, q1X/Y, r1X/Y, matrixX/Y
   // Second segment control points: matrixX/Y, r2X/Y, q3X/Y, interactiveX/Y
@@ -82,7 +75,6 @@ const ApproachGraphic = (): JSX.Element => {
     setHasAnimatedBefore(hasPlayed)
     if (hasPlayed) {
       // If already animated, set final states immediately
-      setLineAnimationComplete(true)
       setDotAnimationComplete(true)
     }
   }, [])

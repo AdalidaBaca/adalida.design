@@ -69,11 +69,6 @@ const Header = (): JSX.Element => {
         if (isMobile === true) {
           const caseStudyContainer = document.querySelector('.case-study-container')
           if (caseStudyContainer instanceof HTMLElement) {
-            // Get container bounds relative to document
-            const containerTop = caseStudyContainer.offsetTop
-            const containerHeight = caseStudyContainer.offsetHeight
-            const _containerBottom = containerTop + containerHeight
-
             // Calculate total scrollable distance for the case study
             const documentHeight = document.documentElement.scrollHeight
             const viewportHeight = window.innerHeight

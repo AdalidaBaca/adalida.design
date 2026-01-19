@@ -18,6 +18,15 @@ export default tseslint.config({
     'validate-jsx-nesting': fixupPluginRules(validateJsxNesting)
   },
   rules: {
-    'validate-jsx-nesting/no-invalid-jsx-nesting': 'error'
+    'validate-jsx-nesting/no-invalid-jsx-nesting': 'error',
+          'no-unused-vars': ['error', { 
+        "vars": "all", 
+        "args": "after-used", 
+        "ignoreRestSiblings": false, 
+        "varsIgnorePattern": "^[^_]",
+        "argsIgnorePattern": "^[^_]",
+        "caughtErrorsIgnorePattern": "^[^_]",
+        "destructuredArrayIgnorePattern": "^[^_]" 
+      }],
   }
 })

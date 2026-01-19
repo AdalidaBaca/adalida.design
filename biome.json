@@ -26,8 +26,15 @@
       "correctness": {
         "noVoidElementsWithChildren": "error",
         "noUnusedImports": "error",
-        "noUnusedVariables": "error",
-        "useExhaustiveDependencies": "warn"
+        "useExhaustiveDependencies": "warn",
+        "noUnusedVariables": {
+          "level": "error",
+          "fix": "none"
+        },
+        "noUnusedFunctionParameters": {
+          "level": "error",
+          "fix": "none"
+        }
       },
       "style": {
         "useBlockStatements": "off",

@@ -1,7 +1,6 @@
 import BadgeButton from 'components/badge_button'
 
 import ProjectEchoImage from 'images/works/project_echo.webp'
-import { Projects } from 'projects'
 import type { Ref } from 'react'
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
-  const _backgroundImage = Projects.ProjectEcho.colors.primary
   return (
     <>
       <div data-aos="fade-up" className="project-echo-hero" ref={heroRef}>

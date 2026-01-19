@@ -16,7 +16,6 @@ const AccountabilityLevers = (): JSX.Element => {
   const bottomPadding = isMobile ? 12 : 16
 
   // Calculate lever positions (4 levers stacked vertically)
-  const _scaleWidth = isMobile ? 20 : 25
   const availableHeight = isMobile ? 380 : 480 // Fixed height for column
   const totalLeverHeight = leverHeight * 4
   const totalGap = availableHeight - totalLeverHeight - topPadding - bottomPadding - (isMobile ? 30 : 40) // Reserve space for scale labels
@@ -34,15 +33,12 @@ const AccountabilityLevers = (): JSX.Element => {
   const badgeToAxisGap = isMobile ? 56 : 80 // Space between badge and axis (further increased to move badges more left)
   const badgeWidth = isMobile ? 36 : 44 // Consistent badge width for all (increased for more inner padding)
   const badgeX = scaleX - badgeToAxisGap - badgeWidth / 2 // Badge center position
-  const _labelToBadgeGap = isMobile ? 40 : 60 // Space between label and badge (further increased for better spacing)
   const iconX = -(isMobile ? 20 : 28) + iconSize / 2 // Icons positioned to align with text content left edge (card corners, titles)
   const iconToLabelGap = isMobile ? 18 : 26 // Reduced mobile spacing between icon and label
   const labelX = iconX + iconSize / 2 + iconToLabelGap
 
   // Colors - Apple-style subtle
   const textColor = darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'
-  const _secondaryColor = darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)'
-  const _lineColor = darkMode ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.35)'
   const arrowColor = darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)'
 
   return (

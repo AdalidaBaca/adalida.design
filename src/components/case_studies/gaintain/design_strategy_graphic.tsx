@@ -10,7 +10,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const [pathLength, setPathLength] = useState<number | null>(null)
-  const [_lineAnimationComplete, setLineAnimationComplete] = useState(false)
   const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
   const [isInView, setIsInView] = useState(false)
   const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
@@ -51,10 +50,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   // Calculate GainTain position at t=0.5 on the cubic bezier curve
   // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
   const t = 0.5
-  const _gaintainX =
-    (1 - t) ** 3 * aiFitnessX + 3 * (1 - t) ** 2 * t * cp1X + 3 * (1 - t) * t ** 2 * cp2X + t ** 3 * humanX
-  const _gaintainY =
-    (1 - t) ** 3 * aiFitnessY + 3 * (1 - t) ** 2 * t * cp1Y + 3 * (1 - t) * t ** 2 * cp2Y + t ** 3 * humanY
 
   // Use De Casteljau's algorithm to split the curve at t=0.5
   // This gives us two cubic bezier curves that connect perfectly at GainTain
@@ -66,12 +61,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const q3X = cp2X + (humanX - cp2X) * t
   const q3Y = cp2Y + (humanY - cp2Y) * t
 
-  // Step 2: Second level of interpolation
-  const _r1X = q1X + (q2X - q1X) * t
-  const _r1Y = q1Y + (q2Y - q1Y) * t
-  const _r2X = q2X + (q3X - q2X) * t
-  const _r2Y = q2Y + (q3Y - q2Y) * t
-
   // Step 3: Final point (GainTain) - should match our calculated gaintainX/Y
   // First segment control points: aiFitnessX/Y, q1X/Y, r1X/Y, gaintainX/Y
   // Second segment control points: gaintainX/Y, r2X/Y, q3X/Y, humanX/Y
@@ -82,7 +71,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
     setHasAnimatedBefore(hasPlayed)
     if (hasPlayed) {
       // If already animated, set final states immediately
-      setLineAnimationComplete(true)
       setDotAnimationComplete(true)
     }
   }, [])

@@ -63,9 +63,6 @@ const Intro = (): React.ReactElement | null => {
   }, [skipIntroAnimation])
 
   const roleText = isMobile ? 'Product\nBuilder' : 'Product Builder'
-  const productText = isMobile ? 'Product\n' : 'Product '
-  const productDelay = 300
-  const _builderDelay = productDelay + productText.length * 80
 
   return (
     <>
