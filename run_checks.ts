@@ -1,33 +1,25 @@
 import { spawn } from 'node:child_process'
 import { exit } from 'node:process'
 
-const _green = (text: string) => `\x1b[32m${text}\x1b[0m`
-const _red = (text: string) => `\x1b[31m${text}\x1b[0m`
-const _blue = (text: string) => `\x1b[34m${text}\x1b[0m`
-
 const mode = process.argv[2] === 'fix' ? 'fix' : 'check'
 
-/**
- * Axioms: Local binaries only.
- * npm run verify ensures node_modules/.bin is in the PATH.
- */
 const commands = {
   check: [
     { name: 'Parsimony (Knip)', cmd: 'knip' },
     { name: 'Grammar (Biome)', cmd: 'biome check .' },
-    { name: 'Structure (ESLint)', cmd: 'eslint "src/**/*.{ts,tsx}"' },
+    { name: 'Structure (ESLint)', cmd: 'eslint' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}"' },
+    { name: 'Style (StyleLint)', cmd: 'stylelin' },
     { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
     { name: 'Pruning (Knip)', cmd: 'knip --fix' },
     { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
-    { name: 'Structure (ESLint)', cmd: 'eslint "src/**/*.{ts,tsx}" --fix' },
+    { name: 'Structure (ESLint)', cmd: 'eslint --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}" --fix' },
+    { name: 'Style (StyleLint)', cmd: 'stylelint --fix' },
     { name: 'Build', cmd: 'npm run build' }
   ]
 }

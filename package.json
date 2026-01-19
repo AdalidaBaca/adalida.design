@@ -71,7 +71,7 @@
     "test": "vitest run",
     "tsc": "tsc",
     "biome": "biome check",
-    "lint": "eslint --ext .ts,.tsx src",
+    "lint": "eslint",
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "knip": "knip"
   },
