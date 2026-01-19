@@ -36,8 +36,7 @@ const Resources = (): JSX.Element => {
               </div>
             </div>
             <div className="caption-1">
-              I write at the intersection of design, philosophy, and technology. Writing is how I clarify ideas before
-              they turn into product decisions. Some pieces explore history and place, including my roots in New Mexico.
+              I write at the intersection of design, philosophy, and technology. Some pieces explore history and place, including my roots in New Mexico.
             </div>
           </div>
           <div className="resource-cta">
@@ -74,7 +73,7 @@ const Resources = (): JSX.Element => {
             </div>
             <div className="caption-1">
               I design templates and documents to structure thinking, planning, and execution. These are tools I use to
-              support product, research, and operational work. Each template is designed to be practical and reusable.
+              support product, research, and operational work.
             </div>
           </div>
           <div className="resource-cta">

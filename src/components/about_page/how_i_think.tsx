@@ -17,7 +17,6 @@ const HowIThink = (): JSX.Element => {
     () => [
       'I make the logic of a system explicit. How information is structured determines how it is interpreted, what actions people take, and where things break down.',
       'Before designing, I look at the data that already exists and the constraints that shape the work: what is available, what is missing, what can realistically be captured, and what decisions the system needs to support. Budget, technical complexity, team skill level, and time horizon all matter.',
-      'I break problems into roles, actions, and conditions, then design around decision points and edge cases so systems reduce ambiguity, support clearer decisions, and hold up as they evolve over time.'
     ],
     []
   )
