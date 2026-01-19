@@ -4,16 +4,8 @@ import Section from './section'
 
 const Resources = (): JSX.Element => {
   const writingUrl = 'https://adalida.substack.com/?utm_source=site&utm_medium=resources&utm_campaign=writing_primary'
-  const highlightsUrl = '/experiments'
   const templatesUrl = 'https://www.notion.com/@adalidabaca'
   const figmaUrl = 'https://www.figma.com/@adalida'
-
-  const handleKeyActivate = (event: React.KeyboardEvent, href: string): void => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      window.location.assign(href)
-    }
-  }
 
   return (
     <Section title="Resources">

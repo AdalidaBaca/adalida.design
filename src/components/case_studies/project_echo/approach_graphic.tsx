@@ -55,20 +55,6 @@ const ApproachGraphic = (): JSX.Element => {
   const matrixY =
     (1 - t) ** 3 * vennY + 3 * (1 - t) ** 2 * t * cp1Y + 3 * (1 - t) * t ** 2 * cp2Y + t ** 3 * interactiveY
 
-  // Use De Casteljau's algorithm to split the curve at t=0.3
-  // This gives us two cubic bezier curves that connect perfectly at Matrix-based
-  // Step 1: First level of interpolation
-  const q1X = vennX + (cp1X - vennX) * t
-  const q1Y = vennY + (cp1Y - vennY) * t
-  const q2X = cp1X + (cp2X - cp1X) * t
-  const q2Y = cp1Y + (cp2Y - cp1Y) * t
-  const q3X = cp2X + (interactiveX - cp2X) * t
-  const q3Y = cp2Y + (interactiveY - cp2Y) * t
-
-  // Step 3: Final point (Matrix-based) - should match our calculated matrixX/Y
-  // First segment control points: vennX/Y, q1X/Y, r1X/Y, matrixX/Y
-  // Second segment control points: matrixX/Y, r2X/Y, q3X/Y, interactiveX/Y
-
   // Check if animation has been played before
   useEffect(() => {
     const hasPlayed = localStorage.getItem('project-echo-approach-graphic-animated') === 'true'

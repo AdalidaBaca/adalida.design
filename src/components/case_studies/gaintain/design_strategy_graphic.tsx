@@ -47,24 +47,6 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const cp2X = humanX // Same X as Human Coach - creates horizontal approach (asymptote)
   const cp2Y = humanY // Same Y as Human Coach - ensures line ends exactly at center of point
 
-  // Calculate GainTain position at t=0.5 on the cubic bezier curve
-  // For cubic bezier: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
-  const t = 0.5
-
-  // Use De Casteljau's algorithm to split the curve at t=0.5
-  // This gives us two cubic bezier curves that connect perfectly at GainTain
-  // Step 1: First level of interpolation
-  const q1X = aiFitnessX + (cp1X - aiFitnessX) * t
-  const q1Y = aiFitnessY + (cp1Y - aiFitnessY) * t
-  const q2X = cp1X + (cp2X - cp1X) * t
-  const q2Y = cp1Y + (cp2Y - cp1Y) * t
-  const q3X = cp2X + (humanX - cp2X) * t
-  const q3Y = cp2Y + (humanY - cp2Y) * t
-
-  // Step 3: Final point (GainTain) - should match our calculated gaintainX/Y
-  // First segment control points: aiFitnessX/Y, q1X/Y, r1X/Y, gaintainX/Y
-  // Second segment control points: gaintainX/Y, r2X/Y, q3X/Y, humanX/Y
-
   // Check if animation has been played before
   useEffect(() => {
     const hasPlayed = localStorage.getItem('gaintain-design-strategy-animated') === 'true'
