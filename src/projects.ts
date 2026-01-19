@@ -27,11 +27,11 @@ export interface Project {
 export const Projects: Record<string, Project> = {
   Gaintain: {
     name: 'GainTain',
-    category: 'AI Fitness Personalization',
+    category: 'Fitness Accountability App',
     description:
       'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
-    badges: ['Founder', 'Product', 'Research'],
+    badges: ['Founder', 'Product', 'Iteration'],
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'
@@ -155,8 +155,8 @@ export const Projects: Record<string, Project> = {
   },
   ProjectEcho: {
     name: 'Project ECHO',
-    category: 'Data Visualization',
-    badges: ['Data Visualization', 'Documentation', 'Power BI'],
+    category: 'Data Visualization Tool',
+    badges: ['Data ', 'Patterns', 'Interpretation''],
     description:
       'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,
