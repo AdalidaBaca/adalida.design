@@ -16,7 +16,7 @@ const HowIThink = (): JSX.Element => {
   const texts = useMemo(
     () => [
       'I make the logic of a system explicit. How information is structured determines how it is interpreted, what actions people take, and where things break down.',
-      'Before designing, I look at the data that already exists and the constraints that shape the work: what is available, what is missing, what can realistically be captured, and what decisions the system needs to support. Budget, technical complexity, team skill level, and time horizon all matter.',
+      'Before designing, I look at the data that already exists and the constraints that shape the work: what is available, what is missing, what can realistically be captured, and what decisions the system needs to support. Budget, technical complexity, team skill level, and time horizon all matter.'
     ],
     []
   )

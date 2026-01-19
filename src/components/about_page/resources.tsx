@@ -36,7 +36,8 @@ const Resources = (): JSX.Element => {
               </div>
             </div>
             <div className="caption-1">
-              I write at the intersection of design, philosophy, and technology. Some pieces explore history and place, including my roots in New Mexico.
+              I write at the intersection of design, philosophy, and technology. Some pieces explore history and place,
+              including my roots in New Mexico.
             </div>
           </div>
           <div className="resource-cta">
