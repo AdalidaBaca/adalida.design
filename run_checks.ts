@@ -10,7 +10,7 @@ const commands = {
     { name: 'Structure (ESLint)', cmd: 'eslint' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelin' },
+    { name: 'Style (StyleLint)', cmd: 'stylelint "src/**/*.{css,scss}"' },
     { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
@@ -19,7 +19,7 @@ const commands = {
     { name: 'Structure (ESLint)', cmd: 'eslint --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },
     { name: 'Proofs (Vitest)', cmd: 'vitest run' },
-    { name: 'Style (StyleLint)', cmd: 'stylelint --fix' },
+    { name: 'Style (StyleLint)', cmd: 'stylelint --fix "src/**/*.{css,scss}"' },
     { name: 'Build', cmd: 'npm run build' }
   ]
 }

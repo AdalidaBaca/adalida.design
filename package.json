@@ -72,7 +72,7 @@
     "tsc": "tsc",
     "biome": "biome check",
     "lint": "eslint",
-    "stylelint": "stylelint \"src/**/*.{css,scss}\"",
+    "stylelint": "stylelint \"**/*.{css,scss}\"",
     "knip": "knip"
   },
   "repository": {
