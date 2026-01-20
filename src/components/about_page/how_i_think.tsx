@@ -31,30 +31,16 @@ const HowIThink = (): JSX.Element => {
   return (
     <Section title="My Process">
       <div className="how-i-think" ref={sectionRef}>
-        <p>
-          <ScrollAnimatedText
-            text={texts[0]}
-            targetRef={sectionRef}
-            startIndex={startIndices[0]}
-            totalLetters={totalLetters}
-          />
-        </p>
-        <p>
-          <ScrollAnimatedText
-            text={texts[1]}
-            targetRef={sectionRef}
-            startIndex={startIndices[1]}
-            totalLetters={totalLetters}
-          />
-        </p>
-        <p>
-          <ScrollAnimatedText
-            text={texts[2]}
-            targetRef={sectionRef}
-            startIndex={startIndices[2]}
-            totalLetters={totalLetters}
-          />
-        </p>
+        {texts.map((text, index) => (
+          <p key={text}>
+            <ScrollAnimatedText
+              text={text}
+              targetRef={sectionRef}
+              startIndex={startIndices[index]}
+              totalLetters={totalLetters}
+            />
+          </p>
+        ))}
         <div className="how-i-think-cta">
           <BadgeButton to={resumeUrl}>VIEW RESUME</BadgeButton>
         </div>

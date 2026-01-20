@@ -124,6 +124,7 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
         // Look for the main site footer - it has class "footer" and contains "Clients"
         const footer = document.querySelector('.footer')
         let shouldHide = false
+        const lastLinkEntry = orderedLinks[orderedLinks.length - 1]
 
         if (footer?.textContent?.includes('Clients')) {
           const footerRect = footer.getBoundingClientRect()
@@ -131,10 +132,11 @@ const TableOfContents = ({ links }: Props): JSX.Element => {
           // footerRect.top is relative to viewport: negative = above, 0 = at top, > viewportHeight = below
           // Hide when footer top is within or above viewport
           shouldHide = footerRect.top < viewportHeight
-        } else {
+        } else if (lastLinkEntry) {
           // Fallback: hide when last section is scrolled past
-          if (activeLink === orderedLinks[orderedLinks.length - 1][0]) {
-            const lastElement = orderedLinks[orderedLinks.length - 1][1].current
+          const [lastLink, lastLinkRef] = lastLinkEntry
+          if (activeLink === lastLink) {
+            const lastElement = lastLinkRef.current
             if (lastElement !== null) {
               const rect = lastElement.getBoundingClientRect()
               const bottomOfLastElement = rect.bottom + scrollY

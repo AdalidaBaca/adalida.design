@@ -24,7 +24,7 @@ export interface Project {
   }
 }
 
-export const Projects: Record<string, Project> = {
+export const Projects = {
   Gaintain: {
     name: 'GainTain',
     category: 'Fitness Accountability App',
@@ -281,4 +281,4 @@ export const Projects: Record<string, Project> = {
       primary: '#EC4899'
     }
   }
-}
+} as const satisfies Record<string, Project>

@@ -2,18 +2,12 @@ import SectionHeading from 'components/section_heading'
 import { graphql, useStaticQuery } from 'gatsby'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import { titleCase } from 'utils'
+
 interface Tool {
   label: string
   src: string
 }
-
-const titleCase = (s: string): string =>
-  s
-    .replace(/[-_]+/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .map(w => (w.length === 0 ? '' : w[0].toUpperCase() + w.slice(1)))
-    .join(' ')
 
 const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   const [broken, setBroken] = useState(false)
