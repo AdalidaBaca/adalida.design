@@ -129,8 +129,8 @@ export const Projects = {
       'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SunbeltImage,
     link: {
-      text: 'Visit Website',
-      url: 'https://www.invibeesthetics.com'
+      text: 'Read Case Study',
+      url: '/case_studies/invibe_esthetics'
     },
     colors: {
       cover: '#965738',

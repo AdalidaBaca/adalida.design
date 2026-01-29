@@ -6,21 +6,23 @@
   width: 100%;
   max-width: min(1200px, 100%);
   margin: 0 auto;
-  margin-top: 0; /* Ensure no top margin - container gap handles spacing */
-  margin-bottom: 0; /* Ensure no bottom margin - container gap handles spacing */
+  margin-top: 0;
+  /* Ensure no top margin - container gap handles spacing */
+  margin-bottom: 0;
+  /* Ensure no bottom margin - container gap handles spacing */
   gap: 1.5em;
   padding: 1.5em 0.5em 0;
   padding-top: calc(56px + 1em);
   box-sizing: border-box;
   position: relative;
-  
-  @media (width <= 768px) {
+
+  @media (width <=768px) {
     margin-top: 0;
     margin-bottom: 0;
     padding-top: calc(56px + 0.75em);
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     gap: 1.5em;
     padding: 2em 0.5em 0;
     padding-top: calc(56px + 1.5em);
@@ -28,7 +30,7 @@
     margin-bottom: 0;
   }
 
-  > .gaintain-download-strip {
+  >.gaintain-download-strip {
     margin: 0;
     margin-top: 3em;
     width: 100%;
@@ -37,12 +39,12 @@
     margin-right: auto;
     padding: 0 0.5em;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       margin-top: 2em;
     }
   }
 
-  > .intro-videos {
+  >.intro-videos {
     max-width: 100%;
     max-height: 75svh;
     position: relative;
@@ -62,7 +64,7 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgb(230 92 0 / 18%);
     box-shadow: 0 4px 16px -8px rgb(0 0 0 / 10%);
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -74,21 +76,21 @@
       z-index: 0;
     }
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       max-width: 100%;
       height: 550px;
       max-height: 65svh;
       border-radius: 1.25em;
     }
 
-    @media (width <= 511px) {
+    @media (width <=511px) {
       height: 450px;
       max-height: 55svh;
       aspect-ratio: 1;
       border-radius: 1em;
     }
 
-    > video {
+    >video {
       position: absolute;
       top: 0;
       left: 0;
@@ -100,17 +102,17 @@
       filter: drop-shadow(0 20px 60px rgb(230 92 0 / 15%)) drop-shadow(0 8px 24px rgb(230 92 0 / 10%));
       transition: filter 0.3s ease;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         border-radius: 1.25em;
       }
 
-      @media (width <= 511px) {
+      @media (width <=511px) {
         border-radius: 1em;
       }
     }
 
     // When the GainTain hero is an image (to match case study cover)
-    > img.gaintain-hero-image {
+    >img.gaintain-hero-image {
       position: absolute;
       top: 0;
       left: 0;
@@ -129,18 +131,18 @@
     }
   }
 
-.dark .gaintain-hero > .intro-videos {
-  /* Match GainTain’s portfolio card gradient fill (dark mode) */
-  background: linear-gradient(45deg, #E65C00, #F9D423);
-  border-color: rgb(230 92 0 / 18%);
+  .dark .gaintain-hero>.intro-videos {
+    /* Match GainTain’s portfolio card gradient fill (dark mode) */
+    background: linear-gradient(45deg, #E65C00, #F9D423);
+    border-color: rgb(230 92 0 / 18%);
 
-  &::after {
-    background: linear-gradient(135deg, rgb(230 92 0 / 20%) 0%, rgb(249 212 35 / 14%) 100%);
-    opacity: 0;
+    &::after {
+      background: linear-gradient(135deg, rgb(230 92 0 / 20%) 0%, rgb(249 212 35 / 14%) 100%);
+      opacity: 0;
+    }
   }
-}
 
-  > img {
+  >img {
     max-width: 100%;
     max-height: 70svh;
   }
@@ -159,31 +161,33 @@
   position: relative;
   margin-bottom: 3em;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 2em 0.5em;
     margin-bottom: 8em;
   }
 
-  > .gaintain-image-container {
+  >.gaintain-image-container {
     height: 700px;
     max-height: 75svh;
     width: 100%;
     aspect-ratio: 1;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       height: 650px;
       max-height: 70svh;
-      aspect-ratio: 3 / 4; /* Taller than wide on mobile */
+      aspect-ratio: 3 / 4;
+      /* Taller than wide on mobile */
     }
 
-    @media (width <= 511px) {
+    @media (width <=511px) {
       height: 600px;
       max-height: 65svh;
-      aspect-ratio: 3 / 4; /* Taller than wide on mobile */
+      aspect-ratio: 3 / 4;
+      /* Taller than wide on mobile */
     }
   }
 
-  > img {
+  >img {
     max-width: 100%;
     height: 700px;
     max-height: 75svh;
@@ -193,13 +197,13 @@
     border-radius: 1.5em;
     box-shadow: 0 4px 16px -8px rgb(0 0 0 / 10%);
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       height: 550px;
       max-height: 65svh;
       border-radius: 1.25em;
     }
 
-    @media (width <= 511px) {
+    @media (width <=511px) {
       height: 450px;
       max-height: 55svh;
       border-radius: 1em;
@@ -209,42 +213,56 @@
 
 /* Override case-study-top-to-bottom aspect-ratio for problem diagram container on mobile only */
 .case-study-top-to-bottom {
-  > .gaintain-image-container {
-    overflow: visible !important; /* Override overflow: hidden for Problem section */
-    width: 100% !important; /* Ensure full width */
-    max-width: 100% !important; /* Ensure no max-width constraint */
-    aspect-ratio: unset !important; /* Remove aspect-ratio constraint for persona graphic */
-    height: auto !important; /* Let persona graphic determine height */
-    padding: 0 0.75em 0.75em !important; /* Maintain padding for problem graphic */
-    background: transparent !important; /* Remove gradient fill */
-    backdrop-filter: none !important; /* Remove backdrop filter */
-    border: none !important; /* Remove border */
-    box-shadow: none !important; /* Remove box shadow */
+  >.gaintain-image-container {
+    overflow: visible !important;
+    /* Override overflow: hidden for Problem section */
+    width: 100% !important;
+    /* Ensure full width */
+    max-width: 100% !important;
+    /* Ensure no max-width constraint */
+    aspect-ratio: unset !important;
+    /* Remove aspect-ratio constraint for persona graphic */
+    height: auto !important;
+    /* Let persona graphic determine height */
+    padding: 0 0.75em 0.75em !important;
+    /* Maintain padding for problem graphic */
+    background: transparent !important;
+    /* Remove gradient fill */
+    backdrop-filter: none !important;
+    /* Remove backdrop filter */
+    border: none !important;
+    /* Remove border */
+    box-shadow: none !important;
+    /* Remove box shadow */
 
     .design-strategy-graphic-container {
-      padding: 0; /* Already handled in design-strategy-graphic-container */
+      padding: 0;
+      /* Already handled in design-strategy-graphic-container */
     }
 
     .persona-cards-container {
       overflow: visible;
-      height: auto !important; /* Let persona graphic determine its own height */
+      height: auto !important;
+      /* Let persona graphic determine its own height */
     }
 
 
     /* Desktop styles remain unchanged - index.scss handles this */
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       height: 325px !important;
       max-height: 35svh !important;
       min-height: 325px;
-      aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
+      aspect-ratio: unset !important;
+      /* Remove aspect-ratio on mobile to allow height to control */
     }
 
-    @media (width <= 511px) {
+    @media (width <=511px) {
       height: 300px !important;
       max-height: 32.5svh !important;
       min-height: 300px;
-      aspect-ratio: unset !important; /* Remove aspect-ratio on mobile to allow height to control */
+      aspect-ratio: unset !important;
+      /* Remove aspect-ratio on mobile to allow height to control */
     }
   }
 
@@ -252,71 +270,86 @@
   &:has(.gaintain-implementation-images-row) {
     gap: 0.75em;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       gap: 1em;
     }
   }
-  
+
   /* Reduce gap for problem section with persona graphic */
   &:has(.gaintain-image-container .persona-cards-container) {
-    gap: 1em; /* Minimize gap between graphic and text */
-    
-    @media (width >= $case-study-breakpoint) {
-      gap: 1.25em; /* Slightly more gap on desktop but still minimized */
+    gap: 1em;
+    /* Minimize gap between graphic and text */
+
+    @media (width >=$case-study-breakpoint) {
+      gap: 1.25em;
+      /* Slightly more gap on desktop but still minimized */
     }
   }
-  
+
   /* Reduce track image height in design strategy section */
-  > .gaintain-image-container.gaintain-design-strategy-track {
-    aspect-ratio: 8 / 1 !important; /* Very tall aspect ratio = very small height */
-    height: 100px !important; /* Fixed very small height */
+  >.gaintain-image-container.gaintain-design-strategy-track {
+    aspect-ratio: 8 / 1 !important;
+    /* Very tall aspect ratio = very small height */
+    height: 100px !important;
+    /* Fixed very small height */
     max-height: 100px !important;
     min-height: 100px !important;
-    overflow: hidden !important; /* Crop if needed */
-    
-    @media (width <= 768px) {
-      height: 100px !important; /* Override mobile height rule */
+    overflow: hidden !important;
+    /* Crop if needed */
+
+    @media (width <=768px) {
+      height: 100px !important;
+      /* Override mobile height rule */
       max-height: 100px !important;
       min-height: 100px !important;
       aspect-ratio: 8 / 1 !important;
     }
-    
-    @media (width <= 511px) {
-      height: 100px !important; /* Override small mobile height rule */
+
+    @media (width <=511px) {
+      height: 100px !important;
+      /* Override small mobile height rule */
       max-height: 100px !important;
       min-height: 100px !important;
       aspect-ratio: 8 / 1 !important;
     }
-    
-    @media (width >= $case-study-breakpoint) {
-      aspect-ratio: 10 / 1 !important; /* Even taller on desktop */
-      height: 90px !important; /* Fixed very small height on desktop */
+
+    @media (width >=$case-study-breakpoint) {
+      aspect-ratio: 10 / 1 !important;
+      /* Even taller on desktop */
+      height: 90px !important;
+      /* Fixed very small height on desktop */
       max-height: 90px !important;
       min-height: 90px !important;
     }
-    
+
     img {
-      object-fit: cover !important; /* Fill container, crop if needed */
+      object-fit: cover !important;
+      /* Fill container, crop if needed */
       width: 100% !important;
       height: 100% !important;
-      object-position: center; /* Center the crop */
+      object-position: center;
+      /* Center the crop */
     }
   }
-  
+
   /* Remove padding for design strategy section like key insights */
   &.gaintain-design-strategy {
     padding: 0 0.5em !important;
-    margin-top: 0; /* Let container gap handle spacing */
+    margin-top: 0;
+    /* Let container gap handle spacing */
     margin-bottom: 0;
-    gap: 2em; /* Match problem section gap */
-    
-    @media (width >= $case-study-breakpoint) {
+    gap: 2em;
+    /* Match problem section gap */
+
+    @media (width >=$case-study-breakpoint) {
       padding: 0 0.5em !important;
-      margin-top: 0; /* Let container gap handle spacing */
-      gap: 2em; /* Match problem section gap */
+      margin-top: 0;
+      /* Let container gap handle spacing */
+      gap: 2em;
+      /* Match problem section gap */
     }
-    
-    > .gaintain-image-container {
+
+    >.gaintain-image-container {
       aspect-ratio: unset !important;
       margin: 0 !important;
       margin-top: 0 !important;
@@ -330,21 +363,21 @@
       max-height: none !important;
       display: flex !important;
       align-items: flex-start !important;
-      
-      @media (width <= 768px) {
+
+      @media (width <=768px) {
         width: 100% !important;
       }
-      
-      @media (width >= $case-study-breakpoint) {
+
+      @media (width >=$case-study-breakpoint) {
         width: 100%;
-        
+
         // Allow implementation image to grow to match text height
         &.gaintain-implementation-image {
           aspect-ratio: unset !important;
           height: 100%;
         }
       }
-      
+
       // Make accountability levers container determine height
       .accountability-levers-container {
         width: 100%;
@@ -360,11 +393,14 @@
 .gaintain-details {
   width: 100%;
   max-width: 100%;
-  padding: 0; /* Remove all padding to minimize gap */
-  margin: 0; /* Remove all margins - let container gap handle spacing */
-  
-  @media (width <= 768px) {
-    margin: 0; /* Remove all margins */
+  padding: 0;
+  /* Remove all padding to minimize gap */
+  margin: 0;
+  /* Remove all margins - let container gap handle spacing */
+
+  @media (width <=768px) {
+    margin: 0;
+    /* Remove all margins */
   }
 
   padding-top: 0;
@@ -379,13 +415,13 @@
   gap: 0;
   position: relative;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     gap: 0;
     padding: 0;
   }
 
 
-  > .gaintain-details-container {
+  >.gaintain-details-container {
     width: 100%;
     max-width: min(1200px, 100%);
     margin: 0 auto;
@@ -411,7 +447,9 @@
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
 
@@ -424,14 +462,16 @@
   width: 100%;
   max-width: min(1200px, 100%);
   margin: 0 auto;
-  margin-top: 0; /* No negative margin needed - container gap handles spacing */
+  margin-top: 0;
+  /* No negative margin needed - container gap handles spacing */
   padding: 0 0.5em;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
-  
-  @media (width <= 768px) {
-    margin-top: 0; /* No negative margin needed */
+
+  @media (width <=768px) {
+    margin-top: 0;
+    /* No negative margin needed */
   }
 }
 
@@ -445,12 +485,12 @@
   border: 1px solid rgb(230 92 0 / 15%);
   border-radius: 16px;
   padding: 1.25em 1.5em;
-  box-shadow: 
+  box-shadow:
     0 4px 16px -8px rgb(230 92 0 / 15%),
     0 2px 8px -4px rgb(230 92 0 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     flex-direction: row;
     padding: 1.5em 2em;
   }
@@ -458,7 +498,7 @@
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 
+      box-shadow:
         0 8px 24px -12px rgb(230 92 0 / 20%),
         0 4px 12px -6px rgb(230 92 0 / 15%);
     }
@@ -484,29 +524,29 @@
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   letter-spacing: -0.02em;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     text-align: left;
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
   }
 }
 
 .dark .gaintain-download-content {
   background: linear-gradient(135deg, rgb(230 92 0 / 12%) 0%, rgb(249 212 35 / 8%) 100%);
   border-color: rgb(230 92 0 / 20%);
-  box-shadow: 
+  box-shadow:
     0 6px 20px -8px rgb(230 92 0 / 20%),
     0 2px 8px -4px rgb(230 92 0 / 15%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      box-shadow: 
+      box-shadow:
         0 10px 28px -12px rgb(230 92 0 / 25%),
         0 4px 12px -6px rgb(230 92 0 / 20%);
     }
   }
 }
 
-.dark .gaintain-key-takeaways > .gaintain-image-container {
+.dark .gaintain-key-takeaways>.gaintain-image-container {
   background: linear-gradient(45deg, #E65C00, #F9D423);
   border-color: rgb(230 92 0 / 20%);
 
@@ -541,7 +581,7 @@
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%), 0 4px 16px rgb(0 0 0 / 6%);
   transition: all 0.3s ease;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 2.5em 2em;
     gap: 1.25em;
   }
@@ -593,7 +633,7 @@
   box-sizing: border-box;
 
   /* Tablet and desktop: 2-column layout */
-  @media (width >= 768px) {
+  @media (width >=768px) {
     flex-direction: row;
     gap: 2em;
     align-items: stretch;
@@ -608,9 +648,10 @@
   min-width: 0;
   width: 100%;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     min-width: 0;
-    max-width: calc(100% - 320px); /* Account for sidebar + gap */
+    max-width: calc(100% - 320px);
+    /* Account for sidebar + gap */
     align-self: stretch;
   }
 }
@@ -623,7 +664,7 @@
   min-width: 0;
   width: 100%;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     flex: 0 0 300px;
     width: 300px;
     max-width: 300px;
@@ -654,14 +695,14 @@
   gap: 1em;
   padding: 1.25em;
   border-radius: 0.75em;
-  
+
   /* Style ToolsCarousel when inside card */
-  > .tools-carousel {
+  >.tools-carousel {
     margin: 0 !important;
     margin-top: 0.5em !important;
     padding: 0 !important;
   }
-  
+
   /* Remove background for Competitors card but keep padding to align with other sections */
   &.gaintain-competitors-card {
     background: transparent !important;
@@ -669,8 +710,8 @@
     border: none !important;
     box-shadow: none !important;
     padding: 1.25em !important;
-    
-    @media (width >= 768px) {
+
+    @media (width >=768px) {
       padding: 2em !important;
     }
   }
@@ -682,7 +723,7 @@
   width: 100%;
   box-sizing: border-box;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     gap: 1.5em;
     padding: 2em;
   }
@@ -693,18 +734,18 @@
     transform: translateY(-2px);
   }
 
-  > .body-2 {
+  >.body-2 {
     margin: 0;
     line-height: 1.7;
     font-size: 1.05em;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       line-height: 1.8;
       font-size: 1.1em;
     }
   }
 
-  > .section-heading-container {
+  >.section-heading-container {
     margin: 0 0 0.75em;
   }
 }
@@ -724,7 +765,7 @@
   min-width: 0;
   flex: 1 1 0;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 1.75em;
     justify-content: space-between;
     gap: 0;
@@ -743,17 +784,17 @@
   flex-direction: column;
   gap: 1.5em;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     flex-direction: row;
     gap: 2em;
     justify-content: space-between;
   }
 
-  > .gaintain-details-meta-item {
+  >.gaintain-details-meta-item {
     flex: 1;
     padding: 0.25em 0;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       padding: 0.5em 0;
     }
   }
@@ -852,7 +893,7 @@
   background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
   border: none !important;
   backdrop-filter: saturate(180%) blur(20px) !important;
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgb(230 92 0 / 20%),
     0 1px 2px rgb(230 92 0 / 10%);
   padding: 0.6em 1.2em !important;
@@ -863,14 +904,14 @@
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   font-weight: 500 !important;
   letter-spacing: 0.01em !important;
-  
-  @media (width >= 768px) {
+
+  @media (width >=768px) {
     padding: 0.6em 1.2em !important;
     font-size: 0.875rem !important;
     min-height: auto !important;
     min-width: auto !important;
   }
-  
+
   a {
     color: rgb(255 255 255 / 98%) !important;
     font-weight: 600 !important;
@@ -879,20 +920,20 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     letter-spacing: 0.02em !important;
   }
-  
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background: linear-gradient(135deg, #E65C00 0%, #F9D423 100%) !important;
       transform: translateY(-0.5px);
-      box-shadow: 
+      box-shadow:
         0 4px 12px rgb(230 92 0 / 25%),
         0 2px 4px rgb(230 92 0 / 15%);
-      
+
       /* Ensure arrow has space on desktop hover */
       .flex-center {
         padding-right: 1.1em !important;
       }
-      
+
       .flex-center::after {
         opacity: 1;
         transform: translateY(-50%) translateX(0);
@@ -903,18 +944,18 @@
 
 .dark .gaintain-link-primary {
   background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgb(249 212 35 / 20%),
     0 1px 2px rgb(249 212 35 / 10%);
-  
+
   a {
     color: rgb(255 255 255 / 98%) !important;
   }
-  
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background: linear-gradient(135deg, #F9D423 0%, #E65C00 100%) !important;
-      box-shadow: 
+      box-shadow:
         0 4px 12px rgb(249 212 35 / 25%),
         0 2px 4px rgb(249 212 35 / 15%);
     }
@@ -938,7 +979,7 @@
     padding-right: 0 !important;
     transition: padding-right 160ms ease;
   }
-  
+
   .flex-center::after {
     content: '→' !important;
     position: absolute !important;
@@ -960,18 +1001,18 @@
     padding: 0 !important;
     font-size: inherit !important;
   }
-  
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       a {
         color: rgb(0 0 0 / 90%) !important;
         text-decoration-color: rgb(0 0 0 / 50%);
       }
-      
+
       .flex-center {
         padding-right: 1.1em !important;
       }
-      
+
       .flex-center::after {
         opacity: 1 !important;
         transform: translateY(-50%) translateX(0) !important;
@@ -982,23 +1023,23 @@
 
 .dark .gaintain-link-secondary {
   background: transparent !important;
-  
+
   a {
     color: rgb(255 255 255 / 70%) !important;
     text-decoration-color: rgb(255 255 255 / 30%);
   }
-  
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       a {
         color: rgb(255 255 255 / 90%) !important;
         text-decoration-color: rgb(255 255 255 / 50%);
       }
-      
+
       .flex-center {
         padding-right: 1.1em !important;
       }
-      
+
       .flex-center::after {
         opacity: 1 !important;
         transform: translateY(-50%) translateX(0) !important;
@@ -1013,30 +1054,33 @@
   backdrop-filter: none;
   border: none;
   border-radius: 0.75em;
-  padding: 0 0.75em 0.75em; /* Remove top padding */
+  padding: 0 0.75em 0.75em;
+  /* Remove top padding */
   box-sizing: border-box;
-  
+
   /* Remove bottom and left padding for key insight section */
   .gaintain-key-insight & {
-    padding: 0 0.75em 0 0; /* Remove bottom and left padding */
+    padding: 0 0.75em 0 0;
+    /* Remove bottom and left padding */
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
-    
-    @media (width <= 768px) {
-      padding: 0 0.5em 0 0; /* Remove bottom and left padding on mobile too */
+
+    @media (width <=768px) {
+      padding: 0 0.5em 0 0;
+      /* Remove bottom and left padding on mobile too */
     }
   }
 
   /* Key Insight + Design Strategy graphic should NOT have the gradient fill */
-  .gaintain-key-insight > & {
+  .gaintain-key-insight>& {
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
   }
-  
+
   /* Remove background/border when it contains accountability levers */
   &:has(.accountability-levers-container) {
     background: none !important;
@@ -1046,10 +1090,11 @@
     padding: 0 !important;
     box-shadow: none !important;
   }
-  
+
   /* Remove padding from container when it has design strategy graphic */
   &:has(.design-strategy-graphic-container) {
-    padding: 0; /* Remove all padding like key insights */
+    padding: 0;
+    /* Remove all padding like key insights */
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
@@ -1064,18 +1109,19 @@
   height: 100%;
   overflow: hidden;
   min-height: 0;
-  
-  @media (width <= 768px) {
+
+  @media (width <=768px) {
     /* Allow labels to be visible on mobile when scaled */
     overflow: visible;
   }
 
-  @media (width <= 768px) {
-    padding: 0 0.5em 0.5em; /* Remove top padding on mobile too */
+  @media (width <=768px) {
+    padding: 0 0.5em 0.5em;
+    /* Remove top padding on mobile too */
   }
 
-  > img,
-  > video {
+  >img,
+  >video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1089,14 +1135,14 @@
     max-height: 400px;
     max-width: min(100%, 550px);
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       max-height: 300px;
     }
 
-    @media (width <= 511px) {
+    @media (width <=511px) {
       max-height: 250px;
     }
-    
+
     // In design strategy layout, match key takeaways image height
     .gaintain-design-strategy & {
       aspect-ratio: unset !important;
@@ -1107,12 +1153,12 @@
       border: none !important; // Remove border
       box-shadow: none !important; // Remove shadow
       backdrop-filter: none !important; // Remove backdrop filter
-      
-      @media (width >= $case-study-breakpoint) {
+
+      @media (width >=$case-study-breakpoint) {
         max-height: 250px !important; // Reduced height on desktop
       }
-      
-      > img {
+
+      >img {
         border-radius: 0.75em; // Match card border radius
         object-fit: cover; // Fill the container
         object-position: bottom; // Focus from bottom instead of center
@@ -1131,12 +1177,12 @@
     height: auto !important;
     max-height: none !important;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       gap: 0.75em;
       padding: 0.5em;
     }
 
-    > img {
+    >img {
       width: 100%;
       height: auto;
       aspect-ratio: 1.2 / 1;
@@ -1145,7 +1191,7 @@
       padding: 0.5em;
       box-sizing: border-box;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         aspect-ratio: unset;
         object-fit: contain;
         padding: 0.375em;
@@ -1162,13 +1208,13 @@
     height: auto !important;
     max-height: none !important;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       grid-template-columns: 1fr;
       gap: 0.5em;
       padding: 0.5em;
     }
 
-    > img {
+    >img {
       width: 100%;
       height: auto;
       aspect-ratio: 1.2 / 1;
@@ -1177,7 +1223,7 @@
       padding: 0.5em;
       box-sizing: border-box;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         aspect-ratio: unset;
         object-fit: contain;
         padding: 0.375em;
@@ -1198,32 +1244,32 @@
     backdrop-filter: blur(10px);
     position: relative;
 
-    > img,
-    > video {
+    >img,
+    >video {
       border-radius: 0.875em;
     }
 
     // Make images fill the same way videos do
-    > img {
+    >img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: contain;
     }
-    
+
     /* Ensure reset loop labels stay within card on mobile */
-    @media (width <= 768px) {
+    @media (width <=768px) {
       overflow: hidden;
-      
+
       /* Ensure reset loop container respects overflow */
-      > .reset-loop {
+      >.reset-loop {
         overflow: hidden;
       }
     }
   }
 
   /* Reset loop animation container */
-  > .reset-loop {
+  >.reset-loop {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1231,14 +1277,15 @@
     justify-content: center;
     padding: 2em;
     box-sizing: border-box;
-    
-    @media (width <= 768px) {
-      padding: 1em; /* Reduce padding to give more space for labels */
+
+    @media (width <=768px) {
+      padding: 1em;
+      /* Reduce padding to give more space for labels */
     }
   }
 
   /* Persona cards container */
-  > .triangle-insight {
+  >.triangle-insight {
     width: 100%;
     height: auto;
     display: flex;
@@ -1265,28 +1312,31 @@
   height: 100%;
   max-height: 100%;
   object-fit: contain;
-  overflow: visible; /* Allow labels to be visible outside bounds on desktop */
-  
-  @media (width <= 768px) {
+  overflow: visible;
+  /* Allow labels to be visible outside bounds on desktop */
+
+  @media (width <=768px) {
     /* Ensure ellipse scales properly on mobile with taller container */
     min-height: 100%;
-    overflow: visible; /* Keep labels visible, viewBox will handle bounds */
+    overflow: visible;
+    /* Keep labels visible, viewBox will handle bounds */
   }
 }
 
 /* Make ellipse circular on mobile only and scale to fill card */
-@media (width <= 768px) {
+@media (width <=768px) {
   .reset-loop svg {
     /* Scale the entire SVG larger to fill the card */
     transform: scale(2.5);
     transform-origin: center;
   }
-  
+
   .reset-loop .loop-ghost,
   .reset-loop .loop {
     /* Scale to make ellipse circular: rx=480->150, ry=80->150 */
     transform: scaleX(0.3125) scaleY(1.875);
-    transform-origin: 600px 130px; /* Center of ellipse */
+    transform-origin: 600px 130px;
+    /* Center of ellipse */
   }
 }
 
@@ -1326,14 +1376,28 @@
 }
 
 @keyframes reset-loop-arrow-cycle {
-  0% { opacity: 0; }
-  3% { opacity: 1; }      /* Appears at start */
-  50% { opacity: 1; }     /* Stays visible through cycle */
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  /* Appears at start */
+  50% {
+    opacity: 1;
+  }
+
+  /* Stays visible through cycle */
+  100% {
+    opacity: 1;
+  }
 }
 
 .reset-loop .quarter-dot {
-  opacity: 1; /* Visible before animation starts */
+  opacity: 1;
+  /* Visible before animation starts */
 }
 
 .reset-loop .node-bg {
@@ -1363,7 +1427,8 @@
 }
 
 .reset-loop.animate .n4 .node-border-gradient {
-  animation: reset-loop-border-appear 0.3s ease forwards 0s; /* Already visible, animate immediately */
+  animation: reset-loop-border-appear 0.3s ease forwards 0s;
+  /* Already visible, animate immediately */
 }
 
 @keyframes reset-loop-border-appear {
@@ -1390,7 +1455,9 @@
 }
 
 @keyframes reset-loop-gradient-dim {
-  to { opacity: 0.7; }
+  to {
+    opacity: 0.7;
+  }
 }
 
 @keyframes reset-loop-label-fill-switch {
@@ -1407,8 +1474,8 @@
   font: 700 24px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   fill: rgb(0 0 0 / 90%);
   letter-spacing: 0.02em;
-  
-  @media (width <= 768px) {
+
+  @media (width <=768px) {
     font-size: 14px;
   }
 }
@@ -1420,15 +1487,16 @@
 /* Drop-off has larger font */
 .reset-loop .drop .node-text {
   font-size: 28px;
-  
-  @media (width <= 768px) {
+
+  @media (width <=768px) {
     font-size: 16px;
   }
 }
 
 /* Text on gradient labels - only Drop-off (n3) uses white text when gradient appears */
 .reset-loop .node-text-gradient {
-  fill: rgb(0 0 0 / 90%); /* Dark text for readability on white background */
+  fill: rgb(0 0 0 / 90%);
+  /* Dark text for readability on white background */
 }
 
 .dark .reset-loop .node-text-gradient {
@@ -1459,25 +1527,28 @@
   animation: reset-loop-node-in 0.5s ease forwards;
 }
 
-.reset-loop.animate .n1 { 
+.reset-loop.animate .n1 {
   animation:
     reset-loop-node-in 0.5s ease forwards 0.4s,
     reset-loop-dim 0.8s ease forwards 1.2s;
 }
 
-.reset-loop.animate .n2 { 
+.reset-loop.animate .n2 {
   animation:
     reset-loop-node-in 0.5s ease forwards 1.0s,
     reset-loop-dim 0.8s ease forwards 1.8s;
 }
-.reset-loop.animate .n3 { animation-delay: 1.8s; }
+
+.reset-loop.animate .n3 {
+  animation-delay: 1.8s;
+}
 
 /* New goal (n4) - visible from start with dimming */
 .reset-loop .n4 {
   opacity: 1;
 }
 
-.reset-loop.animate .n4 { 
+.reset-loop.animate .n4 {
   animation: reset-loop-dim 0.8s ease forwards 0.8s;
 }
 
@@ -1493,13 +1564,15 @@
   /* First 25% (0% to 25%) is already filled when animation starts */
 
   /* Animation grows the fill from 25% to 75% */
-  0% { 
-    stroke-dasharray: var(--initial-fill, 400) var(--path-length); /* First 25% already filled */
+  0% {
+    stroke-dasharray: var(--initial-fill, 400) var(--path-length);
+    /* First 25% already filled */
     stroke-dashoffset: 0;
   }
 
-  100% { 
-    stroke-dasharray: var(--final-fill, 1200) var(--path-length); /* Filled from 0% to 75% */
+  100% {
+    stroke-dasharray: var(--final-fill, 1200) var(--path-length);
+    /* Filled from 0% to 75% */
     stroke-dashoffset: 0;
   }
 }
@@ -1517,11 +1590,14 @@
 }
 
 @keyframes reset-loop-dim {
-  to { opacity: 0.7; }
+  to {
+    opacity: 0.7;
+  }
 }
 
 /* accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   .reset-loop .loop,
   .reset-loop .node,
   .reset-loop .arrow,
@@ -1548,17 +1624,21 @@
   flex-direction: column;
   gap: 0;
   width: 100%;
-  height: auto; /* Let content determine height naturally */
+  height: auto;
+  /* Let content determine height naturally */
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: visible; /* Allow labels to be visible outside container */
-  max-width: 100%; /* Prevent container from exceeding parent width */
+  overflow: visible;
+  /* Allow labels to be visible outside container */
+  max-width: 100%;
+  /* Prevent container from exceeding parent width */
   box-sizing: border-box;
-  
+
   /* In top-to-bottom layout, let it size naturally */
   .case-study-top-to-bottom & {
-    height: auto !important; /* Override any height constraints */
+    height: auto !important;
+    /* Override any height constraints */
   }
 
   /* Brace container with vertical line */
@@ -1567,17 +1647,21 @@
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
-    margin-top: 2.5em !important; /* Increased gap between personas and SVG */
+    margin-top: 2.5em !important;
+    /* Increased gap between personas and SVG */
     margin-bottom: 1em !important;
     min-height: 60px !important;
     visibility: visible !important;
-    padding: 0 2em !important; /* Horizontal padding */
+    padding: 0 2em !important;
+    /* Horizontal padding */
 
-    @media (width <= 768px) {
-      margin-top: 2em !important; /* Increased gap on mobile */
+    @media (width <=768px) {
+      margin-top: 2em !important;
+      /* Increased gap on mobile */
       margin-bottom: 0.75em !important;
       min-height: 40px !important;
-      padding: 0 1em !important; /* Less padding on mobile */
+      padding: 0 1em !important;
+      /* Less padding on mobile */
     }
 
     .brace-svg-horizontal {
@@ -1586,22 +1670,27 @@
       display: block !important;
       visibility: visible !important;
       flex-shrink: 0 !important;
-      transform: scaleY(-1) !important; /* Flip vertically */
+      transform: scaleY(-1) !important;
+      /* Flip vertically */
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         height: 30px !important;
       }
 
       .brace-path-horizontal {
-        stroke: rgb(0 0 0 / 70%) !important; /* Accessible grey for light mode - good contrast */
-        stroke-width: 4 !important; /* Thinner line */
+        stroke: rgb(0 0 0 / 70%) !important;
+        /* Accessible grey for light mode - good contrast */
+        stroke-width: 4 !important;
+        /* Thinner line */
 
         .dark & {
-          stroke: rgb(255 255 255 / 75%) !important; /* Accessible grey for dark mode - good contrast */
+          stroke: rgb(255 255 255 / 75%) !important;
+          /* Accessible grey for dark mode - good contrast */
         }
 
-        @media (width <= 768px) {
-          stroke-width: 3 !important; /* Thinner line on mobile */
+        @media (width <=768px) {
+          stroke-width: 3 !important;
+          /* Thinner line on mobile */
         }
       }
     }
@@ -1616,10 +1705,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: -1em; /* Negative margin to overlap with row above */
-  margin-bottom: 1em; /* Positive margin to add gap below (between accountability gap and hybrid) */
+  margin-top: -1em;
+  /* Negative margin to overlap with row above */
+  margin-bottom: 1em;
+  /* Positive margin to add gap below (between accountability gap and hybrid) */
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     margin-top: -0.75em;
     margin-bottom: 0.75em;
   }
@@ -1634,78 +1725,92 @@
   width: 100%;
   position: relative;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     gap: 1em;
   }
 
-      /* Top row with drop off */
-      &.persona-row-top {
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 0.5em;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        overflow: hidden; /* Prevent content from extending beyond row */
+  /* Top row with drop off */
+  &.persona-row-top {
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* Prevent content from extending beyond row */
 
-        @media (width <= 768px) {
-          margin-bottom: 0.375em;
-          justify-content: center !important; /* Center the drop-off content on mobile */
-        }
+    @media (width <=768px) {
+      margin-bottom: 0.375em;
+      justify-content: center !important;
+      /* Center the drop-off content on mobile */
+    }
+  }
+
+  /* Brace row - full width, rotated - matches cards row width */
+  &.persona-row-brace {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 200px;
+    /* Ensure row has height to contain rotated brace */
+    margin-bottom: 1em;
+    overflow: hidden;
+    /* Contain the brace within the row - prevents extension */
+    position: relative;
+    max-width: 100%;
+    /* Don't extend past container */
+
+    @media (width <=768px) {
+      margin-bottom: 0.75em;
+      min-height: 150px;
+    }
+  }
+
+  /* Inline images layout for Problem section */
+  &.persona-row-images-inline {
+    align-items: flex-start;
+    /* Align to top so images align */
+    justify-content: center;
+    gap: 0.5em !important;
+    /* Minimal gap between cards on desktop */
+
+    @media (width <=768px) {
+      gap: 0.25em !important;
+      /* Minimal gap on mobile */
+      flex-wrap: nowrap;
+      /* Prevent wrapping - keep all 3 cards in one row */
+    }
+
+    .persona-card {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      /* Align to top so images align */
+      gap: 0 !important;
+      /* Gap is handled by individual element margins */
+
+      @media (width <=768px) {
+        gap: 0 !important;
+        /* Gap is handled by individual element margins */
       }
-
-      /* Brace row - full width, rotated - matches cards row width */
-      &.persona-row-brace {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 200px; /* Ensure row has height to contain rotated brace */
-        margin-bottom: 1em;
-        overflow: hidden; /* Contain the brace within the row - prevents extension */
-        position: relative;
-        max-width: 100%; /* Don't extend past container */
-
-        @media (width <= 768px) {
-          margin-bottom: 0.75em;
-          min-height: 150px;
-        }
-      }
-
-      /* Inline images layout for Problem section */
-      &.persona-row-images-inline {
-        align-items: flex-start; /* Align to top so images align */
-        justify-content: center;
-        gap: 0.5em !important; /* Minimal gap between cards on desktop */
-
-        @media (width <= 768px) {
-          gap: 0.25em !important; /* Minimal gap on mobile */
-          flex-wrap: nowrap; /* Prevent wrapping - keep all 3 cards in one row */
-        }
-
-        .persona-card {
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-start; /* Align to top so images align */
-          gap: 0 !important; /* Gap is handled by individual element margins */
-
-          @media (width <= 768px) {
-            gap: 0 !important; /* Gap is handled by individual element margins */
-          }
-        }
+    }
 
     .persona-arrow {
       flex-shrink: 0;
       width: 60px;
       height: 30px;
       align-self: flex-start;
-      margin-top: 60px; /* Position at image level */
+      margin-top: 60px;
+      /* Position at image level */
       margin-left: 0;
       margin-right: 0;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         width: 40px;
         height: 20px;
-        margin-top: 30px; /* Position at image level on mobile */
+        margin-top: 30px;
+        /* Position at image level on mobile */
         margin-left: 0;
         margin-right: 0;
       }
@@ -1720,7 +1825,7 @@
       margin-left: 0.75em !important;
       margin-right: 0.75em !important;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         width: 60px !important;
         height: 80px !important;
         margin-left: 0.5em !important;
@@ -1735,23 +1840,29 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 2000px; /* Height that becomes visual width after rotation - spans cards */
-      max-width: 100%; /* Don't extend past container */
+      height: 2000px;
+      /* Height that becomes visual width after rotation - spans cards */
+      max-width: 100%;
+      /* Don't extend past container */
       margin-left: 0;
       margin-right: 0;
-      transform: rotate(-90deg); /* Rotate counter-clockwise */
+      transform: rotate(-90deg);
+      /* Rotate counter-clockwise */
       transform-origin: center center;
-      flex-shrink: 0; /* Prevent shrinking */
-      overflow: hidden; /* Contain within bounds */
+      flex-shrink: 0;
+      /* Prevent shrinking */
+      overflow: hidden;
+      /* Contain within bounds */
       position: relative;
-      
+
       /* Constrain to parent width after rotation */
-      @media (width >= 769px) {
+      @media (width >=769px) {
         max-height: 2000px;
       }
-      
-      @media (width <= 768px) {
-        height: 1500px; /* Smaller on mobile */
+
+      @media (width <=768px) {
+        height: 1500px;
+        /* Smaller on mobile */
         max-height: 1500px;
       }
 
@@ -1769,18 +1880,20 @@
           stroke: rgb(255 255 255 / 90%);
         }
 
-        @media (width <= 768px) {
+        @media (width <=768px) {
           stroke-width: 6;
         }
       }
     }
 
     .program-to-nomad-arrow {
-      align-self: center; /* Center arrow vertically between images */
+      align-self: center;
+      /* Center arrow vertically between images */
       flex-shrink: 0;
-      margin-top: 60px; /* Position arrow at image level */
+      margin-top: 60px;
+      /* Position arrow at image level */
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         margin-top: 40px;
       }
     }
@@ -1789,38 +1902,45 @@
   /* Reduce gap in Problem section */
   .case-study-top-to-bottom & {
     justify-content: center;
-    gap: 1.25em !important; /* Visible gap between cards */
-    overflow: visible; /* Allow labels to overflow */
-    padding-top: 0; /* Remove padding since labels are below now */
+    gap: 1.25em !important;
+    /* Visible gap between cards */
+    overflow: visible;
+    /* Allow labels to overflow */
+    padding-top: 0;
+    /* Remove padding since labels are below now */
 
     /* Override for images-inline row */
     &.persona-row-images-inline {
       gap: 1.25em !important;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         gap: 0.75em !important;
       }
     }
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       gap: 0.75em !important;
     }
   }
 
-  @media (width <= 768px) and (orientation: portrait) {
-    gap: 0; /* Remove gap since space-evenly handles spacing */
+  @media (width <=768px) and (orientation: portrait) {
+    gap: 0;
+    /* Remove gap since space-evenly handles spacing */
   }
 
-  @media (width <= 768px) and (orientation: landscape) {
-    gap: 0; /* Remove gap since space-evenly handles spacing */
-    justify-content: space-evenly; /* Even spacing instead of space-between */
+  @media (width <=768px) and (orientation: landscape) {
+    gap: 0;
+    /* Remove gap since space-evenly handles spacing */
+    justify-content: space-evenly;
+    /* Even spacing instead of space-between */
   }
 }
 
 /* Keep Hybrid row centered even in landscape mode */
 .persona-row:not(.persona-row-with-arrow) {
-  @media (width <= 768px) and (orientation: landscape) {
-    justify-content: center; /* Keep Hybrid centered (it's in a row without the arrow class) */
+  @media (width <=768px) and (orientation: landscape) {
+    justify-content: center;
+    /* Keep Hybrid centered (it's in a row without the arrow class) */
   }
 }
 
@@ -1836,13 +1956,14 @@
   position: absolute;
   width: 200px;
   height: 100px;
-  top: calc(50% - 50px); /* Center vertically, accounting for arrow height */
+  top: calc(50% - 50px);
+  /* Center vertically, accounting for arrow height */
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
   pointer-events: none;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     width: 150px;
     height: 80px;
     top: calc(50% - 40px);
@@ -1853,12 +1974,14 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  top: 0; /* Start from top row */
-  left: 0; /* Start from left (Program position) */
+  top: 0;
+  /* Start from top row */
+  left: 0;
+  /* Start from left (Program position) */
   z-index: 1;
   pointer-events: none;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     width: 300px;
     height: 300px;
   }
@@ -1868,7 +1991,7 @@
     width: 320px;
     height: 320px;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       width: 240px;
       height: 240px;
     }
@@ -1879,12 +2002,14 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  top: 0; /* Start from top row - mirrors program-to-hybrid-arrow */
-  right: 0; /* Mirrors left: 0 from program-to-hybrid-arrow */
+  top: 0;
+  /* Start from top row - mirrors program-to-hybrid-arrow */
+  right: 0;
+  /* Mirrors left: 0 from program-to-hybrid-arrow */
   z-index: 1;
   pointer-events: none;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     width: 300px;
     height: 300px;
   }
@@ -1894,7 +2019,7 @@
     width: 320px;
     height: 320px;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       width: 240px;
       height: 240px;
     }
@@ -1908,9 +2033,10 @@
   text-align: center;
   letter-spacing: 0.01em;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgb(0 0 0 / 10%); /* Subtle shadow for depth */
+  text-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  /* Subtle shadow for depth */
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 16px;
   }
 }
@@ -1922,15 +2048,18 @@
 
 .accountability-gap-subtitle {
   font-size: 12px;
-  color: rgb(0 0 0 / 85%); /* Darker for more contrast */
+  color: rgb(0 0 0 / 85%);
+  /* Darker for more contrast */
   text-align: center;
   max-width: 300px;
   line-height: 1.4;
   margin: 0 auto;
-  font-weight: 500; /* Slightly bolder */
-  letter-spacing: 0.01em; /* Slight letter spacing */
+  font-weight: 500;
+  /* Slightly bolder */
+  letter-spacing: 0.01em;
+  /* Slight letter spacing */
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 10px;
     max-width: 180px;
     padding: 0 0.5em;
@@ -1941,7 +2070,7 @@
     font-size: 10px;
     max-width: 250px;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       font-size: 9px;
       max-width: 160px;
     }
@@ -1949,7 +2078,8 @@
 }
 
 .dark .accountability-gap-subtitle {
-  color: rgb(255 255 255 / 85%); /* Brighter for more contrast */
+  color: rgb(255 255 255 / 85%);
+  /* Brighter for more contrast */
 }
 
 .persona-card {
@@ -1971,88 +2101,110 @@
 
     /* Prevent intersection with Problem text card - constrain within image container */
     .case-study-top-to-bottom & {
-      max-width: 100% !important; /* Stay within image container */
+      max-width: 100% !important;
+      /* Stay within image container */
       width: auto;
-      
-      @media (width >= 768px) {
-        max-width: 90% !important; /* Leave some margin to prevent edge overlap */
+
+      @media (width >=768px) {
+        max-width: 90% !important;
+        /* Leave some margin to prevent edge overlap */
       }
     }
 
     .drop-off-container {
       display: inline-flex;
       align-items: center;
-      padding: 0.25em 0.875em; /* Further reduced vertical padding to make it less tall */
+      padding: 0.25em 0.875em;
+      /* Further reduced vertical padding to make it less tall */
       background: rgb(220 38 38 / 10%);
       border: 2px solid #DC2626;
       border-radius: 0.75em;
-      box-shadow: 0 1px 3px rgb(220 38 38 / 15%); /* Reduced shadow for better readability */
-      max-width: 100%; /* Prevent container from exceeding parent */
+      box-shadow: 0 1px 3px rgb(220 38 38 / 15%);
+      /* Reduced shadow for better readability */
+      max-width: 100%;
+      /* Prevent container from exceeding parent */
       box-sizing: border-box;
-      width: fit-content; /* Hug content but respect max-width */
+      width: fit-content;
+      /* Hug content but respect max-width */
 
       .dark & {
         background: rgb(239 68 68 / 15%);
         border-color: #EF4444;
-        box-shadow: 0 1px 3px rgb(239 68 68 / 20%); /* Reduced shadow for better readability */
+        box-shadow: 0 1px 3px rgb(239 68 68 / 20%);
+        /* Reduced shadow for better readability */
       }
 
-      @media (width <= 768px) {
-        padding: 0.2em 0.65em; /* Further reduced vertical padding on mobile */
+      @media (width <=768px) {
+        padding: 0.2em 0.65em;
+        /* Further reduced vertical padding on mobile */
         border-radius: 0.5em;
       }
     }
   }
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     max-width: 140px;
     gap: 0.375em;
   }
 
   /* Scale down cards in Problem section (top-to-bottom layout) */
   .case-study-top-to-bottom & {
-    max-width: none; /* Allow cards to grow */
-    flex: 1; /* Allow cards to fill available space */
-    min-width: 0; /* Allow flex shrinking */
+    max-width: none;
+    /* Allow cards to grow */
+    flex: 1;
+    /* Allow cards to fill available space */
+    min-width: 0;
+    /* Allow flex shrinking */
 
-    @media (width <= 768px) {
-      max-width: none; /* Allow cards to grow on mobile too */
+    @media (width <=768px) {
+      max-width: none;
+      /* Allow cards to grow on mobile too */
     }
 
     /* For images-inline row, allow full growth */
     .persona-row-images-inline & {
       max-width: none;
       flex: 1;
-      min-width: 0; /* Allow shrinking on mobile */
-      
-      @media (width <= 768px) {
-        flex: 1 1 0; /* Allow equal distribution and shrinking */
+      min-width: 0;
+      /* Allow shrinking on mobile */
+
+      @media (width <=768px) {
+        flex: 1 1 0;
+        /* Allow equal distribution and shrinking */
         min-width: 0;
       }
     }
   }
 
-  @media (width <= 768px) and (orientation: landscape) {
-    max-width: none; /* Remove max-width constraint to allow expansion */
-    flex: 1; /* Allow cards to grow and fill space */
+  @media (width <=768px) and (orientation: landscape) {
+    max-width: none;
+    /* Remove max-width constraint to allow expansion */
+    flex: 1;
+    /* Allow cards to grow and fill space */
   }
 
   /* Reduce gap for cards with image below (Nomad and Program) */
   &.image-below-card {
-    @media (width <= 768px) and (orientation: landscape) {
-      max-width: none; /* Allow Program and Nomad to expand to edges */
+    @media (width <=768px) and (orientation: landscape) {
+      max-width: none;
+      /* Allow Program and Nomad to expand to edges */
       flex: 1;
     }
 
-    gap: 0; /* No gap needed since image is inside text card */
+    gap: 0;
+    /* No gap needed since image is inside text card */
 
     /* For inline images layout in Problem section */
     .persona-row-images-inline & {
       flex-direction: column;
-      align-items: stretch; /* Stretch to fill width */
-      gap: 0; /* No gap needed since image is inside text card */
-      flex: 1; /* Allow cards to grow and fill available space */
-      min-width: 0; /* Allow flex shrinking */
+      align-items: stretch;
+      /* Stretch to fill width */
+      gap: 0;
+      /* No gap needed since image is inside text card */
+      flex: 1;
+      /* Allow cards to grow and fill available space */
+      min-width: 0;
+      /* Allow flex shrinking */
 
       .persona-text-card {
         position: static;
@@ -2061,34 +2213,43 @@
         backdrop-filter: blur(20px) saturate(180%);
         border: 1px solid rgb(0 0 0 / 12%);
         border-radius: 1em;
-        box-shadow: 
+        box-shadow:
           0 2px 6px rgb(0 0 0 / 8%),
           0 4px 16px rgb(0 0 0 / 6%);
         padding: 1em;
-        width: 100%; /* Fill container width */
-        min-width: 160px; /* Minimum width for readability */
-        max-width: none; /* Allow growth */
+        width: 100%;
+        /* Fill container width */
+        min-width: 160px;
+        /* Minimum width for readability */
+        max-width: none;
+        /* Allow growth */
         white-space: normal;
 
         .dark & {
           background: rgb(0 0 0 / 90%);
           backdrop-filter: blur(20px) saturate(180%);
           border-color: rgb(255 255 255 / 30%);
-          box-shadow: 
+          box-shadow:
             0 2px 6px rgb(0 0 0 / 60%),
             0 4px 16px rgb(0 0 0 / 50%);
         }
 
-        @media (width <= 768px) {
+        @media (width <=768px) {
           display: flex !important;
           flex-direction: column !important;
-          padding: 0.5em 0.4em !important; /* Reduced padding to match other cards */
+          padding: 0.5em 0.4em !important;
+          /* Reduced padding to match other cards */
           border-radius: 0.75em;
-          width: 100% !important; /* Fill available flex space */
-          min-width: 0 !important; /* Allow shrinking */
-          max-width: 100% !important; /* No max width constraint */
-          flex: 1 1 0 !important; /* Allow equal distribution and shrinking */
-          box-sizing: border-box !important; /* Include padding in width calculation */
+          width: 100% !important;
+          /* Fill available flex space */
+          min-width: 0 !important;
+          /* Allow shrinking */
+          max-width: 100% !important;
+          /* No max width constraint */
+          flex: 1 1 0 !important;
+          /* Allow equal distribution and shrinking */
+          box-sizing: border-box !important;
+          /* Include padding in width calculation */
         }
       }
     }
@@ -2099,22 +2260,26 @@
     background: rgb(0 0 0 / 90%);
     backdrop-filter: blur(20px) saturate(180%);
     border-color: rgb(255 255 255 / 30%);
-    box-shadow: 
+    box-shadow:
       0 2px 6px rgb(0 0 0 / 60%),
       0 4px 16px rgb(0 0 0 / 50%);
   }
 
   &.hybrid-card {
-    gap: 0; /* Remove gap for overlap */
-    max-width: 150px; /* Make card smaller */
+    gap: 0;
+    /* Remove gap for overlap */
+    max-width: 150px;
+    /* Make card smaller */
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       max-width: 100px;
     }
 
-    @media (width <= 768px) and (orientation: landscape) {
-      max-width: 100px; /* Keep hybrid card small and centered */
-      flex: 0 0 auto; /* Don't allow hybrid to grow, keep it centered */
+    @media (width <=768px) and (orientation: landscape) {
+      max-width: 100px;
+      /* Keep hybrid card small and centered */
+      flex: 0 0 auto;
+      /* Don't allow hybrid to grow, keep it centered */
     }
 
     /* Override for images-inline row to allow growth */
@@ -2125,11 +2290,14 @@
 
     /* Scale down hybrid card in Problem section */
     .case-study-top-to-bottom & {
-      max-width: none; /* Allow hybrid card to grow like others */
-      flex: 1; /* Allow it to fill available space */
+      max-width: none;
+      /* Allow hybrid card to grow like others */
+      flex: 1;
+      /* Allow it to fill available space */
 
-      @media (width <= 768px) {
-        max-width: none; /* Allow growth on mobile too */
+      @media (width <=768px) {
+        max-width: none;
+        /* Allow growth on mobile too */
       }
 
       /* For images-inline row, ensure hybrid grows */
@@ -2143,7 +2311,7 @@
       width: 120px;
       height: 120px;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         width: 60px;
         height: 60px;
       }
@@ -2153,7 +2321,7 @@
         width: 100px;
         height: 100px;
 
-        @media (width <= 768px) {
+        @media (width <=768px) {
           width: 75px;
           height: 75px;
         }
@@ -2161,11 +2329,11 @@
 
       /* Scale down hybrid image in key insight graphic column */
       .gaintain-key-insight & {
-        @media (width >= $case-study-breakpoint) {
+        @media (width >=$case-study-breakpoint) {
           width: 100px;
           height: 100px;
 
-          @media (width <= 1024px) {
+          @media (width <=1024px) {
             width: 80px;
             height: 80px;
           }
@@ -2174,9 +2342,10 @@
     }
 
     .persona-text-card {
-      margin-top: 0; /* Remove negative margin - gap is handled by parent .persona-card gap */
+      margin-top: 0;
+      /* Remove negative margin - gap is handled by parent .persona-card gap */
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         margin-top: 0;
       }
     }
@@ -2207,18 +2376,22 @@
     border: none;
     box-shadow: none;
     transition: none;
-    display: flex; /* Ensure flex container for centering */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    display: flex;
+    /* Ensure flex container for centering */
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       width: 70px;
       height: 70px;
     }
 
     .drop-off-x {
       font-family: 'Patrick Hand', cursive;
-      font-size: 55px; /* Further reduced to make card less tall */
+      font-size: 55px;
+      /* Further reduced to make card less tall */
       font-weight: 700;
       color: #DC2626;
       line-height: 1;
@@ -2229,8 +2402,9 @@
       height: 100%;
       text-shadow: 0 2px 8px rgb(220 38 38 / 40%);
 
-      @media (width <= 768px) {
-        font-size: 40px; /* Further reduced on mobile */
+      @media (width <=768px) {
+        font-size: 40px;
+        /* Further reduced on mobile */
       }
     }
   }
@@ -2241,18 +2415,18 @@
     object-fit: contain;
   }
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     width: 80px;
     height: 80px;
   }
 
   /* Scale down images in key insight graphic column to fit height */
   .gaintain-key-insight & {
-    @media (width >= 768px) {
+    @media (width >=768px) {
       width: 120px;
       height: 120px;
 
-      @media (width <= 1024px) {
+      @media (width <=1024px) {
         width: 100px;
         height: 100px;
       }
@@ -2264,7 +2438,7 @@
     width: 120px;
     height: 120px;
     background: rgb(0 0 0 / 20%);
-    box-shadow: 
+    box-shadow:
       0 4px 16px rgb(0 0 0 / 12%),
       0 2px 8px rgb(0 0 0 / 8%),
       0 0 0 1px rgb(0 0 0 / 4%);
@@ -2276,13 +2450,13 @@
 
     &:hover {
       transform: scale(1.05);
-      box-shadow: 
+      box-shadow:
         0 8px 24px rgb(0 0 0 / 16%),
         0 4px 12px rgb(0 0 0 / 12%),
         0 0 0 1px rgb(0 0 0 / 6%);
     }
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       width: 70px;
       height: 70px;
     }
@@ -2310,132 +2484,188 @@
 .persona-text-card {
   background: rgb(255 255 255 / 100%);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1.5px solid rgb(0 0 0 / 18%); /* Stronger border for better definition */
+  border: 1.5px solid rgb(0 0 0 / 18%);
+  /* Stronger border for better definition */
   border-radius: 1em;
-  padding: 1.5em 1.25em; /* Increased padding to better utilize space */
-  width: 180px; /* Increased width from 160px to better utilize space */
+  padding: 1.5em 1.25em;
+  /* Increased padding to better utilize space */
+  width: 180px;
+  /* Increased width from 160px to better utilize space */
   min-width: 180px;
   max-width: 180px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0.5em; /* Increased gap between elements for better spacing */
+  gap: 0.5em;
+  /* Increased gap between elements for better spacing */
   align-items: center;
-  justify-content: center; /* Center content vertically */
-  box-shadow: 
+  justify-content: center;
+  /* Center content vertically */
+  box-shadow:
     0 4px 12px rgb(0 0 0 / 12%),
     0 2px 6px rgb(0 0 0 / 8%),
-    0 0 0 0.5px rgb(0 0 0 / 5%); /* Enhanced shadow for depth and prominence */
+    0 0 0 0.5px rgb(0 0 0 / 5%);
+  /* Enhanced shadow for depth and prominence */
 
   .dark & {
-    background: rgb(0 0 0 / 95%); /* Slightly more opaque for better contrast */
+    background: rgb(0 0 0 / 95%);
+    /* Slightly more opaque for better contrast */
     backdrop-filter: blur(20px) saturate(180%);
-    border-color: rgb(255 255 255 / 40%); /* Stronger border in dark mode */
-    box-shadow: 
+    border-color: rgb(255 255 255 / 40%);
+    /* Stronger border in dark mode */
+    box-shadow:
       0 4px 12px rgb(0 0 0 / 80%),
       0 2px 6px rgb(0 0 0 / 60%),
-      0 0 0 0.5px rgb(255 255 255 / 10%); /* Enhanced shadow for depth */
+      0 0 0 0.5px rgb(255 255 255 / 10%);
+    /* Enhanced shadow for depth */
   }
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     display: flex !important;
     flex-direction: column !important;
-    padding: 0.5em 0.4em !important; /* Reduced padding on mobile */
-    gap: 0.25em !important; /* Reduced gap between title and subtitle */
+    padding: 0.5em 0.4em !important;
+    /* Reduced padding on mobile */
+    gap: 0.25em !important;
+    /* Reduced gap between title and subtitle */
     border-radius: 0.75em;
-    width: 100% !important; /* Fill available flex space */
-    min-width: 0 !important; /* Allow shrinking */
-    max-width: 100% !important; /* No max width constraint */
-    flex: 1 1 0 !important; /* Allow equal distribution and shrinking */
-    box-sizing: border-box !important; /* Include padding in width calculation */
+    width: 100% !important;
+    /* Fill available flex space */
+    min-width: 0 !important;
+    /* Allow shrinking */
+    max-width: 100% !important;
+    /* No max width constraint */
+    flex: 1 1 0 !important;
+    /* Allow equal distribution and shrinking */
+    box-sizing: border-box !important;
+    /* Include padding in width calculation */
   }
 
   /* Image container inside text card */
   .persona-image-container {
-    margin-top: 0.25em; /* Increased space from title above */
-    margin-bottom: 0.25em; /* Increased space to subtitle below */
+    margin-top: 0.25em;
+    /* Increased space from title above */
+    margin-bottom: 0.25em;
+    /* Increased space to subtitle below */
     align-self: center;
-    width: 110px; /* Increased from 100px to better fill card space */
-    height: 110px; /* Increased from 100px to better fill card space */
-    background: linear-gradient(135deg, rgb(34 197 94 / 20%) 0%, rgb(16 185 129 / 15%) 100%) !important; /* Green success-like gradient */
-    border: 2px solid rgb(34 197 94 / 30%); /* Green border */
-    border-radius: 50%; /* Circular shape */
-    padding: 0.5em; /* Padding around image */
+    width: 110px;
+    /* Increased from 100px to better fill card space */
+    height: 110px;
+    /* Increased from 100px to better fill card space */
+    background: linear-gradient(135deg, rgb(34 197 94 / 20%) 0%, rgb(16 185 129 / 15%) 100%) !important;
+    /* Green success-like gradient */
+    border: 2px solid rgb(34 197 94 / 30%);
+    /* Green border */
+    border-radius: 50%;
+    /* Circular shape */
+    padding: 0.5em;
+    /* Padding around image */
     box-sizing: border-box;
-    box-shadow: 
+    box-shadow:
       0 2px 8px rgb(34 197 94 / 20%),
       0 1px 3px rgb(34 197 94 / 15%),
-      inset 0 1px 2px rgb(16 185 129 / 15%); /* Green shadow with inner glow */
+      inset 0 1px 2px rgb(16 185 129 / 15%);
+    /* Green shadow with inner glow */
 
     .dark & {
-      background: linear-gradient(135deg, rgb(34 197 94 / 25%) 0%, rgb(16 185 129 / 20%) 100%) !important; /* Slightly more intense in dark mode */
-      border-color: rgb(34 197 94 / 40%); /* Brighter green border in dark mode */
-      box-shadow: 
+      background: linear-gradient(135deg, rgb(34 197 94 / 25%) 0%, rgb(16 185 129 / 20%) 100%) !important;
+      /* Slightly more intense in dark mode */
+      border-color: rgb(34 197 94 / 40%);
+      /* Brighter green border in dark mode */
+      box-shadow:
         0 2px 8px rgb(34 197 94 / 30%),
         0 1px 3px rgb(34 197 94 / 25%),
-        inset 0 1px 2px rgb(16 185 129 / 20%); /* Enhanced green shadow in dark mode */
+        inset 0 1px 2px rgb(16 185 129 / 20%);
+      /* Enhanced green shadow in dark mode */
     }
 
     /* Image styling within container */
     img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Ensure image fits within colored container */
+      object-fit: contain;
+      /* Ensure image fits within colored container */
       display: block;
     }
 
-    @media (width <= 768px) {
-      margin-top: 0.125em; /* Minimized space from title above on mobile */
-      margin-bottom: 0.125em; /* Minimized space to subtitle below on mobile */
-      width: 70px; /* Slightly smaller image on mobile */
+    @media (width <=768px) {
+      margin-top: 0.125em;
+      /* Minimized space from title above on mobile */
+      margin-bottom: 0.125em;
+      /* Minimized space to subtitle below on mobile */
+      width: 70px;
+      /* Slightly smaller image on mobile */
       height: 70px;
-      padding: 0.35em; /* Slightly less padding on mobile */
+      padding: 0.35em;
+      /* Slightly less padding on mobile */
     }
 
     /* Drop-off image container - no colored background, keep it neutral */
     &.drop-off-image-container {
-      width: 55px; /* Further reduced to make card less tall */
-      height: 55px; /* Further reduced to match smaller x */
+      width: 55px;
+      /* Further reduced to make card less tall */
+      height: 55px;
+      /* Further reduced to match smaller x */
       margin-bottom: 0;
-      margin-right: 0.25em; /* Minimized gap between x and text */
+      margin-right: 0.25em;
+      /* Minimized gap between x and text */
       flex-shrink: 0;
-      background: transparent !important; /* No colored background for drop-off */
-      border: none !important; /* No border for drop-off */
-      padding: 0 !important; /* No padding for drop-off */
-      box-shadow: none !important; /* No shadow for drop-off */
-      display: flex !important; /* Ensure flex container for centering */
-      align-items: center !important; /* Center vertically */
-      justify-content: center !important; /* Center horizontally */
+      background: transparent !important;
+      /* No colored background for drop-off */
+      border: none !important;
+      /* No border for drop-off */
+      padding: 0 !important;
+      /* No padding for drop-off */
+      box-shadow: none !important;
+      /* No shadow for drop-off */
+      display: flex !important;
+      /* Ensure flex container for centering */
+      align-items: center !important;
+      /* Center vertically */
+      justify-content: center !important;
+      /* Center horizontally */
 
-      @media (width <= 768px) {
-        width: 40px; /* Further reduced on mobile */
-        height: 40px; /* Further reduced on mobile */
-        margin-right: 0.25em; /* Minimized gap on mobile */
+      @media (width <=768px) {
+        width: 40px;
+        /* Further reduced on mobile */
+        height: 40px;
+        /* Further reduced on mobile */
+        margin-right: 0.25em;
+        /* Minimized gap on mobile */
       }
     }
   }
 
   /* Drop-off card: horizontal layout with text to the right - no card styling */
   .drop-off-card & {
-    flex-direction: row; /* Horizontal layout on desktop - text to the right of x */
+    flex-direction: row;
+    /* Horizontal layout on desktop - text to the right of x */
     align-items: center;
     justify-content: flex-start;
     text-align: left;
     width: auto;
     min-width: auto;
     max-width: none;
-    padding: 0; /* Remove padding */
-    background: transparent !important; /* Remove background */
-    border: none !important; /* Remove border */
-    box-shadow: none !important; /* Remove shadow */ /* Remove backdrop filter */
-    backdrop-filter: none !important; /* Remove backdrop filter */
+    padding: 0;
+    /* Remove padding */
+    background: transparent !important;
+    /* Remove background */
+    border: none !important;
+    /* Remove border */
+    box-shadow: none !important;
+    /* Remove shadow */
+    /* Remove backdrop filter */
+    backdrop-filter: none !important;
+    /* Remove backdrop filter */
 
-    @media (width <= 768px) {
-      flex-direction: row !important; /* Horizontal layout on mobile - text to the right of x */
+    @media (width <=768px) {
+      flex-direction: row !important;
+      /* Horizontal layout on mobile - text to the right of x */
       align-items: center !important;
-      justify-content: center !important; /* Center the content on mobile */
+      justify-content: center !important;
+      /* Center the content on mobile */
       text-align: left !important;
-      padding: 0; /* Remove padding on mobile */
+      padding: 0;
+      /* Remove padding on mobile */
     }
 
     .drop-off-text-container {
@@ -2448,9 +2678,10 @@
       min-width: 0;
       max-width: none;
 
-      @media (width <= 768px) {
+      @media (width <=768px) {
         gap: 0.3em;
-        align-items: flex-start !important; /* Align text to left on mobile */
+        align-items: flex-start !important;
+        /* Align text to left on mobile */
       }
     }
 
@@ -2460,46 +2691,61 @@
       width: auto;
       white-space: nowrap;
 
-      @media (width <= 768px) {
-        text-align: left !important; /* Text aligned left on mobile */
+      @media (width <=768px) {
+        text-align: left !important;
+        /* Text aligned left on mobile */
       }
     }
 
     /* Increase drop-off text size for emphasis - RED DRAMATIC STYLING */
     .persona-title {
-      font-size: 16px !important; /* Reduced from 18px to make card less tall */
-      font-weight: 700 !important; /* Bolder for emphasis */
-      color: #DC2626 !important; /* Red color */
-      text-shadow: none !important; /* Remove text shadow for better readability */
+      font-size: 16px !important;
+      /* Reduced from 18px to make card less tall */
+      font-weight: 700 !important;
+      /* Bolder for emphasis */
+      color: #DC2626 !important;
+      /* Red color */
+      text-shadow: none !important;
+      /* Remove text shadow for better readability */
 
       .dark & {
-        color: #EF4444 !important; /* Slightly brighter red in dark mode */
-        text-shadow: none !important; /* Remove text shadow for better readability */
+        color: #EF4444 !important;
+        /* Slightly brighter red in dark mode */
+        text-shadow: none !important;
+        /* Remove text shadow for better readability */
       }
 
-      @media (width <= 768px) {
-        font-size: clamp(11px, 3.2vw, 13px) !important; /* Slightly reduced on mobile */
-        text-shadow: none !important; /* Remove text shadow for better readability */
-        
+      @media (width <=768px) {
+        font-size: clamp(11px, 3.2vw, 13px) !important;
+        /* Slightly reduced on mobile */
+        text-shadow: none !important;
+        /* Remove text shadow for better readability */
+
         .dark & {
-          text-shadow: 0 1px 2px rgb(239 68 68 / 60%) !important; /* Fixed shadow for mobile in dark mode */
+          text-shadow: 0 1px 2px rgb(239 68 68 / 60%) !important;
+          /* Fixed shadow for mobile in dark mode */
         }
       }
     }
 
     .persona-subtitle {
-      font-size: 12px !important; /* Reduced from 14px to make card less tall */
-      font-weight: 600 !important; /* Bolder for emphasis */
-      color: #DC2626 !important; /* Red color */
+      font-size: 12px !important;
+      /* Reduced from 14px to make card less tall */
+      font-weight: 600 !important;
+      /* Bolder for emphasis */
+      color: #DC2626 !important;
+      /* Red color */
       opacity: 0.9;
 
       .dark & {
-        color: #EF4444 !important; /* Slightly brighter red in dark mode */
+        color: #EF4444 !important;
+        /* Slightly brighter red in dark mode */
         opacity: 0.95;
       }
 
-      @media (width <= 768px) {
-        font-size: clamp(8px, 2.2vw, 10px) !important; /* Slightly reduced on mobile */
+      @media (width <=768px) {
+        font-size: clamp(8px, 2.2vw, 10px) !important;
+        /* Slightly reduced on mobile */
       }
     }
   }
@@ -2507,26 +2753,35 @@
 
 .persona-title {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-weight: 700; /* Increased from 600 for stronger hierarchy */
-  font-size: 15px; /* Increased from 14px to better utilize card space */
-  color: rgb(0 0 0 / 95%); /* Increased contrast */
-  letter-spacing: 0.03em; /* Slightly more letter spacing for clarity */
-  line-height: 1.4; /* Increased line height for better spacing */
+  font-weight: 700;
+  /* Increased from 600 for stronger hierarchy */
+  font-size: 15px;
+  /* Increased from 14px to better utilize card space */
+  color: rgb(0 0 0 / 95%);
+  /* Increased contrast */
+  letter-spacing: 0.03em;
+  /* Slightly more letter spacing for clarity */
+  line-height: 1.4;
+  /* Increased line height for better spacing */
   text-transform: uppercase;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
+  /* Prevent text wrapping */
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
   text-align: center;
 
   .dark & {
-    color: rgb(255 255 255 / 95%); /* Increased contrast */
+    color: rgb(255 255 255 / 95%);
+    /* Increased contrast */
   }
 
-  @media (width <= 768px) {
-    font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size that scales with viewport */
+  @media (width <=768px) {
+    font-size: clamp(7px, 2.2vw, 9px) !important;
+    /* Responsive font size that scales with viewport */
     letter-spacing: 0.01em;
-    white-space: normal; /* Allow wrapping on very small screens */
+    white-space: normal;
+    /* Allow wrapping on very small screens */
     line-height: 1.2;
   }
 
@@ -2534,8 +2789,9 @@
   .case-study-top-to-bottom & {
     font-size: 12px;
 
-    @media (width <= 768px) {
-      font-size: clamp(7px, 2.2vw, 9px) !important; /* Responsive font size for problem section */
+    @media (width <=768px) {
+      font-size: clamp(7px, 2.2vw, 9px) !important;
+      /* Responsive font size for problem section */
       letter-spacing: 0.02em;
     }
   }
@@ -2543,33 +2799,47 @@
 
 .persona-subtitle {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-weight: 500; /* Increased from 400 for better readability */
-  font-size: 14px; /* Increased from 13px to better utilize card space */
-  font-style: italic; /* Italicized subtitle */
-  color: rgb(0 0 0 / 75%); /* Increased contrast from 0.65 */
-  letter-spacing: 0.01em; /* Slightly more letter spacing */
-  line-height: 1.5; /* Increased line height for better spacing */
+  font-weight: 500;
+  /* Increased from 400 for better readability */
+  font-size: 14px;
+  /* Increased from 13px to better utilize card space */
+  font-style: italic;
+  /* Italicized subtitle */
+  color: rgb(0 0 0 / 75%);
+  /* Increased contrast from 0.65 */
+  letter-spacing: 0.01em;
+  /* Slightly more letter spacing */
+  line-height: 1.5;
+  /* Increased line height for better spacing */
   text-align: center;
   width: 100%;
 
   .dark & {
-    color: rgb(255 255 255 / 80%); /* Increased contrast from 0.65 */
+    color: rgb(255 255 255 / 80%);
+    /* Increased contrast from 0.65 */
   }
 
-  @media (width <= 768px) {
-    font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size that scales with viewport */
-    line-height: 1.25 !important; /* Tighter line height */
-    word-wrap: break-word; /* Allow word breaking */
-    hyphens: auto; /* Add hyphens for long words */
+  @media (width <=768px) {
+    font-size: clamp(6px, 1.8vw, 8px) !important;
+    /* Responsive font size that scales with viewport */
+    line-height: 1.25 !important;
+    /* Tighter line height */
+    word-wrap: break-word;
+    /* Allow word breaking */
+    hyphens: auto;
+    /* Add hyphens for long words */
   }
 
   /* Scale down subtitle in Problem section */
   .case-study-top-to-bottom & {
-    font-size: 12px; /* Increased from 10px for better readability on desktop */
+    font-size: 12px;
+    /* Increased from 10px for better readability on desktop */
 
-    @media (width <= 768px) {
-      font-size: clamp(6px, 1.8vw, 8px) !important; /* Responsive font size for problem section */
-      line-height: 1.25 !important; /* Tighter line height */
+    @media (width <=768px) {
+      font-size: clamp(6px, 1.8vw, 8px) !important;
+      /* Responsive font size for problem section */
+      line-height: 1.25 !important;
+      /* Tighter line height */
     }
   }
 }
@@ -2588,10 +2858,10 @@
   height: 100%;
   min-height: 100%;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     padding: 1.25em 1.5em;
   }
-  
+
   .accountability-levers {
     width: 100%;
     max-width: 100%;
@@ -2607,15 +2877,19 @@
 }
 
 .gaintain-end-cta-section {
-  margin: 0 auto; /* Remove top margin - container gap handles spacing */
-  margin-top: 0; /* Ensure no top margin - container gap handles spacing */
-  margin-bottom: 0; /* Ensure no bottom margin */
+  margin: 0 auto;
+  /* Remove top margin - container gap handles spacing */
+  margin-top: 0;
+  /* Ensure no top margin - container gap handles spacing */
+  margin-bottom: 0;
+  /* Ensure no bottom margin */
   max-width: min(1280px, 96%);
   padding: 0 1dvw;
   width: 100%;
 
-  @media (width >= 768px) {
-    margin-top: 0; /* Remove top margin - container gap handles spacing */
+  @media (width >=768px) {
+    margin-top: 0;
+    /* Remove top margin - container gap handles spacing */
   }
 }
 
@@ -2625,19 +2899,19 @@
   border: 1px solid rgb(230 92 0 / 20%);
   border-radius: 20px;
   padding: 2em 1.5em;
-  box-shadow: 
+  box-shadow:
     0 8px 24px -12px rgb(230 92 0 / 20%),
     0 2px 8px -2px rgb(230 92 0 / 10%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 2.5em 2em;
   }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 
+      box-shadow:
         0 16px 48px -16px rgb(230 92 0 / 25%),
         0 6px 16px -4px rgb(230 92 0 / 15%);
     }
@@ -2651,7 +2925,7 @@
   text-align: center;
   gap: 1em;
 
-  @media (width >= $breakpoint) {
+  @media (width >=$breakpoint) {
     gap: 1.25em;
   }
 }
@@ -2683,7 +2957,7 @@
   margin-top: 0.25em;
   align-items: center;
 
-  @media (width >= 480px) {
+  @media (width >=480px) {
     flex-direction: row;
     justify-content: center;
     gap: 1em;
@@ -2722,13 +2996,13 @@
 .dark .gaintain-end-cta-container {
   background: linear-gradient(135deg, rgb(249 212 35 / 12%) 0%, rgb(230 92 0 / 8%) 100%);
   border-color: rgb(249 212 35 / 20%);
-  box-shadow: 
+  box-shadow:
     0 12px 40px -16px rgb(249 212 35 / 25%),
     0 4px 12px -4px rgb(249 212 35 / 15%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      box-shadow: 
+      box-shadow:
         0 16px 48px -16px rgb(249 212 35 / 30%),
         0 6px 16px -4px rgb(249 212 35 / 20%);
     }
@@ -2782,7 +3056,7 @@
   padding: 0 0.5em;
   box-sizing: border-box;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     margin-top: 4em;
   }
 }
@@ -2795,7 +3069,7 @@
   padding: 1.5em 0;
   border-top: 1px solid rgba($dark-text, 0.1);
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     flex-direction: row;
     justify-content: center;
     gap: 1em;
@@ -2887,7 +3161,7 @@
     overflow: visible;
     font-family: Inter, sans-serif;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       padding: 0.75em 1em;
     }
   }
@@ -2902,7 +3176,7 @@
   margin: 0;
   overflow: visible;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     flex-flow: row wrap;
     align-items: center;
     gap: 0.875em;
@@ -2919,7 +3193,7 @@
   padding: 0.1em 0;
   overflow: visible;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     min-width: 80px;
     padding: 0.15em 0;
   }
@@ -2933,7 +3207,7 @@
     font-weight: 700;
     overflow: visible;
 
-    @media (width <= 768px) {
+    @media (width <=768px) {
       font-size: 2rem;
       line-height: 1.35;
       padding: 0.2em 0 0.25em;
@@ -2949,7 +3223,7 @@
   min-width: 0;
   margin: 0;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     gap: 0.375em;
     flex: 1 1 auto;
     min-width: 0;
@@ -2963,7 +3237,7 @@
   letter-spacing: -0.02em;
   line-height: 1.3;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 0.9375rem;
     line-height: 1.2;
   }
@@ -2976,7 +3250,7 @@
   margin: 0;
   font-weight: 400;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 0.8125rem;
     line-height: 1.4;
     display: none;
@@ -2992,7 +3266,7 @@
   line-height: 1.4;
   font-weight: 500;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     gap: 0.875em;
     font-size: 0.8125rem;
   }
@@ -3041,7 +3315,7 @@
   opacity: 0.7;
   font-style: italic;
   transition: opacity 0.2s ease;
-  
+
   &:hover {
     opacity: 0.9;
   }
@@ -3155,7 +3429,7 @@
   appearance: none;
   outline: none;
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     &:hover {
       filter: brightness(1.2);
       transform: translateY(-2px);
@@ -3219,7 +3493,7 @@
   flex: 1;
   min-height: 0;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     flex-direction: column;
   }
 }
@@ -3301,7 +3575,7 @@
       width: 100%;
       height: 100%;
       transition: fill 0.3s ease;
-      
+
       path {
         fill-opacity: 1 !important;
         opacity: 1 !important;
@@ -3316,7 +3590,7 @@
     background-color: transparent !important;
   }
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -3333,12 +3607,12 @@
   box-sizing: border-box;
   gap: 1.5em;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     padding: 7.5em 0.5em;
     gap: 2em;
   }
 
-  > img {
+  >img {
     width: 100%;
     max-width: 100%;
     border-radius: 0.875em;
@@ -3352,7 +3626,7 @@
   width: 100%;
   margin-top: 1em;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
   }
@@ -3365,7 +3639,7 @@
   width: 100%;
   margin-top: 1em;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
   }
@@ -3378,7 +3652,7 @@
   width: 100%;
   margin-top: 1.25em !important;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(2, 1fr);
     gap: 1em;
   }
@@ -3407,18 +3681,18 @@
     border-color: rgb(230 92 0 / 25%);
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 1.25em 1.5em;
     gap: 1.25em;
   }
 
-  > .body-2 {
+  >.body-2 {
     margin: 0;
     line-height: 1.5;
     font-size: 0.9em;
     flex: 1;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       font-size: 1em;
       line-height: 1.6;
     }
@@ -3441,17 +3715,17 @@
     color: rgb(249 212 35 / 90%);
   }
 
-  > svg {
+  >svg {
     width: 1.25em;
     height: 1.25em;
     stroke-width: 1.5;
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     width: 2.5em;
     height: 2.5em;
 
-    > svg {
+    >svg {
       width: 1.5em;
       height: 1.5em;
     }
@@ -3481,7 +3755,7 @@
     border-color: rgb(230 92 0 / 20%);
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     padding: 1.125em;
     border-radius: 0.75em;
   }
@@ -3500,16 +3774,16 @@
       padding: 0.875em;
     }
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       padding: 1.25em 1.125em;
     }
 
     .gaintain-metric-value {
-      @media (width >= 768px) {
+      @media (width >=768px) {
         font-size: 2.75em;
       }
 
-      @media (width >= 1024px) {
+      @media (width >=1024px) {
         font-size: 3em;
       }
     }
@@ -3528,12 +3802,12 @@
     color: $light-text;
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     font-size: 2.25em;
     margin-bottom: 0.375em;
   }
 
-  @media (width >= 1024px) {
+  @media (width >=1024px) {
     font-size: 2.5em;
   }
 }
@@ -3550,7 +3824,7 @@
     opacity: 0.75;
   }
 
-  @media (width >= 768px) {
+  @media (width >=768px) {
     font-size: 0.85em;
     line-height: 1.4;
   }
@@ -3563,24 +3837,24 @@
   width: 100%;
   align-items: start;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(3, 1fr);
     gap: 2em;
   }
 
-  > .gaintain-details-card {
+  >.gaintain-details-card {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       gap: 0.75em;
     }
   }
 
-  > .gaintain-metric-style-card {
+  >.gaintain-metric-style-card {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -3588,27 +3862,27 @@
     border: none;
     padding: 0;
 
-    @media (width >= 768px) {
+    @media (width >=768px) {
       gap: 1.5em;
     }
 
-    > .gaintain-metric-card {
+    >.gaintain-metric-card {
       margin: 0;
       width: 100%;
     }
 
-    > .gaintain-validation-items {
+    >.gaintain-validation-items {
       display: flex;
       flex-direction: column;
       gap: 0.75em;
       margin-top: 0.5em;
 
-      > .body-2 {
+      >.body-2 {
         margin: 0;
         line-height: 1.6;
         font-size: 0.9em;
 
-        @media (width >= 768px) {
+        @media (width >=768px) {
           font-size: 1em;
           line-height: 1.7;
         }
@@ -3616,14 +3890,14 @@
     }
   }
 
-  > .gaintain-details-card:not(.gaintain-metric-style-card) {
+  >.gaintain-details-card:not(.gaintain-metric-style-card) {
     .gaintain-results-title {
       font-weight: 600;
       margin: 0 0 0.5em;
       font-size: 0.95em;
       line-height: 1.4;
 
-      @media (width >= 768px) {
+      @media (width >=768px) {
         font-size: 1.05em;
         margin-bottom: 0.75em;
       }
@@ -3634,7 +3908,7 @@
       padding-left: 1.25em;
       list-style-type: disc;
 
-      @media (width >= 768px) {
+      @media (width >=768px) {
         padding-left: 1.5em;
       }
     }
@@ -3644,7 +3918,7 @@
       line-height: 1.6;
       font-size: 0.9em;
 
-      @media (width >= 768px) {
+      @media (width >=768px) {
         line-height: 1.7;
         font-size: 1em;
         margin-bottom: 1em;
@@ -3661,11 +3935,11 @@
   align-items: flex-start;
   gap: 0.5em;
 
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     gap: 0.75em;
   }
 
-  > .gaintain-image-container {
+  >.gaintain-image-container {
     aspect-ratio: 16 / 9 !important;
     max-height: 420px;
     position: relative;
@@ -3677,7 +3951,7 @@
     box-shadow: 0 4px 16px -8px rgb(230 92 0 / 20%) !important;
     padding: 0 !important;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       max-height: 560px;
     }
 
@@ -3691,7 +3965,7 @@
       pointer-events: none;
     }
 
-    > img {
+    >img {
       height: 100%;
       object-fit: cover;
       object-position: center;
@@ -3707,28 +3981,28 @@
     }
   }
 
-  > img {
+  >img {
     margin-top: 0.5em;
     margin-bottom: 0;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       margin-top: 0.75em;
     }
   }
 
-  > .case-study-explanation {
+  >.case-study-explanation {
     width: 100%;
     align-items: flex-start;
     gap: 0.25em;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       gap: 0.375em;
     }
 
-    > .section-heading-container {
+    >.section-heading-container {
       margin: 0 0 0.25em;
 
-      @media (width >= $case-study-breakpoint) {
+      @media (width >=$case-study-breakpoint) {
         margin: 0 0 0.375em;
       }
     }
@@ -3736,7 +4010,7 @@
 }
 
 .gaintain-key-insight {
-  > .case-study-explanation {
+  >.case-study-explanation {
     order: 2;
   }
 
@@ -3744,12 +4018,12 @@
   &.gaintain-key-insight-close {
     margin-top: -2em;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       margin-top: -3em;
     }
   }
 
-  > img {
+  >img {
     order: 1;
   }
 
@@ -3765,7 +4039,7 @@
     min-height: 0;
     flex: 1;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       padding: 2em;
       height: 100% !important;
       min-height: 100%;
@@ -3780,7 +4054,7 @@
     max-height: 100%;
     object-fit: contain;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       height: 100% !important;
       width: 100% !important;
       flex: 1;
@@ -3789,29 +4063,34 @@
     }
   }
 
-  @media (width >= $case-study-breakpoint) {
-    align-items: stretch !important; /* Make grid items stretch to match height */
-    display: grid !important; /* Ensure grid layout */
+  @media (width >=$case-study-breakpoint) {
+    align-items: stretch !important;
+    /* Make grid items stretch to match height */
+    display: grid !important;
+    /* Ensure grid layout */
     grid-template-columns: 1fr 1fr !important;
-    
-    > .case-study-explanation {
+
+    >.case-study-explanation {
       order: unset;
       display: flex;
       flex-direction: column;
-      height: 100%; /* Ensure it takes full height */
+      height: 100%;
+      /* Ensure it takes full height */
     }
 
-    > img {
+    >img {
       order: unset;
     }
 
-    > .gaintain-image-container {
-      height: 100% !important; /* Match text column height */
+    >.gaintain-image-container {
+      height: 100% !important;
+      /* Match text column height */
       display: flex;
-      align-items: stretch; /* Stretch to fill height */
+      align-items: stretch;
+      /* Stretch to fill height */
       justify-content: center;
       min-height: 0;
-      
+
       /* Ensure graph fills height in Key Insight section */
       .design-strategy-graphic-container {
         height: 100% !important;
@@ -3821,14 +4100,16 @@
         min-height: 0;
         width: 100%;
       }
-      
+
       .design-strategy-graphic {
         height: 100% !important;
         width: 100% !important;
         flex: 1;
         min-height: 0;
-        display: block; /* Ensure SVG displays as block element */
-        object-fit: contain; /* Scale to fit within container */
+        display: block;
+        /* Ensure SVG displays as block element */
+        object-fit: contain;
+        /* Scale to fit within container */
       }
 
       .system-diagram-container {
@@ -3854,18 +4135,18 @@
 
 
 .gaintain-solution {
-  @media (width >= $case-study-breakpoint) {
+  @media (width >=$case-study-breakpoint) {
     align-items: stretch;
   }
 
-  > .case-study-explanation {
+  >.case-study-explanation {
     order: 2;
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  > .gaintain-solution-cards {
+  >.gaintain-solution-cards {
     order: 1;
     display: flex;
     flex-direction: column;
@@ -3877,62 +4158,62 @@
   }
 
   // Allow color picker to be visible in video container
-  > .gaintain-image-container.gaintain-video-container {
+  >.gaintain-image-container.gaintain-video-container {
     overflow: visible !important;
   }
 
   // Make the animation + picker container match the solution card height
-  > div:has(.gaintain-video-container) {
+  >div:has(.gaintain-video-container) {
     height: 100%;
     align-self: stretch;
     display: flex;
     flex-direction: column;
   }
 
-.gaintain-design-system {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  flex: 1;
-  min-height: 0;
-  justify-content: flex-start;
-  align-items: stretch;
+  .gaintain-design-system {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+    min-height: 0;
+    justify-content: flex-start;
+    align-items: stretch;
 
-  @media (width <= 768px) {
-    > .gaintain-typography-card {
-      order: 1;
-    }
-
-    > .gaintain-logo-grid {
-      order: 2;
-    }
-
-    > .gaintain-palette-section {
-      order: 3;
-
-      > .gaintain-palette-container {
-        > .gaintain-gradient-wrapper {
-          order: -1;
-        }
-
-        > .gaintain-color-column {
-          order: 1;
-        }
+    @media (width <=768px) {
+      >.gaintain-typography-card {
+        order: 1;
       }
 
-      > .gaintain-gradient-controls-wrapper {
+      >.gaintain-logo-grid {
         order: 2;
+      }
+
+      >.gaintain-palette-section {
+        order: 3;
+
+        >.gaintain-palette-container {
+          >.gaintain-gradient-wrapper {
+            order: -1;
+          }
+
+          >.gaintain-color-column {
+            order: 1;
+          }
+        }
+
+        >.gaintain-gradient-controls-wrapper {
+          order: 2;
+        }
       }
     }
   }
-}
 
-  @media (width >= $case-study-breakpoint) {
-    > .case-study-explanation {
+  @media (width >=$case-study-breakpoint) {
+    >.case-study-explanation {
       order: unset;
     }
 
-    > .gaintain-solution-cards {
+    >.gaintain-solution-cards {
       order: unset;
     }
   }
@@ -3942,11 +4223,11 @@
   align-items: flex-start !important;
   gap: 0;
 
-  > .gaintain-image-container {
+  >.gaintain-image-container {
     aspect-ratio: 16 / 9 !important;
     max-height: 420px;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       max-height: 560px;
     }
 
@@ -3960,7 +4241,7 @@
       opacity: 0;
     }
 
-    > img {
+    >img {
       height: 100%;
       object-fit: cover;
       object-position: center;
@@ -3974,21 +4255,21 @@
     }
   }
 
-  > .case-study-explanation {
+  >.case-study-explanation {
     width: 100% !important;
     align-items: flex-start;
     gap: 0.25em;
     display: flex;
     flex-direction: column;
 
-    @media (width >= $case-study-breakpoint) {
+    @media (width >=$case-study-breakpoint) {
       gap: 0.375em;
     }
 
-    > .section-heading-container {
+    >.section-heading-container {
       margin: 0 0 0.25em !important;
 
-      @media (width >= $case-study-breakpoint) {
+      @media (width >=$case-study-breakpoint) {
         margin: 0 0 0.375em !important;
       }
     }
@@ -4005,8 +4286,8 @@
   margin: 0; // Remove any margin
   min-height: 0; // Allow flex shrinking
   flex: 1; // Take up available space
-  
-  @media (width <= 768px) {
+
+  @media (width <=768px) {
     align-items: stretch; // Ensure it fills the full height on mobile
   }
 }
@@ -4019,16 +4300,16 @@
   object-fit: contain; // Ensure it fits within container
   flex: 1; // Take up available space
   min-height: 0; // Allow flex shrinking
-  
+
   // On desktop, fill width and height
-  @media (width >= 768px) {
+  @media (width >=768px) {
     width: 100%;
     height: 100%;
     flex: 1;
   }
-  
+
   // On mobile, fill height
-  @media (width <= 767px) {
+  @media (width <=767px) {
     width: 100%;
     height: 100%;
   }
@@ -4041,7 +4322,7 @@
   fill: rgb(0 0 0 / 60%);
   letter-spacing: 0.01em;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 10px;
   }
 }
@@ -4052,20 +4333,27 @@
 
 .design-strategy-axis-title {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 12px; /* Smaller than point labels */
-  font-weight: 500; /* Lighter weight than point labels (700) */
-  fill: rgb(0 0 0 / 70%); /* More subtle opacity than point labels */
-  letter-spacing: 0.02em; /* Slightly more letter spacing */
-  font-style: italic; /* Italicized to differentiate from point labels */
-  text-transform: uppercase; /* Uppercase for axis labels */
+  font-size: 12px;
+  /* Smaller than point labels */
+  font-weight: 500;
+  /* Lighter weight than point labels (700) */
+  fill: rgb(0 0 0 / 70%);
+  /* More subtle opacity than point labels */
+  letter-spacing: 0.02em;
+  /* Slightly more letter spacing */
+  font-style: italic;
+  /* Italicized to differentiate from point labels */
+  text-transform: uppercase;
+  /* Uppercase for axis labels */
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 11px;
   }
 }
 
 .dark .design-strategy-axis-title {
-  fill: rgb(255 255 255 / 70%); /* More subtle opacity in dark mode */
+  fill: rgb(255 255 255 / 70%);
+  /* More subtle opacity in dark mode */
 }
 
 .design-strategy-point-label {
@@ -4075,7 +4363,7 @@
   fill: rgb(0 0 0 / 95%);
   letter-spacing: 0.01em;
 
-  @media (width <= 768px) {
+  @media (width <=768px) {
     font-size: 12px;
   }
 }
@@ -4098,30 +4386,36 @@
 
 // GainTain label letter-by-letter animation (similar to Product Builder)
 .gaintain-label-animated {
-  fill: #F5F5F5 !important; /* Light background color - invisible on first load */
-  
+  fill: #F5F5F5 !important;
+  /* Light background color - invisible on first load */
+
   .dark & {
-    fill: #090B0B !important; /* Dark background color - invisible on first load */
+    fill: #090B0B !important;
+    /* Dark background color - invisible on first load */
   }
 
   .animated-letter {
     opacity: 1;
     transition: opacity 0.6s ease-in-out, fill 0.6s ease-in-out;
-    fill: #F5F5F5; /* Light background color - invisible on first load */
+    fill: #F5F5F5;
+    /* Light background color - invisible on first load */
   }
 
   .dark & .animated-letter {
-    fill: #090B0B; /* Dark background color - invisible on first load */
+    fill: #090B0B;
+    /* Dark background color - invisible on first load */
   }
 
   .animated-letter.filled {
     opacity: 1;
-    fill: rgb(0 0 0 / 92%); /* Same fill as Human Coach */
+    fill: rgb(0 0 0 / 92%);
+    /* Same fill as Human Coach */
   }
 }
 
 .dark .gaintain-label-animated .animated-letter.filled {
-  fill: rgb(255 255 255 / 92%); /* Same fill as Human Coach in dark mode */
+  fill: rgb(255 255 255 / 92%);
+  /* Same fill as Human Coach in dark mode */
 }
 
 // Respect reduced motion preferences
@@ -4130,19 +4424,21 @@
     animation: none !important;
     stroke-dashoffset: 0 !important;
   }
-  
+
   .gaintain-label-animated .animated-letter {
     opacity: 1 !important;
-    fill: rgb(0 0 0 / 92%) !important; /* Same fill as Human Coach */
+    fill: rgb(0 0 0 / 92%) !important;
+    /* Same fill as Human Coach */
   }
 
   .dark .gaintain-label-animated .animated-letter {
-    fill: rgb(255 255 255 / 92%) !important; /* Same fill as Human Coach in dark mode */
+    fill: rgb(255 255 255 / 92%) !important;
+    /* Same fill as Human Coach in dark mode */
   }
 }
 
 /* Final override: Key Insight (Design Strategy graphic) should have NO media fill */
-.case-study-side-by-side.gaintain-key-insight > .gaintain-image-container {
+.case-study-side-by-side.gaintain-key-insight>.gaintain-image-container {
   background: transparent !important;
   backdrop-filter: none !important;
   border: none !important;
