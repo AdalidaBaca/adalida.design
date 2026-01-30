@@ -1,9 +1,13 @@
+import { IconBulb } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import ScrollAnimatedText from 'components/scroll_animated_text'
 import FileQuery from 'queries/file'
 import { useMemo, useRef } from 'react'
 
 import Section from './section'
+
+const taglineText =
+  'Strategic + Linguistic + Systems-Thinking + Brutally Practical.'
 
 const HowIThink = (): JSX.Element => {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -15,7 +19,8 @@ const HowIThink = (): JSX.Element => {
   }
   const texts = useMemo(
     () => [
-      'I make the logic of a system explicit. How information is structured determines how it is interpreted, what actions people take, and where things break down.',
+      taglineText,
+      'I make the logic of a system explicit. How information is structured shapes how it is interpreted, what actions people take, and where things break down.',
       'Before designing, I look at the data that already exists and the constraints that shape the work: what is available, what is missing, what can realistically be captured, and what decisions the system needs to support. Budget, technical complexity, team skill level, and time horizon all matter.'
     ],
     []
@@ -31,12 +36,23 @@ const HowIThink = (): JSX.Element => {
   return (
     <Section title="My Process">
       <div className="how-i-think" ref={sectionRef}>
-        {texts.map((text, index) => (
+        <div className="how-i-think-tagline">
+          <IconBulb className="how-i-think-tagline-icon" aria-hidden />
+          <p className="how-i-think-tagline-text">
+            <ScrollAnimatedText
+              text={taglineText}
+              targetRef={sectionRef}
+              startIndex={startIndices[0]}
+              totalLetters={totalLetters}
+            />
+          </p>
+        </div>
+        {texts.slice(1).map((text, index) => (
           <p key={text}>
             <ScrollAnimatedText
               text={text}
               targetRef={sectionRef}
-              startIndex={startIndices[index]}
+              startIndex={startIndices[index + 1]}
               totalLetters={totalLetters}
             />
           </p>

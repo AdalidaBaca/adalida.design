@@ -1,4 +1,77 @@
 @use 'sass:map';
+@import '../variables';
+@import '../colors';
+
+/* Tagline: accent block with light bulb + scroll fill animation (same as paragraphs) */
+.my-process-section .how-i-think-tagline {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin: 0 0 1em;
+  padding: 0.9em 1em;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgb(74 158 255 / 10%) 0%, rgb(90 200 250 / 6%) 100%);
+  border: 1px solid rgb(74 158 255 / 18%);
+
+  @media (width >= $breakpoint) {
+    padding: 1em 1.2em;
+    margin-bottom: 1.25em;
+    gap: 0.85em;
+  }
+}
+
+.my-process-section .how-i-think-tagline-icon {
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+  color: map.get($light-colors, danger);
+
+  @media (width >= $breakpoint) {
+    width: 1.35em;
+    height: 1.35em;
+  }
+}
+
+.dark .my-process-section .how-i-think-tagline-icon {
+  color: map.get($dark-colors, danger);
+}
+
+.my-process-section .how-i-think-tagline-text {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.55;
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  letter-spacing: 0.02em;
+
+  @media (width >= $breakpoint) {
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  }
+
+  /* Scroll fill: letters start dim, fill to accent as user scrolls */
+  .animated-letter {
+    opacity: 0.4;
+    color: inherit;
+    transition: opacity 0.6s ease-in-out, color 0.6s ease-in-out;
+  }
+
+  .animated-letter.filled {
+    opacity: 1;
+    color: map.get($light-colors, danger);
+  }
+}
+
+.dark .my-process-section .how-i-think-tagline {
+  background: linear-gradient(135deg, rgb(90 200 250 / 12%) 0%, rgb(74 158 255 / 8%) 100%);
+  border-color: rgb(90 200 250 / 22%);
+}
+
+.dark .my-process-section .how-i-think-tagline-text .animated-letter.filled {
+  color: map.get($dark-colors, danger);
+}
 
 .how-i-think {
   display: grid;

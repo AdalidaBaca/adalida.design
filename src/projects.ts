@@ -133,8 +133,8 @@ export const Projects = {
       url: '/case_studies/invibe_esthetics'
     },
     colors: {
-      cover: '#965738',
-      primary: '#965738'
+      cover: 'linear-gradient(45deg, #965738 0%, #C9A882 100%)',
+      primary: 'linear-gradient(45deg, #965738 0%, #C9A882 100%)'
     }
   },
   SmartVentureMedia: {
@@ -165,8 +165,8 @@ export const Projects = {
       url: '/case_studies/project_echo'
     },
     colors: {
-      cover: '#0891B2',
-      primary: 'linear-gradient(45deg, #0891B2, #06B6D4)'
+      cover: 'linear-gradient(45deg, #0891B2 0%, #06B6D4 100%)',
+      primary: 'linear-gradient(45deg, #0891B2 0%, #06B6D4 100%)'
     }
   },
   LoboGardens: {

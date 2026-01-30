@@ -23,7 +23,7 @@ interface ApproachRow {
 }
 
 const APPROACH_ROWS: ApproachRow[] = [
-  { label: 'Paper intake', sub: 'Current Solution', cost: 'yes', intakeData: 'no', dataUpdatability: 'no' },
+  { label: 'Paper intake', sub: 'Current Solution', cost: 'yes', intakeData: 'yes', dataUpdatability: 'no' },
   { label: 'WIX Pro', sub: '+$10 / month', cost: 'no', intakeData: 'yes', dataUpdatability: 'yes' },
   { label: 'Forms (CSV)', sub: 'Tally / Google', cost: 'yes', intakeData: 'yes', dataUpdatability: 'partial' }
 ]

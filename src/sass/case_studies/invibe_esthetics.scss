@@ -182,7 +182,7 @@
     overflow: hidden;
     margin: 0 auto;
     border-radius: 1.5em;
-    background: #965738;
+    background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
     box-shadow: 0 4px 16px -8px rgb(150 87 56 / 20%);
 
     @media (width <=768px) {
@@ -366,7 +366,7 @@
 
   // Enhanced outcome card styling
   &.invibe-esthetics-outcome-card {
-    background: linear-gradient(135deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
     border: 1px solid rgb(150 87 56 / 20%);
     box-shadow: 0 4px 16px -8px rgb(150 87 56 / 20%), 0 2px 8px -4px rgb(150 87 56 / 10%);
     padding: 1.5em;
@@ -376,7 +376,7 @@
     }
 
     &:hover {
-      background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 10%) 100%);
+      background: linear-gradient(45deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 10%) 100%);
       border-color: rgb(150 87 56 / 30%);
       transform: translateY(-3px);
       box-shadow: 0 8px 24px -12px rgb(150 87 56 / 25%), 0 4px 12px -6px rgb(150 87 56 / 15%);
@@ -486,14 +486,14 @@
     max-height: 420px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%);
+    background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
     border: 1px solid rgb(150 87 56 / 25%);
     box-shadow: 0 4px 16px -4px rgb(150 87 56 / 20%);
     padding: 0;
     border-radius: 10px;
 
     .dark & {
-      background: linear-gradient(135deg, rgb(150 87 56 / 18%) 0%, rgb(150 87 56 / 10%) 100%);
+      background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
       border-color: rgb(150 87 56 / 35%);
     }
 
@@ -564,7 +564,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  background: linear-gradient(135deg, rgb(150 87 56 / 8%) 0%, rgb(150 87 56 / 5%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 8%) 0%, rgb(150 87 56 / 5%) 100%);
   border: 1px solid rgb(150 87 56 / 15%);
   border-radius: 16px;
   padding: 1.25em 1.5em;
@@ -599,7 +599,7 @@
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
   line-height: 1.2;
-  background: linear-gradient(135deg, #965738 0%, #B97A57 100%);
+  background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
   background-clip: text;
   color: transparent;
   margin: 0;
@@ -626,7 +626,7 @@
     .animated-letter {
       opacity: 0.4;
       transition: opacity 0.6s ease-in-out;
-      background: linear-gradient(135deg, #965738 0%, #B97A57 100%);
+      background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
       background-clip: text;
       color: transparent;
       -webkit-background-clip: text;
@@ -642,7 +642,7 @@
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: linear-gradient(135deg, #965738 0%, #B97A57 100%) !important;
+  background: linear-gradient(45deg, #965738 0%, #C9A882 100%) !important;
   border: none !important;
   color: #fff !important;
   padding: 0.5em 1.25em !important;
@@ -669,7 +669,7 @@
 }
 
 .dark .invibe-esthetics-download-content {
-  background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 8%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 8%) 100%);
   border-color: rgb(150 87 56 / 20%);
 }
 
@@ -688,12 +688,12 @@
 }
 
 .dark .invibe-esthetics-download-text {
-  background: linear-gradient(135deg, #B97A57 0%, #965738 100%);
+  background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
   background-clip: text;
   color: transparent;
 
   &.invibe-esthetics-download-text-animated .animated-letter {
-    background: linear-gradient(135deg, #B97A57 0%, #965738 100%);
+    background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
     background-clip: text;
     color: transparent;
     -webkit-background-clip: text;
@@ -712,6 +712,15 @@
 
   .case-study-explanation {
     width: 100% !important;
+  }
+
+  // Match spacing to other sections (e.g. Key Takeaways): title close to content
+  > .case-study-explanation > .section-heading-container {
+    margin-bottom: 0.25em;
+
+    @media (width >= 768px) {
+      margin-bottom: 0.375em;
+    }
   }
 }
 
@@ -748,10 +757,10 @@
 
 .invibe-esthetics-results-feedback-row {
   width: 100%;
-  margin-top: 1em;
+  margin-top: 0.25em;
 
-  @media (width >=768px) {
-    margin-top: 1.25em;
+  @media (width >= 768px) {
+    margin-top: 0.375em;
   }
 
   .invibe-esthetics-metric-card {
@@ -761,12 +770,12 @@
 
 .invibe-esthetics-feedback-card {
   padding: 1.5em 1.5em 1.25em !important;
-  background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%) !important;
+  background: linear-gradient(45deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%) !important;
   border: 2px solid rgb(150 87 56 / 25%);
   box-shadow: 0 4px 16px -4px rgb(150 87 56 / 18%);
 
   .dark & {
-    background: linear-gradient(135deg, rgb(150 87 56 / 18%) 0%, rgb(150 87 56 / 10%) 100%) !important;
+    background: linear-gradient(45deg, rgb(150 87 56 / 18%) 0%, rgb(150 87 56 / 10%) 100%) !important;
     border-color: rgb(150 87 56 / 35%);
     box-shadow: 0 4px 20px -4px rgb(150 87 56 / 25%);
   }
@@ -859,7 +868,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 0.75em;
-  background: linear-gradient(135deg, rgb(150 87 56 / 6%) 0%, rgb(150 87 56 / 4%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 6%) 0%, rgb(150 87 56 / 4%) 100%);
   border-radius: 0.625em;
   border: 1px solid rgb(150 87 56 / 12%);
   transition: transform 200ms ease, box-shadow 200ms ease;
@@ -872,7 +881,7 @@
   }
 
   .dark & {
-    background: linear-gradient(135deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
     border-color: rgb(150 87 56 / 20%);
   }
 
@@ -884,11 +893,11 @@
   &.invibe-esthetics-metric-primary {
     border-width: 1px;
     border-color: rgb(150 87 56 / 20%);
-    background: linear-gradient(135deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 10%) 0%, rgb(150 87 56 / 6%) 100%);
 
     .dark & {
       border-color: rgb(150 87 56 / 30%);
-      background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 10%) 100%);
+      background: linear-gradient(45deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 10%) 100%);
     }
 
     .invibe-esthetics-metric-value {
@@ -1035,7 +1044,7 @@
 
 .invibe-esthetics-end-cta-container {
   width: 100%;
-  background: linear-gradient(135deg, rgb(150 87 56 / 8%) 0%, rgb(150 87 56 / 5%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 8%) 0%, rgb(150 87 56 / 5%) 100%);
   border: 1px solid rgb(150 87 56 / 15%);
   border-radius: 20px;
   padding: 2em 1.5em;
@@ -1058,7 +1067,7 @@
   }
 
   .dark & {
-    background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 8%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 8%) 100%);
     border-color: rgb(150 87 56 / 20%);
     box-shadow:
       0 12px 40px -16px rgb(150 87 56 / 25%),
@@ -1812,13 +1821,13 @@
   min-height: 200px;
   border-radius: 10px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .dark & {
-    background: linear-gradient(135deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
   }
 
   img {
@@ -1906,12 +1915,12 @@
 
 // Case study color only on Intake Form - Tally
 .insight-flow-node-intake {
-  background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
+  background: linear-gradient(45deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
   border-color: rgb(150 87 56 / 35%);
   color: #6b3d2a;
 
   .dark & {
-    background: linear-gradient(135deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
+    background: linear-gradient(45deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
     border-color: rgb(150 87 56 / 45%);
     color: #e8c4a8;
   }
