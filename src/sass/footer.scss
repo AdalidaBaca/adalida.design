@@ -3,15 +3,11 @@
 .pre-footer {
   margin: 1.25em 0 1.5em; /* tighter gap when used as last section */
   padding: 0.875em 0.5em 0;
-  display: flex;
-  gap: 0.875em;
-  align-items: flex-end;
-  flex-direction: column;
+  display: block;
   border-top: 1px solid map.get($dark-colors, secondary);
 
-  > h5 {
-    display: flex;
-    gap: 0.5em;
+  > .contact-cta-container {
+    margin-top: 0;
   }
 }
 

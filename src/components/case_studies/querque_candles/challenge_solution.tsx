@@ -1,16 +1,14 @@
-import { IconExclamationMark } from '@tabler/icons-react'
-import Duck from 'components/duck'
-
 import ChallengeImage from 'images/querque_candles/challenge.webp'
 import { forwardRef, type Ref } from 'react'
-import IconHeading from '../icon_heading'
+
+import SectionHeading from 'components/section_heading'
 
 const ChallengeSolution = forwardRef(
   (_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
     <div data-aos="fade-up" className="case-study-side-by-side reverse" ref={ref}>
       <div className="case-study-explanation">
         <section>
-          <IconHeading icon={<IconExclamationMark />} heading="The Challenge:" />
+          <SectionHeading title="The Challenge:" />
           <div className="body-2">
             Querque Candles needed a distinct brand identity to establish a recognizable presence across product
             packaging, online marketing, and a future Shopify store. Without a cohesive visual identity, creating
@@ -19,7 +17,7 @@ const ChallengeSolution = forwardRef(
           </div>
         </section>
         <section>
-          <IconHeading icon={<Duck />} heading="The Solution:" />
+          <SectionHeading title="The Solution:" />
           <div className="subtitle-2">
             I designed a cohesive brand identity, including a custom logo, color palette, and visual elements, tailored
             for both product packaging and digital use. The design was optimized for sticker printing, online marketing,

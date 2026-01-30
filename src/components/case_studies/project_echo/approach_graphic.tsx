@@ -1,18 +1,10 @@
 import DarkModeContext from 'dark_mode_context'
 import useIsMobile from 'hooks/use_is_mobile'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 
 const ApproachGraphic = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
   const isMobile = useIsMobile(768)
-  const gradientPathRef = useRef<SVGPathElement>(null)
-  const motionPathRef = useRef<SVGPathElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const [pathLength, setPathLength] = useState<number | null>(null)
-  const [dotAnimationComplete, setDotAnimationComplete] = useState(false)
-  const [isInView, setIsInView] = useState(false)
-  const [hasAnimatedBefore, setHasAnimatedBefore] = useState(false)
   // Graph dimensions - responsive, adjusted width and height for better fit
   const graphWidth = isMobile ? 300 : 400
   const graphHeight = isMobile ? 350 : 380
@@ -55,100 +47,9 @@ const ApproachGraphic = (): JSX.Element => {
   const matrixY =
     (1 - t) ** 3 * vennY + 3 * (1 - t) ** 2 * t * cp1Y + 3 * (1 - t) * t ** 2 * cp2Y + t ** 3 * interactiveY
 
-  // Check if animation has been played before
-  useEffect(() => {
-    const hasPlayed = localStorage.getItem('project-echo-approach-graphic-animated') === 'true'
-    setHasAnimatedBefore(hasPlayed)
-    if (hasPlayed) {
-      // If already animated, set final states immediately
-      setDotAnimationComplete(true)
-    }
-  }, [])
-
-  // Calculate path length for animation
-  useEffect(() => {
-    if (gradientPathRef.current) {
-      try {
-        const length = gradientPathRef.current.getTotalLength()
-        if (Number.isFinite(length) && length > 0) {
-          setPathLength(length)
-        }
-      } catch {
-        // Path might not be rendered yet, will retry
-      }
-    }
-    if (motionPathRef.current) {
-      try {
-        const length = motionPathRef.current.getTotalLength()
-        if (Number.isFinite(length) && length > 0) {
-          // Path length is set, motion path is ready
-        }
-      } catch {
-        // Path might not be rendered yet, will retry
-      }
-    }
-  }, [])
-
-  // Handle dot animation completion
-  useEffect(() => {
-    if (pathLength && isInView && !hasAnimatedBefore) {
-      // Dot animation duration is 1.5s + 0.3s delay = 1.8s total
-      const timeout = setTimeout(() => {
-        setDotAnimationComplete(true)
-        // Mark animation as complete in localStorage
-        localStorage.setItem('project-echo-approach-graphic-animated', 'true')
-      }, 1800)
-      return () => clearTimeout(timeout)
-    }
-  }, [pathLength, isInView, hasAnimatedBefore])
-
-  // IntersectionObserver to trigger animation when section scrolls into view
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) {
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !isInView) {
-            setIsInView(true)
-            // Only trigger animation if it hasn't been played before
-            if (!hasAnimatedBefore) {
-              // Manually trigger the animations after a short delay
-              setTimeout(() => {
-                if (svgRef.current) {
-                  const lineAnimate = svgRef.current.querySelector('animate[attributeName="stroke-dashoffset"]')
-                  const dotAnimate = svgRef.current.querySelector('animateMotion')
-                  if (lineAnimate && lineAnimate instanceof SVGAnimateElement) {
-                    lineAnimate.beginElement()
-                  }
-                  if (dotAnimate && dotAnimate instanceof SVGAnimateMotionElement) {
-                    dotAnimate.beginElement()
-                  }
-                }
-              }, 300) // 0.3s delay
-            }
-          }
-        })
-      },
-      {
-        threshold: 0.3, // Trigger when 30% of the element is visible
-        rootMargin: '0px'
-      }
-    )
-
-    observer.observe(container)
-    return () => {
-      observer.disconnect()
-    }
-  }, [isInView, hasAnimatedBefore])
-
   return (
-    <div className="design-strategy-graphic-container" ref={containerRef}>
+    <div className="design-strategy-graphic-container">
       <svg
-        ref={svgRef}
         className="design-strategy-graphic"
         viewBox={`0 0 ${graphWidth} ${graphHeight}`}
         preserveAspectRatio="xMidYMid meet"
@@ -168,7 +69,7 @@ const ApproachGraphic = (): JSX.Element => {
             <stop offset="0%" stopColor="#0891B2" />
             <stop offset="100%" stopColor="#06B6D4" />
           </linearGradient>
-          {/* Gradient for animated dot */}
+          {/* Gradient for points */}
           <linearGradient
             id="project-echo-gradient-approach"
             x1="0%"
@@ -301,53 +202,15 @@ const ApproachGraphic = (): JSX.Element => {
           strokeWidth={isMobile ? '1.5' : '2'}
           strokeLinecap="round"
         />
-        {/* Path for dot motion - invisible but used for animation */}
+        {/* Continuous line from Venn Diagram + Lists to Interactive Set Comparisons (Project ECHO gradient) */}
         <path
-          ref={motionPathRef}
-          id="project-echo-motion-path"
-          d={`M ${vennX} ${vennY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${interactiveX} ${interactiveY}`}
-          fill="none"
-          stroke="transparent"
-          strokeWidth="1"
-        />
-        {/* Continuous line from Venn Diagram + Lists to Interactive Set Comparisons (with Project ECHO gradient and animation) */}
-        <path
-          ref={gradientPathRef}
           id="project-echo-line-path"
           d={`M ${vennX} ${vennY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${interactiveX} ${interactiveY}`}
           fill="none"
           stroke="url(#project-echo-line-gradient)"
           strokeWidth={isMobile ? '1.5' : '2'}
           strokeLinecap="round"
-          strokeDasharray={pathLength ? `${pathLength}` : 'none'}
-          strokeDashoffset={hasAnimatedBefore ? '0' : pathLength ? `${pathLength}` : '0'}
-        >
-          <animate
-            attributeName="stroke-dashoffset"
-            from={pathLength ? `${pathLength}` : '0'}
-            to="0"
-            dur="1.5s"
-            begin="indefinite"
-            fill="freeze"
-            calcMode="linear"
-          />
-        </path>
-        {/* Animated dot that moves along the path - synchronized with line fill */}
-        <circle
-          r={isMobile ? '4' : '5'}
-          fill="url(#project-echo-gradient-approach)"
-          stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
-          strokeWidth={isMobile ? '1' : '1.5'}
-          opacity={pathLength ? 1 : 0}
-          cx={hasAnimatedBefore ? interactiveX : undefined}
-          cy={hasAnimatedBefore ? interactiveY : undefined}
-        >
-          {!hasAnimatedBefore && (
-            <animateMotion dur="1.5s" begin="indefinite" fill="freeze" calcMode="linear" keyTimes="0;1">
-              <mpath href="#project-echo-motion-path" />
-            </animateMotion>
-          )}
-        </circle>
+        />
 
         {/* Venn Diagram + Lists point - with Project ECHO gradient fill */}
         <circle
@@ -387,17 +250,14 @@ const ApproachGraphic = (): JSX.Element => {
           Matrix-based
         </text>
 
-        {/* Interactive Comparisons point - grey until animation completes, then gradient fill */}
+        {/* Interactive Set Comparisons point - Project ECHO gradient fill */}
         <circle
           cx={interactiveX}
           cy={interactiveY}
           r={isMobile ? '4' : '5'}
-          fill={dotAnimationComplete ? 'url(#project-echo-gradient-approach)' : darkMode ? '#9CA3AF' : '#6B7280'}
+          fill="url(#project-echo-gradient-approach)"
           stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
           strokeWidth={isMobile ? '1' : '1.5'}
-          style={{
-            transition: 'fill 0.3s ease-in'
-          }}
         />
         <text
           x={interactiveX}

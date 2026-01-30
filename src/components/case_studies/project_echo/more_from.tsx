@@ -16,10 +16,7 @@ const MoreFrom = (): JSX.Element => {
               Selected dashboards, documentation, and internal tools from my internship at Project ECHO.
             </p>
             <div className="project-echo-end-cta-buttons">
-              <BadgeButton
-                to="https://adalidabaca.wixsite.com/internship-portfolio"
-                className="project-echo-link-primary"
-              >
+              <BadgeButton to="/internship-portfolio" className="project-echo-link-primary">
                 VIEW PORTFOLIO
               </BadgeButton>
               <BadgeButton to="https://www.linkedin.com/in/adalidabaca/">CHAT WITH ADI</BadgeButton>

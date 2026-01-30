@@ -1,20 +1,370 @@
-.querque-candles-overview {
+@use 'sass:map';
+@import '../colors';
+
+// Querque Candles Case Study
+// Matches Invibe Esthetics / Project ECHO hero + details card layout
+// Accent: #C9450D (rgb(201, 69, 13))
+
+.querque-candles-overview-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.querque-candles-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  margin-top: 0;
+  margin-bottom: 0;
   gap: 1.5em;
+  padding: 1.5em 0.5em 0;
+  padding-top: calc(56px + 1em);
+  box-sizing: border-box;
+  position: relative;
 
-  > img {
+  @media (width <=768px) {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: calc(56px + 0.75em);
+  }
+
+  @media (width >=768px) {
+    gap: 1.5em;
+    padding: 2em 0.5em 0;
+    padding-top: calc(56px + 1.5em);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > .querque-candles-title-strip {
+    margin: 0;
+    margin-top: 3em;
     width: 100%;
-    border-radius: 0.625em;
+    max-width: min(1200px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5em;
+
+    @media (width <=768px) {
+      margin-top: 2em;
+    }
+  }
+
+  > .querque-candles-hero-image {
+    max-width: 100%;
+    max-height: 75svh;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 1.5em;
+    background: rgba(201, 69, 13, 0.08);
+    box-shadow: 0 4px 16px -8px rgba(201, 69, 13, 0.2);
+
+    @media (width <=768px) {
+      max-width: 100%;
+      max-height: 65svh;
+      border-radius: 1.25em;
+    }
+
+    @media (width <=511px) {
+      max-height: 55svh;
+      border-radius: 1em;
+    }
+
+    > img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1.5em;
+
+      @media (width <=768px) {
+        border-radius: 1.25em;
+      }
+
+      @media (width <=511px) {
+        border-radius: 1em;
+      }
+    }
+  }
+
+  h3 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0;
+    max-width: 100%;
+
+    @media (width >= 768px) {
+      font-size: clamp(1.5rem, 4vw, 3.5rem);
+    }
   }
 }
 
+.querque-candles-title-strip {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  margin-top: 0;
+  padding: 0 0.5em;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+
+  @media (width <=768px) {
+    margin-top: 0;
+  }
+}
+
+.querque-candles-title-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  background: linear-gradient(135deg, rgba(201, 69, 13, 0.08) 0%, rgba(201, 69, 13, 0.05) 100%);
+  border: 1px solid rgba(201, 69, 13, 0.15);
+  border-radius: 16px;
+  padding: 1.25em 1.5em;
+  box-shadow:
+    0 4px 16px -8px rgba(201, 69, 13, 0.15),
+    0 2px 8px -4px rgba(201, 69, 13, 0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width >=768px) {
+    flex-direction: row;
+    padding: 1.5em 2em;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 24px -12px rgba(201, 69, 13, 0.2),
+        0 4px 12px -6px rgba(201, 69, 13, 0.15);
+    }
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.querque-candles-details {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  scroll-margin-top: 72px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0;
+  position: relative;
+
+  @media (width >=768px) {
+    gap: 0;
+    padding: 0;
+  }
+
+  > .querque-candles-details-container {
+    width: 100%;
+    max-width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 0 0.5em;
+  }
+}
+
+.querque-candles-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0.5em;
+  box-sizing: border-box;
+
+  @media (width >=768px) {
+    flex-direction: row;
+    gap: 2em;
+    align-items: stretch;
+  }
+}
+
+.querque-candles-details-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+
+  @media (width >=768px) {
+    min-width: 0;
+    max-width: calc(100% - 320px);
+    align-self: stretch;
+  }
+}
+
+.querque-candles-details-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 100%;
+
+  @media (width >=768px) {
+    flex: 0 0 300px;
+    width: 300px;
+    max-width: 300px;
+    align-self: stretch;
+  }
+}
+
+.querque-candles-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1.25em;
+  border-radius: 0.75em;
+  background: rgb(255 255 255 / 2%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(0 0 0 / 5%);
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (width >=768px) {
+    gap: 1.5em;
+    padding: 2em;
+  }
+
+  &:hover {
+    background: rgb(255 255 255 / 3%);
+    border-color: rgb(0 0 0 / 10%);
+    transform: translateY(-2px);
+  }
+
+  > .section-heading-container {
+    margin: 0 0 0.75em;
+  }
+}
+
+.querque-candles-details-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1.5em;
+  border-radius: 0.75em;
+  background: rgb(255 255 255 / 2%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(0 0 0 / 5%);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  flex: 1 1 0;
+
+  @media (width >=768px) {
+    padding: 1.75em;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.querque-candles-details-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  min-width: 0;
+}
+
+.querque-candles-details-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.querque-candles-details-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: inherit;
+
+  @media (width >=768px) {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.dark .querque-candles-title-content {
+  background: linear-gradient(135deg, rgba(201, 69, 13, 0.12) 0%, rgba(201, 69, 13, 0.08) 100%);
+  border-color: rgba(201, 69, 13, 0.2);
+}
+
+// Section blocks: icon heading + image — prevent images from being cut off
 .case-study-top-to-bottom {
   &.querque {
     gap: 0.875em;
     align-items: flex-start;
+
+    > img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: unset;
+      object-fit: contain;
+      border-radius: 0.875em;
+    }
+  }
+}
+
+// Key Takeaways: match Project ECHO / Invibe layout (project-echo-key-takeaways provides padding)
+.querque-key-takeaways.project-echo-key-takeaways {
+  padding: 0 0.5em;
+}
+
+// Section titles: match overview labels (Overview, Role, Client, Timeline)
+.querque-candles-container .section-heading-container > h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.4;
+  color: $dark-text;
+
+  &.dark {
+    color: map.get($dark-colors, secondary);
   }
 }

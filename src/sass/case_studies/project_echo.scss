@@ -24,6 +24,8 @@
   @media (width <=768px) {
     min-height: 0;
     height: auto;
+    justify-content: center;
+    align-items: flex-end;
   }
 
   @media (width >=768px) {

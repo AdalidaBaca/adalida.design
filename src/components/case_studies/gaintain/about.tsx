@@ -15,8 +15,6 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className="intro-videos">
           <img className="gaintain-hero-image" src={AboutHeroImage} alt="GainTain app preview" />
         </div>
-      </div>
-      <div data-aos="fade-up" data-aos-offset="100" className="gaintain-details" ref={aboutRef}>
         <div data-aos="fade-up" data-aos-offset="150" className="gaintain-download-strip">
           <div className="gaintain-download-content">
             <p className="gaintain-download-text">GainTain</p>
@@ -27,6 +25,8 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             </div>
           </div>
         </div>
+      </div>
+      <div data-aos="fade-up" data-aos-offset="100" className="gaintain-details" ref={aboutRef}>
         <div className="gaintain-details-container">
           <div className="gaintain-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="gaintain-details-card">

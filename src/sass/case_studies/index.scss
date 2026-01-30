@@ -323,6 +323,14 @@
   }
 }
 
+.dark .table-of-contents-item-content .link-button:not(.active) {
+  /* Unselected TOC links: use visible light color in dark mode */
+  background: rgba($light-text, 0.55) !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: none;
+}
+
 .dark .link-button {
   &.active {
     color: $light-text !important;

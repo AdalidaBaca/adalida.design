@@ -1,11 +1,16 @@
 import SectionHeading from 'components/section_heading'
+import SunbeltImage from 'images/works/sunbelt.webp'
 import { forwardRef, type Ref } from 'react'
 
 const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
   return (
-    <div data-aos="fade-up" className="case-study-top-to-bottom invibe-esthetics-solution-section" ref={ref}>
+    <div
+      data-aos="fade-up"
+      className="case-study-side-by-side project-echo-approach-section invibe-esthetics-solution-section"
+      ref={ref}
+    >
       <div className="case-study-explanation">
-        <div className="invibe-esthetics-details-card">
+        <div className="project-echo-details-card">
           <SectionHeading title="Results" />
           <div className="body-2">
             <strong>Booking and intake now function as one flow.</strong>
@@ -19,6 +24,11 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             </ul>
             The business now operates from a single system of record.
           </div>
+        </div>
+      </div>
+      <div className="invibe-esthetics-solution-graphic-container">
+        <div className="invibe-esthetics-solution-graphic">
+          <img src={SunbeltImage} alt="Invibe Esthetics" />
         </div>
       </div>
     </div>

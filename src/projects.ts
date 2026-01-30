@@ -27,7 +27,7 @@ export interface Project {
 export const Projects = {
   Gaintain: {
     name: 'GainTain',
-    category: 'Fitness Accountability App',
+    category: 'Consumer product built 0 → 1',
     description:
       'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
@@ -123,8 +123,8 @@ export const Projects = {
   },
   InvibeEsthetics: {
     name: 'Invibe Esthetics',
-    category: 'Booking and Scheduling',
-    badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
+    category: 'Service platform redesign',
+    badges: ['Service Design', 'Systems', 'Operations'],
     description:
       'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SunbeltImage,
@@ -155,7 +155,7 @@ export const Projects = {
   },
   ProjectEcho: {
     name: 'Project ECHO',
-    category: 'Data Visualization Tool',
+    category: 'Interactive data analysis',
     badges: ['Data ', 'Patterns', 'Interpretation'],
     description:
       'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',

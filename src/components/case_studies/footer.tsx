@@ -1,10 +1,8 @@
 import { useLocation } from '@reach/router'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
-import Duck from 'components/duck'
 import { useContext } from 'react'
 import Context from './context'
-import IconHeading from './icon_heading'
 
 const studies = ['gaintain', 'phronesis', 'querque_candles']
 
@@ -17,12 +15,14 @@ const Footer = (): JSX.Element => {
 
   return (
     <div data-aos="fade-up" className="pre-footer">
-      <div className="flex-center" style={{ gap: '1.125em' }}>
-        <IconHeading icon={<Duck />} heading="Thanks for making it to the end! Read my next case study here:" />
+      <div className="contact-cta-container">
+        <div className="contact-cta-content">
+          <h3 className="contact-cta-heading">Thanks for making it to the end! Read my next case study here.</h3>
+          <BadgeButton to={to} style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}>
+            Read case study <IconArrowNarrowRight />
+          </BadgeButton>
+        </div>
       </div>
-      <BadgeButton to={to} style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}>
-        Read case study <IconArrowNarrowRight />
-      </BadgeButton>
     </div>
   )
 }

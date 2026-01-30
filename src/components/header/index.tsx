@@ -12,6 +12,9 @@ const getCaseStudyFromPath = (pathname: string): Project | null => {
   if (pathname.includes('/case_studies/gaintain')) {
     return Projects.Gaintain
   }
+  if (pathname.includes('/case_studies/invibe_esthetics')) {
+    return Projects.InvibeEsthetics
+  }
   if (pathname.includes('/case_studies/phronesis')) {
     return Projects.Phronesis
   }
@@ -22,6 +25,16 @@ const getCaseStudyFromPath = (pathname: string): Project | null => {
     return Projects.ProjectEcho
   }
   return null
+}
+
+/** Selector for the hero/download-strip title element used to trigger nav title when it scrolls under the header. */
+const getTitleSelectorForCaseStudy = (project: Project): string => {
+  if (project === Projects.Gaintain) return '.gaintain-download-text'
+  if (project === Projects.InvibeEsthetics) return '.invibe-esthetics-download-text'
+  if (project === Projects.ProjectEcho) return '.project-echo-download-text'
+  if (project === Projects.Phronesis) return '.phronesis-hero h3'
+  if (project === Projects.QuerqueCandles) return '.querque-candles-hero h3'
+  return ''
 }
 
 const Header = (): JSX.Element => {
@@ -37,10 +50,12 @@ const Header = (): JSX.Element => {
       return
     }
 
+    setShowNavTitle(false)
+
     let rafId: number | null = null
+    const titleSelector = getTitleSelectorForCaseStudy(caseStudy)
 
     const handleScroll = (): void => {
-      // Use requestAnimationFrame for smooth updates
       if (rafId !== null) {
         return
       }
@@ -48,19 +63,18 @@ const Header = (): JSX.Element => {
       rafId = requestAnimationFrame(() => {
         const currentScrollY = window.scrollY
 
-        // Look for the title in the download/visit strip (the word copy that should trigger the nav title)
-        const downloadTitle = document.querySelector(
-          '.gaintain-download-text, .project-echo-download-text, .phronesis-hero h3, .querque-hero h3'
-        )
+        const container = document.querySelector('.case-study-container')
+        const downloadTitle =
+          titleSelector === ''
+            ? null
+            : (container?.querySelector(titleSelector) ?? document.querySelector(titleSelector))
+
         if (downloadTitle !== null) {
           const titleRect = downloadTitle.getBoundingClientRect()
           const headerHeight = 56 // $header-height
           const shouldShow = titleRect.bottom < headerHeight
           setShowNavTitle(prev => {
-            // Once it shows, keep it shown (never go back to false)
-            if (prev === true) {
-              return true
-            }
+            if (prev === true) return true
             return shouldShow
           })
         }

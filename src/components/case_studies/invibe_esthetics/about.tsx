@@ -1,4 +1,5 @@
 import BadgeButton from 'components/badge_button'
+import ScrollAnimatedText from 'components/scroll_animated_text'
 import SunbeltImage from 'images/works/sunbelt.webp'
 import type { Ref } from 'react'
 
@@ -16,7 +17,9 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         </div>
         <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-download-strip">
           <div className="invibe-esthetics-download-content">
-            <p className="invibe-esthetics-download-text">Invibe Esthetics</p>
+            <div className="invibe-esthetics-download-text invibe-esthetics-download-text-animated">
+              <ScrollAnimatedText text="Invibe Esthetics" targetRef={heroRef as React.RefObject<HTMLDivElement>} />
+            </div>
             <div className="invibe-esthetics-download-buttons">
               <BadgeButton to="https://www.invibeesthetics.com/" className="invibe-esthetics-link-primary">
                 Book Now
@@ -31,16 +34,24 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-details-card">
               <h6 className="invibe-esthetics-details-label">Overview</h6>
               <p className="invibe-esthetics-details-text">
-                Invibe is an independent esthetician who relies on online booking and client intake. This project focused on fixing the underlying workflow and data architecture so the business could operate reliably without added cost or complexity.
+                Invibe is an independent esthetician who relies on online booking and client intake. This project
+                focused on fixing the underlying workflow and data architecture so the business could operate reliably
+                without added cost or complexity.
               </p>
             </div>
-            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="invibe-esthetics-details-card">
+            <div
+              data-aos="fade-up"
+              data-aos-offset="150"
+              data-aos-delay="100"
+              className="invibe-esthetics-details-card"
+            >
               <h6 className="invibe-esthetics-details-label">Role</h6>
               <p className="invibe-esthetics-details-text">
                 <strong>Product Designer</strong>
               </p>
               <p className="invibe-esthetics-details-text">
-                Led platform migration from Rosy to Wix, redesigned the booking and intake workflow, and owned system-level decisions. Partnered with a contract engineer to implement a custom integration.
+                Led platform migration from Rosy to Wix, redesigned the booking and intake workflow, and owned
+                system-level decisions. Partnered with a contract engineer to implement a custom integration.
               </p>
             </div>
           </div>
@@ -54,7 +65,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Team</h6>
                 <p className="invibe-esthetics-details-text">
-                  <strong>Product designer with engineering support</strong>
+                  <strong>Product designer + contract engineer</strong>
                 </p>
               </div>
               <div className="invibe-esthetics-details-meta-item">
@@ -66,7 +77,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Platform</h6>
                 <p className="invibe-esthetics-details-text">
-                  <strong>Wix CMS, Tally, Custom webhook</strong>
+                  <strong>WIX CMS, Tally, Custom webhook</strong>
                 </p>
               </div>
               <div className="invibe-esthetics-details-meta-item">
@@ -88,4 +99,3 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
 About.displayName = 'About'
 
 export default About
-

@@ -7,8 +7,8 @@ import Context from '../context'
 
 const EndCTA = (): JSX.Element => {
   const color = useContext(Context)?.colors?.primary
-  const nextProject = Projects.ProjectEcho
-  const nextProjectUrl = '/case_studies/project_echo'
+  const nextProject = Projects.InvibeEsthetics
+  const nextProjectUrl = '/case_studies/invibe_esthetics'
 
   if (!nextProject) {
     return (

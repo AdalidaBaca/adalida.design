@@ -3,7 +3,6 @@ import { Projects } from 'projects'
 import { useRef } from 'react'
 
 import Context from '../context'
-import Footer from '../footer'
 import TableOfContents from '../table_of_contents'
 import BrandPrinciples from './brand_principles'
 import ChallengeSolution from './challenge_solution'
@@ -33,7 +32,7 @@ const QuerqueCandles = (): JSX.Element => {
   return (
     <Context.Provider value={Projects.QuerqueCandles}>
       {isMobile === false && <TableOfContents links={sections} />}
-      <div className="case-study-container">
+      <div className="case-study-container querque-candles-container">
         <Overview ref={sections.Overview} />
         <ChallengeSolution ref={sections['Challenge / Solution']} />
         <BrandPrinciples ref={sections['Brand Principles']} />
@@ -44,7 +43,6 @@ const QuerqueCandles = (): JSX.Element => {
         <Considerations ref={sections.Considerations} />
         <NextSteps ref={sections['Next Steps']} />
         <KeyTakeaways ref={sections.Retrospective} />
-        <Footer />
       </div>
     </Context.Provider>
   )

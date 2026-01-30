@@ -3,8 +3,8 @@ import BadgeButton from 'components/badge_button'
 import { Projects } from 'projects'
 
 const MoreFrom = (): JSX.Element => {
-  const nextProject = Projects.Gaintain
-  const nextProjectUrl = '/case_studies/gaintain'
+  const nextProject = Projects.ProjectEcho
+  const nextProjectUrl = '/case_studies/project_echo'
 
   return (
     <>
@@ -12,14 +12,9 @@ const MoreFrom = (): JSX.Element => {
         <div className="invibe-esthetics-end-cta-container">
           <div className="invibe-esthetics-end-cta-content">
             <h3 className="invibe-esthetics-end-cta-heading">More Client Work</h3>
-            <p className="invibe-esthetics-end-cta-description">
-              View more of my client work from adalida.design.
-            </p>
+            <p className="invibe-esthetics-end-cta-description">View more of my client work from adalida.design.</p>
             <div className="invibe-esthetics-end-cta-buttons">
-              <BadgeButton
-                to="/timeline"
-                className="invibe-esthetics-link-primary"
-              >
+              <BadgeButton to="/timeline" className="invibe-esthetics-link-primary">
                 VIEW CLIENT WORK
               </BadgeButton>
               <BadgeButton to="https://www.linkedin.com/in/adalidabaca/">CHAT WITH ADI</BadgeButton>

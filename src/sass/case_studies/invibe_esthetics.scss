@@ -2,7 +2,16 @@
 // Matches Gaintain styling pattern
 
 .invibe-esthetics-container {
-  // All sections use the container gap for consistent spacing
+  // Tighter gap between Results and Impact; Key Takeaways keeps same section spacing as Gaintain
+  > .invibe-esthetics-solution-section,
+  > .invibe-esthetics-outcome-section {
+    margin-bottom: -2.5em !important;
+  }
+
+  // Restore full gap above Key Takeaways (match Gaintain) — cancels Outcome's negative margin
+  > .invibe-esthetics-key-takeaways {
+    margin-top: 2.5em !important;
+  }
 }
 
 .invibe-esthetics-venn-diagram-container {
@@ -460,8 +469,78 @@
   }
 }
 
+// Key Takeaways: match Gaintain section spacing and internal gap
 .invibe-esthetics-key-takeaways {
+  align-items: flex-start;
+  gap: 0.5em !important;
   padding: 0 0.5em;
+
+  @media (width >=768px) {
+    gap: 0.75em !important;
+  }
+
+  > .invibe-esthetics-key-takeaways-image {
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    aspect-ratio: 16 / 9;
+    max-height: 420px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%);
+    border: 1px solid rgb(150 87 56 / 25%);
+    box-shadow: 0 4px 16px -4px rgb(150 87 56 / 20%);
+    padding: 0;
+    border-radius: 10px;
+
+    .dark & {
+      background: linear-gradient(135deg, rgb(150 87 56 / 18%) 0%, rgb(150 87 56 / 10%) 100%);
+      border-color: rgb(150 87 56 / 35%);
+    }
+
+    @media (width >=768px) {
+      max-height: 560px;
+    }
+
+    > img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      border-radius: inherit;
+    }
+  }
+
+  > .case-study-explanation {
+    margin: 0 !important;
+    margin-top: 0.5em !important;
+    padding-top: 0 !important;
+    width: 100%;
+    align-items: flex-start;
+    gap: 0.25em;
+
+    @media (width >=768px) {
+      gap: 0.375em;
+    }
+
+    > .section-heading-container {
+      margin: 0 0 0.25em;
+
+      @media (width >=768px) {
+        margin: 0 0 0.375em;
+      }
+    }
+  }
+
+  @media (width >=768px) {
+    > .invibe-esthetics-key-takeaways-image {
+      grid-row: 1;
+      align-self: stretch;
+      height: 100%;
+    }
+  }
 }
 
 .invibe-esthetics-download-strip {
@@ -532,6 +611,31 @@
     text-align: left;
     font-size: clamp(1.5rem, 4vw, 3.5rem);
   }
+
+  /* Letter-by-letter scroll animation (matches Gaintain / Project Echo pattern) */
+  &.invibe-esthetics-download-text-animated {
+    display: inline-block;
+    background: none;
+    background-clip: unset;
+    color: unset;
+
+    > div {
+      display: inline;
+    }
+
+    .animated-letter {
+      opacity: 0.4;
+      transition: opacity 0.6s ease-in-out;
+      background: linear-gradient(135deg, #965738 0%, #B97A57 100%);
+      background-clip: text;
+      color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    .animated-letter.filled {
+      opacity: 1;
+    }
+  }
 }
 
 .invibe-esthetics-link-primary {
@@ -587,6 +691,19 @@
   background: linear-gradient(135deg, #B97A57 0%, #965738 100%);
   background-clip: text;
   color: transparent;
+
+  &.invibe-esthetics-download-text-animated .animated-letter {
+    background: linear-gradient(135deg, #B97A57 0%, #965738 100%);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invibe-esthetics-download-text.invibe-esthetics-download-text-animated .animated-letter {
+    opacity: 1 !important;
+  }
 }
 
 // Styles for Invibe Outcome section (ported from Gaintain)
@@ -600,14 +717,139 @@
 
 .invibe-esthetics-results-primary-metrics {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 0.625em;
   width: 100%;
   margin-top: 1em;
 
   @media (width >=768px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1em;
+  }
+}
+
+.invibe-esthetics-results-secondary-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625em;
+  width: 100%;
+  margin-top: 0.6em;
+
+  @media (width >=768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin-top: 0.75em;
+  }
+
+  .invibe-esthetics-metric-card {
+    width: 100%;
+  }
+}
+
+.invibe-esthetics-results-feedback-row {
+  width: 100%;
+  margin-top: 1em;
+
+  @media (width >=768px) {
+    margin-top: 1.25em;
+  }
+
+  .invibe-esthetics-metric-card {
+    width: 100%;
+  }
+}
+
+.invibe-esthetics-feedback-card {
+  padding: 1.5em 1.5em 1.25em !important;
+  background: linear-gradient(135deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%) !important;
+  border: 2px solid rgb(150 87 56 / 25%);
+  box-shadow: 0 4px 16px -4px rgb(150 87 56 / 18%);
+
+  .dark & {
+    background: linear-gradient(135deg, rgb(150 87 56 / 18%) 0%, rgb(150 87 56 / 10%) 100%) !important;
+    border-color: rgb(150 87 56 / 35%);
+    box-shadow: 0 4px 20px -4px rgb(150 87 56 / 25%);
+  }
+
+  @media (width >=768px) {
+    padding: 2em 2.25em 1.5em !important;
+  }
+
+  .invibe-esthetics-metric-value,
+  .invibe-esthetics-metric-label {
+    display: none;
+  }
+}
+
+.invibe-esthetics-feedback-quote {
+  margin: 0 0 0.75em;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+
+  .dark & {
+    color: #f0f0f0;
+  }
+
+  @media (width >=768px) {
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    line-height: 1.45;
+    margin-bottom: 0.65em;
+  }
+}
+
+.invibe-esthetics-feedback-quote-mark {
+  font-size: 1.4em;
+  font-style: normal;
+  line-height: 0;
+  vertical-align: -0.15em;
+  color: rgb(150 87 56 / 75%);
+
+  .dark & {
+    color: rgb(200 140 100 / 85%);
+  }
+
+  @media (width >=768px) {
+    font-size: 1.6em;
+  }
+}
+
+.invibe-esthetics-feedback-attribution {
+  display: block;
+  margin-top: 0.25em;
+  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  font-weight: 500;
+  font-style: normal;
+  color: rgb(150 87 56 / 70%);
+  letter-spacing: 0.02em;
+
+  .dark & {
+    color: rgb(200 160 120 / 75%);
+  }
+
+  @media (width >=768px) {
+    margin-top: 0.35em;
+    font-size: clamp(0.85rem, 1.5vw, 0.92rem);
+  }
+}
+
+.invibe-esthetics-metric-sublabel {
+  font-size: 0.7em;
+  line-height: 1.3;
+  color: #000;
+  opacity: 0.6;
+  font-weight: 400;
+  margin-top: 0.15em;
+
+  .dark & {
+    color: #fff;
+    opacity: 0.65;
+  }
+
+  @media (width >=768px) {
+    font-size: 0.75em;
   }
 }
 
@@ -1058,19 +1300,22 @@
 
 .invibe-esthetics-problem-flow {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   width: 100%;
 
   @media (width >=768px) {
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
 }
 
 
 .flow-item {
-  width: 90%;
+  width: 100%;
   padding: 1em;
   background: white;
   border: 1px solid rgb(150 87 56 / 15%);
@@ -1082,6 +1327,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
+  flex: 1 1 auto;
+  min-width: 0;
 
   .dark & {
     background: rgb(255 255 255 / 3%);
@@ -1089,11 +1336,11 @@
     box-shadow: 0 4px 12px -4px rgb(0 0 0 / 30%);
   }
 
-  @media (width >=1024px) {
+  @media (width >=768px) {
     width: auto;
-    flex: 1;
+    flex: 1 1 0;
     padding: 1em 0.5em;
-    min-height: 0; // Hug content
+    min-height: 0;
     justify-content: center;
   }
 
@@ -1108,6 +1355,9 @@
     font-size: 0.95em;
     color: #333;
     line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
 
     .dark & {
       color: #ddd;
@@ -1115,6 +1365,26 @@
 
     @media (width >=1280px) {
       font-size: 1.05em;
+    }
+  }
+
+  .flow-text-sub {
+    display: block;
+    font-size: 0.8em;
+    font-weight: 400;
+    color: rgb(0 0 0 / 55%);
+    line-height: 1.25;
+
+    .dark & {
+      color: rgb(255 255 255 / 60%);
+    }
+
+    .flow-item.error & {
+      color: rgb(211 47 47 / 75%);
+    }
+
+    .dark .flow-item.error & {
+      color: rgb(255 138 128 / 80%);
     }
   }
 
@@ -1194,15 +1464,192 @@
   color: rgb(150 87 56 / 40%);
   line-height: 1;
   font-weight: 300;
-  margin: 0.25em 0;
-  transform: rotate(90deg);
+  margin: 0 0.25em;
+  flex-shrink: 0;
 
   .dark & {
     color: rgba(255, 255, 255, 0.3);
   }
 }
 
-// Decision Matrix Styling
+// Intake Tradeoffs Matrix (Competitive Intake Tradeoffs graphic)
+.intake-tradeoffs-matrix {
+  width: 100%;
+  max-width: 100%;
+  background: rgb(0 0 0 / 2%);
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 16px;
+  padding: 1.5em 1em;
+  box-sizing: border-box;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  .dark & {
+    background: rgb(255 255 255 / 3%);
+    border-color: rgb(255 255 255 / 10%);
+  }
+}
+
+/* Table-like grid: 4 columns = row header (left) | Paper | Wix Pro | Forms (CSV) */
+.intake-tradeoffs-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1fr 1fr 1fr;
+  gap: 0 1em;
+  align-items: center;
+
+  @media (width >=768px) {
+    grid-template-columns: minmax(8em, 1.4fr) 1fr 1fr 1fr;
+    gap: 0 1.25em;
+  }
+}
+
+.intake-tradeoffs-corner {
+  grid-column: 1;
+  min-height: 2rem;
+}
+
+.intake-tradeoffs-col-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  padding: 0.75em 0.5em;
+  text-align: center;
+  border-bottom: 1px solid rgb(0 0 0 / 8%);
+
+  .dark & {
+    border-bottom-color: rgb(255 255 255 / 10%);
+  }
+}
+
+.intake-tradeoffs-col-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.25;
+
+  .dark & {
+    color: #e0e0e0;
+  }
+}
+
+.intake-tradeoffs-col-sub {
+  font-size: 0.75rem;
+  color: rgb(0 0 0 / 50%);
+  line-height: 1.2;
+
+  .dark & {
+    color: rgb(255 255 255 / 55%);
+  }
+}
+
+.intake-tradeoffs-row-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(0 0 0 / 5%);
+  min-height: 2.5rem;
+  justify-content: center;
+
+  .dark & {
+    border-bottom-color: rgb(255 255 255 / 6%);
+  }
+}
+
+.intake-tradeoffs-section-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3;
+
+  .dark & {
+    color: #e0e0e0;
+  }
+}
+
+.intake-tradeoffs-helper {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(0 0 0 / 55%);
+  line-height: 1.35;
+
+  .dark & {
+    color: rgb(255 255 255 / 60%);
+  }
+}
+
+.intake-tradeoffs-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5em;
+  min-height: 2.5rem;
+  border-bottom: 1px solid rgb(0 0 0 / 5%);
+
+  .dark & {
+    border-bottom-color: rgb(255 255 255 / 6%);
+  }
+}
+
+.intake-tradeoffs-icon {
+  flex-shrink: 0;
+}
+
+.intake-tradeoffs-icon-yes {
+  color: #2e7d32;
+
+  .dark & {
+    color: #81c784;
+  }
+}
+
+.intake-tradeoffs-icon-no {
+  color: #c62828;
+
+  .dark & {
+    color: #ef5350;
+  }
+}
+
+.intake-tradeoffs-icon-partial {
+  color: rgb(0 0 0 / 45%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .dark & {
+    color: rgb(255 255 255 / 50%);
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.intake-tradeoffs-legend {
+  margin-top: 0.75rem;
+  padding-top: 0;
+  font-size: 0.75rem;
+  color: rgb(0 0 0 / 55%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em 1.25em;
+  line-height: 1.4;
+
+  .dark & {
+    color: rgb(255 255 255 / 60%);
+  }
+}
+
+.intake-tradeoffs-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+// Decision Matrix container (wraps IntakeTradeoffsMatrix or legacy table)
 .invibe-esthetics-decision-matrix-container {
   width: 100%;
   overflow-x: auto;
@@ -1221,40 +1668,374 @@
   }
 }
 
-.case-study-side-by-side:has(.invibe-esthetics-decision-matrix-container),
-.case-study-side-by-side:has(.invibe-esthetics-problem-flow-container) {
+.case-study-side-by-side:has(.invibe-esthetics-decision-matrix-container) {
   @media (width <=768px) {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
-    .invibe-esthetics-decision-matrix-container,
-    .invibe-esthetics-problem-flow-container {
-      order: -1; // Graphic on top on mobile
+    .invibe-esthetics-decision-matrix-container {
+      order: -1;
     }
   }
 
   @media (width >=768px) {
     display: flex;
-    flex-direction: row; // Explicitly set row to avoid base class column override
+    flex-direction: row;
     gap: 2rem;
-    align-items: flex-start;
+    align-items: stretch;
 
     .case-study-explanation {
       flex: 1;
-      order: 2; // Text on right on desktop
+      order: 1;
     }
 
-    .invibe-esthetics-decision-matrix-container,
-    .invibe-esthetics-problem-flow-container {
+    .invibe-esthetics-decision-matrix-container {
       flex: 1.2;
-      order: 1; // Graphic on left on desktop
+      order: 2;
       padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+
+      .intake-tradeoffs-matrix {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 1.5em 1.25em 1.25em;
+
+        .intake-tradeoffs-grid {
+          flex: 1;
+          gap: 0 1.25em;
+          grid-template-rows: auto 1fr 1fr 1fr;
+          min-height: 0;
+        }
+
+        .intake-tradeoffs-col-title {
+          font-size: 1rem;
+        }
+
+        .intake-tradeoffs-col-sub {
+          font-size: 0.8rem;
+        }
+
+        .intake-tradeoffs-section-label {
+          font-size: 1.05rem;
+        }
+
+        .intake-tradeoffs-helper {
+          font-size: 0.85rem;
+        }
+
+        .intake-tradeoffs-row-label,
+        .intake-tradeoffs-cell {
+          padding: 1.25rem 0.5em;
+          min-height: 3rem;
+        }
+
+        .intake-tradeoffs-col-head {
+          padding: 1em 0.5em;
+        }
+      }
     }
   }
 
   @media (width >=1200px) {
     gap: 4rem;
+  }
+}
+
+// Solution / Results section: two-column layout like Constraints (text left, graphic right)
+.case-study-side-by-side:has(.invibe-esthetics-solution-graphic-container) {
+  @media (width <=768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .invibe-esthetics-solution-graphic-container {
+      order: -1;
+    }
+  }
+
+  @media (width >=768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: stretch;
+
+    .case-study-explanation {
+      flex: 1;
+      order: 1;
+    }
+
+    .invibe-esthetics-solution-graphic-container {
+      flex: 1.2;
+      order: 2;
+      padding-top: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      align-self: stretch;
+    }
+
+    .invibe-esthetics-solution-graphic {
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .invibe-esthetics-solution-graphic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (width >=1024px) {
+    .invibe-esthetics-solution-graphic-container {
+      padding-top: 2.5rem;
+    }
+  }
+
+  @media (width >=1200px) {
+    gap: 4rem;
+  }
+}
+
+.invibe-esthetics-solution-graphic-container {
+  width: 100%;
+}
+
+.invibe-esthetics-solution-graphic {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dark & {
+    background: linear-gradient(135deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @media (width >=768px) {
+    min-height: 0;
+  }
+}
+
+// Insight section: side-by-side layout with graphic container for flowchart
+.invibe-esthetics-insight-graphic-container {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  box-sizing: border-box;
+  background: rgb(0 0 0 / 2%);
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 16px;
+
+  .dark & {
+    background: rgb(255 255 255 / 3%);
+    border-color: rgb(255 255 255 / 10%);
+  }
+}
+
+// Insight flow graphic: Wix booking → Intake form → Wix CMS (centered, spaced to fill container)
+.insight-flow-graphic {
+  width: 100%;
+  max-width: min(380px, 100%);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25em 0.5em;
+  margin-inline: auto;
+
+  @media (width >=768px) {
+    max-width: min(420px, 100%);
+    padding: 1.5em 0.75em;
+  }
+}
+
+.insight-flow-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.insight-flow-node {
+  padding: clamp(0.55em, 1.4vw, 0.75em) clamp(0.9em, 2.5vw, 1.35em);
+  border-radius: 8px;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  box-sizing: border-box;
+  width: fit-content;
+}
+
+.insight-flow-node-main {
+  background: rgb(255 255 255 / 95%);
+  border: 1px solid rgb(0 0 0 / 12%);
+  color: #333;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+
+  .dark & {
+    background: rgb(255 255 255 / 8%);
+    border-color: rgb(255 255 255 / 14%);
+    color: #e8e8e8;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+  }
+}
+
+// Case study color only on Intake Form - Tally
+.insight-flow-node-intake {
+  background: linear-gradient(135deg, rgb(150 87 56 / 14%) 0%, rgb(150 87 56 / 8%) 100%);
+  border-color: rgb(150 87 56 / 35%);
+  color: #6b3d2a;
+
+  .dark & {
+    background: linear-gradient(135deg, rgb(150 87 56 / 22%) 0%, rgb(150 87 56 / 12%) 100%);
+    border-color: rgb(150 87 56 / 45%);
+    color: #e8c4a8;
+  }
+}
+
+.insight-flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em 0;
+  width: 100%;
+}
+
+.insight-flow-arrow-main {
+  color: rgb(150 87 56 / 55%);
+
+  .dark & {
+    color: rgb(150 87 56 / 65%);
+  }
+
+  svg {
+    display: block;
+    width: clamp(20px, 4vw, 26px);
+    height: clamp(22px, 4.5vw, 30px);
+    margin-inline: auto;
+  }
+}
+
+// Grid so column width = node width; subtitle stays no wider than label
+.insight-flow-node-wrap {
+  display: grid;
+  grid-template-columns: fit-content;
+  justify-content: center;
+  justify-items: center;
+  gap: 0;
+}
+
+.insight-flow-strike {
+  text-decoration: line-through;
+}
+
+.insight-flow-annotation {
+  margin: 0.4em 0 0;
+  padding: 0 0.5em;
+  font-size: clamp(0.72rem, 1.3vw, 0.84rem);
+  font-weight: 400;
+  color: rgb(0 0 0 / 60%);
+  line-height: 1.35;
+  text-align: center;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+
+  .dark & {
+    color: rgb(255 255 255 / 60%);
+  }
+}
+
+.insight-flow-annotation-line {
+  display: block;
+}
+
+.insight-flow-annotation-branch {
+  display: block;
+  padding-inline-start: 1.25em;
+  text-align: start;
+}
+
+.case-study-side-by-side:has(.invibe-esthetics-insight-graphic-container) {
+  @media (width <=768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .invibe-esthetics-insight-graphic-container {
+      order: -1;
+    }
+  }
+
+  @media (width >=768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: stretch;
+
+    .case-study-explanation {
+      flex: 1;
+      order: 2;
+    }
+
+    .invibe-esthetics-insight-graphic-container {
+      flex: 1.2;
+      order: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25em;
+
+      .insight-flow-graphic {
+        width: 100%;
+        max-width: min(400px, 100%);
+      }
+    }
+  }
+
+  @media (width >=1200px) {
+    gap: 4rem;
+
+    .invibe-esthetics-insight-graphic-container .insight-flow-graphic {
+      max-width: min(440px, 100%);
+    }
+  }
+}
+
+.case-study-top-to-bottom:has(.invibe-esthetics-problem-flow-container) {
+  gap: 1.5em;
+
+  @media (width >=768px) {
+    gap: 2em;
   }
 }
 

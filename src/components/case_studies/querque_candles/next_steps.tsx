@@ -1,15 +1,13 @@
-import { IconChevronsRight } from '@tabler/icons-react'
+import SectionHeading from 'components/section_heading'
 import NextStepsImage from 'images/querque_candles/next_steps.webp'
 import { forwardRef, type Ref } from 'react'
-
-import IconHeading from '../icon_heading'
 
 const NextSteps = forwardRef(
   (_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
     <div data-aos="fade-up" className="case-study-top-to-bottom querque" ref={ref}>
       <div className="case-study-explanation">
         <section>
-          <IconHeading icon={<IconChevronsRight />} heading="Next Steps: Website Development" />
+          <SectionHeading title="Next Steps: Website Development" />
         </section>
       </div>
       <img src={NextStepsImage} alt="Next Steps" />

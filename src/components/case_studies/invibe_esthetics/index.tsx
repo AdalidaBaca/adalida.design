@@ -12,7 +12,6 @@ import KeyTakeaways from './key_takeaways'
 import MoreFrom from './more_from'
 import Outcome from './outcome'
 import Solution from './solution'
-import Upset from './upset'
 
 const InvibeEsthetics = (): JSX.Element => {
   const sections = {
@@ -21,8 +20,8 @@ const InvibeEsthetics = (): JSX.Element => {
     Problem: useRef(null),
     Constraints: useRef(null),
     Insight: useRef(null),
-    Solution: useRef(null),
-    Outcome: useRef(null),
+    Results: useRef(null),
+    Impact: useRef(null),
     'Key Takeaways': useRef(null)
   }
   const isMobile = useIsMobile(1400)
@@ -33,8 +32,8 @@ const InvibeEsthetics = (): JSX.Element => {
         <About heroRef={sections['INVIBE ESTHETICS']} aboutRef={sections.About} />
         <Insight copy="problem" ref={sections.Problem} />
         <Approach constraintsRef={sections.Constraints} insightRef={sections.Insight} />
-        <Solution ref={sections.Solution} />
-        <Outcome ref={sections.Outcome} />
+        <Solution ref={sections.Results} />
+        <Outcome ref={sections.Impact} />
         <KeyTakeaways ref={sections['Key Takeaways']} />
         <MoreFrom />
       </div>

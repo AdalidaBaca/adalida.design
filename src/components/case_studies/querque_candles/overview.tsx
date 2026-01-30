@@ -6,32 +6,62 @@ const backgroundImage = Projects.QuerqueCandles.colors.primary
 
 const Overview = forwardRef(
   (_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (
-    <div data-aos="fade-up" className="querque-candles-overview" ref={ref}>
-      <h3>
-        <strong className="case-study-gradient-text" style={{ backgroundImage }}>
-          QUERQUE CANDLES
-        </strong>
-      </h3>
-      <img src={OverviewImage} alt="Querque Candles overview" />
-      <div className="case-study-overview">
-        <div className="row">
-          <div>
-            <span className="subtitle-2">Client:</span> <span className="body-2">Querque Candles</span>
-          </div>
-          <div>
-            <span className="subtitle-2">Role:</span> <span className="body-2">Product Consultant / Designer</span>
-          </div>
-          <div>
-            <span className="subtitle-2">Timeline:</span> <span className="body-2">4 weeks</span>
+    <div data-aos="fade-up" className="querque-candles-overview-wrapper" ref={ref}>
+      <div className="querque-candles-hero">
+        <div className="querque-candles-hero-image">
+          <img src={OverviewImage} alt="Querque Candles overview" />
+        </div>
+        <div data-aos="fade-up" data-aos-offset="150" className="querque-candles-title-strip">
+          <div className="querque-candles-title-content">
+            <h3>
+              <strong className="case-study-gradient-text" style={{ backgroundImage }}>
+                Querque Candles
+              </strong>
+            </h3>
           </div>
         </div>
-        <div className="row">
-          <div className="cell">
-            <div className="subtitle-2">Overview</div>
-            <div className="body-2">
-              Querque Candles needed a versatile brand identity for both product packaging and online marketing. I
-              designed a custom logo, color palette, and visual elements optimized for sticker printing, social media,
-              and a future Shopify store, ensuring a cohesive and professional brand presence.
+      </div>
+      <div data-aos="fade-up" data-aos-offset="100" className="querque-candles-details">
+        <div className="querque-candles-details-container">
+          <div className="querque-candles-details-main">
+            <div data-aos="fade-up" data-aos-offset="150" className="querque-candles-details-card">
+              <h6 className="querque-candles-details-label">Overview</h6>
+              <p className="querque-candles-details-text">
+                Querque Candles needed a versatile brand identity for both product packaging and online marketing. I
+                designed a custom logo, color palette, and visual elements optimized for sticker printing, social
+                media, and a future Shopify store, ensuring a cohesive and professional brand presence.
+              </p>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="querque-candles-details-card">
+              <h6 className="querque-candles-details-label">Role</h6>
+              <p className="querque-candles-details-text">
+                <strong>Product Consultant / Designer</strong>
+              </p>
+              <p className="querque-candles-details-text">
+                Led brand identity design including logo, color palette, and visual guidelines for packaging and
+                digital use.
+              </p>
+            </div>
+          </div>
+          <div className="querque-candles-details-sidebar">
+            <div
+              data-aos="fade-up"
+              data-aos-offset="150"
+              data-aos-delay="50"
+              className="querque-candles-details-meta-grid"
+            >
+              <div className="querque-candles-details-meta-item">
+                <h6 className="querque-candles-details-label">Client</h6>
+                <p className="querque-candles-details-text">
+                  <strong>Querque Candles</strong>
+                </p>
+              </div>
+              <div className="querque-candles-details-meta-item">
+                <h6 className="querque-candles-details-label">Timeline</h6>
+                <p className="querque-candles-details-text">
+                  <strong>4 weeks</strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>

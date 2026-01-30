@@ -4,6 +4,8 @@ import DarkModeContext from 'dark_mode_context'
 import useIsMobile from 'hooks/use_is_mobile'
 import React, { forwardRef, type Ref } from 'react'
 
+import Context from '../context'
+
 interface InsightProps {
   title?: string
   copy?: 'insight' | 'problem'
@@ -11,7 +13,10 @@ interface InsightProps {
 
 const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<HTMLDivElement>): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
+  const project = React.useContext(Context)
   const isMobile = useIsMobile(768)
+  const accentPrimary = project?.colors?.primary ?? null
+  const accentCover = project?.colors?.cover ?? '#0891B2'
 
   const circleLabel1 = copy === 'problem' ? 'GM' : 'A'
   const circleLabel2 = copy === 'problem' ? 'IDU' : 'B'
@@ -53,6 +58,17 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
   // Three-way intersection (centroid of the three circle centers)
   const intersectionABC_X = (circle1X + circle2X + circle3X) / 3
   const intersectionABC_Y = (circle1Y + circle2Y + circle3Y) / 3
+
+  // Legend: base Y below circles. 3 Singles is reference; Pairwise/Three-Way get extra row offset so equation lines (A ∩ B, etc.) have same visual gap as single letters.
+  const legendBaseY = Math.max(circle2Y, circle3Y) + radius
+  const legendHeaderY = legendBaseY + (isMobile ? 20 : 25)
+  const legendSinglesRow1Y = legendBaseY + (isMobile ? 35 : 42)
+  const legendSinglesRow2Y = legendBaseY + (isMobile ? 50 : 59)
+  const legendSinglesRow3Y = legendBaseY + (isMobile ? 65 : 76)
+  const legendEquationRowOffset = isMobile ? 5 : 6
+  const legendPairwiseRow1Y = legendSinglesRow1Y + legendEquationRowOffset
+  const legendPairwiseRow2Y = legendSinglesRow2Y + legendEquationRowOffset
+  const legendPairwiseRow3Y = legendSinglesRow3Y + legendEquationRowOffset
 
   // Three distinct colors for the populations
   // Gender Minority - Purple/Blue
@@ -113,21 +129,35 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               flexDirection: 'column',
               alignItems: 'center',
               background: darkMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.04)',
-              border: darkMode ? '1px solid rgba(255, 255, 255, 0.10)' : '1px solid rgba(0, 0, 0, 0.08)',
+              border: `1px solid ${accentCover}`,
               borderRadius: '0.75em',
               padding: isMobile ? '0.5em 0.65em' : '0.6em 0.75em',
               boxShadow: darkMode ? 'none' : '0 8px 20px rgba(0, 0, 0, 0.06)',
               backdropFilter: 'blur(10px)',
               fontSize: isMobile ? '1rem' : '1.25rem',
               fontWeight: '600',
-              color: darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)',
               fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif',
               zIndex: 10,
               lineHeight: '1.2'
             }}
           >
-            <div>7</div>
-            <div style={{ fontStyle: 'italic', fontWeight: '400', textAlign: 'center' }}>sets</div>
+            <div
+              style={
+                accentPrimary
+                  ? {
+                      color: 'transparent',
+                      background: accentPrimary,
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text'
+                    }
+                  : { color: darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)' }
+              }
+            >
+              7
+            </div>
+            <div style={{ fontStyle: 'italic', fontWeight: '400', textAlign: 'center', color: darkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.75)' }}>
+              sets
+            </div>
           </div>
         </>
       )}
@@ -153,7 +183,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             <g>
               <text
                 x={isMobile ? 20 : 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : 25)}
+                y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -166,11 +196,11 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? 20 : 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 35 : 42)}
+                y={legendPairwiseRow1Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
-                fontWeight="500"
+                fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
               >
@@ -184,11 +214,11 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? 20 : 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 50 : 59)}
+                y={legendPairwiseRow2Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
-                fontWeight="500"
+                fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
               >
@@ -202,11 +232,11 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? 20 : 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 65 : 76)}
+                y={legendPairwiseRow3Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
-                fontWeight="500"
+                fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
               >
@@ -224,7 +254,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             <g>
               <text
                 x={isMobile ? width - 20 : width - 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : 25)}
+                y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -237,7 +267,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? width - 20 : width - 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 35 : 42)}
+                y={legendSinglesRow1Y}
                 fill={darkMode ? 'rgba(139, 92, 246, 1)' : 'rgba(139, 92, 246, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -249,7 +279,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? width - 20 : width - 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 50 : 59)}
+                y={legendSinglesRow2Y}
                 fill={darkMode ? 'rgba(8, 145, 178, 1)' : 'rgba(8, 145, 178, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -261,7 +291,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={isMobile ? width - 20 : width - 30}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 65 : 76)}
+                y={legendSinglesRow3Y}
                 fill={darkMode ? 'rgba(245, 158, 11, 1)' : 'rgba(245, 158, 11, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -277,7 +307,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             <g>
               <text
                 x={centerX}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 20 : 25)}
+                y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
@@ -290,11 +320,11 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               </text>
               <text
                 x={centerX}
-                y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 35 : 42)}
+                y={legendPairwiseRow1Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
                 fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
-                fontWeight="500"
+                fontWeight="600"
                 textAnchor="middle"
                 dominantBaseline="hanging"
               >
