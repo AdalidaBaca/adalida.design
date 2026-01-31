@@ -8,9 +8,7 @@ interface ContactCTAProps {
 
 const ContactCTA = ({ variant = 'default' }: ContactCTAProps): JSX.Element => {
   const sectionClass =
-    variant === 'project-echo'
-      ? 'contact-cta-section contact-cta-section--project-echo'
-      : 'contact-cta-section'
+    variant === 'project-echo' ? 'contact-cta-section contact-cta-section-project-echo' : 'contact-cta-section'
   return (
     <div className={sectionClass} data-aos="fade-up" data-aos-offset="100">
       <div className="contact-cta-container">

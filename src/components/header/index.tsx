@@ -8,12 +8,6 @@ import DarkModeButton from './dark_mode_button'
 import HomeLink from './home_link'
 import PortfolioPageSwitch from './portfolio_page_switch'
 
-interface NavTitleConfig {
-  title: string
-  titleSelector: string
-  backgroundImage: string
-}
-
 const getCaseStudyFromPath = (pathname: string): Project | null => {
   if (pathname.includes('/case_studies/gaintain')) {
     return Projects.Gaintain
@@ -41,26 +35,6 @@ const getTitleSelectorForCaseStudy = (project: Project): string => {
   if (project === Projects.Phronesis) return '.phronesis-hero h3'
   if (project === Projects.QuerqueCandles) return '.querque-candles-hero h3'
   return ''
-}
-
-/** Nav title config for case studies and internship portfolio (same gradient title effect). */
-const getNavTitleConfig = (pathname: string): NavTitleConfig | null => {
-  const caseStudy = getCaseStudyFromPath(pathname)
-  if (caseStudy !== null) {
-    return {
-      title: caseStudy.name.toUpperCase(),
-      titleSelector: getTitleSelectorForCaseStudy(caseStudy),
-      backgroundImage: caseStudy.colors.primary
-    }
-  }
-  if (pathname.includes('/internship-portfolio')) {
-    return {
-      title: 'PROJECT ECHO INTERNSHIP PORTFOLIO',
-      titleSelector: '.internship-portfolio-title',
-      backgroundImage: Projects.ProjectEcho.colors.primary
-    }
-  }
-  return null
 }
 
 const Header = (): JSX.Element => {

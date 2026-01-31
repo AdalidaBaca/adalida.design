@@ -1,7 +1,6 @@
+import SectionHeading from 'components/section_heading'
 import ChallengeImage from 'images/querque_candles/challenge.webp'
 import { forwardRef, type Ref } from 'react'
-
-import SectionHeading from 'components/section_heading'
 
 const ChallengeSolution = forwardRef(
   (_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => (

@@ -155,7 +155,14 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             >
               7
             </div>
-            <div style={{ fontStyle: 'italic', fontWeight: '400', textAlign: 'center', color: darkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.75)' }}>
+            <div
+              style={{
+                fontStyle: 'italic',
+                fontWeight: '400',
+                textAlign: 'center',
+                color: darkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.75)'
+              }}
+            >
               sets
             </div>
           </div>
