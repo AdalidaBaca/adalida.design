@@ -38,7 +38,7 @@ export const Projects = {
     description:
       'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
-    badges: ['Founder','B2C', 'Product', 'Iteration'],
+    badges: ['Founder', 'B2C', 'Product', 'Iteration'],
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'

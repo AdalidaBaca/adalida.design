@@ -64,7 +64,7 @@ const Insight = forwardRef(({ copy = 'insight' }: InsightProps, ref: Ref<HTMLDiv
           the booking flow and outside any system the owner could manage or update over time.
         </div>
         <div className="body-2">
-          This created manual work, duplicated data entry, and no <strong>system of record</strong>.
+          This created manual work, duplicated data entry, and <strong> no system of record</strong>.
         </div>
       </div>
     </div>

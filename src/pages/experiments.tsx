@@ -3,7 +3,7 @@ import CaseStudyCard from 'components/portfolio_page/card'
 import Seo from 'components/seo'
 import type { Project } from 'projects'
 import { Projects } from 'projects'
-import { useMemo, useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 const sectionId = (title: string): string => title.toLowerCase().replace(/\s+/g, '-')
 
@@ -45,22 +45,14 @@ const Experiments = (): JSX.Element => {
         </p>
         <nav className="experiments-nav" aria-label="Experiments sections">
           {EXPERIMENTS_SECTION_TITLES.map(title => (
-            <a
-              key={title}
-              href={`#${sectionId(title)}`}
-              className="experiments-nav-link"
-            >
+            <a key={title} href={`#${sectionId(title)}`} className="experiments-nav-link">
               {title}
             </a>
           ))}
         </nav>
       </header>
       {sections.map(section => (
-        <section
-          key={section.sectionTitle}
-          id={sectionId(section.sectionTitle)}
-          className="experiments-section"
-        >
+        <section key={section.sectionTitle} id={sectionId(section.sectionTitle)} className="experiments-section">
           <h2 className="experiments-section-heading" data-aos="fade-up" data-aos-offset="100">
             {section.sectionTitle}
           </h2>

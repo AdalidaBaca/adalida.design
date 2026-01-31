@@ -1,9 +1,8 @@
 import { IconArrowRight, IconUserPlus } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import UniversalLink from 'components/universal_link'
-import { Projects } from 'projects'
-
 import AppStoreBadge from 'images/gaintain/Community/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'
+import { Projects } from 'projects'
 
 const EndCTA = (): JSX.Element => {
   const nextProject = Projects.InvibeEsthetics
@@ -24,11 +23,7 @@ const EndCTA = (): JSX.Element => {
                 className="gaintain-app-store-badge-link"
                 aria-label="Download GainTain on the App Store"
               >
-                <img
-                  src={AppStoreBadge}
-                  alt="Download on the App Store"
-                  className="gaintain-app-store-badge"
-                />
+                <img src={AppStoreBadge} alt="Download on the App Store" className="gaintain-app-store-badge" />
               </UniversalLink>
               <BadgeButton to="https://gaintain.netlify.app">
                 <IconUserPlus height="1em" width="1em" />
@@ -56,11 +51,7 @@ const EndCTA = (): JSX.Element => {
                 className="gaintain-app-store-badge-link"
                 aria-label="Download GainTain on the App Store"
               >
-                <img
-                  src={AppStoreBadge}
-                  alt="Download on the App Store"
-                  className="gaintain-app-store-badge"
-                />
+                <img src={AppStoreBadge} alt="Download on the App Store" className="gaintain-app-store-badge" />
               </UniversalLink>
               <BadgeButton to="https://gaintain.netlify.app">
                 <IconUserPlus height="1em" width="1em" />

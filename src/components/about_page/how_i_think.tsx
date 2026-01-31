@@ -57,7 +57,7 @@ const HowIThink = (): JSX.Element => {
           </p>
         ))}
         <div className="how-i-think-cta">
-          <BadgeButton to={resumeUrl}>VIEW RESUME</BadgeButton>
+          <BadgeButton to={resumeUrl}>VIEW LINKEDIN</BadgeButton>
         </div>
       </div>
     </Section>

@@ -638,6 +638,7 @@
   /* Letter-by-letter scroll animation (matches Gaintain / Project Echo pattern) */
   &.invibe-esthetics-download-text-animated {
     display: inline-block;
+
     /* Plain text uses case study gradient when animation removed */
     background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
     background-clip: text;
