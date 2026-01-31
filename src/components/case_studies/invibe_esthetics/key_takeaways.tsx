@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import SunbeltImage from 'images/works/sunbelt.webp'
+import InvibeKeyTakeawaysImage from 'images/invibe/Hero 3.png'
 import { forwardRef, type Ref } from 'react'
 
 const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {
@@ -10,7 +10,7 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
       className="case-study-top-to-bottom invibe-esthetics-key-takeaways project-echo-key-takeaways"
     >
       <div className="invibe-esthetics-key-takeaways-image">
-        <img src={SunbeltImage} alt="Invibe Esthetics" />
+        <img src={InvibeKeyTakeawaysImage} alt="Invibe Esthetics: client management dashboard, services pages, professional intake form, and schedule your service." />
       </div>
       <div className="case-study-explanation">
         <SectionHeading title="Key Takeaways" />

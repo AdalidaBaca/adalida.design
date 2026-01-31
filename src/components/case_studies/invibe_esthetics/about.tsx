@@ -1,6 +1,7 @@
 import BadgeButton from 'components/badge_button'
+import Image from 'components/image'
 import ScrollAnimatedText from 'components/scroll_animated_text'
-import SunbeltImage from 'images/works/sunbelt.webp'
+import { Projects } from 'projects'
 import type { Ref } from 'react'
 
 interface Props {
@@ -9,11 +10,12 @@ interface Props {
 }
 
 const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
+  const heroImagePath = Projects.InvibeEsthetics.heroImage
   return (
     <>
       <div data-aos="fade-up" className="invibe-esthetics-hero" ref={heroRef}>
         <div className="invibe-esthetics-hero-image">
-          <img src={SunbeltImage} alt="Invibe Esthetics" />
+          <Image path={heroImagePath} alt="Invibe Esthetics" objectFit="contain" />
         </div>
         <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-download-strip">
           <div className="invibe-esthetics-download-content">

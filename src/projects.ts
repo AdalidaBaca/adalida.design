@@ -1,5 +1,6 @@
 const AirbrushImage = 'images/works/airbrush.webp'
 const GaintainImage = 'images/gaintain/Hero Photos/about.png'
+const InvibeHeroImage = 'images/invibe/Hero Cover.png'
 const JSharpImage = 'images/works/jsharp.webp'
 const LoboGardensImage = 'images/works/lobogardens.webp'
 const PhronesisPhoto = 'images/works/phronesis.webp'
@@ -127,7 +128,7 @@ export const Projects = {
     badges: ['Service Design', 'Systems', 'Operations'],
     description:
       'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
-    heroImage: SunbeltImage,
+    heroImage: InvibeHeroImage,
     link: {
       text: 'Read Case Study',
       url: '/case_studies/invibe_esthetics'

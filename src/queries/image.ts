@@ -1,14 +1,19 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import type { IGatsbyImageData } from 'gatsby-plugin-image'
 
-const ImageQuery = (imagePath: string): IGatsbyImageData => {
-  const images = useStaticQuery(graphql`
-    query {
-      allFile(filter: {sourceInstanceName: {eq: "images"}}) {
+/**
+ * Custom hook that runs useStaticQuery at the top level and returns gatsbyImageData for the given path.
+ * Required so useStaticQuery is not called from a plain function (which breaks Gatsby/React hooks rules).
+ */
+function useImageByPath(imagePath: string): IGatsbyImageData {
+  const edges = useStaticQuery(graphql`
+    query AllImagesQuery {
+      allFile(filter: { sourceInstanceName: { eq: "images" } }) {
         edges {
           node {
-            childImageSharp { gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH) }
-            name
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+            }
             relativePath
           }
         }
@@ -16,17 +21,15 @@ const ImageQuery = (imagePath: string): IGatsbyImageData => {
     }
   `).allFile.edges
 
-  // Images will likely come in with a /images/...
-  // The relativePath in the query does not start with /images or a slash.
   const desiredRelativePath = imagePath.replace(/^\/?(images)?\//, '')
-  const image = images.find(
+  const match = edges.find(
     ({ node: { relativePath } }: { node: { relativePath: string } }): boolean => relativePath === desiredRelativePath
   )
-  if (image !== undefined) {
-    return image.node.childImageSharp.gatsbyImageData
+  if (match !== undefined && match.node.childImageSharp?.gatsbyImageData !== undefined) {
+    return match.node.childImageSharp.gatsbyImageData
   }
 
   throw new Error(`No image found for ${imagePath}`)
 }
 
-export default ImageQuery
+export default useImageByPath
