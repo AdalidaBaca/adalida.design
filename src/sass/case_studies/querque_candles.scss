@@ -326,6 +326,79 @@
   }
 }
 
+/* Details sidebar CTA: same style as Gaintain / Project ECHO / Invibe link-secondary */
+.querque-candles-link-secondary {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  min-height: auto !important;
+  min-width: auto !important;
+  border-radius: 0 !important;
+
+  .flex-center {
+    position: relative;
+    padding-right: 0 !important;
+    transition: padding-right 160ms ease;
+  }
+
+  .flex-center::after {
+    content: '→' !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(-8px) !important;
+    opacity: 0 !important;
+    transition: opacity 160ms ease, transform 160ms ease !important;
+    pointer-events: none;
+  }
+
+  a {
+    color: rgb(0 0 0 / 70%) !important;
+    font-weight: 400;
+    text-decoration: underline;
+    text-decoration-color: rgba(201, 69, 13, 0.4);
+    text-underline-offset: 0.2em;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    padding: 0 !important;
+    font-size: inherit !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      a {
+        color: rgb(0 0 0 / 90%) !important;
+        text-decoration-color: rgba(201, 69, 13, 0.7);
+      }
+
+      .flex-center {
+        padding-right: 1.1em !important;
+      }
+
+      .flex-center::after {
+        opacity: 1 !important;
+        transform: translateY(-50%) translateX(0) !important;
+      }
+    }
+  }
+}
+
+.dark .querque-candles-link-secondary {
+  a {
+    color: rgb(255 255 255 / 70%) !important;
+    text-decoration-color: rgba(201, 69, 13, 0.5);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover a {
+      color: rgb(255 255 255 / 90%) !important;
+      text-decoration-color: rgba(201, 69, 13, 0.75);
+    }
+  }
+}
+
 .dark .querque-candles-title-content {
   background: linear-gradient(135deg, rgba(201, 69, 13, 0.12) 0%, rgba(201, 69, 13, 0.08) 100%);
   border-color: rgba(201, 69, 13, 0.2);

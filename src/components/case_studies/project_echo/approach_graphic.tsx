@@ -83,7 +83,7 @@ const ApproachGraphic = (): JSX.Element => {
           </linearGradient>
         </defs>
 
-        {/* Y-axis: Drop off Prevention */}
+        {/* Y-axis: Clarity of Comparison */}
         <line
           x1={padding}
           y1={padding}
@@ -103,7 +103,7 @@ const ApproachGraphic = (): JSX.Element => {
           strokeLinejoin="round"
         />
 
-        {/* Y-axis label: Scales (top) */}
+        {/* Y-axis label: High (top) */}
         <text
           x={padding - (isMobile ? 6 : 8)}
           y={padding - (isMobile ? 12 : 18)}
@@ -111,10 +111,10 @@ const ApproachGraphic = (): JSX.Element => {
           dominantBaseline="middle"
           className="design-strategy-axis-label"
         >
-          Scales
+          High
         </text>
 
-        {/* Y-axis label: Breaks (bottom) - positioned above the axis line */}
+        {/* Y-axis label: Low (bottom) - positioned above the axis line */}
         <text
           x={padding - (isMobile ? 6 : 8)}
           y={weakLabelY}
@@ -122,10 +122,10 @@ const ApproachGraphic = (): JSX.Element => {
           dominantBaseline="middle"
           className="design-strategy-axis-label"
         >
-          Breaks
+          Low
         </text>
 
-        {/* Y-axis title - centered between Scales and Breaks, rotated to cross the axis */}
+        {/* Y-axis title - centered between High and Low, rotated to cross the axis */}
         <text
           x={padding - (isMobile ? 12 : 15)}
           y={yAxisTitleY}
@@ -135,10 +135,10 @@ const ApproachGraphic = (): JSX.Element => {
           fontSize={isMobile ? '11' : '12'}
           transform={`rotate(-90 ${padding - (isMobile ? 12 : 15)} ${yAxisTitleY})`}
         >
-          Scales with Complexity
+          Clarity of Comparison
         </text>
 
-        {/* X-axis: Accountability Cost */}
+        {/* X-axis: Complexity of Data */}
         <line
           x1={padding}
           y1={padding + chartHeight}
@@ -158,7 +158,7 @@ const ApproachGraphic = (): JSX.Element => {
           strokeLinejoin="round"
         />
 
-        {/* X-axis label: Easy (left) - positioned at the corner */}
+        {/* X-axis label: Low (left) - positioned at the corner */}
         <text
           x={padding}
           y={padding + chartHeight + (isMobile ? 12 : 15)}
@@ -166,10 +166,10 @@ const ApproachGraphic = (): JSX.Element => {
           dominantBaseline="middle"
           className="design-strategy-axis-label"
         >
-          Easy
+          Low
         </text>
 
-        {/* X-axis title - inline between Easy and Hard */}
+        {/* X-axis title - inline between Low and High */}
         <text
           x={padding + chartWidth / 2}
           y={padding + chartHeight + (isMobile ? 12 : 15)}
@@ -178,10 +178,10 @@ const ApproachGraphic = (): JSX.Element => {
           className="design-strategy-axis-title"
           fontSize={isMobile ? '11' : '12'}
         >
-          ease of comparison
+          Complexity of Data
         </text>
 
-        {/* X-axis label: Hard (right) */}
+        {/* X-axis label: High (right) */}
         <text
           x={padding + chartWidth}
           y={padding + chartHeight + (isMobile ? 12 : 15)}
@@ -189,7 +189,7 @@ const ApproachGraphic = (): JSX.Element => {
           dominantBaseline="middle"
           className="design-strategy-axis-label"
         >
-          Hard
+          High
         </text>
 
         {/* Academic/data-style straight lines connecting points */}

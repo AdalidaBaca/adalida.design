@@ -4,8 +4,8 @@ import CaseStudyCard from './card'
 const Container = (): JSX.Element => {
   // Clients ordered from newest to oldest
   const clientProjects = [
-    Projects.InvibeEsthetics,
     Projects.SmartVentureMedia,
+    Projects.InvibeEsthetics,
     Projects.QuerqueCandles,
     Projects.AirbrushArtStudio,
     Projects.JSharpMusic,

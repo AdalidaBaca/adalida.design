@@ -1,3 +1,4 @@
+import BadgeButton from 'components/badge_button'
 import OverviewImage from 'images/querque_candles/overview.webp'
 import { Projects } from 'projects'
 import { forwardRef, type Ref } from 'react'
@@ -57,9 +58,26 @@ const Overview = forwardRef(
                 </p>
               </div>
               <div className="querque-candles-details-meta-item">
+                <h6 className="querque-candles-details-label">Team</h6>
+                <p className="querque-candles-details-text">
+                  <strong>Sole Designer</strong>
+                </p>
+              </div>
+              <div className="querque-candles-details-meta-item">
                 <h6 className="querque-candles-details-label">Timeline</h6>
                 <p className="querque-candles-details-text">
                   <strong>4 weeks</strong>
+                </p>
+              </div>
+              <div className="querque-candles-details-meta-item">
+                <h6 className="querque-candles-details-label">Final Result</h6>
+                <p className="querque-candles-details-text">
+                  <BadgeButton
+                    to="https://www.figma.com/community/file/1351614539511450440/querque-candles"
+                    className="querque-candles-link-secondary"
+                  >
+                    View in Figma
+                  </BadgeButton>
                 </p>
               </div>
             </div>

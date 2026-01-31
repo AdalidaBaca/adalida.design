@@ -6,8 +6,14 @@ const LoboGardensImage = 'images/works/lobogardens.webp'
 const PhronesisPhoto = 'images/works/phronesis.webp'
 const ProjectEchoImage = 'images/works/project_echo.webp'
 const QuerqueImage = 'images/works/querque.webp'
+const SmartVentureMediaImage = 'images/works/smartventuremedia.png'
 const SunbeltImage = 'images/works/sunbelt.webp'
+const TLDRImage = 'images/works/TLDR.png'
 const UniNightsImage = 'images/works/uni_nights.webp'
+const WaughImage = 'images/works/waugh.png'
+const GoldenRecordRemixImage = 'images/works/NASA.png'
+const GreenActionImage = 'images/works/Green action.png'
+const CheevoImage = 'images/works/Cheevo.png'
 
 export interface Project {
   name: string
@@ -144,7 +150,7 @@ export const Projects = {
     badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
     description:
       'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
-    heroImage: SunbeltImage,
+    heroImage: SmartVentureMediaImage,
     link: {
       text: 'Visit Website',
       url: 'https://www.smartventuremedia.com'
@@ -208,14 +214,14 @@ export const Projects = {
     badges: ['Hackathon', 'Product Design', 'AI'],
     description:
       'Real-time fact-checking tool that analyzes debate responses for clarity, exaggeration, and historical accuracy.',
-    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    heroImage: WaughImage,
     link: {
-      text: 'View Presentation',
-      url: 'https://www.figma.com/deck/VkrMf6Xigfy1sdMCJmcWOR/WAUGH-PRESENTATION---PORTFOLIO'
+      text: 'Visit Website',
+      url: 'https://devpost.com/software/waugh'
     },
     colors: {
-      cover: '#6366F1',
-      primary: '#6366F1'
+      cover: '#F59E0B',
+      primary: '#F59E0B'
     }
   },
   TLDR: {
@@ -224,7 +230,7 @@ export const Projects = {
     badges: ['Hackathon', 'AI', 'Legal Tech'],
     description:
       'An AI-powered tool that translates dense legal terms and agreements into clear, concise summaries, helping users quickly understand their rights and obligations.',
-    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    heroImage: TLDRImage,
     link: {
       text: 'View Presentation',
       url: 'https://docs.google.com/presentation/d/1qXeKJTsfPWMx_gYd4cbBtRxIbwm7jJqWRpy747TrlWM'
@@ -240,7 +246,7 @@ export const Projects = {
     badges: ['Hackathon', 'Mobile App', 'Civic Tech'],
     description:
       'A mobile app that helps users discover and create conservation petitions based on their location, streamlining advocacy efforts with integrated e-signatures.',
-    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    heroImage: GreenActionImage,
     link: {
       text: 'View Presentation',
       url: 'https://docs.google.com/presentation/d/13ZXuHPRwbLdtYRgQjegQEoZxVz2YYASPrVZCrwM29x4'
@@ -256,14 +262,14 @@ export const Projects = {
     badges: ['Hackathon', 'Blockchain', 'Enterprise'],
     description:
       'A blockchain-powered system for verifying task completion in enterprise workflows, ensuring transparency, accountability, and tamper-proof audit trails.',
-    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    heroImage: CheevoImage,
     link: {
       text: 'View Presentation',
       url: 'https://docs.google.com/presentation/d/1hrNCgi0HB03YyJZnud2S_8XVQeN1PizSrVZ5yPawcY0'
     },
     colors: {
-      cover: '#F59E0B',
-      primary: '#F59E0B'
+      cover: '#6366F1',
+      primary: '#6366F1'
     }
   },
   GoldenRecordRemix: {
@@ -272,10 +278,10 @@ export const Projects = {
     badges: ['Hackathon', 'NASA', 'First Place'],
     description:
       'Won first place in a Golden Record redesign using Rule 110 Cellular Automata to teach extraterrestrials computation, logic, and human behavior.',
-    heroImage: SunbeltImage, // Placeholder - can be replaced with actual image later
+    heroImage: GoldenRecordRemixImage,
     link: {
-      text: 'View Presentation',
-      url: 'https://docs.google.com/presentation/d/1G4znJ9oEA8eAnprcVIGX4FeNw8zVAtnxMi_wkV0Odk4'
+      text: 'Visit Website',
+      url: 'https://2018.spaceappschallenge.org/challenges/universe-beauty-and-wonder/remix-golden-record/teams/adalida-baca/'
     },
     colors: {
       cover: '#EC4899',
