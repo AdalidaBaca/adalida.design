@@ -549,6 +549,28 @@
   align-items: center;
 }
 
+.gaintain-app-store-badge-link {
+  display: inline-block;
+  line-height: 0;
+  transition: opacity 0.25s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.gaintain-app-store-badge {
+  height: 40px;
+  width: auto;
+  display: block;
+
+  @media (width >=768px) {
+    height: 44px;
+  }
+}
+
 .gaintain-download-text {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;

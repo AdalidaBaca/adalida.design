@@ -1,6 +1,8 @@
 import BadgeButton from 'components/badge_button'
+import UniversalLink from 'components/universal_link'
 
 import AboutHeroImage from 'images/gaintain/Hero Photos/about.png'
+import AppStoreBadge from 'images/gaintain/Community/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'
 import type { Ref } from 'react'
 
 interface Props {
@@ -19,9 +21,17 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
           <div className="gaintain-download-content">
             <p className="gaintain-download-text">GainTain</p>
             <div className="gaintain-download-buttons">
-              <BadgeButton to="https://gaintain.co/app" className="gaintain-link-primary">
-                Download on the App Store
-              </BadgeButton>
+              <UniversalLink
+                to="https://gaintain.co/app"
+                className="gaintain-app-store-badge-link"
+                aria-label="Download GainTain on the App Store"
+              >
+                <img
+                  src={AppStoreBadge}
+                  alt="Download on the App Store"
+                  className="gaintain-app-store-badge"
+                />
+              </UniversalLink>
             </div>
           </div>
         </div>

@@ -1,12 +1,11 @@
-import { IconArrowRight, IconDeviceMobile, IconUserPlus } from '@tabler/icons-react'
+import { IconArrowRight, IconUserPlus } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
+import UniversalLink from 'components/universal_link'
 import { Projects } from 'projects'
-import { useContext } from 'react'
 
-import Context from '../context'
+import AppStoreBadge from 'images/gaintain/Community/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'
 
 const EndCTA = (): JSX.Element => {
-  const color = useContext(Context)?.colors?.primary
   const nextProject = Projects.InvibeEsthetics
   const nextProjectUrl = '/case_studies/invibe_esthetics'
 
@@ -20,13 +19,17 @@ const EndCTA = (): JSX.Element => {
               Download the app or join the pilot program to experience AI-guided fitness tracking.
             </p>
             <div className="gaintain-end-cta-buttons">
-              <BadgeButton
+              <UniversalLink
                 to="https://gaintain.co/app"
-                style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}
+                className="gaintain-app-store-badge-link"
+                aria-label="Download GainTain on the App Store"
               >
-                <IconDeviceMobile height="1em" width="1em" />
-                &nbsp; DOWNLOAD
-              </BadgeButton>
+                <img
+                  src={AppStoreBadge}
+                  alt="Download on the App Store"
+                  className="gaintain-app-store-badge"
+                />
+              </UniversalLink>
               <BadgeButton to="https://gaintain.netlify.app">
                 <IconUserPlus height="1em" width="1em" />
                 &nbsp; JOIN PILOT
@@ -48,13 +51,17 @@ const EndCTA = (): JSX.Element => {
               Download the app or join the pilot program to experience AI-guided fitness tracking.
             </p>
             <div className="gaintain-end-cta-buttons">
-              <BadgeButton
+              <UniversalLink
                 to="https://gaintain.co/app"
-                style={color !== undefined ? { background: color, color: '#F5F5F5' } : {}}
+                className="gaintain-app-store-badge-link"
+                aria-label="Download GainTain on the App Store"
               >
-                <IconDeviceMobile height="1em" width="1em" />
-                &nbsp; DOWNLOAD
-              </BadgeButton>
+                <img
+                  src={AppStoreBadge}
+                  alt="Download on the App Store"
+                  className="gaintain-app-store-badge"
+                />
+              </UniversalLink>
               <BadgeButton to="https://gaintain.netlify.app">
                 <IconUserPlus height="1em" width="1em" />
                 &nbsp; JOIN PILOT

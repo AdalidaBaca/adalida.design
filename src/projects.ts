@@ -34,11 +34,11 @@ export interface Project {
 export const Projects = {
   Gaintain: {
     name: 'GainTain',
-    category: 'Consumer product built 0 → 1',
+    category: 'Product Built 0 → 1',
     description:
       'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
-    badges: ['Founder', 'Product', 'Iteration'],
+    badges: ['Founder','B2C', 'Product', 'Iteration'],
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'

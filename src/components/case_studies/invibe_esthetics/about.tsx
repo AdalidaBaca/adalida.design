@@ -1,6 +1,5 @@
 import BadgeButton from 'components/badge_button'
 import Image from 'components/image'
-import ScrollAnimatedText from 'components/scroll_animated_text'
 import { Projects } from 'projects'
 import type { Ref } from 'react'
 
@@ -20,7 +19,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-download-strip">
           <div className="invibe-esthetics-download-content">
             <div className="invibe-esthetics-download-text invibe-esthetics-download-text-animated">
-              <ScrollAnimatedText text="Invibe Esthetics" targetRef={heroRef as React.RefObject<HTMLDivElement>} />
+              Invibe Esthetics
             </div>
             <div className="invibe-esthetics-download-buttons">
               <BadgeButton to="https://www.invibeesthetics.com/" className="invibe-esthetics-link-primary">

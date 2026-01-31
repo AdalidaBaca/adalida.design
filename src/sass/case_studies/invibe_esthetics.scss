@@ -188,15 +188,18 @@
 
     @media (width <=768px) {
       max-width: 100%;
-      height: 640px;
-      max-height: 78svh;
+      height: 50vh;
+      min-height: 280px;
+      max-height: 70svh;
+      aspect-ratio: unset;
       border-radius: 1.25em;
     }
 
     @media (width <=511px) {
-      height: 520px;
-      max-height: 68svh;
-      aspect-ratio: 1;
+      height: 50vh;
+      min-height: 240px;
+      max-height: 70svh;
+      aspect-ratio: unset;
       border-radius: 1em;
     }
 
@@ -214,6 +217,7 @@
       border-radius: 1.5em;
 
       @media (width <=768px) {
+        object-fit: cover;
         border-radius: 1.25em;
       }
 
@@ -500,6 +504,13 @@
       border-color: rgb(150 87 56 / 35%);
     }
 
+    @media (width <=768px) {
+      min-height: 200px;
+      height: 38vh;
+      max-height: 300px;
+      aspect-ratio: 4 / 3;
+    }
+
     @media (width >=768px) {
       max-height: 360px;
     }
@@ -514,6 +525,14 @@
       display: block;
       z-index: 1;
       border-radius: inherit;
+
+      @media (width <=768px) {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+      }
     }
   }
 
@@ -619,9 +638,10 @@
   /* Letter-by-letter scroll animation (matches Gaintain / Project Echo pattern) */
   &.invibe-esthetics-download-text-animated {
     display: inline-block;
-    background: none;
-    background-clip: unset;
-    color: unset;
+    /* Plain text uses case study gradient when animation removed */
+    background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
+    background-clip: text;
+    color: transparent;
 
     > div {
       display: inline;
@@ -694,6 +714,12 @@
   background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
   background-clip: text;
   color: transparent;
+
+  &.invibe-esthetics-download-text-animated {
+    background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
+    background-clip: text;
+    color: transparent;
+  }
 
   &.invibe-esthetics-download-text-animated .animated-letter {
     background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
@@ -1477,6 +1503,15 @@
   .dark & {
     color: rgb(255 255 255 / 30%);
   }
+
+  /* On mobile, problem flow stacks vertically so arrows point down */
+  @media (width < 768px) {
+    .invibe-esthetics-problem-flow & {
+      display: inline-block;
+      transform: rotate(90deg);
+      margin: 0.15em 0;
+    }
+  }
 }
 
 // Intake Tradeoffs Matrix (Competitive Intake Tradeoffs graphic)
@@ -1869,12 +1904,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.25em 0.5em;
+  padding: 1em 0.5em;
   margin-inline: auto;
 
   @media (width >=768px) {
     max-width: min(420px, 100%);
-    padding: 1.5em 0.75em;
+    padding: 1.25em 0.75em;
   }
 }
 
@@ -1882,15 +1917,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  gap: 1.25em;
   width: 100%;
 }
 
 .insight-flow-node {
-  padding: clamp(0.55em, 1.4vw, 0.75em) clamp(0.9em, 2.5vw, 1.35em);
+  padding: clamp(0.45em, 1.1vw, 0.6em) clamp(0.7em, 2vw, 1em);
   border-radius: 8px;
-  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-  font-weight: 600;
+  font-size: clamp(0.875rem, 1.7vw, 1rem);
+  font-weight: 500;
   line-height: 1.25;
   text-align: center;
   box-sizing: border-box;
@@ -1928,7 +1963,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4em 0;
+  padding: 0.65em 0;
   width: 100%;
 }
 
@@ -1941,8 +1976,8 @@
 
   svg {
     display: block;
-    width: clamp(20px, 4vw, 26px);
-    height: clamp(22px, 4.5vw, 30px);
+    width: clamp(16px, 3.2vw, 22px);
+    height: clamp(18px, 3.6vw, 26px);
     margin-inline: auto;
   }
 }
@@ -1953,7 +1988,7 @@
   grid-template-columns: fit-content;
   justify-content: center;
   justify-items: center;
-  gap: 0;
+  gap: 0.85em;
 }
 
 .insight-flow-strike {
@@ -1961,9 +1996,9 @@
 }
 
 .insight-flow-annotation {
-  margin: 0.4em 0 0;
-  padding: 0 0.5em;
-  font-size: clamp(0.72rem, 1.3vw, 0.84rem);
+  margin: 0.7em 0 0;
+  padding: 0 0.4em;
+  font-size: clamp(0.65rem, 1.15vw, 0.78rem);
   font-weight: 400;
   color: rgb(0 0 0 / 60%);
   line-height: 1.35;
@@ -1974,7 +2009,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15em;
+  gap: 0.45em;
 
   .dark & {
     color: rgb(255 255 255 / 60%);
