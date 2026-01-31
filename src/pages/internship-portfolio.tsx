@@ -5,8 +5,7 @@ import Seo from 'components/seo'
 import { INTERNSHIP_PORTFOLIO_SECTIONS } from 'data/internship_portfolio'
 import { useEffect } from 'react'
 
-const sectionId = (title: string): string =>
-  title.toLowerCase().replace(/\s+/g, '-')
+const sectionId = (title: string): string => title.toLowerCase().replace(/\s+/g, '-')
 
 const InternshipPortfolio = (): JSX.Element => {
   useEffect(() => {

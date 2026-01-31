@@ -190,7 +190,7 @@
 }
 
 /* Project ECHO variant: shown only on internship portfolio, uses case study teal */
-.contact-cta-section--project-echo .contact-cta-container {
+.contact-cta-section-project-echo .contact-cta-container {
   background: linear-gradient(135deg, rgb(8 145 178 / 10%) 0%, rgb(6 182 212 / 6%) 100%);
   border-color: rgb(8 145 178 / 22%);
   box-shadow:
@@ -206,7 +206,7 @@
   }
 }
 
-.contact-cta-section--project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
+.contact-cta-section-project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
   background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%) !important;
   border: none !important;
   box-shadow:
@@ -226,7 +226,7 @@
   }
 }
 
-.dark .contact-cta-section--project-echo .contact-cta-container {
+.dark .contact-cta-section-project-echo .contact-cta-container {
   background: linear-gradient(135deg, rgb(8 145 178 / 16%) 0%, rgb(6 182 212 / 10%) 100%);
   border-color: rgb(8 145 178 / 30%);
   box-shadow:
@@ -242,7 +242,7 @@
   }
 }
 
-.dark .contact-cta-section--project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
+.dark .contact-cta-section-project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
   background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%) !important;
   border: none !important;
   box-shadow:

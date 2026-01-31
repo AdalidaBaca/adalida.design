@@ -8,11 +8,7 @@ interface ColHeader {
   helperText?: string
 }
 
-const COL_HEADERS: ColHeader[] = [
-  { label: 'Low Cost' },
-  { label: 'Data Capture' },
-  { label: 'Data Updates' }
-]
+const COL_HEADERS: ColHeader[] = [{ label: 'Low Cost' }, { label: 'Data Capture' }, { label: 'Data Updates' }]
 
 interface ApproachRow {
   label: string

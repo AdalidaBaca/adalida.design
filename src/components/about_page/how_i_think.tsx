@@ -6,8 +6,7 @@ import { useMemo, useRef } from 'react'
 
 import Section from './section'
 
-const taglineText =
-  'Strategic + Linguistic + Systems-Thinking + Brutally Practical.'
+const taglineText = 'Strategic + Linguistic + Systems-Thinking + Brutally Practical.'
 
 const HowIThink = (): JSX.Element => {
   const sectionRef = useRef<HTMLDivElement>(null)

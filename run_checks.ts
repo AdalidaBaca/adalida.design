@@ -14,7 +14,7 @@ const commands = {
     { name: 'Build', cmd: 'npm run build' }
   ],
   fix: [
-    { name: 'Pruning (Knip)', cmd: 'knip --fix' },
+    { name: 'Pruning (Knip)', cmd: 'knip --fix --allow-remove-files' },
     { name: 'Syntactic Normalization', cmd: 'biome check --write --unsafe .' },
     { name: 'Structure (ESLint)', cmd: 'eslint --fix' },
     { name: 'Soundness (TypeScript)', cmd: 'tsc' },

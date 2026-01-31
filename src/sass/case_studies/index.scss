@@ -21,10 +21,12 @@
   box-sizing: border-box;
   position: relative;
   gap: 4em;
+
   /* Aligned with table of contents dot spacing rhythm */
 
   @media (width <=768px) {
     gap: 3em;
+
     /* Smaller gap on mobile, still aligned with dot rhythm */
   }
 
@@ -93,6 +95,7 @@
 
   @media (width <=768px) {
     display: none;
+
     /* Hide on mobile, use horizontal scrollbar in nav instead */
   }
 
@@ -104,6 +107,7 @@
 .table-of-contents-line {
   position: absolute;
   left: 10px;
+
   /* Center of the 20px dot wrapper */
   width: 1.5px;
   background: rgba($dark-text, 0.12);
@@ -169,6 +173,7 @@
   gap: 0.75em;
   position: relative;
   min-height: calc(0.2em * 2 + 1.4em);
+
   /* Match link-button height: padding + line-height */
 }
 
@@ -189,8 +194,10 @@
   height: 8px;
   border-radius: 50%;
   background: #E5E5E5;
+
   /* Solid light grey, no opacity */
   border: 1.5px solid #D3D3D3;
+
   /* Solid light grey border */
   cursor: pointer;
   transition: all 0.2s ease-out;
@@ -203,13 +210,14 @@
 
   .dark & {
     background: #4A4A4A;
+
     /* Solid medium grey for dark mode */
     border-color: #5A5A5A;
+
     /* Slightly lighter grey border for dark mode */
   }
 
   &.gradient {
-
     &.active,
     &.past {
       background: transparent;
@@ -335,8 +343,10 @@
   &.active {
     color: $light-text !important;
     opacity: 1 !important;
+
     /* Ensure full opacity in dark mode for visibility */
     filter: none !important;
+
     /* Remove any filters for better visibility */
   }
 }
@@ -377,8 +387,10 @@
   flex-direction: column;
   gap: 2em;
   align-items: flex-start;
+
   /* Changed from center to flex-start for left alignment */
   padding: 0 0.5em;
+
   /* Remove top/bottom padding - let container gap handle spacing */
   max-width: min(1200px, 100%);
   width: 100%;
@@ -387,8 +399,10 @@
 
   @media (width >=$case-study-breakpoint) {
     gap: 2.5em;
+
     /* Reduced from 3em for better alignment between labels */
     padding: 0 0.5em;
+
     /* Remove top/bottom padding - let container gap handle spacing */
   }
 
@@ -402,8 +416,10 @@
   @include case-study-card-container;
 
   margin-top: 0;
+
   /* Ensure no top margin - container gap handles spacing */
   margin-bottom: 0;
+
   /* Ensure no bottom margin - container gap handles spacing */
 
   /* Remove all padding and margin when container only has badge to align with ToolsCarousel */
@@ -432,6 +448,7 @@
     max-width: 100%;
     aspect-ratio: 3.2 / 1;
     overflow: visible;
+
     /* Allow persona labels to overflow in Problem section */
 
     .persona-cards-container {
@@ -477,17 +494,19 @@
   width: 100%;
   margin: 0 auto;
   margin-top: 0;
+
   /* Ensure no top margin - container gap handles spacing */
   margin-bottom: 0;
+
   /* Ensure no bottom margin - container gap handles spacing */
   padding: 0 0.5em;
+
   /* Remove top and bottom padding */
   box-sizing: border-box;
 
   /* Mobile-only: reorder workout dashboard video above text */
   &.gaintain-workout-dashboard {
     @media (width <=768px) {
-
       >.gaintain-image-container,
       >.gaintain-video-container {
         order: -1;
@@ -559,7 +578,9 @@
     grid-template-columns: 1fr 1fr;
     align-items: start;
     padding: 0 0.5em;
+
     /* Remove top padding */
+
     /* Remove bottom padding */
     gap: 2em;
     width: 100%;

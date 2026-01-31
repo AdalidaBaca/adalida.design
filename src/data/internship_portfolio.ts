@@ -4,7 +4,7 @@ export interface InternshipItem {
   link?: string
 }
 
-export interface InternshipSection {
+interface InternshipSection {
   sectionTitle: string
   items: InternshipItem[]
 }

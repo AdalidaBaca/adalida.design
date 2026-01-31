@@ -115,6 +115,7 @@
     padding-left: 0.5em;
     padding-right: 0.5em;
     gap: 2em;
+
     /* Keep gap between columns on desktop */
     align-items: start !important;
 
@@ -632,7 +633,6 @@
       background: linear-gradient(45deg, #965738 0%, #C9A882 100%);
       background-clip: text;
       color: transparent;
-      -webkit-background-clip: text;
     }
 
     .animated-letter.filled {
@@ -699,7 +699,6 @@
     background: linear-gradient(45deg, #C9A882 0%, #965738 100%);
     background-clip: text;
     color: transparent;
-    -webkit-background-clip: text;
   }
 }
 
@@ -1115,12 +1114,12 @@
 .invibe-esthetics-end-cta-description {
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
   line-height: 1.6;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgb(0 0 0 / 75%);
   max-width: 55ch;
   margin: 0;
 
   .dark & {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
   }
 }
 
@@ -1154,10 +1153,7 @@
     // But let's check how Project Echo did it:
     // .btn.badge.big-badge:not(:first-child) 
   }
-}
 
-// Re-implementing the secondary button logic strictly
-.invibe-esthetics-end-cta-buttons {
   .btn.badge.big-badge:not(:first-child) {
     background: rgb(255 255 255 / 95%);
     border: 1.5px solid rgb(0 0 0 / 15%);
@@ -1236,7 +1232,7 @@
   align-items: center;
   gap: 0.75em;
   padding: 1.5em 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgb(0 0 0 / 10%);
 
   @media (width >=768px) {
     flex-direction: row;
@@ -1246,7 +1242,7 @@
   }
 
   .dark & {
-    border-top-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgb(255 255 255 / 10%);
   }
 }
 
@@ -1255,10 +1251,10 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgb(0 0 0 / 50%);
 
   .dark & {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255 255 255 / 50%);
   }
 }
 
@@ -1312,8 +1308,7 @@
 
 .invibe-esthetics-problem-flow {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -1480,7 +1475,7 @@
   flex-shrink: 0;
 
   .dark & {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgb(255 255 255 / 30%);
   }
 }
 
