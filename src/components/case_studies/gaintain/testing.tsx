@@ -18,14 +18,15 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
         <div className="gaintain-details-card">
           <SectionHeading title="Solution" subtitle="The Accountability Stack" />
           <div className="body-2">
-            I paired <strong>AI-guided workouts</strong> with <strong>designed accountability</strong> to support
-            follow-through.
+            The solution centers on a <strong>commitment-first architecture</strong> designed to lock in follow-through
+            once intent is declared.
           </div>
           <div className="body-2">
-            <strong>AI Workouts</strong> handle the <strong>cognitive load</strong> of planning and personalization.{' '}
-            <strong>Pledges</strong> apply <strong>loss aversion</strong> to create a psychological &quot;lock-in&quot;
-            for the user. <strong>Calendar Feedback</strong> makes progress against goals <strong>visible and
-            undeniable</strong> over time.
+            After commitment, the system is built to <strong>support follow-through</strong> by minimizing execution
+            friction and sustaining accountability over time.
+          </div>
+          <div className="body-2">
+            AI workouts reduce planning load, pledges create lock-in, and calendar feedback makes progress visible.
           </div>
         </div>
       </div>

@@ -38,13 +38,12 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
         <div className="gaintain-details-card">
           <SectionHeading title="Pledge Setup" subtitle="Turning Intention into Commitment" />
           <div className="body-2">
-            The pledge flow is designed to mirror the <strong>external pressure</strong> of a human coach without the
-            overhead. Users set their <strong>training frequency</strong> and define the <strong>financial
-            stakes</strong>, transitioning from a passive tracker to a <strong>committed participant</strong>.
+            The pledge setup is the <strong>core commitment mechanism</strong>, mirroring the pressure of a human
+            coach without the overhead.
           </div>
           <div className="body-2">
-            This interface turns vague intent into a <strong>high-stakes contract</strong>, providing the{' '}
-            <strong>external friction</strong> necessary to bypass the mid-program slump.
+            Defining training frequency and financial stakes upfront creates an <strong>explicit commitment</strong> that
+            shifts users from passive tracking into accountable action and prevents mid-program drop-off.
           </div>
         </div>
       </div>

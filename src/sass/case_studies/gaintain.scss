@@ -4232,6 +4232,30 @@
   }
 }
 
+/* Key Takeaways: single-column stacked layout for better readability */
+.gaintain-takeaways-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  width: 100%;
+  margin-top: 0.5em;
+
+  @media (width >=$case-study-breakpoint) {
+    gap: 1.5em;
+  }
+
+  > .gaintain-details-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    @media (width >=768px) {
+      gap: 0.75em;
+    }
+  }
+}
+
 .gaintain-key-takeaways {
   align-items: flex-start;
   gap: 0.5em;

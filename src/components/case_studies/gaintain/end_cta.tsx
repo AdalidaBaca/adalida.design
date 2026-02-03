@@ -13,9 +13,9 @@ const EndCTA = (): JSX.Element => {
       <div className="gaintain-end-cta-section" data-aos="fade-up" data-aos-offset="100">
         <div className="gaintain-end-cta-container">
           <div className="gaintain-end-cta-content">
-            <h3 className="gaintain-end-cta-heading">Try GainTain</h3>
+            <h3 className="gaintain-end-cta-heading">Join the Pilot </h3>
             <p className="gaintain-end-cta-description">
-              Download the app or join the pilot program to experience AI-guided fitness tracking.
+            Join 100+ lifters testing commitment-driven training.
             </p>
             <div className="gaintain-end-cta-buttons">
               <UniversalLink
@@ -41,9 +41,9 @@ const EndCTA = (): JSX.Element => {
       <div className="gaintain-end-cta-section" data-aos="fade-up" data-aos-offset="100">
         <div className="gaintain-end-cta-container">
           <div className="gaintain-end-cta-content">
-            <h3 className="gaintain-end-cta-heading">Try GainTain</h3>
+            <h3 className="gaintain-end-cta-heading">Join the Pilot</h3>
             <p className="gaintain-end-cta-description">
-              Download the app or join the pilot program to experience AI-guided fitness tracking.
+            Join 100+ lifters testing commitment-driven training.
             </p>
             <div className="gaintain-end-cta-buttons">
               <UniversalLink

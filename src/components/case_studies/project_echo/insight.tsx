@@ -541,21 +541,24 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
         {copy === 'problem' ? (
           <>
             <div className="body-2">
-              The challenge was to communicate the <strong>intersectionality of three vulnerable populations</strong>.
+              The challenge was to communicate the <strong>intersectionality</strong> of three vulnerable populations.
             </div>
             <div className="body-2">
-              The existing solution used a <strong>static Venn diagram</strong>, which made it difficult to clearly show
-              and compare the overlaps.
+              The existing static Venn diagram was a <strong>mathematical mismatch</strong> for the data; it obscured the
+              magnitude of overlaps and forced researchers to rely on <strong>mental math</strong> to compare
+              populations.
             </div>
           </>
         ) : (
           <>
             <div className="body-2">
-              Three populations do not produce one overlap. They produce <strong>seven distinct comparisons</strong>.
+              Three populations do not produce one overlap; they produce <strong>seven distinct, meaningful
+              intersections</strong>.
             </div>
             <div className="body-2">
-              Once the problem was understood as needing to show and compare seven meaningful intersections, it became
-              clear that a Venn diagram was the wrong abstraction.
+              Once the problem was redefined as a <strong>set-intersection analysis</strong> rather than a grouping
+              exercise, it became clear that a matrix-based approach was the only way to provide{' '}
+              <strong>decision-ready clarity</strong>.
             </div>
           </>
         )}

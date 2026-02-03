@@ -8,23 +8,26 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
         <SectionHeading title="Key Takeaways" />
         <div className="project-echo-results-grid" style={{ marginTop: '0.25em' }}>
           <div className="project-echo-details-card">
+            <SectionHeading title="IA is Strategy" />
             <div className="body-2">
-              <strong>Clear language unlocks solutions</strong>. Naming what needed to be shown made the right solution
-              discoverable.
+              Naming the specific comparisons needed made the solution discoverable. Correctly identifying{' '}
+              <strong>seven intersections</strong> transformed a data mess into a <strong>navigable UI</strong>.
             </div>
           </div>
 
           <div className="project-echo-details-card">
+            <SectionHeading title="Systems Thinking" />
             <div className="body-2">
-              <strong>Clear thinking is important across domains</strong>. The same approach applies even in unfamiliar
-              problem spaces.
+              Clear thinking transfers across domains. The same set-logic used for health data applies to any{' '}
+              <strong>multi-set intersection problem</strong> in SaaS, FinTech, or AI.
             </div>
           </div>
 
           <div className="project-echo-details-card">
+            <SectionHeading title="Avoiding Wasted Work" />
             <div className="body-2">
-              <strong>Good judgment avoids wasted work</strong>. Leveraging an existing solution delivered clarity
-              faster than building something new.
+              Leveraging an established solution (<strong>UpSet plots</strong>) delivered clarity faster than building
+              a bespoke tool from scratch. Good judgment prioritizes <strong>outcomes over busy work</strong>.
             </div>
           </div>
         </div>

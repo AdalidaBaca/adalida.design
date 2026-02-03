@@ -35,14 +35,11 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
         <div className="gaintain-details-card">
           <SectionHeading title="Workout Dashboard" subtitle="The Daily Action Surface" />
           <div className="body-2">
-            The dashboard is the primary <strong>decision surface</strong>. I prioritized a{' '}
-            <strong>calendar-first architecture</strong> to provide immediate visual feedback against the user&apos;s{' '}
-            <strong>weekly goal</strong>.
+            Once commitment is made, the dashboard becomes the <strong>primary execution surface</strong>.
           </div>
           <div className="body-2">
-            Whether generating a session via <strong>AI</strong> or quick-logging a manual lift, the UI is optimized
-            for <strong>zero-friction entry</strong> to ensure the user stays &quot;locked-in&quot; to their active
-            pledge.
+            A calendar-first layout provides immediate feedback against weekly goals, while <strong>zero-friction
+            entry</strong> ensures logging never becomes the reason a user breaks an active pledge.
           </div>
         </div>
       </div>
