@@ -45,7 +45,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="gaintain-details-card">
               <h6 className="gaintain-details-label">Role</h6>
               <p className="gaintain-details-text">
-                <strong>CEO & Product Designer</strong>
+                <strong>Founder & Product Designer</strong>
               </p>
               <p className="gaintain-details-text">
                 I led <strong>product strategy, UX, and front-end interaction design</strong>, working closely with my

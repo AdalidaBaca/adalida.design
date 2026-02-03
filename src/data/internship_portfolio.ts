@@ -68,7 +68,7 @@ export const INTERNSHIP_PORTFOLIO_SECTIONS: InternshipSection[] = [
       {
         title: 'JAVASCRIPT DOCUMENTATION',
         description:
-          "This link connects to a private GitHub Gist showcasing JavaScript code. This JavaScript code is hosted on ECHO's web server and aides in updating their website.",
+          "This link connects to a private GitHub Gist showcasing JavaScript code. This JavaScript code is hosted on ECHO's web server and aids in updating their website.",
         link: 'https://gist.github.com/AdalidaBaca/4132027b9251a74bca82515cf1291345'
       },
       {
