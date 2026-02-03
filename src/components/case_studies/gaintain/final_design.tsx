@@ -1,4 +1,3 @@
-import { IconSchool, IconTrophy } from '@tabler/icons-react'
 import SectionHeading from 'components/section_heading'
 
 import FinalDesignImage from 'images/gaintain/Hero Photos/results_hero.webp'
@@ -11,64 +10,47 @@ const FinalDesign = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEl
         <img src={FinalDesignImage} alt="Different types of sets" />
       </div>
       <div className="case-study-explanation">
-        <SectionHeading title="Results" />
+        <SectionHeading title="Results" subtitle="Market Validation & Growth Momentum" />
 
-        {/* Primary Metrics - Most Impactful */}
-        <div className="gaintain-results-primary-metrics">
-          <div className="gaintain-metric-card gaintain-metric-primary">
-            <div className="gaintain-metric-value">40%</div>
-            <div className="gaintain-metric-label">Reduction in onboarding drop-off</div>
-          </div>
-          <div className="gaintain-metric-card gaintain-metric-primary">
-            <div className="gaintain-metric-value">12%</div>
-            <div className="gaintain-metric-label">App Store conversion rate</div>
-          </div>
-          <div className="gaintain-metric-card gaintain-metric-primary">
-            <div className="gaintain-metric-value">9 weeks</div>
-            <div className="gaintain-metric-label">From MVP to launch</div>
-          </div>
-          <div className="gaintain-metric-card gaintain-metric-primary">
-            <div className="gaintain-metric-value">117</div>
-            <div className="gaintain-metric-label">Downloads since first launch</div>
-          </div>
-        </div>
-
-        {/* Secondary Metrics Grid */}
-        <div className="gaintain-results-secondary-metrics">
-          <div className="gaintain-metric-card">
-            <div className="gaintain-metric-value">30</div>
-            <div className="gaintain-metric-label">App Store releases</div>
-          </div>
-          <div className="gaintain-metric-card">
-            <div className="gaintain-metric-value">1.17K</div>
-            <div className="gaintain-metric-label">App Store impressions</div>
-          </div>
-          <div className="gaintain-metric-card">
-            <div className="gaintain-metric-value">364</div>
-            <div className="gaintain-metric-label">Product page views</div>
-          </div>
-          <div className="gaintain-metric-card">
-            <div className="gaintain-metric-value">100%</div>
-            <div className="gaintain-metric-label">Lighthouse scores</div>
-          </div>
-        </div>
-
-        {/* Validation Items */}
-        <div className="gaintain-validation-items">
+        <div className="gaintain-results-achievements">
           <div className="gaintain-validation-card">
-            <div className="gaintain-validation-icon">
-              <IconSchool />
-            </div>
             <div className="body-2">
-              Accepted into <strong>Founder University</strong>
+              <strong>This Week in Startups Finalist:</strong> Selected to pitch at the Gamma competition, validating the venture-scale potential of the &quot;Designed Accountability&quot; model.
             </div>
           </div>
           <div className="gaintain-validation-card">
-            <div className="gaintain-validation-icon">
-              <IconTrophy />
-            </div>
             <div className="body-2">
-              <strong>Gamma pitch competition</strong> finalist
+              <strong>Accepted into Founder University:</strong> Secured a spot in the accelerator based on the app&apos;s technical velocity and validated market gap.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>8 Months Bootstrapped in SF:</strong> Self-funded and operated the venture in a high-competition market, managing all Product Ops and design-to-code development.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>9-Week Velocity to MVP:</strong> Moved from concept to App Store launch in one quarter via a code-first design workflow.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>30 App Store Releases:</strong> Maintained a high-frequency iteration cycle during 8 months of bootstrapping to refine UI performance.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>100+ Organic Pilot Signups:</strong> Built a high-intent waitlist entirely through organic channels to test the upcoming Pledges feature.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>40% Reduction in Onboarding Drop-off:</strong> Identified and resolved critical UI friction points, significantly increasing the rate of users reaching their first AI-generated session.
+            </div>
+          </div>
+          <div className="gaintain-validation-card">
+            <div className="body-2">
+              <strong>12% App Store Conversion Rate:</strong> Achieved a download-to-view ratio that doubles category averages, proving the strength of the app&apos;s initial value proposition.
             </div>
           </div>
         </div>

@@ -40,15 +40,15 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
       </div>
       <div className="case-study-explanation" ref={explanationRef}>
         <div className="gaintain-details-card">
-          <SectionHeading title="Social Timeline" />
+          <SectionHeading title="Social Timeline" subtitle="Consistency through Visibility" />
           <div className="body-2">
-            The timeline reinforces consistency through <strong>visibility</strong>.
+            The timeline reinforces consistency through <strong>passive social proof</strong>. Workout check-ins and{' '}
+            <strong>pledge progress</strong> appear as simple signals of effort over time.
           </div>
           <div className="body-2">
-            Workout check-ins and pledge progress appear as simple signals of effort over time.
-          </div>
-          <div className="body-2">
-            This adds <strong>social accountability</strong> without requiring users to compete or post performatively.
+            This adds <strong>social accountability</strong> without requiring users to engage in{' '}
+            <strong>performative posting</strong> or competition, keeping the focus entirely on{' '}
+            <strong>personal follow-through</strong>.
           </div>
         </div>
       </div>

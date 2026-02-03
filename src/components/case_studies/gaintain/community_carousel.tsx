@@ -88,9 +88,12 @@ const CommunityCarousel = ({ ariaLabel = 'Community' }: CommunityCarouselProps):
       return []
     }
 
-    // Map all nodes to images, prioritizing processed images
+    // Map all nodes to images, prioritizing processed images; exclude App Store badge
     const mapped = nodes
-      .filter((n: CommunityImageData) => n.name && n.publicURL) // Ensure we have valid data
+      .filter(
+        (n: CommunityImageData) =>
+          n.name && n.publicURL && !n.name.toLowerCase().includes('app_store')
+      )
       .map((n: CommunityImageData) => {
         // Prioritize Sharp-processed image, fallback to publicURL
         // Sharp should process HEIC files during build, but if it doesn't, use publicURL

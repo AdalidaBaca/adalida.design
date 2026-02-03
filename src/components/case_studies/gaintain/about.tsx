@@ -37,19 +37,19 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             <div data-aos="fade-up" data-aos-offset="150" className="gaintain-details-card">
               <h6 className="gaintain-details-label">Overview</h6>
               <p className="gaintain-details-text">
-                GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs{' '}
-                <strong>workout personalization with designed accountability</strong> to{' '}
-                <strong>reduce drop-off</strong>.
+                GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs workout
+                personalization with <strong>designed accountability</strong> to reduce drop-off. We solve the two
+                structural problems in fitness: the <strong>mental effort of planning</strong> and the{' '}
+                <strong>lack of follow-through</strong>.
               </p>
             </div>
             <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="gaintain-details-card">
               <h6 className="gaintain-details-label">Role</h6>
               <p className="gaintain-details-text">
-                <strong>Founder & Product Designer</strong>
-              </p>
-              <p className="gaintain-details-text">
-                I led <strong>product strategy, UX, and front-end interaction design</strong>, working closely with my
-                engineering co-founder on <strong>data models and iOS architecture</strong>.
+                <strong>Founder & Product Designer.</strong> I led <strong>product strategy, UX, and product operations
+                </strong>, working closely with my engineering co-founder on{' '}
+                <strong>data models and iOS architecture</strong>. I established a{' '}
+                <strong>code-first design workflow</strong> to ship the initial MVP in just <strong>9 weeks</strong>.
               </p>
             </div>
           </div>

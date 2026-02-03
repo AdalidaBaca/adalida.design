@@ -1144,7 +1144,7 @@
     box-shadow: none !important;
   }
 
-  /* Remove background/border when it contains accountability levers */
+  /* Remove background/border when it contains accountability levers; clip so graphic fits */
   &:has(.accountability-levers-container) {
     background: none !important;
     backdrop-filter: none !important;
@@ -1152,6 +1152,8 @@
     border-radius: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
+    overflow: hidden;
+    min-width: 0; /* allow flex/grid shrink so content clips inside column */
   }
 
   /* Remove padding from container when it has design strategy graphic */
@@ -1175,8 +1177,10 @@
   min-height: 0;
 
   @media (width <=768px) {
-    /* Allow labels to be visible on mobile when scaled */
-    overflow: visible;
+    /* Allow labels to be visible on mobile when scaled; keep hidden when design strategy graphic */
+    &:not(:has(.accountability-levers-container)) {
+      overflow: visible;
+    }
   }
 
   @media (width <=768px) {
@@ -3114,6 +3118,10 @@
 
 .accountability-levers-container {
   width: 100%;
+  max-width: 100%;
+  min-width: 0; /* allow shrink so SVG fits inside column */
+  height: 100%;
+  min-height: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3122,8 +3130,7 @@
   border: none;
   border-radius: 0;
   box-sizing: border-box;
-  height: 100%;
-  min-height: 100%;
+  overflow: hidden;
 
   @media (width >=$case-study-breakpoint) {
     padding: 1.25em 1.5em;
@@ -3133,14 +3140,24 @@
     width: 100%;
     max-width: 100%;
     height: 100%;
+    max-height: 100%;
+    min-width: 0;
     display: block;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    overflow: hidden;
   }
 }
 
 .dark .accountability-levers-container {
   background: none;
   border: none;
+}
+
+/* Minimal column gap for Design Strategy so the diagram has more width; Strong/axis title not cut off */
+.case-study-side-by-side:has(.accountability-levers-container) {
+  @media (width >=$case-study-breakpoint) {
+    gap: 0.75em;
+  }
 }
 
 .gaintain-end-cta-section {
@@ -3922,6 +3939,19 @@
   gap: 0.75em;
   width: 100%;
   margin-top: 1.25em !important;
+
+  @media (width >=$case-study-breakpoint) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+}
+
+.gaintain-results-achievements {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75em;
+  width: 100%;
+  margin-top: 0.5em;
 
   @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(2, 1fr);

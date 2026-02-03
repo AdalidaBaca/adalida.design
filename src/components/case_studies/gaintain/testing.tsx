@@ -16,21 +16,16 @@ const Testing = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
     <div data-aos="fade-up" className="case-study-side-by-side gaintain-solution" ref={ref}>
       <div className="case-study-explanation">
         <div className="gaintain-details-card">
-          <SectionHeading title="Solution" />
+          <SectionHeading title="Solution" subtitle="The Accountability Stack" />
           <div className="body-2">
             I paired <strong>AI-guided workouts</strong> with <strong>designed accountability</strong> to support
             follow-through.
           </div>
-          <ul className="body-2" style={{ margin: '0.5em 0', paddingLeft: '1em' }}>
-            <li style={{ marginBottom: '0.75em' }}>AI workouts handle planning and personalization</li>
-            <li style={{ marginBottom: '0.75em' }}>
-              <strong>Pledges</strong> apply <strong>loss aversion</strong> to create commitment
-            </li>
-            <li style={{ marginBottom: '0.75em' }}>Calendar feedback makes progress visible over time</li>
-          </ul>
           <div className="body-2">
-            Together, this <strong>reduces drop-off</strong> across training styles by designing for showing up, not
-            restarting.
+            <strong>AI Workouts</strong> handle the <strong>cognitive load</strong> of planning and personalization.{' '}
+            <strong>Pledges</strong> apply <strong>loss aversion</strong> to create a psychological &quot;lock-in&quot;
+            for the user. <strong>Calendar Feedback</strong> makes progress against goals <strong>visible and
+            undeniable</strong> over time.
           </div>
         </div>
       </div>

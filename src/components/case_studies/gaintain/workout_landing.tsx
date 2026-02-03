@@ -33,17 +33,16 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
     <div data-aos="fade-up" className="case-study-side-by-side gaintain-workout-dashboard" ref={ref}>
       <div className="case-study-explanation" ref={explanationRef}>
         <div className="gaintain-details-card">
-          <SectionHeading title="Workout Dashboard" />
+          <SectionHeading title="Workout Dashboard" subtitle="The Daily Action Surface" />
           <div className="body-2">
-            The workout dashboard is the <strong>daily decision surface</strong>.
+            The dashboard is the primary <strong>decision surface</strong>. I prioritized a{' '}
+            <strong>calendar-first architecture</strong> to provide immediate visual feedback against the user&apos;s{' '}
+            <strong>weekly goal</strong>.
           </div>
           <div className="body-2">
-            A calendar at the top reflects progress against the user's <strong>frequency goal</strong>, while the
-            primary card adapts to how they train.
-          </div>
-          <div className="body-2">
-            Users can quick-log, reuse templates, or generate workouts with AI{' '}
-            <strong>without breaking momentum</strong>.
+            Whether generating a session via <strong>AI</strong> or quick-logging a manual lift, the UI is optimized
+            for <strong>zero-friction entry</strong> to ensure the user stays &quot;locked-in&quot; to their active
+            pledge.
           </div>
         </div>
       </div>

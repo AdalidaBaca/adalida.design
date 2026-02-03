@@ -7,35 +7,41 @@ const AccountabilityLevers = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
   const isMobile: boolean = useIsMobile(768) ?? false
 
-  // Diagram dimensions - vertical layout for column container
-  const width = isMobile ? 280 : 320
-  const padding = isMobile ? 4 : 6 // Further reduced padding to move icons even more left
+  // Diagram dimensions - vertical layout; tight horizontal spacing so Strong/axis title fit in container
+  const width = isMobile ? 230 : 265
+  const padding = isMobile ? 2 : 4
   const leverHeight = isMobile ? 55 : 70
   const iconSize = isMobile ? 28 : 36
   const topPadding = isMobile ? 12 : 16
   const bottomPadding = isMobile ? 12 : 16
 
   // Calculate lever positions (4 levers stacked vertically)
-  const availableHeight = isMobile ? 380 : 480 // Fixed height for column
+  const availableHeight = isMobile ? 380 : 480
   const totalLeverHeight = leverHeight * 4
-  const totalGap = availableHeight - totalLeverHeight - topPadding - bottomPadding - (isMobile ? 30 : 40) // Reserve space for scale labels
-  const gapBetweenLevers = totalGap / 3 // 3 gaps between 4 levers
+  const totalGap = availableHeight - totalLeverHeight - topPadding - bottomPadding - (isMobile ? 30 : 40)
+  const gapBetweenLevers = totalGap / 3
 
   const lever4Y = padding + topPadding // Strong (top) - Financial
-  const lever3Y = lever4Y + leverHeight + gapBetweenLevers // Streaks (second)
-  const lever2Y = lever3Y + leverHeight + gapBetweenLevers // Social (third)
-  const lever1Y = lever2Y + leverHeight + gapBetweenLevers // Weak (bottom) - Reminders
+  const lever3Y = lever4Y + leverHeight + gapBetweenLevers
+  const lever2Y = lever3Y + leverHeight + gapBetweenLevers
+  const lever1Y = lever2Y + leverHeight + gapBetweenLevers
   const height = lever1Y + leverHeight / 2 + bottomPadding + (isMobile ? 20 : 25)
 
-  // Horizontal spacing - calculate from right to left to ensure no overlaps
-  const scaleX = width - padding - (isMobile ? 12 : 15) // Axis line position from right (increased mobile margin)
-  const axisLabelGap = isMobile ? 18 : 26 // Space between axis line and labels (increased)
-  const badgeToAxisGap = isMobile ? 56 : 80 // Space between badge and axis (further increased to move badges more left)
-  const badgeWidth = isMobile ? 36 : 44 // Consistent badge width for all (increased for more inner padding)
-  const badgeX = scaleX - badgeToAxisGap - badgeWidth / 2 // Badge center position
-  const iconX = -(isMobile ? 20 : 28) + iconSize / 2 // Icons positioned to align with text content left edge (card corners, titles)
-  const iconToLabelGap = isMobile ? 18 : 26 // Reduced mobile spacing between icon and label
+  // Horizontal spacing - minimal gaps so icon, labels, axis line, and axis title fit without cutoff
+  const scaleX = width - padding - (isMobile ? 4 : 6) // Axis line from right
+  const axisLabelGap = isMobile ? 6 : 8 // Gap between axis line and Strong/Weak labels
+  const badgeToAxisGap = isMobile ? 28 : 36 // Gap between badge and axis
+  const badgeWidth = isMobile ? 34 : 40
+  const badgeX = scaleX - badgeToAxisGap - badgeWidth / 2
+  const iconX = -(isMobile ? 16 : 20) + iconSize / 2
+  const iconToLabelGap = isMobile ? 8 : 10 // Gap between icon and lever label
   const labelX = iconX + iconSize / 2 + iconToLabelGap
+
+  // ViewBox includes left (icons) and right (axis title) so all content fits
+  const viewBoxMinX = -(isMobile ? 20 : 24)
+  const axisTitleOffset = isMobile ? 10 : 14 // Distance from axis line to "Effectiveness" text
+  const axisTitleRight = scaleX + axisTitleOffset + (isMobile ? 16 : 20) // room for rotated text
+  const viewBoxWidth = Math.max(width, axisTitleRight) - viewBoxMinX
 
   // Colors - Apple-style subtle
   const textColor = darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'
@@ -43,7 +49,11 @@ const AccountabilityLevers = (): JSX.Element => {
 
   return (
     <div className="accountability-levers-container">
-      <svg className="accountability-levers" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+      <svg
+        className="accountability-levers"
+        viewBox={`${viewBoxMinX} 0 ${viewBoxWidth} ${height}`}
+        preserveAspectRatio="xMidYMid meet"
+      >
         <title>Accountability Levers Diagram</title>
         <defs>
           {/* Gradient for $ badge - more visible */}
@@ -339,19 +349,19 @@ const AccountabilityLevers = (): JSX.Element => {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* Y-axis title - centered between Strong and Weak, rotated to cross the axis, positioned to the right of the scale line */}
+        {/* Y-axis title - centered, rotated, positioned to the right of the scale line */}
         <text
-          x={scaleX + (isMobile ? 28 : 40)}
+          x={scaleX + axisTitleOffset}
           y={height / 2}
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize={isMobile ? '18' : '20'}
+          fontSize={isMobile ? '16' : '18'}
           fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
           fontStyle="italic"
           fontWeight="500"
           letterSpacing="0.02em"
           fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'}
-          transform={`rotate(90 ${scaleX + (isMobile ? 28 : 40)} ${height / 2})`}
+          transform={`rotate(90 ${scaleX + axisTitleOffset} ${height / 2})`}
         >
           Effectiveness
         </text>

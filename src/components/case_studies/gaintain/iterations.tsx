@@ -8,18 +8,16 @@ const Iterations = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEle
       <CommunityCarousel ariaLabel="Community" />
       <div className="case-study-explanation">
         <div className="gaintain-details-card">
-          <SectionHeading title="Implementation" />
+          <SectionHeading title="Implementation" subtitle="Rapid, Production-Quality Iteration" />
           <div className="body-2">
-            I worked as part of a <strong>two-person founding team</strong>, with my co-founder owning backend
-            architecture and data models while I led product design and front-end interaction work.
+            As a <strong>two-person founding team</strong>, velocity was our primary competitive advantage. By
+            bypassing traditional <strong>design handoffs</strong> and implementing{' '}
+            <strong>production-quality flows directly in code</strong> using <strong>Cursor and Swift</strong>, we
+            shipped <strong>30 App Store releases</strong> in 8 months.
           </div>
           <div className="body-2">
-            Using Cursor, shared rules, Swift linters, and XcodeGen, I designed and implemented{' '}
-            <strong>production-quality</strong> flows directly in code.
-          </div>
-          <div className="body-2">
-            We tested builds on <strong>real devices</strong> in gym environments, reviewed changes together, and
-            shipped frequently with roughly <strong>30 App Store releases</strong>.
+            We tested builds on <strong>real devices</strong> in gym environments to iterate on{' '}
+            <strong>UI friction points</strong>, such as tap targets and contrast, in real-time.
           </div>
         </div>
       </div>

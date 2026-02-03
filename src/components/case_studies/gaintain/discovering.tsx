@@ -19,14 +19,17 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
         </div>
         <div className="case-study-explanation">
           <div className="gaintain-details-card">
-            <SectionHeading title="Problem" />
+            <SectionHeading title="Problem" subtitle="The Churn of &quot;Day 29&quot;" />
             <div className="body-2">
-              An estimated <strong>80 million gym-goers</strong> <strong>lose momentum</strong> when structured workout
-              programs end.
+              An estimated <strong>80 million gym-goers lose momentum</strong> when structured workout programs end.
             </div>
             <div className="body-2">
-              Most fitness products are designed around <strong>plans and programs</strong>, but break down once{' '}
-              <strong>motivation dips</strong>, driving long-term <strong>churn</strong>.
+              Most fitness products are designed around plans and programs but break down once <strong>motivation
+              dips</strong>, driving long-term churn.
+            </div>
+            <div className="body-2">
+              We identified that the market is <strong>over-designed for planning</strong> and{' '}
+              <strong>under-designed for follow-through friction</strong>.
             </div>
           </div>
         </div>
@@ -40,16 +43,15 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
       >
         <div className="case-study-explanation">
           <div className="gaintain-details-card">
-            <SectionHeading title="Key Insight" />
+            <SectionHeading title="Key Insight" subtitle="The Follow-Through Gap" />
             <div className="body-2">
-              Planning is <strong>over-designed</strong>, while follow-through is <strong>under-designed</strong>.
+              After reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from
+              active lifters, the same breakdown appeared repeatedly. We discovered that{' '}
+              <strong>planning is over-designed</strong>, while <strong>follow-through is under-designed</strong>.
             </div>
             <div className="body-2">
-              After reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active
-              lifters, the same breakdown appeared repeatedly.
-            </div>
-            <div className="body-2">
-              Without <strong>accountability</strong> and <strong>visible progress</strong>, consistency breaks down.
+              Without <strong>accountability</strong> and <strong>visible progress</strong>, consistency breaks down
+              regardless of how well a workout is structured.
             </div>
           </div>
         </div>
