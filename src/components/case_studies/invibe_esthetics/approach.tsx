@@ -37,18 +37,15 @@ const Approach = ({ constraintsRef, insightRef }: Props): JSX.Element => {
       <div data-aos="fade-up" className="case-study-side-by-side project-echo-insight-section" ref={insightRef}>
         <div className="case-study-explanation">
           <div className="project-echo-details-card">
-            <SectionHeading title="Insight" />
+            <SectionHeading title="Design Strategy" subtitle="Building for the Bottom Line" />
             <div className="body-2">
-              I knew intake could be collected with low cost tools like Tally or Google Forms, and that client data
-              belonged in the <strong>WIX CMS</strong>.
+              I prioritized a low-cost data architecture over expensive &quot;no-code&quot; subscriptions. When
+              standard integrations (like Zapier) required paid tiers for basic data mapping, I partnered with an
+              engineer to build a <strong>custom webhook</strong>.
             </div>
             <div className="body-2">
-              When third party integrations failed due to <strong>paid gating</strong> and limited{' '}
-              <strong>data mapping</strong>, I partnered with an engineer to implement a <strong>custom webhook</strong>{' '}
-              that saved intake data directly into the CMS.
-            </div>
-            <div className="body-2">
-              This kept data in the <strong>same system</strong> the owner already paid for and could manage over time.
+              This piped intake data directly into the Wix CMS, keeping the business in a single system the owner
+              already paid for and could manage independently.
             </div>
           </div>
         </div>

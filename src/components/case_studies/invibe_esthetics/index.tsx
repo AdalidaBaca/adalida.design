@@ -19,7 +19,7 @@ const InvibeEsthetics = (): JSX.Element => {
     About: useRef(null),
     Problem: useRef(null),
     Constraints: useRef(null),
-    Insight: useRef(null),
+    'Design Strategy': useRef(null),
     Results: useRef(null),
     Impact: useRef(null),
     'Key Takeaways': useRef(null)
@@ -31,7 +31,7 @@ const InvibeEsthetics = (): JSX.Element => {
       <div className="case-study-container invibe-esthetics-container">
         <About heroRef={sections['INVIBE ESTHETICS']} aboutRef={sections.About} />
         <Insight copy="problem" ref={sections.Problem} />
-        <Approach constraintsRef={sections.Constraints} insightRef={sections.Insight} />
+        <Approach constraintsRef={sections.Constraints} insightRef={sections['Design Strategy']} />
         <Solution ref={sections.Results} />
         <Outcome ref={sections.Impact} />
         <KeyTakeaways ref={sections['Key Takeaways']} />

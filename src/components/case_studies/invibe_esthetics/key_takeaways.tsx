@@ -19,23 +19,26 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
         <SectionHeading title="Key Takeaways" />
         <div className="project-echo-results-grid" style={{ marginTop: '0.25em' }}>
           <div className="project-echo-details-card">
+            <SectionHeading title="Architecture &gt; Automation" subtitle="Owning the Data Flow" />
             <div className="body-2">
-              <strong>Architecture beats automation</strong>. For core workflows, owning the data flow mattered more
-              than convenience. One reliable integration outperformed layered tools.
+              For core workflows, owning the data pipeline matters more than convenience. One reliable integration beats
+              a &quot;no-code&quot; stack of layered tools.
             </div>
           </div>
 
           <div className="project-echo-details-card">
+            <SectionHeading title="Constraints as a Filter" subtitle="Strategic Frugality" />
             <div className="body-2">
-              <strong>Constraints sharpen decisions</strong>. Cost and tool limits clarified what actually needed to be
-              designed and kept the system focused.
+              Cost limits forced us to stay focused. Designing within a tight budget clarified what was a
+              &quot;must-have&quot; versus a &quot;nice-to-have&quot; feature.
             </div>
           </div>
 
           <div className="project-echo-details-card">
+            <SectionHeading title="Zero-Support Handover" subtitle="Building to Last" />
             <div className="body-2">
-              <strong>Systems should run without designers</strong>. I design workflows business owners can operate
-              independently, without ongoing support or hidden dependencies.
+              I design workflows that business owners can run themselves. Success is a system that works without a
+              designer on payroll for maintenance.
             </div>
           </div>
         </div>

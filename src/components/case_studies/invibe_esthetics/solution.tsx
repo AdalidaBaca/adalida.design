@@ -11,18 +11,15 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
     >
       <div className="case-study-explanation">
         <div className="project-echo-details-card">
-          <SectionHeading title="Results" />
+          <SectionHeading title="Results" subtitle="A Unified System of Record" />
           <div className="body-2">
-            <strong>Booking and intake now function as one flow.</strong>
+            Booking and intake now run as one <strong>unified digital flow</strong>. Clients complete intake before
+            their appointment; responses are stored in the <strong>WIX CMS</strong> so the owner has one place to view
+            and update client information.
           </div>
           <div className="body-2">
-            <ul style={{ listStyleType: 'disc', paddingLeft: '1.25em', marginTop: '0.5em', marginBottom: '0.5em' }}>
-              <li>clients complete intake before appointments</li>
-              <li>intake data is saved automatically into the CMS</li>
-              <li>the owner can update client information over time</li>
-              <li>paper intake and manual re entry were eliminated</li>
-            </ul>
-            The business now operates from a single system of record.
+            <strong>Manual data re-entry</strong> and paper intake were eliminated. The business operates from a{' '}
+            <strong>single system of record</strong>.
           </div>
         </div>
       </div>

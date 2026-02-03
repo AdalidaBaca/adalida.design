@@ -23,28 +23,31 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
           </div>
         </div>
 
-        {/* Row 1: +170%, 50%, 100% */}
+        {/* Row 1: +170% Sales, 50% Cost Reduction, 100% Intake — commercial close */}
         <div className="invibe-esthetics-results-primary-metrics">
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">+170%</div>
-            <div className="invibe-esthetics-metric-label">total sales</div>
+            <div className="invibe-esthetics-metric-label">Sales</div>
             <div className="invibe-esthetics-metric-sublabel">30 days post launch</div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">50%</div>
-            <div className="invibe-esthetics-metric-label">reduction in annual platform and automation costs</div>
+            <div className="invibe-esthetics-metric-label">Cost Reduction</div>
+            <div className="invibe-esthetics-metric-sublabel">annual platform and automation</div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">100%</div>
-            <div className="invibe-esthetics-metric-label">pre-appointment intake completion</div>
+            <div className="invibe-esthetics-metric-label">Pre-Appointment Intake</div>
+            <div className="invibe-esthetics-metric-sublabel">completion before visit</div>
           </div>
         </div>
 
-        {/* Row 2: 150 hours, Unlocked */}
+        {/* Row 2: 150 Hours Saved, Cancellation Fees */}
         <div className="invibe-esthetics-results-secondary-row">
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
-            <div className="invibe-esthetics-metric-value">150 hours</div>
-            <div className="invibe-esthetics-metric-label">of annual administrative work eliminated</div>
+            <div className="invibe-esthetics-metric-value">150 +  Hours</div>
+            <div className="invibe-esthetics-metric-label">Saved</div>
+            <div className="invibe-esthetics-metric-sublabel">annual admin work eliminated</div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">Cancellation Fees</div>

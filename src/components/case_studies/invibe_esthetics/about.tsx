@@ -48,7 +48,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             >
               <h6 className="invibe-esthetics-details-label">Role</h6>
               <p className="invibe-esthetics-details-text">
-                <strong>Product Designer</strong>
+                <strong>Systems & Product Designer</strong>
               </p>
               <p className="invibe-esthetics-details-text">
                 Led platform migration from Rosy to WIX, redesigned the booking and intake workflow, and owned

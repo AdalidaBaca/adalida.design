@@ -55,16 +55,14 @@ const Insight = forwardRef(({ copy = 'insight' }: InsightProps, ref: Ref<HTMLDiv
   const explanation = (
     <div className="case-study-explanation">
       <div className="invibe-esthetics-details-card">
-        <SectionHeading title="Problem" />
+        <SectionHeading title="Problem" subtitle="A Broken System of Record" />
         <div className="body-2">
-          <strong>Booking and intake were disconnected.</strong>
+          Booking and intake were completely disconnected. Clients booked online, but intake happened on paper during
+          the appointment.
         </div>
         <div className="body-2">
-          Clients could book appointments online, but intake still happened later on paper. Client data lived outside
-          the booking flow and outside any system the owner could manage or update over time.
-        </div>
-        <div className="body-2">
-          This created manual work, duplicated data entry, and <strong> no system of record</strong>.
+          Because client data lived in &quot;islands&quot; outside the system, the owner faced constant manual
+          re-entry, duplicated data, and had no way to reuse client information for future growth.
         </div>
       </div>
     </div>
