@@ -1,5 +1,5 @@
-import { Link } from 'gatsby'
 import { IconArrowRight } from '@tabler/icons-react'
+import { Link } from 'gatsby'
 import { Projects } from 'projects'
 import ContactStrip from '../contact_strip'
 

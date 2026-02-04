@@ -39,9 +39,9 @@ const Approach = ({ constraintsRef, insightRef }: Props): JSX.Element => {
           <div className="project-echo-details-card">
             <SectionHeading title="Design Strategy" subtitle="Building for the Bottom Line" />
             <div className="body-2">
-              I prioritized a low-cost data architecture over expensive &quot;no-code&quot; subscriptions. When
-              standard integrations (like Zapier) required paid tiers for basic data mapping, I partnered with an
-              engineer to build a <strong>custom webhook</strong>.
+              I prioritized a low-cost data architecture over expensive &quot;no-code&quot; subscriptions. When standard
+              integrations (like Zapier) required paid tiers for basic data mapping, I partnered with an engineer to
+              build a <strong>custom webhook</strong>.
             </div>
             <div className="body-2">
               This piped intake data directly into the Wix CMS, keeping the business in a single system the owner

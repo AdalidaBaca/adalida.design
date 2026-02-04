@@ -11,9 +11,7 @@ const SectionHeading = ({ title, subtitle }: Props): JSX.Element => {
   return (
     <div className="section-heading-container">
       <h4 className={darkMode ? 'dark' : ''}>{title}</h4>
-      {subtitle !== undefined && subtitle !== '' && (
-        <p className="section-heading-subtitle">{subtitle}</p>
-      )}
+      {subtitle !== undefined && subtitle !== '' && <p className="section-heading-subtitle">{subtitle}</p>}
     </div>
   )
 }

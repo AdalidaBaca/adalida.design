@@ -5,7 +5,8 @@ module.exports = {
   adapter: GatsbyAdapterNetlify({ excludeDatastoreFromEngineFunction: false }),
   siteMetadata: {
     title: 'Adalida',
-    description: 'Rubber Duck cosplaying as a Product Designer',
+    description:
+      'Product designer portfolio — case studies, systems design, and shipped products. Adalida Design.',
     authors: ['@adalidabaca', '@rickpr']
   },
   plugins: [
@@ -32,7 +33,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Adalida Page',
-        short_name: 'timeline',
+        short_name: 'Adalida',
         start_url: '/',
         background_color: '#090B0B',
         theme_color: '#090B0B',

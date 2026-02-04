@@ -8,6 +8,8 @@ const NotFoundPage = (): JSX.Element => (
   </div>
 )
 
-export const Head = Seo
+export const Head = (): JSX.Element => (
+  <Seo title="Page Not Found | Adalida Design" description="The page you're looking for doesn't exist." />
+)
 
 export default NotFoundPage

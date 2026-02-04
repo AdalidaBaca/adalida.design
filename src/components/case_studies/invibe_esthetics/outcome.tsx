@@ -45,7 +45,7 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
         {/* Row 2: 150 Hours Saved, Cancellation Fees */}
         <div className="invibe-esthetics-results-secondary-row">
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
-            <div className="invibe-esthetics-metric-value">150 +  Hours</div>
+            <div className="invibe-esthetics-metric-value">150 + Hours</div>
             <div className="invibe-esthetics-metric-label">Saved</div>
             <div className="invibe-esthetics-metric-sublabel">annual admin work eliminated</div>
           </div>

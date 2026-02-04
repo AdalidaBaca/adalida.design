@@ -38,12 +38,12 @@ const InteractiveLibrary = forwardRef((_props: Record<never, never>, ref: Ref<HT
         <div className="gaintain-details-card">
           <SectionHeading title="Pledge Setup" subtitle="Turning Intention into Commitment" />
           <div className="body-2">
-            The pledge setup is the <strong>core commitment mechanism</strong>, mirroring the pressure of a human
-            coach without the overhead.
+            The pledge setup is the <strong>core commitment mechanism</strong>, mirroring the pressure of a human coach
+            without the overhead.
           </div>
           <div className="body-2">
-            Defining training frequency and financial stakes upfront creates an <strong>explicit commitment</strong> that
-            shifts users from passive tracking into accountable action and prevents mid-program drop-off.
+            Defining training frequency and financial stakes upfront creates an <strong>explicit commitment</strong>{' '}
+            that shifts users from passive tracking into accountable action and prevents mid-program drop-off.
           </div>
         </div>
       </div>

@@ -547,16 +547,16 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
               The challenge was to communicate the <strong>intersectionality</strong> of three vulnerable populations.
             </div>
             <div className="body-2">
-              The existing static Venn diagram was a <strong>mathematical mismatch</strong> for the data; it obscured the
-              magnitude of overlaps and forced researchers to rely on <strong>mental math</strong> to compare
+              The existing static Venn diagram was a <strong>mathematical mismatch</strong> for the data; it obscured
+              the magnitude of overlaps and forced researchers to rely on <strong>mental math</strong> to compare
               populations.
             </div>
           </>
         ) : (
           <>
             <div className="body-2">
-              Three populations do not produce one overlap; they produce <strong>seven distinct, meaningful
-              intersections</strong>.
+              Three populations do not produce one overlap; they produce{' '}
+              <strong>seven distinct, meaningful intersections</strong>.
             </div>
             <div className="body-2">
               Once the problem was redefined as a <strong>set-intersection analysis</strong> rather than a grouping

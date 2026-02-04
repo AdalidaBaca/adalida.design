@@ -24,8 +24,8 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
               An estimated <strong>80 million gym-goers lose momentum</strong> when structured workout programs end.
             </div>
             <div className="body-2">
-              Most fitness products are designed around plans and programs but break down once <strong>motivation
-              dips</strong>, driving long-term churn.
+              Most fitness products are designed around plans and programs but break down once{' '}
+              <strong>motivation dips</strong>, driving long-term churn.
             </div>
             <div className="body-2">
               We identified that the market is <strong>over-designed for planning</strong> and{' '}
@@ -45,8 +45,8 @@ const Discovering = forwardRef<HTMLDivElement, Props>((props, ref): JSX.Element 
           <div className="gaintain-details-card">
             <SectionHeading title="Key Insight" subtitle="The Follow-Through Gap" />
             <div className="body-2">
-              After reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from
-              active lifters, the same breakdown appeared repeatedly. We discovered that{' '}
+              After reviewing <strong>180+ fitness and tracking apps</strong> and collecting survey feedback from active
+              lifters, the same breakdown appeared repeatedly. We discovered that{' '}
               <strong>planning is over-designed</strong>, while <strong>follow-through is under-designed</strong>.
             </div>
             <div className="body-2">

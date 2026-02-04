@@ -46,8 +46,8 @@ const Developer = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElem
             <strong>passive social proof</strong> rather than competition.
           </div>
           <div className="body-2">
-            Progress appears as lightweight signals of effort, sustaining accountability without introducing performative
-            or distracting social pressure.
+            Progress appears as lightweight signals of effort, sustaining accountability without introducing
+            performative or distracting social pressure.
           </div>
         </div>
       </div>

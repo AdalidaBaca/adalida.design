@@ -29,9 +29,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               </div>
             </div>
             <div className="invibe-esthetics-download-secondary-block">
-              <p className="invibe-esthetics-download-description">
-                View more of my client work from Adalida.Design.
-              </p>
+              <p className="invibe-esthetics-download-description">View more of my client work from Adalida.Design.</p>
               <BadgeButton to="/timeline" className="invibe-esthetics-download-secondary">
                 View Client Work
               </BadgeButton>

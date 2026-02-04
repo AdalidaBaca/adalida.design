@@ -2660,49 +2660,36 @@
     background: rgb(255 255 255 / 25%);
   }
 
-  /* Drop-off gets no fill or border */
+  /* Drop-off: hug content; x at top of row (align-self: flex-start) */
   &.drop-off-image-container {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: auto;
+    align-self: flex-start;
     background: transparent;
     border-radius: 0;
     border: none;
     box-shadow: none;
     transition: none;
     display: flex;
-
-    /* Ensure flex container for centering */
     align-items: center;
-
-    /* Center vertically */
     justify-content: center;
-
-    /* Center horizontally */
+    flex-shrink: 0;
 
     @media (width <=768px) {
-      width: 70px;
-      height: 70px;
+      width: 56px;
     }
 
     .drop-off-x {
       font-family: 'Patrick Hand', cursive;
       font-size: 55px;
-
-      /* Further reduced to make card less tall */
       font-weight: 700;
       color: #DC2626;
       line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
+      display: block;
       text-shadow: 0 2px 8px rgb(220 38 38 / 40%);
 
       @media (width <=768px) {
         font-size: 40px;
-
-        /* Further reduced on mobile */
       }
     }
   }
@@ -2759,12 +2746,19 @@
       height: 70px;
     }
 
-    /* Drop-off gets no fill or border */
+    /* Drop-off: hug content (override 120x120); x at top */
     &.drop-off-image-container {
+      width: 80px;
+      height: auto;
+      align-self: flex-start;
       background: transparent;
       border-radius: 0;
       border: none;
       box-shadow: none;
+
+      @media (width <=768px) {
+        width: 56px;
+      }
     }
   }
 
@@ -2983,9 +2977,9 @@
   .drop-off-card & {
     flex-direction: row;
 
-    /* Horizontal layout on desktop - text to the right of x */
+    /* Horizontal layout; x at top, text column vertically centered */
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     text-align: left;
     width: auto;
     min-width: auto;
@@ -3008,14 +3002,10 @@
 
     /* Remove backdrop filter */
 
-    @media (width <=768px) {
+      @media (width <=768px) {
       flex-direction: row !important;
-
-      /* Horizontal layout on mobile - text to the right of x */
       align-items: center !important;
       justify-content: center !important;
-
-      /* Center the content on mobile */
       text-align: left !important;
       padding: 0;
 

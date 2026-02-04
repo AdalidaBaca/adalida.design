@@ -26,8 +26,8 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
           <div className="project-echo-details-card">
             <SectionHeading title="Avoiding Wasted Work" />
             <div className="body-2">
-              Leveraging an established solution (<strong>UpSet plots</strong>) delivered clarity faster than building
-              a bespoke tool from scratch. Good judgment prioritizes <strong>outcomes over busy work</strong>.
+              Leveraging an established solution (<strong>UpSet plots</strong>) delivered clarity faster than building a
+              bespoke tool from scratch. Good judgment prioritizes <strong>outcomes over busy work</strong>.
             </div>
           </div>
         </div>

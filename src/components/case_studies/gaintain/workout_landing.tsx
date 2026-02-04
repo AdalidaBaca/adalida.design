@@ -38,8 +38,9 @@ const WorkoutLanding = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDi
             Once commitment is made, the dashboard becomes the <strong>primary execution surface</strong>.
           </div>
           <div className="body-2">
-            A calendar-first layout provides immediate feedback against weekly goals, while <strong>zero-friction
-            entry</strong> ensures logging never becomes the reason a user breaks an active pledge.
+            A calendar-first layout provides immediate feedback against weekly goals, while{' '}
+            <strong>zero-friction entry</strong> ensures logging never becomes the reason a user breaks an active
+            pledge.
           </div>
         </div>
       </div>

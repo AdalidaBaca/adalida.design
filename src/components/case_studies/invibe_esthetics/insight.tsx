@@ -61,8 +61,8 @@ const Insight = forwardRef(({ copy = 'insight' }: InsightProps, ref: Ref<HTMLDiv
           the appointment.
         </div>
         <div className="body-2">
-          Because client data lived in &quot;islands&quot; outside the system, the owner faced constant manual
-          re-entry, duplicated data, and had no way to reuse client information for future growth.
+          Because client data lived in &quot;islands&quot; outside the system, the owner faced constant manual re-entry,
+          duplicated data, and had no way to reuse client information for future growth.
         </div>
       </div>
     </div>

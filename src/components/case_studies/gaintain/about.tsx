@@ -32,9 +32,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               </div>
             </div>
             <div className="gaintain-download-secondary-block">
-              <p className="gaintain-download-description">
-                Join 100+ lifters testing commitment-driven training.
-              </p>
+              <p className="gaintain-download-description">Join 100+ lifters testing commitment-driven training.</p>
               <BadgeButton to="https://gaintain.netlify.app" className="gaintain-download-secondary">
                 <IconUserPlus height="1em" width="1em" />
                 &nbsp; Join Pilot
@@ -49,9 +47,9 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             <div data-aos="fade-up" data-aos-offset="150" className="gaintain-details-card">
               <h6 className="gaintain-details-label">Role</h6>
               <p className="gaintain-details-text">
-                <strong>Founder & Product Designer.</strong> I led <strong>product strategy, UX, and product operations
-                </strong>, working closely with my engineering co-founder on{' '}
-                <strong>data models and iOS architecture</strong>. I established a{' '}
+                <strong>Founder & Product Designer.</strong> I led{' '}
+                <strong>product strategy, UX, and product operations</strong>, working closely with my engineering
+                co-founder on <strong>data models and iOS architecture</strong>. I established a{' '}
                 <strong>code-first design workflow</strong> to ship the initial MVP in just <strong>9 weeks</strong>.
               </p>
             </div>

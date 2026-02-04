@@ -1,6 +1,6 @@
 import BadgeButton from 'components/badge_button'
 
-export type ContactStripTheme = 'gaintain' | 'invibe-esthetics' | 'project-echo'
+type ContactStripTheme = 'gaintain' | 'invibe-esthetics' | 'project-echo'
 
 interface Props {
   theme: ContactStripTheme
