@@ -5,8 +5,7 @@ module.exports = {
   adapter: GatsbyAdapterNetlify({ excludeDatastoreFromEngineFunction: false }),
   siteMetadata: {
     title: 'Adalida',
-    description:
-      'Product designer portfolio — case studies, systems design, and shipped products. Adalida Design.',
+    description: 'Product designer portfolio — case studies, systems design, and shipped products. Adalida Design.',
     authors: ['@adalidabaca', '@rickpr']
   },
   plugins: [
