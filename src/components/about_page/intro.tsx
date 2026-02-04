@@ -280,7 +280,12 @@ const Intro = (): JSX.Element | null => {
           from real‑world constraints.
         </h5>
         <div>I work on products where constraints, tradeoffs, and incomplete information are part of the job.</div>
-        <BadgeButton to={resumeUrl}>LET&apos;S CONNECT</BadgeButton>
+        <div className="about-intro-ctas">
+          <BadgeButton to={resumeUrl}>LET&apos;S CONNECT</BadgeButton>
+          <BadgeButton to="mailto:hi@adalida.design" className="about-intro-cta-secondary">
+            Let&apos;s chat
+          </BadgeButton>
+        </div>
       </div>
     </div>
   )

@@ -16,8 +16,8 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
             <SectionHeading title="Engineering-Led Design" subtitle="Architecture is UX" />
             <div className="body-2">
               Aligning early on <strong>data models</strong> ensured our <strong>AI</strong> could personalize workouts
-              without breaking <strong>historical progress logic</strong>. Treating architecture as UX prevented{' '}
-              <strong>costly rework</strong> that often stalls early-stage MVPs.
+              without breaking <strong>historical progress logic</strong>. Treating architecture as UX{' '}
+              <strong> prevented costly rework</strong> that often stalls early-stage MVPs.
             </div>
           </div>
 

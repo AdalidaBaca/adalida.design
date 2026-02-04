@@ -1,3 +1,4 @@
+import { IconUserPlus } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import UniversalLink from 'components/universal_link'
 import AppStoreBadge from 'images/gaintain/Community/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'
@@ -18,15 +19,26 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         </div>
         <div data-aos="fade-up" data-aos-offset="150" className="gaintain-download-strip">
           <div className="gaintain-download-content">
-            <p className="gaintain-download-text">GainTain</p>
-            <div className="gaintain-download-buttons">
-              <UniversalLink
-                to="https://gaintain.co/app"
-                className="gaintain-app-store-badge-link"
-                aria-label="Download GainTain on the App Store"
-              >
-                <img src={AppStoreBadge} alt="Download on the App Store" className="gaintain-app-store-badge" />
-              </UniversalLink>
+            <div className="gaintain-download-top">
+              <p className="gaintain-download-text">GainTain</p>
+              <div className="gaintain-download-primary">
+                <UniversalLink
+                  to="https://gaintain.co/app"
+                  className="gaintain-app-store-badge-link"
+                  aria-label="Download GainTain on the App Store"
+                >
+                  <img src={AppStoreBadge} alt="Download on the App Store" className="gaintain-app-store-badge" />
+                </UniversalLink>
+              </div>
+            </div>
+            <div className="gaintain-download-secondary-block">
+              <p className="gaintain-download-description">
+                Join 100+ lifters testing commitment-driven training.
+              </p>
+              <BadgeButton to="https://gaintain.netlify.app" className="gaintain-download-secondary">
+                <IconUserPlus height="1em" width="1em" />
+                &nbsp; Join Pilot
+              </BadgeButton>
             </div>
           </div>
         </div>
@@ -35,21 +47,21 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className="gaintain-details-container">
           <div className="gaintain-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="gaintain-details-card">
-              <h6 className="gaintain-details-label">Overview</h6>
-              <p className="gaintain-details-text">
-                GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs workout
-                personalization with <strong>designed accountability</strong> to reduce drop-off. We solve the two
-                structural problems in fitness: the <strong>mental effort of planning</strong> and the{' '}
-                <strong>lack of follow-through</strong>.
-              </p>
-            </div>
-            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="gaintain-details-card">
               <h6 className="gaintain-details-label">Role</h6>
               <p className="gaintain-details-text">
                 <strong>Founder & Product Designer.</strong> I led <strong>product strategy, UX, and product operations
                 </strong>, working closely with my engineering co-founder on{' '}
                 <strong>data models and iOS architecture</strong>. I established a{' '}
                 <strong>code-first design workflow</strong> to ship the initial MVP in just <strong>9 weeks</strong>.
+              </p>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="gaintain-details-card">
+              <h6 className="gaintain-details-label">Overview</h6>
+              <p className="gaintain-details-text">
+                GainTain is an <strong>AI-guided fitness app for weightlifters</strong> that pairs workout
+                personalization with <strong>designed accountability</strong> to reduce drop-off. We solve the two
+                structural problems in fitness: the <strong>mental effort of planning</strong> and the{' '}
+                <strong>lack of follow-through</strong>.
               </p>
             </div>
           </div>

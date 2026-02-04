@@ -7,7 +7,7 @@ const Approach = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
     <div data-aos="fade-up" className="case-study-side-by-side project-echo-approach-section" ref={ref}>
       <div className="case-study-explanation">
         <div className="project-echo-details-card">
-          <SectionHeading title="Approach" />
+          <SectionHeading title="Approach" subtitle="Scalable Visualization Methods" />
           <div className="body-2">
             I looked for visualization methods that explicitly represent and compare intersections across multiple
             groups.

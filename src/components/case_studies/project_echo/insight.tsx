@@ -537,7 +537,10 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
   const explanation = (
     <div className="case-study-explanation">
       <div className="project-echo-details-card">
-        <SectionHeading title={title ?? (copy === 'problem' ? 'Problem' : 'Insight')} />
+        <SectionHeading
+          title={title ?? (copy === 'problem' ? 'Problem' : 'Insight')}
+          subtitle={copy === 'problem' ? 'Structural Data Mismatch' : 'Seven Intersection Points'}
+        />
         {copy === 'problem' ? (
           <>
             <div className="body-2">

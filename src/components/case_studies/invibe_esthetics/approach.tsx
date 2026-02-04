@@ -14,7 +14,7 @@ const Approach = ({ constraintsRef, insightRef }: Props): JSX.Element => {
       <div data-aos="fade-up" className="case-study-side-by-side project-echo-approach-section" ref={constraintsRef}>
         <div className="case-study-explanation">
           <div className="project-echo-details-card">
-            <SectionHeading title="Constraints" />
+            <SectionHeading title="Constraints" subtitle="Operational Requirements" />
             <div className="body-2">
               I had already moved the business from Rosy Bookings to <strong>WIX Premium</strong>, which included
               booking and a <strong>CMS</strong>.

@@ -479,6 +479,29 @@
   align-self: center;
 }
 
+.about-intro-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.about-intro-cta-secondary {
+  background: transparent !important;
+  border: 2px solid map.get($light-colors, danger) !important;
+  color: map.get($light-colors, danger) !important;
+
+  a {
+    color: inherit !important;
+  }
+}
+
+.dark .about-intro-cta-secondary {
+  border-color: map.get($dark-colors, danger) !important;
+  color: map.get($dark-colors, danger) !important;
+}
+
 /* underlines for highlighted phrases */
 .fancy-underline {
   text-decoration-line: underline;

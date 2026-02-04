@@ -6,7 +6,7 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
     <div data-aos="fade-up" className="case-study-top-to-bottom project-echo-solution-section" ref={ref}>
       <div className="case-study-explanation">
         <div className="project-echo-details-card">
-          <SectionHeading title="Solution" />
+          <SectionHeading title="Solution" subtitle="Interactive Systemic Clarity" />
           <div className="body-2">
             I replaced the static Venn diagram with an <strong>interactive UpSet plot</strong> that makes each
             intersection explicit and comparable.

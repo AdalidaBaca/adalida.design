@@ -26,14 +26,6 @@ const Overview = forwardRef(
         <div className="querque-candles-details-container">
           <div className="querque-candles-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="querque-candles-details-card">
-              <h6 className="querque-candles-details-label">Overview</h6>
-              <p className="querque-candles-details-text">
-                Querque Candles needed a versatile brand identity for both product packaging and online marketing. I
-                designed a custom logo, color palette, and visual elements optimized for sticker printing, social media,
-                and a future Shopify store, ensuring a cohesive and professional brand presence.
-              </p>
-            </div>
-            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="querque-candles-details-card">
               <h6 className="querque-candles-details-label">Role</h6>
               <p className="querque-candles-details-text">
                 <strong>Product Consultant / Designer</strong>
@@ -41,6 +33,14 @@ const Overview = forwardRef(
               <p className="querque-candles-details-text">
                 Led brand identity design including logo, color palette, and visual guidelines for packaging and digital
                 use.
+              </p>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="querque-candles-details-card">
+              <h6 className="querque-candles-details-label">Overview</h6>
+              <p className="querque-candles-details-text">
+                Querque Candles needed a versatile brand identity for both product packaging and online marketing. I
+                designed a custom logo, color palette, and visual elements optimized for sticker printing, social media,
+                and a future Shopify store, ensuring a cohesive and professional brand presence.
               </p>
             </div>
           </div>

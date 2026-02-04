@@ -28,4 +28,10 @@ const WrapPageElement = ({ element, props }: WrapPageElementBrowserArgs): JSX.El
   )
 }
 
-export { WrapPageElement as wrapPageElement }
+const onRouteUpdate = (): void => {
+  if (typeof window !== 'undefined') {
+    window.scrollTo(0, 0)
+  }
+}
+
+export { WrapPageElement as wrapPageElement, onRouteUpdate }

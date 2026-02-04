@@ -18,12 +18,22 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         </div>
         <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-download-strip">
           <div className="invibe-esthetics-download-content">
-            <div className="invibe-esthetics-download-text invibe-esthetics-download-text-animated">
-              Invibe Esthetics
+            <div className="invibe-esthetics-download-top">
+              <div className="invibe-esthetics-download-text invibe-esthetics-download-text-animated">
+                Invibe Esthetics
+              </div>
+              <div className="invibe-esthetics-download-primary">
+                <BadgeButton to="https://www.invibeesthetics.com/" className="invibe-esthetics-link-primary">
+                  Book Now
+                </BadgeButton>
+              </div>
             </div>
-            <div className="invibe-esthetics-download-buttons">
-              <BadgeButton to="https://www.invibeesthetics.com/" className="invibe-esthetics-link-primary">
-                Book Now
+            <div className="invibe-esthetics-download-secondary-block">
+              <p className="invibe-esthetics-download-description">
+                View more of my client work from Adalida.Design.
+              </p>
+              <BadgeButton to="/timeline" className="invibe-esthetics-download-secondary">
+                View Client Work
               </BadgeButton>
             </div>
           </div>
@@ -33,11 +43,13 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className="invibe-esthetics-details-container">
           <div className="invibe-esthetics-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-details-card">
-              <h6 className="invibe-esthetics-details-label">Overview</h6>
+              <h6 className="invibe-esthetics-details-label">Role</h6>
               <p className="invibe-esthetics-details-text">
-                Invibe is an independent esthetician who relies on online booking and client intake. This project
-                focused on fixing the underlying workflow and data architecture so the business could operate reliably
-                without added cost or complexity.
+                <strong>Systems & Product Designer</strong>
+              </p>
+              <p className="invibe-esthetics-details-text">
+                Led platform migration from Rosy to WIX, redesigned the booking and intake workflow, and owned
+                system-level decisions. Partnered with a contract engineer to implement a custom integration.
               </p>
             </div>
             <div
@@ -46,13 +58,11 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               data-aos-delay="100"
               className="invibe-esthetics-details-card"
             >
-              <h6 className="invibe-esthetics-details-label">Role</h6>
+              <h6 className="invibe-esthetics-details-label">Overview</h6>
               <p className="invibe-esthetics-details-text">
-                <strong>Systems & Product Designer</strong>
-              </p>
-              <p className="invibe-esthetics-details-text">
-                Led platform migration from Rosy to WIX, redesigned the booking and intake workflow, and owned
-                system-level decisions. Partnered with a contract engineer to implement a custom integration.
+                Invibe is an independent esthetician who relies on online booking and client intake. This project
+                focused on fixing the underlying workflow and data architecture so the business could operate reliably
+                without added cost or complexity.
               </p>
             </div>
           </div>

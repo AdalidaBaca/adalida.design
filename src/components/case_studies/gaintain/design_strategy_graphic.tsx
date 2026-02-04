@@ -47,6 +47,19 @@ const DesignStrategyGraphic = (): JSX.Element => {
   const cp2X = humanX // Same X as Human Coach - creates horizontal approach (asymptote)
   const cp2Y = humanY // Same Y as Human Coach - ensures line ends exactly at center of point
 
+  // GainTain: halfway point on the curve (like Matrix-based in Project ECHO)
+  const tMid = 0.5
+  const gaintainX =
+    (1 - tMid) ** 3 * aiFitnessX +
+    3 * (1 - tMid) ** 2 * tMid * cp1X +
+    3 * (1 - tMid) * tMid ** 2 * cp2X +
+    tMid ** 3 * humanX
+  const gaintainY =
+    (1 - tMid) ** 3 * aiFitnessY +
+    3 * (1 - tMid) ** 2 * tMid * cp1Y +
+    3 * (1 - tMid) * tMid ** 2 * cp2Y +
+    tMid ** 3 * humanY
+
   // Check if animation has been played before
   useEffect(() => {
     const hasPlayed = localStorage.getItem('gaintain-design-strategy-animated') === 'true'
@@ -363,6 +376,25 @@ const DesignStrategyGraphic = (): JSX.Element => {
           className="design-strategy-point-label"
         >
           Fitness Apps
+        </text>
+
+        {/* GainTain: halfway point on the curve (between Fitness Apps and Human Coach) */}
+        <circle
+          cx={gaintainX}
+          cy={gaintainY}
+          r={isMobile ? '4' : '5'}
+          fill="url(#gaintain-gradient-design-strategy)"
+          stroke={darkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.2)'}
+          strokeWidth={isMobile ? '1' : '1.5'}
+        />
+        <text
+          x={gaintainX + (isMobile ? 12 : 15)}
+          y={gaintainY}
+          textAnchor="start"
+          dominantBaseline="middle"
+          className="design-strategy-point-label"
+        >
+          GainTain
         </text>
 
         {/* Human Coach point - grey until animation completes, then gradient fill */}

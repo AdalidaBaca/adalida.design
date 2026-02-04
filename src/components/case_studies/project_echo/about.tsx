@@ -17,10 +17,20 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         </div>
         <div data-aos="fade-up" data-aos-offset="150" className="project-echo-download-strip">
           <div className="project-echo-download-content">
-            <p className="project-echo-download-text">Project ECHO</p>
-            <div className="project-echo-download-buttons">
-              <BadgeButton to="https://projectecho.unm.edu" className="project-echo-link-primary">
-                Visit Website
+            <div className="project-echo-download-top">
+              <p className="project-echo-download-text">Project ECHO</p>
+              <div className="project-echo-download-primary">
+                <BadgeButton to="https://projectecho.unm.edu" className="project-echo-link-primary">
+                  Visit Website
+                </BadgeButton>
+              </div>
+            </div>
+            <div className="project-echo-download-secondary-block">
+              <p className="project-echo-download-description">
+                Selected dashboards, documentation, and internal tools from my internship at Project ECHO.
+              </p>
+              <BadgeButton to="/internship-portfolio" className="project-echo-download-secondary">
+                View Portfolio
               </BadgeButton>
             </div>
           </div>
@@ -30,22 +40,22 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
         <div className="project-echo-details-container">
           <div className="project-echo-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="project-echo-details-card">
+              <h6 className="project-echo-details-label">Role</h6>
+              <p className="project-echo-details-text">
+                <strong>Technical Writer - Intern</strong>
+              </p>
+              <p className="project-echo-details-text">
+                I worked as part of the <strong>Data Team</strong> at Project ECHO, focusing on{' '}
+                <strong>data visualization design and implementation</strong>.
+              </p>
+            </div>
+            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="project-echo-details-card">
               <h6 className="project-echo-details-label">Overview</h6>
               <p className="project-echo-details-text">
                 A researcher at Project ECHO needed a way to present intersectional health data involving{' '}
                 <strong>three vulnerable populations:</strong> gender minorities, individuals with unstable housing, and
                 IV drug users. The work was part of an internal effort to improve how complex datasets were communicated
                 across research, reporting, and funding contexts.
-              </p>
-            </div>
-            <div data-aos="fade-up" data-aos-offset="150" data-aos-delay="100" className="project-echo-details-card">
-              <h6 className="project-echo-details-label">Role</h6>
-              <p className="project-echo-details-text">
-                <strong>Contributor</strong>
-              </p>
-              <p className="project-echo-details-text">
-                I worked as part of the <strong>Data Team</strong> at Project ECHO, focusing on{' '}
-                <strong>data visualization design and implementation</strong>.
               </p>
             </div>
           </div>

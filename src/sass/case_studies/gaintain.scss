@@ -512,6 +512,70 @@
   }
 }
 
+/* Top visual hierarchy: title + primary CTA only */
+.gaintain-download-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  width: 100%;
+
+  @media (width >=768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Supporting tier: same spacing as primary row; secondary CTA aligned under primary CTA */
+.gaintain-download-secondary-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  align-items: center;
+  width: 100%;
+  padding-top: 1em;
+  margin-top: 0.25em;
+  border-top: 1px solid rgb(230 92 0 / 12%);
+
+  @media (width >=768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.25em;
+    border-top-color: rgb(230 92 0 / 18%);
+  }
+
+  .dark & {
+    border-top-color: rgb(249 212 35 / 15%);
+  }
+}
+
+.gaintain-download-description {
+  margin: 0;
+  font-size: 0.875em;
+  line-height: 1.45;
+  color: rgb(0 0 0 / 58%);
+  text-align: center;
+  max-width: 42ch;
+  text-wrap: balance;
+  font-weight: 400;
+
+  @media (width >=480px) {
+    max-width: 48ch;
+  }
+
+  @media (width >=768px) {
+    text-align: left;
+    max-width: 55ch;
+  }
+
+  .dark & {
+    color: rgb(255 255 255 / 62%);
+  }
+}
+
+/* Rows only: row 1 = title + primary CTA, row 2 = supporting text + secondary CTA */
 .gaintain-download-content {
   display: flex;
   flex-direction: column;
@@ -528,7 +592,6 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width >=768px) {
-    flex-direction: row;
     padding: 1.5em 2em;
   }
 
@@ -542,11 +605,71 @@
   }
 }
 
-.gaintain-download-buttons {
+.gaintain-download-primary {
   display: flex;
-  flex-direction: row;
-  gap: 0.75em;
   align-items: center;
+  justify-content: center;
+
+  @media (width >=768px) {
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+}
+
+/* Secondary CTA: outlined button (About-page style) */
+.gaintain-download-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  padding: 0.5em 1.25em !important;
+  min-height: auto !important;
+  border: 2px solid rgb(230 92 0 / 55%) !important;
+  border-radius: 20px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  a {
+    color: rgb(230 92 0) !important;
+    text-decoration: none !important;
+  }
+
+  @media (width >=768px) {
+    max-width: none;
+    width: auto;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(230 92 0 / 8%) !important;
+      border-color: rgb(230 92 0 / 75%) !important;
+
+      a {
+        color: rgb(230 92 0) !important;
+      }
+    }
+  }
+}
+
+.dark .gaintain-download-secondary {
+  border-color: rgb(249 212 35 / 5%) !important;
+  background: transparent !important;
+
+  a {
+    color: rgb(249 212 35 / 95%) !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(249 212 35 / 10%) !important;
+      border-color: rgb(249 212 35 / 55%) !important;
+    }
+  }
 }
 
 .gaintain-app-store-badge-link {
@@ -3336,6 +3459,139 @@
   }
 }
 
+/* Contact conversion strip (download-strip style, theme-matched) */
+.gaintain-contact-strip {
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 3em auto 0;
+  padding: 0 0.5em;
+  box-sizing: border-box;
+
+  @media (width >=$case-study-breakpoint) {
+    margin-top: 4em;
+  }
+}
+
+.gaintain-contact-strip-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  background: linear-gradient(135deg, rgb(230 92 0 / 8%) 0%, rgb(249 212 35 / 5%) 100%);
+  border: 1px solid rgb(230 92 0 / 15%);
+  border-radius: 16px;
+  padding: 1.25em 1.5em;
+  box-shadow:
+    0 4px 16px -8px rgb(230 92 0 / 15%),
+    0 2px 8px -4px rgb(230 92 0 / 10%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width >=768px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5em 2em;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 24px -12px rgb(230 92 0 / 20%),
+        0 4px 12px -6px rgb(230 92 0 / 15%);
+    }
+  }
+}
+
+.gaintain-contact-strip-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  align-items: center;
+  text-align: center;
+
+  @media (width >=768px) {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.gaintain-contact-strip-heading {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+  color: $dark-text;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.dark .gaintain-contact-strip-heading {
+  color: $light-text;
+}
+
+.gaintain-contact-strip-description {
+  margin: 0;
+  font-size: 0.875em;
+  line-height: 1.45;
+  color: rgb(0 0 0 / 58%);
+  max-width: 42ch;
+
+  .dark & {
+    color: rgb(255 255 255 / 62%);
+  }
+}
+
+.gaintain-contact-strip-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+  padding: 0.5em 1.25em !important;
+  min-height: auto !important;
+  border: 2px solid rgb(230 92 0 / 55%) !important;
+  border-radius: 20px !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  a {
+    color: rgb(230 92 0) !important;
+    text-decoration: none !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(230 92 0 / 8%) !important;
+      border-color: rgb(230 92 0 / 75%) !important;
+
+      a {
+        color: rgb(230 92 0) !important;
+      }
+
+      .flex-center::after {
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+
+.dark .gaintain-contact-strip-cta {
+  border-color: rgb(249 212 35 / 50%) !important;
+  background: transparent !important;
+
+  a {
+    color: rgb(249 212 35 / 95%) !important;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgb(249 212 35 / 10%) !important;
+      border-color: rgb(249 212 35 / 65%) !important;
+    }
+  }
+}
+
 // Next Project Section - Compact Design
 .gaintain-next-project-section {
   width: 100%;
@@ -3909,13 +4165,13 @@
 
 .gaintain-results-primary-metrics {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 0.625em;
   width: 100%;
   margin-top: 1em;
 
   @media (width >=$case-study-breakpoint) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1em;
   }
 }
@@ -3930,6 +4186,24 @@
   @media (width >=$case-study-breakpoint) {
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
+  }
+}
+
+.gaintain-results-secondary-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625em;
+  width: 100%;
+  margin-top: 0.6em;
+
+  @media (width >=$case-study-breakpoint) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin-top: 0.75em;
+  }
+
+  .gaintain-metric-card {
+    width: 100%;
   }
 }
 
@@ -4128,6 +4402,24 @@
   @media (width >=768px) {
     font-size: 0.85em;
     line-height: 1.4;
+  }
+}
+
+.gaintain-metric-sublabel {
+  font-size: 0.7em;
+  line-height: 1.3;
+  color: $dark-text;
+  opacity: 0.6;
+  font-weight: 400;
+  margin-top: 0.15em;
+
+  .dark & {
+    color: $light-text;
+    opacity: 0.65;
+  }
+
+  @media (width >=768px) {
+    font-size: 0.75em;
   }
 }
 
@@ -4552,8 +4844,21 @@
 }
 
 .gaintain-results-section {
+  width: 100%;
   align-items: flex-start !important;
   gap: 0;
+
+  .case-study-explanation {
+    width: 100% !important;
+  }
+
+  > .case-study-explanation > .section-heading-container {
+    margin-bottom: 0.25em;
+
+    @media (width >= 768px) {
+      margin-bottom: 0.375em;
+    }
+  }
 
   >.gaintain-image-container {
     aspect-ratio: 16 / 9 !important;

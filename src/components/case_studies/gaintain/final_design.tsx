@@ -7,59 +7,60 @@ const FinalDesign = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEl
   return (
     <div data-aos="fade-up" className="case-study-top-to-bottom gaintain-results-section" ref={ref}>
       <div className="gaintain-image-container">
-        <img src={FinalDesignImage} alt="Different types of sets" />
+        <img src={FinalDesignImage} alt="GainTain results and validation" />
       </div>
       <div className="case-study-explanation">
         <SectionHeading title="Results" subtitle="Market Validation & Growth Momentum" />
 
-        <div className="gaintain-results-achievements">
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>This Week in Startups Finalist:</strong> Selected to pitch at the Gamma competition, validating
-              the venture-scale potential of the designed accountability model.
-            </div>
+        {/* Row 1: 9 Weeks, 100+, 8 Months */}
+        <div className="gaintain-results-primary-metrics">
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">9 Weeks</div>
+            <div className="gaintain-metric-label">Concept to MVP</div>
+            <div className="gaintain-metric-sublabel">code-first design workflow</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>Accepted into Founder University:</strong> Secured a spot in the accelerator based on technical
-              velocity and a validated market gap.
-            </div>
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">100+</div>
+            <div className="gaintain-metric-label">Organic Pilot Signups</div>
+            <div className="gaintain-metric-sublabel">stakes-based model validation</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>8 Months Bootstrapped in SF:</strong> Self-funded the venture in a high-competition market while
-              managing all <strong>Product Ops</strong> and design-to-code development.
-            </div>
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">8 Months</div>
+            <div className="gaintain-metric-label">Bootstrapped in SF</div>
+            <div className="gaintain-metric-sublabel">Product Ops & design-to-code</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>9-Week Velocity to MVP:</strong> Moved from concept to App Store launch in one quarter via a
-              code-first design workflow.
-            </div>
+        </div>
+
+        {/* Row 2: Accepted, Finalist */}
+        <div className="gaintain-results-secondary-row">
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">Accepted</div>
+            <div className="gaintain-metric-label">Founder University</div>
+            <div className="gaintain-metric-sublabel">accelerator, technical velocity</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>30 App Store Releases:</strong> Maintained a high-frequency iteration cycle during 8 months of
-              bootstrapping to refine UI performance.
-            </div>
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">Finalist</div>
+            <div className="gaintain-metric-label">This Week in Startups</div>
+            <div className="gaintain-metric-sublabel">Gamma competition, venture-scale validation</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>100+ Organic Pilot Signups:</strong> Generated a high-intent waitlist entirely through organic
-              channels to validate the <strong>stakes-based model</strong>.
-            </div>
+        </div>
+
+        {/* Row 3: 40%, 12%, 30 */}
+        <div className="gaintain-results-primary-metrics">
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">40%</div>
+            <div className="gaintain-metric-label">Reduction in Drop-off</div>
+            <div className="gaintain-metric-sublabel">onboarding & aha moment</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>40% Reduction in Onboarding Drop-off:</strong> Optimized the &quot;aha&quot; moment by resolving
-              UI friction during initial AI workout setup.
-            </div>
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">12%</div>
+            <div className="gaintain-metric-label">App Store Conversion</div>
+            <div className="gaintain-metric-sublabel">outperforms category</div>
           </div>
-          <div className="gaintain-validation-card">
-            <div className="body-2">
-              <strong>12% App Store Conversion Rate:</strong> Achieved a download-to-view ratio that significantly
-              outperforms category averages.
-            </div>
+          <div className="gaintain-metric-card gaintain-metric-primary">
+            <div className="gaintain-metric-value">30</div>
+            <div className="gaintain-metric-label">App Store Releases</div>
+            <div className="gaintain-metric-sublabel">high-frequency iteration</div>
           </div>
         </div>
       </div>
