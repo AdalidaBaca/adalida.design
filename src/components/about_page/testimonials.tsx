@@ -63,6 +63,7 @@ const Testimonials = (): JSX.Element => {
   const maxIndex = Math.max(0, testimonials.length - visibleCount)
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const cardsRef = React.useRef<HTMLUListElement>(null)
+  const isInitialMount = React.useRef(true)
 
   const goPrev = (): void => {
     setCurrentIndex(i => Math.max(0, i - 1))
@@ -71,8 +72,12 @@ const Testimonials = (): JSX.Element => {
     setCurrentIndex(i => Math.min(maxIndex, i + 1))
   }
 
-  // Scroll so the current card (or first of the visible slice) is in view
+  // Scroll so the current card is in view only when user changes slide (not on initial load)
   React.useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
     const el = cardsRef.current
     if (el == null) return
     const card = el.children[currentIndex] as HTMLElement | undefined
