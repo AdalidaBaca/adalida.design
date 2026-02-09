@@ -1,26 +1,6 @@
 @use 'sass:map';
 @use 'sass:color';
 
-@keyframes about-avatar-pop {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.92) rotate(-1.2deg);
-    filter: blur(8px);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translateY(0) scale(1.05) rotate(0.8deg);
-    filter: blur(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(0deg);
-    filter: none;
-  }
-}
-
 .about-intro {
   /* Theme-aware accent colors for the animated outline */
 
@@ -85,14 +65,11 @@
           border-radius: 20px; /* Rounded square */
           background: transparent; /* prevent container background showing at edges */
           overflow: hidden; /* clip image to rounded frame - ensures audio control stays within */
-          transform-origin: 50% 50%;
-          will-change: transform, opacity, filter;
           outline: 2px solid transparent;
           outline-offset: 0;
           box-shadow:
             0 12px 36px -12px rgb(0 0 0 / 35%),
             0 0 0 1px rgb(255 255 255 / 6%) inset;
-          animation: about-avatar-pop 640ms cubic-bezier(0.2, 0.9, 0.2, 1) both 140ms;
           margin: 0 auto;         /* horizontally center the frame */
           width: 100%;
           max-width: 360px; /* Increased size */
@@ -102,15 +79,10 @@
           align-items: center;
           justify-content: center;
           position: relative; /* Ensure it's a positioning context for audio-control */
+        }
 
-          /* Skip animation on subsequent visits */
-          &.animation-complete {
-            animation: none;
-            opacity: 1;
-            transform: translateY(0) scale(1) rotate(0deg);
-            filter: none;
-          }
-
+    /* Wrapper so the following } closes this block, not .splash-image (fixes brace match) */
+    & {
       /* Gatsby image wrapper */
       :where(img, .gatsby-image-wrapper) {
         border-radius: 0; /* image should flush to frame edges */
@@ -361,63 +333,61 @@
       svg { display: block; }
     }
   }
+}
 
-  @media (width >= $breakpoint) {
+/* Desktop: two-column layout and spacing (at root to avoid nested @media declaration parsing) */
+@media (width >= $breakpoint) {
+  .about-intro {
     gap: 4em;
     display: flex;              /* center WITH each other, not the grid */
     flex-direction: row;
     justify-content: center;    /* center horizontally as a pair */
     align-items: center;        /* vertically center relative to each other */
     margin-bottom: $section-gap-desktop;
-
-    .splash-image {
-      /* make image column visually larger than text column */
-      flex: 0.95 1 0;
-
-      /* allow content height (image + audio) */
-      max-height: none;
-
-      /* ensure reasonable min/max width for various screens */
-      min-width: 360px;
-      max-width: 440px;
-      width: clamp(360px, 28vw, 440px);
-    }
-
-    .splash-frame {
-      aspect-ratio: 1 / 1; /* Square */
-      min-height: clamp(360px, 30vw, 440px);
-      max-width: 440px;
-      border-radius: 24px; /* Rounded square */
-    }
-
-    .audio-control { 
-      left: clamp(10px, 1.5vw, 14px); /* Consistent padding on desktop */
-      bottom: clamp(10px, 1.5vw, 14px);
-    }
-
-    .about-intro-text {
-      flex: 1 1 0;
-      max-width: 52ch;
-    }
-
-    /* bump type slightly on desktop without vw units */
-    .about-intro-text h6 { font-size: 1.2em; }
-    .about-intro-text .intro-lead { font-size: 1.4em; }
-    .about-intro-text .intro-support { font-size: 1.1em; }
-    .about-intro-text > div { font-size: 1.08em; }
-    .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
   }
 
-  /* Tablet / iPad range: the image felt too narrow vs. text, so widen it slightly here */
-  @media (width >= $breakpoint) and (width < 1100px) {
-    .splash-image {
-      min-width: 240px;
-      width: clamp(240px, 30vw, 320px);
-    }
+  .about-intro .splash-image {
+    /* make image column visually larger than text column */
+    flex: 0.95 1 0;
+    max-height: none;
+    min-width: 360px;
+    max-width: 440px;
+    width: clamp(360px, 28vw, 440px);
+  }
 
-    .about-intro-text {
-      max-width: 48ch;
-    }
+  .about-intro .splash-frame {
+    aspect-ratio: 1 / 1; /* Square */
+    min-height: clamp(360px, 30vw, 440px);
+    max-width: 440px;
+    border-radius: 24px; /* Rounded square */
+  }
+
+  .about-intro .audio-control {
+    left: clamp(10px, 1.5vw, 14px);
+    bottom: clamp(10px, 1.5vw, 14px);
+  }
+
+  .about-intro .about-intro-text {
+    flex: 1 1 0;
+    max-width: 52ch;
+  }
+
+  .about-intro .about-intro-text h6 { font-size: 1.2em; }
+  .about-intro .about-intro-text .intro-lead { font-size: 1.4em; }
+  .about-intro .about-intro-text .intro-support { font-size: 1.1em; }
+  .about-intro .about-intro-text > div { font-size: 1.08em; }
+  .about-intro .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
+}
+
+/* Tablet / iPad range: the image felt too narrow vs. text, so widen it slightly here */
+@media (width >= $breakpoint) and (width < 1100px) {
+  .about-intro .splash-image {
+    min-width: 240px;
+    width: clamp(240px, 30vw, 320px);
+  }
+
+  .about-intro .about-intro-text {
+    max-width: 48ch;
   }
 }
 
@@ -434,11 +404,6 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .about-intro .splash-image .splash-frame {
-    animation: none;
-  }
-}
 
 /* Ensure both items center vertically in their grid cells */
 .about-intro .splash-image,

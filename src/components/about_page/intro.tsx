@@ -8,7 +8,6 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'
-const ABOUT_ANIMATION_COMPLETED_KEY = 'aboutAnimationCompleted'
 
 interface YTPlayer {
   playVideo: () => void
@@ -46,24 +45,6 @@ declare global {
 
 const Intro = (): JSX.Element | null => {
   const { darkMode } = useContext(DarkModeContext)
-  const [animationSkipped, setAnimationSkipped] = useState(false)
-
-  useEffect(() => {
-    if (typeof sessionStorage !== 'undefined') {
-      const completed = sessionStorage.getItem(ABOUT_ANIMATION_COMPLETED_KEY) === 'true'
-      setAnimationSkipped(completed)
-
-      // Mark as completed after underline animation finishes (~1.4s)
-      if (!completed) {
-        const timer = setTimeout(() => {
-          sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
-        }, 2000)
-        return () => {
-          clearTimeout(timer)
-        }
-      }
-    }
-  }, [])
 
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   let faceUrl: string | undefined
@@ -201,7 +182,7 @@ const Intro = (): JSX.Element | null => {
         <div className="splash-image-wrapper">
           {faceUrl !== undefined ? (
             <div
-              className={`splash-frame has-bg ${animationSkipped ? 'animation-complete' : ''}`}
+              className="splash-frame has-bg"
               style={{ backgroundImage: `url(${faceUrl})` }}
               role="img"
               aria-label="Adalida Baca portrait"
@@ -227,7 +208,7 @@ const Intro = (): JSX.Element | null => {
               </div>
             </div>
           ) : (
-            <div className={`splash-frame ${animationSkipped ? 'animation-complete' : ''}`}>
+            <div className="splash-frame">
               {makeMediaTag({
                 media: AdalidaFace,
                 imgObjectFit: 'cover',
