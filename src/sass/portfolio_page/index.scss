@@ -58,7 +58,7 @@
   box-sizing: border-box; /* Ensure padding is included in width */
 
   /* Mobile: Fixed height to ensure all cards are identical (based on Airbrush Art Studio) */
-  @media (width <= 768px) {
+  @media (width <= $breakpoint) {
     flex: 0 0 240px; /* Fixed height for consistent card sizing */
     min-height: 240px;
     max-height: 240px;
@@ -89,7 +89,7 @@
   overflow: hidden; /* Prevent overflow */
 
   /* Mobile: Ensure container doesn't overflow */
-  @media (width <= 768px) {
+  @media (width <= $breakpoint) {
     max-width: 100%;
     max-height: 100%;
   }
@@ -100,7 +100,7 @@
     /* Mobile: Standardized image sizing (based on Airbrush Art Studio) */
 
     /* Use auto height to maintain aspect ratio and prevent layout breaking */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       width: 100% !important;
       height: 100% !important;
       max-width: 100% !important;
@@ -139,7 +139,7 @@
   margin-bottom: 1em; /* Reduced bottom margin for spacing before testimonials on desktop (2 cards instead of 4) */
   box-sizing: border-box;
   
-  @media (width <= 768px) {
+  @media (width <= $breakpoint) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 2.5em; /* Increased gap on mobile */
@@ -225,7 +225,7 @@
   max-width: 100%;
 
   /* Mobile: Allow cards to grow taller to fit content */
-  @media (width <= 768px) {
+  @media (width <= $breakpoint) {
     aspect-ratio: auto;
     height: auto;
 
@@ -251,7 +251,7 @@
   box-sizing: border-box; /* Ensure padding is included in width */
 
   /* Mobile: Standardized padding and styling (based on Airbrush Art Studio) */
-  @media (width <= 768px) {
+  @media (width <= $breakpoint) {
     padding: 1.25em 1.5em 0.25em !important; /* Minimal bottom padding to hug content */
     border-radius: 0; /* Let parent handle border-radius */
     overflow: hidden;
@@ -273,7 +273,7 @@
     overflow: hidden; /* Hide any overflow (component will only render badges that fit) */
 
     /* Mobile: Fixed height to ensure consistent spacing regardless of badge count */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       min-height: 32px; /* Fixed height for badge row */
       align-items: center;
     }
@@ -295,7 +295,7 @@
       flex-shrink: 0; /* Don't shrink badges */
 
       /* Mobile: Standardized badge padding (based on Airbrush Art Studio) */
-      @media (width <= 768px) {
+      @media (width <= $breakpoint) {
         padding: 0.3em 0.6em;
       }
 
@@ -306,7 +306,7 @@
     }
 
     /* Mobile: Badges now above subtitle - spacing below badges */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       gap: 0.65em;
       margin-bottom: 1.5em !important; /* Increased spacing below badges (before flexbox) */
       margin-top: 0; /* No top margin since badges are first */
@@ -332,7 +332,7 @@
     min-width: 0;
 
     /* Mobile: Keep flex row layout */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       flex-direction: row;
       gap: 0.75em;
     }
@@ -368,7 +368,7 @@
     transform: translateY(-50%); /* Center it in the gap */
 
     /* Mobile: Keep flex layout, center in gap */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       flex: 0 0 auto; /* Don't grow, just take needed space */
       justify-content: flex-end; /* Move to right edge of the space */
       align-items: center; /* Center vertically in column */
@@ -389,7 +389,7 @@
     box-sizing: border-box;
 
     /* Mobile: Fixed height to ensure consistent spacing */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       min-height: 80px; /* Fixed height for title section */
     }
 
@@ -408,7 +408,7 @@
       word-wrap: break-word; /* Allow breaking long words if needed */
 
       /* Mobile: Standardized category font size (based on Airbrush Art Studio) */
-      @media (width <= 768px) {
+      @media (width <= $breakpoint) {
         font-size: clamp(0.7rem, 1.5vw, 0.8rem);
         height: auto;
       }
@@ -433,7 +433,7 @@
       min-width: 0;
 
       /* Mobile: Larger font size for better readability */
-      @media (width <= 768px) {
+      @media (width <= $breakpoint) {
         font-size: clamp(1.1rem, 2.2vw, 1.4rem);
         height: auto;
       }
@@ -445,7 +445,7 @@
     }
 
     /* Mobile: Standardized spacing (based on Airbrush Art Studio) */
-    @media (width <= 768px) {
+    @media (width <= $breakpoint) {
       gap: 1em !important; /* Force consistent gap for all cards */
       margin-bottom: 0 !important; /* No bottom margin since CTA comes after */
       margin-top: 0; /* No top margin since badges come before */
@@ -531,8 +531,8 @@
     stroke-width: 2; /* Thicker stroke for better visibility */
   }
 
-  /* Hide on desktop (>= 768px) */
-  @media (width >= 768px) {
+  /* Hide on desktop (>= $breakpoint) */
+  @media (width >= $breakpoint) {
     display: none !important;
   }
 

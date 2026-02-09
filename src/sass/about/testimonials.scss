@@ -28,68 +28,6 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
   gap: 1.5em;
 }
 
-.testimonials-full {
-  display: grid;
-  gap: 1.25em;
-}
-
-.testimonials-grid-compact {
-  display: grid;
-  gap: 1.25em;
-  grid-template-columns: 1fr;
-
-  @media (width >= $breakpoint) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.testimonials, .testimonials-slider-cards {
-  @media (width >= $breakpoint) {
-    margin-top: $section-gap-desktop;
-    row-gap: 1.25em; /* a bit more space on desktop */
-    .cards { height: var(--testimonial-card-height, 360px); }
-
-    .testimonial-card {
-      min-height: 320px;
-      height: auto; /* desktop uses natural height */
-    }
-
-    .testimonial-card .quote {
-      font-size: 1.2rem;
-      line-height: 1.75; /* restore desktop size */
-    }
-    
-    /* Names and titles should be smaller than quote on desktop */
-    .testimonial-card .attribution {
-      .name { 
-        font-size: 0.95rem; /* Smaller than quote (1.2rem) */
-        font-weight: 400;
-      }
-      .title { font-size: 0.85rem; /* Smaller than name */ }
-
-      .avatar {
-        width: 44px;
-        height: 44px;
-      }
-    }
-  }
-}
-
-/* Static 3-card grid layout */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5em;
-  max-width: min(1280px, 96%);
-  margin: $section-gap-mobile auto 0;
-  padding-inline: 1dvw;
-
-  @media (width >= $breakpoint) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em;
-  }
-}
-
 .testimonials-slider-cards {
   position: relative;
   max-width: min(1280px, 96%);
@@ -120,11 +58,16 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
   /* Desktop: 3 cards visible and filling width; mobile: 1 card (96%) */
   .cards li {
+    margin: 0;
     scroll-snap-align: start;
     flex: 0 0 96%;
 
     @media (width >= $breakpoint) {
-      flex: 0 0 calc((100% - 2 * 0.85em) / 3);
+      flex-basis: calc((100% - 0.85em) / 2);
+    }
+
+    @media (width >= 1140px) {
+      flex-basis: calc((100% - 2 * 0.85em) / 3);
     }
   }
 
@@ -239,16 +182,6 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
   /* remove min-height so cards hug content; tallest card sets row height via flex stretch */
 
-  &.card {
-    /* Mobile: single card per view */
-    flex: 0 0 96%;
-
-    @media (width >= $breakpoint) {
-      /* Desktop: 2 cards + a small peek of the 3rd */
-      flex: 0 0 46%;
-    }
-  }
-
   &::before {
     content: '"';
     position: absolute;
@@ -263,10 +196,14 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
   .quote {
     line-height: 1.6;
-    font-size: 1.06rem; /* slightly smaller on mobile so long quotes fit */
+    font-size: 1.5em;
     grid-row: 2;
     align-self: start;
     margin: 0;
+
+    @media (width >= $breakpoint) {
+      font-size: 1em;
+    }
   }
 
   /* removed debug index badge */
@@ -319,7 +256,7 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
     .title {
       opacity: 0.9;
-      font-size: 1em; /* Increased from 1.06em */
+      font-size: 1em;
       line-height: 1.4;
     }
   }
