@@ -96,7 +96,7 @@
   max-width: 450px;
   margin-top: 0.25em;
 
-  @media (width >= 480px) {
+  @media (width >= $breakpoint) {
     flex-direction: row;
     justify-content: center;
     gap: 1em;

@@ -3,6 +3,8 @@ import useIsMobile from 'hooks/use_is_mobile'
 import React from 'react'
 import Section from './section'
 
+const LARGE_BREAKPOINT = 1140
+
 interface Testimonial {
   quote: string
   name: string
@@ -55,8 +57,9 @@ const Avatar = ({ name, photo }: { name: string; photo?: string }): JSX.Element 
 }
 
 const Testimonials = (): JSX.Element => {
-  const isMobile = useIsMobile(768) ?? false
-  const visibleCount = isMobile ? 1 : 3
+  const isMobile = useIsMobile() ?? false
+  const isLarge = useIsMobile(LARGE_BREAKPOINT) === false
+  const visibleCount = isMobile ? 1 : isLarge ? 3 : 2
   const maxIndex = Math.max(0, testimonials.length - visibleCount)
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const cardsRef = React.useRef<HTMLUListElement>(null)
