@@ -30,6 +30,7 @@ const AccountabilityLevers = (): JSX.Element => {
   // Horizontal spacing - minimal gaps so icon, labels, axis line, and axis title fit without cutoff
   const scaleX = width - padding - (isMobile ? 4 : 6) // Axis line from right
   const axisLabelGap = isMobile ? 6 : 8 // Gap between axis line and Strong/Weak labels
+  const labelToArrowGap = isMobile ? 5 : 6 // Vertical gap between Strong/Weak label and the arrow
   const badgeToAxisGap = isMobile ? 28 : 36 // Gap between badge and axis
   const badgeWidth = isMobile ? 34 : 40
   const badgeX = scaleX - badgeToAxisGap - badgeWidth / 2
@@ -368,7 +369,7 @@ const AccountabilityLevers = (): JSX.Element => {
         {/* Scale labels - Apple-style */}
         <text
           x={scaleX + axisLabelGap}
-          y={topPadding}
+          y={topPadding - labelToArrowGap}
           fill="#10B981"
           fontSize={isMobile ? '12' : '14'}
           fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
@@ -381,7 +382,7 @@ const AccountabilityLevers = (): JSX.Element => {
         </text>
         <text
           x={scaleX + axisLabelGap}
-          y={height - bottomPadding}
+          y={height - bottomPadding + labelToArrowGap}
           fill="#EF4444"
           fontSize={isMobile ? '12' : '14'}
           fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
