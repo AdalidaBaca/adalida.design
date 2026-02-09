@@ -8,7 +8,6 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'
-const ABOUT_ANIMATION_COMPLETED_KEY = 'aboutAnimationCompleted'
 
 interface YTPlayer {
   playVideo: () => void
@@ -46,24 +45,6 @@ declare global {
 
 const Intro = (): JSX.Element | null => {
   const { darkMode } = useContext(DarkModeContext)
-  const [animationSkipped, setAnimationSkipped] = useState(false)
-
-  useEffect(() => {
-    if (typeof sessionStorage !== 'undefined') {
-      const completed = sessionStorage.getItem(ABOUT_ANIMATION_COMPLETED_KEY) === 'true'
-      setAnimationSkipped(completed)
-
-      // Mark as completed after animations finish (handwriting: 3.3s + underline: 1.4s = ~4.7s total)
-      if (!completed) {
-        const timer = setTimeout(() => {
-          sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
-        }, 5000) // Slightly after all animations complete
-        return () => {
-          clearTimeout(timer)
-        }
-      }
-    }
-  }, [])
 
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   let faceUrl: string | undefined
@@ -201,7 +182,7 @@ const Intro = (): JSX.Element | null => {
         <div className="splash-image-wrapper">
           {faceUrl !== undefined ? (
             <div
-              className={`splash-frame has-bg ${animationSkipped ? 'animation-complete' : ''}`}
+              className="splash-frame has-bg"
               style={{ backgroundImage: `url(${faceUrl})` }}
               role="img"
               aria-label="Adalida Baca portrait"
@@ -227,7 +208,7 @@ const Intro = (): JSX.Element | null => {
               </div>
             </div>
           ) : (
-            <div className={`splash-frame ${animationSkipped ? 'animation-complete' : ''}`}>
+            <div className="splash-frame">
               {makeMediaTag({
                 media: AdalidaFace,
                 imgObjectFit: 'cover',
@@ -259,11 +240,11 @@ const Intro = (): JSX.Element | null => {
       </div>
       <div className="about-intro-text">
         <div className="handwriting-overlay">
-          <div className={`handwriting-text ${animationSkipped ? 'animation-complete' : ''}`}>Hi, I&apos;m Adalida</div>
+          <div className="handwriting-text">Hi, I&apos;m Adalida</div>
         </div>
         <h5 className="intro-lead">
           I design{' '}
-          <u className={`${underlineClassName} underline-draw ${animationSkipped ? 'animation-complete' : ''}`}>
+          <u className={`${underlineClassName} underline-draw`}>
             <span className="underline-text">usable systems</span>
             <svg className="hand-drawn-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
               <path
