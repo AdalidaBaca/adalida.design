@@ -9,6 +9,11 @@ const Root = (): JSX.Element => {
   return <Portfolio />
 }
 
-export const Head = (): JSX.Element => <Seo title="Adalida Design" />
+export const Head = (): JSX.Element => (
+  <Seo
+    title="Adalida Baca Portfolio"
+    description="Product designer portfolio — case studies, systems design, and shipped products. Adalida Baca."
+  />
+)
 
 export default Root
