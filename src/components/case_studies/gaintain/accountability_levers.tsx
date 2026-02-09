@@ -1,52 +1,74 @@
 import { IconBell, IconCalendar, IconCurrencyDollar, IconUsers } from '@tabler/icons-react'
 import DarkModeContext from 'dark_mode_context'
-import useIsMobile from 'hooks/use_is_mobile'
 import React from 'react'
+
+/**
+ * Scale-based diagram: one base unit `u` drives all dimensions.
+ * Desktop layout is the reference; the SVG scales via viewBox (like a resizable image).
+ * Tweak `u` or the ratios below to refine the whole graphic consistently.
+ */
+const U = 5
 
 const AccountabilityLevers = (): JSX.Element => {
   const { darkMode } = React.useContext(DarkModeContext)
-  const isMobile: boolean = useIsMobile(768) ?? false
 
-  // Diagram dimensions - vertical layout; tight horizontal spacing so Strong/axis title fit in container
-  const width = isMobile ? 230 : 265
-  const padding = isMobile ? 2 : 4
-  const leverHeight = isMobile ? 55 : 70
-  const iconSize = isMobile ? 28 : 36
-  const topPadding = isMobile ? 12 : 16
-  const bottomPadding = isMobile ? 12 : 16
+  // All dimensions in units of u — single source of scale
+  const width = 53 * U
+  const padding = 1 * U
+  const leverHeight = 14 * U
+  const iconSize = 7 * U + 1 // 36 at u=5
+  const topPadding = 3 * U + 1 // 16
+  const bottomPadding = 3 * U + 1
+  const axisInset = 1 * U + 1 // gap from right edge to axis line (6 at u=5)
+  const axisLabelGap = 2 * U
+  const labelToArrowGap = 1 * U + 1
+  const badgeToAxisGap = 7 * U + 1
+  const badgeWidth = 8 * U
+  const badgeHeight = 4 * U + 2
+  const badgeRx = 2 * U + 1
+  const iconMarginLeft = 4 * U
+  const iconToLabelGap = 2 * U
+  const viewBoxMarginLeft = 5 * U
+  const axisTitleOffset = 3 * U - 1
+  const axisTitleRightExtra = 4 * U
+  const arrowHalfWidth = 1 * U - 1
+  const arrowHeight = 1 * U + 1
+  const strokeW = 1.5
+  const leverLabelFontSize = 2 * U + 3
+  const axisLabelFontSize = 2 * U + 4
+  const axisTitleFontSize = 3 * U + 3
+  const badgeFontSize = 2 * U + 4
 
-  // Calculate lever positions (4 levers stacked vertically)
-  const availableHeight = isMobile ? 380 : 480
+  // Lever vertical layout
+  const availableHeight = 96 * U
   const totalLeverHeight = leverHeight * 4
-  const totalGap = availableHeight - totalLeverHeight - topPadding - bottomPadding - (isMobile ? 30 : 40)
+  const reserveForSpacing = 8 * U
+  const totalGap = availableHeight - totalLeverHeight - topPadding - bottomPadding - reserveForSpacing
   const gapBetweenLevers = totalGap / 3
 
-  const lever4Y = padding + topPadding // Strong (top) - Financial
+  const lever4Y = padding + topPadding
   const lever3Y = lever4Y + leverHeight + gapBetweenLevers
   const lever2Y = lever3Y + leverHeight + gapBetweenLevers
   const lever1Y = lever2Y + leverHeight + gapBetweenLevers
-  const height = lever1Y + leverHeight / 2 + bottomPadding + (isMobile ? 20 : 25)
+  const heightExtra = 5 * U
+  const height = lever1Y + leverHeight / 2 + bottomPadding + heightExtra
 
-  // Horizontal spacing - minimal gaps so icon, labels, axis line, and axis title fit without cutoff
-  const scaleX = width - padding - (isMobile ? 4 : 6) // Axis line from right
-  const axisLabelGap = isMobile ? 6 : 8 // Gap between axis line and Strong/Weak labels
-  const labelToArrowGap = isMobile ? 5 : 6 // Vertical gap between Strong/Weak label and the arrow
-  const badgeToAxisGap = isMobile ? 28 : 36 // Gap between badge and axis
-  const badgeWidth = isMobile ? 34 : 40
+  // Horizontal positions
+  const scaleX = width - padding - axisInset
   const badgeX = scaleX - badgeToAxisGap - badgeWidth / 2
-  const iconX = -(isMobile ? 16 : 20) + iconSize / 2
-  const iconToLabelGap = isMobile ? 8 : 10 // Gap between icon and lever label
+  const iconX = -iconMarginLeft + iconSize / 2
   const labelX = iconX + iconSize / 2 + iconToLabelGap
 
-  // ViewBox includes left (icons) and right (axis title) so all content fits
-  const viewBoxMinX = -(isMobile ? 20 : 24)
-  const axisTitleOffset = isMobile ? 10 : 14 // Distance from axis line to "Effectiveness" text
-  const axisTitleRight = scaleX + axisTitleOffset + (isMobile ? 16 : 20) // room for rotated text
+  const viewBoxMinX = -viewBoxMarginLeft
+  const axisTitleRight = scaleX + axisTitleOffset + axisTitleRightExtra
   const viewBoxWidth = Math.max(width, axisTitleRight) - viewBoxMinX
 
-  // Colors - Apple-style subtle
   const textColor = darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)'
   const arrowColor = darkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)'
+
+  const leverCenterY = (leverY: number) => leverY + iconSize / 2
+  const badgeYOffset = badgeHeight / 2
+  const badgeTextDy = 2
 
   return (
     <div className="accountability-levers-container">
@@ -54,25 +76,22 @@ const AccountabilityLevers = (): JSX.Element => {
         className="accountability-levers"
         viewBox={`${viewBoxMinX} 0 ${viewBoxWidth} ${height}`}
         preserveAspectRatio="xMidYMid meet"
+        aria-hidden="false"
       >
         <title>Accountability Levers Diagram</title>
         <defs>
-          {/* Gradient for $ badge - more visible */}
           <linearGradient id="badge-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
             <stop offset="0%" stopColor={darkMode ? 'rgba(230, 92, 0, 0.6)' : 'rgba(230, 92, 0, 0.25)'} />
             <stop offset="100%" stopColor={darkMode ? 'rgba(249, 212, 35, 0.5)' : 'rgba(249, 212, 35, 0.2)'} />
           </linearGradient>
-          {/* Gradient for $$ badge - more visible */}
           <linearGradient id="badge-gradient-2" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
             <stop offset="0%" stopColor={darkMode ? 'rgba(230, 92, 0, 0.7)' : 'rgba(230, 92, 0, 0.35)'} />
             <stop offset="100%" stopColor={darkMode ? 'rgba(249, 212, 35, 0.6)' : 'rgba(249, 212, 35, 0.3)'} />
           </linearGradient>
-          {/* Gradient for $$$ badge - more visible */}
           <linearGradient id="badge-gradient-3" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
             <stop offset="0%" stopColor={darkMode ? 'rgba(230, 92, 0, 0.8)' : 'rgba(230, 92, 0, 0.45)'} />
             <stop offset="100%" stopColor={darkMode ? 'rgba(249, 212, 35, 0.7)' : 'rgba(249, 212, 35, 0.4)'} />
           </linearGradient>
-          {/* Shadow filter for badges */}
           <filter id="badge-shadow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceAlpha" stdDeviation="1" />
             <feOffset dx="0" dy="1" result="offsetblur" />
@@ -85,9 +104,9 @@ const AccountabilityLevers = (): JSX.Element => {
             </feMerge>
           </filter>
         </defs>
-        {/* Lever 1: Reminders (Weak, $) - Top */}
+
+        {/* Lever 1: Reminders (Weak, $) */}
         <g>
-          {/* Icon - Tabler Bell */}
           <foreignObject
             x={iconX - iconSize / 2}
             y={lever1Y + iconSize / 2 - iconSize / 2}
@@ -98,16 +117,16 @@ const AccountabilityLevers = (): JSX.Element => {
               size={iconSize}
               stroke={textColor}
               fill="none"
-              strokeWidth={isMobile ? 1 : 1.25}
+              strokeWidth={1.25}
               style={{ display: 'block' }}
+              aria-hidden
             />
           </foreignObject>
-          {/* Label */}
           <text
             x={labelX}
-            y={lever1Y + iconSize / 2}
+            y={leverCenterY(lever1Y)}
             fill={textColor}
-            fontSize={isMobile ? '11' : '13'}
+            fontSize={leverLabelFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="600"
             textAnchor="start"
@@ -116,23 +135,22 @@ const AccountabilityLevers = (): JSX.Element => {
           >
             REMINDERS
           </text>
-          {/* Cost - Enhanced badge with gradient */}
           <rect
             x={badgeX - badgeWidth / 2}
-            y={lever1Y + iconSize / 2 - (isMobile ? 8 : 10)}
+            y={leverCenterY(lever1Y) - badgeYOffset}
             width={badgeWidth}
-            height={isMobile ? 18 : 22}
-            rx={isMobile ? 9 : 11}
+            height={badgeHeight}
+            rx={badgeRx}
             fill="url(#badge-gradient-1)"
             stroke={darkMode ? 'rgba(249, 212, 35, 0.7)' : 'rgba(230, 92, 0, 0.5)'}
-            strokeWidth={isMobile ? '1' : '1.25'}
+            strokeWidth={strokeW * 0.8}
             filter="url(#badge-shadow)"
           />
           <text
             x={badgeX}
-            y={lever1Y + iconSize / 2 + (isMobile ? 1.5 : 2)}
+            y={leverCenterY(lever1Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
-            fontSize={isMobile ? '12' : '14'}
+            fontSize={badgeFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="700"
             textAnchor="middle"
@@ -143,9 +161,8 @@ const AccountabilityLevers = (): JSX.Element => {
           </text>
         </g>
 
-        {/* Lever 2: Streaks (Weak-Medium, $) */}
+        {/* Lever 2: Progress visibility ($) */}
         <g>
-          {/* Icon - Tabler Calendar */}
           <foreignObject
             x={iconX - iconSize / 2}
             y={lever2Y + iconSize / 2 - iconSize / 2}
@@ -156,16 +173,16 @@ const AccountabilityLevers = (): JSX.Element => {
               size={iconSize}
               stroke={textColor}
               fill="none"
-              strokeWidth={isMobile ? 1 : 1.25}
+              strokeWidth={1.25}
               style={{ display: 'block' }}
+              aria-hidden
             />
           </foreignObject>
-          {/* Label - Two lines */}
           <text
             x={labelX}
-            y={lever2Y + iconSize / 2 - (isMobile ? 4 : 5)}
+            y={leverCenterY(lever2Y) - U}
             fill={textColor}
-            fontSize={isMobile ? '11' : '13'}
+            fontSize={leverLabelFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="600"
             textAnchor="start"
@@ -175,27 +192,26 @@ const AccountabilityLevers = (): JSX.Element => {
             <tspan x={labelX} dy="0">
               PROGRESS
             </tspan>
-            <tspan x={labelX} dy={isMobile ? '12' : '14'}>
+            <tspan x={labelX} dy={2.8 * U}>
               VISIBILITY
             </tspan>
           </text>
-          {/* Cost - Enhanced badge with gradient */}
           <rect
             x={badgeX - badgeWidth / 2}
-            y={lever2Y + iconSize / 2 - (isMobile ? 8 : 10)}
+            y={leverCenterY(lever2Y) - badgeYOffset}
             width={badgeWidth}
-            height={isMobile ? 18 : 22}
-            rx={isMobile ? 9 : 11}
+            height={badgeHeight}
+            rx={badgeRx}
             fill="url(#badge-gradient-1)"
             stroke={darkMode ? 'rgba(249, 212, 35, 0.7)' : 'rgba(230, 92, 0, 0.5)'}
-            strokeWidth={isMobile ? '1' : '1.25'}
+            strokeWidth={strokeW * 0.8}
             filter="url(#badge-shadow)"
           />
           <text
             x={badgeX}
-            y={lever2Y + iconSize / 2 + (isMobile ? 1.5 : 2)}
+            y={leverCenterY(lever2Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
-            fontSize={isMobile ? '12' : '14'}
+            fontSize={badgeFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="700"
             textAnchor="middle"
@@ -206,9 +222,8 @@ const AccountabilityLevers = (): JSX.Element => {
           </text>
         </g>
 
-        {/* Lever 3: Social (Medium, $$) */}
+        {/* Lever 3: Social ($$) */}
         <g>
-          {/* Icon - Tabler Users */}
           <foreignObject
             x={iconX - iconSize / 2}
             y={lever3Y + iconSize / 2 - iconSize / 2}
@@ -219,16 +234,16 @@ const AccountabilityLevers = (): JSX.Element => {
               size={iconSize}
               stroke={textColor}
               fill="none"
-              strokeWidth={isMobile ? 1 : 1.25}
+              strokeWidth={1.25}
               style={{ display: 'block' }}
+              aria-hidden
             />
           </foreignObject>
-          {/* Label */}
           <text
             x={labelX}
-            y={lever3Y + iconSize / 2}
+            y={leverCenterY(lever3Y)}
             fill={textColor}
-            fontSize={isMobile ? '11' : '13'}
+            fontSize={leverLabelFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="600"
             textAnchor="start"
@@ -237,23 +252,22 @@ const AccountabilityLevers = (): JSX.Element => {
           >
             SOCIAL
           </text>
-          {/* Cost - Enhanced badge with gradient */}
           <rect
             x={badgeX - badgeWidth / 2}
-            y={lever3Y + iconSize / 2 - (isMobile ? 8 : 10)}
+            y={leverCenterY(lever3Y) - badgeYOffset}
             width={badgeWidth}
-            height={isMobile ? 18 : 22}
-            rx={isMobile ? 9 : 11}
+            height={badgeHeight}
+            rx={badgeRx}
             fill="url(#badge-gradient-2)"
             stroke={darkMode ? 'rgba(249, 212, 35, 0.7)' : 'rgba(230, 92, 0, 0.5)'}
-            strokeWidth={isMobile ? '1' : '1.25'}
+            strokeWidth={strokeW * 0.8}
             filter="url(#badge-shadow)"
           />
           <text
             x={badgeX}
-            y={lever3Y + iconSize / 2 + (isMobile ? 1.5 : 2)}
+            y={leverCenterY(lever3Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
-            fontSize={isMobile ? '12' : '14'}
+            fontSize={badgeFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="700"
             textAnchor="middle"
@@ -264,9 +278,8 @@ const AccountabilityLevers = (): JSX.Element => {
           </text>
         </g>
 
-        {/* Lever 4: Financial (Strong, $$$) - Bottom */}
+        {/* Lever 4: Financial (Strong, $$$) */}
         <g>
-          {/* Icon - Tabler Currency Dollar */}
           <foreignObject
             x={iconX - iconSize / 2}
             y={lever4Y + iconSize / 2 - iconSize / 2}
@@ -277,16 +290,16 @@ const AccountabilityLevers = (): JSX.Element => {
               size={iconSize}
               stroke={textColor}
               fill="none"
-              strokeWidth={isMobile ? 1 : 1.25}
+              strokeWidth={1.25}
               style={{ display: 'block' }}
+              aria-hidden
             />
           </foreignObject>
-          {/* Label */}
           <text
             x={labelX}
-            y={lever4Y + iconSize / 2}
+            y={leverCenterY(lever4Y)}
             fill={textColor}
-            fontSize={isMobile ? '11' : '13'}
+            fontSize={leverLabelFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="600"
             textAnchor="start"
@@ -295,23 +308,22 @@ const AccountabilityLevers = (): JSX.Element => {
           >
             FINANCIAL
           </text>
-          {/* Cost - Enhanced badge with gradient */}
           <rect
             x={badgeX - badgeWidth / 2}
-            y={lever4Y + iconSize / 2 - (isMobile ? 8 : 10)}
+            y={leverCenterY(lever4Y) - badgeYOffset}
             width={badgeWidth}
-            height={isMobile ? 18 : 22}
-            rx={isMobile ? 9 : 11}
+            height={badgeHeight}
+            rx={badgeRx}
             fill="url(#badge-gradient-3)"
             stroke={darkMode ? 'rgba(249, 212, 35, 0.8)' : 'rgba(230, 92, 0, 0.6)'}
-            strokeWidth={isMobile ? '1' : '1.25'}
+            strokeWidth={strokeW * 0.8}
             filter="url(#badge-shadow)"
           />
           <text
             x={badgeX}
-            y={lever4Y + iconSize / 2 + (isMobile ? 1.5 : 2)}
+            y={leverCenterY(lever4Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
-            fontSize={isMobile ? '12' : '14'}
+            fontSize={badgeFontSize}
             fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
             fontWeight="700"
             textAnchor="middle"
@@ -322,41 +334,39 @@ const AccountabilityLevers = (): JSX.Element => {
           </text>
         </g>
 
-        {/* Vertical axis line filling the container */}
+        {/* Axis line */}
         <line
           x1={scaleX}
           y1={topPadding}
           x2={scaleX}
           y2={height - bottomPadding}
           stroke={arrowColor}
-          strokeWidth={isMobile ? '1' : '1.5'}
+          strokeWidth={strokeW}
           strokeLinecap="round"
         />
-        {/* Up arrow at top (Weak) - pointing down */}
         <path
-          d={`M ${scaleX},${topPadding} L ${scaleX - (isMobile ? 3 : 4)},${topPadding + (isMobile ? 5 : 6)} L ${scaleX + (isMobile ? 3 : 4)},${topPadding + (isMobile ? 5 : 6)} Z`}
+          d={`M ${scaleX},${topPadding} L ${scaleX - arrowHalfWidth},${topPadding + arrowHeight} L ${scaleX + arrowHalfWidth},${topPadding + arrowHeight} Z`}
           fill={arrowColor}
           stroke={arrowColor}
-          strokeWidth={isMobile ? '1' : '1.5'}
+          strokeWidth={strokeW}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* Down arrow at bottom (Strong) - pointing up */}
         <path
-          d={`M ${scaleX},${height - bottomPadding} L ${scaleX - (isMobile ? 3 : 4)},${height - bottomPadding - (isMobile ? 5 : 6)} L ${scaleX + (isMobile ? 3 : 4)},${height - bottomPadding - (isMobile ? 5 : 6)} Z`}
+          d={`M ${scaleX},${height - bottomPadding} L ${scaleX - arrowHalfWidth},${height - bottomPadding - arrowHeight} L ${scaleX + arrowHalfWidth},${height - bottomPadding - arrowHeight} Z`}
           fill={arrowColor}
           stroke={arrowColor}
-          strokeWidth={isMobile ? '1' : '1.5'}
+          strokeWidth={strokeW}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {/* Y-axis title - centered, rotated, positioned to the right of the scale line */}
+
         <text
           x={scaleX + axisTitleOffset}
           y={height / 2}
           textAnchor="middle"
           dominantBaseline="middle"
-          fontSize={isMobile ? '16' : '18'}
+          fontSize={axisTitleFontSize}
           fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
           fontStyle="italic"
           fontWeight="500"
@@ -366,12 +376,12 @@ const AccountabilityLevers = (): JSX.Element => {
         >
           Effectiveness
         </text>
-        {/* Scale labels - Apple-style */}
+
         <text
           x={scaleX + axisLabelGap}
           y={topPadding - labelToArrowGap}
           fill="#10B981"
-          fontSize={isMobile ? '12' : '14'}
+          fontSize={axisLabelFontSize}
           fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
           fontWeight="600"
           textAnchor="start"
@@ -384,7 +394,7 @@ const AccountabilityLevers = (): JSX.Element => {
           x={scaleX + axisLabelGap}
           y={height - bottomPadding + labelToArrowGap}
           fill="#EF4444"
-          fontSize={isMobile ? '12' : '14'}
+          fontSize={axisLabelFontSize}
           fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
           fontWeight="600"
           textAnchor="start"
