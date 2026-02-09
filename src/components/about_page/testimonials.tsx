@@ -18,32 +18,28 @@ const testimonials: Testimonial[] = [
       'Adalida has a strong bias to action. I felt like I had a thought partner, not just a designer. Because of that partnership, we were able to ship.'
   },
   {
-    name: 'Mariana Lucchesi',
-    title: 'Mentor, Women in Design',
-    quote: 'Adalida is decisive, practical, and focused on progress.'
+    name: 'Andria Herrera',
+    title: 'Owner, Invibe Esthetics',
+    quote:
+      'Adalida is so kind, patient, open minded, and knowledgeable. My sales and bookings have increased significantly, bringing so much growth to my business. HIGHLY recommend!'
   },
   {
     name: 'Jeanette Acosta Fresquez',
     title: 'Manager, Project ECHO',
-    quote: "I've never seen anyone so excited to get work before. Adalida is a great utility player."
+    quote:
+      "What Adalida learned and accomplished at Project ECHO is very impressive! I've never seen anyone so excited to get work before. She's a great utility player."
   },
   {
-    name: 'Mariana Ríos',
-    title: 'Design Mentor',
+    name: 'Armando Diaz',
+    title: 'Owner, Airbrush Art',
     quote:
-      'Adalida brings clarity and structure to design decisions. She asks the right questions and delivers work that fits both the product and the team.'
+      'Adalida was truly heaven sent. Once I had a real website, clients trusted my business more and I was able to close bigger deals.'
+  },
+  {
+    name: 'Mariana Lucchesi',
+    title: 'Mentor, Women in Design',
+    quote: 'Adalida is decisive, practical, and focused on progress.'
   }
-  // Commented out testimonials:
-  // {
-  //   name: 'Armando Diaz',
-  //   title: 'Owner, Airbrush Art',
-  //   quote: 'Adalida was heaven sent. Once I had a real website, clients trusted my business more and I was able to close bigger deals.'
-  // },
-  // {
-  //   name: 'Kevin Irwin',
-  //   title: 'IT Director, Menaul',
-  //   quote: 'Adalida proved to be a valuable asset to our team, and her contributions greatly enhanced our department\'s productivity and effectiveness.'
-  // }
 ]
 
 const getInitials = (name: string): string => {
@@ -118,7 +114,7 @@ const Testimonials = (): JSX.Element => {
             disabled={currentIndex === 0}
             aria-label="Previous testimonial"
           >
-            <IconChevronLeft aria-hidden />
+            <IconChevronLeft size={18} strokeWidth={2} aria-hidden />
           </button>
           <div className="dot-nav" role="tablist" aria-label="Testimonial position">
             {Array.from({ length: dotCount }, (_, i) => {
@@ -143,7 +139,7 @@ const Testimonials = (): JSX.Element => {
             disabled={currentIndex >= maxIndex}
             aria-label="Next testimonial"
           >
-            <IconChevronRight aria-hidden />
+            <IconChevronRight size={18} strokeWidth={2} aria-hidden />
           </button>
         </div>
       </div>

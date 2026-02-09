@@ -53,11 +53,11 @@ const Intro = (): JSX.Element | null => {
       const completed = sessionStorage.getItem(ABOUT_ANIMATION_COMPLETED_KEY) === 'true'
       setAnimationSkipped(completed)
 
-      // Mark as completed after animations finish (handwriting: 3.3s + underline: 1.4s = ~4.7s total)
+      // Mark as completed after underline animation finishes (~1.4s)
       if (!completed) {
         const timer = setTimeout(() => {
           sessionStorage.setItem(ABOUT_ANIMATION_COMPLETED_KEY, 'true')
-        }, 5000) // Slightly after all animations complete
+        }, 2000)
         return () => {
           clearTimeout(timer)
         }
@@ -259,11 +259,11 @@ const Intro = (): JSX.Element | null => {
       </div>
       <div className="about-intro-text">
         <div className="handwriting-overlay">
-          <div className={`handwriting-text ${animationSkipped ? 'animation-complete' : ''}`}>Hi, I&apos;m Adalida</div>
+          <div className="handwriting-text">Hi, I&apos;m Adalida</div>
         </div>
         <h5 className="intro-lead">
           I design{' '}
-          <u className={`${underlineClassName} underline-draw ${animationSkipped ? 'animation-complete' : ''}`}>
+          <u className={`${underlineClassName} underline-draw`}>
             <span className="underline-text">usable systems</span>
             <svg className="hand-drawn-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
               <path
