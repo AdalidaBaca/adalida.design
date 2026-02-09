@@ -1,3 +1,6 @@
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import useIsMobile from 'hooks/use_is_mobile'
+import React from 'react'
 import Section from './section'
 
 interface Testimonial {
@@ -23,6 +26,12 @@ const testimonials: Testimonial[] = [
     name: 'Jeanette Acosta Fresquez',
     title: 'Manager, Project ECHO',
     quote: "I've never seen anyone so excited to get work before. Adalida is a great utility player."
+  },
+  {
+    name: 'Mariana Ríos',
+    title: 'Design Mentor',
+    quote:
+      'Adalida brings clarity and structure to design decisions. She asks the right questions and delivers work that fits both the product and the team.'
   }
   // Commented out testimonials:
   // {
@@ -50,32 +59,93 @@ const Avatar = ({ name, photo }: { name: string; photo?: string }): JSX.Element 
 }
 
 const Testimonials = (): JSX.Element => {
-  const items = testimonials
-  // Removed carousel logic - now showing static 3 cards
+  const isMobile = useIsMobile(768) ?? false
+  const visibleCount = isMobile ? 1 : 3
+  const maxIndex = Math.max(0, testimonials.length - visibleCount)
+  const [currentIndex, setCurrentIndex] = React.useState(0)
+  const cardsRef = React.useRef<HTMLUListElement>(null)
+
+  const goPrev = (): void => {
+    setCurrentIndex(i => Math.max(0, i - 1))
+  }
+  const goNext = (): void => {
+    setCurrentIndex(i => Math.min(maxIndex, i + 1))
+  }
+
+  // Scroll so the current card (or first of the visible slice) is in view
+  React.useEffect(() => {
+    const el = cardsRef.current
+    if (el == null) return
+    const card = el.children[currentIndex] as HTMLElement | undefined
+    if (card != null) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+    }
+  }, [currentIndex])
+
+  const dotCount = isMobile ? testimonials.length : maxIndex + 1
 
   return (
     <Section title="Testimonials">
-      <div className="testimonials-grid">
-        {items.map(({ quote, name, title, photo }) => (
-          <blockquote
-            key={`${name}-${title}`}
-            className="testimonial-card card"
-            data-aos="fade-up"
-            data-aos-offset="100"
-            data-aos-duration="800"
+      <div className="testimonials-slider-cards">
+        <ul ref={cardsRef} className="cards">
+          {testimonials.map(({ quote, name, title, photo }) => (
+            <li key={`${name}-${title}`}>
+              <blockquote
+                className="testimonial-card card"
+                data-aos="fade-up"
+                data-aos-offset="100"
+                data-aos-duration="800"
+              >
+                <p className="quote">{quote}</p>
+                <footer className="attribution">
+                  <div className="person">
+                    <Avatar name={name} photo={photo} />
+                    <div className="name-title">
+                      <span className="name">{name}</span>
+                      {title !== '' ? <span className="title">{title}</span> : null}
+                    </div>
+                  </div>
+                </footer>
+              </blockquote>
+            </li>
+          ))}
+        </ul>
+        <div className="testimonials-controls">
+          <button
+            type="button"
+            className="nav small"
+            onClick={goPrev}
+            disabled={currentIndex === 0}
+            aria-label="Previous testimonial"
           >
-            <p className="quote">{quote}</p>
-            <footer className="attribution">
-              <div className="person">
-                <Avatar name={name} photo={photo} />
-                <div className="name-title">
-                  <span className="name">{name}</span>
-                  {title !== '' ? <span className="title">{title}</span> : null}
-                </div>
-              </div>
-            </footer>
-          </blockquote>
-        ))}
+            <IconChevronLeft aria-hidden />
+          </button>
+          <div className="dot-nav" role="tablist" aria-label="Testimonial position">
+            {Array.from({ length: dotCount }, (_, i) => {
+              const key = isMobile && testimonials[i] ? `${testimonials[i].name}-${testimonials[i].title}` : `page-${i}`
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={currentIndex === i}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={`dot ${currentIndex === i ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(i)}
+                />
+              )
+            })}
+          </div>
+          <button
+            type="button"
+            className="nav small"
+            onClick={goNext}
+            disabled={currentIndex >= maxIndex}
+            aria-label="Next testimonial"
+          >
+            <IconChevronRight aria-hidden />
+          </button>
+        </div>
       </div>
     </Section>
   )

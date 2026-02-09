@@ -108,6 +108,8 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     padding: 0;
+    margin: 0;
+    list-style: none;
     -ms-overflow-style: none; /* IE/Edge */
     scrollbar-width: none; /* Firefox */
 
@@ -115,9 +117,17 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
     height: var(--testimonial-card-height, 320px);
   }
   .cards::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-  .card { scroll-snap-align: start; }
 
-  /* Ensure each card fills the fixed-height track on mobile */
+  /* Desktop: 3 cards visible and filling width; mobile: 1 card (96%) */
+  .cards li {
+    scroll-snap-align: start;
+    flex: 0 0 96%;
+
+    @media (width >= $breakpoint) {
+      flex: 0 0 calc((100% - 2 * 0.85em) / 3);
+    }
+  }
+
   .cards .testimonial-card { height: 100%; }
   
   .testimonials-controls {
@@ -158,6 +168,12 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
 
     &:active {
       transform: translateY(0) scale(0.96);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
     }
   }
 
