@@ -20,6 +20,17 @@ const testimonials: Testimonial[] = [
       'Adalida has a strong bias to action. I felt like I had a thought partner, not just a designer. Because of that partnership, we were able to ship.'
   },
   {
+    name: 'Mariana Lucchesi',
+    title: 'Mentor, Women in Design',
+    quote: 'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
+  },
+  {
+    name: 'Grace Gong',
+    title: 'VC, Smart Venture Media',
+    quote:
+      'Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn\'t recommend her more highly.'
+  },
+  {
     name: 'Andria Herrera',
     title: 'Owner, Invibe Esthetics',
     quote:
@@ -36,11 +47,6 @@ const testimonials: Testimonial[] = [
     title: 'Owner, Airbrush Art',
     quote:
       'Adalida was truly heaven sent. Once I had a real website, clients trusted my business more and I was able to close bigger deals.'
-  },
-  {
-    name: 'Mariana Lucchesi',
-    title: 'Mentor, Women in Design',
-    quote: 'Adalida is decisive, practical, and focused on progress.'
   }
 ]
 
