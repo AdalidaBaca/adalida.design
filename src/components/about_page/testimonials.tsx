@@ -22,13 +22,14 @@ const testimonials: Testimonial[] = [
   {
     name: 'Mariana Lucchesi',
     title: 'Mentor, Women in Design',
-    quote: 'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
+    quote:
+      'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
   },
   {
     name: 'Grace Gong',
     title: 'VC, Smart Venture Media',
     quote:
-      'Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn\'t recommend her more highly.'
+      "Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn't recommend her more highly."
   },
   {
     name: 'Andria Herrera',
