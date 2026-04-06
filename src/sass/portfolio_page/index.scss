@@ -133,12 +133,13 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto; /* Changed from repeat(2, 1fr) to auto for 2 cards */
   gap: 2.5em; /* Increased gap for better spacing between cards */
+  align-items: start; /* Let cards keep natural height when title wraps (no stretch) */
   width: 100%;
   max-width: 100%;
   margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
   margin-bottom: 1em; /* Reduced bottom margin for spacing before testimonials on desktop (2 cards instead of 4) */
   box-sizing: border-box;
-  
+
   @media (width <= $breakpoint) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -223,6 +224,13 @@
   box-sizing: border-box; /* Include border in width/height calculations */
   width: 100%;
   max-width: 100%;
+
+  /* Desktop: allow card to grow in height so wrapped title (e.g. Golden Record Remix) is not clipped */
+  @media (width >= $breakpoint) {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+  }
 
   /* Mobile: Allow cards to grow taller to fit content */
   @media (width <= $breakpoint) {
@@ -426,9 +434,8 @@
       line-height: 1.2;
       letter-spacing: -0.02em;
       color: rgb(0 0 0 / 95%);
-      white-space: nowrap; /* Prevent wrapping to ensure title stays on one line */
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal; /* Allow title to wrap (no truncation) */
+      overflow-wrap: break-word;
       max-width: 100%;
       min-width: 0;
 
@@ -438,7 +445,7 @@
         height: auto;
       }
 
-      /* Desktop: Smaller font size to fit on one line */
+      /* Desktop: font size */
       @media (width >= $breakpoint) {
         font-size: clamp(1.2rem, 2vw, 1.5rem);
       }
