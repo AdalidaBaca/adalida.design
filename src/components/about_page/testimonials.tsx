@@ -23,7 +23,7 @@ const testimonials: Testimonial[] = [
     name: 'Grace Gong',
     title: 'VC, Smart Venture Media',
     quote:
-      'Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn\'t recommend her more highly.'
+      "Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn't recommend her more highly."
   },
   {
     name: 'Mariana Lucchesi',
