@@ -146,18 +146,18 @@ export const Projects = {
   },
   SmartVentureMedia: {
     name: 'Smart Venture Media',
-    category: 'CMS Workflow Automation',
-    badges: ['Consultancy', 'UX / UI Design', 'Responsive'],
+    category: 'EVENT SYSTEMS AND OPERATIONS',
+    badges: ['Events', 'Vendor Management', 'Logistics'],
     description:
       'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SmartVentureMediaImage,
     link: {
-      text: 'Visit Website',
-      url: 'https://www.smartventuremedia.com'
+      text: 'Read Case Study',
+      url: '/case_studies/smart_venture_media'
     },
     colors: {
-      cover: '#FF69B4',
-      primary: 'linear-gradient(135deg, #FF69B4 0%, #F5F5DC 100%)'
+      cover: '#C93840',
+      primary: '#C93840'
     }
   },
   ProjectEcho: {

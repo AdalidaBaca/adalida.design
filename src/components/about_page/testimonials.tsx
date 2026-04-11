@@ -28,7 +28,8 @@ const testimonials: Testimonial[] = [
   {
     name: 'Mariana Lucchesi',
     title: 'Mentor, Women in Design',
-    quote: 'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
+    quote:
+      'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
   },
   {
     name: 'Andria Herrera',

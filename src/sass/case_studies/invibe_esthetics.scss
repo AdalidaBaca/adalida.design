@@ -12,6 +12,15 @@
   > .invibe-esthetics-key-takeaways {
     margin-top: 2.5em !important;
   }
+
+  /* Next case study link: accent color (same pattern as Smart Venture Media), not body text black */
+  .invibe-esthetics-next-project-link {
+    color: rgb(150 87 56 / 92%);
+  }
+}
+
+.dark .invibe-esthetics-container .invibe-esthetics-next-project-link {
+  color: rgb(201 168 130 / 96%);
 }
 
 .invibe-esthetics-venn-diagram-container {
@@ -971,6 +980,32 @@
   }
 }
 
+.invibe-esthetics-results-feedback-row-below-metrics {
+  margin-top: 1em;
+
+  @media (width >= 768px) {
+    margin-top: 1.25em;
+  }
+}
+
+.invibe-esthetics-results-feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.625em;
+  width: 100%;
+  margin-top: 1em;
+
+  @media (width >=768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin-top: 1.25em;
+  }
+
+  .invibe-esthetics-metric-card {
+    width: 100%;
+  }
+}
+
 .invibe-esthetics-feedback-card {
   padding: 1.5em 1.5em 1.25em !important;
   background: linear-gradient(45deg, rgb(150 87 56 / 12%) 0%, rgb(150 87 56 / 6%) 100%) !important;
@@ -1623,6 +1658,499 @@
 
 .invibe-esthetics-next-project-name {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Smart Venture Media brand overrides (reuses invibe structural classes) */
+.smart-venture-media-container {
+  --smart-primary: #C93840;
+
+  /*
+   * Vertical rhythm: main stack uses .case-study-container gap (3em / 4em).
+   * Outcome + Key Takeaways render SectionHeading outside .project-echo-details-card:
+   * - Reset margin-top (else 10dvw from global .section-heading-container).
+   * - Reset margin-bottom: global uses 1.5em bottom, and .case-study-explanation also
+   *   has column gap — margin + gap reads as a huge hole before the next block.
+   */
+  .case-study-explanation > .section-heading-container:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /*
+   * Outcome: metric / quote rows use margin-top as well as parent flex gap — stack doubles.
+   */
+  .invibe-esthetics-outcome-section .invibe-esthetics-results-primary-metrics,
+  .invibe-esthetics-outcome-section .invibe-esthetics-results-secondary-row,
+  .invibe-esthetics-outcome-section .invibe-esthetics-results-feedback-grid {
+    margin-top: 0;
+  }
+
+  /* Match default .case-study-top-to-bottom internal gap (2em / 2.5em), not the section stack gap */
+  .case-study-top-to-bottom:has(.invibe-esthetics-problem-flow-container) {
+    gap: 2em;
+
+    @media (width >=768px) {
+      gap: 2.5em;
+    }
+  }
+
+  .invibe-esthetics-hero-image {
+    background: var(--smart-primary);
+    box-shadow: 0 4px 16px -8px rgb(201 56 64 / 20%);
+  }
+
+  .invibe-esthetics-key-takeaways-image {
+    background: var(--smart-primary);
+  }
+
+  .invibe-esthetics-download-content {
+    background: linear-gradient(45deg, rgb(201 56 64 / 14%) 0%, rgb(201 56 64 / 8%) 100%);
+    border: 1px solid rgb(201 56 64 / 20%);
+  }
+
+  .invibe-esthetics-download-description {
+    color: rgb(45 22 24 / 85%);
+  }
+
+  .invibe-esthetics-download-text,
+  .invibe-esthetics-download-text.invibe-esthetics-download-text-animated {
+    /* Force high-contrast readable title for Smart case study hero callout */
+    background: none !important;
+    color: var(--smart-primary) !important;
+    -webkit-text-fill-color: var(--smart-primary) !important;
+  }
+
+  .invibe-esthetics-link-primary {
+    background: linear-gradient(
+      135deg,
+      var(--smart-primary) 0%,
+      color-mix(in srgb, var(--smart-primary) 78%, #000) 100%
+    ) !important;
+    border-color: rgb(201 56 64 / 45%) !important;
+    color: #fff !important;
+  }
+
+  .invibe-esthetics-download-secondary {
+    border-color: rgb(201 56 64 / 45%) !important;
+    color: rgb(110 25 31 / 96%) !important;
+    background: rgb(255 255 255 / 70%) !important;
+  }
+
+  .invibe-esthetics-link-secondary {
+    color: rgb(120 28 34 / 96%) !important;
+  }
+
+  .invibe-esthetics-feedback-card,
+  .invibe-esthetics-metric-card,
+  .invibe-esthetics-metric-card.invibe-esthetics-metric-primary {
+    background: linear-gradient(45deg, rgb(201 56 64 / 10%) 0%, rgb(201 56 64 / 6%) 100%);
+    border-color: rgb(201 56 64 / 18%);
+    box-shadow:
+      0 4px 12px -6px rgb(201 56 64 / 12%),
+      0 2px 6px -3px rgb(201 56 64 / 8%);
+  }
+
+  /* The feedback card in base styles uses !important, so Smart needs explicit override */
+  .invibe-esthetics-feedback-card {
+    background: linear-gradient(45deg, rgb(201 56 64 / 12%) 0%, rgb(201 56 64 / 8%) 100%) !important;
+    border-color: rgb(201 56 64 / 26%);
+    box-shadow: 0 4px 16px -4px rgb(201 56 64 / 18%);
+  }
+
+  .invibe-esthetics-feedback-quote-mark {
+    color: rgb(201 56 64 / 80%);
+  }
+
+  .invibe-esthetics-feedback-attribution {
+    color: rgb(170 46 54 / 82%);
+  }
+
+  .invibe-esthetics-contact-strip-content {
+    background: linear-gradient(45deg, rgb(201 56 64 / 8%) 0%, rgb(201 56 64 / 5%) 100%);
+    border: 1px solid rgb(201 56 64 / 20%);
+    box-shadow:
+      0 4px 16px -8px rgb(201 56 64 / 15%),
+      0 2px 8px -4px rgb(201 56 64 / 10%);
+  }
+
+  .invibe-esthetics-contact-strip-cta {
+    border-color: rgb(201 56 64 / 35%) !important;
+    color: rgb(201 56 64 / 92%) !important;
+  }
+
+  .invibe-esthetics-next-project-link {
+    color: rgb(201 56 64 / 92%);
+  }
+
+  .smart-venture-media-day-layout {
+    align-items: stretch;
+  }
+
+  .smart-venture-media-day-text {
+    width: 100%;
+  }
+
+  .smart-venture-media-day-visual {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+
+    @media (width >=768px) {
+      height: 100%;
+    }
+  }
+
+  .smart-venture-media-day-image-card {
+    width: 100%;
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 1em;
+    display: flex;
+
+    @media (width >=768px) {
+      height: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @media (width <=768px) {
+        min-height: 320px;
+      }
+    }
+  }
+
+  .case-study-top-to-bottom:has(.smart-venture-media-solution-layout),
+  .case-study-top-to-bottom:has(.smart-venture-media-day-layout) {
+    gap: 2em;
+
+    @media (width >=768px) {
+      gap: 2.5em;
+    }
+  }
+
+  /* Match .case-study-explanation column gap so collage → “What changes” isn’t oversized */
+  .smart-venture-media-next-iteration-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+
+    @media (width >=768px) {
+      gap: 1.5em;
+    }
+  }
+
+  .smart-venture-media-collage-container {
+    width: 100%;
+    border-radius: 1em;
+    overflow: hidden;
+  }
+
+  .smart-venture-media-collage-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6em;
+
+    @media (width >=768px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75em;
+    }
+  }
+
+  .smart-venture-media-collage-grid-under-next {
+    @media (width >=768px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .smart-venture-media-collage-item {
+    border-radius: 0.9em;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgb(120 28 34 / 80%);
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  .smart-venture-media-insight-layout,
+  .smart-venture-media-solution-layout {
+    align-items: stretch;
+
+    @media (width >=768px) {
+      >.smart-venture-media-insight-visual,
+      >.smart-venture-media-solution-visual,
+      >.case-study-explanation {
+        height: 100%;
+      }
+
+      >.smart-venture-media-insight-visual>.project-echo-details-card,
+      >.smart-venture-media-solution-visual>.project-echo-details-card,
+      >.case-study-explanation>.project-echo-details-card {
+        height: 100%;
+      }
+    }
+  }
+
+  .smart-venture-media-insight-visual,
+  .smart-venture-media-solution-visual {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+
+    @media (width >=768px) {
+      height: 100%;
+    }
+  }
+
+  .smart-venture-media-insight-image-card,
+  .smart-venture-media-solution-image-card {
+    width: 100%;
+    min-height: 260px;
+    border-radius: 1em;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0 !important;
+    overflow: hidden;
+
+    @media (width >=768px) {
+      height: 100%;
+      min-height: 320px;
+    }
+  }
+
+  .smart-venture-media-graphic-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    border-radius: 0.8em;
+    border: 1px dashed rgb(201 56 64 / 25%);
+    background: linear-gradient(45deg, rgb(201 56 64 / 12%) 0%, rgb(201 56 64 / 5%) 100%);
+    color: rgb(120 28 34 / 82%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+
+  .smart-venture-media-graphic-image {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: 1em;
+    display: block;
+  }
+
+  .smart-venture-media-vetting-layout {
+    align-items: stretch;
+
+    @media (width >=768px) {
+      >.smart-venture-media-vetting-visual,
+      >.case-study-explanation {
+        height: 100%;
+      }
+
+      >.smart-venture-media-vetting-visual>.project-echo-details-card,
+      >.case-study-explanation>.project-echo-details-card {
+        height: 100%;
+      }
+    }
+  }
+
+  .smart-venture-media-vetting-visual {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+
+    @media (width >=768px) {
+      height: 100%;
+    }
+  }
+
+  .smart-venture-media-vetting-image-card {
+    width: 100%;
+    padding: 0.45em !important;
+    border-radius: 1em;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+
+    @media (width >=768px) {
+      height: 100%;
+    }
+
+    @media (width <=768px) {
+      padding: 0.6em !important;
+    }
+
+    .smart-vetting-funnel {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: stretch;
+
+      svg {
+        flex: 1 1 auto;
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+      }
+    }
+
+    .smart-vetting-stage-shape polygon {
+      fill: rgb(255 248 251 / 96%);
+      stroke: rgb(167 94 124 / 62%);
+    }
+
+    .smart-vetting-th {
+      font-family: inherit;
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: 0;
+      fill: rgb(88 38 61 / 94%);
+    }
+
+    .smart-vetting-ts {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0;
+      fill: rgb(108 55 82 / 86%);
+    }
+
+    .smart-vetting-arrow-line {
+      stroke: rgb(132 132 132 / 85%);
+      stroke-width: 1.25;
+    }
+
+    .smart-vetting-arrow-head {
+      fill: rgb(110 110 110 / 92%);
+      stroke: none;
+    }
+
+    .smart-vetting-tail-label {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 400;
+      fill: rgb(82 82 82 / 90%);
+    }
+
+    @media (width <=768px) {
+      .smart-vetting-th { font-size: 16px; }
+      .smart-vetting-ts { font-size: 12.75px; }
+      .smart-vetting-tail-label { font-size: 13px; }
+
+      .smart-vetting-funnel svg {
+        min-height: 340px;
+      }
+    }
+  }
+
+  .smart-venture-media-key-takeaways-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+
+    @media (width >=768px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+}
+
+.dark .smart-venture-media-container {
+  .invibe-esthetics-download-content,
+  .invibe-esthetics-contact-strip-content {
+    background: linear-gradient(45deg, rgb(201 56 64 / 14%) 0%, rgb(201 56 64 / 10%) 100%);
+    border-color: rgb(201 56 64 / 35%);
+  }
+
+  .invibe-esthetics-link-primary {
+    background: linear-gradient(
+      135deg,
+      var(--smart-primary) 0%,
+      color-mix(in srgb, var(--smart-primary) 72%, #000) 100%
+    ) !important;
+  }
+
+  .invibe-esthetics-download-description {
+    color: rgb(255 240 240 / 88%);
+  }
+
+  .invibe-esthetics-download-secondary {
+    border-color: rgb(255 210 210 / 40%) !important;
+    color: rgb(255 230 230 / 95%) !important;
+    background: rgb(201 56 64 / 20%) !important;
+  }
+
+  .invibe-esthetics-link-secondary {
+    color: rgb(255 230 230 / 95%) !important;
+  }
+
+  .invibe-esthetics-download-text,
+  .invibe-esthetics-download-text.invibe-esthetics-download-text-animated {
+    background: none !important;
+    color: rgb(255 236 238 / 96%) !important;
+    -webkit-text-fill-color: rgb(255 236 238 / 96%) !important;
+  }
+
+  .invibe-esthetics-feedback-card {
+    background: linear-gradient(45deg, rgb(201 56 64 / 18%) 0%, rgb(201 56 64 / 12%) 100%) !important;
+    border-color: rgb(255 220 220 / 30%);
+    box-shadow: 0 4px 20px -4px rgb(201 56 64 / 28%);
+  }
+
+  .invibe-esthetics-feedback-quote-mark {
+    color: rgb(255 228 228 / 85%);
+  }
+
+  .invibe-esthetics-feedback-attribution {
+    color: rgb(255 220 220 / 82%);
+  }
+
+  .smart-venture-media-vetting-image-card {
+    .smart-vetting-stage-shape polygon {
+      fill: rgb(201 56 64 / 26%);
+      stroke: rgb(255 225 238 / 45%);
+    }
+
+    .smart-vetting-th,
+    .smart-vetting-ts {
+      fill: rgb(255 240 240 / 96%);
+    }
+
+    .smart-vetting-arrow-line {
+      stroke: rgb(255 235 240 / 88%);
+    }
+
+    .smart-vetting-arrow-head {
+      fill: rgb(255 228 234 / 95%);
+    }
+
+    .smart-vetting-tail-label {
+      fill: rgb(255 235 240 / 94%);
+    }
+  }
 }
 
 // Problem Flow Diagram Styling

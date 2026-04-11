@@ -3624,7 +3624,7 @@
   align-items: center;
   gap: 0.5em;
   text-decoration: none;
-  color: $dark-text;
+  color: rgb(230 92 0 / 92%);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 600;
   transition: gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3657,7 +3657,7 @@
 }
 
 .dark .gaintain-next-project-link {
-  color: $light-text;
+  color: rgb(249 212 35 / 94%);
 }
 
 .key-takeaways {

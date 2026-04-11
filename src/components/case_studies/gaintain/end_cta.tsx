@@ -4,8 +4,8 @@ import { Projects } from 'projects'
 import ContactStrip from '../contact_strip'
 
 const EndCTA = (): JSX.Element => {
-  const nextProject = Projects.InvibeEsthetics
-  const nextProjectUrl = '/case_studies/invibe_esthetics'
+  const nextProject = Projects.SmartVentureMedia
+  const nextProjectUrl = '/case_studies/smart_venture_media'
 
   return (
     <>

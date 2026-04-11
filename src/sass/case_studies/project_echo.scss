@@ -1124,7 +1124,7 @@
   align-items: center;
   gap: 0.5em;
   text-decoration: none;
-  color: $dark-text;
+  color: rgb(8 145 178 / 92%);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 600;
   transition: gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1157,7 +1157,7 @@
 }
 
 .dark .project-echo-next-project-link {
-  color: $light-text;
+  color: rgb(125 211 252 / 96%);
 }
 
 .project-echo-link-secondary {

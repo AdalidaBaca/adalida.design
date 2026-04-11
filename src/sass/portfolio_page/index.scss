@@ -133,7 +133,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto; /* Changed from repeat(2, 1fr) to auto for 2 cards */
   gap: 2.5em; /* Increased gap for better spacing between cards */
-  align-items: start; /* Let cards keep natural height when title wraps (no stretch) */
+  align-items: stretch; /* Keep cards in the same row equal height */
   width: 100%;
   max-width: 100%;
   margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
@@ -224,13 +224,6 @@
   box-sizing: border-box; /* Include border in width/height calculations */
   width: 100%;
   max-width: 100%;
-
-  /* Desktop: allow card to grow in height so wrapped title (e.g. Golden Record Remix) is not clipped */
-  @media (width >= $breakpoint) {
-    aspect-ratio: auto;
-    height: auto;
-    min-height: 0;
-  }
 
   /* Mobile: Allow cards to grow taller to fit content */
   @media (width <= $breakpoint) {
@@ -447,7 +440,7 @@
 
       /* Desktop: font size */
       @media (width >= $breakpoint) {
-        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        font-size: clamp(0.96rem, 1.42vw, 1.08rem);
       }
     }
 
@@ -485,7 +478,7 @@
       }
 
       .project-name {
-        font-size: clamp(1.6rem, 3vw, 2rem);
+        font-size: clamp(0.96rem, 1.42vw, 1.08rem);
       }
     }
 
