@@ -28,10 +28,10 @@ const TheDay = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement
               to speakers and sponsors, a direct improvement from previous summits.
             </div>
             <div className="body-2">
-              The <strong>sponsor setup didn&apos;t</strong>. We knew sponsor count was growing but never collected their{' '}
-              <strong>physical requirements</strong> in advance. Screens, tables, and equipment were all{' '}
-              <strong>surprises day-of</strong>. The information existed. We just <strong>never built a system</strong> to
-              capture it before they arrived.
+              The <strong>sponsor setup didn&apos;t</strong>. We knew sponsor count was growing but never collected
+              their <strong>physical requirements</strong> in advance. Screens, tables, and equipment were all{' '}
+              <strong>surprises day-of</strong>. The information existed. We just <strong>never built a system</strong>{' '}
+              to capture it before they arrived.
             </div>
           </div>
         </div>

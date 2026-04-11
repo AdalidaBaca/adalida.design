@@ -25,7 +25,8 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             </div>
             <div className="body-2">
               The <strong>chair team</strong>, <strong>mic coordinators</strong>, <strong>operations leads</strong>,{' '}
-              <strong>sponsors</strong>, and <strong>volunteers</strong> each had exactly what they needed. Nothing more.
+              <strong>sponsors</strong>, and <strong>volunteers</strong> each had exactly what they needed. Nothing
+              more.
             </div>
             <div className="body-2">
               I used <strong>Claude</strong> to assign <strong>volunteers</strong> to speaker sessions, ensuring each

@@ -11,9 +11,8 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
           <div className="project-echo-details-card">
             <SectionHeading title="INFO. PERSON. MOMENT." />
             <div className="body-2">
-              Giving everyone everything creates confusion not clarity.{' '}
-              <strong>Scoping what each role sees</strong> before the event starts is what keeps things moving when
-              there is no time to answer questions.
+              Giving everyone everything creates confusion not clarity. <strong>Scoping what each role sees</strong>{' '}
+              before the event starts is what keeps things moving when there is no time to answer questions.
             </div>
           </div>
 
@@ -28,8 +27,8 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
           <div className="project-echo-details-card">
             <SectionHeading title="TRUST IS BUILT IN STAGES" />
             <div className="body-2">
-              What started as volunteering became a website project. The website became <strong>event operations</strong>.
-              Each role came because the previous one was done well.
+              What started as volunteering became a website project. The website became{' '}
+              <strong>event operations</strong>. Each role came because the previous one was done well.
             </div>
           </div>
         </div>
