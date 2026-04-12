@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import InsightGraphic from 'images/smart_venture_media_insight.png'
+import InsightGraphic from 'images/smart_venture_media/insight_before.png'
 import { forwardRef, type Ref } from 'react'
 
 const Insight = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement>): JSX.Element => {

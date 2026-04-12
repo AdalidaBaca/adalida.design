@@ -64,6 +64,7 @@
     "build": "gatsby build",
     "node": "node",
     "develop": "gatsby develop",
+    "clean": "gatsby clean",
     "preload-fonts": "gatsby-preload-fonts",
     "start": "npm run develop",
     "stop": "pkill 'npm run develop'",

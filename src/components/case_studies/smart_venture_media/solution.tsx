@@ -1,5 +1,5 @@
 import SectionHeading from 'components/section_heading'
-import SolutionGraphic from 'images/smart_venture_media_solution.png'
+import solutionGraphic from 'images/smart_venture_media/solution.png'
 import { forwardRef, type Ref } from 'react'
 import VettingFunnel from './vetting_funnel'
 
@@ -8,12 +8,10 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
     <div data-aos="fade-up" className="case-study-top-to-bottom" ref={ref}>
       <div className="case-study-side-by-side smart-venture-media-solution-layout">
         <div className="smart-venture-media-solution-visual">
-          <div className="project-echo-details-card smart-venture-media-solution-image-card">
-            <img
-              src={SolutionGraphic}
-              alt="Smart Venture Media solution visual"
-              className="smart-venture-media-graphic-image"
-            />
+          <div className="invibe-esthetics-hero smart-venture-media-solution-hero-inset">
+            <div className="invibe-esthetics-hero-image">
+              <img src={solutionGraphic} alt="Smart Venture Media solution visual" loading="lazy" decoding="async" />
+            </div>
           </div>
         </div>
         <div className="case-study-explanation">

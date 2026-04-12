@@ -6,7 +6,7 @@ const LoboGardensImage = 'images/works/lobogardens.webp'
 const PhronesisPhoto = 'images/works/phronesis.webp'
 const ProjectEchoImage = 'images/works/project_echo.webp'
 const QuerqueImage = 'images/works/querque.webp'
-const SmartVentureMediaImage = 'images/works/smartventuremedia.png'
+const SmartVentureMediaImage = 'images/smart_venture_media/hero.png'
 const SunbeltImage = 'images/works/sunbelt.webp'
 const TLDRImage = 'images/works/TLDR.png'
 const UniNightsImage = 'images/works/uni_nights.webp'
@@ -156,8 +156,8 @@ export const Projects = {
       url: '/case_studies/smart_venture_media'
     },
     colors: {
-      cover: '#C93840',
-      primary: '#C93840'
+      cover: '#D3ADED',
+      primary: 'linear-gradient(135deg, #D3ADED 0%, #F7CEC3 100%)'
     }
   },
   ProjectEcho: {
