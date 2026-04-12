@@ -1,7 +1,11 @@
 const VettingFunnel = (): JSX.Element => {
   return (
-    <div className="smart-vetting-funnel" role="img" aria-label="Volunteer vetting funnel with four stages">
-      <svg width="100%" viewBox="0 0 680 596" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <div
+      className="smart-vetting-funnel"
+      role="img"
+      aria-label="Volunteer vetting funnel: group chat, contact directory, group call and early setup, role sign-up, day-of team confirmed"
+    >
+      <svg width="100%" viewBox="0 0 680 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
           <marker
             id="smart-vetting-arrow"
@@ -17,56 +21,67 @@ const VettingFunnel = (): JSX.Element => {
         </defs>
 
         <g className="smart-vetting-stage-shape">
-          <polygon points="2,8 678,8 630,110 50,110" strokeWidth="0.7" />
-          <text className="smart-vetting-th" x="340" y="52" textAnchor="middle" dominantBaseline="central">
-            Group chat
-          </text>
-          <text className="smart-vetting-ts" x="340" y="78" textAnchor="middle" dominantBaseline="central">
-            All volunteers added by Grace
-          </text>
-        </g>
-
-        <g className="smart-vetting-stage-shape">
-          <polygon points="22,138 658,138 608,248 72,248" strokeWidth="0.7" />
-          <text className="smart-vetting-th" x="340" y="182" textAnchor="middle" dominantBaseline="central">
-            Directory
-          </text>
-          <text className="smart-vetting-ts" x="340" y="212" textAnchor="middle" dominantBaseline="central">
-            Fill it out: dependable. Skip it: flagged.
+          <polygon points="2,8 678,8 630,138 50,138" strokeWidth="0.7" />
+          <text x="340" textAnchor="middle" className="smart-vetting-stage-line">
+            <tspan x="340" y="56" className="smart-vetting-th">
+              Group chat
+            </tspan>
+            <tspan x="340" dy="56" className="smart-vetting-ts">
+              Volunteers added by the founder
+            </tspan>
           </text>
         </g>
 
         <g className="smart-vetting-stage-shape">
-          <polygon points="52,274 628,274 576,396 104,396" strokeWidth="0.7" />
-          <text className="smart-vetting-th" x="340" y="314" textAnchor="middle" dominantBaseline="central">
-            Group call + day before setup
-          </text>
-          <text className="smart-vetting-ts" x="340" y="354" textAnchor="middle" dominantBaseline="central">
-            Personalities assessed. Follow-through confirmed.
+          <polygon points="22,154 658,154 608,290 72,290" strokeWidth="0.7" />
+          <text x="340" textAnchor="middle" className="smart-vetting-stage-line">
+            <tspan x="340" y="196" className="smart-vetting-th">
+              Contact directory
+            </tspan>
+            <tspan x="340" dy="56" className="smart-vetting-ts">
+              Fill it out: committed.
+            </tspan>
+            <tspan x="340" dy="1.42em" className="smart-vetting-ts">
+              No response: not committed.
+            </tspan>
           </text>
         </g>
 
         <g className="smart-vetting-stage-shape">
-          <polygon points="88,432 592,432 534,530 146,530" strokeWidth="0.7" />
-          <text className="smart-vetting-th" x="340" y="468" textAnchor="middle" dominantBaseline="central">
-            Role sign-up
+          <polygon points="52,306 628,306 576,458 104,458" strokeWidth="0.7" />
+          <text x="340" textAnchor="middle" className="smart-vetting-stage-line">
+            <tspan x="340" y="358" className="smart-vetting-th">
+              Group call + early setup
+            </tspan>
+            <tspan x="340" dy="56" className="smart-vetting-ts">
+              Personalities and follow-through assessed
+            </tspan>
           </text>
-          <text className="smart-vetting-ts" x="340" y="498" textAnchor="middle" dominantBaseline="central">
-            Earned based on reliability
+        </g>
+
+        <g className="smart-vetting-stage-shape">
+          <polygon points="88,476 592,476 534,578 146,578" strokeWidth="0.7" />
+          <text x="340" textAnchor="middle" className="smart-vetting-stage-line">
+            <tspan x="340" y="508" className="smart-vetting-th">
+              Role sign-up
+            </tspan>
+            <tspan x="340" dy="56" className="smart-vetting-ts">
+              Assigned based on reliability
+            </tspan>
           </text>
         </g>
 
         <line
           x1="340"
-          y1="530"
+          y1="578"
           x2="340"
-          y2="556"
+          y2="606"
           className="smart-vetting-arrow-line"
           strokeWidth="1.5"
           fill="none"
           markerEnd="url(#smart-vetting-arrow)"
         />
-        <text className="smart-vetting-tail-label" x="340" y="588" textAnchor="middle">
+        <text className="smart-vetting-tail-label" x="340" y="632" textAnchor="middle">
           Day-of team confirmed
         </text>
       </svg>

@@ -58,13 +58,13 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             >
               <h6 className="invibe-esthetics-details-label">Overview</h6>
               <p className="invibe-esthetics-details-text">
-                Smart Venture Media connects founders, operators, and capital through flagship AI summits and a student
-                VC fellowship. I designed and built the website and CMS infrastructure that powers it.
+                Smart Venture Media hosts AI leadership summits and executive events in San Francisco. I designed the
+                website, CMS, and the operational infrastructure behind the summit events.
               </p>
               <p className="invibe-esthetics-details-text">
-                As the summits grew, so did the complexity. Twenty plus speakers. Six panels. Unvetted volunteers. One
-                ship date. A room full of a16z, Sequoia, and Bessemer partners at the SVB Center off Market in San
-                Francisco.
+                As the summits grew, so did the complexity. More speakers, more panels, more sponsors, unvetted
+                volunteers, and one ship date in a room full of a16z, Sequoia, and Bessemer partners at the SVB Center
+                off Market.
               </p>
             </div>
           </div>

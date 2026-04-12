@@ -22,16 +22,15 @@ const TheDay = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement
         </div>
         <div className="case-study-explanation smart-venture-media-day-text">
           <div className="project-echo-details-card">
-            <SectionHeading title="EVENT DAY" subtitle="What Worked. What Didn&apos;t." />
+            <SectionHeading title="EVENT DAY" subtitle="What Worked. What Didn&apos;t" />
             <div className="body-2">
-              <strong>Security held</strong>. Volunteers posted at the speaker lounge entrance kept the space exclusive
-              to speakers and sponsors, a direct improvement from previous summits.
+              <strong>Security held</strong>. Volunteers covered <strong>both entrances</strong> to the speaker lounge,
+              keeping the space exclusive to speakers. A direct improvement from previous summits.
             </div>
             <div className="body-2">
-              The <strong>sponsor setup didn&apos;t</strong>. We knew sponsor count was growing but never collected
-              their <strong>physical requirements</strong> in advance. Screens, tables, and equipment were all{' '}
-              <strong>surprises day-of</strong>. The information existed. We just <strong>never built a system</strong>{' '}
-              to capture it before they arrived.
+              The <strong>sponsor setup</strong> was harder than expected. We had the headcount but not the details.
+              Equipment requirements, setup windows, and arrival times were all{' '}
+              <strong>handled day-of instead of in advance</strong>.
             </div>
           </div>
         </div>
@@ -70,25 +69,23 @@ const TheDay = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElement
         </div>
         <div className="case-study-explanation">
           <div className="project-echo-details-card">
-            <SectionHeading title="WHAT CHANGES NEXT TIME" subtitle="Already Designing the Next Version" />
+            <SectionHeading title="WHAT CHANGES NEXT TIME" subtitle="The Next Version" />
             <div className="body-2">
-              The operation has <strong>outgrown the venue</strong>. The next summit needs a{' '}
-              <strong>larger venue or fewer, higher-priced sponsors</strong>. Three things change next time:
+              The operation has outgrown the venue. The next summit needs a{' '}
+              <strong>larger venue or fewer, higher-priced sponsors</strong>.
             </div>
-            <ul className="body-2">
-              <li>
-                <strong>Sponsor onboarding</strong> — electrical requirements, setup windows, and arrival times
-                confirmed before day-of
-              </li>
-              <li>
-                <strong>Scheduled breaks</strong> — attendees need time to connect with speakers between panels. Without
-                it, the next session opens to an empty room.
-              </li>
-              <li>
-                <strong>Volunteer commitment</strong> — the current filter screens intent, not follow-through. The next
-                version closes that gap.
-              </li>
-            </ul>
+            <div className="body-2">
+              <strong>Sponsor onboarding</strong>: sponsor logistics need to be{' '}
+              <strong>documented and shared with the ops team in advance</strong>, not discovered day-of.
+            </div>
+            <div className="body-2">
+              <strong>Scheduled breaks</strong>: attendees need time to connect with speakers between panels. Without
+              them, the next session opens to an empty room.
+            </div>
+            <div className="body-2">
+              <strong>Volunteer commitment</strong>: the current filter screens intent, not follow-through. That gap
+              still needs solving.
+            </div>
           </div>
         </div>
       </div>

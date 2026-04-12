@@ -56,6 +56,14 @@
   justify-content: center;
   position: relative; /* For absolute positioning of mobile CTA */
   box-sizing: border-box; /* Ensure padding is included in width */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  /* Letterboxed portfolio heroes: show strip gradient behind Gatsby’s wrapper */
+  .portfolio-container-for-hero-image .gatsby-image-wrapper {
+    background-color: transparent !important;
+  }
 
   /* Mobile: Fixed height to ensure all cards are identical (based on Airbrush Art Studio) */
   @media (width <= $breakpoint) {

@@ -156,8 +156,9 @@ export const Projects = {
       url: '/case_studies/smart_venture_media'
     },
     colors: {
-      cover: '#D3ADED',
-      primary: 'linear-gradient(135deg, #D3ADED 0%, #F7CEC3 100%)'
+      /* 45deg: lilac → soft coral pink */
+      cover: 'linear-gradient(45deg, #D3ADED 0%, #F4A4A9 100%)',
+      primary: 'linear-gradient(45deg, #D3ADED 0%, #F4A4A9 100%)'
     }
   },
   ProjectEcho: {

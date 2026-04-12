@@ -44,9 +44,12 @@ const Problem = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
         <div className="project-echo-details-card">
           <SectionHeading title="PROBLEM" subtitle="The Plan Only Existed in One Person&apos;s Head" />
           <div className="body-2">
-            A run of show existed. But it was built <strong>top-down</strong>, a single source of truth listing
-            everything that needed to happen, in order. No one role could look at it and know exactly what{' '}
-            <strong>their role was</strong>.
+            A run of show existed. But it was one long timeline of everything happening across the whole event, with{' '}
+            <strong>no clear ownership by role</strong>.
+          </div>
+          <div className="body-2">
+            Speaker names lived on the website, not the document. Volunteers were switching between both on their
+            phones. At the first summit, <strong>phones died</strong>.
           </div>
           <div className="body-2">
             When questions came up, they routed to Grace, who was also <strong>moderating most of the panels</strong>.

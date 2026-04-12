@@ -1,15 +1,21 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { useMemo } from 'react'
 
-interface File {
+interface FileNode {
   publicURL: string
   name: string
   relativePath: string
 }
 
-const FileQuery = (filePath: string): File => {
-  const files = useStaticQuery(graphql`
-    query {
-      allFile(filter: {sourceInstanceName: {eq: "files"}}) {
+/**
+ * Runs exactly one `useStaticQuery` per component. Return value is a resolver — call it as many
+ * times as needed for different paths. (Multiple `useStaticQuery` calls in one component breaks
+ * Gatsby’s static query payload.)
+ */
+function useResolveFile(): (filePath: string) => FileNode {
+  const edges = useStaticQuery(graphql`
+    query AboutFilesStaticQuery {
+      allFile(filter: { sourceInstanceName: { eq: "files" } }) {
         edges {
           node {
             publicURL
@@ -21,17 +27,19 @@ const FileQuery = (filePath: string): File => {
     }
   `).allFile.edges
 
-  // Files will likely come in with a /files/...
-  // The relativePath in the query does not start with /files or a slash.
-  const desiredRelativePath = filePath.replace(/^\/?(files)?\//, '')
-  const file = files.find(
-    ({ node: { relativePath } }: { node: { relativePath: string } }): boolean => relativePath === desiredRelativePath
-  )
-  if (file !== undefined) {
-    return file.node
-  }
-
-  throw new Error(`No file found for ${filePath}`)
+  return useMemo(() => {
+    return (filePath: string): FileNode => {
+      const desiredRelativePath = filePath.replace(/^\/?(files)?\//, '')
+      const file = edges.find(
+        ({ node: { relativePath } }: { node: { relativePath: string } }): boolean =>
+          relativePath === desiredRelativePath
+      )
+      if (file === undefined) {
+        throw new Error(`No file found for ${filePath}`)
+      }
+      return file.node
+    }
+  }, [edges])
 }
 
-export default FileQuery
+export default useResolveFile

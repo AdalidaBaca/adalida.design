@@ -5,9 +5,11 @@ import ProjectLinkWrapper from './badges_and_description'
 import NameAndCategory from './name_and_category'
 
 const Description = ({ project }: { project: Project }): React.ReactElement => {
-  const coverColor = project.colors.cover
+  const { cover, primary } = project.colors
+  const isGradient = typeof primary === 'string' && primary.includes('gradient')
+  const coverCssVar = isGradient ? primary : cover
   return (
-    <div className="project-description" style={{ '--project-cover-color': coverColor } as React.CSSProperties}>
+    <div className="project-description" style={{ '--project-cover-color': coverCssVar } as React.CSSProperties}>
       <Badges project={project} />
       <div className="text-and-cta-container">
         <div className="text-section">

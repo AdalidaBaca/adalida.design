@@ -3,7 +3,7 @@ import { IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react
 import BadgeButton from 'components/badge_button'
 import { makeMediaTag } from 'components/media_with_text'
 import DarkModeContext from 'dark_mode_context'
-import FileQuery from 'queries/file'
+import useResolveFile from 'queries/file'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
@@ -45,16 +45,17 @@ declare global {
 
 const Intro = (): JSX.Element | null => {
   const { darkMode } = useContext(DarkModeContext)
+  const resolveFile = useResolveFile()
 
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   let faceUrl: string | undefined
   try {
-    resumeUrl = FileQuery('resume.pdf').publicURL
+    resumeUrl = resolveFile('resume.pdf').publicURL
   } catch {
     // Fallback to LinkedIn if resume.pdf is not found
   }
   try {
-    faceUrl = FileQuery(AdalidaFace).publicURL
+    faceUrl = resolveFile(AdalidaFace).publicURL
   } catch {
     faceUrl = undefined
   }

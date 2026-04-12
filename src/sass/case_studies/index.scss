@@ -531,6 +531,32 @@
     }
   }
 
+  /* Mobile-only: Smart Venture — graphic column before copy (insight + volunteer mgmt are text-first in DOM) */
+  &.smart-venture-media-insight-layout,
+  &.smart-venture-media-solution-layout,
+  &.smart-venture-media-vetting-layout {
+    @media (width <=768px) {
+      align-items: stretch;
+      max-width: 100%;
+
+      >.smart-venture-media-insight-visual,
+      >.smart-venture-media-solution-visual,
+      >.smart-venture-media-vetting-visual {
+        order: -1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      >.case-study-explanation {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+    }
+  }
+
   /* Mobile-only: reorder problem image above text for Project ECHO */
   &:has(.project-echo-venn-diagram-container) {
     @media (width <=768px) {

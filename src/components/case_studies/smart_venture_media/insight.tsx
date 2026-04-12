@@ -8,13 +8,13 @@ const Insight = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
       <div className="case-study-side-by-side smart-venture-media-insight-layout">
         <div className="case-study-explanation">
           <div className="project-echo-details-card">
-            <SectionHeading title="Insight" subtitle="What Needed to Exist, Didn&apos;t" />
+            <SectionHeading title="INSIGHT" subtitle="One Document Cannot Do Everything" />
             <div className="body-2">
-              There was no operational map for the event. What tasks needed to happen, who needed to own each one, how
-              many people each role required. None of it was written down.
+              The run of show and the website were <strong>two sources of truth</strong> for the same event. Volunteers
+              were managing both. The insight was simple: <strong>break it apart</strong>. <strong>One document per role</strong>, built around what that person actually needed to do.
             </div>
             <div className="body-2">
-              The operation ran entirely on <strong>tribal knowledge</strong>.
+              The founder had the vision. The infrastructure to support it didn&apos;t exist yet.
             </div>
           </div>
         </div>

@@ -1662,11 +1662,11 @@
 
 /* Smart Venture Media brand overrides (reuses invibe structural classes) */
 .smart-venture-media-container {
-  /* Surface gradient (Grace / Smart Venture palette) */
-  --smart-surface: linear-gradient(135deg, #d3aded 0%, #f7cec3 100%);
+  /* 45deg: lilac #d3aded → coral pink #f4a4a9 */
+  --smart-surface: linear-gradient(45deg, #d3aded 0%, #f4a4a9 100%);
   /* Solid accent for type, borders, and small fills on pale surfaces */
-  --smart-primary: #8c4a58;
-  --smart-shadow: rgb(140 74 88 / 18%);
+  --smart-primary: #4a3a5c;
+  --smart-shadow: rgb(211 173 237 / 26%);
 
   /*
    * Vertical rhythm: main stack uses .case-study-container gap (3em / 4em).
@@ -1707,13 +1707,28 @@
     background: var(--smart-surface);
   }
 
+  /*
+   * Tinted panels only (same low-alpha recipe as Invibe download / metrics / feedback).
+   * Role, meta, key takeaways, problem, etc. keep default glass from Invibe + Project Echo.
+   */
   .invibe-esthetics-download-content {
-    background: linear-gradient(45deg, rgb(231 227 239 / 92%) 0%, rgb(247 206 195 / 78%) 100%);
-    border: 1px solid rgb(140 74 88 / 22%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 8%) 0%, rgb(244 164 169 / 5%) 100%);
+    border: 1px solid rgb(211 173 237 / 15%);
+    box-shadow:
+      0 4px 16px -8px rgb(211 173 237 / 15%),
+      0 2px 8px -4px rgb(244 164 169 / 10%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow:
+          0 8px 24px -12px rgb(211 173 237 / 20%),
+          0 4px 12px -6px rgb(244 164 169 / 15%);
+      }
+    }
   }
 
   .invibe-esthetics-download-description {
-    color: rgb(52 36 44 / 88%);
+    color: rgb(48 32 34 / 90%);
   }
 
   .invibe-esthetics-download-text,
@@ -1726,64 +1741,105 @@
 
   .invibe-esthetics-link-primary {
     background: linear-gradient(
-      135deg,
-      #c98899 0%,
-      color-mix(in srgb, var(--smart-primary) 88%, #1a0a0d) 100%
+      45deg,
+      color-mix(in srgb, #d3aded 58%, #2a1838) 0%,
+      color-mix(in srgb, #f4a4a9 48%, #3a1820) 100%
     ) !important;
-    border-color: rgb(140 74 88 / 42%) !important;
+    border-color: color-mix(in srgb, #d3aded 55%, #6b4080) !important;
     color: #fff !important;
   }
 
   .invibe-esthetics-download-secondary {
-    border-color: rgb(140 74 88 / 42%) !important;
-    color: rgb(60 38 48 / 94%) !important;
-    background: rgb(255 255 255 / 72%) !important;
+    border: 2px solid rgb(211 173 237 / 55%) !important;
+    background: transparent !important;
+
+    a {
+      color: rgb(118 78 145) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(211 173 237 / 8%) !important;
+        border-color: rgb(211 173 237 / 75%) !important;
+
+        a {
+          color: rgb(118 78 145) !important;
+        }
+      }
+    }
   }
 
   .invibe-esthetics-link-secondary {
-    color: rgb(72 44 54 / 96%) !important;
+    color: rgb(100 62 115 / 96%) !important;
   }
 
   .invibe-esthetics-feedback-card,
   .invibe-esthetics-metric-card,
   .invibe-esthetics-metric-card.invibe-esthetics-metric-primary {
-    background: linear-gradient(45deg, rgb(231 227 239 / 55%) 0%, rgb(247 206 195 / 42%) 100%);
-    border-color: rgb(140 74 88 / 16%);
-    box-shadow:
-      0 4px 12px -6px rgb(140 74 88 / 10%),
-      0 2px 6px -3px rgb(140 74 88 / 8%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 6%) 0%, rgb(244 164 169 / 4%) 100%);
+    border-color: rgb(211 173 237 / 12%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow: 0 2px 8px -2px rgb(211 173 237 / 15%);
+      }
+    }
   }
 
-  /* The feedback card in base styles uses !important, so Smart needs explicit override */
+  .invibe-esthetics-metric-card.invibe-esthetics-metric-primary {
+    border-color: rgb(211 173 237 / 20%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 10%) 0%, rgb(244 164 169 / 6%) 100%);
+  }
+
+  /* Base .invibe-esthetics-feedback-card uses !important — mirror Invibe strengths with brand hues */
   .invibe-esthetics-feedback-card {
-    background: linear-gradient(45deg, rgb(231 227 239 / 65%) 0%, rgb(247 206 195 / 48%) 100%) !important;
-    border-color: rgb(140 74 88 / 22%);
-    box-shadow: 0 4px 16px -4px rgb(140 74 88 / 12%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 12%) 0%, rgb(244 164 169 / 6%) 100%) !important;
+    border: 2px solid rgb(211 173 237 / 25%);
+    box-shadow: 0 4px 16px -4px rgb(211 173 237 / 18%);
   }
 
   .invibe-esthetics-feedback-quote-mark {
-    color: rgb(140 74 88 / 78%);
+    color: rgb(211 173 237 / 75%);
   }
 
   .invibe-esthetics-feedback-attribution {
-    color: rgb(92 58 70 / 86%);
+    color: rgb(150 90 115 / 78%);
   }
 
   .invibe-esthetics-contact-strip-content {
-    background: linear-gradient(45deg, rgb(231 227 239 / 55%) 0%, rgb(247 206 195 / 38%) 100%);
-    border: 1px solid rgb(140 74 88 / 18%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 8%) 0%, rgb(244 164 169 / 5%) 100%);
+    border: 1px solid rgb(211 173 237 / 15%);
     box-shadow:
-      0 4px 16px -8px rgb(140 74 88 / 10%),
-      0 2px 8px -4px rgb(140 74 88 / 8%);
+      0 4px 16px -8px rgb(211 173 237 / 15%),
+      0 2px 8px -4px rgb(244 164 169 / 10%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow:
+          0 8px 24px -12px rgb(211 173 237 / 20%),
+          0 4px 12px -6px rgb(244 164 169 / 15%);
+      }
+    }
   }
 
   .invibe-esthetics-contact-strip-cta {
-    border-color: rgb(140 74 88 / 32%) !important;
-    color: rgb(92 48 60 / 94%) !important;
-  }
+    border: 2px solid rgb(211 173 237 / 55%) !important;
+    background: transparent !important;
 
-  .invibe-esthetics-next-project-link {
-    color: rgb(92 48 60 / 94%);
+    a {
+      color: rgb(118 78 145) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(211 173 237 / 8%) !important;
+        border-color: rgb(211 173 237 / 75%) !important;
+
+        a {
+          color: rgb(118 78 145) !important;
+        }
+      }
+    }
   }
 
   .smart-venture-media-day-layout {
@@ -1882,7 +1938,7 @@
     text-align: center;
     font-size: 0.78rem;
     font-weight: 500;
-    color: rgb(92 58 70 / 82%);
+    color: rgb(80 44 48 / 84%);
 
     img {
       width: 100%;
@@ -2004,12 +2060,12 @@
     background: var(--smart-surface);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border: 1px solid rgb(140 74 88 / 18%);
+    border: 1px solid rgb(211 173 237 / 15%);
     box-shadow: 0 4px 16px -8px var(--smart-shadow);
 
     &:hover {
       background: var(--smart-surface);
-      border-color: rgb(140 74 88 / 28%);
+      border-color: color-mix(in srgb, #d3aded 46%, #f4a4a9);
       transform: none;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
@@ -2027,9 +2083,9 @@
     height: 100%;
     min-height: 220px;
     border-radius: 0.8em;
-    border: 1px dashed rgb(140 74 88 / 28%);
-    background: linear-gradient(45deg, rgb(231 227 239 / 55%) 0%, rgb(247 206 195 / 35%) 100%);
-    color: rgb(92 58 70 / 86%);
+    border: 1px dashed rgb(211 173 237 / 22%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 8%) 0%, rgb(244 164 169 / 5%) 100%);
+    color: rgb(52 40 72 / 88%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2065,6 +2121,7 @@
 
   .smart-venture-media-vetting-visual {
     width: 100%;
+    min-width: 0;
     display: flex;
     align-items: stretch;
 
@@ -2074,6 +2131,12 @@
   }
 
   .smart-venture-media-vetting-image-card {
+    /*
+     * Typography scales with inherited body (0.75rem mobile / 1rem ≥768px); SVG uses em + viewBox correction.
+     */
+    font-size: inherit;
+    container-name: vetting-funnel;
+    container-type: inline-size;
     width: 100%;
     padding: 0.45em !important;
     border-radius: 1em;
@@ -2101,6 +2164,18 @@
         width: 100%;
         height: 100%;
         min-height: 0;
+        /*
+         * Problem boxes read slightly larger than strict 0.95em (icon + padding); use 1em of inherited body
+         * so titles fill trapezoids like the problem headlines, then viewBox width correction.
+         */
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: calc(1em * 680 / 360);
+        font-size: calc(1em * 680 / max(100cqw, 200px));
+
+        @media (width >=1280px) {
+          font-size: calc(1.05em * 680 / 360);
+          font-size: calc(1.05em * 680 / max(100cqw, 200px));
+        }
       }
     }
 
@@ -2109,20 +2184,28 @@
       stroke: rgb(167 94 124 / 62%);
     }
 
+    /* Problem graphic: bold headline + clearly secondary but readable subcopy (see .flow-text / .flow-text-sub) */
+    .smart-vetting-stage-line {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
     .smart-vetting-th {
       font-family: inherit;
-      font-size: 21px;
-      font-weight: 500;
-      letter-spacing: 0;
-      fill: rgb(88 38 61 / 94%);
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      fill: #333;
+      white-space: nowrap;
     }
 
     .smart-vetting-ts {
       font-family: inherit;
-      font-size: 16px;
+      font-size: 0.875em;
       font-weight: 400;
       letter-spacing: 0;
-      fill: rgb(108 55 82 / 86%);
+      line-height: 1.35;
+      fill: rgb(0 0 0 / 58%);
     }
 
     .smart-vetting-arrow-line {
@@ -2136,19 +2219,33 @@
     }
 
     .smart-vetting-tail-label {
-      font-family: inherit;
-      font-size: 15px;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.875em;
       font-weight: 400;
-      fill: rgb(82 82 82 / 90%);
+      line-height: 1.35;
+      fill: rgb(0 0 0 / 58%);
     }
 
     @media (width <=768px) {
-      .smart-vetting-th { font-size: 16px; }
-      .smart-vetting-ts { font-size: 12.75px; }
-      .smart-vetting-tail-label { font-size: 13px; }
+      .smart-vetting-funnel {
+        min-height: 0;
+      }
 
+      /*
+       * Same 0.95em compensation as desktop; max() uses column-ish vw when cq is tighter than problem row.
+       */
       .smart-vetting-funnel svg {
-        min-height: 340px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 680 / 640;
+        min-height: 0;
+        max-height: none;
+        overflow: visible;
+        font-size: calc(1em * 680 / max(100vw - 2.5rem, 280px));
+        font-size: max(
+          calc(1em * 680 / max(100cqw, 200px)),
+          calc(1em * 680 / max(100vw - 2.5rem, 280px))
+        );
       }
     }
   }
@@ -2166,40 +2263,82 @@
 }
 
 .dark .smart-venture-media-container {
+  /* 45deg: muted lilac → muted coral (same pair as light mode) */
   --smart-surface: linear-gradient(
-    135deg,
-    color-mix(in srgb, #d3aded 34%, #121016) 0%,
-    color-mix(in srgb, #f7cec3 38%, #141218) 100%
+    45deg,
+    color-mix(in srgb, #d3aded 48%, #121014) 0%,
+    color-mix(in srgb, #f4a4a9 46%, #121014) 100%
   );
-  --smart-primary: #f2c9d4;
-  --smart-shadow: rgb(0 0 0 / 38%);
+  --smart-primary: #e8dcf8;
+  --smart-shadow: rgb(0 0 0 / 40%);
 
   .invibe-esthetics-download-content,
   .invibe-esthetics-contact-strip-content {
-    background: linear-gradient(45deg, rgb(52 48 58 / 88%) 0%, rgb(58 46 52 / 82%) 100%);
-    border-color: rgb(230 200 210 / 22%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 12%) 0%, rgb(244 164 169 / 8%) 100%);
+    border-color: rgb(211 173 237 / 22%);
   }
 
   .invibe-esthetics-link-primary {
     background: linear-gradient(
-      135deg,
-      #d8a4b4 0%,
-      color-mix(in srgb, #8c4a58 75%, #000) 100%
+      45deg,
+      color-mix(in srgb, #d3aded 72%, #000) 0%,
+      color-mix(in srgb, #f4a4a9 52%, #2a1820) 100%
     ) !important;
   }
 
   .invibe-esthetics-download-description {
-    color: rgb(255 244 246 / 88%);
+    color: rgb(255 244 245 / 90%);
   }
 
   .invibe-esthetics-download-secondary {
-    border-color: rgb(240 210 220 / 38%) !important;
-    color: rgb(255 240 244 / 95%) !important;
-    background: rgb(40 36 44 / 55%) !important;
+    border-color: rgb(211 173 237 / 50%) !important;
+    background: transparent !important;
+
+    a {
+      color: rgb(232 220 248 / 95%) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(211 173 237 / 10%) !important;
+        border-color: rgb(211 173 237 / 65%) !important;
+      }
+    }
   }
 
   .invibe-esthetics-link-secondary {
-    color: rgb(255 236 242 / 95%) !important;
+    color: rgb(236 228 255 / 95%) !important;
+  }
+
+  .invibe-esthetics-contact-strip-cta {
+    border-color: rgb(211 173 237 / 50%) !important;
+    background: transparent !important;
+
+    a {
+      color: rgb(232 220 248 / 95%) !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: rgb(211 173 237 / 10%) !important;
+        border-color: rgb(211 173 237 / 65%) !important;
+
+        a {
+          color: rgb(232 220 248 / 95%) !important;
+        }
+      }
+    }
+  }
+
+  .invibe-esthetics-metric-card,
+  .invibe-esthetics-metric-card.invibe-esthetics-metric-primary {
+    background: linear-gradient(45deg, rgb(211 173 237 / 10%) 0%, rgb(244 164 169 / 6%) 100%);
+    border-color: rgb(211 173 237 / 22%);
+  }
+
+  .invibe-esthetics-metric-card.invibe-esthetics-metric-primary {
+    background: linear-gradient(45deg, rgb(211 173 237 / 14%) 0%, rgb(244 164 169 / 10%) 100%);
+    border-color: rgb(211 173 237 / 30%);
   }
 
   .invibe-esthetics-download-text,
@@ -2210,29 +2349,29 @@
   }
 
   .invibe-esthetics-feedback-card {
-    background: linear-gradient(45deg, rgb(52 48 58 / 72%) 0%, rgb(58 46 52 / 65%) 100%) !important;
-    border-color: rgb(230 200 210 / 22%);
-    box-shadow: 0 4px 20px -4px rgb(0 0 0 / 32%);
+    background: linear-gradient(45deg, rgb(211 173 237 / 18%) 0%, rgb(244 164 169 / 10%) 100%) !important;
+    border-color: rgb(211 173 237 / 32%);
+    box-shadow: 0 4px 20px -4px rgb(0 0 0 / 34%);
   }
 
   .invibe-esthetics-feedback-quote-mark {
-    color: rgb(240 200 212 / 85%);
+    color: rgb(210 190 245 / 88%);
   }
 
   .invibe-esthetics-feedback-attribution {
-    color: rgb(230 196 208 / 82%);
+    color: rgb(188 168 220 / 84%);
   }
 
   .smart-venture-media-insight-image-card.project-echo-details-card {
     background: var(--smart-surface);
-    border-color: rgb(230 200 210 / 22%);
+    border-color: rgb(211 173 237 / 24%);
     box-shadow: 0 4px 20px -8px var(--smart-shadow);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 
     &:hover {
       background: var(--smart-surface);
-      border-color: rgb(240 210 220 / 30%);
+      border-color: rgb(211 173 237 / 34%);
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
@@ -2240,25 +2379,28 @@
 
   .smart-venture-media-vetting-image-card {
     .smart-vetting-stage-shape polygon {
-      fill: rgb(180 120 140 / 32%);
-      stroke: rgb(255 225 238 / 45%);
+      fill: rgb(211 173 237 / 42%);
+      stroke: rgb(210 196 238 / 48%);
     }
 
-    .smart-vetting-th,
+    .smart-vetting-th {
+      fill: #ddd;
+    }
+
     .smart-vetting-ts {
-      fill: rgb(255 240 240 / 96%);
+      fill: rgb(255 255 255 / 60%);
     }
 
     .smart-vetting-arrow-line {
-      stroke: rgb(255 235 240 / 88%);
+      stroke: rgb(228 218 252 / 88%);
     }
 
     .smart-vetting-arrow-head {
-      fill: rgb(255 228 234 / 95%);
+      fill: rgb(236 226 255 / 95%);
     }
 
     .smart-vetting-tail-label {
-      fill: rgb(255 235 240 / 94%);
+      fill: rgb(255 255 255 / 60%);
     }
   }
 }

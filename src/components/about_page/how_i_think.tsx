@@ -1,7 +1,7 @@
 import { IconBulb } from '@tabler/icons-react'
 import BadgeButton from 'components/badge_button'
 import ScrollAnimatedText from 'components/scroll_animated_text'
-import FileQuery from 'queries/file'
+import useResolveFile from 'queries/file'
 import { useMemo, useRef } from 'react'
 
 import Section from './section'
@@ -10,9 +10,10 @@ const taglineText = 'Strategic + Linguistic + Systems-Thinking + Brutally Practi
 
 const HowIThink = (): JSX.Element => {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const resolveFile = useResolveFile()
   let resumeUrl = 'https://www.linkedin.com/in/adalidabaca/'
   try {
-    resumeUrl = FileQuery('resume.pdf').publicURL
+    resumeUrl = resolveFile('resume.pdf').publicURL
   } catch {
     // Fallback to LinkedIn if resume.pdf is not found
   }
