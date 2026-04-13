@@ -37,9 +37,9 @@ export const INTERNSHIP_PORTFOLIO_SECTIONS: InternshipSection[] = [
         link: 'https://storage.googleapis.com/adalida_design_project_echo/Procedural%20Documentation/SETTING%20UP%20A%20DEVELOPMENT%20ENVIRONMENT.pdf'
       },
       {
-        title: 'NURSING HOME ECHO USER GUIDE (CAN)',
+        title: 'NURSING HOME ECHO USER GUIDE',
         description:
-          'This is an informative training guide for the Nursing Home instance of iECHO. This training guide introduces and provides a full overview for IECHO for Nursing Homes and how to enter information.',
+          "A training guide for the Nursing Home instance of iECHO, Project ECHO's custom CRM. Covers a full system overview and how to enter information accurately.",
         link: 'https://storage.googleapis.com/adalida_design_project_echo/Procedural%20Documentation/NURSING%20HOME%20ECHO%20USER%20GUIDE%20(CAN).pdf'
       },
       {

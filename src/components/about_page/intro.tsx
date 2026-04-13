@@ -8,6 +8,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 
 const AdalidaFace = 'images/about/adalida avatar.png'
 const YT_VIDEO_ID = 'I-NqIiF6DgI'
+const FALLBACK_AUDIO_URL = 'https://open.spotify.com/track/0hl1YSFfVYUk54kyChOXQp'
 
 interface YTPlayer {
   playVideo: () => void
@@ -64,6 +65,7 @@ const Intro = (): JSX.Element | null => {
   const [playerReady, setPlayerReady] = useState(false)
   const playerRef = useRef<YTPlayer | null>(null)
   const playerIdRef = useRef(`yt-audio-${Math.random().toString(36).slice(2)}`)
+  const pendingPlayRef = useRef(false)
 
   const ensureYTApi = useMemo(() => {
     return async (): Promise<void> => {
@@ -78,7 +80,9 @@ const Intro = (): JSX.Element | null => {
         window.__ytApiReadyPromise = new Promise<void>(resolve => {
           window.__ytApiResolve = resolve
         })
+        const previousReady = window.onYouTubeIframeAPIReady
         window.onYouTubeIframeAPIReady = () => {
+          previousReady?.()
           window.__ytApiResolve?.()
         }
 
@@ -92,6 +96,19 @@ const Intro = (): JSX.Element | null => {
       }
 
       await window.__ytApiReadyPromise
+
+      // Fallback: if callback flow was interrupted, resolve once namespace appears.
+      if (window.YT?.Player === undefined) {
+        await new Promise<void>(resolve => {
+          const startedAt = Date.now()
+          const timer = window.setInterval(() => {
+            if (window.YT?.Player !== undefined || Date.now() - startedAt > 6000) {
+              window.clearInterval(timer)
+              resolve()
+            }
+          }, 100)
+        })
+      }
     }
   }, [])
 
@@ -131,6 +148,14 @@ const Intro = (): JSX.Element | null => {
               return
             }
             setPlayerReady(true)
+            if (pendingPlayRef.current) {
+              pendingPlayRef.current = false
+              try {
+                playerRef.current?.playVideo?.()
+              } catch {
+                /* noop */
+              }
+            }
           },
           onStateChange: (e: YTStateChangeEvent) => {
             if (!alive) {
@@ -162,8 +187,9 @@ const Intro = (): JSX.Element | null => {
   }, [ensureYTApi])
 
   const onTogglePlay = (): void => {
-    // iOS requires play() be called from a user gesture, and the player must be ready.
     if (!playerReady) {
+      // Fallback path if embedded player is blocked/slow: open track directly.
+      window.open(FALLBACK_AUDIO_URL, '_blank', 'noopener,noreferrer')
       return
     }
     try {
@@ -173,7 +199,7 @@ const Intro = (): JSX.Element | null => {
         playerRef.current?.playVideo?.()
       }
     } catch {
-      // no-op
+      window.open(FALLBACK_AUDIO_URL, '_blank', 'noopener,noreferrer')
     }
   }
 
@@ -195,7 +221,6 @@ const Intro = (): JSX.Element | null => {
                   aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   aria-pressed={isPlaying}
                   title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
-                  disabled={!playerReady}
                   type="button"
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}
@@ -223,7 +248,6 @@ const Intro = (): JSX.Element | null => {
                   aria-label={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
                   aria-pressed={isPlaying}
                   title={isPlaying ? 'Pause "Adalida"' : 'Play "Adalida"'}
-                  disabled={!playerReady}
                   type="button"
                 >
                   {isPlaying ? <IconPlayerPauseFilled size={18} /> : <IconPlayerPlayFilled size={18} />}

@@ -30,7 +30,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
                 Selected dashboards, documentation, and internal tools from my internship at Project ECHO.
               </p>
               <BadgeButton to="/internship-portfolio" className="project-echo-download-secondary">
-                View Portfolio
+                View More Internship Work
               </BadgeButton>
             </div>
           </div>

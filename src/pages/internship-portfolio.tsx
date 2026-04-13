@@ -6,10 +6,34 @@ import { INTERNSHIP_PORTFOLIO_SECTIONS } from 'data/internship_portfolio'
 import { useEffect } from 'react'
 
 const sectionId = (title: string): string => title.toLowerCase().replace(/\s+/g, '-')
+const getScrollOffset = (): number => {
+  // Fixed header is 56px; keep breathing room so section heading is fully visible.
+  return 84
+}
 
 const InternshipPortfolio = (): JSX.Element => {
+  const scrollToSection = (id: string, behavior: ScrollBehavior = 'smooth'): void => {
+    if (typeof window === 'undefined') {
+      return
+    }
+    const element = document.getElementById(id)
+    if (element === null) {
+      return
+    }
+    const top = window.scrollY + element.getBoundingClientRect().top - getScrollOffset()
+    window.scrollTo({ top: Math.max(top, 0), behavior })
+  }
+
   useEffect(() => {
     AOS.refresh()
+
+    // If a hash is present (direct link or back/forward), align with fixed header offset.
+    const hash = window.location.hash.replace('#', '')
+    if (hash !== '') {
+      requestAnimationFrame(() => {
+        scrollToSection(hash, 'auto')
+      })
+    }
   }, [])
 
   return (
@@ -25,6 +49,12 @@ const InternshipPortfolio = (): JSX.Element => {
               key={section.sectionTitle}
               href={`#${sectionId(section.sectionTitle)}`}
               className="internship-portfolio-nav-link"
+              onClick={event => {
+                event.preventDefault()
+                const id = sectionId(section.sectionTitle)
+                scrollToSection(id)
+                window.history.replaceState(null, '', `#${id}`)
+              }}
             >
               {section.sectionTitle}
             </a>

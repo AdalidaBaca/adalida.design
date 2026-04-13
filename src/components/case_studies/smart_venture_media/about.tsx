@@ -64,7 +64,7 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
               <p className="invibe-esthetics-details-text">
                 As the summits grew, so did the complexity. More speakers, more panels, more sponsors, unvetted
                 volunteers, and one ship date in a room full of a16z, Sequoia, and Bessemer partners at the SVB Center
-                off Market.
+                off Market street.
               </p>
             </div>
           </div>
