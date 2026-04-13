@@ -11,24 +11,24 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
           <div className="project-echo-details-card">
             <SectionHeading title="INFO. PERSON. MOMENT." />
             <div className="body-2">
-              Giving everyone everything creates confusion not clarity. <strong>Scoping what each role sees</strong>{' '}
+              Giving everyone everything creates confusion not clarity. <strong>scoping what each role sees</strong>{' '}
               before the event starts is what keeps things moving when there is no time to answer questions.
             </div>
           </div>
 
           <div className="project-echo-details-card">
-            <SectionHeading title="DESIGN FOR UNCERTAINTY" />
+            <SectionHeading title="PAPER TRAIL" />
             <div className="body-2">
-              You cannot vet a volunteer a week before an event. You can build a system that tells you{' '}
-              <strong>who to trust before they arrive</strong>. The <strong>filter is the system</strong>.
+              Execution is only as strong as what gets communicated before the event starts. When decisions stay in one
+              person&apos;s head, <strong>they become problems on the day</strong>.
             </div>
           </div>
 
           <div className="project-echo-details-card">
-            <SectionHeading title="TRUST IS BUILT IN STAGES" />
+            <SectionHeading title="SYSTEMS OUTLAST EVENTS" />
             <div className="body-2">
-              What started as volunteering became a website project. The website became{' '}
-              <strong>event operations</strong>. Each role came because the previous one was done well.
+              The event ends but the documents, the process, and the operational muscle memory stay behind.{' '}
+              <strong>build for tomorrow, not just today</strong>.
             </div>
           </div>
         </div>

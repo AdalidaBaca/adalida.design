@@ -11,7 +11,7 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">44</div>
             <div className="invibe-esthetics-metric-label">Speakers coordinated</div>
-            <div className="invibe-esthetics-metric-sublabel">day-of</div>
+            <div className="invibe-esthetics-metric-sublabel">April 2026 Summit</div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">19</div>
@@ -21,7 +21,7 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">11</div>
             <div className="invibe-esthetics-metric-label">Sponsors managed</div>
-            <div className="invibe-esthetics-metric-sublabel">day-of</div>
+            <div className="invibe-esthetics-metric-sublabel">April 2026 Summit</div>
           </div>
         </div>
 
