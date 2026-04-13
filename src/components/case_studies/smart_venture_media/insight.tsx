@@ -11,7 +11,8 @@ const Insight = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
             <SectionHeading title="INSIGHT" subtitle="One Document Cannot Do Everything" />
             <div className="body-2">
               The run of show and the website were <strong>two sources of truth</strong> for the same event. Volunteers
-              were managing both. The insight was simple: <strong>break it apart</strong>. <strong>One document per role</strong>, built around what that person actually needed to do.
+              were managing both. The insight was simple: <strong>break it apart</strong>.{' '}
+              <strong>One document per role</strong>, built around what that person actually needed to do.
             </div>
             <div className="body-2">
               The founder had the vision. The infrastructure to support it didn&apos;t exist yet.

@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'react'
 import type { Project } from 'projects'
+import type { CSSProperties } from 'react'
 import Description from './description'
 import HeroImage from './hero_image'
 

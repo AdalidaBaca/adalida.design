@@ -1664,6 +1664,7 @@
 .smart-venture-media-container {
   /* 45deg: lilac #d3aded → coral pink #f4a4a9 */
   --smart-surface: linear-gradient(45deg, #d3aded 0%, #f4a4a9 100%);
+
   /* Solid accent for type, borders, and small fills on pale surfaces */
   --smart-primary: #4a3a5c;
   --smart-shadow: rgb(211 173 237 / 26%);
@@ -2059,7 +2060,6 @@
   .smart-venture-media-insight-image-card.project-echo-details-card {
     background: var(--smart-surface);
     backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     border: 1px solid rgb(211 173 237 / 15%);
     box-shadow: 0 4px 16px -8px var(--smart-shadow);
 
@@ -2068,7 +2068,6 @@
       border-color: color-mix(in srgb, #d3aded 46%, #f4a4a9);
       transform: none;
       backdrop-filter: none;
-      -webkit-backdrop-filter: none;
     }
   }
 
@@ -2164,6 +2163,7 @@
         width: 100%;
         height: 100%;
         min-height: 0;
+
         /*
          * Problem boxes read slightly larger than strict 0.95em (icon + padding); use 1em of inherited body
          * so titles fill trapezoids like the problem headlines, then viewBox width correction.
@@ -2367,13 +2367,11 @@
     border-color: rgb(211 173 237 / 24%);
     box-shadow: 0 4px 20px -8px var(--smart-shadow);
     backdrop-filter: none;
-    -webkit-backdrop-filter: none;
 
     &:hover {
       background: var(--smart-surface);
       border-color: rgb(211 173 237 / 34%);
       backdrop-filter: none;
-      -webkit-backdrop-filter: none;
     }
   }
 

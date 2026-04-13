@@ -23,8 +23,7 @@ const Solution = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivEleme
             </div>
             <div className="body-2">
               I used <strong>Claude</strong> to assign volunteers to speaker sessions based on their preferences, so
-              each person got{' '}
-              <strong>face time with at least one panelist they wanted to meet</strong>.
+              each person got <strong>face time with at least one panelist they wanted to meet</strong>.
             </div>
           </div>
         </div>
