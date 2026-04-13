@@ -14,28 +14,28 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: 'Ricardo Piro-Rael',
-    title: 'Co-founder & Engineer',
-    quote:
-      'Adalida has a strong bias to action. I felt like I had a thought partner, not just a designer. Because of that partnership, we were able to ship.'
-  },
-  {
     name: 'Grace Gong',
     title: 'VC, Smart Venture Media',
     quote:
       "Adi is an absolute gem. Hardworking, reliable, and genuinely talented! She brought our vision to life and made the whole process easy. Couldn't recommend her more highly."
   },
   {
-    name: 'Mariana Lucchesi',
-    title: 'Mentor, Women in Design',
+    name: 'Ricardo Piro-Rael',
+    title: 'Co-founder & Engineer',
     quote:
-      'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
+      'Adalida has a strong bias to action. I felt like I had a thought partner, not just a designer. Because of that partnership, we were able to ship.'
   },
   {
     name: 'Andria Herrera',
     title: 'Owner, Invibe Esthetics',
     quote:
       'Adalida is so kind, patient, open minded, and knowledgeable. My sales and bookings have increased significantly, bringing so much growth to my business. HIGHLY recommend!'
+  },
+  {
+    name: 'Mariana Lucchesi',
+    title: 'Mentor, Women in Design',
+    quote:
+      'Adalida is a brilliant mentee who turns feedback into action and complex ideas into accessible case studies. Knowledgeable, creative, and a natural learner, she is a standout talent.'
   },
   {
     name: 'Jeanette Acosta Fresquez',
