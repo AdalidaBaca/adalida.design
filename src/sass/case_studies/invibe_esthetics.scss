@@ -2060,7 +2060,6 @@
   .smart-venture-media-insight-image-card.project-echo-details-card {
     background: var(--smart-surface);
     backdrop-filter: none;
-    backdrop-filter: none;
     border: 1px solid rgb(211 173 237 / 15%);
     box-shadow: 0 4px 16px -8px var(--smart-shadow);
 
@@ -2068,7 +2067,6 @@
       background: var(--smart-surface);
       border-color: color-mix(in srgb, #d3aded 46%, #f4a4a9);
       transform: none;
-      backdrop-filter: none;
       backdrop-filter: none;
     }
   }
@@ -2369,12 +2367,10 @@
     border-color: rgb(211 173 237 / 24%);
     box-shadow: 0 4px 20px -8px var(--smart-shadow);
     backdrop-filter: none;
-    backdrop-filter: none;
 
     &:hover {
       background: var(--smart-surface);
       border-color: rgb(211 173 237 / 34%);
-      backdrop-filter: none;
       backdrop-filter: none;
     }
   }
