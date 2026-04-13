@@ -3,7 +3,7 @@ import ContactCTA from 'components/about_page/contact_cta'
 import InternshipCard from 'components/portfolio_page/internship_card'
 import Seo from 'components/seo'
 import { INTERNSHIP_PORTFOLIO_SECTIONS } from 'data/internship_portfolio'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 const sectionId = (title: string): string => title.toLowerCase().replace(/\s+/g, '-')
 const getScrollOffset = (): number => {
@@ -12,7 +12,7 @@ const getScrollOffset = (): number => {
 }
 
 const InternshipPortfolio = (): JSX.Element => {
-  const scrollToSection = (id: string, behavior: ScrollBehavior = 'smooth'): void => {
+  const scrollToSection = useCallback((id: string, behavior: ScrollBehavior = 'smooth'): void => {
     if (typeof window === 'undefined') {
       return
     }
@@ -22,7 +22,7 @@ const InternshipPortfolio = (): JSX.Element => {
     }
     const top = window.scrollY + element.getBoundingClientRect().top - getScrollOffset()
     window.scrollTo({ top: Math.max(top, 0), behavior })
-  }
+  }, [])
 
   useEffect(() => {
     AOS.refresh()
@@ -34,7 +34,7 @@ const InternshipPortfolio = (): JSX.Element => {
         scrollToSection(hash, 'auto')
       })
     }
-  }, [])
+  }, [scrollToSection])
 
   return (
     <div className="internship-portfolio-page" style={{ paddingTop: '72px' }}>
