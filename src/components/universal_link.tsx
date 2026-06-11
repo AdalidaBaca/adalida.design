@@ -1,33 +1,32 @@
 import { Link } from 'gatsby'
 import { useMemo } from 'react'
+import type { AnchorHTMLAttributes } from 'react'
 
-interface Props {
+interface Props extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   to: string
-  children: React.ReactNode
-  className?: string
 }
 
-const UniversalLink = ({ to, children, className }: Props): JSX.Element => {
-  const { external, mailTo, rest } = useMemo(() => {
+const UniversalLink = ({ to, children, ...rest }: Props): JSX.Element => {
+  const { external, mailTo, externalProps } = useMemo(() => {
     const external = /^(http|\/static)/.test(to)
     const mailTo = to.startsWith('mailto')
-    const rest = mailTo ? {} : { target: '_blank', rel: 'noopener noreferrer' }
-    return { external, mailTo, rest }
+    const externalProps = mailTo ? {} : { target: '_blank', rel: 'noopener noreferrer' }
+    return { external, mailTo, externalProps }
   }, [to])
 
   if (external || mailTo) {
     return (
-      <a href={to} className={className} {...rest}>
+      <a href={to} {...externalProps} {...rest}>
         {children}
       </a>
     )
-  } else {
-    return (
-      <Link to={to} className={className}>
-        {children}
-      </Link>
-    )
   }
+
+  return (
+    <Link to={to} {...rest}>
+      {children}
+    </Link>
+  )
 }
 
 export default UniversalLink

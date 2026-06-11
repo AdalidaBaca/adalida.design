@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
+import SectionHeaderLink from 'components/section_header_link'
 import Section from './section'
 
 const GITHUB_USERNAME = 'adalidabaca'
@@ -88,23 +89,15 @@ const GitHubCalendar = (): JSX.Element => {
   }, [days])
 
   return (
-    <Section title="Contributions">
+    <Section
+      title="Contributions"
+      subtitle="Product builder who can step in as a developer when teams need it."
+      headerAction={<SectionHeaderLink to={`https://github.com/${GITHUB_USERNAME}`}>GitHub</SectionHeaderLink>}
+    >
       <div className="github-calendar">
-        <div className="github-calendar-header">
-          <div className="github-calendar-meta">
-            <div className="github-calendar-count">
-              {days === null && error === null
-                ? 'Loading contributions…'
-                : `${total.toLocaleString()} contributions in the last year`}
-            </div>
-          </div>
-        </div>
-
         {error !== null ? (
           <output className="github-calendar-error">Couldn’t load contributions ({error}).</output>
         ) : null}
-
-        {/* loading state is shown inline in the header count */}
 
         {days !== null ? (
           <div
@@ -126,15 +119,12 @@ const GitHubCalendar = (): JSX.Element => {
           </div>
         ) : null}
 
-        <div className="github-calendar-footer">
-          <a
-            className="github-calendar-link"
-            href={`https://github.com/${GITHUB_USERNAME}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            View on GitHub
-          </a>
+        <div className="github-calendar-meta">
+          <div className="github-calendar-count">
+            {days === null && error === null
+              ? 'Loading contributions…'
+              : `${total.toLocaleString()} contributions in the last year`}
+          </div>
           <div className="github-calendar-legend" aria-label="Contribution intensity legend" role="img">
             <span className="legend-label">Less</span>
             <div className="legend-cells" aria-hidden="true">

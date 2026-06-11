@@ -1,3 +1,127 @@
+@use 'sass:map';
+@import '../colors';
+@import '../variables';
+
+$gaintain-accent: #E65C00;
+$gaintain-accent-hover: #c24100;
+$gaintain-accent-muted: color-mix(in srgb, #F9D423 38%, #E65C00);
+$gaintain-accent-dark: #F9D423;
+$gaintain-accent-dark-hover: #fde047;
+$gaintain-accent-dark-muted: color-mix(in srgb, #F9D423 42%, #fb923c);
+
+@mixin gaintain-surface-card {
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  backdrop-filter: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+      border-color: rgb(0 0 0 / 10%);
+    }
+  }
+}
+
+@mixin gaintain-accent-rail {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(180deg, #E65C00 0%, #F9D423 100%);
+  }
+}
+
+/* Replace site brown accent with GainTain orange across header, content, and footer */
+.light.case-study-accent--gaintain,
+.case-study-accent--gaintain.light {
+  --color-accent: #{$gaintain-accent};
+  --color-accent-hover: #{$gaintain-accent-hover};
+  --color-accent-muted: #{$gaintain-accent-muted};
+  --page-accent: #{$gaintain-accent};
+  --page-accent-hover: #{$gaintain-accent-hover};
+  --page-accent-muted: #{$gaintain-accent-muted};
+}
+
+.dark.case-study-accent--gaintain,
+.case-study-accent--gaintain.dark {
+  --color-accent: #{$gaintain-accent-dark};
+  --color-accent-hover: #{$gaintain-accent-dark-hover};
+  --color-accent-muted: #{$gaintain-accent-dark-muted};
+  --page-accent: #{$gaintain-accent-dark};
+  --page-accent-hover: #{$gaintain-accent-dark-hover};
+  --page-accent-muted: #{$gaintain-accent-dark-muted};
+}
+
+.case-study-accent--gaintain {
+  .footer {
+    &::before {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        color-mix(in srgb, #{$gaintain-accent} 55%, transparent) 50%,
+        transparent 100%
+      );
+    }
+
+    &::after {
+      background: radial-gradient(
+        ellipse at 50% 0%,
+        color-mix(in srgb, #{$gaintain-accent} 16%, transparent) 0%,
+        transparent 72%
+      );
+    }
+  }
+
+  .footer-wordmark {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: color-mix(in srgb, #{$gaintain-accent-dark} 85%, #{$light-text});
+      }
+    }
+
+    &:focus-visible {
+      outline-color: color-mix(in srgb, #{$gaintain-accent-dark} 55%, transparent);
+    }
+  }
+
+  .footer-nav a {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow:
+          inset 0 0 0 1px color-mix(in srgb, #{$gaintain-accent-dark} 28%, transparent),
+          0 2px 8px rgb(0 0 0 / 18%);
+      }
+    }
+
+    &:focus-visible {
+      outline-color: color-mix(in srgb, #{$gaintain-accent-dark} 45%, transparent);
+    }
+  }
+}
+
+.gaintain-container {
+  .gaintain-details-label {
+    color: rgba($dark-text, 0.45);
+  }
+}
+
+.dark .gaintain-container {
+  .gaintain-details-label {
+    color: rgba(map.get($dark-colors, secondary), 0.42);
+  }
+}
+
 .gaintain-hero {
   display: flex;
   flex-direction: column;
@@ -479,7 +603,10 @@
   text-align: left;
   color: transparent;
   -webkit-text-stroke: 3px #E65C00;
-  font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 @keyframes gradient-shift {
@@ -577,30 +704,31 @@
 
 /* Rows only: row 1 = title + primary CTA, row 2 = supporting text + secondary CTA */
 .gaintain-download-content {
+  @include gaintain-accent-rail;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  background: linear-gradient(135deg, rgb(230 92 0 / 8%) 0%, rgb(249 212 35 / 5%) 100%);
-  border: 1px solid rgb(230 92 0 / 15%);
-  border-radius: 16px;
-  padding: 1.25em 1.5em;
-  box-shadow:
-    0 4px 16px -8px rgb(230 92 0 / 15%),
-    0 2px 8px -4px rgb(230 92 0 / 10%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: $radius-lg;
+  padding: 1.35em 1.5em 1.35em 1.65em;
+  box-shadow: $shadow-sm;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 
   @media (width >=768px) {
-    padding: 1.5em 2em;
+    padding: 1.5em 2em 1.5em 2.15em;
   }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
-      box-shadow:
-        0 8px 24px -12px rgb(230 92 0 / 20%),
-        0 4px 12px -6px rgb(230 92 0 / 15%);
+      box-shadow: $shadow-md;
+      border-color: color-mix(in srgb, #{$gaintain-accent} 22%, rgb(0 0 0 / 7%));
     }
   }
 }
@@ -703,7 +831,7 @@
   color: transparent;
   margin: 0;
   text-align: center;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   letter-spacing: -0.02em;
 
   @media (width >=768px) {
@@ -713,17 +841,14 @@
 }
 
 .dark .gaintain-download-content {
-  background: linear-gradient(135deg, rgb(230 92 0 / 12%) 0%, rgb(249 212 35 / 8%) 100%);
-  border-color: rgb(230 92 0 / 20%);
-  box-shadow:
-    0 6px 20px -8px rgb(230 92 0 / 20%),
-    0 2px 8px -4px rgb(230 92 0 / 15%);
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      box-shadow:
-        0 10px 28px -12px rgb(230 92 0 / 25%),
-        0 4px 12px -6px rgb(230 92 0 / 20%);
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: color-mix(in srgb, #{$gaintain-accent-dark} 28%, rgb(255 255 255 / 10%));
     }
   }
 }
@@ -873,11 +998,14 @@
 }
 
 .gaintain-details-card {
+  @include gaintain-surface-card;
+
   display: flex;
   flex-direction: column;
   gap: 1em;
   padding: 1.25em;
-  border-radius: 0.75em;
+  width: 100%;
+  box-sizing: border-box;
 
   /* Style ToolsCarousel when inside card */
   >.tools-carousel {
@@ -897,34 +1025,29 @@
     @media (width >=768px) {
       padding: 2em !important;
     }
-  }
 
-  background: rgb(255 255 255 / 2%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgb(0 0 0 / 5%);
-  transition: all 0.3s ease;
-  width: 100%;
-  box-sizing: border-box;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: none;
+        box-shadow: none !important;
+        border-color: transparent !important;
+      }
+    }
+  }
 
   @media (width >=768px) {
     gap: 1.5em;
     padding: 2em;
   }
 
-  &:hover {
-    background: rgb(255 255 255 / 3%);
-    border-color: rgb(0 0 0 / 10%);
-    transform: translateY(-2px);
-  }
-
   >.body-2 {
     margin: 0;
-    line-height: 1.7;
-    font-size: 1.05em;
+    line-height: 1.65;
+    font-size: clamp(0.92rem, 2vw, 1rem);
+    color: rgba($dark-text, 0.72);
 
     @media (width >=768px) {
-      line-height: 1.8;
-      font-size: 1.1em;
+      line-height: 1.65;
     }
   }
 
@@ -933,15 +1056,30 @@
   }
 }
 
+.dark .gaintain-details-card {
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: rgb(255 255 255 / 14%);
+    }
+  }
+
+  >.body-2 {
+    color: rgba(map.get($dark-colors, secondary), 0.72);
+  }
+}
+
 .gaintain-details-meta-grid {
+  @include gaintain-surface-card;
+
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   padding: 1.5em;
-  border-radius: 0.75em;
-  background: rgb(255 255 255 / 2%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgb(0 0 0 / 5%);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -952,6 +1090,19 @@
     padding: 1.75em;
     justify-content: space-between;
     gap: 0;
+  }
+}
+
+.dark .gaintain-details-meta-grid {
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: rgb(255 255 255 / 14%);
+    }
   }
 }
 
@@ -1009,12 +1160,12 @@
 }
 
 .gaintain-details-label {
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.7;
   margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
 }
 
 .gaintain-details-text {
@@ -1100,7 +1251,7 @@
     font-weight: 600 !important;
     padding: 0 !important;
     font-size: inherit !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-family: var(--font-sans) !important;
     letter-spacing: 0.02em !important;
   }
 
@@ -1669,7 +1820,7 @@
 }
 
 .reset-loop .node-text {
-  font: 700 24px Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font: 700 24px var(--font-sans);
   fill: rgb(0 0 0 / 90%);
   letter-spacing: 0.02em;
 
@@ -2276,7 +2427,7 @@
 }
 
 .accountability-gap-text {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-size: 18px;
   color: rgb(0 0 0 / 90%);
   text-align: center;
@@ -2680,7 +2831,8 @@
     }
 
     .drop-off-x {
-      font-family: 'Patrick Hand', cursive;
+      font-family: var(--font-sans);
+      font-weight: 600;
       font-size: 55px;
       font-weight: 700;
       color: #DC2626;
@@ -3112,7 +3264,7 @@
 }
 
 .persona-title {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 700;
 
   /* Increased from 600 for stronger hierarchy */
@@ -3168,7 +3320,7 @@
 }
 
 .persona-subtitle {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 500;
 
   /* Increased from 400 for better readability */
@@ -3332,7 +3484,7 @@
 }
 
 .gaintain-end-cta-heading {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   line-height: 1.2;
@@ -3463,32 +3615,33 @@
 }
 
 .gaintain-contact-strip-content {
+  @include gaintain-accent-rail;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  background: linear-gradient(135deg, rgb(230 92 0 / 8%) 0%, rgb(249 212 35 / 5%) 100%);
-  border: 1px solid rgb(230 92 0 / 15%);
-  border-radius: 16px;
-  padding: 1.25em 1.5em;
-  box-shadow:
-    0 4px 16px -8px rgb(230 92 0 / 15%),
-    0 2px 8px -4px rgb(230 92 0 / 10%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: $radius-lg;
+  padding: 1.35em 1.5em 1.35em 1.65em;
+  box-shadow: $shadow-sm;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 
   @media (width >=768px) {
     flex-direction: row;
     align-items: center;
-    padding: 1.5em 2em;
+    padding: 1.5em 2em 1.5em 2.15em;
   }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-2px);
-      box-shadow:
-        0 8px 24px -12px rgb(230 92 0 / 20%),
-        0 4px 12px -6px rgb(230 92 0 / 15%);
+      box-shadow: $shadow-md;
+      border-color: color-mix(in srgb, #{$gaintain-accent} 22%, rgb(0 0 0 / 7%));
     }
   }
 }
@@ -3508,25 +3661,23 @@
 
 .gaintain-contact-strip-heading {
   margin: 0;
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  font-weight: 600;
-  color: $dark-text;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.dark .gaintain-contact-strip-heading {
-  color: $light-text;
+  font-family: var(--font-sans);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: rgba($dark-text, 0.94);
 }
 
 .gaintain-contact-strip-description {
   margin: 0;
-  font-size: 0.875em;
-  line-height: 1.45;
-  color: rgb(0 0 0 / 58%);
+  font-size: clamp(0.92rem, 2vw, 1rem);
+  line-height: 1.65;
+  color: rgba($dark-text, 0.64);
   max-width: 42ch;
 
   .dark & {
-    color: rgb(255 255 255 / 62%);
+    color: rgba(map.get($dark-colors, secondary), 0.62);
   }
 }
 
@@ -3535,49 +3686,63 @@
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0;
-  padding: 0.5em 1.25em !important;
+  padding: 0.58rem 1.05rem !important;
   min-height: auto !important;
-  border: 2px solid rgb(230 92 0 / 55%) !important;
-  border-radius: 20px !important;
-  font-size: 0.875rem !important;
+  border: none !important;
+  border-radius: $radius-pill !important;
+  font-size: 0.8125rem !important;
   font-weight: 500 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  background: linear-gradient(45deg, #E65C00 0%, #F9D423 100%) !important;
+  box-shadow: 0 4px 14px -6px color-mix(in srgb, #{$gaintain-accent} 48%, #fff) !important;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease !important;
 
   a {
-    color: rgb(230 92 0) !important;
+    color: #fff !important;
     text-decoration: none !important;
   }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: rgb(230 92 0 / 8%) !important;
-      border-color: rgb(230 92 0 / 75%) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 18px -6px color-mix(in srgb, #{$gaintain-accent} 50%, #fff) !important;
 
       a {
-        color: rgb(230 92 0) !important;
-      }
-
-      .flex-center::after {
-        opacity: 1 !important;
+        color: #fff !important;
       }
     }
   }
 }
 
+.dark .gaintain-contact-strip-content {
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: color-mix(in srgb, #{$gaintain-accent-dark} 28%, rgb(255 255 255 / 10%));
+    }
+  }
+}
+
+.dark .gaintain-contact-strip-heading {
+  color: rgba(map.get($dark-colors, secondary), 0.95);
+}
+
 .dark .gaintain-contact-strip-cta {
-  border-color: rgb(249 212 35 / 50%) !important;
-  background: transparent !important;
+  background: linear-gradient(45deg, #E65C00 0%, #F9D423 100%) !important;
+  box-shadow: 0 4px 14px -6px color-mix(in srgb, #{$gaintain-accent} 40%, #0f1111) !important;
 
   a {
-    color: rgb(249 212 35 / 95%) !important;
+    color: #fff !important;
   }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: rgb(249 212 35 / 10%) !important;
-      border-color: rgb(249 212 35 / 65%) !important;
+      box-shadow: 0 6px 18px -6px color-mix(in srgb, #{$gaintain-accent} 45%, #0f1111) !important;
     }
   }
 }
@@ -3645,7 +3810,7 @@
 }
 
 .gaintain-next-project-name {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
 }
 
 .dark .gaintain-next-project-content {
@@ -3693,7 +3858,7 @@
     height: fit-content;
     flex-shrink: 0;
     overflow: visible;
-    font-family: Inter, sans-serif;
+    font-family: var(--font-sans);
 
     @media (width <=768px) {
       padding: 0.75em 1em;
@@ -4003,7 +4168,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+  font-family: var(--font-mono);
   opacity: 1;
   text-shadow: 0 1px 2px rgb(0 0 0 / 15%);
   margin: 0;
@@ -4080,7 +4245,7 @@
       font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: -0.01em;
-      font-family: 'SF Mono', Monaco, Inconsolata, 'Fira Code', monospace;
+      font-family: var(--font-mono);
       opacity: 0.95;
     }
   }
@@ -4298,41 +4463,26 @@
 }
 
 .gaintain-metric-card {
+  @include gaintain-surface-card;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 0.75em;
-  background: linear-gradient(135deg, rgb(230 92 0 / 6%) 0%, rgb(249 212 35 / 4%) 100%);
-  border-radius: 0.625em;
-  border: 1px solid rgb(230 92 0 / 12%);
-  transition: transform 200ms ease, box-shadow 200ms ease;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px -2px rgb(230 92 0 / 15%);
-    }
-  }
-
-  .dark & {
-    background: linear-gradient(135deg, rgb(230 92 0 / 10%) 0%, rgb(249 212 35 / 6%) 100%);
-    border-color: rgb(230 92 0 / 20%);
-  }
+  padding: 0.85em;
+  border-radius: $radius-sm;
 
   @media (width >=768px) {
     padding: 1.125em;
-    border-radius: 0.75em;
   }
 
   &.gaintain-metric-primary {
-    border-width: 1px;
-    border-color: rgb(230 92 0 / 20%);
-    background: linear-gradient(135deg, rgb(230 92 0 / 10%) 0%, rgb(249 212 35 / 6%) 100%);
+    border-color: color-mix(in srgb, #{$gaintain-accent} 22%, rgb(0 0 0 / 7%));
 
-    .dark & {
-      border-color: rgb(230 92 0 / 30%);
-      background: linear-gradient(135deg, rgb(230 92 0 / 14%) 0%, rgb(249 212 35 / 10%) 100%);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: color-mix(in srgb, #{$gaintain-accent} 32%, rgb(0 0 0 / 10%));
+      }
     }
 
     @media (width < 768px) {
@@ -4935,7 +5085,7 @@
 }
 
 .design-strategy-axis-label {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 500;
   fill: rgb(0 0 0 / 60%);
@@ -4951,7 +5101,7 @@
 }
 
 .design-strategy-axis-title {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-size: 12px;
 
   /* Smaller than point labels */
@@ -4983,7 +5133,7 @@
 }
 
 .design-strategy-point-label {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 700;
   fill: rgb(0 0 0 / 95%);
@@ -5077,4 +5227,29 @@
   backdrop-filter: none !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+.dark {
+  .gaintain-metric-card {
+    background: #0f1111;
+    border-color: rgb(255 255 255 / 10%);
+    box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+        border-color: rgb(255 255 255 / 14%);
+      }
+    }
+
+    &.gaintain-metric-primary {
+      border-color: color-mix(in srgb, #{$gaintain-accent-dark} 28%, rgb(255 255 255 / 10%));
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          border-color: color-mix(in srgb, #{$gaintain-accent-dark} 38%, rgb(255 255 255 / 14%));
+        }
+      }
+    }
+  }
 }

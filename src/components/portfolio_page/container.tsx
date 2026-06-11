@@ -1,5 +1,6 @@
 import { Projects } from 'projects'
-import CaseStudyCard from './card'
+
+import FeaturedCompact from './featured_compact'
 
 const Container = (): JSX.Element => {
   // Clients ordered from newest to oldest
@@ -14,11 +15,11 @@ const Container = (): JSX.Element => {
   ]
 
   return (
-    <div className="portfolio-container">
-      {clientProjects.map(project => (
-        <CaseStudyCard key={project.name} project={project} />
+    <ul className="featured-project-list">
+      {clientProjects.map((project, index) => (
+        <FeaturedCompact key={project.name} project={project} index={index} />
       ))}
-    </div>
+    </ul>
   )
 }
 

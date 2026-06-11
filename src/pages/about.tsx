@@ -8,7 +8,10 @@ const About = (): JSX.Element => {
 
 export const Head = (): JSX.Element => (
   <>
-    <Seo title="About" />
+    <Seo
+      title="About"
+      description="Product designer and systems thinker — how I work, my academic background in English and Philosophy, and resources I publish."
+    />
     <Profile />
   </>
 )

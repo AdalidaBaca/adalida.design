@@ -13,9 +13,9 @@
 }
 
 .portfolio-intro .intro-role .animated-letter.filled {
-  color: map.get($light-colors, danger);
+  color: var(--color-accent, #{$brand-accent});
 }
 
 .dark .portfolio-intro .intro-role .animated-letter.filled {
-  color: map.get($dark-colors, danger);
+  color: var(--color-accent, #{$brand-accent-dark});
 }

@@ -1,0 +1,18 @@
+@import './section_heading_accent';
+
+/* Loaded after global .section-heading-container rules so case study colors always win */
+.gaintain-container {
+  @include case-study-section-heading-accent(#E65C00, #F9D423);
+}
+
+.project-echo-container {
+  @include case-study-section-heading-accent(#0891b2, #67e8f9);
+}
+
+.invibe-esthetics-container {
+  @include case-study-section-heading-accent(#965738, #C9A882);
+}
+
+.smart-venture-media-container {
+  @include case-study-section-heading-accent(#4a3a5c, #e8dcf8);
+}

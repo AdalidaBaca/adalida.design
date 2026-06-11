@@ -1,16 +1,14 @@
-@import 'https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap';
-@import 'https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap';
+// Inter — startup / product UI standard
+@import 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap';
 
-@font-face {
-  font-family: Inter;
-  src: local('Inter'), url("../fonts/Inter-VariableFont_opsz,wght.ttf");
-  font-display: swap;
-}
+$font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-serif: $font-sans;
+$font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+$font-display: $font-sans;
 
-@font-face {
-  font-family: 'Inter Italic';
-  src: local('Inter Italic'), url("../fonts/Inter-Italic-VariableFont_opsz,wght.ttf");
-  font-weight: italic;
-  font-display: swap;
+:root {
+  --font-sans: #{$font-sans};
+  --font-serif: #{$font-serif};
+  --font-mono: #{$font-mono};
+  --font-display: #{$font-display};
 }

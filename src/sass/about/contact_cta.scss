@@ -1,255 +1,130 @@
 @use 'sass:map';
 @import '../colors';
+@import '../variables';
+
+@keyframes contact-cta-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .contact-cta-section {
-  margin: 3em auto 0;
-  margin-bottom: 1em;
-  max-width: min(1280px, 96%);
-  padding: 0 1dvw;
   width: 100%;
+}
+
+.contact-cta {
+  width: 100%;
+}
+
+.contact-cta-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+  width: 100%;
+  padding: 2em 1.75em 2.05em 1.9em;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  animation: contact-cta-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--page-accent);
+  }
 
   @media (width >= $breakpoint) {
-    margin-top: 4em;
-    margin-bottom: 1.5em;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 3em;
+    min-height: 9.5rem;
+    padding: 2.35em 2.35em 2.35em 2.5em;
   }
 }
 
-.contact-cta-container {
-  width: 100%;
-  background: linear-gradient(135deg, rgb(74 158 255 / 8%) 0%, rgb(90 200 250 / 5%) 100%);
-  border: 1px solid rgb(74 158 255 / 15%);
-  border-radius: 20px;
-  padding: 2em 1.5em;
-  box-shadow: 
-    0 8px 24px -12px rgb(74 158 255 / 20%),
-    0 2px 8px -2px rgb(74 158 255 / 10%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  @media (width >= $breakpoint) {
-    padding: 2.5em 2em;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 
-        0 16px 48px -16px rgb(74 158 255 / 25%),
-        0 6px 16px -4px rgb(74 158 255 / 15%);
-    }
-  }
-}
-
-.contact-cta-content {
+.contact-cta-copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1em;
-
-  @media (width >= $breakpoint) {
-    gap: 1.25em;
-  }
+  gap: 0.55em;
+  min-width: 0;
+  text-align: left;
 }
 
-.contact-cta-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75em;
-
-  @media (width <= 768px) {
-    flex-direction: column;
-    gap: 0.5em;
-  }
-
-  > svg {
-    height: 2rem;
-    width: auto;
-    flex-shrink: 0;
-  }
-}
-
-.contact-cta-heading {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: $dark-text;
+.contact-cta-title {
   margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.65rem, 4.2vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: rgba($dark-text, 0.94);
 }
 
-.contact-cta-description {
-  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-  line-height: 1.6;
-  color: rgba($dark-text, 0.75);
-  max-width: 55ch;
+.contact-cta-lead {
   margin: 0;
+  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  line-height: 1.65;
+  color: rgba($dark-text, 0.64);
+  max-width: 52ch;
+}
+
+.contact-cta-actions {
+  flex-shrink: 0;
 }
 
 .contact-cta-buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75em;
-  width: 100%;
-  max-width: 450px;
-  margin-top: 0.25em;
+  justify-content: flex-start;
+
+  .btn.badge.big-badge {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
 
   @media (width >= $breakpoint) {
-    flex-direction: row;
-    justify-content: center;
-    gap: 1em;
-  }
-
-  /* Style second button (email) as secondary/outline variant */
-  .btn.badge.big-badge:not(:first-child) {
-    background: rgb(255 255 255 / 95%);
-    border: 1.5px solid rgb(0 0 0 / 15%);
-    backdrop-filter: saturate(180%) blur(20px);
-    box-shadow:
-      0 4px 12px rgb(0 0 0 / 10%),
-      0 2px 4px rgb(0 0 0 / 5%);
-
-    a {
-      color: rgb(0 0 0 / 85%);
-      font-weight: 500;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background: rgb(255 255 255 / 98%);
-        border-color: rgb(0 0 0 / 20%);
-        transform: translateY(-0.5px);
-        box-shadow:
-          0 6px 16px rgb(0 0 0 / 15%),
-          0 3px 8px rgb(0 0 0 / 8%);
-
-        a {
-          color: rgb(0 0 0 / 90%);
-        }
-      }
-    }
+    justify-content: flex-end;
   }
 }
 
-/* Dark mode */
-.dark .contact-cta-container {
-  background: linear-gradient(135deg, rgb(90 200 250 / 12%) 0%, rgb(74 158 255 / 8%) 100%);
-  border-color: rgb(90 200 250 / 20%);
-  box-shadow: 
-    0 12px 40px -16px rgb(90 200 250 / 25%),
-    0 4px 12px -4px rgb(90 200 250 / 15%);
+/* Tighter handoff from Toolkit → CTA (About only) */
+.about-page > .contact-cta-section {
+  margin-top: -1.5em;
+}
 
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow: 
-        0 16px 48px -16px rgb(90 200 250 / 30%),
-        0 6px 16px -4px rgb(90 200 250 / 20%);
-    }
+.dark .contact-cta-card {
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  &::before {
+    background: var(--page-accent);
   }
 }
 
-.dark .contact-cta-heading {
-  color: $light-text;
+.dark .contact-cta-title {
+  color: rgba($light-text, 0.95);
 }
 
-.dark .contact-cta-description {
-  color: rgba($light-text, 0.8);
+.dark .contact-cta-lead {
+  color: rgba($light-text, 0.62);
 }
 
-.dark .contact-cta-buttons {
-  .btn.badge.big-badge:not(:first-child) {
-    background: rgb(30 30 30 / 90%);
-    border: 1.5px solid rgb(255 255 255 / 20%);
-    backdrop-filter: saturate(180%) blur(20px);
-    box-shadow:
-      0 4px 12px rgb(0 0 0 / 30%),
-      0 2px 6px rgb(0 0 0 / 20%);
-
-    a {
-      color: rgb(255 255 255 / 95%);
-      font-weight: 500;
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background: rgb(35 35 35 / 92%);
-        border-color: rgb(255 255 255 / 25%);
-        transform: translateY(-0.5px);
-        box-shadow:
-          0 6px 16px rgb(0 0 0 / 35%),
-          0 3px 8px rgb(0 0 0 / 25%);
-
-        a {
-          color: rgb(255 255 255 / 100%);
-        }
-      }
-    }
-  }
-}
-
-/* Project ECHO variant: shown only on internship portfolio, uses case study teal */
-.contact-cta-section-project-echo .contact-cta-container {
-  background: linear-gradient(135deg, rgb(8 145 178 / 10%) 0%, rgb(6 182 212 / 6%) 100%);
-  border-color: rgb(8 145 178 / 22%);
-  box-shadow:
-    0 8px 24px -12px rgb(8 145 178 / 22%),
-    0 2px 8px -2px rgb(8 145 178 / 12%);
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow:
-        0 16px 48px -16px rgb(8 145 178 / 28%),
-        0 6px 16px -4px rgb(8 145 178 / 18%);
-    }
-  }
-}
-
-.contact-cta-section-project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
-  background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%) !important;
-  border: none !important;
-  box-shadow:
-    0 2px 8px rgb(8 145 178 / 25%),
-    0 1px 2px rgb(8 145 178 / 15%);
-
-  a {
-    color: rgb(255 255 255 / 98%) !important;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow:
-        0 4px 12px rgb(8 145 178 / 30%),
-        0 2px 4px rgb(8 145 178 / 20%);
-    }
-  }
-}
-
-.dark .contact-cta-section-project-echo .contact-cta-container {
-  background: linear-gradient(135deg, rgb(8 145 178 / 16%) 0%, rgb(6 182 212 / 10%) 100%);
-  border-color: rgb(8 145 178 / 30%);
-  box-shadow:
-    0 12px 40px -16px rgb(8 145 178 / 28%),
-    0 4px 12px -4px rgb(8 145 178 / 18%);
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow:
-        0 16px 48px -16px rgb(8 145 178 / 35%),
-        0 6px 16px -4px rgb(8 145 178 / 22%);
-    }
-  }
-}
-
-.dark .contact-cta-section-project-echo .contact-cta-buttons .btn.badge.big-badge:first-child {
-  background: linear-gradient(135deg, #0891B2 0%, #06B6D4 100%) !important;
-  border: none !important;
-  box-shadow:
-    0 2px 8px rgb(0 0 0 / 25%),
-    0 1px 2px rgb(8 145 178 / 30%);
-
-  a {
-    color: rgb(255 255 255 / 98%) !important;
+@media (prefers-reduced-motion: reduce) {
+  .contact-cta-card {
+    animation: none;
   }
 }

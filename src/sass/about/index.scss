@@ -1,28 +1,32 @@
 @use 'sass:math';
+@import '../variables';
 @import './intro';
 @import './testimonials';
 @import './how_i_think';
 @import './writing';
 @import './hackathons';
+@import './resources';
 @import './github_calendar';
 @import './contact_cta';
+@import './academic_preview';
+@import './toolkit';
+@import './accent';
 
 .about-page {
   display: flex;
   flex-direction: column;
-  gap: 4em;
-
-  /* Give the intro breathing room from the navbar, without moving the Toolkit marquee */
-  padding-top: 1em;
-
-  .tools-carousel {
-    /* Add gap between intro and toolkit */
-    margin-top: 2em;
-  }
+  gap: $section-gap-mobile;
+  padding-top: 1.25em;
+  padding-bottom: 0.5em;
 
   @media (width >= $breakpoint) {
-    padding-top: 1.5em;
-    .tools-carousel { margin-top: 3em; }
+    gap: $section-gap-desktop;
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
+
+  .section-heading-container {
+    margin: 0 0 $section-heading-gap;
   }
 }
 

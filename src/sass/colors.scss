@@ -1,15 +1,46 @@
-$dark-text: #3E4242;
-$light-text: #F5F5F5;
-$dark-background: #090B0B;
-$light-background: #FEFFF2;
-$primary: #B21661;
+@use 'sass:map';
+
+/* —— Palette primitives (accents + optional warm touches) —— */
+$palette-adobe: #e9bea8;
+$palette-earth: #6d4836;
+$palette-clay: #bf835c;
+$palette-turquoise: #468b96;
+$palette-highlight: #910212;
+
+/* —— Surfaces — clean YC-adjacent neutrals, not brown washes —— */
+$light-background: #fafaf9;
+$dark-background: #09090b;
+$light-surface: #ffffff;
+$dark-surface: #18181b;
+
+/* —— Text — warm browns on clean neutral surfaces —— */
+$dark-text: #3a261c;
+$light-text: #f5ebe4;
+$primary: $dark-text;
+
+/* —— Accents — earth + clay light, adobe + clay dark —— */
+$brand-accent: $palette-earth;
+$brand-accent-hover: #5a3829;
+$brand-accent-dark: $palette-adobe;
+$brand-accent-dark-hover: #f0cdb8;
+$accent-subtle: $palette-clay;
+$accent-highlight: $palette-highlight;
+$accent-highlight-hover: #7a010f;
+
 $light-colors: (
-  info: #D1EFFF,
-  danger: #4A9EFF, // Apple-inspired blue for light mode
-  secondary: #3E4242
+  info: $light-surface,
+  danger: $brand-accent,
+  secondary: #8f6350
 );
+
 $dark-colors: (
-  info: #0057D2,
-  danger: #5AC8FA, // Apple-inspired blue for dark mode
-  secondary: #A19B9B
+  info: $dark-surface,
+  danger: $brand-accent-dark,
+  secondary: #c9a088
 );
+
+@function accent($opacity, $dark: false) {
+  $base: if($dark, map.get($dark-colors, danger), map.get($light-colors, danger));
+
+  @return rgba($base, $opacity);
+}

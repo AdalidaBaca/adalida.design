@@ -1,19 +1,13 @@
 @use 'sass:map';
 @import '../colors';
 
-/* Match testimonials header to featured projects style */
-
-/* Apply same header style to Resources, Contributions, and My Process sections */
+/* Section headers — match featured projects */
 .resources-section .section-heading-container > h4,
 .contributions-section .section-heading-container > h4,
-.my-process-section .section-heading-container > h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Target section heading when it's in a section that contains testimonials-slider-cards */
+.my-process-section .section-heading-container > h4,
+.toolkit-section .section-heading-container > h4,
+.contact-section .section-heading-container > h4,
+.testimonials-section .section-heading-container > h4,
 div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
   font-size: 0.9rem;
   font-weight: 600;
@@ -21,116 +15,109 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
   text-transform: uppercase;
 }
 
-.testimonials {
-  max-width: 70ch;
-  margin: $section-gap-mobile auto 0;
-  display: grid;
-  gap: 1.5em;
+.testimonials-section {
+  width: 100%;
 }
 
 .testimonials-slider-cards {
   position: relative;
-  max-width: min(1280px, 96%);
-  margin: $section-gap-mobile auto 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   display: grid;
-  align-items: center;
-  row-gap: 1.1em; /* more breathing room between cards and controls */
-  padding-inline: 1dvw; /* tiny side breathing room on very wide screens */
+  row-gap: 1.5em;
+  padding: 0;
 
   .cards {
     display: flex;
-    gap: 0.85em;
-    column-gap: 0.85em;
+    gap: 1.15em;
     align-items: stretch;
     overflow: auto hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 0;
+    padding: 0.2em 0 0.45em;
     margin: 0;
     list-style: none;
-    -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none; /* Firefox */
-
-    /* Lock height from measured tallest card so all cards match */
-    height: var(--testimonial-card-height, 320px);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  .cards::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-  /* Desktop: 3 cards visible and filling width; mobile: 1 card (96%) */
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
+
   .cards li {
     margin: 0;
     scroll-snap-align: start;
-    flex: 0 0 96%;
+    flex: 0 0 min(92%, 28rem);
+    transition: opacity 0.25s ease;
 
     @media (width >= $breakpoint) {
-      flex-basis: calc((100% - 0.85em) / 2);
+      flex-basis: calc((100% - 1.15em) / 2);
     }
 
-    @media (width >= 1140px) {
-      flex-basis: calc((100% - 2 * 0.85em) / 3);
+    &.is-offscreen {
+      opacity: 0.55;
+    }
+
+    &.is-leading .testimonial-card {
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 22%, rgb(0 0 0 / 7%));
     }
   }
 
-  .cards .testimonial-card { height: 100%; }
-  
   .testimonials-controls {
-    margin-top: 0; /* row-gap handles spacing */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1em;
+    gap: 0.85em;
   }
 
   .nav.small {
-    width: 28px;
-    height: 28px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
-    border: 0.5px solid rgb(0 0 0 / 12%);
-    background: rgb(255 255 255 / 85%);
-    backdrop-filter: saturate(180%) blur(20px);
-    color: rgb(0 0 0 / 70%);
+    border: 1px solid rgb(0 0 0 / 8%);
+    background: rgb(0 0 0 / 2.5%);
+    color: rgba($dark-text, 0.5);
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    font-size: 0.9em;
-    font-weight: 500;
     line-height: 0;
+    transition:
+      color 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
 
     svg {
       display: block;
       flex-shrink: 0;
     }
 
-    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 
-      0 1px 3px rgb(0 0 0 / 4%),
-      0 0.5px 1px rgb(0 0 0 / 2%);
-
-    &:hover { 
-      background: rgb(255 255 255 / 90%);
-      border-color: rgb(0 0 0 / 12%);
-      transform: translateY(-0.3px);
-      box-shadow: 
-        0 4px 10px rgb(0 0 0 / 5%),
-        0 1px 2px rgb(0 0 0 / 3%);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(:disabled) {
+        color: var(--page-accent-hover, #{$brand-accent-hover});
+        background: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 8%, #fff);
+        border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 22%, #fff);
+        transform: translateY(-1px);
+      }
     }
 
-    &:active {
+    &:active:not(:disabled) {
       transform: translateY(0) scale(0.96);
     }
 
     &:disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       cursor: not-allowed;
-      transform: none;
     }
   }
 
   .dot-nav {
     display: flex;
-    gap: 0.4em;
+    gap: 0.35em;
     align-items: center;
   }
 
@@ -138,187 +125,209 @@ div[data-aos]:has(.testimonials-slider-cards) .section-heading-container > h4 {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: transparent;
     border: none;
-    background-color: rgb(0 0 0 / 20%);
-    opacity: 0.4;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 0;
     padding: 0;
-    aspect-ratio: 1 / 1;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: rgb(0 0 0 / 14%);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease,
+      width 0.2s ease;
 
-    &:hover { 
-      opacity: 0.6;
-      transform: scale(1.2);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 40%, #fff);
+        transform: scale(1.15);
+      }
     }
   }
 
-  .dot.active { 
-    background-color: map.get($light-colors, danger);
-    opacity: 1;
-    width: 8px;
-    height: 8px;
+  .dot.active {
+    width: 1.25rem;
+    border-radius: $radius-pill;
+    background-color: var(--page-accent, #{$brand-accent});
   }
 }
 
 .testimonial-card {
   position: relative;
-  margin: 0; /* remove default blockquote margins that create extra spacing */
-  padding: 1.25em 1.75em;
-  display: grid;
-
-  /* Pin author to the bottom consistently across equal-height cards */
-  grid-template-rows: 28px 1fr auto;
-  gap: 0.25em;
+  margin: 0;
+  width: 100%;
   height: 100%;
-  min-height: 0;
+  min-height: 14.5rem;
+  padding: 1.55em 1.65em 1.35em;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   color: $dark-text;
-  border: 1px solid rgb(0 0 0 / 6%);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px -16px rgb(0 0 0 / 18%);
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 
-  /* remove min-height so cards hug content; tallest card sets row height via flex stretch */
-
-  &::before {
-    content: '"';
-    position: absolute;
-    top: 0; /* place icon at the very top for minimal spacing */
-    left: 14px;
-    font-size: 56px; /* fixed size so all cards match */
-    line-height: 1;
-    opacity: 0.18; /* stronger for readability */
-    color: map.get($light-colors, danger); /* use accent color */
-    pointer-events: none;
-  }
-
-  .quote {
-    line-height: 1.6;
-    font-size: 1.5em;
-    grid-row: 2;
-    align-self: start;
-    margin: 0;
-
-    @media (width >= $breakpoint) {
-      font-size: 1em;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
     }
   }
 
-  /* removed debug index badge */
+  .quote {
+    flex: 1;
+    margin: 0;
+    max-width: 38ch;
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 2.15vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.72;
+    letter-spacing: -0.015em;
+    color: rgba($dark-text, 0.86);
+    text-wrap: pretty;
 
-  /* featured variant removed */
+    &::before {
+      content: '\201C';
+      display: block;
+      margin-bottom: 0.35em;
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--color-highlight, #{$accent-highlight});
+      opacity: 0.42;
+    }
+  }
 
   .attribution {
     display: flex;
-    gap: 0.75em;
     align-items: center;
-    color: map.get($dark-colors, secondary);
-    justify-content: flex-start;
-    align-self: end; /* keep author locked to bottom row */
-    grid-row: 3;
-    margin-top: 0.2em;  /* small consistent separation */
-    padding: 0;
+    margin-top: 1.35em;
+    padding-top: 1.05em;
+    border-top: 1px solid rgb(0 0 0 / 6%);
+    max-width: 38ch;
 
     .person {
       display: flex;
       align-items: center;
       gap: 0.75em;
+      min-width: 0;
     }
 
     .avatar {
-      width: 40px; /* Slightly larger avatar */
-      height: 40px; /* Slightly larger avatar */
+      width: 2.5rem;
+      height: 2.5rem;
+      flex-shrink: 0;
       border-radius: 50%;
       object-fit: cover;
-      background: rgb(255 255 255 / 12%);
-      border: 1px solid rgb(255 255 255 / 18%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85em; /* Slightly larger font for initials */
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
       font-weight: 600;
+      letter-spacing: 0.02em;
+      background: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 9%, #fff);
+      border: 1px solid color-mix(in srgb, var(--page-accent, #{$brand-accent}) 18%, #fff);
+      color: var(--page-accent-hover, #{$brand-accent-hover});
     }
 
     .name-title {
       display: flex;
       flex-direction: column;
-      gap: 0.2em; /* Add gap between name and title */
-      line-height: 1.3; /* Increased from 1.1 for better spacing */
-    }
-
-    .name {
-      font-weight: 400;
-      font-size: 1em;
+      gap: 0.22em;
+      min-width: 0;
       line-height: 1.3;
     }
 
+    .name {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: rgba($dark-text, 0.92);
+    }
+
     .title {
-      opacity: 0.9;
-      font-size: 1em;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       line-height: 1.4;
+      text-transform: uppercase;
+      color: rgba($dark-text, 0.42);
+      white-space: normal;
+      overflow-wrap: break-word;
     }
   }
 }
 
-.testimonial-card.featured .avatar {
-  width: 32px;
-  height: 32px;
-  font-size: 0.75em;
+.dark .testimonials-slider-cards .cards li.is-offscreen {
+  opacity: 0.5;
 }
 
-/* Dark mode adjustments */
 .dark .testimonial-card {
   background: #0f1111;
   color: $light-text;
   border-color: rgb(255 255 255 / 10%);
   box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
-}
 
-/* Accent the quote icon in dark mode */
-.dark .testimonial-card::before {
-  color: map.get($dark-colors, danger); /* use accent color */
-  opacity: 0.22; /* increase contrast on dark */
-}
+  .quote {
+    color: rgba($light-text, 0.78);
 
-/* Improve dot contrast in dark mode */
-.dark .nav.small {
-  border-color: rgb(255 255 255 / 15%);
-  background: rgb(30 30 30 / 75%);
-  backdrop-filter: saturate(180%) blur(20px);
-  color: rgb(255 255 255 / 85%);
-  box-shadow: 
-    0 1px 3px rgb(0 0 0 / 30%),
-    0 0.5px 1px rgb(0 0 0 / 20%);
+    &::before {
+      color: var(--page-accent, #{$brand-accent-dark});
+      opacity: 0.55;
+    }
+  }
 
-  &:hover { 
-    background: rgb(35 35 35 / 80%);
-    border-color: rgb(255 255 255 / 18%);
-    box-shadow: 
-      0 2px 6px rgb(0 0 0 / 35%),
-      0 1px 2px rgb(0 0 0 / 25%);
+  .attribution {
+    border-top-color: rgb(255 255 255 / 8%);
+
+    .avatar {
+      background: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 14%, #0f1111);
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 28%, #0f1111);
+      color: var(--page-accent, #{$brand-accent-dark});
+    }
+
+    .name {
+      color: rgba($light-text, 0.92);
+    }
+
+    .title {
+      color: rgba($light-text, 0.42);
+    }
   }
 }
 
-.dark .dot { 
-  background-color: rgb(255 255 255 / 30%);
-  opacity: 0.5;
+.dark .testimonials-slider-cards {
+  .nav.small {
+    border-color: rgb(255 255 255 / 10%);
+    background: rgb(255 255 255 / 5%);
+    color: rgba($light-text, 0.45);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(:disabled) {
+        color: var(--page-accent, #{$brand-accent-dark});
+        background: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 12%, #0f1111);
+        border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 26%, #0f1111);
+      }
+    }
+  }
+
+  .dot {
+    background-color: rgb(255 255 255 / 18%);
+  }
+
+  .dot.active {
+    background-color: var(--page-accent, #{$brand-accent-dark});
+  }
 }
 
-.dark .dot.active { 
-  background-color: map.get($dark-colors, danger);
-  opacity: 1;
-  width: 8px;
-  height: 8px;
-}
-
-/* Allow full testimonial title to wrap (e.g. "VC, Smart Venture Media") — no truncation */
-.testimonials-slider-cards .testimonial-card .attribution .person .name-title {
-  min-width: 0;
-}
-
-.testimonials-slider-cards .testimonial-card .attribution .person .name-title .title {
-  white-space: normal;
-  overflow-wrap: break-word;
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card,
+  .testimonials-slider-cards .nav.small {
+    transition: none;
+  }
 }

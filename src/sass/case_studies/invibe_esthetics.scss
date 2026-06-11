@@ -810,7 +810,7 @@
   color: transparent;
   margin: 0;
   text-align: center;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   letter-spacing: -0.02em;
 
   @media (width >=768px) {
@@ -1334,7 +1334,7 @@
 }
 
 .invibe-esthetics-end-cta-heading {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   line-height: 1.2;
@@ -1512,7 +1512,7 @@
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 600;
   color: $dark-text;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
 }
 
 .dark .invibe-esthetics-contact-strip-heading {
@@ -1657,7 +1657,7 @@
 }
 
 .invibe-esthetics-next-project-name {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-serif);
 }
 
 /* Smart Venture Media brand overrides (reuses invibe structural classes) */
@@ -2168,7 +2168,7 @@
          * Problem boxes read slightly larger than strict 0.95em (icon + padding); use 1em of inherited body
          * so titles fill trapezoids like the problem headlines, then viewBox width correction.
          */
-        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: var(--font-sans);
         font-size: calc(0.95em * 680 / 360);
         font-size: calc(0.95em * 680 / max(100cqw, 200px));
 
@@ -2186,7 +2186,7 @@
 
     /* Match problem flow typography exactly: .flow-text / .flow-text-sub */
     .smart-vetting-stage-line {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--font-sans);
     }
 
     .smart-vetting-th {
@@ -2219,7 +2219,7 @@
     }
 
     .smart-vetting-tail-label {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--font-sans);
       font-size: 0.8em;
       font-weight: 400;
       line-height: 1.25;
@@ -2609,7 +2609,7 @@
   border-radius: 16px;
   padding: 1.5em 1em;
   box-sizing: border-box;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
 
   .dark & {
     background: rgb(255 255 255 / 3%);
@@ -2985,7 +2985,7 @@
 .insight-flow-graphic {
   width: 100%;
   max-width: min(380px, 100%);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   display: flex;
   flex-direction: column;
   align-items: center;

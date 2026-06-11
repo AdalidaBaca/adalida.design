@@ -1,5 +1,5 @@
 import AOS from 'aos'
-import CaseStudyCard from 'components/portfolio_page/card'
+import FeaturedCompact from 'components/portfolio_page/featured_compact'
 import Seo from 'components/seo'
 import type { Project } from 'projects'
 import { Projects } from 'projects'
@@ -7,7 +7,7 @@ import { useEffect, useMemo } from 'react'
 
 const sectionId = (title: string): string => title.toLowerCase().replace(/\s+/g, '-')
 
-const EXPERIMENTS_SECTION_TITLES = ['Hackathons', 'Volunteer', 'Explorations'] as const
+const EXPERIMENTS_SECTION_TITLES = ['Hackathons', 'Volunteer', 'Sandbox'] as const
 
 function buildExperimentsSections(): { sectionTitle: string; projects: Project[] }[] {
   const allExperimentProjects = [
@@ -21,11 +21,11 @@ function buildExperimentsSections(): { sectionTitle: string; projects: Project[]
   ]
   const hackathons = allExperimentProjects.filter(p => p.badges.some(b => b.toLowerCase() === 'hackathon'))
   const volunteer = [Projects.LoboGardens]
-  const explorations = [Projects.Phronesis]
+  const sandbox = [Projects.Phronesis]
   return [
     { sectionTitle: 'Hackathons', projects: hackathons },
     { sectionTitle: 'Volunteer', projects: volunteer },
-    { sectionTitle: 'Explorations', projects: explorations }
+    { sectionTitle: 'Sandbox', projects: sandbox }
   ]
 }
 
@@ -37,7 +37,7 @@ const Experiments = (): JSX.Element => {
   }, [])
 
   return (
-    <div className="experiments-page" style={{ paddingTop: '72px' }}>
+    <div className="experiments-page">
       <header className="experiments-header" data-aos="fade-up">
         <h1 className="experiments-title">Experiments</h1>
         <p className="experiments-intro">
@@ -56,11 +56,11 @@ const Experiments = (): JSX.Element => {
           <h2 className="experiments-section-heading" data-aos="fade-up" data-aos-offset="100">
             {section.sectionTitle}
           </h2>
-          <div className="experiments-grid">
-            {section.projects.map(project => (
-              <CaseStudyCard key={project.name} project={project} />
+          <ul className="featured-project-list">
+            {section.projects.map((project, index) => (
+              <FeaturedCompact key={project.name} project={project} index={index} />
             ))}
-          </div>
+          </ul>
         </section>
       ))}
     </div>

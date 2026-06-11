@@ -43,7 +43,21 @@ const Header = (): JSX.Element => {
   const caseStudy = useMemo(() => getCaseStudyFromPath(pathname), [pathname])
   const [showNavTitle, setShowNavTitle] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isScrolled, setIsScrolled] = useState(false)
   const isMobile = useIsMobile(768)
+
+  useEffect(() => {
+    const handleScrollPosition = (): void => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScrollPosition, { passive: true })
+    handleScrollPosition()
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollPosition)
+    }
+  }, [])
 
   useEffect(() => {
     if (caseStudy === null) {
@@ -71,7 +85,7 @@ const Header = (): JSX.Element => {
 
         if (downloadTitle !== null) {
           const titleRect = downloadTitle.getBoundingClientRect()
-          const headerHeight = 56 // $header-height
+          const headerHeight = 60 // $header-height
           const shouldShow = titleRect.bottom < headerHeight
           setShowNavTitle(prev => {
             if (prev === true) return true
@@ -114,7 +128,7 @@ const Header = (): JSX.Element => {
   const backgroundImage = caseStudy?.colors.primary ?? Projects.Gaintain.colors.primary
 
   return (
-    <header className={`navbar${darkMode ? ' dark' : ''}`}>
+    <header className={`navbar${darkMode ? ' dark' : ''}${isScrolled ? ' navbar--scrolled' : ''}`}>
       <nav className="left flex-center" aria-label="Home and back">
         <HomeLink />
         <BackButton />

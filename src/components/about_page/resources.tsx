@@ -1,90 +1,55 @@
-import { IconBooks, IconBrandFigma, IconBrandNotion, IconNotes } from '@tabler/icons-react'
-import BadgeButton from 'components/badge_button'
+import { IconArrowNarrowRight, IconBrandFigma, IconBrandNotion, IconNotes } from '@tabler/icons-react'
 import Section from './section'
 
-const Resources = (): JSX.Element => {
-  const writingUrl = 'https://adalida.substack.com/?utm_source=site&utm_medium=resources&utm_campaign=writing_primary'
-  const templatesUrl = 'https://www.notion.com/@adalidabaca'
-  const figmaUrl = 'https://www.figma.com/@adalida'
-
-  return (
-    <Section title="Resources">
-      <div className="hackathons odd">
-        <a
-          className="glass card hackathon resource-card"
-          tabIndex={0}
-          aria-label="Read the latest issue on Substack"
-          href={writingUrl}
-        >
-          <div className="inside">
-            <div className="resource-header">
-              <div className="title-wrap">
-                <div className="subtitle-1">
-                  <strong>Writing</strong>
-                </div>
-                <div className="caption-1 secondary-subtitle">A Heavenly Read</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
-              <div className="platform-badge">
-                <IconNotes size={16} />
-                <span>Substack</span>
-              </div>
-              <div className="platform-badge">
-                <IconBooks size={16} />
-                <span>Academic</span>
-              </div>
-            </div>
-            <div className="caption-1">
-              I write at the intersection of design, philosophy, and technology. Some pieces explore history and place,
-              including my roots in New Mexico.
-            </div>
-          </div>
-          <div className="resource-cta">
-            <BadgeButton to={writingUrl}>SUBSTACK</BadgeButton>
-            <BadgeButton to="https://adalida.notion.site/Adalida-s-B-A-English-Philosophy-13634efdeebd4c83ad11fabc7c4f09c0">
-              ACADEMIC
-            </BadgeButton>
-          </div>
-        </a>
-        <a
-          className="glass card hackathon resource-card"
-          tabIndex={0}
-          aria-label="Browse templates on Notion"
-          href={templatesUrl}
-        >
-          <div className="inside">
-            <div className="resource-header">
-              <div className="title-wrap">
-                <div className="subtitle-1">
-                  <strong>Design</strong>
-                </div>
-                <div className="caption-1 secondary-subtitle">Community Templates</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '0.5em', flexWrap: 'wrap' }}>
-              <div className="platform-badge">
-                <IconBrandNotion size={16} />
-                <span>Notion</span>
-              </div>
-              <div className="platform-badge">
-                <IconBrandFigma size={16} />
-                <span>Figma</span>
-              </div>
-            </div>
-            <div className="caption-1">
-              I design templates and documents to structure thinking, planning, and execution. These are tools I use to
-              support product, research, and operational work.
-            </div>
-          </div>
-          <div className="resource-cta">
-            <BadgeButton to={templatesUrl}>NOTION</BadgeButton>
-            <BadgeButton to={figmaUrl}>FIGMA</BadgeButton>
-          </div>
-        </a>
-      </div>
-    </Section>
-  )
+interface StructureCard {
+  href: string
+  label: string
+  detail: string
+  Icon: typeof IconBrandNotion
 }
+
+const STRUCTURE_CARDS: StructureCard[] = [
+  {
+    href: 'https://www.notion.com/@adalidabaca',
+    label: 'Notion',
+    detail: 'Document Templates',
+    Icon: IconBrandNotion
+  },
+  {
+    href: 'https://www.figma.com/@adalida',
+    label: 'Figma',
+    detail: 'Design Kits',
+    Icon: IconBrandFigma
+  },
+  {
+    href: 'https://adalida.substack.com/?utm_source=site&utm_medium=resources&utm_campaign=writing_primary',
+    label: 'Substack',
+    detail: 'Philosophical Thoughts',
+    Icon: IconNotes
+  }
+]
+
+const Resources = (): JSX.Element => (
+  <Section title="Resources" subtitle="Writing and design bring clarity to my thinking.">
+    <div className="structure">
+      <ul className="structure-cards" aria-label="Resources links">
+        {STRUCTURE_CARDS.map(({ href, label, detail, Icon }) => (
+          <li key={href}>
+            <a className="structure-card" href={href} target="_blank" rel="noopener noreferrer">
+              <span className="structure-card-icon" aria-hidden>
+                <Icon size={22} strokeWidth={1.5} />
+              </span>
+              <span className="structure-card-body">
+                <span className="structure-card-label">{label}</span>
+                <span className="structure-card-detail">{detail}</span>
+              </span>
+              <IconArrowNarrowRight className="structure-card-arrow" size={18} strokeWidth={1.5} aria-hidden />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+)
 
 export default Resources

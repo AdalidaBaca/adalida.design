@@ -127,7 +127,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever1Y)}
             fill={textColor}
             fontSize={leverLabelFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="600"
             textAnchor="start"
             dominantBaseline="middle"
@@ -151,7 +151,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever1Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
             fontSize={badgeFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="700"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -183,7 +183,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever2Y) - U}
             fill={textColor}
             fontSize={leverLabelFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="600"
             textAnchor="start"
             dominantBaseline="middle"
@@ -212,7 +212,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever2Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
             fontSize={badgeFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="700"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -244,7 +244,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever3Y)}
             fill={textColor}
             fontSize={leverLabelFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="600"
             textAnchor="start"
             dominantBaseline="middle"
@@ -268,7 +268,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever3Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
             fontSize={badgeFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="700"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -300,7 +300,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever4Y)}
             fill={textColor}
             fontSize={leverLabelFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="600"
             textAnchor="start"
             dominantBaseline="middle"
@@ -324,7 +324,7 @@ const AccountabilityLevers = (): JSX.Element => {
             y={leverCenterY(lever4Y) + badgeTextDy}
             fill={darkMode ? '#FFFFFF' : '#E65C00'}
             fontSize={badgeFontSize}
-            fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
             fontWeight="700"
             textAnchor="middle"
             dominantBaseline="middle"
@@ -367,7 +367,7 @@ const AccountabilityLevers = (): JSX.Element => {
           textAnchor="middle"
           dominantBaseline="middle"
           fontSize={axisTitleFontSize}
-          fontFamily='Inter, system-ui, -apple-system, "Segoe UI", sans-serif'
+          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
           fontStyle="italic"
           fontWeight="500"
           letterSpacing="0.02em"
@@ -382,7 +382,7 @@ const AccountabilityLevers = (): JSX.Element => {
           y={topPadding - labelToArrowGap}
           fill="#10B981"
           fontSize={axisLabelFontSize}
-          fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
           fontWeight="600"
           textAnchor="start"
           dominantBaseline="middle"
@@ -395,7 +395,7 @@ const AccountabilityLevers = (): JSX.Element => {
           y={height - bottomPadding + labelToArrowGap}
           fill="#EF4444"
           fontSize={axisLabelFontSize}
-          fontFamily='-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif'
+          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
           fontWeight="600"
           textAnchor="start"
           dominantBaseline="middle"

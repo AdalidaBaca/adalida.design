@@ -22,7 +22,7 @@ const PortfolioPageSwitch = (): JSX.Element => {
           }}
           type="button"
         >
-          PORTFOLIO
+          Work
         </button>
         <button
           className={`switch-button${isPortfolioPage === false ? ' active' : ''}`}
@@ -33,7 +33,7 @@ const PortfolioPageSwitch = (): JSX.Element => {
           }}
           type="button"
         >
-          ABOUT
+          About
         </button>
       </div>
     </div>

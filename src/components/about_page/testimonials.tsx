@@ -3,8 +3,6 @@ import useIsMobile from 'hooks/use_is_mobile'
 import React from 'react'
 import Section from './section'
 
-const LARGE_BREAKPOINT = 1140
-
 interface Testimonial {
   quote: string
   name: string
@@ -65,8 +63,7 @@ const Avatar = ({ name, photo }: { name: string; photo?: string }): JSX.Element 
 
 const Testimonials = (): JSX.Element => {
   const isMobile = useIsMobile() ?? false
-  const isLarge = useIsMobile(LARGE_BREAKPOINT) === false
-  const visibleCount = isMobile ? 1 : isLarge ? 3 : 2
+  const visibleCount = isMobile ? 1 : 2
   const maxIndex = Math.max(0, testimonials.length - visibleCount)
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const cardsRef = React.useRef<HTMLUListElement>(null)
@@ -99,13 +96,19 @@ const Testimonials = (): JSX.Element => {
     <Section title="Testimonials">
       <div className="testimonials-slider-cards">
         <ul ref={cardsRef} className="cards">
-          {testimonials.map(({ quote, name, title, photo }) => (
-            <li key={`${name}-${title}`}>
+          {testimonials.map(({ quote, name, title, photo }, index) => {
+            const isVisible = index >= currentIndex && index < currentIndex + visibleCount
+            const isLeading = index === currentIndex
+            return (
+            <li
+              key={`${name}-${title}`}
+              className={[isVisible ? 'is-visible' : 'is-offscreen', isLeading ? 'is-leading' : ''].filter(Boolean).join(' ')}
+            >
               <blockquote
-                className="testimonial-card card"
+                className="testimonial-card"
                 data-aos="fade-up"
-                data-aos-offset="100"
-                data-aos-duration="800"
+                data-aos-offset="80"
+                data-aos-duration="600"
               >
                 <p className="quote">{quote}</p>
                 <footer className="attribution">
@@ -119,7 +122,8 @@ const Testimonials = (): JSX.Element => {
                 </footer>
               </blockquote>
             </li>
-          ))}
+            )
+          })}
         </ul>
         <div className="testimonials-controls">
           <button

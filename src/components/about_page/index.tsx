@@ -1,10 +1,10 @@
-import ToolsCarousel from 'components/tools_carousel'
 import useIsMobile from 'hooks/use_is_mobile'
 import ContactCTA from './contact_cta'
 import GitHubCalendar from './github_calendar'
 import HowIThink from './how_i_think'
 import Intro from './intro'
 import Resources from './resources'
+import Toolkit from './toolkit'
 
 const AboutPage = (): JSX.Element => {
   const isMobile = useIsMobile()
@@ -12,10 +12,10 @@ const AboutPage = (): JSX.Element => {
   return (
     <div className="about-page">
       {isMobile !== null && <Intro />}
-      <ToolsCarousel />
-      <HowIThink />
-      <Resources />
       <GitHubCalendar />
+      <Resources />
+      <HowIThink />
+      <Toolkit />
       <ContactCTA />
     </div>
   )

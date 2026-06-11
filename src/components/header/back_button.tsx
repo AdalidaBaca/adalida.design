@@ -5,7 +5,7 @@ import { useContext } from 'react'
 
 import { HomePageContext } from '../home_page_context'
 
-const SUB_PAGES_BACK_TO_PREVIOUS = ['/timeline', '/internship-portfolio']
+const SUB_PAGES_BACK_TO_PREVIOUS = ['/timeline', '/internship-portfolio', '/academic']
 
 const BackButton = (): JSX.Element => {
   const { isPortfolioPage, isAboutPage } = useContext(HomePageContext)

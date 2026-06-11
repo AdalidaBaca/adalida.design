@@ -36,7 +36,7 @@ const Gaintain = (): JSX.Element => {
   return (
     <Context.Provider value={Projects.Gaintain}>
       {isMobile === false && <TableOfContents links={sections} />}
-      <div className="case-study-container">
+      <div className="case-study-container gaintain-container">
         <About heroRef={sections.GAINTAIN} aboutRef={sections.About} />
         <Discovering ref={sections.Problem} keyInsightRef={sections['Key Insight']} />
         <Wireframing ref={sections['Design Strategy']} />

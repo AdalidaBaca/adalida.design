@@ -1,0 +1,54 @@
+@import './colors';
+
+/* Global palette tokens — clean neutrals for surfaces, warm browns for text + accents */
+body.light,
+.light {
+  --palette-adobe: #{$palette-adobe};
+  --palette-earth: #{$palette-earth};
+  --palette-clay: #{$palette-clay};
+  --palette-turquoise: #{$palette-turquoise};
+  --palette-highlight: #{$palette-highlight};
+
+  --color-bg: #{$light-background};
+  --color-surface: #{$light-surface};
+  --color-text: #{$dark-text};
+  --color-text-muted: rgb(58 38 28 / 58%);
+  --color-border: rgb(58 38 28 / 10%);
+
+  --color-accent: var(--palette-earth);
+  --color-accent-hover: #{$brand-accent-hover};
+  --color-accent-muted: color-mix(in srgb, var(--palette-clay) 42%, var(--palette-earth));
+  --color-subtle: color-mix(in srgb, var(--palette-clay) 35%, #{$light-background});
+  --color-highlight: var(--palette-highlight);
+  --color-highlight-hover: #{$accent-highlight-hover};
+
+  --page-accent: var(--color-accent);
+  --page-accent-hover: var(--color-accent-hover);
+  --page-accent-muted: var(--color-accent-muted);
+}
+
+body.dark,
+.dark {
+  --palette-adobe: #{$palette-adobe};
+  --palette-earth: #{$palette-earth};
+  --palette-clay: #{$palette-clay};
+  --palette-turquoise: #{$palette-turquoise};
+  --palette-highlight: #{$palette-highlight};
+
+  --color-bg: #{$dark-background};
+  --color-surface: #{$dark-surface};
+  --color-text: #{$light-text};
+  --color-text-muted: rgb(245 235 228 / 58%);
+  --color-border: rgb(233 190 168 / 14%);
+
+  --color-accent: #{$brand-accent-dark};
+  --color-accent-hover: #{$brand-accent-dark-hover};
+  --color-accent-muted: color-mix(in srgb, var(--palette-clay) 38%, var(--palette-adobe));
+  --color-subtle: color-mix(in srgb, var(--palette-clay) 22%, #{$dark-background});
+  --color-highlight: var(--palette-highlight);
+  --color-highlight-hover: #{$accent-highlight-hover};
+
+  --page-accent: var(--color-accent);
+  --page-accent-hover: var(--color-accent-hover);
+  --page-accent-muted: var(--color-accent-muted);
+}

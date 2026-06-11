@@ -1,0 +1,119 @@
+@import '../colors';
+
+.structure {
+  width: 100%;
+}
+
+.structure-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (width >= $breakpoint) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1em, 2.5vw, 1.75em);
+  }
+}
+
+.structure-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  height: 100%;
+  padding: 1.35em 1.4em;
+  border-radius: $radius-md;
+  border: 1px solid rgb(0 0 0 / 7%);
+  background: #fff;
+  box-shadow: $shadow-sm;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+
+      .structure-card-arrow {
+        transform: translateX(3px);
+        opacity: 0.85;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($dark-text, 0.35);
+    outline-offset: 3px;
+  }
+}
+
+.structure-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-md;
+  background: rgb(0 0 0 / 3.5%);
+  color: rgba($dark-text, 0.72);
+}
+
+.structure-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  flex: 1;
+  min-width: 0;
+}
+
+.structure-card-label {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.structure-card-detail {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba($dark-text, 0.62);
+}
+
+.structure-card-arrow {
+  margin-top: auto;
+  color: rgba($dark-text, 0.4);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.dark .structure-card {
+  background: #0f1111;
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+    }
+  }
+
+  &:focus-visible {
+    outline-color: rgba($light-text, 0.45);
+  }
+}
+
+.dark .structure-card-icon {
+  background: rgb(255 255 255 / 6%);
+  color: rgba($light-text, 0.78);
+}
+
+.dark .structure-card-detail {
+  color: rgba($light-text, 0.58);
+}
+
+.dark .structure-card-arrow {
+  color: rgba($light-text, 0.45);
+}

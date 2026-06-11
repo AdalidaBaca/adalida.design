@@ -1,0 +1,36 @@
+@import '../colors';
+
+/* Case study section titles — override global portfolio brown secondary */
+@mixin case-study-section-heading-accent($accent, $accent-dark) {
+  .section-heading-container > h4 {
+    color: #{$accent};
+
+    &.dark {
+      color: #{$accent-dark};
+    }
+  }
+
+  .section-heading-container > .section-heading-subtitle {
+    color: color-mix(in srgb, #{$accent} 48%, #{$dark-text});
+  }
+
+  > .case-study-explanation > .section-heading-container,
+  > .case-study-top-to-bottom > .case-study-explanation > .section-heading-container,
+  > .case-study-side-by-side > .case-study-explanation > .section-heading-container {
+    margin-top: 0;
+  }
+
+  .dark & {
+    .section-heading-container > h4 {
+      color: #{$accent-dark};
+
+      &.dark {
+        color: #{$accent-dark};
+      }
+    }
+
+    .section-heading-container > .section-heading-subtitle {
+      color: color-mix(in srgb, #{$accent-dark} 52%, #{$light-text});
+    }
+  }
+}

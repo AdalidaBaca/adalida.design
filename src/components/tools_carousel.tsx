@@ -38,10 +38,20 @@ const ToolLogo = ({ label, src }: Tool): JSX.Element => {
   )
 }
 
+const AboutToolItem = ({ label, src }: Tool): JSX.Element => (
+  <div className="tool-item">
+    <ToolLogo label={label} src={src} />
+    <span className="tool-label" aria-hidden="true">
+      {label}
+    </span>
+  </div>
+)
+
 interface ToolsCarouselProps {
-  badgeText?: string
+  badgeText?: string | null
   fullBleed?: boolean
   ariaLabel?: string
+  variant?: 'default' | 'about'
 }
 
 interface ToolData {
@@ -52,7 +62,8 @@ interface ToolData {
 const ToolsCarousel = ({
   badgeText = 'Toolkit',
   fullBleed = true,
-  ariaLabel = 'Tools I use'
+  ariaLabel = 'Tools I use',
+  variant = 'default'
 }: ToolsCarouselProps = {}): JSX.Element => {
   const data = useStaticQuery(graphql`
     query ShipsWithLogos {
@@ -78,11 +89,11 @@ const ToolsCarousel = ({
 
   const containerRef = useRef<HTMLDivElement>(null)
   const marqueeTools = useMemo(() => {
-    // Ensure the marquee has enough content to animate smoothly even with only a few logos.
     const baseCopies = Math.max(6, Math.ceil(14 / tools.length))
     const base = Array.from({ length: baseCopies }, () => tools).flat()
-    return [...base, ...base] // animation moves -50%, so we need 2 identical halves
+    return [...base, ...base]
   }, [tools])
+
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) {
@@ -95,7 +106,6 @@ const ToolsCarousel = ({
     if (el === null) {
       return
     }
-    // Pause the animation when offscreen to reduce scroll jank, keep it running while visible.
     el.style.setProperty('--marquee-play', 'running')
     const observer = new IntersectionObserver(
       entries => {
@@ -113,9 +123,26 @@ const ToolsCarousel = ({
     }
   }, [])
 
+  const isAbout = variant === 'about'
+  const carouselClass = ['tools-carousel', fullBleed ? 'full-bleed' : '', isAbout ? 'tools-carousel--about' : '']
+    .filter(Boolean)
+    .join(' ')
+
+  if (isAbout) {
+    return (
+      <div className={carouselClass} ref={containerRef} aria-label={ariaLabel}>
+        <div className="marquee lane-1">
+          {marqueeTools.map((t, i) => (
+            <AboutToolItem key={`lane1-${t.label}-${i}`} {...t} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <section className={`tools-carousel ${fullBleed ? 'full-bleed' : ''}`} ref={containerRef} aria-label={ariaLabel}>
-      {badgeText && (
+    <section className={carouselClass} ref={containerRef} aria-label={ariaLabel}>
+      {badgeText !== null && badgeText !== '' && (
         <div className="inner">
           <div className="tools-ship-badge subtitle-2">{badgeText}</div>
         </div>

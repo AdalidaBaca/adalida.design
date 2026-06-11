@@ -4,42 +4,59 @@
 @import '../colors'; // For dark-colors
 @import './intro';
 @import './badges';
+@import './featured_projects';
 
-.featured-projects-heading {
-  /* Match section-heading-container margin and width, but keep smaller uppercase style */
-  margin: 0.5em 0 1.5em; /* Bottom margin matches section-heading-container (1.5em) */
-  width: 100%;
+.portfolio-page {
   display: flex;
-  align-items: center;
-  gap: 0.75em;
+  flex-direction: column;
+  gap: 4em;
+  padding-top: 1.25em;
+  padding-bottom: 0.5em;
 
-  > span {
-    /* Keep smaller size but match other styling aspects */
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    line-height: 1.3;
-    color: $dark-text;
-    text-transform: uppercase; /* Keep uppercase as originally */
+  @media (width >= $breakpoint) {
+    gap: 5.5em;
+    padding-top: 2em;
+    padding-bottom: 1em;
   }
 
+  /* Flex gap controls section rhythm — not global 12dvw heading margins */
+  .section-heading-container {
+    margin: 0 0 $section-heading-gap;
+  }
+
+  > .portfolio-intro {
+    margin-bottom: 0;
+  }
+
+  /* Extra breathing room between major content blocks */
+  > .testimonials-section,
+  > .contact-cta-section {
+    margin-top: 2.5em;
+
+    @media (width >= $breakpoint) {
+      margin-top: 3.5em;
+    }
+  }
+}
+
+.featured-projects-heading {
   .curved-arrow {
-    color: $dark-text;
+    color: map.get($light-colors, secondary);
     flex-shrink: 0;
   }
 }
 
 .dark .featured-projects-heading {
-  > span {
-    color: map.get($dark-colors, secondary); /* Match section-heading dark mode color */
-  }
-  
-  svg {
+  .curved-arrow {
     color: map.get($dark-colors, secondary);
   }
 }
 
-/* Match testimonials header to featured projects style */
+/* Testimonials — full width, aligned with featured projects */
+.portfolio-page .testimonials-section {
+  width: 100%;
+}
+
 .testimonials-section .section-heading-container > h4 {
   font-size: 0.9rem;
   font-weight: 600;
@@ -49,39 +66,36 @@
 
 .portfolio-image-section {
   width: 100%;
-  flex: 0 0 65%; /* Slightly smaller to give more room for text section */
+  flex: 0 0 auto;
   min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; /* For absolute positioning of mobile CTA */
-  box-sizing: border-box; /* Ensure padding is included in width */
+  position: relative;
+  box-sizing: border-box;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
-  /* Letterboxed portfolio heroes: show strip gradient behind Gatsby’s wrapper */
   .portfolio-container-for-hero-image .gatsby-image-wrapper {
     background-color: transparent !important;
   }
 
-  /* Mobile: Fixed height to ensure all cards are identical (based on Airbrush Art Studio) */
   @media (width <= $breakpoint) {
-    flex: 0 0 240px; /* Fixed height for consistent card sizing */
-    min-height: 240px;
-    max-height: 240px;
+    aspect-ratio: 16 / 10;
+    min-height: 220px;
     padding: 1.25em;
     padding-bottom: 0.75em;
-    border-radius: 0; /* Let parent handle border-radius */
+    border-radius: 0;
     overflow: hidden;
     max-width: 100%;
   }
 
-  /* Desktop: Different padding */
   @media (width >= $breakpoint) {
-    padding: 1.5em;
-    padding-bottom: 1em;
-    border-radius: 1.5em 1.5em 0 0; /* Round top corners only */
+    aspect-ratio: 16 / 10;
+    padding: 1.35em;
+    padding-bottom: 0.85em;
+    border-radius: $radius-md $radius-md 0 0;
   }
 }
 
@@ -138,21 +152,16 @@
 
 .portfolio-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto; /* Changed from repeat(2, 1fr) to auto for 2 cards */
-  gap: 2.5em; /* Increased gap for better spacing between cards */
-  align-items: stretch; /* Keep cards in the same row equal height */
+  grid-template-columns: 1fr;
+  gap: clamp(1em, 2.5vw, 1.75em);
+  align-items: stretch;
   width: 100%;
   max-width: 100%;
-  margin-top: 0; /* No top margin - gap is handled by .featured-projects-heading bottom margin (1.5em) to match testimonials */
-  margin-bottom: 1em; /* Reduced bottom margin for spacing before testimonials on desktop (2 cards instead of 4) */
+  margin: 0;
   box-sizing: border-box;
 
-  @media (width <= $breakpoint) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 2.5em; /* Increased gap on mobile */
-    margin-bottom: 2em; /* Reduced bottom margin on mobile (2 cards instead of 4) */
+  @media (width >= $breakpoint) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -160,7 +169,7 @@
   margin: 4em auto 0;
   padding: 2em;
   background: rgba($dark-text, 0.03);
-  border-left: 3px solid map.get($light-colors, danger);
+  border-left: 3px solid var(--page-accent, #{$brand-accent});
   border-radius: 8px;
   position: relative;
   max-width: 65ch;
@@ -172,9 +181,9 @@
     left: 1em;
     font-size: 3em;
     line-height: 1;
-    color: map.get($light-colors, danger);
+    color: var(--page-accent, #{$brand-accent});
     opacity: 0.25;
-    font-family: Georgia, serif;
+    font-family: var(--font-serif);
   }
 
   .testimonial-quote {
@@ -200,10 +209,10 @@
 
 .dark .portfolio-testimonial {
   background: rgba($light-text, 0.05);
-  border-left-color: map.get($dark-colors, danger);
+  border-left-color: var(--page-accent, #{$brand-accent-dark});
 
   .quote-icon {
-    color: map.get($dark-colors, danger);
+    color: var(--page-accent, #{$brand-accent-dark});
   }
 
   .testimonial-quote {
@@ -216,7 +225,7 @@
 }
 
 .portfolio-card {
-  border-radius: 1.5em;
+  border-radius: $radius-md;
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -224,56 +233,48 @@
   align-items: stretch;
   justify-content: stretch;
   margin: 0;
-  aspect-ratio: 1 / 1; /* Square cards for grid */
-  min-height: 0; /* Allow grid to control sizing */
+  height: 100%;
+  min-height: 0;
   overflow: hidden;
-  background: transparent; /* Remove glass effect from card itself */
-  border: 1px solid rgb(0 0 0 / 10%); /* Add border to parent card */
-  box-sizing: border-box; /* Include border in width/height calculations */
+  background: transparent;
+  border: 1px solid rgb(0 0 0 / 7%);
+  box-shadow: $shadow-sm;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  /* Mobile: Allow cards to grow taller to fit content */
-  @media (width <= $breakpoint) {
-    aspect-ratio: auto;
-    height: auto;
-
-    /* Ensure overflow is properly contained */
-    overflow: hidden;
-
-    /* Ensure border is included in dimensions */
-    box-sizing: border-box;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
   }
 }
 
 .project-description {
-  flex: 0 0 auto; /* Hug content - no fixed height */
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 0;
   width: 100%;
-  background: #fff; /* Solid white for better contrast */
-  border: none; /* Remove border from child since parent has it */
-  border-top: none; /* No border at top where it meets image section */
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 4%);
-  color: $dark-text; /* Dark text on light background */
-  box-sizing: border-box; /* Ensure padding is included in width */
+  background: #fff;
+  border: none;
+  border-top: none;
+  box-shadow: none;
+  color: $dark-text;
+  box-sizing: border-box;
 
-  /* Mobile: Standardized padding and styling (based on Airbrush Art Studio) */
   @media (width <= $breakpoint) {
-    padding: 1.25em 1.5em 0.25em !important; /* Minimal bottom padding to hug content */
-    border-radius: 0; /* Let parent handle border-radius */
+    padding: 1.25em 1.35em 1.15em !important;
+    border-radius: 0;
     overflow: hidden;
     max-width: 100%;
   }
 
-  /* Desktop: Different padding */
   @media (width >= $breakpoint) {
-    padding: 2em;
-    padding-top: 1.5em;
-    padding-right: 2em; /* Standard padding */
-    padding-bottom: 1.5em; /* Reduced bottom padding to hug content */
-    border-radius: 0 0 1.5em 1.5em; /* Round bottom corners only */
+    padding: 1.35em 1.5em 1.4em;
+    border-radius: 0 0 $radius-md $radius-md;
   }
 
   .badge-list {
@@ -294,7 +295,7 @@
       border-radius: 20px;
       background: rgb(0 0 0 / 2%);
       box-shadow: none; /* Clean, no shadow for minimal look */
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-sans);
       font-size: 12px; /* 12pt equivalent */
       font-weight: 400;
       letter-spacing: 0.02em;
@@ -403,7 +404,7 @@
     }
 
     .project-category {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-sans);
       font-weight: 500;
       letter-spacing: 0.08em;
       line-height: 1.2;
@@ -429,7 +430,7 @@
     }
 
     .project-name {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-serif);
       font-weight: 500;
       margin: 0;
       line-height: 1.2;
@@ -644,13 +645,20 @@
 }
 
 .dark .portfolio-card {
-  border-color: rgb(255 255 255 / 15%); /* Dark mode border color */
+  border-color: rgb(255 255 255 / 10%);
+  box-shadow: 0 12px 36px -12px rgb(0 0 0 / 60%);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+    }
+  }
 }
 
 .dark .project-description {
-  background: #0f0f0f; /* Darker background for stronger contrast */
-  border: none; /* Remove border from child since parent has it */
-  box-shadow: 0 4px 16px rgb(0 0 0 / 50%), 0 1px 4px rgb(0 0 0 / 30%);
+  background: #0f1111;
+  border: none;
+  box-shadow: none;
   color: $light-text;
 
   .badge-list > div {
@@ -704,7 +712,7 @@
     }
 
     .project-category {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: var(--font-sans);
       font-size: clamp(0.7rem, 1.5vw, 0.8rem) !important; /* Match mobile font size */
       font-weight: 500 !important;
       letter-spacing: 0.08em !important;
@@ -719,371 +727,137 @@
   }
 }
 
-// Internship portfolio page: header, nav, sections
+// Secondary project list pages — aligned with featured project row cards
+.experiments-page,
+.clients-page,
 .internship-portfolio-page {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-}
-
-.internship-portfolio-header {
-  margin-bottom: 2.5em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.internship-portfolio-title {
-  margin: 0 0 0.5em;
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: 0.08em;
-  color: $dark-text;
-  text-transform: uppercase;
-}
-
-.dark .internship-portfolio-title {
-  color: map.get($dark-colors, secondary);
-}
-
-.internship-portfolio-intro {
-  margin: 0 0 1.5em;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba($dark-text, 0.8);
-  max-width: 42ch;
-
-  @media (width >= $breakpoint) {
-    font-size: 1.0625rem;
-    margin-bottom: 1.75em;
-  }
-}
-
-.dark .internship-portfolio-intro {
-  color: rgba(map.get($dark-colors, secondary), 0.85);
-}
-
-.internship-portfolio-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  width: 100%;
-  max-width: 100%;
-}
-
-.internship-portfolio-nav-link {
-  display: inline-block;
-  padding: 0.5em 1em;
-  border-radius: 2em;
-  background: rgb(8 145 178 / 10%);
-  border: 1px solid rgb(8 145 178 / 22%);
-  color: #0e7490;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-
-  &:hover {
-    background: rgb(8 145 178 / 18%);
-    border-color: rgb(8 145 178 / 35%);
-    color: #0d5a6e;
-  }
-}
-
-.dark .internship-portfolio-nav-link {
-  background: rgb(8 145 178 / 14%);
-  border-color: rgb(8 145 178 / 28%);
-  color: rgb(134 239 255 / 95%);
-
-  &:hover {
-    background: rgb(8 145 178 / 24%);
-    border-color: rgb(8 145 178 / 40%);
-    color: rgb(165 243 252 / 98%);
-  }
-}
-
-.internship-portfolio-section {
-  margin-bottom: 3.5em;
-  padding-top: 0.5em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  scroll-margin-top: 88px; /* Offset for fixed header when jumping to section */
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-}
-
-.internship-portfolio-section-heading {
-  margin: 0 0 1.25em;
-  padding-bottom: 0.5em;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  line-height: 1.3;
-  color: $dark-text;
-  text-transform: uppercase;
-  border-bottom: 2px solid rgb(8 145 178 / 25%);
-
-  @media (width >= $breakpoint) {
-    font-size: 1.25rem;
-    margin-bottom: 1.5em;
-    padding-bottom: 0.625em;
-  }
-}
-
-.dark .internship-portfolio-section-heading {
-  color: map.get($dark-colors, secondary);
-  border-bottom-color: rgb(8 145 178 / 35%);
-}
-
-.internship-portfolio-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-
-  @media (width >= $breakpoint) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2em;
-  }
-}
-
-.internship-portfolio-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  padding: 1.5em;
-  border-radius: 1em;
-  border: 1px solid rgb(0 0 0 / 10%);
-  background: #fff;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%), 0 1px 3px rgb(0 0 0 / 4%);
-  color: $dark-text;
-  text-align: left;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
-  min-height: 0;
-
-  .internship-portfolio-card-text {
-    flex: 1;
-    min-height: 0;
-    min-width: 0;
-  }
-
-  /* CTA sticks to bottom for consistent, high-converting action */
-  .internship-portfolio-card-cta-section {
-    margin-top: auto;
-    flex-shrink: 0;
-  }
-
-  @media (width >= $breakpoint) {
-    padding: 2em;
-    gap: 1.25em;
-  }
-
-  &:hover {
-    border-color: rgb(0 0 0 / 18%);
-    box-shadow: 0 6px 16px rgb(0 0 0 / 10%), 0 2px 6px rgb(0 0 0 / 6%);
-  }
-}
-
-.dark .internship-portfolio-card {
-  background: rgb(255 255 255 / 4%);
-  border-color: rgb(255 255 255 / 12%);
-  color: map.get($dark-colors, secondary);
-
-  &:hover {
-    border-color: rgb(255 255 255 / 20%);
-    box-shadow: 0 6px 16px rgb(0 0 0 / 20%);
-  }
-}
-
-.internship-portfolio-card-title {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.3;
-  text-transform: uppercase;
-  color: inherit;
-}
-
-.internship-portfolio-card-description {
-  margin: 0;
-  margin-top: 0.5em;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: inherit;
-  opacity: 0.9;
-
-  @media (width >= $breakpoint) {
-    font-size: 1rem;
-    line-height: 1.65;
-    margin-top: 0.625em;
-  }
-}
-
-/* Full-width primary CTA for higher conversion */
-.internship-portfolio-card-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  width: 100%;
-  min-height: 48px;
-  padding: 0.75em 1.25em;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, rgb(8 145 178 / 12%) 0%, rgb(6 182 212 / 8%) 100%);
-  border: 1px solid rgb(8 145 178 / 25%);
-  color: #0e7490;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, gap 0.2s ease;
-  cursor: pointer;
-  touch-action: manipulation;
-
-  .internship-portfolio-card-cta-label {
-    letter-spacing: 0.02em;
-  }
-
-  svg {
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      background: linear-gradient(135deg, rgb(8 145 178 / 20%) 0%, rgb(6 182 212 / 14%) 100%);
-      border-color: rgb(8 145 178 / 40%);
-      color: #0d5a6e;
-      gap: 0.625em;
-
-      svg {
-        transform: translateX(2px);
-      }
-    }
-  }
-
-  &:active {
-    background: linear-gradient(135deg, rgb(8 145 178 / 16%) 0%, rgb(6 182 212 / 12%) 100%);
-  }
-}
-
-.dark .internship-portfolio-card-cta {
-  background: linear-gradient(135deg, rgb(8 145 178 / 18%) 0%, rgb(6 182 212 / 12%) 100%);
-  border-color: rgb(8 145 178 / 35%);
-  color: rgb(134 239 255 / 95%);
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      background: linear-gradient(135deg, rgb(8 145 178 / 28%) 0%, rgb(6 182 212 / 20%) 100%);
-      border-color: rgb(8 145 178 / 50%);
-      color: rgb(165 243 252 / 98%);
-    }
-  }
-
-  &:active {
-    background: linear-gradient(135deg, rgb(8 145 178 / 22%) 0%, rgb(6 182 212 / 16%) 100%);
-  }
-}
-
-// Experiments page: header, nav, sections (mirrors internship portfolio layout)
-.experiments-page {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  padding-top: calc(#{$header-height} + 1.25em);
   padding-bottom: 4em;
+
+  @media (width >= $breakpoint) {
+    padding-top: calc(#{$header-height} + 1.75em);
+  }
 }
 
-.experiments-header {
-  margin-bottom: 2.5em;
+.experiments-header,
+.clients-header,
+.internship-portfolio-header {
+  margin-bottom: 2.75em;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-.experiments-title {
-  margin: 0 0 0.5em;
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: 0.08em;
-  color: $dark-text;
-  text-transform: uppercase;
+.experiments-title,
+.clients-title,
+.internship-portfolio-title {
+  margin: 0 0 0.55em;
+  font-family: var(--font-sans);
+  font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: rgba($dark-text, 0.94);
 }
 
-.dark .experiments-title {
-  color: map.get($dark-colors, secondary);
+.dark .experiments-title,
+.dark .clients-title,
+.dark .internship-portfolio-title {
+  color: rgba(map.get($dark-colors, secondary), 0.95);
 }
 
-.experiments-intro {
-  margin: 0 0 1.5em;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba($dark-text, 0.8);
+.experiments-intro,
+.clients-intro,
+.internship-portfolio-intro {
+  margin: 0 0 1.35em;
+  font-size: clamp(0.92rem, 2vw, 1rem);
+  line-height: 1.65;
+  color: rgba($dark-text, 0.64);
   max-width: 42ch;
 
   @media (width >= $breakpoint) {
-    font-size: 1.0625rem;
-    margin-bottom: 1.75em;
+    margin-bottom: 1.5em;
   }
 }
 
-.dark .experiments-intro {
-  color: rgba(map.get($dark-colors, secondary), 0.85);
+.dark .experiments-intro,
+.dark .clients-intro,
+.dark .internship-portfolio-intro {
+  color: rgba(map.get($dark-colors, secondary), 0.62);
+}
+
+.clients-page > .contact-cta-section,
+.internship-portfolio-page > .contact-cta-section {
+  margin-top: 2.5em;
+
+  @media (width >= $breakpoint) {
+    margin-top: 3.5em;
+  }
+}
+
+.clients-page .featured-project-list,
+.internship-portfolio-page .featured-project-list {
+  margin: 0;
+  padding: 0;
 }
 
 .experiments-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 0.4em;
   width: 100%;
   max-width: 100%;
 }
 
 .experiments-nav-link {
   display: inline-block;
-  padding: 0.5em 1em;
-  border-radius: 2em;
-  background: rgb(0 0 0 / 6%);
-  border: 1px solid rgb(0 0 0 / 14%);
-  color: $dark-text;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  padding: 0.42em 0.85em;
+  border-radius: $radius-pill;
+  background: rgb(0 0 0 / 2.5%);
+  border: 1px solid rgb(0 0 0 / 8%);
+  color: rgba($dark-text, 0.58);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
   text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 
-  &:hover {
-    background: rgb(0 0 0 / 10%);
-    border-color: rgb(0 0 0 / 22%);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 6%, #fff);
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 28%, transparent);
+      color: rgba($dark-text, 0.78);
+    }
   }
 }
 
 .dark .experiments-nav-link {
-  background: rgb(255 255 255 / 8%);
-  border-color: rgb(255 255 255 / 16%);
-  color: map.get($dark-colors, secondary);
+  background: rgb(255 255 255 / 5%);
+  border-color: rgb(255 255 255 / 10%);
+  color: rgba(map.get($dark-colors, secondary), 0.58);
 
-  &:hover {
-    background: rgb(255 255 255 / 14%);
-    border-color: rgb(255 255 255 / 24%);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 12%, #0f1111);
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 32%, transparent);
+      color: rgba(map.get($dark-colors, secondary), 0.82);
+    }
   }
 }
 
 .experiments-section {
-  margin-bottom: 3.5em;
-  padding-top: 0.5em;
+  margin-bottom: 2.75em;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  scroll-margin-top: 88px;
+  scroll-margin-top: calc(#{$header-height} + 1em);
 
   &:last-of-type {
     margin-bottom: 0;
@@ -1091,38 +865,24 @@
 }
 
 .experiments-section-heading {
-  margin: 0 0 1.25em;
-  padding-bottom: 0.5em;
-  font-size: 0.9rem;
+  margin: 0 0 0.85em;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   line-height: 1.3;
-  color: $dark-text;
+  color: rgba($dark-text, 0.42);
   text-transform: uppercase;
-  border-bottom: 2px solid rgb(0 0 0 / 18%);
 
   @media (width >= $breakpoint) {
-    font-size: 1.25rem;
-    margin-bottom: 1.5em;
-    padding-bottom: 0.625em;
+    margin-bottom: 1em;
   }
 }
 
 .dark .experiments-section-heading {
-  color: map.get($dark-colors, secondary);
-  border-bottom-color: rgb(255 255 255 / 22%);
+  color: rgba(map.get($dark-colors, secondary), 0.38);
 }
 
-.experiments-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5em;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-
-  @media (width >= $breakpoint) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2em;
-  }
+.experiments-section .featured-project-list {
+  margin: 0;
+  padding: 0;
 }

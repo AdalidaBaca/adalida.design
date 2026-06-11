@@ -11,7 +11,7 @@ input, select, textarea, button {
 }
 
 body {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   margin: 0;
   overscroll-behavior: none;
@@ -24,13 +24,13 @@ body {
   /* Keep content responsive; avoid clipping */
 
   &.dark {
-    background-color: $dark-background;
-    color: $light-text;
+    background-color: var(--color-bg, #{$dark-background});
+    color: var(--color-text, #{$light-text});
   }
 
   &.light {
-    background-color: $light-background;
-    color: $dark-text;
+    background-color: var(--color-bg, #{$light-background});
+    color: var(--color-text, #{$dark-text});
   }
   
   > div {
@@ -43,7 +43,8 @@ body {
 * { box-sizing: border-box; }
 
 hr {
-  border-top: 2px solid;
+  border: 0;
+  border-top: 1px solid rgb(0 0 0 / 8%);
   margin: 0;
 }
 

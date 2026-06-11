@@ -42,4 +42,20 @@ function useResolveFile(): (filePath: string) => FileNode {
   }, [edges])
 }
 
+/** Resolve a PDF under `src/files/` (e.g. `academic/foo.pdf`) to Gatsby's public URL. */
+function useResolvePdfUrl(): (pdfPath: string) => string | undefined {
+  const resolveFile = useResolveFile()
+
+  return useMemo(() => {
+    return (pdfPath: string): string | undefined => {
+      try {
+        return resolveFile(pdfPath).publicURL
+      } catch {
+        return undefined
+      }
+    }
+  }, [resolveFile])
+}
+
 export default useResolveFile
+export { useResolvePdfUrl }

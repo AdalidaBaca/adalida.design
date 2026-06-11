@@ -2,34 +2,43 @@ import SectionHeading from 'components/section_heading'
 
 interface Props {
   title: string
+  subtitle?: string
+  headerAction?: React.ReactNode
   children: React.ReactNode
   aos?: string | 'none'
   aosOffset?: number
 }
 
-const Section = ({ title, children, aos = 'fade-up', aosOffset }: Props): JSX.Element => {
+const Section = ({ title, subtitle, headerAction, children, aos = 'fade-up', aosOffset }: Props): JSX.Element => {
   const isTestimonials = title === 'Testimonials'
   const isResources = title === 'Resources'
   const isContributions = title === 'Contributions'
-  const isMyProcess = title === 'My Process'
+  const isBuilderFoundations = title === 'Foundations'
+  const isToolkit = title === 'Toolkit'
+  const isContact = title === "Let's talk"
   const sectionClass = isTestimonials
     ? 'testimonials-section'
     : isResources
       ? 'resources-section'
       : isContributions
         ? 'contributions-section'
-        : isMyProcess
+        : isBuilderFoundations
           ? 'my-process-section'
-          : undefined
+          : isToolkit
+            ? 'toolkit-section'
+            : isContact
+              ? 'contact-section'
+              : undefined
   return (
-    <div
+    <section
       data-aos={aos !== 'none' ? aos : undefined}
       data-aos-offset={aos !== 'none' ? aosOffset : undefined}
       className={sectionClass}
+      aria-label={title}
     >
-      <SectionHeading title={title} />
+      <SectionHeading title={title} subtitle={subtitle} headerAction={headerAction} />
       {children}
-    </div>
+    </section>
   )
 }
 

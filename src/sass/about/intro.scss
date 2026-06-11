@@ -1,503 +1,267 @@
 @use 'sass:map';
-@use 'sass:color';
+
+@keyframes about-intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .about-intro {
-  /* Theme-aware accent colors for the animated outline */
-
-  /* Light mode accent should match the site's light-mode "danger" (CTA) accent */
-  --outline-accent-a: #{map.get($light-colors, danger)};
-
-  /* Slightly deeper stop so the gradient still reads as an accent stroke */
-  --outline-accent-b: #{color.mix(map.get($light-colors, danger), #000, 40%)};
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5em; /* spacing between elements */
-  margin-top: 0;
-  padding-top: calc(56px + 1em);
+  width: 100%;
+  margin: 0;
+  padding-top: calc(56px + 1.5em);
   margin-bottom: $section-gap-mobile;
-  justify-items: center; /* avoid stretched text on mobile */
-  min-height: auto;
-  align-content: flex-start;
+  display: flex;
+  justify-content: center;
 
-  @media (width >= 768px) {
-    padding-top: calc(56px + 1.5em);
-    min-height: auto;
-  }
-
-  .splash-image {
-    position: relative;
-
-    /* Larger image on mobile */
-    width: 100%;
-    max-width: 360px; /* Increased from 280px */
-
-    /* allow the image + audio embed to define height */
-    max-height: none;
-    isolation: isolate;
-    overflow: visible; /* ensure audio control is not clipped */
-    display: flex;
-    flex-direction: column; /* Stack image and handwriting text */
-    align-items: center;
-    gap: 0.5em; /* Space between image and handwriting */
-    
-    /* Create positioning context for audio-control */
-    > .splash-frame {
-      position: relative; /* Ensure audio-control positions relative to frame */
-    }
-
-    /* Wrapper for image and audio control */
-    .splash-image-wrapper {
-      position: relative;
-      width: 100%;
-    }
-
-    /* The animated outline wrapper should behave like the original container */
-    .splash-outline {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .splash-frame {
-      z-index: 1; /* image below outline+controls */
-      padding: 0; /* remove inner gutter so image fully covers */
-      border-radius: 20px; /* Rounded square */
-      background: transparent; /* prevent container background showing at edges */
-      overflow: hidden; /* clip image to rounded frame - ensures audio control stays within */
-      outline: 2px solid transparent;
-      outline-offset: 0;
-      box-shadow:
-        0 12px 36px -12px rgb(0 0 0 / 35%),
-        0 0 0 1px rgb(255 255 255 / 6%) inset;
-      margin: 0 auto;         /* horizontally center the frame */
-      width: 100%;
-      max-width: 360px; /* Increased size */
-      aspect-ratio: 1 / 1; /* Square */
-      min-height: clamp(240px, 30vw, 360px); /* Increased size */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative; /* Ensure it's a positioning context for audio-control */
-    }
-
-    /* Gatsby image wrapper */
-    :where(img, .gatsby-image-wrapper) {
-      border-radius: 0; /* image should flush to frame edges */
-      overflow: hidden;
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Native img path for this avatar */
-    .splash-img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .gatsby-image-wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative !important;
-
-      /* Remove intrinsic padding so the image can fill the frame height */
-      padding-bottom: 0 !important;
-    }
-
-    .gatsby-image-wrapper img {
-      position: absolute !important;
-      inset: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-    }
-
-    /* CSS background fallback to guarantee full cover */
-    .splash-cover {
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top;
-    }
-
-    &.has-bg {
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top;
-    }
-
-    /* Ensure the <picture> wrapper also fills the frame, not just the img */
-    .gatsby-image-wrapper picture {
-      width: 100% !important;
-      height: 100% !important;
-      display: block !important;
-    }
-
-    .gatsby-image-wrapper picture img {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-    }
-
-    /* Ensure any internal sizer elements don't impose padding-based aspect ratios */
-    .gatsby-image-wrapper > div,
-    .gatsby-image-wrapper > span,
-    .gatsby-image-wrapper [style*='padding-bottom'] {
-      height: 100% !important;
-      padding-bottom: 0 !important;
-      max-height: 100% !important;
-    }
-
-
-    .audio-control {
-      position: absolute;
-      left: clamp(8px, 2vw, 12px); /* Responsive padding from left edge */
-      bottom: clamp(8px, 2vw, 12px); /* Responsive padding from bottom edge */
-      z-index: 10; /* always above the animated outline */
-      display: inline-flex;
-      align-items: center;
-      gap: 6px; /* tiny gap between icon and text */
-      pointer-events: auto; /* ensure clicks work */
-
-      /* Ensure it never overflows the image bounds */
-      max-width: calc(100% - clamp(16px, 4vw, 24px)); /* Account for left + right padding */
-      max-height: calc(100% - clamp(16px, 4vw, 24px)); /* Account for top + bottom padding */
-      box-sizing: border-box;
-
-      .audio-icon-button {
-        width: 44px;
-        height: 44px;
-        border-radius: 999px;
-        display: inline-grid;
-        place-items: center;
-        border: 1px solid rgb(0 0 0 / 25%);
-        background: rgb(0 0 0 / 60%);
-        color: $light-text;
-        cursor: pointer;
-        pointer-events: auto; /* ensure button is clickable */
-        position: relative;
-        z-index: 11; /* above the audio-control container */
-        transition: transform 120ms ease, filter 120ms ease, opacity 120ms ease;
-
-        &:hover {
-          transform: translateY(-1px);
-          filter: brightness(1.05);
-        }
-
-        &:focus-visible {
-          outline: 2px solid $light-text;
-          outline-offset: 2px;
-        }
-
-        &:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-      }
-
-      .audio-state {
-        margin-left: 2px; /* micro nudge */
-        font-size: 0.95em;
-        line-height: 1;
-        color: $light-text;
-        text-shadow: 0 1px 1px rgb(0 0 0 / 40%);
-      }
-
-      /* Hidden YouTube player host (kept in DOM for mobile Safari reliability) */
-      .yt-audio-player {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-    }
-
-    /* Soft gradient glow behind the frame */
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -4%;
-      border-radius: 32px;
-      background:
-        radial-gradient(40% 35% at 25% 20%, rgba(map.get($light-colors, danger), 0.25), transparent 60%),
-        radial-gradient(45% 40% at 80% 70%, rgba(map.get($light-colors, danger), 0.20), transparent 60%);
-      filter: blur(24px);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Keep perfectly centered; disable float animation to avoid visual offset */
-    animation: none;
-  }
-
-  @keyframes float-splash {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  &-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.1em; /* Increased gap for better spacing */
-    max-width: 56ch;
-    width: 100%;
-    padding-block: 6px; /* visually balance with splash frame padding */
-
-    .handwriting-overlay {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: flex-start; /* Left align to match text and CTA */
-      pointer-events: none;
-      margin-bottom: 0.05em; /* Minimal gap to bring text very close */
-    }
-
-    .handwriting-text {
-      font-family: 'Shadows Into Light', cursive;
-      font-size: 3em; /* Increased from 2.4em for larger handwriting */
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      color: map.get($light-colors, danger); /* Accent blue color */
-      text-shadow: 
-        0 2px 8px rgb(0 0 0 / 10%),
-        0 1px 3px rgb(0 0 0 / 8%);
-      white-space: nowrap;
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      position: relative;
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-
-    /* Heading - Larger on mobile */
-    h6 {
-      font-size: 1.25em; /* Increased from 1.1em */
-      line-height: 1.3;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-
-    .intro-lead {
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      line-height: 1.4;
-      font-size: 1.5em; /* Increased from 1.22em for better readability */
-      margin-top: -0.4em; /* Reduce gap from handwriting text above */
-    }
-
-    .intro-support {
-      opacity: 0.9;
-      font-size: 1.15em; /* Increased from 1.02em */
-      line-height: 1.6;
-    }
-    
-    /* Regular paragraph text */
-    > div {
-      font-size: 1.12em; /* Larger body text */
-      line-height: 1.65;
-    }
-
-    .sound-link {
-      display: inline-flex;
-      align-items: center;
-      opacity: 0.8;
-      transition: transform 120ms ease, opacity 120ms ease;
-      color: inherit;
-      text-decoration: none;
-      background: transparent;
-      border: 0;
-      padding: 0;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 1;
-        transform: translateY(-1px);
-      }
-      svg { display: block; }
-    }
-  }
-}
-
-/* Desktop: two-column layout and spacing (at root to avoid nested @media declaration parsing) */
-@media (width >= $breakpoint) {
-  .about-intro {
-    gap: 4em;
-    display: flex;              /* center WITH each other, not the grid */
-    flex-direction: row;
-    justify-content: center;    /* center horizontally as a pair */
-    align-items: center;        /* vertically center relative to each other */
+  @media (width >= $breakpoint) {
+    padding-top: calc(56px + 2.5em);
     margin-bottom: $section-gap-desktop;
   }
-
-  .about-intro .splash-image {
-    /* make image column visually larger than text column */
-    flex: 0.95 1 0;
-    max-height: none;
-    min-width: 360px;
-    max-width: 440px;
-    width: clamp(360px, 28vw, 440px);
-  }
-
-  .about-intro .splash-frame {
-    aspect-ratio: 1 / 1; /* Square */
-    min-height: clamp(360px, 30vw, 440px);
-    max-width: 440px;
-    border-radius: 24px; /* Rounded square */
-  }
-
-  .about-intro .audio-control {
-    left: clamp(10px, 1.5vw, 14px);
-    bottom: clamp(10px, 1.5vw, 14px);
-  }
-
-  .about-intro .about-intro-text {
-    flex: 1 1 0;
-    max-width: 52ch;
-  }
-
-  .about-intro .about-intro-text h6 { font-size: 1.2em; }
-  .about-intro .about-intro-text .intro-lead { font-size: 1.4em; }
-  .about-intro .about-intro-text .intro-support { font-size: 1.1em; }
-  .about-intro .about-intro-text > div { font-size: 1.08em; }
-  .about-intro .splash-image::before { display: none; } /* prevent visual height illusion on desktop */
 }
 
-/* Tablet / iPad range: the image felt too narrow vs. text, so widen it slightly here */
-@media (width >= $breakpoint) and (width < 1100px) {
-  .about-intro .splash-image {
-    min-width: 240px;
-    width: clamp(240px, 30vw, 320px);
+.about-intro-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+.about-intro-photo {
+  position: relative;
+  width: clamp(9.5rem, 34vw, 12.5rem);
+  height: clamp(9.5rem, 34vw, 12.5rem);
+  margin-bottom: 0.15em;
+  animation: about-intro-rise 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 2.5%);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 9%);
+    pointer-events: none;
   }
 
-  .about-intro .about-intro-text {
-    max-width: 48ch;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .about-intro-frame {
+      transform: scale(1.03);
+      box-shadow:
+        0 0 0 1px rgb(0 0 0 / 8%),
+        0 12px 32px rgb(0 0 0 / 8%);
+    }
   }
 }
 
-.dark .about-intro {
-  /* Glass effect for dark mode - use lighter white with transparency */
-  --outline-glass-a: rgb(255 255 255 / 50%);
-  --outline-glass-b: rgb(255 255 255 / 30%);
-  
-  .about-intro-text .handwriting-text {
-    color: map.get($dark-colors, danger); /* Accent blue color for dark mode */
-    text-shadow: 
-      0 2px 8px rgb(0 0 0 / 30%),
-      0 1px 3px rgb(0 0 0 / 20%);
+.about-intro-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: map.get($light-colors, info);
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 6%),
+    0 8px 24px rgb(0 0 0 / 6%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &.has-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 12%;
+  }
+
+  :where(img, .gatsby-image-wrapper) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+  }
+
+  .gatsby-image-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding-bottom: 0 !important;
+  }
+
+  .gatsby-image-wrapper img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 12% !important;
+  }
+
+  .gatsby-image-wrapper picture,
+  .gatsby-image-wrapper > div,
+  .gatsby-image-wrapper > span,
+  .gatsby-image-wrapper [style*='padding-bottom'] {
+    width: 100% !important;
+    height: 100% !important;
+    padding-bottom: 0 !important;
   }
 }
 
+.about-intro-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  animation: about-intro-rise 0.65s cubic-bezier(0.2, 0.9, 0.2, 1) 0.05s both;
+}
 
-/* Ensure both items center vertically in their grid cells */
-.about-intro .splash-image,
-.about-intro .about-intro-text {
-  align-self: center;
+.about-intro-role {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(0.82rem, 2.2vw, 0.92rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba($dark-text, 0.72);
+}
+
+.about-intro-name {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.85rem, 5.8vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: rgba($dark-text, 0.94);
+}
+
+.about-intro-signals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: about-intro-rise 0.65s cubic-bezier(0.2, 0.9, 0.2, 1) 0.1s both;
+
+  li {
+    padding: 0.32em 0.72em;
+    border-radius: $radius-pill;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
+    background: rgb(0 0 0 / 2%);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba($dark-text, 0.68);
+    line-height: 1.3;
+  }
+}
+
+.about-intro-lead {
+  margin: 0;
+  max-width: 62ch;
+  font-size: clamp(0.98rem, 2.4vw, 1.08rem);
+  line-height: 1.7;
+  color: rgba($dark-text, 0.72);
+  animation: about-intro-rise 0.65s cubic-bezier(0.2, 0.9, 0.2, 1) 0.14s both;
 }
 
 .about-intro-ctas {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75em;
+  justify-content: center;
   align-items: center;
-  margin-top: 1em;
+  gap: 0.65em;
+  margin-top: 0.35em;
+  animation: about-intro-rise 0.65s cubic-bezier(0.2, 0.9, 0.2, 1) 0.18s both;
 }
 
-.about-intro-cta-secondary {
-  background: transparent !important;
-  border: 2px solid map.get($light-colors, danger) !important;
-  color: map.get($light-colors, danger) !important;
+.about-intro-resume {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba($dark-text, 0.5);
+  text-decoration: none;
+  padding: 0.5rem 0.35rem;
 
-  a {
-    color: inherit !important;
-  }
-}
-
-.dark .about-intro-cta-secondary {
-  border-color: map.get($dark-colors, danger) !important;
-  color: map.get($dark-colors, danger) !important;
-}
-
-/* underlines for highlighted phrases */
-.fancy-underline {
-  text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.15em;
-  text-decoration-color: map.get($light-colors, danger);
-}
-
-.dark .fancy-underline {
-  text-decoration-color: map.get($dark-colors, danger);
-}
-
-@keyframes underline-draw {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* Offset/draw-on underline (used for "usable systems") */
-.fancy-underline.underline-draw {
-  text-decoration: none; /* replace text-decoration underline with animated stroke */
-  position: relative;
-  display: inline-block;
-
-  --underline-color: #{map.get($light-colors, danger)};
-  
-  .underline-text {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .hand-drawn-underline {
-    position: absolute;
-    left: 0;
-    bottom: -0.15em;
-    width: 100%;
-    height: 0.4em;
-    color: var(--underline-color);
-    overflow: visible;
-    pointer-events: none;
-    
-    path {
-      stroke-dasharray: 250;
-      stroke-dashoffset: 250;
-      transition: stroke-dashoffset 1400ms cubic-bezier(0.2, 0.9, 0.2, 1); /* Slower reveal */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: rgba($dark-text, 0.8);
     }
   }
 }
 
-.dark .fancy-underline.underline-draw {
-  --underline-color: #{map.get($dark-colors, danger)};
+.dark .about-intro-photo::before {
+  background: rgb(255 255 255 / 4%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%);
 }
 
-/* Underline draws as the first animation when the intro is in view (no wait for handwriting) */
-.about-intro.aos-animate .fancy-underline.underline-draw .hand-drawn-underline path {
-  stroke-dashoffset: 0;
-  transition-delay: 0s;
+.dark .about-intro-name {
+  color: rgba($light-text, 0.95);
 }
 
-/* Skip animation if already completed - show final state immediately */
-.fancy-underline.underline-draw.animation-complete .hand-drawn-underline path {
-  stroke-dashoffset: 0;
-  transition: none; /* No animation, show immediately */
+.dark .about-intro-role {
+  color: rgba($light-text, 0.68);
+}
+
+.dark .about-intro-signals li {
+  background: rgb(255 255 255 / 4%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+  color: rgba($light-text, 0.68);
+}
+
+.dark .about-intro-lead {
+  color: rgba($light-text, 0.65);
+}
+
+.dark .about-intro-frame {
+  background: map.get($dark-colors, info);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 10%),
+    0 8px 24px rgb(0 0 0 / 25%);
+}
+
+.dark .about-intro-resume {
+  color: rgba($light-text, 0.5);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: rgba($light-text, 0.82);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fancy-underline.underline-draw .hand-drawn-underline path {
-    stroke-dashoffset: 0;
+  .about-intro-photo,
+  .about-intro-headline,
+  .about-intro-signals,
+  .about-intro-lead,
+  .about-intro-ctas {
+    animation: none;
+  }
+
+  .about-intro-frame {
     transition: none;
+  }
+}
+
+@media (width >= $breakpoint) {
+  .about-intro-inner {
+    gap: 1.25em;
+  }
+
+  .about-intro-lead {
+    font-size: 1.08rem;
   }
 }

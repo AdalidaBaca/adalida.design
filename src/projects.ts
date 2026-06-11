@@ -21,6 +21,8 @@ export interface Project {
   description: string
   heroImage: string
   badges: string[]
+  featured?: boolean
+  featuredOrder?: number
   link?: {
     text: 'Read Case Study' | 'View Presentation' | 'Visit Website' | 'View Figma' | 'View Designs' | 'Request Access'
     url: string
@@ -39,6 +41,8 @@ export const Projects = {
       'A fitness app designed for a comprehensive workout log to meticulously track exercises, sets, reps, and progress.',
     heroImage: GaintainImage,
     badges: ['Founder', 'B2C', 'Product', 'Iteration'],
+    featured: true,
+    featuredOrder: 1,
     link: {
       text: 'Read Case Study',
       url: '/case_studies/gaintain'
@@ -132,6 +136,8 @@ export const Projects = {
     name: 'Invibe Esthetics',
     category: 'Service platform redesign',
     badges: ['Service Design', 'Systems', 'Operations'],
+    featured: true,
+    featuredOrder: 3,
     description:
       'Designed an intuitive website for Invibe Esthetics, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: InvibeHeroImage,
@@ -148,6 +154,8 @@ export const Projects = {
     name: 'Smart Venture Media',
     category: 'EVENT SYSTEMS AND OPERATIONS',
     badges: ['Events', 'Vendor Management', 'Logistics'],
+    featured: true,
+    featuredOrder: 2,
     description:
       'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SmartVentureMediaImage,
@@ -165,6 +173,8 @@ export const Projects = {
     name: 'Project ECHO',
     category: 'Interactive data analysis',
     badges: ['Data ', 'Patterns', 'Interpretation'],
+    featured: true,
+    featuredOrder: 4,
     description:
       'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,
@@ -290,3 +300,7 @@ export const Projects = {
     }
   }
 } as const satisfies Record<string, Project>
+
+export const featuredPortfolioProjects: Project[] = Object.values(Projects)
+  .filter((project): project is Project => project.featured === true)
+  .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))

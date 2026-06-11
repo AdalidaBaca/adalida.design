@@ -1,6 +1,22 @@
-$h1-size: 6em;
-$h2-size: 3.75em;
-$h3-size: 3em;
+%font-sans {
+  font-family: var(--font-sans);
+}
+
+%font-serif {
+  font-family: var(--font-serif);
+}
+
+%font-display {
+  font-family: var(--font-display);
+}
+
+%font-mono {
+  font-family: var(--font-mono);
+}
+
+$h1-size: 4.5em;
+$h2-size: 3em;
+$h3-size: 2.25em;
 $h4-size: 2.125em;
 $h5-size: 1.5em;
 $h6-size: 1.25em;
@@ -19,37 +35,50 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1, .h1 {
-  font-weight: 300;
+  @extend %font-display;
+
+  font-weight: 400;
   font-size: $h1-size;
-  letter-spacing: $h1-size * -0.015;
+  letter-spacing: -0.03em;
 }
 
 h2, .h2 {
-  font-weight: 300;
+  @extend %font-display;
+
+  font-weight: 400;
   font-size: $h2-size;
-  letter-spacing: $h2-size * -0.005;
+  letter-spacing: -0.025em;
 }
 
 h3, .h3 {
+  @extend %font-display;
+
   font-weight: 400;
   font-size: $h3-size;
+  letter-spacing: -0.02em;
 }
 
 h4, .h4, %h4 {
-  font-weight: 400;
+  @extend %font-sans;
+
+  font-weight: 500;
   font-size: $h4-size;
-  letter-spacing: $h4-size * 0.0025;
+  letter-spacing: -0.01em;
 }
 
 h5, .h5 {
+  @extend %font-sans;
+
   font-weight: 400;
   font-size: $h5-size;
 }
 
 h6, .h6 {
+  @extend %font-sans;
+
   font-weight: 500;
   font-size: $h6-size;
-  letter-spacing: $h6-size * 0.0015;
+  letter-spacing: 0.02em;
 }
 
 .subtitle-1, %subtitle-1 {
@@ -72,14 +101,17 @@ h6, .h6 {
 
 .body-2, p, %body-2 {
   font-weight: 400;
-  font-size: 0.875em;
-  letter-spacing: 0.875em * 0.0025;
+  font-size: 0.9375em;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
 }
 
 button, .btn, %btn {
+  @extend %font-sans;
+
   font-weight: 500;
   font-size: 0.875em;
-  letter-spacing: 0.875em * 0.0125;
+  letter-spacing: 0.02em;
 }
 
 .caption-1 {

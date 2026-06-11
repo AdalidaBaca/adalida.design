@@ -7,12 +7,12 @@ import PortfolioContainer from './portfolio_container'
 const PortfolioPage = (): JSX.Element => {
   const isMobile = useIsMobile()
   return (
-    <>
+    <div className="portfolio-page">
       {isMobile !== null && <Intro />}
       <PortfolioContainer />
       <Testimonials />
       <ContactCTA />
-    </>
+    </div>
   )
 }
 

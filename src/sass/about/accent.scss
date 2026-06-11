@@ -1,0 +1,153 @@
+@use 'sass:map';
+@import '../colors';
+
+.about-page {
+  .about-intro-role {
+    color: var(--page-accent);
+  }
+
+  .about-intro-photo::before {
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--page-accent) 28%, transparent);
+  }
+
+  .structure-card-icon {
+    background: color-mix(in srgb, var(--page-accent) 10%, transparent);
+    color: var(--page-accent);
+  }
+
+  .toolkit-marquee .tool-item {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover .tool-label {
+        color: var(--page-accent-hover);
+      }
+    }
+  }
+
+  .structure-card-arrow,
+  .foundations-card-arrow {
+    color: color-mix(in srgb, var(--page-accent) 55%, transparent);
+  }
+
+  .structure-card,
+  .foundations-card {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: color-mix(in srgb, var(--page-accent) 22%, transparent);
+
+        .structure-card-arrow,
+        .foundations-card-arrow {
+          color: var(--page-accent);
+        }
+      }
+    }
+  }
+
+  .foundations-card-course {
+    color: var(--page-accent-hover);
+  }
+
+  .foundations-card {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        .foundations-card-action {
+          color: color-mix(in srgb, var(--page-accent) 72%, #{$dark-text});
+        }
+      }
+    }
+  }
+
+  .section-heading-link {
+    color: var(--page-accent-hover);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--page-accent) 22%, transparent),
+      0 1px 3px color-mix(in srgb, var(--page-accent) 6%, transparent);
+
+    svg {
+      color: var(--page-accent);
+      opacity: 0.85;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--page-accent);
+        background: color-mix(in srgb, var(--page-accent) 6%, transparent);
+        box-shadow:
+          inset 0 0 0 1px color-mix(in srgb, var(--page-accent) 32%, transparent),
+          0 3px 10px color-mix(in srgb, var(--page-accent) 10%, transparent);
+      }
+    }
+  }
+}
+
+.dark .about-page {
+  .about-intro-role {
+    color: var(--page-accent);
+  }
+
+  .about-intro-photo::before {
+    box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--page-accent) 32%, transparent);
+  }
+
+  .structure-card-icon {
+    background: color-mix(in srgb, var(--page-accent) 14%, transparent);
+    color: var(--page-accent);
+  }
+
+  .toolkit-marquee .tool-item {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover .tool-label {
+        color: var(--page-accent);
+      }
+    }
+  }
+
+  .structure-card-arrow,
+  .foundations-card-arrow {
+    color: color-mix(in srgb, var(--page-accent) 55%, transparent);
+  }
+
+  .structure-card,
+  .foundations-card {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: color-mix(in srgb, var(--page-accent) 28%, transparent);
+
+        .structure-card-arrow,
+        .foundations-card-arrow {
+          color: var(--page-accent);
+        }
+      }
+    }
+  }
+
+  .foundations-card-course {
+    color: var(--page-accent);
+  }
+
+  .foundations-card {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        .foundations-card-action {
+          color: var(--page-accent);
+        }
+      }
+    }
+  }
+
+  .section-heading-link {
+    color: var(--page-accent);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--page-accent) 22%, transparent),
+      0 1px 3px rgb(0 0 0 / 20%);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--page-accent-hover);
+        background: color-mix(in srgb, var(--page-accent) 10%, transparent);
+        box-shadow:
+          inset 0 0 0 1px color-mix(in srgb, var(--page-accent) 35%, transparent),
+          0 3px 10px rgb(0 0 0 / 28%);
+      }
+    }
+  }
+}
