@@ -9,6 +9,7 @@ The codebase is a self-verifying formal system. You MUST NOT consider a task com
 - `npm run verify` runs, in order: Parsimony (Knip), Grammar (Biome), Structure (ESLint), Soundness (TypeScript), Proofs (Vitest), Style (Stylelint), and the Gatsby build. It **stops at the first failing step**, so a single run may not reveal every contradiction — re-run until green.
 - `npm run fix` applies every available autofix (including Knip removing dead files) and runs all steps without stopping. Prefer it as the first response to a red verifier; resolve what remains by hand.
 - If the verifier returns a contradiction (red), your primary directive is to resolve the contradiction before proceeding.
+- The project targets Node 22 (see `.nvmrc`), which ships npm 10. Newer npm versions (11+) write lockfiles that npm 10 rejects as out of sync, so after any dependency change regenerate the lockfile with `npx npm@10 install --package-lock-only` and confirm `npx npm@10 ci --dry-run` succeeds.
 
 ## 2. Behavioral Logic (TypeScript & React)
 
