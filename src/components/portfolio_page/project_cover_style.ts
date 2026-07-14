@@ -1,12 +1,12 @@
 import type { Project } from 'projects'
 import type { CSSProperties } from 'react'
 
-export type ProjectCoverStyle = CSSProperties & {
+type ProjectCoverStyle = CSSProperties & {
   '--project-cover-color'?: string
   '--project-accent'?: string
 }
 
-export const getProjectAccentVars = (project: Project): Pick<ProjectCoverStyle, '--project-cover-color' | '--project-accent'> => {
+export const getProjectAccentVars = (project: Project): ProjectCoverStyle => {
   const { cover, primary } = project.colors
   const isGradient = typeof primary === 'string' && primary.includes('gradient')
 

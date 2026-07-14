@@ -1,6 +1,13 @@
 {
   "extends": ["stylelint-config-standard-scss"],
   "rules": {
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "selector-class-pattern": [
+      "^[a-z]([a-z0-9]+)*(-[a-z0-9]+)*(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+      {
+        "message": "Expected class selector to be kebab-case, optionally with a BEM --modifier suffix",
+        "resolveNestedSelectors": true
+      }
+    ]
   }
 }

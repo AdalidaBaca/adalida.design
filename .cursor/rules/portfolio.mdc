@@ -1,0 +1,8 @@
+---
+description: Project rules for the Adalida portfolio — verification, style, and accessibility axioms
+alwaysApply: true
+---
+
+Follow the project rules in @AGENTS.md — they are the single source of truth for all AI agents in this repo.
+
+The non-negotiable: a task is not complete until `npm run verify` exits 0.

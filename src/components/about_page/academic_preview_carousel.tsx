@@ -1,17 +1,15 @@
 import { IconArrowNarrowRight } from '@tabler/icons-react'
 import {
   ABOUT_ACADEMIC_PREVIEW_ENTRIES,
+  type AcademicEntry,
   academicEntryUrl,
-  academicPreviewImage,
-  type AcademicEntry
+  academicPreviewImage
 } from 'data/academic_journey'
 import { Link } from 'gatsby'
 import { useResolvePdfUrl } from 'queries/file'
 
-const previewHref = (
-  entry: AcademicEntry,
-  resolvePdf: (pdfPath: string) => string | undefined
-): string => academicEntryUrl(entry, resolvePdf) ?? `/academic#${entry.id}`
+const previewHref = (entry: AcademicEntry, resolvePdf: (pdfPath: string) => string | undefined): string =>
+  academicEntryUrl(entry, resolvePdf) ?? `/academic#${entry.id}`
 
 const AcademicPreviewCarousel = (): JSX.Element => {
   const resolvePdf = useResolvePdfUrl()
@@ -42,9 +40,7 @@ const AcademicPreviewCarousel = (): JSX.Element => {
             </div>
             <div className="foundations-card-body">
               <div className="foundations-card-copy">
-                {entry.courseBadge !== undefined && (
-                  <p className="foundations-card-course">{entry.courseBadge}</p>
-                )}
+                {entry.courseBadge !== undefined && <p className="foundations-card-course">{entry.courseBadge}</p>}
                 <p className="foundations-card-title">{entry.title}</p>
                 <p className="foundations-card-topic">{entry.classTopic}</p>
               </div>

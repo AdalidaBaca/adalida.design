@@ -10,7 +10,7 @@ $palette-highlight: #910212;
 /* —— Surfaces — clean YC-adjacent neutrals, not brown washes —— */
 $light-background: #fafaf9;
 $dark-background: #09090b;
-$light-surface: #ffffff;
+$light-surface: #fff;
 $dark-surface: #18181b;
 
 /* —— Text — warm browns on clean neutral surfaces —— */
@@ -26,13 +26,11 @@ $brand-accent-dark-hover: #f0cdb8;
 $accent-subtle: $palette-clay;
 $accent-highlight: $palette-highlight;
 $accent-highlight-hover: #7a010f;
-
 $light-colors: (
   info: $light-surface,
   danger: $brand-accent,
   secondary: #8f6350
 );
-
 $dark-colors: (
   info: $dark-surface,
   danger: $brand-accent-dark,

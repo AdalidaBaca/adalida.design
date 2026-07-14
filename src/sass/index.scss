@@ -91,8 +91,7 @@
   &.section-heading-container--with-action {
     display: grid;
     grid-template-columns: 1fr auto;
-    column-gap: 1em;
-    row-gap: 0.35em;
+    gap: 0.35em 1em;
     align-items: center;
     margin-bottom: 1.35em;
 
@@ -112,8 +111,7 @@
     > .section-heading-action {
       grid-column: 2;
       grid-row: 2;
-      justify-self: end;
-      align-self: center;
+      place-self: center end;
     }
   }
 }
@@ -126,6 +124,7 @@
   color: rgba(map.get($dark-colors, secondary), 0.78);
 }
 
+/* stylelint-disable-next-line no-invalid-position-at-import-rule -- must load after the global section-heading rules above so equal-specificity case study accents win the cascade */
 @import './case_studies/section_heading_overrides';
 
 .section-heading-action {

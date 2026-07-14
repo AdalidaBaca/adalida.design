@@ -88,6 +88,7 @@
 .dark .github-calendar {
   /* Single-accent scale (dark mode): use dark-mode accent */
   --lvl0: rgb(255 255 255 / 10%);
+
   /* Editorial accent scale (dark mode) */
   --lvl1: #{rgba($brand-accent-dark, 0.28)};
   --lvl2: #{rgba($brand-accent-dark, 0.48)};

@@ -59,11 +59,7 @@ const InternshipPortfolio = (): JSX.Element => {
         </nav>
       </header>
       {INTERNSHIP_PORTFOLIO_SECTIONS.map(section => (
-        <section
-          key={section.sectionTitle}
-          id={sectionId(section.sectionTitle)}
-          className="experiments-section"
-        >
+        <section key={section.sectionTitle} id={sectionId(section.sectionTitle)} className="experiments-section">
           <h2 className="experiments-section-heading" data-aos="fade-up" data-aos-offset="100">
             {section.sectionTitle}
           </h2>

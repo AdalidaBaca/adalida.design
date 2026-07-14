@@ -1,6 +1,6 @@
 import AOS from 'aos'
-import AcademicArchive from 'components/academic_page/archive'
 import ContactCTA from 'components/about_page/contact_cta'
+import AcademicArchive from 'components/academic_page/archive'
 import Seo from 'components/seo'
 import { useEffect } from 'react'
 

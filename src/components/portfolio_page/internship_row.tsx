@@ -1,7 +1,6 @@
 import { IconArrowUpRight } from '@tabler/icons-react'
 import type { InternshipItem } from 'data/internship_portfolio'
 import { Projects } from 'projects'
-import type { CSSProperties } from 'react'
 
 import { getProjectAccentVars } from './project_cover_style'
 
@@ -70,7 +69,7 @@ const InternshipRow = ({ item, sectionTitle, index }: Props): JSX.Element => {
   return (
     <li
       className="featured-project-row-item"
-      style={accentVars as CSSProperties}
+      style={accentVars}
       data-aos="fade-up"
       data-aos-offset="60"
       data-aos-delay={Math.min(index * 50, 200)}
@@ -86,9 +85,7 @@ const InternshipRow = ({ item, sectionTitle, index }: Props): JSX.Element => {
           {rowBody}
         </a>
       ) : (
-        <div className={`${rowClassName} featured-project-row--static`} aria-label={displayTitle}>
-          {rowBody}
-        </div>
+        <div className={`${rowClassName} featured-project-row--static`}>{rowBody}</div>
       )}
     </li>
   )
