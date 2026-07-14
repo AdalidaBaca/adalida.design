@@ -155,7 +155,7 @@ export const Projects = {
     category: 'EVENT SYSTEMS AND OPERATIONS',
     badges: ['Events', 'Vendor Management', 'Logistics'],
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 4,
     description:
       'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
     heroImage: SmartVentureMediaImage,
@@ -169,12 +169,31 @@ export const Projects = {
       primary: 'linear-gradient(45deg, #D3ADED 0%, #F4A4A9 100%)'
     }
   },
+  SmartVentureMediaWebsite: {
+    name: 'Grace Gong',
+    category: 'WEBSITE AND CMS ARCHITECTURE',
+    badges: ['CMS', 'Wix Studio', 'Brand'],
+    featured: false,
+    featuredOrder: 2,
+    description:
+      'Unified the Grace Gong brand, information architecture, and CMS—consolidating a fast-growing operation into one system a non-technical team could run without a developer.',
+    heroImage: SmartVentureMediaImage,
+    link: {
+      text: 'Read Case Study',
+      url: '/case_studies/grace_gong'
+    },
+    colors: {
+      /* 45deg: lilac → soft coral pink */
+      cover: 'linear-gradient(45deg, #D3ADED 0%, #F4A4A9 100%)',
+      primary: 'linear-gradient(45deg, #D3ADED 0%, #F4A4A9 100%)'
+    }
+  },
   ProjectEcho: {
     name: 'Project ECHO',
     category: 'Interactive data analysis',
     badges: ['Data ', 'Patterns', 'Interpretation'],
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
     description:
       'Optimized data processes and documentation by automating dashboards, streamlining onboarding, and improving technical guides to enhance team efficiency.',
     heroImage: ProjectEchoImage,

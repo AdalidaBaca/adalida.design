@@ -21,7 +21,7 @@ const PortfolioContainer = (): JSX.Element | null => {
           <p className="featured-project-list-label">More case studies</p>
           <ul className="featured-project-list">
             {moreProjects.map((project, index) => (
-              <FeaturedCompact key={project.name} project={project} index={index} />
+              <FeaturedCompact key={`${project.name}-${project.category}`} project={project} index={index} />
             ))}
           </ul>
         </div>

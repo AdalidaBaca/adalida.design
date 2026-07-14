@@ -9,6 +9,12 @@ import HomeLink from './home_link'
 import PortfolioPageSwitch from './portfolio_page_switch'
 
 const getCaseStudyFromPath = (pathname: string): Project | null => {
+  if (pathname.includes('/case_studies/grace_gong')) {
+    return Projects.SmartVentureMediaWebsite
+  }
+  if (pathname.includes('/case_studies/smart_venture_media')) {
+    return Projects.SmartVentureMedia
+  }
   if (pathname.includes('/case_studies/gaintain')) {
     return Projects.Gaintain
   }
@@ -29,6 +35,9 @@ const getCaseStudyFromPath = (pathname: string): Project | null => {
 
 /** Selector for the hero/download-strip title element used to trigger nav title when it scrolls under the header. */
 const getTitleSelectorForCaseStudy = (project: Project): string => {
+  if (project === Projects.SmartVentureMediaWebsite || project === Projects.SmartVentureMedia) {
+    return '.invibe-esthetics-download-text'
+  }
   if (project === Projects.Gaintain) return '.gaintain-download-text'
   if (project === Projects.InvibeEsthetics) return '.invibe-esthetics-download-text'
   if (project === Projects.ProjectEcho) return '.project-echo-download-text'

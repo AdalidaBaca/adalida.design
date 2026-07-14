@@ -1661,7 +1661,8 @@
 }
 
 /* Smart Venture Media brand overrides (reuses invibe structural classes) */
-.smart-venture-media-container {
+.smart-venture-media-container,
+.grace-gong-container {
   /* 45deg: lilac #d3aded → coral pink #f4a4a9 */
   --smart-surface: linear-gradient(45deg, #d3aded 0%, #f4a4a9 100%);
 
@@ -2262,7 +2263,8 @@
   }
 }
 
-.dark .smart-venture-media-container {
+.dark .smart-venture-media-container,
+.dark .grace-gong-container {
   /* 45deg: muted lilac → muted coral (same pair as light mode) */
   --smart-surface: linear-gradient(
     45deg,
