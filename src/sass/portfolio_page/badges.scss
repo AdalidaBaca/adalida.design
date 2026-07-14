@@ -190,7 +190,7 @@ $color-names: ['info', 'danger'];
     transform: translateY(-50%) translateX(0);
   }
 
-  .btn.badge.big-badge.badge-danger:not(.btn-secondary):not(.about-intro-cta-secondary):not(.badge-frosted):hover {
+  .btn.badge.big-badge.badge-danger:not(.btn-secondary, .about-intro-cta-secondary, .badge-frosted):hover {
     background: #27272a;
     box-shadow: none;
     transform: translateY(-1px);
@@ -200,8 +200,8 @@ $color-names: ['info', 'danger'];
     }
   }
 
-  .btn.badge.big-badge.badge-danger.dark:not(.btn-secondary):not(.about-intro-cta-secondary):not(.badge-frosted):hover,
-  .dark .btn.badge.big-badge.badge-danger:not(.btn-secondary):not(.about-intro-cta-secondary):not(.badge-frosted):hover {
+  .btn.badge.big-badge.badge-danger.dark:not(.btn-secondary, .about-intro-cta-secondary, .badge-frosted):hover,
+  .dark .btn.badge.big-badge.badge-danger:not(.btn-secondary, .about-intro-cta-secondary, .badge-frosted):hover {
     background: #f4f4f5;
     box-shadow: none;
     transform: translateY(-1px);

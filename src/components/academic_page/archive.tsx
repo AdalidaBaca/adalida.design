@@ -2,13 +2,13 @@ import { IconArrowUpRight } from '@tabler/icons-react'
 import {
   ACADEMIC_ENTRIES,
   ACADEMIC_PAGE_SECTIONS,
-  INTERSECTION_GROUPS,
-  academicCourseBadgesInSection,
-  academicEntriesBySection,
   type AcademicEntry,
   type AcademicSection,
-  type IntersectionGroup,
+  academicCourseBadgesInSection,
+  academicEntriesBySection,
   academicEntryUrl,
+  INTERSECTION_GROUPS,
+  type IntersectionGroup,
   intersectionGroupForEntry,
   intersectionGroupsWithEntries
 } from 'data/academic_journey'
@@ -44,9 +44,7 @@ const AcademicListItem = ({
   const content = (
     <>
       <div className="academic-list-meta">
-        {entry.courseBadge !== undefined && (
-          <span className="academic-list-badge">{entry.courseBadge}</span>
-        )}
+        {entry.courseBadge !== undefined && <span className="academic-list-badge">{entry.courseBadge}</span>}
         <span className="academic-list-topic">{entry.classTopic}</span>
       </div>
       <div className="academic-list-main">
@@ -111,8 +109,7 @@ const AcademicIntersectionPanel = ({
   resolvePdf: (pdfPath: string) => string | undefined
 }): JSX.Element => {
   const groups = useMemo(() => intersectionGroupsWithEntries(entries), [entries])
-  const visibleGroups =
-    activeGroup === 'all' ? groups : groups.filter(group => group.id === activeGroup)
+  const visibleGroups = activeGroup === 'all' ? groups : groups.filter(group => group.id === activeGroup)
 
   return (
     <div className="academic-intersection-groups">
@@ -126,7 +123,7 @@ const AcademicIntersectionPanel = ({
   )
 }
 
-const AcademicArchive = (): JSX.Element => {
+const AcademicArchive = (): JSX.Element | null => {
   const resolvePdf = useResolvePdfUrl()
   const contentRef = useRef<HTMLDivElement>(null)
   const pendingEntryRef = useRef<string | undefined>(undefined)
@@ -193,7 +190,7 @@ const AcademicArchive = (): JSX.Element => {
     requestAnimationFrame(() => {
       scrollToEntry(entryId)
     })
-  }, [activeSection, activeCourse, activeIntersectionGroup, scrollToEntry])
+  }, [scrollToEntry])
 
   const handleSectionChange = (section: AcademicSection): void => {
     setActiveSection(section)
@@ -204,7 +201,7 @@ const AcademicArchive = (): JSX.Element => {
   }
 
   if (activeConfig === undefined) {
-    return <></>
+    return null
   }
 
   return (
@@ -253,6 +250,7 @@ const AcademicArchive = (): JSX.Element => {
         </header>
 
         {activeSection !== 'intersection' && courseBadges.length > 1 && (
+          // biome-ignore lint/a11y/useSemanticElements: fieldset/legend would require restyling; role="group" with aria-label is valid ARIA for a filter button group
           <div className="academic-course-filters" role="group" aria-label="Filter by course">
             <button
               type="button"
@@ -279,6 +277,7 @@ const AcademicArchive = (): JSX.Element => {
         )}
 
         {activeSection === 'intersection' && intersectionGroupFilters.length > 1 && (
+          // biome-ignore lint/a11y/useSemanticElements: fieldset/legend would require restyling; role="group" with aria-label is valid ARIA for a filter button group
           <div className="academic-course-filters" role="group" aria-label="Filter by category">
             <button
               type="button"
@@ -305,11 +304,7 @@ const AcademicArchive = (): JSX.Element => {
         )}
 
         {activeSection === 'intersection' ? (
-          <AcademicIntersectionPanel
-            entries={entries}
-            activeGroup={activeIntersectionGroup}
-            resolvePdf={resolvePdf}
-          />
+          <AcademicIntersectionPanel entries={entries} activeGroup={activeIntersectionGroup} resolvePdf={resolvePdf} />
         ) : (
           <AcademicList entries={entries} resolvePdf={resolvePdf} label={activeConfig.title} />
         )}

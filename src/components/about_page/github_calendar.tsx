@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-
 import SectionHeaderLink from 'components/section_header_link'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Section from './section'
 
 const GITHUB_USERNAME = 'adalidabaca'

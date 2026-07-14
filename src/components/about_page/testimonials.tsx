@@ -100,28 +100,30 @@ const Testimonials = (): JSX.Element => {
             const isVisible = index >= currentIndex && index < currentIndex + visibleCount
             const isLeading = index === currentIndex
             return (
-            <li
-              key={`${name}-${title}`}
-              className={[isVisible ? 'is-visible' : 'is-offscreen', isLeading ? 'is-leading' : ''].filter(Boolean).join(' ')}
-            >
-              <blockquote
-                className="testimonial-card"
-                data-aos="fade-up"
-                data-aos-offset="80"
-                data-aos-duration="600"
+              <li
+                key={`${name}-${title}`}
+                className={[isVisible ? 'is-visible' : 'is-offscreen', isLeading ? 'is-leading' : '']
+                  .filter(Boolean)
+                  .join(' ')}
               >
-                <p className="quote">{quote}</p>
-                <footer className="attribution">
-                  <div className="person">
-                    <Avatar name={name} photo={photo} />
-                    <div className="name-title">
-                      <span className="name">{name}</span>
-                      {title !== '' ? <span className="title">{title}</span> : null}
+                <blockquote
+                  className="testimonial-card"
+                  data-aos="fade-up"
+                  data-aos-offset="80"
+                  data-aos-duration="600"
+                >
+                  <p className="quote">{quote}</p>
+                  <footer className="attribution">
+                    <div className="person">
+                      <Avatar name={name} photo={photo} />
+                      <div className="name-title">
+                        <span className="name">{name}</span>
+                        {title !== '' ? <span className="title">{title}</span> : null}
+                      </div>
                     </div>
-                  </div>
-                </footer>
-              </blockquote>
-            </li>
+                  </footer>
+                </blockquote>
+              </li>
             )
           })}
         </ul>

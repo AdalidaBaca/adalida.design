@@ -320,6 +320,6 @@ export const Projects = {
   }
 } as const satisfies Record<string, Project>
 
-export const featuredPortfolioProjects: Project[] = Object.values(Projects)
-  .filter((project): project is Project => project.featured === true)
+export const featuredPortfolioProjects: Project[] = Object.values<Project>(Projects)
+  .filter(project => project.featured === true)
   .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))

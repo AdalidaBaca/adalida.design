@@ -11,7 +11,7 @@ const TheWall = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
           <div className="body-2">
             I built the About content as a static page. It was singular, so static seemed obvious, and it was wrong. To
             generate the dynamic pages the system depended on, <strong>the content had to live as a list first</strong>
-            ; the page renders from the list, and a static page can&apos;t produce one. The diagnosis was right all
+            {'; '}the page renders from the list, and a static page can&apos;t produce one. The diagnosis was right all
             along. <strong>This was the mechanism that made it real.</strong>
           </div>
         </div>

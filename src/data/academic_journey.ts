@@ -4,7 +4,7 @@ export type AcademicSection = 'philosophy' | 'english' | 'intersection'
 
 export type IntersectionGroup = 'course' | 'work' | 'competition' | 'scholarship'
 
-export interface IntersectionGroupConfig {
+interface IntersectionGroupConfig {
   id: IntersectionGroup
   title: string
   order: number
@@ -17,7 +17,7 @@ export const INTERSECTION_GROUPS: IntersectionGroupConfig[] = [
   { id: 'scholarship', title: 'Scholarships', order: 4 }
 ]
 
-export interface AcademicSectionConfig {
+interface AcademicSectionConfig {
   id: AcademicSection
   title: string
   subtitle?: string
@@ -56,7 +56,7 @@ export interface AcademicEntry {
   showOnAcademicPage?: boolean
 }
 
-export const ACADEMIC_SECTIONS: AcademicSectionConfig[] = [
+const ACADEMIC_SECTIONS: AcademicSectionConfig[] = [
   {
     id: 'philosophy',
     title: 'Philosophy',
@@ -86,8 +86,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     classTopic: 'Traditional Grammar',
     courseBadge: 'English 240',
     documentTitle: 'Legal Processing Fluency',
-    hook:
-      'Grammar-tree analysis of legal writing in Nissan v. Nissan Computer — why complexity blocks lay readers, and how predicate logic could strip sentences to what actually matters.',
+    hook: 'Grammar-tree analysis of legal writing in Nissan v. Nissan Computer — why complexity blocks lay readers, and how predicate logic could strip sentences to what actually matters.',
     institution: 'English 240 · University of New Mexico',
     type: 'pdf',
     pdfPath: 'academic/legal-processing-fluency.pdf',
@@ -151,7 +150,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     title: 'The Yellow Wallpaper Presentation',
     classTopic: 'Analytical Literary Analysis',
     courseBadge: 'English 250',
-    hook: 'Presentation on Charlotte Perkins Gilman\'s The Yellow Wallpaper.',
+    hook: "Presentation on Charlotte Perkins Gilman's The Yellow Wallpaper.",
     institution: 'English 250 · University of New Mexico',
     type: 'external',
     link: 'https://docs.google.com/presentation/d/11vQogzjQnCZCWv1nGxsS83uMkl5ypcRW20C7Xn7DiSc/edit',
@@ -291,8 +290,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     classTopic: 'Internship',
     courseBadge: 'English 499',
     documentTitle: 'Project ECHO Internship Portfolio',
-    hook:
-      'Technical writing samples from the Project ECHO internship — SOPs, user guides, and system documentation.',
+    hook: 'Technical writing samples from the Project ECHO internship — SOPs, user guides, and system documentation.',
     institution: 'English 499 · Project ECHO internship',
     type: 'portfolio',
     link: '/internship-portfolio',
@@ -450,8 +448,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     classTopic: 'Mathematical Logic',
     courseBadge: 'Philosophy 415',
     documentTitle: 'Philosophy 415: Question Set #1',
-    hook:
-      "Frege's logic, concept–object structure, and why Aristotle's system cannot handle relations and quantifiers.",
+    hook: "Frege's logic, concept–object structure, and why Aristotle's system cannot handle relations and quantifiers.",
     institution: 'Philosophy 415 · University of New Mexico',
     type: 'pdf',
     pdfPath: 'academic/phil-415-question-set-1.pdf',
@@ -582,7 +579,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     classTopic: 'Wittgenstein',
     courseBadge: 'Philosophy 422',
     documentTitle: 'Philosophy 422: Tractatus',
-    hook: 'Wittgenstein\'s Tractatus through Paul Livingston\'s reading.',
+    hook: "Wittgenstein's Tractatus through Paul Livingston's reading.",
     institution: 'Philosophy 422 · University of New Mexico',
     type: 'pdf',
     pdfPath: 'academic/wittgenstein-tractatus.pdf',
@@ -614,8 +611,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     classTopic: 'Philosophy of Mind',
     courseBadge: 'Philosophy 455',
     documentTitle: 'Philosophy of Mind: A Building Block',
-    hook:
-      "A critique of Armstrong's type identity theory — when a model almost solves the problem, but circular reasoning around experience breaks it.",
+    hook: "A critique of Armstrong's type identity theory — when a model almost solves the problem, but circular reasoning around experience breaks it.",
     institution: 'Philosophy 455 · University of New Mexico',
     type: 'pdf',
     pdfPath: 'academic/philosophy-of-mind-building-block.pdf',
@@ -751,8 +747,6 @@ export const ACADEMIC_PAGE_SECTIONS = ACADEMIC_SECTIONS.filter(section =>
   ACADEMIC_ENTRIES.some(entry => entry.section === section.id && isOnAcademicPage(entry))
 )
 
-export const FEATURED_ACADEMIC_ENTRIES = ACADEMIC_ENTRIES.filter(entry => entry.featured)
-
 const academicCourseNumberFromBadge = (badge: string): number => {
   const colonMatch = badge.match(/^(\d+):/)
   if (colonMatch?.[1] !== undefined) {
@@ -785,9 +779,7 @@ export const academicCourseBadgesInSection = (section: AcademicSection): string[
       badges.add(entry.courseBadge)
     }
   }
-  return [...badges].sort(
-    (a, b) => academicCourseNumberFromBadge(b) - academicCourseNumberFromBadge(a)
-  )
+  return [...badges].sort((a, b) => academicCourseNumberFromBadge(b) - academicCourseNumberFromBadge(a))
 }
 
 export const intersectionGroupForEntry = (entry: AcademicEntry): IntersectionGroup => {
@@ -803,10 +795,7 @@ export const intersectionGroupForEntry = (entry: AcademicEntry): IntersectionGro
   }
 }
 
-const sortIntersectionGroupEntries = (
-  groupId: IntersectionGroup,
-  entries: AcademicEntry[]
-): AcademicEntry[] => {
+const sortIntersectionGroupEntries = (groupId: IntersectionGroup, entries: AcademicEntry[]): AcademicEntry[] => {
   if (groupId === 'course') {
     return [...entries].sort(compareAcademicEntriesDescending)
   }
@@ -825,7 +814,7 @@ export const intersectionGroupsWithEntries = (
   })).filter(group => group.entries.length > 0)
 
 /** About-page preview carousel: Phil 415 final, theory of mind, binary opposition essay (English). */
-export const ABOUT_ACADEMIC_PREVIEW_IDS = [
+const ABOUT_ACADEMIC_PREVIEW_IDS = [
   'phil-415-final-exam',
   'philosophy-of-mind-building-block',
   'binary-opposition-essay'
@@ -849,9 +838,6 @@ export const academicEntryUrl = (
   return entry.link
 }
 
-export const academicPreviewBadge = (entry: AcademicEntry): string =>
-  entry.previewBadge ?? entry.classTopic
-
 export const academicPreviewImage = (entry: AcademicEntry): string | undefined => {
   if (entry.previewImage !== undefined) {
     return `/images/academic/${entry.previewImage}`
@@ -862,5 +848,3 @@ export const academicPreviewImage = (entry: AcademicEntry): string | undefined =
   }
   return undefined
 }
-
-export const academicPageAnchor = (id: string): string => `/academic#${id}`

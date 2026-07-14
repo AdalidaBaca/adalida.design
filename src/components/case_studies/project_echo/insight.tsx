@@ -193,7 +193,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 letterSpacing="0.05em"
                 textAnchor="start"
@@ -206,7 +206,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendPairwiseRow1Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
@@ -224,7 +224,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendPairwiseRow2Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
@@ -242,7 +242,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendPairwiseRow3Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="start"
                 dominantBaseline="hanging"
@@ -264,7 +264,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 letterSpacing="0.05em"
                 textAnchor="end"
@@ -277,7 +277,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendSinglesRow1Y}
                 fill={darkMode ? 'rgba(139, 92, 246, 1)' : 'rgba(139, 92, 246, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="end"
                 dominantBaseline="hanging"
@@ -289,7 +289,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendSinglesRow2Y}
                 fill={darkMode ? 'rgba(8, 145, 178, 1)' : 'rgba(8, 145, 178, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="end"
                 dominantBaseline="hanging"
@@ -301,7 +301,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendSinglesRow3Y}
                 fill={darkMode ? 'rgba(245, 158, 11, 1)' : 'rgba(245, 158, 11, 0.9)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="end"
                 dominantBaseline="hanging"
@@ -317,7 +317,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendHeaderY}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)'}
                 fontSize={isMobile ? '10' : '12'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 letterSpacing="0.05em"
                 textAnchor="middle"
@@ -330,7 +330,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
                 y={legendPairwiseRow1Y}
                 fill={darkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.85)'}
                 fontSize={isMobile ? '11' : '14'}
-                fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+                fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
                 fontWeight="600"
                 textAnchor="middle"
                 dominantBaseline="hanging"
@@ -366,7 +366,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle1Y}
           fill={darkMode ? 'rgba(139, 92, 246, 1)' : 'rgba(139, 92, 246, 0.9)'}
           fontSize={isMobile ? '12' : '16'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="600"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -379,7 +379,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle1Y - radius * 0.6}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -402,7 +402,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle2Y}
           fill={darkMode ? 'rgba(8, 145, 178, 1)' : 'rgba(8, 145, 178, 0.9)'}
           fontSize={isMobile ? '12' : '16'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="600"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -415,7 +415,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle2Y + radius * 0.5}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -438,7 +438,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle3Y}
           fill={darkMode ? 'rgba(245, 158, 11, 1)' : 'rgba(245, 158, 11, 0.9)'}
           fontSize={isMobile ? '12' : '16'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="600"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -451,7 +451,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={circle3Y + radius * 0.5}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -465,7 +465,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={intersectionAB_Y}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -479,7 +479,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={intersectionAC_Y}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -493,7 +493,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={intersectionBC_Y + (isMobile ? 8 : 12)}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '9' : '11'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -507,7 +507,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
           y={intersectionABC_Y}
           fill={darkMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.9)'}
           fontSize={isMobile ? '10' : '13'}
-          fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+          fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
           fontWeight="700"
           textAnchor="middle"
           dominantBaseline="middle"
@@ -521,7 +521,7 @@ const Insight = forwardRef(({ title, copy = 'insight' }: InsightProps, ref: Ref<
             y={Math.max(circle2Y, circle3Y) + radius + (isMobile ? 10 : 12)}
             fill={darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'}
             fontSize={isMobile ? '10' : '11'}
-            fontFamily='IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif'
+            fontFamily="IBM Plex Sans, system-ui, -apple-system, Segoe UI, sans-serif"
             fontWeight="400"
             fontStyle="italic"
             textAnchor="middle"

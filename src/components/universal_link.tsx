@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
-import { useMemo } from 'react'
 import type { AnchorHTMLAttributes } from 'react'
+import { useMemo } from 'react'
 
 interface Props extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   to: string

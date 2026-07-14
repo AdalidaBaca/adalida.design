@@ -130,13 +130,13 @@ const ToolsCarousel = ({
 
   if (isAbout) {
     return (
-      <div className={carouselClass} ref={containerRef} aria-label={ariaLabel}>
+      <section className={carouselClass} ref={containerRef} aria-label={ariaLabel}>
         <div className="marquee lane-1">
           {marqueeTools.map((t, i) => (
             <AboutToolItem key={`lane1-${t.label}-${i}`} {...t} />
           ))}
         </div>
-      </div>
+      </section>
     )
   }
 
