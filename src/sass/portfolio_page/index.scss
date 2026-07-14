@@ -751,6 +751,14 @@
   box-sizing: border-box;
 }
 
+.clients-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em 1.5em;
+}
+
 .experiments-title,
 .clients-title,
 .internship-portfolio-title {
@@ -781,6 +789,11 @@
   @media (width >= $breakpoint) {
     margin-bottom: 1.5em;
   }
+}
+
+.clients-header-row > .clients-intro {
+  margin-bottom: 0;
+  flex: 1 1 18rem;
 }
 
 .dark .experiments-intro,
