@@ -1,4 +1,5 @@
 import useIsMobile from 'hooks/use_is_mobile'
+import ConstraintDrivenPlanning from './constraint_driven_planning'
 import ContactCTA from './contact_cta'
 import GitHubCalendar from './github_calendar'
 import HowIThink from './how_i_think'
@@ -15,6 +16,7 @@ const AboutPage = (): JSX.Element => {
       <GitHubCalendar />
       <Resources />
       <HowIThink />
+      <ConstraintDrivenPlanning />
       <Toolkit />
       <ContactCTA />
     </div>
