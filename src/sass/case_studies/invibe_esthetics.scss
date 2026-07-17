@@ -2261,6 +2261,335 @@
       align-items: stretch;
     }
   }
+
+  .grace-gong-visual-layout {
+    align-items: stretch;
+
+    > .case-study-explanation {
+      width: 100%;
+      align-self: stretch;
+
+      > .invibe-esthetics-details-card {
+        height: 100%;
+      }
+    }
+
+    > .grace-gong-visual-card,
+    > .grace-gong-platform-matrix {
+      width: 100%;
+      align-self: stretch;
+    }
+
+    @media (width >=768px) {
+      > .grace-gong-visual-card,
+      > .grace-gong-platform-matrix {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      &.grace-gong-visual-layout--reverse {
+        > .case-study-explanation {
+          grid-column: 2;
+        }
+
+        > .grace-gong-visual-card {
+          grid-column: 1;
+        }
+      }
+    }
+  }
+
+  .grace-gong-visual-layout:has(> .grace-gong-sitemap-diagram) {
+    align-items: stretch;
+
+    @media (width >=768px) {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    }
+  }
+
+  .grace-gong-sitemap-diagram {
+    height: 100%;
+    min-height: 100%;
+    justify-content: flex-start;
+    gap: 0;
+    padding: clamp(0.85rem, 2vw, 1.35rem);
+  }
+
+  .grace-gong-ia-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    overflow: visible;
+  }
+
+  .grace-gong-ia-parent {
+    fill: #2e2e2e;
+  }
+
+  .grace-gong-ia-parent-label {
+    fill: #fefff2;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .grace-gong-ia-child {
+    fill: transparent;
+    stroke: rgba($dark-text, 0.22);
+    stroke-width: 1.25;
+  }
+
+  .grace-gong-ia-child-label {
+    fill: $dark-text;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .grace-gong-ia-note {
+    fill: rgba($dark-text, 0.48);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .grace-gong-ia-auto {
+    fill: rgb(46 125 50 / 14%);
+  }
+
+  .grace-gong-ia-auto-text {
+    fill: #2e7d32;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .grace-gong-ia-link {
+    fill: none;
+    stroke: rgba($dark-text, 0.38);
+    stroke-width: 1.35;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .grace-gong-ia-arrowhead {
+    fill: rgba($dark-text, 0.38);
+  }
+
+  .grace-gong-sitemap-auto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.12rem 0.48rem;
+    border-radius: $radius-pill;
+    background: rgb(46 125 50 / 12%);
+    color: #2e7d32;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-transform: lowercase;
+  }
+
+  .grace-gong-wall-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.7rem;
+    margin-top: 0.25rem;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid rgb(0 0 0 / 7%);
+    font-family: var(--font-sans);
+  }
+
+  .grace-gong-wall-strip-before,
+  .grace-gong-wall-strip-after {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba($dark-text, 0.86);
+    font-size: 0.84rem;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .grace-gong-wall-strip-x {
+    color: #c62828;
+    flex-shrink: 0;
+  }
+
+  .grace-gong-wall-strip-arrow {
+    color: rgba($dark-text, 0.35);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .grace-gong-wall-strip-note {
+    color: rgba($dark-text, 0.5);
+    font-size: 0.74rem;
+    font-weight: 400;
+    line-height: 1.4;
+
+    @media (width < 640px) {
+      width: 100%;
+    }
+  }
+
+  .grace-gong-visual-layout:has(> .grace-gong-platform-matrix) {
+    @media (width >=768px) {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+  }
+
+  .grace-gong-platform-matrix {
+    min-width: 0;
+    padding: 1.25em 0.75em;
+
+    .intake-tradeoffs-grid {
+      grid-template-columns: minmax(5.7rem, 1.3fr) repeat(3, minmax(0, 0.8fr));
+      gap: 0 0.35em;
+    }
+
+    .intake-tradeoffs-col-title {
+      font-size: 0.62rem;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .intake-tradeoffs-row-label {
+      padding: 0.85rem 0.25rem;
+    }
+
+    .intake-tradeoffs-section-label {
+      font-size: 0.74rem;
+    }
+
+    .intake-tradeoffs-helper {
+      font-size: 0.66rem;
+    }
+
+    .intake-tradeoffs-cell {
+      padding: 0.85rem 0.1em;
+    }
+
+    .intake-tradeoffs-legend {
+      gap: 0.65em 0.85em;
+      font-size: 0.68rem;
+    }
+
+    .grace-gong-platform-matrix-chosen {
+      background: rgb(46 125 50 / 5%);
+
+      .intake-tradeoffs-section-label {
+        font-weight: 700;
+      }
+    }
+
+    @media (width >=1024px) {
+      padding: 1.5em 1em;
+
+      .intake-tradeoffs-grid {
+        grid-template-columns: minmax(7.5rem, 1.35fr) repeat(3, minmax(0, 1fr));
+        gap: 0 0.65em;
+      }
+
+      .intake-tradeoffs-col-title {
+        font-size: 0.72rem;
+      }
+
+      .intake-tradeoffs-section-label {
+        font-size: 0.86rem;
+      }
+
+      .intake-tradeoffs-helper {
+        font-size: 0.74rem;
+      }
+    }
+  }
+
+  .grace-gong-visual-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: clamp(1rem, 2.4vw, 1.75rem);
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid rgb(0 0 0 / 7%);
+    border-radius: $radius-md;
+    background: $light-background;
+    box-shadow: $shadow-sm;
+  }
+
+  .grace-gong-brand-board {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .brand-board-eyebrow {
+    fill: rgba($dark-text, 0.72);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+  }
+
+  .brand-board-chip {
+    stroke: rgb(0 0 0 / 6%);
+    stroke-width: 1;
+  }
+
+  .brand-board-chip-light {
+    stroke: rgb(0 0 0 / 14%);
+  }
+
+  .brand-board-hex {
+    fill: rgba($dark-text, 0.68);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .brand-board-divider,
+  .brand-board-type-divider {
+    stroke: rgba($dark-text, 0.1);
+    stroke-width: 1;
+  }
+
+  .brand-board-specimen {
+    fill: $dark-text;
+    font-size: 76px;
+    font-weight: 400;
+  }
+
+  .brand-board-specimen-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .brand-board-specimen-sans,
+  .brand-board-type-label {
+    font-family: var(--font-sans);
+  }
+
+  .brand-board-type-label {
+    fill: rgba($dark-text, 0.82);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .brand-board-type-detail {
+    fill: rgba($dark-text, 0.56);
+    font-size: 12px;
+    font-weight: 400;
+  }
 }
 
 .dark .smart-venture-media-container,
@@ -2278,6 +2607,71 @@
   .invibe-esthetics-contact-strip-content {
     background: linear-gradient(45deg, rgb(211 173 237 / 12%) 0%, rgb(244 164 169 / 8%) 100%);
     border-color: rgb(211 173 237 / 22%);
+  }
+
+  .grace-gong-visual-card {
+    border-color: rgb(255 255 255 / 10%);
+    background: rgb(255 255 255 / 3%);
+  }
+
+  .grace-gong-ia-parent {
+    fill: #e8e4df;
+  }
+
+  .grace-gong-ia-parent-label {
+    fill: #1b1714;
+  }
+
+  .grace-gong-ia-child {
+    stroke: rgb(255 255 255 / 22%);
+  }
+
+  .grace-gong-ia-child-label {
+    fill: rgba($light-text, 0.92);
+  }
+
+  .grace-gong-ia-note,
+  .grace-gong-wall-strip-note {
+    fill: rgba($light-text, 0.5);
+    color: rgba($light-text, 0.5);
+  }
+
+  .grace-gong-ia-auto {
+    fill: rgb(129 199 132 / 18%);
+  }
+
+  .grace-gong-ia-auto-text {
+    fill: #81c784;
+  }
+
+  .grace-gong-ia-link {
+    stroke: rgb(255 255 255 / 35%);
+  }
+
+  .grace-gong-ia-arrowhead {
+    fill: rgb(255 255 255 / 35%);
+  }
+
+  .grace-gong-sitemap-auto {
+    background: rgb(129 199 132 / 16%);
+    color: #81c784;
+  }
+
+  .grace-gong-wall-strip {
+    border-top-color: rgb(255 255 255 / 8%);
+  }
+
+  .grace-gong-wall-strip-before,
+  .grace-gong-wall-strip-after {
+    color: rgba($light-text, 0.88);
+  }
+
+  .grace-gong-wall-strip-x {
+    color: #ef5350;
+  }
+
+  .grace-gong-wall-strip-arrow {
+    color: rgba($light-text, 0.35);
   }
 
   .invibe-esthetics-link-primary {

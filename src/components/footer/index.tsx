@@ -3,7 +3,8 @@ import UniversalLink from 'components/universal_link'
 const FOOTER_LINKS = [
   { label: 'Clients', to: '/timeline' },
   { label: 'Experiments', to: '/experiments' },
-  { label: 'Academic', to: '/academic' }
+  { label: 'Academic', to: '/academic' },
+  { label: 'Quotes', to: '/quotes' }
 ] as const
 
 const Footer = (): JSX.Element => (

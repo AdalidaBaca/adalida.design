@@ -1,0 +1,311 @@
+@use 'sass:map';
+@import './variables';
+@import './colors';
+
+.quotes-page {
+  --quotes-ink: rgba(#{$dark-text}, 0.9);
+  --quotes-muted: rgba(#{$dark-text}, 0.46);
+  --quotes-card-bg: #{$light-surface};
+  --quotes-card-border: rgb(0 0 0 / 7%);
+  --quotes-order: rgba(#{$dark-text}, 0.28);
+
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: calc(60px + 1.25em);
+  padding-bottom: 4em;
+  box-sizing: border-box;
+
+  @media (width >= $breakpoint) {
+    padding-top: calc(60px + 1.75em);
+  }
+}
+
+.quotes-hero {
+  margin: 0 0 2em;
+  padding: 1.35em 1.4em 1.4em;
+  border: 1px solid color-mix(in srgb, var(--color-accent, #{$brand-accent}) 20%, var(--quotes-card-border));
+  border-radius: $radius-md;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-accent, #{$brand-accent}) 5%, var(--quotes-card-bg)) 0%,
+      var(--quotes-card-bg) 100%
+    );
+  box-shadow: $shadow-sm;
+}
+
+.quotes-hero--footer {
+  margin: 3em 0 0;
+  padding: 1.5em 1.45em 1.55em;
+
+  .quotes-hero-quote p {
+    font-size: clamp(1.02rem, 2vw, 1.15rem);
+    font-style: italic;
+    line-height: 1.7;
+  }
+}
+
+.quotes-hero-quote {
+  margin: 0 0 1em;
+
+  p {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: clamp(1.12rem, 2.4vw, 1.35rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+    color: var(--quotes-ink);
+    text-wrap: pretty;
+  }
+}
+
+.quotes-hero-attribution {
+  margin: 0;
+
+  cite {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    color: var(--color-accent-hover, #{$brand-accent-hover});
+
+    &::before {
+      content: '— ';
+      opacity: 0.7;
+    }
+  }
+}
+
+.quotes-page-header {
+  margin-bottom: 1.75em;
+}
+
+.quotes-page-title {
+  margin: 0 0 1em;
+  font-family: var(--font-sans);
+  font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--quotes-ink);
+}
+
+.quotes-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45em;
+}
+
+.quotes-nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4em 0.8em;
+  border: 1px solid var(--quotes-card-border);
+  border-radius: $radius-pill;
+  background: transparent;
+  color: var(--quotes-muted);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--color-accent-hover, #{$brand-accent-hover});
+      border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 28%, var(--quotes-card-border));
+      background: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 6%, transparent);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent, #{$brand-accent});
+    outline-offset: 2px;
+  }
+}
+
+.quotes-section {
+  margin-top: 2.5em;
+  scroll-margin-top: 76px;
+
+  &:first-of-type {
+    margin-top: 0.5em;
+  }
+}
+
+.quotes-section-header {
+  margin-bottom: 1em;
+}
+
+.quotes-section-title {
+  margin: 0 0 0.3em;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-accent-hover, #{$brand-accent-hover});
+}
+
+.quotes-section-description {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--quotes-muted);
+}
+
+.quotes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85em;
+  align-items: stretch;
+
+  @media (width >= $breakpoint) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (width >= 1100px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.quotes-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75em 0.85em;
+  align-items: start;
+  height: 100%;
+  margin: 0;
+  padding: 1.15em 1.15em 1.2em;
+  background: var(--quotes-card-bg);
+  border: 1px solid var(--quotes-card-border);
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 22%, var(--quotes-card-border));
+      box-shadow: $shadow-md;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.quotes-card-order {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--quotes-order);
+  padding-top: 0.2em;
+  user-select: none;
+}
+
+.quotes-card-quote {
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  p {
+    margin: 0;
+    flex: 1;
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    color: var(--quotes-ink);
+    text-wrap: pretty;
+
+    em {
+      font-style: italic;
+    }
+  }
+}
+
+.quotes-card-attribution {
+  margin-top: 0.9em;
+  padding-top: 0.75em;
+  border-top: 1px solid var(--quotes-card-border);
+
+  cite {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    color: var(--quotes-muted);
+
+    &::before {
+      content: '— ';
+      opacity: 0.7;
+    }
+  }
+}
+
+.dark .quotes-page {
+  --quotes-ink: rgba(#{$light-text}, 0.92);
+  --quotes-muted: rgba(#{$light-text}, 0.48);
+  --quotes-card-bg: #{$dark-surface};
+  --quotes-card-border: rgb(255 255 255 / 9%);
+  --quotes-order: rgba(#{$light-text}, 0.32);
+}
+
+.dark .quotes-hero {
+  border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 28%, var(--quotes-card-border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 10%, var(--quotes-card-bg)) 0%,
+      var(--quotes-card-bg) 100%
+    );
+}
+
+.dark .quotes-hero-attribution cite {
+  color: var(--color-accent, #{$brand-accent-dark});
+}
+
+.dark .quotes-nav-link {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--color-accent, #{$brand-accent-dark});
+      border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 30%, var(--quotes-card-border));
+      background: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 10%, transparent);
+    }
+  }
+
+  &:focus-visible {
+    outline-color: var(--color-accent, #{$brand-accent-dark});
+  }
+}
+
+.dark .quotes-section-title {
+  color: var(--color-accent, #{$brand-accent-dark});
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quotes-card {
+    transition: none;
+  }
+}

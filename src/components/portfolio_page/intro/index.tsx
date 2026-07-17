@@ -98,6 +98,29 @@ const Intro = (): React.ReactElement | null => {
             I specialize in early-stage product strategy and turning messy ideas into systems teams can actually build,
             using data and real workflows as inputs.
           </p>
+          <ul className="intro-metrics" aria-label="Highlights">
+            <li className="intro-metric">
+              <span className="intro-metric-value">560+</span>
+              <span className="intro-metric-copy">
+                <span className="intro-metric-label">Template uses & downloads</span>
+                <span className="intro-metric-detail">Figma Community + Notion Marketplace</span>
+              </span>
+            </li>
+            <li className="intro-metric">
+              <span className="intro-metric-value">40%</span>
+              <span className="intro-metric-copy">
+                <span className="intro-metric-label">Reduction in onboarding drop-off</span>
+                <span className="intro-metric-detail">GainTain, my 0→1 fitness app</span>
+              </span>
+            </li>
+            <li className="intro-metric">
+              <span className="intro-metric-value">4</span>
+              <span className="intro-metric-copy">
+                <span className="intro-metric-label">Businesses running on my builds</span>
+                <span className="intro-metric-detail">music, beauty, art & media</span>
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
     </>

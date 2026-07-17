@@ -5,15 +5,11 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
   return (
     <div data-aos="fade-up" className="case-study-top-to-bottom invibe-esthetics-outcome-section" ref={ref}>
       <div className="case-study-explanation">
-        <SectionHeading title="Outcome" subtitle="The First Version That Held Both" />
+        <SectionHeading title="Outcome" subtitle="One Source of Truth" />
         <div className="invibe-esthetics-details-card">
           <div className="body-2">
-            A scattered operation collapsed into <strong>one source of truth</strong>, with the brand unified for the
-            first time. Grace&apos;s team now adds content, even a full new summit, <strong>by entering it once</strong>
-            , with no developer in the loop and no design drift. Speaker, sponsor, and schedule changes still happen
-            constantly as events near, but they&apos;re now{' '}
-            <strong>CMS entries instead of manual edits in two layouts</strong>. I documented every update path so the
-            team can run it from a written guide, not from memory of how I built it.
+            Three websites collapsed into <strong>one structured dataset</strong>. The team enters each record{' '}
+            <strong>once</strong>; it renders everywhere, desktop and mobile, with no developer and no design drift.
           </div>
         </div>
 
@@ -22,30 +18,37 @@ const Outcome = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
             <div className="invibe-esthetics-metric-value">
               <strong>3 → 1</strong>
             </div>
-            <div className="invibe-esthetics-metric-label">platforms consolidated</div>
+            <div className="invibe-esthetics-metric-label">websites consolidated; two subscriptions eliminated</div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">
               <strong>300+</strong>
             </div>
-            <div className="invibe-esthetics-metric-label">records migrated cleanly</div>
+            <div className="invibe-esthetics-metric-label">
+              records migrated by a non-technical operator from written docs
+            </div>
           </div>
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">
-              <strong>~1 hr</strong>
+              <strong>1 record → every surface</strong>
             </div>
-            <div className="invibe-esthetics-metric-label">to stand up a new summit</div>
-            <div className="invibe-esthetics-metric-sublabel">down from ~a day</div>
+            <div className="invibe-esthetics-metric-label">lists, tabs, dynamic pages, both breakpoints</div>
           </div>
         </div>
 
         <div className="invibe-esthetics-results-secondary-row">
           <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
             <div className="invibe-esthetics-metric-value">
-              <strong>1 edit, 2 platforms</strong>
+              <strong>$0</strong>
             </div>
-            <div className="invibe-esthetics-metric-label">agenda updates render to desktop and mobile</div>
-            <div className="invibe-esthetics-metric-sublabel">from one CMS entry, not two manual edits</div>
+            <div className="invibe-esthetics-metric-label">dev fees for routine updates</div>
+          </div>
+          <div className="invibe-esthetics-metric-card invibe-esthetics-metric-primary">
+            <div className="invibe-esthetics-metric-value">
+              <strong>~1 hr</strong>
+            </div>
+            <div className="invibe-esthetics-metric-label">to populate a new summit&apos;s agenda and speakers</div>
+            <div className="invibe-esthetics-metric-sublabel">down from ~a day</div>
           </div>
         </div>
       </div>

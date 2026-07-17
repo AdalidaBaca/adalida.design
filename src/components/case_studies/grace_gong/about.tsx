@@ -40,12 +40,11 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
           <div className="invibe-esthetics-details-main">
             <div data-aos="fade-up" data-aos-offset="150" className="invibe-esthetics-details-card">
               <h6 className="invibe-esthetics-details-label">Role</h6>
+              <p className="invibe-esthetics-details-text">Content Architecture & Data Systems</p>
               <p className="invibe-esthetics-details-text">
-                <strong>Systems & Product Designer</strong>
-              </p>
-              <p className="invibe-esthetics-details-text">
-                I unified the Grace Gong brand, information architecture, and CMS, consolidating a fast-growing
-                operation into one system <strong>a non-technical team could run without a developer</strong>.
+                I designed the data model behind gracegong.com, consolidating three websites into{' '}
+                <strong>one structured CMS with a single source of truth</strong> that a{' '}
+                <strong>non-technical team runs without a developer</strong>.
               </p>
             </div>
             <div
@@ -56,10 +55,9 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             >
               <h6 className="invibe-esthetics-details-label">Overview</h6>
               <p className="invibe-esthetics-details-text">
-                Grace Gong is a VC and podcast host whose brand spans 300+ podcast episodes across Venture with Grace
-                and Smart Venture Media, plus one of the Valley&apos;s most curated AI summit series. The brand was
-                scaling fast: <strong>three summits in twelve months</strong>, each bigger than the last. The
-                infrastructure underneath hadn&apos;t caught up.
+                Grace Gong is a VC and podcast host: <strong>300+ episodes</strong> across two shows, plus one of the
+                Valley&apos;s most curated AI summit series. <strong>Three summits in twelve months</strong>, and the
+                whole operation spread across <strong>three separate websites</strong> with no single source of truth.
               </p>
             </div>
           </div>
@@ -72,21 +70,19 @@ const About = ({ heroRef, aboutRef }: Props): JSX.Element => {
             >
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Team</h6>
-                <p className="invibe-esthetics-details-text">
-                  <strong>Solo, embedded with founder</strong>
-                </p>
+                <p className="invibe-esthetics-details-text">Solo, embedded with founder, EA, content designer</p>
               </div>
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Timeline</h6>
-                <p className="invibe-esthetics-details-text">
-                  <strong>Delivered in weeks</strong>
-                </p>
+                <p className="invibe-esthetics-details-text">Delivered in weeks</p>
+              </div>
+              <div className="invibe-esthetics-details-meta-item">
+                <h6 className="invibe-esthetics-details-label">Scope</h6>
+                <p className="invibe-esthetics-details-text">Data model, migration, documentation</p>
               </div>
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Platform</h6>
-                <p className="invibe-esthetics-details-text">
-                  <strong>Wix Studio CMS, Velo</strong>
-                </p>
+                <p className="invibe-esthetics-details-text">Wix Studio CMS, Velo</p>
               </div>
               <div className="invibe-esthetics-details-meta-item">
                 <h6 className="invibe-esthetics-details-label">Website</h6>

@@ -7,16 +7,14 @@ const Problem = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
     <div data-aos="fade-up" className="case-study-top-to-bottom" ref={ref}>
       <div className="invibe-esthetics-problem-flow-container">
         <div className="invibe-esthetics-problem-flow">
-          <div className="flow-item success">
-            <IconCheck className="flow-icon" />
+          <div className="flow-item">
             <span className="flow-text">
-              Podcast
+              SVP Pro
               <span className="flow-text-sub">(Squarespace)</span>
             </span>
           </div>
           <div className="flow-arrow">→</div>
-          <div className="flow-item success">
-            <IconCheck className="flow-icon" />
+          <div className="flow-item">
             <span className="flow-text">
               Summits
               <span className="flow-text-sub">(Wix)</span>
@@ -27,7 +25,7 @@ const Problem = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
             <IconX className="flow-icon" />
             <span className="flow-text">
               Framer
-              <span className="flow-text-sub">(&quot;fix&quot;)</span>
+              <span className="flow-text-sub">(merged, but dev-locked)</span>
             </span>
           </div>
           <div className="flow-arrow">→</div>
@@ -35,23 +33,23 @@ const Problem = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivElemen
             <IconCheck className="flow-icon" />
             <span className="flow-text">
               Wix
-              <span className="flow-text-sub">(rebuilt to run itself)</span>
+              <span className="flow-text-sub">(one CMS, team-run)</span>
             </span>
           </div>
         </div>
       </div>
       <div className="case-study-explanation">
         <div className="invibe-esthetics-details-card">
-          <SectionHeading title="Problem" subtitle="Growth Outran the Tooling" />
+          <SectionHeading title="Problem" subtitle="Content Everywhere, Data Nowhere" />
           <div className="body-2">
-            Grace moves fast. She ran her podcast on Squarespace and her summits on Wix, two sides of one brand on two
-            platforms. When a developer tried to consolidate them onto Framer, it worked technically but{' '}
-            <strong>could only be edited by a developer</strong>, so the operation that needed to move fastest was the
-            one that couldn&apos;t move at all.
+            The brand grew one site at a time: <strong>SVP Pro on Squarespace</strong>, then the{' '}
+            <strong>summits on Wix</strong>. A Framer rebuild tried to merge them. It looked great, but its content was{' '}
+            <strong>locked in layouts</strong>, so <strong>every edit required the developer who built it</strong>, and
+            he was no longer available.
           </div>
           <div className="body-2">
-            The fix was to come back to Wix, the platform her summits already ran on, and rebuild it as a system the
-            team could run themselves, <strong>not just one more place the content lived</strong>.
+            The content was never a design problem. It was <strong>structured, repeating data</strong> that needed to
+            live once and render everywhere.
           </div>
         </div>
       </div>

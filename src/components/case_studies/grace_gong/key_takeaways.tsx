@@ -9,27 +9,26 @@ const KeyTakeaways = forwardRef((_props: Record<never, never>, ref: Ref<HTMLDivE
 
         <div className="smart-venture-media-key-takeaways-grid">
           <div className="project-echo-details-card">
-            <SectionHeading title="Consolidation Isn't Updatability" />
+            <SectionHeading title="LIST VS. ITEM" />
             <div className="body-2">
-              Combining the sites and letting the team run them are two different requirements. The fastest-growing
-              brands need both, because the founder can&apos;t wait on a developer to ship.
+              Structure starts with whether content is <strong>a collection or a single record</strong>. That
+              classification is what makes pages generate themselves.
             </div>
           </div>
 
           <div className="project-echo-details-card">
-            <SectionHeading title="Design for the Operator" />
+            <SectionHeading title="MODEL THE DATA, NOT THE PAGES" />
             <div className="body-2">
-              The real constraint wasn&apos;t the data, it was <strong>who maintains it</strong>. Building so a
-              non-technical operator can update content without breaking the design is what makes a system survive a
-              real team.
+              Every failed consolidation copied the presentation. The one that worked structured the content.{' '}
+              <strong>Consolidation is a data problem wearing a design costume.</strong>
             </div>
           </div>
 
           <div className="project-echo-details-card">
-            <SectionHeading title="List vs. Item" />
+            <SectionHeading title="DESIGN FOR THE OPERATOR" />
             <div className="body-2">
-              In any CMS, structure starts with <strong>whether content is a collection or a single record</strong>.
-              That distinction is what makes pages generate themselves instead of multiplying by hand.
+              Typed fields, exclusive tags, graceful fallbacks: integrity rules let a{' '}
+              <strong>non-technical operator</strong> touch the data daily without being able to break it.
             </div>
           </div>
         </div>
