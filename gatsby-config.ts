@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: 'GTM-N4VW9HFG',
+        id: process.env.GTM_CONTAINER_ID ?? 'GTM-N4VW9HFG',
         enableWebVitalsTracking: true
       }
     }
