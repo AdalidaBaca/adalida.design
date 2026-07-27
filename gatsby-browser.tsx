@@ -9,6 +9,7 @@ import Layout from 'components/layout'
 import type { WrapPageElementBrowserArgs } from 'gatsby'
 import useDarkMode from 'hooks/use_dark_mode'
 import useIsMobile from 'hooks/use_is_mobile'
+import posthog from 'posthog-js'
 
 import './src/sass/index.scss'
 
@@ -34,4 +35,30 @@ const onRouteUpdate = (): void => {
   }
 }
 
-export { WrapPageElement as wrapPageElement, onRouteUpdate }
+const onInitialClientRender = (): void => {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  const apiKey = process.env.GATSBY_POSTHOG_PROJECT_API_KEY
+  if (apiKey === undefined || apiKey === '') {
+    return
+  }
+
+  posthog.init(apiKey, {
+    api_host: process.env.GATSBY_POSTHOG_API_HOST ?? 'https://us.i.posthog.com',
+    autocapture: true,
+    capture_pageview: true,
+    session_recording: {
+      maskAllInputs: true,
+      recordCrossOriginIframes: false
+    },
+    loaded: posthogInstance => {
+      if (process.env.NODE_ENV === 'development') {
+        posthogInstance.debug()
+      }
+    }
+  })
+}
+
+export { WrapPageElement as wrapPageElement, onInitialClientRender, onRouteUpdate }
