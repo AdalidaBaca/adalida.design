@@ -173,7 +173,7 @@ export const Projects = {
     name: 'Grace Gong',
     category: 'WEBSITE AND CMS ARCHITECTURE',
     badges: ['CMS', 'Wix Studio', 'Brand'],
-    featured: true,
+    featured: false,
     featuredOrder: 2,
     description:
       'Unified the Grace Gong brand, information architecture, and CMS—consolidating a fast-growing operation into one system a non-technical team could run without a developer.',

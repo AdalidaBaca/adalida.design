@@ -14,8 +14,8 @@ interface BoxSpec {
   compact?: boolean
 }
 
-const VIEW_W = 580
-const VIEW_H = 520
+const VIEW_W = 600
+const VIEW_H = 600
 const COL1_X = 16
 const COL2_X = 196
 const PARENT_W = 120
@@ -24,6 +24,7 @@ const CHILD_H = 36
 const CHIP_H = 28
 const RADIUS = 10
 const COL_GAP = 60
+const STACK_GAP = 10
 
 const cubicLink = (from: Point, to: Point): string => {
   const dx = Math.max(to.x - from.x, COL_GAP)
@@ -82,6 +83,12 @@ const ChildBox = ({ x, y, w, h, label, auto = false, note, compact = false }: Bo
   )
 }
 
+const CmsNote = ({ box }: { box: BoxSpec }): JSX.Element => (
+  <text className="grace-gong-ia-note" x={box.x + box.w + 6} y={box.y + box.h / 2 + 1} dominantBaseline="middle">
+    CMS
+  </text>
+)
+
 const ParentBox = ({ label, y }: { label: string; y: number }): JSX.Element => (
   <g>
     <rect
@@ -107,8 +114,8 @@ const ParentBox = ({ label, y }: { label: string; y: number }): JSX.Element => (
 
 const SitemapDiagram = (): JSX.Element => {
   // Five parents evenly spaced across the card height.
-  const top = 28
-  const bottom = VIEW_H - PARENT_H - 28
+  const top = 24
+  const bottom = VIEW_H - PARENT_H - 24
   const parentStep = (bottom - top) / 4
   const homeParentY = top
   const podcastsParentY = top + parentStep
@@ -126,49 +133,70 @@ const SitemapDiagram = (): JSX.Element => {
 
   const alignChildY = (parentY: number, childH: number): number => parentY + (PARENT_H - childH) / 2
 
-  const homeChild: BoxSpec = {
+  // Home has three separate CMS modules — never "Podcast Voices + Events" as one node.
+  const homeGap = 12
+  const homeEpisodes: BoxSpec = {
     x: COL2_X,
-    y: alignChildY(homeParentY, CHILD_H),
-    w: labelWidth('Podcast Voices + Events', false),
+    y: 14,
+    w: labelWidth('Latest episodes', false),
     h: CHILD_H,
-    label: 'Podcast Voices + Events',
-    note: 'fed by CMS'
+    label: 'Latest episodes'
   }
+  const homeVoices: BoxSpec = {
+    x: COL2_X,
+    y: homeEpisodes.y + CHILD_H + homeGap,
+    w: labelWidth('Podcast Voices', false),
+    h: CHILD_H,
+    label: 'Podcast Voices'
+  }
+  const homeEvents: BoxSpec = {
+    x: COL2_X,
+    y: homeVoices.y + CHILD_H + homeGap,
+    w: labelWidth('Events', false),
+    h: CHILD_H,
+    label: 'Events'
+  }
+  const homeChildren = [homeEpisodes, homeVoices, homeEvents]
+  const homeStackBottom = homeEvents.y + homeEvents.h
+
   const podcastChild: BoxSpec = {
     x: COL2_X,
-    y: alignChildY(podcastsParentY, CHILD_H),
+    y: Math.max(alignChildY(podcastsParentY, CHILD_H), homeStackBottom + 20),
     w: labelWidth('Episode pages', true),
     h: CHILD_H,
     label: 'Episode pages',
     auto: true,
-    note: '1 row = 1 page, 300+'
+    note: 'dynamic pages, 300+'
   }
 
-  // Events fans to Dinner (above parent center) and Summit (below parent center).
+  // Events section fans to Dinner (above) and Summit (below) — separate from Home → Events.
   const dinnerChild: BoxSpec = {
     x: COL2_X,
-    y: eventsParentY - 34,
+    y: Math.max(eventsParentY - 34, podcastChild.y + podcastChild.h + 36),
     w: labelWidth('Dinner pages', true),
     h: CHILD_H,
     label: 'Dinner pages',
     auto: true,
-    note: '1 row = 1 page'
+    note: 'dynamic pages'
   }
   const summitChild: BoxSpec = {
     x: COL2_X,
-    y: eventsParentY + PARENT_H + 2,
+    y: dinnerChild.y + CHILD_H + 48,
     w: labelWidth('Summit pages', false),
     h: CHILD_H,
     label: 'Summit pages'
   }
 
   const col2Right = Math.max(
-    homeChild.w,
+    homeEpisodes.w,
+    homeVoices.w,
+    homeEvents.w,
     podcastChild.w,
     dinnerChild.w,
     summitChild.w,
     labelWidth('Fellows', true),
-    labelWidth('Advisors', true)
+    labelWidth('Advisors', true),
+    labelWidth('Sponsor application', false, true)
   )
   const COL3_X = COL2_X + col2Right + COL_GAP
 
@@ -196,9 +224,11 @@ const SitemapDiagram = (): JSX.Element => {
   const summitNoteX = summitChild.x + 2
   const summitNoteY = summitChild.y + summitChild.h + 13
 
+  // Stack Fellows above Advisors with a real gap; push below the summit note when needed.
+  const fellowsStackTop = Math.max(fellowsParentY - 22, summitNoteY + 14)
   const fellowsChild: BoxSpec = {
     x: COL2_X,
-    y: fellowsParentY - 10,
+    y: fellowsStackTop,
     w: labelWidth('Fellows', true),
     h: CHILD_H,
     label: 'Fellows',
@@ -206,12 +236,28 @@ const SitemapDiagram = (): JSX.Element => {
   }
   const advisorsChild: BoxSpec = {
     x: COL2_X,
-    y: fellowsParentY + PARENT_H - CHILD_H + 10,
+    y: fellowsStackTop + CHILD_H + STACK_GAP,
     w: labelWidth('Advisors', true),
     h: CHILD_H,
     label: 'Advisors',
     auto: true
   }
+
+  // About fans to linked pages/sections.
+  const aboutLabels = ['Books', 'Sponsor application', 'Intro link'] as const
+  const aboutStackH = aboutLabels.length * CHIP_H + (aboutLabels.length - 1) * STACK_GAP
+  const aboutStackTop = Math.max(
+    advisorsChild.y + advisorsChild.h + 16,
+    Math.min(aboutParentY + (PARENT_H - aboutStackH) / 2, VIEW_H - aboutStackH - 16)
+  )
+  const aboutChildren: BoxSpec[] = aboutLabels.map((label, index) => ({
+    x: COL2_X,
+    y: aboutStackTop + index * (CHIP_H + STACK_GAP),
+    w: labelWidth(label, false, true),
+    h: CHIP_H,
+    label,
+    compact: true
+  }))
 
   const parentExit = (parentY: number): Point => ({
     x: COL1_X + PARENT_W,
@@ -223,14 +269,16 @@ const SitemapDiagram = (): JSX.Element => {
       <svg
         className="grace-gong-ia-svg"
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+        preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-labelledby="grace-gong-ia-title grace-gong-ia-desc"
       >
         <title id="grace-gong-ia-title">Site information architecture</title>
         <desc id="grace-gong-ia-desc">
-          Home feeds Podcast Voices and Events from the CMS. Podcasts generate episode pages. Events generate dinner and
-          summit pages, with agenda and speakers to the right of summit pages. G-Fellows generate fellows and advisors.
-          About remains a static page.
+          Home surfaces latest episodes, podcast voices, and events as separate CMS-fed modules. Podcasts generate
+          dynamic episode pages. Events generate dynamic dinner pages and summit pages, with agenda and speakers managed
+          in the CMS. G-Fellows generate fellows and advisors from the CMS. About links to books, sponsor application,
+          and intro.
         </desc>
         <defs>
           <marker
@@ -243,7 +291,7 @@ const SitemapDiagram = (): JSX.Element => {
             orient="auto"
             markerUnits="strokeWidth"
           >
-            <path d="M 0 1.5 L 9 5 L 0 8.5 Z" className="grace-gong-ia-arrowhead" />
+            <path d="M 0 1.5 L 9 5 L 0 8.5 Z" className="grace-gong-ia-arrowhead" fill="context-stroke" />
           </marker>
         </defs>
 
@@ -251,11 +299,14 @@ const SitemapDiagram = (): JSX.Element => {
           <ParentBox key={parent.label} label={parent.label} y={parent.y} />
         ))}
 
-        <path
-          className="grace-gong-ia-link"
-          d={cubicLink(parentExit(homeParentY), boxCenterLeft(homeChild))}
-          markerEnd="url(#grace-gong-ia-arrow)"
-        />
+        {homeChildren.map((child, index) => (
+          <path
+            key={`link-home-${index}-${child.label}`}
+            className="grace-gong-ia-link"
+            d={cubicLink(parentExit(homeParentY), boxCenterLeft(child))}
+            markerEnd="url(#grace-gong-ia-arrow)"
+          />
+        ))}
         <path
           className="grace-gong-ia-link"
           d={cubicLink(parentExit(podcastsParentY), boxCenterLeft(podcastChild))}
@@ -291,8 +342,21 @@ const SitemapDiagram = (): JSX.Element => {
           d={cubicLink(parentExit(fellowsParentY), boxCenterLeft(advisorsChild))}
           markerEnd="url(#grace-gong-ia-arrow)"
         />
+        {aboutChildren.map(child => (
+          <path
+            key={`link-${child.label}`}
+            className="grace-gong-ia-link"
+            d={cubicLink(parentExit(aboutParentY), boxCenterLeft(child))}
+            markerEnd="url(#grace-gong-ia-arrow)"
+          />
+        ))}
 
-        <ChildBox {...homeChild} />
+        {homeChildren.map((child, index) => (
+          <g key={`home-${index}-${child.label}`}>
+            <ChildBox {...child} />
+            <CmsNote box={child} />
+          </g>
+        ))}
         <ChildBox {...podcastChild} />
         <ChildBox {...dinnerChild} />
         <ChildBox {...summitChild} />
@@ -301,17 +365,15 @@ const SitemapDiagram = (): JSX.Element => {
         </text>
         <ChildBox {...agendaChip} />
         <ChildBox {...speakersChip} />
+        <CmsNote box={agendaChip} />
+        <CmsNote box={speakersChip} />
         <ChildBox {...fellowsChild} />
         <ChildBox {...advisorsChild} />
-
-        <text
-          className="grace-gong-ia-note"
-          x={COL2_X + 2}
-          y={aboutParentY + PARENT_H / 2 + 1}
-          dominantBaseline="middle"
-        >
-          static page
-        </text>
+        <CmsNote box={fellowsChild} />
+        <CmsNote box={advisorsChild} />
+        {aboutChildren.map(child => (
+          <ChildBox key={child.label} {...child} />
+        ))}
       </svg>
     </figure>
   )

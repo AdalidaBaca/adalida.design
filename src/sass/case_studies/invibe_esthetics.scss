@@ -2313,14 +2313,31 @@
     justify-content: flex-start;
     gap: 0;
     padding: clamp(0.85rem, 2vw, 1.35rem);
+    overflow: auto hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    @media (width < 768px) {
+      height: auto;
+      min-height: 0;
+      padding: 0.75rem;
+    }
   }
 
   .grace-gong-ia-svg {
     display: block;
     width: 100%;
-    height: 100%;
-    min-height: 22rem;
+    height: auto;
+    aspect-ratio: 600 / 600;
     overflow: visible;
+    color: rgba($dark-text, 0.4);
+
+    @media (width < 768px) {
+      width: 34rem;
+      max-width: none;
+      min-width: 34rem;
+      flex-shrink: 0;
+    }
   }
 
   .grace-gong-ia-parent {
@@ -2335,7 +2352,7 @@
   }
 
   .grace-gong-ia-child {
-    fill: transparent;
+    fill: $light-surface;
     stroke: rgba($dark-text, 0.22);
     stroke-width: 1.25;
   }
@@ -2369,14 +2386,14 @@
 
   .grace-gong-ia-link {
     fill: none;
-    stroke: rgba($dark-text, 0.38);
+    stroke: currentcolor;
     stroke-width: 1.35;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
   .grace-gong-ia-arrowhead {
-    fill: rgba($dark-text, 0.38);
+    fill: currentcolor;
   }
 
   .grace-gong-sitemap-auto {
@@ -2523,8 +2540,13 @@
     overflow: hidden;
     border: 1px solid rgb(0 0 0 / 7%);
     border-radius: $radius-md;
-    background: $light-background;
+    background: $light-surface;
     box-shadow: $shadow-sm;
+  }
+
+  /* Keep IA scrollable on narrow screens; visual-card overflow:hidden would clip it. */
+  .grace-gong-visual-card.grace-gong-sitemap-diagram {
+    overflow: auto hidden;
   }
 
   .grace-gong-brand-board {
@@ -2611,7 +2633,11 @@
 
   .grace-gong-visual-card {
     border-color: rgb(255 255 255 / 10%);
-    background: rgb(255 255 255 / 3%);
+    background: rgb(255 255 255 / 6%);
+  }
+
+  .grace-gong-ia-svg {
+    color: rgb(255 255 255 / 42%);
   }
 
   .grace-gong-ia-parent {
@@ -2623,7 +2649,8 @@
   }
 
   .grace-gong-ia-child {
-    stroke: rgb(255 255 255 / 22%);
+    fill: rgb(255 255 255 / 6%);
+    stroke: rgb(255 255 255 / 28%);
   }
 
   .grace-gong-ia-child-label {
@@ -2632,24 +2659,46 @@
 
   .grace-gong-ia-note,
   .grace-gong-wall-strip-note {
-    fill: rgba($light-text, 0.5);
-    color: rgba($light-text, 0.5);
+    fill: rgba($light-text, 0.55);
+    color: rgba($light-text, 0.55);
   }
 
   .grace-gong-ia-auto {
-    fill: rgb(129 199 132 / 18%);
+    fill: rgb(129 199 132 / 22%);
   }
 
   .grace-gong-ia-auto-text {
-    fill: #81c784;
+    fill: #a5d6a7;
   }
 
-  .grace-gong-ia-link {
-    stroke: rgb(255 255 255 / 35%);
+  .brand-board-eyebrow {
+    fill: rgba($light-text, 0.72);
   }
 
-  .grace-gong-ia-arrowhead {
-    fill: rgb(255 255 255 / 35%);
+  .brand-board-chip {
+    stroke: rgb(255 255 255 / 12%);
+  }
+
+  .brand-board-chip-light {
+    stroke: rgb(255 255 255 / 28%);
+  }
+
+  .brand-board-hex {
+    fill: rgba($light-text, 0.68);
+  }
+
+  .brand-board-divider,
+  .brand-board-type-divider {
+    stroke: rgb(255 255 255 / 14%);
+  }
+
+  .brand-board-specimen,
+  .brand-board-type-label {
+    fill: rgba($light-text, 0.92);
+  }
+
+  .brand-board-type-detail {
+    fill: rgba($light-text, 0.56);
   }
 
   .grace-gong-sitemap-auto {
