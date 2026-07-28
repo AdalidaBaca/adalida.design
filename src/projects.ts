@@ -157,7 +157,7 @@ export const Projects = {
     featured: true,
     featuredOrder: 4,
     description:
-      'Designed an intuitive website for Smart Venture Media, optimizing navigation, SEO, and copywriting to enhance service visibility and user engagement.',
+      'Built the operational system behind Smart Venture Media AI Leadership Summits — roles, runbooks, and day-of execution so the event could scale without routing every decision to the CEO.',
     heroImage: SmartVentureMediaImage,
     link: {
       text: 'Read Case Study',

@@ -61,34 +61,101 @@ const Avatar = ({ name, photo }: { name: string; photo?: string }): JSX.Element 
   return <div className="avatar initials">{getInitials(name)}</div>
 }
 
+const nearestCardIndex = (container: HTMLElement, maxIndex: number): number => {
+  const cards = Array.from(container.children) as HTMLElement[]
+  if (cards.length === 0) return 0
+
+  const origin = container.getBoundingClientRect().left
+  let nearest = 0
+  let nearestDist = Number.POSITIVE_INFINITY
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i]
+    if (card === undefined) continue
+    const dist = Math.abs(card.getBoundingClientRect().left - origin)
+    if (dist < nearestDist) {
+      nearestDist = dist
+      nearest = i
+    }
+  }
+
+  return Math.min(nearest, maxIndex)
+}
+
 const Testimonials = (): JSX.Element => {
   const isMobile = useIsMobile() ?? false
   const visibleCount = isMobile ? 1 : 2
   const maxIndex = Math.max(0, testimonials.length - visibleCount)
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const cardsRef = React.useRef<HTMLUListElement>(null)
-  const isInitialMount = React.useRef(true)
+  const ignoreScrollSync = React.useRef(false)
+  const clearIgnoreTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const scrollToIndex = React.useCallback((index: number): void => {
+    const el = cardsRef.current
+    const card = el?.children[index] as HTMLElement | undefined
+    if (el == null || card == null) return
+
+    ignoreScrollSync.current = true
+    if (clearIgnoreTimeout.current != null) clearTimeout(clearIgnoreTimeout.current)
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+
+    const release = (): void => {
+      ignoreScrollSync.current = false
+      el.removeEventListener('scrollend', release)
+    }
+    el.addEventListener('scrollend', release, { once: true })
+    clearIgnoreTimeout.current = setTimeout(release, 450)
+  }, [])
+
+  const goTo = (index: number): void => {
+    const next = Math.max(0, Math.min(maxIndex, index))
+    setCurrentIndex(next)
+    scrollToIndex(next)
+  }
 
   const goPrev = (): void => {
-    setCurrentIndex(i => Math.max(0, i - 1))
+    goTo(currentIndex - 1)
   }
   const goNext = (): void => {
-    setCurrentIndex(i => Math.min(maxIndex, i + 1))
+    goTo(currentIndex + 1)
   }
 
-  // Scroll so the current card is in view only when user changes slide (not on initial load)
+  // Keep dots / arrows in sync when the user scrolls or swipes the track.
   React.useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-      return
-    }
     const el = cardsRef.current
     if (el == null) return
-    const card = el.children[currentIndex] as HTMLElement | undefined
-    if (card != null) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+
+    let frame = 0
+    const syncFromScroll = (): void => {
+      frame = 0
+      if (ignoreScrollSync.current) return
+      const next = nearestCardIndex(el, maxIndex)
+      setCurrentIndex(prev => (prev === next ? prev : next))
     }
-  }, [currentIndex])
+
+    const onScroll = (): void => {
+      if (frame !== 0) return
+      frame = requestAnimationFrame(syncFromScroll)
+    }
+
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      el.removeEventListener('scroll', onScroll)
+      if (frame !== 0) cancelAnimationFrame(frame)
+    }
+  }, [maxIndex])
+
+  React.useEffect(() => {
+    setCurrentIndex(i => Math.min(i, maxIndex))
+  }, [maxIndex])
+
+  React.useEffect(
+    () => () => {
+      if (clearIgnoreTimeout.current != null) clearTimeout(clearIgnoreTimeout.current)
+    },
+    []
+  )
 
   const dotCount = isMobile ? testimonials.length : maxIndex + 1
 
@@ -148,7 +215,7 @@ const Testimonials = (): JSX.Element => {
                   aria-selected={currentIndex === i}
                   aria-label={`Go to testimonial ${i + 1}`}
                   className={`dot ${currentIndex === i ? 'active' : ''}`}
-                  onClick={() => setCurrentIndex(i)}
+                  onClick={() => goTo(i)}
                 />
               )
             })}

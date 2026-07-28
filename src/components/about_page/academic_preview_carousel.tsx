@@ -1,54 +1,50 @@
-import { IconArrowNarrowRight } from '@tabler/icons-react'
-import {
-  ABOUT_ACADEMIC_PREVIEW_ENTRIES,
-  type AcademicEntry,
-  academicEntryUrl,
-  academicPreviewImage
-} from 'data/academic_journey'
+import { IconArrowNarrowRight, IconBrain, IconContrast, IconMathFunction } from '@tabler/icons-react'
+import { ABOUT_ACADEMIC_PREVIEW_ENTRIES, type AcademicEntry, academicEntryUrl } from 'data/academic_journey'
 import { Link } from 'gatsby'
 import { useResolvePdfUrl } from 'queries/file'
 
+type PaperIcon = typeof IconMathFunction
+
 const previewHref = (entry: AcademicEntry, resolvePdf: (pdfPath: string) => string | undefined): string =>
   academicEntryUrl(entry, resolvePdf) ?? `/academic#${entry.id}`
+
+const iconForEntry = (entryId: string): PaperIcon => {
+  switch (entryId) {
+    case 'phil-415-final-exam':
+      return IconMathFunction
+    case 'philosophy-of-mind-building-block':
+      return IconBrain
+    case 'binary-opposition-essay':
+      return IconContrast
+    default:
+      throw new Error(`No icon mapped for foundations entry: ${entryId}`)
+  }
+}
 
 const AcademicPreviewCarousel = (): JSX.Element => {
   const resolvePdf = useResolvePdfUrl()
 
   return (
-    <ul className="foundations-cards" aria-label="Foundations previews">
+    <ul className="foundations-cards" aria-label="Foundations papers">
       {ABOUT_ACADEMIC_PREVIEW_ENTRIES.map(entry => {
-        const previewSrc = academicPreviewImage(entry)
         const href = previewHref(entry, resolvePdf)
         const opensInNewTab = entry.type === 'pdf' || href.startsWith('http')
+        const PaperIcon = iconForEntry(entry.id)
 
         const card = (
           <>
-            <div className="foundations-card-media">
-              {previewSrc !== undefined ? (
-                <img
-                  src={previewSrc}
-                  alt={`First page preview of ${entry.documentTitle ?? entry.title}`}
-                  className="foundations-card-image"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div className="foundations-card-fallback" aria-hidden>
-                  <span>{entry.classTopic}</span>
-                </div>
-              )}
-            </div>
-            <div className="foundations-card-body">
-              <div className="foundations-card-copy">
-                {entry.courseBadge !== undefined && <p className="foundations-card-course">{entry.courseBadge}</p>}
-                <p className="foundations-card-title">{entry.title}</p>
-                <p className="foundations-card-topic">{entry.classTopic}</p>
-              </div>
-              <div className="foundations-card-footer">
-                <span className="foundations-card-action">Read paper</span>
-                <IconArrowNarrowRight className="foundations-card-arrow" size={18} strokeWidth={1.5} aria-hidden />
-              </div>
-            </div>
+            <span className="foundations-card-icon" aria-hidden>
+              <PaperIcon size={22} strokeWidth={1.5} />
+            </span>
+            <span className="foundations-card-body">
+              {entry.courseBadge !== undefined && <span className="foundations-card-course">{entry.courseBadge}</span>}
+              <span className="foundations-card-title">{entry.title}</span>
+              <span className="foundations-card-topic">{entry.classTopic}</span>
+            </span>
+            <span className="foundations-card-footer">
+              <span className="foundations-card-action">Read paper</span>
+              <IconArrowNarrowRight className="foundations-card-arrow" size={18} strokeWidth={1.5} aria-hidden />
+            </span>
           </>
         )
 

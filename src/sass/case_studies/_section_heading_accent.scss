@@ -11,7 +11,7 @@
   }
 
   .section-heading-container > .section-heading-subtitle {
-    color: color-mix(in srgb, #{$accent} 48%, #{$dark-text});
+    color: color-mix(in srgb, #{$accent} 48%, #1a1a1a);
   }
 
   > .case-study-explanation > .section-heading-container,
@@ -30,7 +30,7 @@
     }
 
     .section-heading-container > .section-heading-subtitle {
-      color: color-mix(in srgb, #{$accent-dark} 52%, #{$light-text});
+      color: color-mix(in srgb, #{$accent-dark} 52%, #f0f0f0);
     }
   }
 }

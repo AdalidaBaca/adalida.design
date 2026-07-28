@@ -27,7 +27,15 @@
 
   .section-heading-container {
     margin: 0 0 $section-heading-gap;
+
+    > .section-heading-subtitle {
+      color: rgba(#1a1a1a, 0.72);
+    }
   }
+}
+
+.dark .about-page .section-heading-container > .section-heading-subtitle {
+  color: rgba(#f0f0f0, 0.72);
 }
 
 .stacking-cards {

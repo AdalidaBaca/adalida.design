@@ -10,7 +10,8 @@
     box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--page-accent) 28%, transparent);
   }
 
-  .structure-card-icon {
+  .structure-card-icon,
+  .foundations-card-icon {
     background: color-mix(in srgb, var(--page-accent) 10%, transparent);
     color: var(--page-accent);
   }
@@ -88,7 +89,8 @@
     box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--page-accent) 32%, transparent);
   }
 
-  .structure-card-icon {
+  .structure-card-icon,
+  .foundations-card-icon {
     background: color-mix(in srgb, var(--page-accent) 14%, transparent);
     color: var(--page-accent);
   }

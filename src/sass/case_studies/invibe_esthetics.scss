@@ -1670,6 +1670,10 @@
   --smart-primary: #4a3a5c;
   --smart-shadow: rgb(211 173 237 / 26%);
 
+  /* Card copy: neutral (never Invibe warm brown) */
+  --smart-card-copy: #1a1a1a;
+  --smart-card-copy-muted: rgb(26 26 26 / 70%);
+
   /*
    * Vertical rhythm: main stack uses .case-study-container gap (3em / 4em).
    * Outcome + Key Takeaways render SectionHeading outside .project-echo-details-card:
@@ -1729,8 +1733,35 @@
     }
   }
 
-  .invibe-esthetics-download-description {
-    color: rgb(48 32 34 / 90%);
+  /*
+   * Card copy only: never use site/Invibe warm brown on Smart Venture Media cards.
+   * Match Outcome quote neutrals (#1a1a1a / #f0f0f0).
+   */
+  .project-echo-details-card .body-2,
+  .invibe-esthetics-details-card .body-2,
+  .invibe-esthetics-details-text,
+  .invibe-esthetics-feedback-quote,
+  .invibe-esthetics-metric-value,
+  .invibe-esthetics-metric-label,
+  .invibe-esthetics-contact-strip-heading {
+    color: var(--smart-card-copy);
+  }
+
+  .invibe-esthetics-details-label,
+  .invibe-esthetics-metric-sublabel,
+  .invibe-esthetics-feedback-attribution,
+  .invibe-esthetics-contact-strip-description,
+  .invibe-esthetics-download-description,
+  .section-heading-container > .section-heading-subtitle {
+    color: var(--smart-card-copy-muted);
+  }
+
+  .invibe-esthetics-feedback-quote-mark {
+    color: rgb(118 78 145 / 75%);
+  }
+
+  .flow-arrow {
+    color: rgb(118 78 145 / 42%);
   }
 
   .invibe-esthetics-download-text,
@@ -1798,14 +1829,6 @@
     background: linear-gradient(45deg, rgb(211 173 237 / 12%) 0%, rgb(244 164 169 / 6%) 100%) !important;
     border: 2px solid rgb(211 173 237 / 25%);
     box-shadow: 0 4px 16px -4px rgb(211 173 237 / 18%);
-  }
-
-  .invibe-esthetics-feedback-quote-mark {
-    color: rgb(211 173 237 / 75%);
-  }
-
-  .invibe-esthetics-feedback-attribution {
-    color: rgb(150 90 115 / 78%);
   }
 
   .invibe-esthetics-contact-strip-content {
@@ -2624,11 +2647,40 @@
   );
   --smart-primary: #e8dcf8;
   --smart-shadow: rgb(0 0 0 / 40%);
+  --smart-card-copy: #f0f0f0;
+  --smart-card-copy-muted: rgb(240 240 240 / 70%);
 
   .invibe-esthetics-download-content,
   .invibe-esthetics-contact-strip-content {
     background: linear-gradient(45deg, rgb(211 173 237 / 12%) 0%, rgb(244 164 169 / 8%) 100%);
     border-color: rgb(211 173 237 / 22%);
+  }
+
+  .project-echo-details-card .body-2,
+  .invibe-esthetics-details-card .body-2,
+  .invibe-esthetics-details-text,
+  .invibe-esthetics-feedback-quote,
+  .invibe-esthetics-metric-value,
+  .invibe-esthetics-metric-label,
+  .invibe-esthetics-contact-strip-heading {
+    color: var(--smart-card-copy);
+  }
+
+  .invibe-esthetics-details-label,
+  .invibe-esthetics-metric-sublabel,
+  .invibe-esthetics-feedback-attribution,
+  .invibe-esthetics-contact-strip-description,
+  .invibe-esthetics-download-description,
+  .section-heading-container > .section-heading-subtitle {
+    color: var(--smart-card-copy-muted);
+  }
+
+  .invibe-esthetics-feedback-quote-mark {
+    color: rgb(210 190 245 / 88%);
+  }
+
+  .flow-arrow {
+    color: rgb(232 220 248 / 42%);
   }
 
   .grace-gong-visual-card {
@@ -2797,14 +2849,6 @@
     background: linear-gradient(45deg, rgb(211 173 237 / 18%) 0%, rgb(244 164 169 / 10%) 100%) !important;
     border-color: rgb(211 173 237 / 32%);
     box-shadow: 0 4px 20px -4px rgb(0 0 0 / 34%);
-  }
-
-  .invibe-esthetics-feedback-quote-mark {
-    color: rgb(210 190 245 / 88%);
-  }
-
-  .invibe-esthetics-feedback-attribution {
-    color: rgb(188 168 220 / 84%);
   }
 
   .smart-venture-media-insight-image-card.project-echo-details-card {

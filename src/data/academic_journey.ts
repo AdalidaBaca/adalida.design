@@ -837,14 +837,3 @@ export const academicEntryUrl = (
   }
   return entry.link
 }
-
-export const academicPreviewImage = (entry: AcademicEntry): string | undefined => {
-  if (entry.previewImage !== undefined) {
-    return `/images/academic/${entry.previewImage}`
-  }
-  if (entry.pdfPath !== undefined) {
-    const slug = entry.pdfPath.replace(/^academic\//, '').replace(/\.pdf$/, '')
-    return `/images/academic/${slug}.png`
-  }
-  return undefined
-}

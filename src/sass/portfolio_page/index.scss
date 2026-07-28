@@ -768,13 +768,13 @@
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: rgba($dark-text, 0.94);
+  color: #1a1a1a;
 }
 
 .dark .experiments-title,
 .dark .clients-title,
 .dark .internship-portfolio-title {
-  color: rgba(map.get($dark-colors, secondary), 0.95);
+  color: #f0f0f0;
 }
 
 .experiments-intro,
@@ -783,7 +783,7 @@
   margin: 0 0 1.35em;
   font-size: clamp(0.92rem, 2vw, 1rem);
   line-height: 1.65;
-  color: rgba($dark-text, 0.64);
+  color: rgb(26 26 26 / 72%);
   max-width: 42ch;
 
   @media (width >= $breakpoint) {
@@ -799,7 +799,7 @@
 .dark .experiments-intro,
 .dark .clients-intro,
 .dark .internship-portfolio-intro {
-  color: rgba(map.get($dark-colors, secondary), 0.62);
+  color: rgb(240 240 240 / 72%);
 }
 
 .clients-page > .contact-cta-section,
