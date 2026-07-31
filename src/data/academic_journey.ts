@@ -208,7 +208,7 @@ export const ACADEMIC_ENTRIES: AcademicEntry[] = [
     section: 'english',
     featured: false,
     year: 2019,
-    title: 'Lobo Gardens — Brochure Mockup Presentation',
+    title: 'Lobo Gardens Brochure',
     classTopic: 'Visual Rhetoric',
     courseBadge: 'English 419',
     hook: 'Brochure mockup presentation for Lobo Gardens in visual rhetoric.',
@@ -813,11 +813,11 @@ export const intersectionGroupsWithEntries = (
     )
   })).filter(group => group.entries.length > 0)
 
-/** About-page preview carousel: Phil 415 final, theory of mind, binary opposition essay (English). */
+/** About-page Foundations cards: Phil 415 final, theory of mind, English 419 Lobo Gardens. */
 const ABOUT_ACADEMIC_PREVIEW_IDS = [
   'phil-415-final-exam',
   'philosophy-of-mind-building-block',
-  'binary-opposition-essay'
+  'lobo-gardens-presentation'
 ] as const
 
 export const ABOUT_ACADEMIC_PREVIEW_ENTRIES = ABOUT_ACADEMIC_PREVIEW_IDS.map(id => {

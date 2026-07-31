@@ -13,7 +13,7 @@ const PortfolioContainer = (): JSX.Element | null => {
   return (
     <section className="featured-projects" aria-labelledby="featured-projects-heading">
       <div className="featured-projects-heading" id="featured-projects-heading" data-aos="fade-up">
-        <span>Featured Projects</span>
+        <span>Currently Building</span>
       </div>
       {heroProject !== undefined && <FeaturedHero project={heroProject} />}
       {moreProjects.length > 0 && (

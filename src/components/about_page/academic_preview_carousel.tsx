@@ -1,4 +1,4 @@
-import { IconArrowNarrowRight, IconBrain, IconContrast, IconMathFunction } from '@tabler/icons-react'
+import { IconArrowNarrowRight, IconBrain, IconFlower, IconMathFunction } from '@tabler/icons-react'
 import { ABOUT_ACADEMIC_PREVIEW_ENTRIES, type AcademicEntry, academicEntryUrl } from 'data/academic_journey'
 import { Link } from 'gatsby'
 import { useResolvePdfUrl } from 'queries/file'
@@ -14,11 +14,17 @@ const iconForEntry = (entryId: string): PaperIcon => {
       return IconMathFunction
     case 'philosophy-of-mind-building-block':
       return IconBrain
-    case 'binary-opposition-essay':
-      return IconContrast
+    case 'lobo-gardens-presentation':
+      return IconFlower
     default:
       throw new Error(`No icon mapped for foundations entry: ${entryId}`)
   }
+}
+
+const actionLabel = (entry: AcademicEntry): string => {
+  if (entry.linkLabel !== undefined) return entry.linkLabel
+  if (entry.type === 'external') return 'View slides'
+  return 'Read paper'
 }
 
 const AcademicPreviewCarousel = (): JSX.Element => {
@@ -42,7 +48,7 @@ const AcademicPreviewCarousel = (): JSX.Element => {
               <span className="foundations-card-topic">{entry.classTopic}</span>
             </span>
             <span className="foundations-card-footer">
-              <span className="foundations-card-action">Read paper</span>
+              <span className="foundations-card-action">{actionLabel(entry)}</span>
               <IconArrowNarrowRight className="foundations-card-arrow" size={18} strokeWidth={1.5} aria-hidden />
             </span>
           </>
