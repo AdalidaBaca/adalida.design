@@ -43,10 +43,6 @@
     }
   }
 
-  .foundations-card-course {
-    color: var(--page-accent-hover);
-  }
-
   .foundations-card {
     @media (hover: hover) and (pointer: fine) {
       &:hover {
@@ -120,10 +116,6 @@
         }
       }
     }
-  }
-
-  .foundations-card-course {
-    color: var(--page-accent);
   }
 
   .foundations-card {

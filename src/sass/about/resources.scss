@@ -37,10 +37,12 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: $shadow-md;
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 22%, transparent);
 
       .structure-card-arrow {
         transform: translateX(3px);
         opacity: 0.85;
+        color: var(--page-accent, #{$brand-accent});
       }
     }
   }
@@ -97,6 +99,11 @@
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 28%, transparent);
+
+      .structure-card-arrow {
+        color: var(--page-accent, #{$brand-accent-dark});
+      }
     }
   }
 

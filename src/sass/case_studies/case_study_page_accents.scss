@@ -1,0 +1,43 @@
+@import '../colors';
+
+/* Lock case-study brand accents so the global blue theme does not leak into these pages. */
+
+.light.case-study-accent--invibe,
+.case-study-accent--invibe.light {
+  --color-accent: #965738;
+  --color-accent-hover: #7a4529;
+  --color-accent-muted: color-mix(in srgb, #c9a882 38%, #965738);
+  --page-accent: #965738;
+  --page-accent-hover: #7a4529;
+  --page-accent-muted: color-mix(in srgb, #c9a882 38%, #965738);
+}
+
+.dark.case-study-accent--invibe,
+.case-study-accent--invibe.dark {
+  --color-accent: #c9a882;
+  --color-accent-hover: #e0c9a8;
+  --color-accent-muted: color-mix(in srgb, #c9a882 42%, #965738);
+  --page-accent: #c9a882;
+  --page-accent-hover: #e0c9a8;
+  --page-accent-muted: color-mix(in srgb, #c9a882 42%, #965738);
+}
+
+.light.case-study-accent--smart-venture,
+.case-study-accent--smart-venture.light {
+  --color-accent: #4a3a5c;
+  --color-accent-hover: #3a2d48;
+  --color-accent-muted: color-mix(in srgb, #e8dcf8 38%, #4a3a5c);
+  --page-accent: #4a3a5c;
+  --page-accent-hover: #3a2d48;
+  --page-accent-muted: color-mix(in srgb, #e8dcf8 38%, #4a3a5c);
+}
+
+.dark.case-study-accent--smart-venture,
+.case-study-accent--smart-venture.dark {
+  --color-accent: #e8dcf8;
+  --color-accent-hover: #f3eefc;
+  --color-accent-muted: color-mix(in srgb, #e8dcf8 42%, #4a3a5c);
+  --page-accent: #e8dcf8;
+  --page-accent-hover: #f3eefc;
+  --page-accent-muted: color-mix(in srgb, #e8dcf8 42%, #4a3a5c);
+}

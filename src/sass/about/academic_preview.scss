@@ -33,20 +33,22 @@
     &:hover {
       transform: translateY(-2px);
       box-shadow: $shadow-md;
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 22%, transparent);
 
       .foundations-card-arrow {
         transform: translateX(3px);
         opacity: 0.85;
+        color: var(--page-accent, #{$brand-accent});
       }
 
       .foundations-card-action {
-        color: rgba(#1a1a1a, 0.72);
+        color: var(--page-accent-hover, #{$brand-accent-hover});
       }
     }
   }
 
   &:focus-visible {
-    outline: 2px solid rgba(#1a1a1a, 0.35);
+    outline: 2px solid rgba(#121212, 0.35);
     outline-offset: 3px;
   }
 }
@@ -59,7 +61,7 @@
   height: 2.75rem;
   border-radius: $radius-md;
   background: rgb(0 0 0 / 3.5%);
-  color: rgba(#1a1a1a, 0.72);
+  color: rgba(#121212, 0.72);
 }
 
 .foundations-card-body {
@@ -70,26 +72,18 @@
   min-width: 0;
 }
 
-.foundations-card-course {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-  color: var(--page-accent-hover, #{$brand-accent-hover});
-}
-
 .foundations-card-title {
   font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.01em;
-  color: rgba(#1a1a1a, 0.92);
+  color: rgba(#121212, 0.92);
 }
 
 .foundations-card-topic {
   font-size: 0.92rem;
   line-height: 1.5;
-  color: rgba(#1a1a1a, 0.62);
+  color: rgba(#121212, 0.62);
 }
 
 .foundations-card-footer {
@@ -106,13 +100,13 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1.2;
-  color: rgba(#1a1a1a, 0.42);
+  color: rgba(#121212, 0.42);
   transition: color 0.18s ease;
 }
 
 .foundations-card-arrow {
   flex-shrink: 0;
-  color: rgba(#1a1a1a, 0.4);
+  color: rgba(#121212, 0.4);
   transition: transform 0.18s ease, opacity 0.18s ease;
 }
 
@@ -124,39 +118,40 @@
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       box-shadow: 0 16px 40px -12px rgb(0 0 0 / 70%);
+      border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 28%, transparent);
+
+      .foundations-card-arrow {
+        color: var(--page-accent, #{$brand-accent-dark});
+      }
 
       .foundations-card-action {
-        color: rgba(#f0f0f0, 0.72);
+        color: var(--page-accent, #{$brand-accent-dark});
       }
     }
   }
 
   &:focus-visible {
-    outline-color: rgba(#f0f0f0, 0.45);
+    outline-color: rgba(#f8fafc, 0.45);
   }
 }
 
 .dark .foundations-card-icon {
   background: rgb(255 255 255 / 6%);
-  color: rgba(#f0f0f0, 0.78);
-}
-
-.dark .foundations-card-course {
-  color: var(--page-accent, #{$brand-accent-dark});
+  color: rgba(#f8fafc, 0.78);
 }
 
 .dark .foundations-card-title {
-  color: rgba(#f0f0f0, 0.92);
+  color: rgba(#f8fafc, 0.92);
 }
 
 .dark .foundations-card-topic {
-  color: rgba(#f0f0f0, 0.58);
+  color: rgba(#f8fafc, 0.58);
 }
 
 .dark .foundations-card-action {
-  color: rgba(#f0f0f0, 0.42);
+  color: rgba(#f8fafc, 0.42);
 }
 
 .dark .foundations-card-arrow {
-  color: rgba(#f0f0f0, 0.45);
+  color: rgba(#f8fafc, 0.45);
 }

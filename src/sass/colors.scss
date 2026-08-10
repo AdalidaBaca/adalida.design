@@ -1,40 +1,40 @@
 @use 'sass:map';
 
-/* —— Palette primitives (accents + optional warm touches) —— */
-$palette-adobe: #e9bea8;
-$palette-earth: #6d4836;
-$palette-clay: #bf835c;
+/* —— Palette primitives —— */
+$palette-adobe: #38bdf8; /* dark-mode accent (sky) */
+$palette-earth: #0056b3; /* light-mode accent (deep blue) */
+$palette-clay: #3b82b0; /* muted blue for mixes */
 $palette-turquoise: #468b96;
 $palette-highlight: #910212;
 
-/* —— Surfaces — clean YC-adjacent neutrals, not brown washes —— */
-$light-background: #fafaf9;
-$dark-background: #09090b;
+/* —— Surfaces —— */
+$light-background: #fff;
+$dark-background: #0f172a;
 $light-surface: #fff;
-$dark-surface: #18181b;
+$dark-surface: #1e293b;
 
-/* —— Text — warm browns on clean neutral surfaces —— */
-$dark-text: #3a261c;
-$light-text: #f5ebe4;
+/* —— Text —— */
+$dark-text: #121212;
+$light-text: #f8fafc;
 $primary: $dark-text;
 
-/* —— Accents — earth + clay light, adobe + clay dark —— */
+/* —— Accents —— */
 $brand-accent: $palette-earth;
-$brand-accent-hover: #5a3829;
+$brand-accent-hover: #004494;
 $brand-accent-dark: $palette-adobe;
-$brand-accent-dark-hover: #f0cdb8;
+$brand-accent-dark-hover: #7dd3fc;
 $accent-subtle: $palette-clay;
 $accent-highlight: $palette-highlight;
 $accent-highlight-hover: #7a010f;
 $light-colors: (
   info: $light-surface,
   danger: $brand-accent,
-  secondary: #8f6350
+  secondary: #3d6ea5
 );
 $dark-colors: (
   info: $dark-surface,
   danger: $brand-accent-dark,
-  secondary: #c9a088
+  secondary: #7dd3fc
 );
 
 @function accent($opacity, $dark: false) {

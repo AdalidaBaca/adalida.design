@@ -120,7 +120,7 @@
   gap: 0;
   padding: 5px;
   border-radius: $radius-md;
-  border: 1px solid var(--color-border, rgb(58 38 28 / 10%));
+  border: 1px solid var(--color-border, rgb(18 18 18 / 10%));
   background: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 4%, var(--color-bg, #{$light-background}));
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 55%);
 }
@@ -234,7 +234,7 @@
 
 .academic-course-filter {
   padding: 0.38em 0.75em;
-  border: 1px solid var(--color-border, rgb(58 38 28 / 10%));
+  border: 1px solid var(--color-border, rgb(18 18 18 / 10%));
   border-radius: $radius-pill;
   background: transparent;
   color: rgba($dark-text, 0.58);
@@ -249,7 +249,7 @@
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       color: rgba($dark-text, 0.78);
-      border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 28%, var(--color-border, rgb(58 38 28 / 10%)));
+      border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 28%, var(--color-border, rgb(18 18 18 / 10%)));
     }
   }
 
@@ -259,7 +259,7 @@
   }
 
   &.is-active {
-    border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 35%, var(--color-border, rgb(58 38 28 / 10%)));
+    border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 35%, var(--color-border, rgb(18 18 18 / 10%)));
     background: color-mix(in srgb, var(--color-accent, #{$brand-accent}) 10%, #fff);
     color: var(--color-accent-hover, #{$brand-accent-hover});
     font-weight: 600;
@@ -400,7 +400,7 @@
 
 .dark .academic-course-filter {
   color: rgba($light-text, 0.58);
-  border-color: var(--color-border, rgb(233 190 168 / 14%));
+  border-color: var(--color-border, rgb(56 189 248 / 14%));
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
@@ -411,12 +411,12 @@
   &.is-active {
     background: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 14%, #18181b);
     color: var(--color-accent, #{$brand-accent-dark});
-    border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 32%, var(--color-border, rgb(233 190 168 / 14%)));
+    border-color: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 32%, var(--color-border, rgb(56 189 248 / 14%)));
   }
 }
 
 .dark .academic-tabs {
-  border-color: var(--color-border, rgb(233 190 168 / 14%));
+  border-color: var(--color-border, rgb(56 189 248 / 14%));
   background: color-mix(in srgb, var(--color-accent, #{$brand-accent-dark}) 8%, rgb(255 255 255 / 4%));
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%);
 }

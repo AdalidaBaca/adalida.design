@@ -163,10 +163,10 @@
 
       @media (hover: hover) and (pointer: fine) {
         &:hover {
-          background: rgb(255 255 255 / 92%);
-          border-color: rgb(0 0 0 / 10%);
+          background: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 6%, #fff);
+          border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent}) 22%, transparent);
           box-shadow:
-            0 2px 6px rgb(0 0 0 / 6%),
+            0 2px 6px color-mix(in srgb, var(--page-accent, #{$brand-accent}) 12%, transparent),
             0 1px 2px rgb(0 0 0 / 3%),
             inset 0 1px 0 rgb(255 255 255 / 90%);
           transform: translateY(-0.5px);
@@ -290,8 +290,8 @@
 
       @media (hover: hover) and (pointer: fine) {
         &:hover {
-          background: rgb(255 255 255 / 8%);
-          border-color: rgb(255 255 255 / 20%);
+          background: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 14%, rgb(255 255 255 / 6%));
+          border-color: color-mix(in srgb, var(--page-accent, #{$brand-accent-dark}) 28%, transparent);
         }
       }
     }

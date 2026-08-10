@@ -43,8 +43,7 @@ const AcademicPreviewCarousel = (): JSX.Element => {
               <PaperIcon size={22} strokeWidth={1.5} />
             </span>
             <span className="foundations-card-body">
-              {entry.courseBadge !== undefined && <span className="foundations-card-course">{entry.courseBadge}</span>}
-              <span className="foundations-card-title">{entry.title}</span>
+              {entry.courseBadge !== undefined && <span className="foundations-card-title">{entry.courseBadge}</span>}
               <span className="foundations-card-topic">{entry.classTopic}</span>
             </span>
             <span className="foundations-card-footer">

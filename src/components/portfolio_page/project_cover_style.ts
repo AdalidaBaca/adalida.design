@@ -6,13 +6,19 @@ type ProjectCoverStyle = CSSProperties & {
   '--project-accent'?: string
 }
 
+/** Prefer a solid hex so hover color-mix() works when cover/primary is a gradient. */
+const solidAccentColor = (value: string): string => {
+  const match = /#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})\b/.exec(value)
+  return match?.[0] ?? value
+}
+
 export const getProjectAccentVars = (project: Project): ProjectCoverStyle => {
   const { cover, primary } = project.colors
   const isGradient = typeof primary === 'string' && primary.includes('gradient')
 
   return {
     '--project-cover-color': isGradient ? primary : cover,
-    '--project-accent': cover
+    '--project-accent': solidAccentColor(cover)
   }
 }
 

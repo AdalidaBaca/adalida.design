@@ -14,6 +14,12 @@ const getCaseStudyAccentClass = (pathname: string): string | null => {
   if (pathname.includes('/case_studies/gaintain')) {
     return 'case-study-accent--gaintain'
   }
+  if (pathname.includes('/case_studies/invibe_esthetics')) {
+    return 'case-study-accent--invibe'
+  }
+  if (pathname.includes('/case_studies/smart_venture_media') || pathname.includes('/case_studies/grace_gong')) {
+    return 'case-study-accent--smart-venture'
+  }
   return null
 }
 
